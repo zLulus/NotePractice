@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Ajax";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <input type="button" onclick="GetWithoutParameter()" value="无参数GET"/>
+    <input type="button" onclick="GetWithParameter()" value="有参数GET"/>
+    <input type="button" id="PostWithParameters" value="多参数POST" />
+</div>
+
+<script>
+    function GetWithoutParameter() {
+        $.ajax({
+            type: "GET",
+            url: "/Js/GetWithoutParameter",
+            data: {
+
+            },
+            success: function () {
+                layer.alert("Success!");
+            }
+        });
+    }
+    function GetWithParameter() {
+        $.ajax({
+            type: "GET",
+            url: "/Js/GetWithParameter",
+            data: {
+                "FirstName": "Liu",
+                "LastName":"QingYu"
+            },
+            success: function () {
+                layer.alert("Success");
+            }
+        });
+    }
+
+    $("#PostWithParameters").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Js/PostWithParameters",
+            data: {
+                "number1": 1,
+                "number2":2
+            },
+            success: function (result) {
+                layer.alert("number1 + number2 = " + result);
+            }
+        });
+    });
+
+</script>
+

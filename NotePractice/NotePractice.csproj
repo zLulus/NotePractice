@@ -147,10 +147,15 @@
     <Content Include="Scripts\layer-v3.0.1\skin\default\loading-0.gif" />
     <Content Include="Scripts\layer-v3.0.1\skin\default\loading-1.gif" />
     <Content Include="Scripts\layer-v3.0.1\skin\default\loading-2.gif" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AboutCController.cs" />
+    <Compile Include="Controllers\AboutDBController.cs" />
+    <Compile Include="Controllers\JsController.cs" />
     <Compile Include="Controllers\LayerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -168,6 +173,13 @@
     <Content Include="Scripts\jquery-3.1.1.min.map" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Layer\NewPage.cshtml" />
+    <Content Include="Views\Js\Refresh.cshtml" />
+    <Content Include="Views\Js\DOMAndJQuery.cshtml" />
+    <Content Include="Views\Js\GetValue.cshtml" />
+    <Content Include="Views\AboutC\ReturnObjectFromC.cshtml" />
+    <Content Include="Views\AboutDB\Bit.cshtml" />
+    <Content Include="Views\Js\DropDownList.cshtml" />
+    <Content Include="Views\Js\Ajax.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -177,7 +189,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{3807cbf7-4e59-423f-915c-18576dd3ee2a}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
