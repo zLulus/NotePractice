@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "DropDownList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    使用状态
+    @Html.DropDownList("useState", new SelectList(ViewBag.UseStates, "DicKey", "DicValue"))
+    @{ 
+        var UseState = ViewBag.UseState.ToString();
+        if (!string.IsNullOrEmpty(UseState))
+        {
+            if (UseState.Contains("1"))
+            {
+                <script>$("#useState").find("option:selected").val(1);</script>
+            }
+            else if (UseState.Contains("2"))
+            {
+                <script>$("#useState").find("option:selected").val(2);</script>
+            }
+            else if (UseState.Contains("3"))
+            {
+                <script>$("#useState").find("option:selected").val(3);</script>
+            }
+        }
+    }
+    <button onclick="GetSelectOne()">获取选择项</button>
+</div>
+
+<script>
+    function GetSelectOne() {
+        var UseState = $("#useState").find("option:selected").val();
+        layer.alert(UseState);
+    }
+</script>

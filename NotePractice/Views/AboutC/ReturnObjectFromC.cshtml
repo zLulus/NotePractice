@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "ReturnObjectFromC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div><button onclick="GetResult()">点击</button></div>
+
+<script>
+    function GetResult() {
+        var A = "A";
+        var B = "B";
+        $.ajax({
+            type: "POST",
+            url: "/AboutC/ReturnObjectFromCAjax",
+            data: { "A": A, "B": B },
+            success: function (result) {
+                if (result.Success == true) {
+                    layer.alert('操作成功,结果为' + result.A + "," + result.B);
+                }
+                else {
+                    layer.msg('操作失败,请稍后重试...');
+                }
+            }
+        });
+    }
+</script>
