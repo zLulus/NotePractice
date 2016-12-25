@@ -52,5 +52,10 @@ namespace NotePractice.Controllers
         {
             return Json(number1+ number2);
         }
+
+        public ActionResult DropDownList2()
+        {
+            return View();
+        }
     }
 }
