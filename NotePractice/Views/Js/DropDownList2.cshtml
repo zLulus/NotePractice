@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "DropDownList2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    省
+    @Html.DropDownList("useState", new SelectList(ViewBag.UseStates, "DicKey", "DicValue"))
+    市
+    区
+</div>
+

@@ -180,6 +180,8 @@
     <Content Include="Views\AboutDB\Bit.cshtml" />
     <Content Include="Views\Js\DropDownList.cshtml" />
     <Content Include="Views\Js\Ajax.cshtml" />
+    <Content Include="Views\Js\DropDownList2.cshtml" />
+    <Content Include="Views\AboutDB\ExcuteSQL.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
