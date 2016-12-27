@@ -17,6 +17,11 @@ namespace WcfClientConsole
         static string url = "http://localhost:8733/Design_Time_Addresses/WcfServicePractice/Service1/";
         static void Main(string[] args)
         {
+            ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
+            string result= client.GetDataUsingDataContract(1);
+
+            
+
             //GetOneParameter(1);
             //GetManyParameter(1, 2);
             //PostOneParameter(20);
@@ -75,6 +80,8 @@ namespace WcfClientConsole
             HttpClient client = new HttpClient();
             var result =await client.PostAsync(url + "PostModel", content);
             var r= result.Content.ReadAsStringAsync().Result;
+            JObject jObject = JObject.Parse(r);
+            string name = jObject["name"].ToString();
         }
 
         public static async void PostModelAndParameter(Student student, bool isDelete)
