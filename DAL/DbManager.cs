@@ -30,7 +30,7 @@ namespace DAL
 
         public DbManager()
         {
-            connection = new SqlConnection("Server=;DataBase=;Uid=;pwd=;");
+            connection = new SqlConnection("Server=115.28.102.108;DataBase=test2;Uid=sa;pwd=Woshizenglu9501;");
             connection.Open();
         }
 

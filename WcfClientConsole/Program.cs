@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using WcfClientConsole.Model;
+using WcfClientConsole.ServiceReference1;
 
 namespace WcfClientConsole
 {
@@ -18,7 +19,7 @@ namespace WcfClientConsole
         static void Main(string[] args)
         {
             ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
-            string result= client.GetDataUsingDataContract(1);
+            CompositeType result = client.GetDataUsingDataContract(new CompositeType());
             
             //GetOneParameter(1);
             //GetManyParameter(1, 2);

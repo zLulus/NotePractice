@@ -14,7 +14,7 @@
         <option value="">请选择</option>
     </select>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <button onclick="GetResult()"></button>
+    <button onclick="GetResult()">获取当前选择</button>
 </div>
 
 <script>
@@ -25,10 +25,10 @@
             $("#Province").val(self.find("option:selected").val());
             var option = GetRegion(parentId);
             $("#Citys").html(option);
-            $("#Districts").html("<option value=''>---请选择---</option>");
+            $("#Districts").html("<option value=''>请选择</option>");
         } else {
-            $("#Citys").html("<option value=''>---请选择---</option>");
-            $("#Districts").html("<option value=''>---请选择---</option>");
+            $("#Citys").html("<option value=''>请选择</option>");
+            $("#Districts").html("<option value=''>请选择</option>");
         }
     });
     $("#Citys").change(function () {
@@ -40,29 +40,31 @@
             var option = GetRegion(parentId);
             $("#Districts").html(option);
         } else {
-            $("#Districts").html("<option value=''>---请选择---</option>");
+            $("#Districts").html("<option value=''>请选择</option>");
         }
     });
-    function GetRegion(parentId) {
-        var option = "<option value=''>---请选择---</option>";
+    function GetRegion(ParentID) {
+        var option = "<option value=''>请选择</option>";
         $.ajax({
             type: "get",
             url: "/AboutDB/GetArea",
             data: { "ParentID": ParentID },
             async: false,
             success: function (city) {
+                //拼接下拉框
                 $.each(city, function (index, item) {
-                    option += "<option value=" + item.Pkid + ">" + item.RegionName + "</option>";
+                    option += "<option value=" + item.PKID + ">" + item.Name + "</option>";
                 });
             }
         });
+        //返回下拉框html
         return option;
     }
     function GetResult()
     {
-        var Provinces = $("#Provinces").find("option:selected").text();
-        var Citys = $("#Citys").find("option:selected").text();
-        var Districts = $("#Districts").find("option:selected").text();
-        layer.alert();
+        var Province = $("#Provinces").find("option:selected").text();
+        var City = $("#Citys").find("option:selected").text();
+        var District = $("#Districts").find("option:selected").text();
+        layer.alert(Province + "-" + City + "-" + District);
     }
 </script>
