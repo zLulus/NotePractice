@@ -19,9 +19,7 @@ namespace WcfClientConsole
         {
             ServiceReference1.Service1Client client = new ServiceReference1.Service1Client();
             string result= client.GetDataUsingDataContract(1);
-
             
-
             //GetOneParameter(1);
             //GetManyParameter(1, 2);
             //PostOneParameter(20);
