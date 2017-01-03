@@ -1,8 +1,5 @@
 ﻿using BLL.Models.AboutDB;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using BLL;
 
@@ -25,8 +22,14 @@ namespace NotePractice.Controllers
 
         public ActionResult Area()
         {
+            ViewBag.Province = new AboutDBManager().GetArea(0);
             return View();
         }
 
+        public ActionResult GetArea(int ParentID)
+        {
+            var regions = new AboutDBManager().GetArea(ParentID);
+            return Json(regions, JsonRequestBehavior.AllowGet);
+        }
     }
 }

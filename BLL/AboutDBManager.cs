@@ -1,4 +1,5 @@
-﻿using BLL.Models.AboutDB;
+﻿using BLL.Models;
+using BLL.Models.AboutDB;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -20,5 +21,12 @@ namespace BLL
             TraditionalSQLServerDBManager manager = new TraditionalSQLServerDBManager();
             manager.ExcuteSQL(@"INSERT INTO [test2].[dbo].[BitTable] ([IsDelete]) VALUES(1)");
         }
+
+        public List<Area> GetArea(int ParentID)
+        {
+            string sql = string.Format("select PKID,ParentID,Name from area where ParentID={0}", ParentID);
+            return DAL.DbManager<Area>.Instance.QueryBySQL(sql).ToList();
+        }
+
     }
 }
