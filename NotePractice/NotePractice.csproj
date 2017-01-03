@@ -182,6 +182,7 @@
     <Content Include="Views\Js\Ajax.cshtml" />
     <Content Include="Views\Js\DropDownList2.cshtml" />
     <Content Include="Views\AboutDB\ExcuteSQL.cshtml" />
+    <Content Include="Views\AboutDB\Area.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

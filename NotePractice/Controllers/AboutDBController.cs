@@ -22,5 +22,11 @@ namespace NotePractice.Controllers
             new AboutDBManager().InsertBitModelByTraditionalWay();
             return View();
         }
+
+        public ActionResult Area()
+        {
+            return View();
+        }
+
     }
 }
