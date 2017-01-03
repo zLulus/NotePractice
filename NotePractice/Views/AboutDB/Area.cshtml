@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "省市区选择";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <span>地区搜索：</span>@Html.DropDownList("Provinces", new SelectList(ViewBag.Province as System.Collections.IEnumerable, "PKID", "RegionName"), "请选择")
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="Citys">
+        <option value="">请选择</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="Districts">
+        <option value="">请选择</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>
