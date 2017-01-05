@@ -45,5 +45,21 @@ namespace DAL
                 return true;
             return false;
         }
+
+        public IEnumerable<T> QueryBySQL(string sql,SqlParameter[] parameters)
+        {
+           return connection.QuerySingle<IEnumerable<T>>(sql, parameters, null, null, System.Data.CommandType.Text);
+        }
+
+        public bool ExecuteOne(string sql, SqlParameter[] parameters)
+        {
+            int count= connection.Execute(sql, parameters, null, null, System.Data.CommandType.Text);
+            return count > 0;
+        }
+
+        public T QueryScalar(string sql, SqlParameter[] parameters)
+        {
+            return connection.ExecuteScalar<T>(sql, parameters, null, null, System.Data.CommandType.Text);
+        }
     }
 }
