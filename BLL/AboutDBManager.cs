@@ -3,6 +3,7 @@ using BLL.Models.AboutDB;
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,8 +25,12 @@ namespace BLL
 
         public List<Area> GetArea(int ParentID)
         {
-            string sql = string.Format("select PKID,ParentID,Name from area where ParentID={0}", ParentID);
-            return DAL.DbManager<Area>.Instance.QueryBySQL(sql).ToList();
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@ParentID",ParentID)
+            };
+            string sql = "select PKID,ParentID,Name from area where ParentID=@ParentID";
+            return DAL.DbManager<Area>.Instance.QueryBySQL(sql, parameters).ToList();
         }
 
     }
