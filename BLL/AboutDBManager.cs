@@ -32,6 +32,5 @@ namespace BLL
             string sql = "select PKID,ParentID,Name from area where ParentID=@ParentID";
             return DAL.DbManager<Area>.Instance.QueryBySQL(sql, parameters).ToList();
         }
-
     }
 }
