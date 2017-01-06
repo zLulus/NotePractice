@@ -15,6 +15,11 @@ namespace WCFSoap
             return string.Format("You entered: {0}", value);
         }
 
+        public bool IsGreaterThanZero(int number)
+        {
+            return number > 0;
+        }
+
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
             if (composite == null)
