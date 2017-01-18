@@ -10,6 +10,14 @@ namespace ConsoleDemo
     {
         static void Main(string[] args)
         {
+            Student s = new Student() { Name = "YYY",Number="0" };
+            Test.SetNumber(s);
+            Console.Read();
+            //NewMethod();
+        }
+
+        private static void NewMethod()
+        {
             int i = 0;
             Console.WriteLine(i);
             Console.WriteLine(i.ToString());
@@ -28,13 +36,14 @@ namespace ConsoleDemo
         }
     }
 
+    public class Student
+    {
+        public string Number { get; set; }
+        public string Name { get; set; }
+    }
+
     public enum Days
     {
         Sunday, Monday, Tuesday, Wednesday, Thursday, Friday=2, Saturday
-    }
-
-    public class Student
-    {
-        public string Name { get; set; }
     }
 }
