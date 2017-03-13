@@ -14,6 +14,9 @@ namespace WCFSoap
         [OperationContract]
         string GetData(int value);
 
+        [OperationContract]
+        bool IsGreaterThanZero(int number);
+
         // TODO: 在此添加您的服务操作
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);

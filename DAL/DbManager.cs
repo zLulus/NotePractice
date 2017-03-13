@@ -30,7 +30,7 @@ namespace DAL
 
         public DbManager()
         {
-            connection = new SqlConnection("Server=115.28.102.108;DataBase=test2;Uid=sa;pwd=Woshizenglu9501;");
+            connection = new SqlConnection("Server=;DataBase=;Uid=;pwd=;");
             connection.Open();
         }
 
@@ -44,6 +44,22 @@ namespace DAL
             if (connection.Execute(sql) != 0)
                 return true;
             return false;
+        }
+
+        public IEnumerable<T> QueryBySQL(string sql,SqlParameter[] parameters)
+        {
+           return connection.QuerySingle<IEnumerable<T>>(sql, parameters, null, null, System.Data.CommandType.Text);
+        }
+
+        public bool ExecuteOne(string sql, SqlParameter[] parameters)
+        {
+            int count= connection.Execute(sql, parameters, null, null, System.Data.CommandType.Text);
+            return count > 0;
+        }
+
+        public T QueryScalar(string sql, SqlParameter[] parameters)
+        {
+            return connection.ExecuteScalar<T>(sql, parameters, null, null, System.Data.CommandType.Text);
         }
     }
 }
