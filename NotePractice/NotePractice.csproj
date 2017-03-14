@@ -975,6 +975,12 @@
     <Content Include="Views\FormSubmit\FormMethod2.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\AngularjsStudy\Calculate.cshtml" />
+    <Content Include="Views\AngularjsStudy\ControllerDemo.cshtml" />
+    <Content Include="Views\AngularjsStudy\RepeatAndRootScope.cshtml" />
+    <Content Include="Views\AngularjsStudy\Validation.cshtml" />
+    <Content Include="Views\AngularjsStudy\InvalidData.cshtml" />
+    <Content Include="Views\AngularjsStudy\CurrencyFilter.cshtml" />
+    <Content Include="Views\AngularjsStudy\OrderByFilter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
