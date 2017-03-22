@@ -993,6 +993,7 @@
     <Content Include="Views\AngularjsStudy\ServiceDemo.cshtml" />
     <Content Include="Views\AngularjsStudy\DependencyInjection.cshtml" />
     <Content Include="Views\AngularjsStudy\Binding.cshtml" />
+    <Content Include="Views\Js\TabSwitch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -57,5 +57,10 @@ namespace NotePractice.Controllers
         {
             return View();
         }
+
+        public ActionResult TabSwitch()
+        {
+            return View();
+        }
     }
 }
