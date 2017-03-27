@@ -146,6 +146,13 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datetimepicker\bootstrap-datetimepicker.min.css" />
+    <Content Include="Content\datetimepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="Content\datetimepicker\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="Content\datetimepicker\bootstrap-theme.min.css" />
+    <Content Include="Content\datetimepicker\bootstrap.min.css" />
+    <Content Include="Content\datetimepicker\bootstrap.min.js" />
+    <Content Include="Content\datetimepicker\jquery-1.8.3.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -950,6 +957,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutCController.cs" />
     <Compile Include="Controllers\AboutDBController.cs" />
+    <Compile Include="Controllers\DatetimeController.cs" />
     <Compile Include="Controllers\FormSubmitController.cs" />
     <Compile Include="Controllers\JsController.cs" />
     <Compile Include="Controllers\LayerController.cs" />
@@ -994,6 +1002,11 @@
     <Content Include="Views\AngularjsStudy\DependencyInjection.cshtml" />
     <Content Include="Views\AngularjsStudy\Binding.cshtml" />
     <Content Include="Views\Js\TabSwitch.cshtml" />
+    <Content Include="Views\Datetime\Daterangepicker.cshtml" />
+    <Content Include="Views\Datetime\Datetimepicker.cshtml" />
+    <Content Include="Views\AngularjsStudy\Radio.cshtml" />
+    <Content Include="Views\AngularjsStudy\MultipliedCaculate.cshtml" />
+    <Content Include="Views\AngularjsStudy\CycleTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1003,8 +1016,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\AngularjsStudy\css\" />
-    <Folder Include="Views\AngularjsStudy\js\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

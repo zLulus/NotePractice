@@ -1,0 +1,61 @@
+﻿@{
+    Layout = null;
+}
+@section Styles{
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+}
+@section Scripts{
+   
+}
+<div id="commentModal" class="modal fade" role="dialog" ng-app="radioApp" >
+    <div class="modal-dialog" ng-controller="radioCtrl as vm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>评价内容</h4>
+            </div>
+            <div class="modal-body">
+                满意程度
+                <!--选项都绑定在commentGrade字段上，同时自己有自己的value，则commentGrade=选中的value值-->
+                <label><input name="Satisfaction" type="radio" value="1" ng-checked="true" ng-model="vm.commentGrade" />满意 </label>
+                <label><input name="Satisfaction" type="radio" value="2" ng-model="vm.commentGrade" />一般 </label>
+                <label><input name="Satisfaction" type="radio" value="3" ng-model="vm.commentGrade" />差评 </label>
+            </div>
+            <div class="modal-body">
+                <textarea placeholder="请填写评价内容" ng-model="vm.commentContent"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary blue" ng-click="vm.comment()"> <span>提交</span></button>
+                <button type="button" class="btn btn-default">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script>
+        var app = angular.module("radioApp", []);
+        app.controller("radioCtrl",
+        [
+            "$scope", "$http",
+            function ($scope, $http) {
+                var vm = this;
+                //评价内容
+                vm.commentContent = "";
+                //评价等级
+                vm.commentGrade = 1;
+
+                vm.comment = function () {
+                    debugger;
+                    var commentGradeStr = "";
+                    if (vm.commentGrade == 1)
+                        commentGradeStr = "满意";
+                    else if (vm.commentGrade == 2)
+                        commentGradeStr = "一般";
+                    else
+                        commentGradeStr = "差评";
+                    alert('你选择的满意程度是：' + commentGradeStr + ",填写的评论内容是：" + vm.commentContent);
+                };
+            }
+        ]);
+</script>
+

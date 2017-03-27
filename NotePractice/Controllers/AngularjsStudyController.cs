@@ -84,10 +84,10 @@ namespace NotePractice.Views.AngularjsStudy
         {
             List<FirstSort> firstSorts = new List<FirstSort>();
             firstSorts.Add(new FirstSort() {id=1,displayName= "绑定分类1" });
-            firstSorts.Add(new FirstSort() { id = 1, displayName = "绑定分类2" });
-            firstSorts.Add(new FirstSort() { id = 1, displayName = "绑定分类3" });
-            firstSorts.Add(new FirstSort() { id = 1, displayName = "绑定分类4" });
-            firstSorts.Add(new FirstSort() { id = 1, displayName = "绑定分类5" });
+            firstSorts.Add(new FirstSort() { id = 2, displayName = "绑定分类2" });
+            firstSorts.Add(new FirstSort() { id = 3, displayName = "绑定分类3" });
+            firstSorts.Add(new FirstSort() { id = 4, displayName = "绑定分类4" });
+            firstSorts.Add(new FirstSort() { id = 5, displayName = "绑定分类5" });
             return Json(firstSorts);
         }
 
@@ -132,5 +132,21 @@ namespace NotePractice.Views.AngularjsStudy
             return Json(JsonConvert.SerializeObject(editResource));
         }
         #endregion
+
+        public ActionResult Radio()
+        {
+            return View();
+        }
+
+        public ActionResult MultipliedCaculate()
+        {
+            return View();
+        }
+
+        public ActionResult CycleTable()
+        {
+            return View();
+        }
+        
     }
 }

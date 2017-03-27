@@ -1,0 +1,43 @@
+﻿@{
+    Layout = null;
+}
+
+@section Scripts{
+    
+}
+
+<div ng-app="multipliedCaculateApp" ng-controller="multipliedCaculateController as vm">
+    <div class="form-group col-md-4">
+        <label><span class="red">*</span>单价(元):</label>
+        <input type="text" class="form-control width-60" ng-change="vm.getTotalPrice()"
+               ng-model="vm.editResource.unitPrice"/>
+    </div>
+    <div class="form-group col-md-4">
+        <label><span class="red">*</span>数量:</label>
+        <input type="text" class="form-control width-60" ng-change="vm.getTotalPrice()"
+               ng-model="vm.editResource.listingNumber"/>
+    </div>
+    <div class="form-group col-md-4">
+        <label><span class="red">*</span>总价(元):</label>
+        <input type="text" disabled ng-model="vm.editResource.totalPrice" 
+               required class="form-control width-60" />
+    </div>
+</div>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script>
+        var mainApp = angular.module("multipliedCaculateApp", []);
+        mainApp.controller('multipliedCaculateController', function ($scope) {
+            debugger;
+            var vm = this;
+            //editResource是个object  可以不给unitPrice和listingNumber赋默认值
+            vm.editResource = {
+                unitPrice:1,
+                listingNumber:2
+            };
+            vm.getTotalPrice = function () {
+                vm.editResource.totalPrice =vm.editResource.unitPrice * vm.editResource.listingNumber;
+            }
+            vm.getTotalPrice();
+        });
+</script>
