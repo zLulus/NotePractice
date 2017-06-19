@@ -147,6 +147,57 @@ namespace NotePractice.Views.AngularjsStudy
         {
             return View();
         }
-        
+
+        public ActionResult Timer()
+        {
+            return View();
+        }
+
+        public ActionResult NgifDemo()
+        {
+            return View();
+        }
+
+        public ActionResult GetNgifData()
+        {
+            List<TaskModel> list = new List<TaskModel>();
+            list.Add(new TaskModel() { Id = 1, TaskName = "任务1", OwnStatus = Status.todo });
+            list.Add(new TaskModel() { Id = 2, TaskName = "任务2", OwnStatus = Status.done });
+            list.Add(new TaskModel() { Id = 3, TaskName = "任务3", OwnStatus = Status.doing });
+            list.Add(new TaskModel() { Id = 4, TaskName = "任务4", OwnStatus = Status.doing });
+            list.Add(new TaskModel() { Id = 5, TaskName = "任务5", OwnStatus = Status.todo });
+            return Json(list);
+        }
+
+        public ActionResult MultiDropDown()
+        {
+            return View();
+        }
+
+        public ActionResult PagesPostParameters1()
+        {
+            return View();
+        }
+
+        public ActionResult PagesPostParameters2()
+        {
+            return View();
+        }
+
+        public ActionResult PagesPostParameters3()
+        {
+            return View();
+        }
+
+        public ActionResult FormatDateTime()
+        {
+            return View();
+        }
+
+        public ActionResult FormValidate()
+        {
+            //返回FormValidate文件夹下面的FormValidate.cshtml
+            return View("FormValidate/FormValidate");
+        }
     }
 }

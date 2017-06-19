@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div ng-controller="MyController">
+        <!--显示$scope.clock的now属性-->
+        <h1>hello {{clock.now}}</h1>
+        <!--显示$scope.clock，里面有一个属性now-->
+        <h1>hello {{clock}}</h1>
+    </div>
+</body>
+
+</html>
+
+<script src="http://cdn.bootcss.com/angular.js/1.6.3/angular.js"></script>
+<script>
+    var app = angular.module("app", []);
+    app.controller('MyController',
+        function MyController($scope) {
+
+            $scope.clock = {
+                now: new Date()
+            };
+            var updateClock = function () {
+                //获得当前时间
+                $scope.clock.now = new Date();
+            };
+
+            //setInterval定时任务，定时任务只设置一次即可，时间间隔是1s
+            setInterval(function () {
+                //调用方法updateClock
+                $scope.$apply(updateClock);
+            }, 1000);
+
+            updateClock();
+        }
+    );
+</script>

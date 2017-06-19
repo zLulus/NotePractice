@@ -1,0 +1,100 @@
+﻿
+<div ng-app="dateTimeApp" ng-controller="dateTimeControl as vm">
+    <form action="" class="form-horizontal" role="form">
+        <fieldset>
+            <legend>Test</legend>
+            <!--日期时分秒-->
+            <div class="form-group">
+                <label for="dtp_input1" class="col-md-2 control-label">DateTime Picking</label>
+                <div class="input-group date form_datetime col-md-5" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" value="" readonly ng-bind="{{vm.data}}">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input1" value="" /><br />
+                <button ng-click="vm.formatDateTime()" class="btn-primary">转换日期格式</button>
+                <label>转换结果:{{ vm.setContentTime(vm.data) }}</label>
+            </div>
+            <!--日期-->
+            <div class="form-group">
+                <label for="dtp_input2" class="col-md-2 control-label">Date Picking</label>
+                <div class="input-group date form_date col-md-5" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input2" value="" /><br />
+            </div>
+            <!--时分秒-->
+            <div class="form-group">
+                <label for="dtp_input3" class="col-md-2 control-label">Time Picking</label>
+                <div class="input-group date form_time col-md-5" data-date="" data-date-format="hh:ii" data-link-field="dtp_input3" data-link-format="hh:ii">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input3" value="" /><br />
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+@section Scripts{
+<script type="text/javascript" src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/Content/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="~/Content/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="~/Scripts/angular.min.js"></script>
+<script type="text/javascript">
+    var app = angular.module('dateTimeApp', []);
+    app.controller('dateTimeControl', function ($scope) {
+        var vm = this;
+        vm.data = null;
+        vm.result = "";
+        //格式化时间
+        vm.setContentTime = function () {
+            debugger;
+            if (!($.isEmptyObject(vm.data))) {
+                return FormattingJsonTime(vm.data);
+            }
+        };
+        //初始化
+        vm.init = function () {
+            $('.form_datetime').datetimepicker({
+                //language:  'fr',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                showMeridian: 1
+            });
+            $('.form_date').datetimepicker({
+                language: 'fr',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $('.form_time').datetimepicker({
+                language: 'fr',
+                weekStart: 1,
+                todayBtn: 1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 1,
+                minView: 0,
+                maxView: 1,
+                forceParse: 0
+            });
+        }
+
+        vm.init();
+    });
+</script>
+
+}
