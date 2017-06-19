@@ -46,6 +46,7 @@
     <Compile Include="AngularjsStudy\AResource.cs" />
     <Compile Include="AngularjsStudy\District.cs" />
     <Compile Include="AngularjsStudy\FirstSort.cs" />
+    <Compile Include="AngularjsStudy\TaskModel.cs" />
     <Compile Include="Js\DictionaryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
