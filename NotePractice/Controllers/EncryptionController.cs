@@ -22,5 +22,10 @@ namespace NotePractice.Controllers
         {
             return View();
         }
+
+        public ActionResult EscapeView()
+        {
+            return View();
+        }
     }
 }

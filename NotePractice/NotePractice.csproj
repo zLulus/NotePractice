@@ -1026,6 +1026,7 @@
     <Content Include="Views\Encryption\Base64View.cshtml" />
     <Content Include="Views\Encryption\Md5View.cshtml" />
     <Content Include="Views\Encryption\Sha1View.cshtml" />
+    <Content Include="Views\Encryption\EscapeView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
