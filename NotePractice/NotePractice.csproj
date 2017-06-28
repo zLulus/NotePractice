@@ -951,6 +951,9 @@
     <Content Include="Scripts\MyJs\Binding.js" />
     <Content Include="Views\AngularjsStudy\FormValidate\css\FormValidate.css" />
     <Content Include="Views\AngularjsStudy\FormValidate\js\FormValidate.js" />
+    <Content Include="Views\Encryption\js\base64.js" />
+    <Content Include="Views\Encryption\js\md5.js" />
+    <Content Include="Views\Encryption\js\sha1.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -961,6 +964,7 @@
     <Compile Include="Controllers\AboutCSSController.cs" />
     <Compile Include="Controllers\AboutDBController.cs" />
     <Compile Include="Controllers\DatetimeController.cs" />
+    <Compile Include="Controllers\EncryptionController.cs" />
     <Compile Include="Controllers\FormSubmitController.cs" />
     <Compile Include="Controllers\JsController.cs" />
     <Compile Include="Controllers\LayerController.cs" />
@@ -1019,6 +1023,9 @@
     <Content Include="Views\AngularjsStudy\FormatDateTime.cshtml" />
     <Content Include="Views\AngularjsStudy\FormValidate\FormValidate.cshtml" />
     <Content Include="Views\AboutCSS\TomatoButton.cshtml" />
+    <Content Include="Views\Encryption\Base64View.cshtml" />
+    <Content Include="Views\Encryption\Md5View.cshtml" />
+    <Content Include="Views\Encryption\Sha1View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
