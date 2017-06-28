@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <title></title>
+</head>
+<body>
+    <div id="app-3">
+        <p v-if="seen">现在你看到我了</p>
+        <input type="button" value="显示/隐藏" onclick="change()"/>
+    </div>
+</body>
+</html>
+
+<script>
+    var app3 = new Vue({
+        el: '#app-3',
+        data: {
+            seen: true
+        }
+    })
+    function change() {
+        app3.seen = !app3.seen;
+    }
+</script>

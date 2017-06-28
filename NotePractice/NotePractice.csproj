@@ -968,6 +968,7 @@
     <Compile Include="Controllers\FormSubmitController.cs" />
     <Compile Include="Controllers\JsController.cs" />
     <Compile Include="Controllers\LayerController.cs" />
+    <Compile Include="Controllers\VueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1027,6 +1028,10 @@
     <Content Include="Views\Encryption\Md5View.cshtml" />
     <Content Include="Views\Encryption\Sha1View.cshtml" />
     <Content Include="Views\Encryption\EscapeView.cshtml" />
+    <Content Include="Views\Vue\HelloWorld.cshtml" />
+    <Content Include="Views\Vue\Bind.cshtml" />
+    <Content Include="Views\Vue\See.cshtml" />
+    <Content Include="Views\Vue\For.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

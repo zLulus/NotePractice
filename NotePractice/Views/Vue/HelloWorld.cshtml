@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Vue Hello World</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div>
+        <h1>Vue Hello World</h1>
+        <div id="app1">
+            {{ message }}
+        </div>
+        <button onclick="change()">Change Text</button>
+    </div>
+</body>
+</html>
+
+<script>
+    var app = new Vue({
+        //作用的控件
+        el: '#app1',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+    function change() {
+        app.message = "haha";
+    }
+</script>
