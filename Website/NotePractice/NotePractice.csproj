@@ -1032,6 +1032,9 @@
     <Content Include="Views\Vue\Bind.cshtml" />
     <Content Include="Views\Vue\See.cshtml" />
     <Content Include="Views\Vue\For.cshtml" />
+    <Content Include="Views\Vue\UserInput1.cshtml" />
+    <Content Include="Views\Vue\UserInput2.cshtml" />
+    <Content Include="Views\Vue\VueComponent.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

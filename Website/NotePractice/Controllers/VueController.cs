@@ -27,5 +27,20 @@ namespace NotePractice.Controllers
         {
             return View();
         }
+
+        public ActionResult UserInput1()
+        {
+            return View();
+        }
+
+        public ActionResult UserInput2()
+        {
+            return View();
+        }
+
+        public ActionResult VueComponent()
+        {
+            return View();
+        }
     }
 }
