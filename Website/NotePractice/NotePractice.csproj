@@ -1036,6 +1036,7 @@
     <Content Include="Views\Vue\UserInput2.cshtml" />
     <Content Include="Views\Vue\VueComponent.cshtml" />
     <Content Include="Views\Vue\ValueSet.cshtml" />
+    <Content Include="Views\Vue\Abbreviation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

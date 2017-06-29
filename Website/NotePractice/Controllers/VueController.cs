@@ -47,5 +47,10 @@ namespace NotePractice.Controllers
         {
             return View();
         }
+
+        public ActionResult Abbreviation()
+        {
+            return View();
+        }
     }
 }

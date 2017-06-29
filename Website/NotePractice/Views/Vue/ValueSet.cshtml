@@ -14,6 +14,7 @@
     <div id="app-8">
         
         <p>
+            <div>msg 双向单向绑定</div>
             <span>Message: {{ msg }}</span>
             <br />
             <span v-once>This will never change: {{ msg }}</span>
@@ -23,24 +24,40 @@
         </p>
 
         <p>
+            <div>HTML展示</div>
             <div v-html="rawHtml"></div>
         </p>
         
         <p>
+            <div>bind 属性</div>
             <button v-bind:disabled="someDynamicCondition">Button</button>
             <button v-on:click="changeDisable">change disabled</button>
         </p>
         
         <p>
+            <div>动态计算、赋值</div>
             <label>{{number+1}}</label>
             <input v-model="number"/>
         </p>
         
         <p>
+            <div>动态计算、赋值</div>
             {{ ok ? 'YES' : 'NO' }}
             <button v-on:click="changeOk">change ok</button>
         </p>
+
+        <p>
+            <div>bind 属性</div>
+            <label v-if="see">You can see it.</label>
+            <button v-on:click="changeSee">change visible</button>
+        </p>
         
+        <p>
+            <div>a标签链接、点击</div>
+            <!--此处不直接写网址，还是绑定对象属性-->
+            <a v-bind:href="url">跳转页面</a>
+            <a v-on:click="doSomething">点击事件</a>
+        </p>
     </div>
 </body>
 </html>
@@ -54,7 +71,8 @@
             someDynamicCondition: false,
             number:10,
             ok: true,
-
+            see: true,
+            url:"http://www.baidu.com"
         },
         methods: {
             changeDisable: function () {
@@ -64,6 +82,12 @@
             changeOk: function () {
                 this.ok = !this.ok;
             },
+            changeSee: function () {
+                this.see = !this.see;
+            },
+            doSomething: function () {
+                alert("You have clicked <a>.")
+            }
         }
     })
 </script>
