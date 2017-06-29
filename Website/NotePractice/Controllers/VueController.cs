@@ -42,5 +42,10 @@ namespace NotePractice.Controllers
         {
             return View();
         }
+
+        public ActionResult ValueSet()
+        {
+            return View();
+        }
     }
 }

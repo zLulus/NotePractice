@@ -1,0 +1,69 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <title></title>
+</head>
+<body>
+    <div id="app-8">
+        
+        <p>
+            <span>Message: {{ msg }}</span>
+            <br />
+            <span v-once>This will never change: {{ msg }}</span>
+            <br />
+            <label>change msg</label>
+            <input v-model="msg" />
+        </p>
+
+        <p>
+            <div v-html="rawHtml"></div>
+        </p>
+        
+        <p>
+            <button v-bind:disabled="someDynamicCondition">Button</button>
+            <button v-on:click="changeDisable">change disabled</button>
+        </p>
+        
+        <p>
+            <label>{{number+1}}</label>
+            <input v-model="number"/>
+        </p>
+        
+        <p>
+            {{ ok ? 'YES' : 'NO' }}
+            <button v-on:click="changeOk">change ok</button>
+        </p>
+        
+    </div>
+</body>
+</html>
+
+<script>
+    var app8 = new Vue({
+        el: '#app-8',
+        data: {
+            msg: "This is msg.",
+            rawHtml: "<p>This is a p.</p>",
+            someDynamicCondition: false,
+            number:10,
+            ok: true,
+
+        },
+        methods: {
+            changeDisable: function () {
+                //this不能少   不然找不到属性
+                this.someDynamicCondition = !this.someDynamicCondition;
+            },
+            changeOk: function () {
+                this.ok = !this.ok;
+            },
+        }
+    })
+</script>
