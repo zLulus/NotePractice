@@ -1,0 +1,37 @@
+﻿<Page x:Class="WpfDemo.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfDemo"
+      mc:Ignorable="d" 
+      Height="350" Width="525"
+      Title="MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Style="{StaticResource LabelStyle3}">Demo</Label>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" Click="ShowKeyboard" Style="{StaticResource MainPageButton}">数字软键盘</Button>
+            <Button Grid.Row="0" Grid.Column="1" Click="PagePop" Style="{StaticResource MainPageButton}">Page导航</Button>
+            <Button Grid.Row="1" Grid.Column="0" Click="UserControChange" Style="{StaticResource MainPageButton}">切换小窗口</Button>
+        </Grid>
+        
+        
+        <!--承接具体弹框的内容的面板看个人的具体业务来选择-->
+        <StackPanel Grid.Row="0" Grid.RowSpan="2" x:Name="stpContent" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ContentControl x:Name="ccl"  Height="350" Width="525"/>
+        </StackPanel>
+    </Grid>
+</Page>

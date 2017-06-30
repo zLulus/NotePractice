@@ -13,16 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfDemo
+namespace WpfDemo.Navigation
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// SecondPage.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class SecondPage : Page
     {
-        public MainWindow()
+        public SecondPage()
         {
             InitializeComponent();
+        }
+
+        private void GoBack(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("../MainPage.xaml", UriKind.Relative));
         }
     }
 }

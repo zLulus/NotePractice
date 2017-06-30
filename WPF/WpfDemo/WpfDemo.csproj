@@ -54,11 +54,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="InputNumberWindow.xaml">
+    <Page Include="Keyboard\InputNumberWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Keyboard.xaml">
+    <Page Include="Keyboard\Keyboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -70,18 +74,42 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InputNumberWindow.xaml.cs">
+    <Compile Include="Keyboard\InputNumberWindow.xaml.cs">
       <DependentUpon>InputNumberWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Keyboard.xaml.cs">
+    <Compile Include="Keyboard\Keyboard.xaml.cs">
       <DependentUpon>Keyboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Navigation\PopChangeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Navigation\PopUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Navigation\SecondPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Navigation\PopChangeUserControl.xaml.cs">
+      <DependentUpon>PopChangeUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation\PopUserControl.xaml.cs">
+      <DependentUpon>PopUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Navigation\SecondPage.xaml.cs">
+      <DependentUpon>SecondPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -121,5 +149,6 @@
     <Resource Include="Images\点击中.png" />
     <Resource Include="Images\点击之前.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
