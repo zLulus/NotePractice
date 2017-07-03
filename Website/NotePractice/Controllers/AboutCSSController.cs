@@ -12,5 +12,10 @@ namespace NotePractice.Controllers
         {
             return View();
         }
+
+        public ActionResult CheckBoxStyle()
+        {
+            return View();
+        }
     }
 }
