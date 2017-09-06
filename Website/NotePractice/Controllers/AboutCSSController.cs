@@ -17,5 +17,10 @@ namespace NotePractice.Controllers
         {
             return View();
         }
+
+        public ActionResult DropdownMenu()
+        {
+            return View();
+        }
     }
 }

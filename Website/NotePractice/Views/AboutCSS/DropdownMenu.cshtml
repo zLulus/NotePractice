@@ -1,0 +1,89 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head class="c-layout-header c-layout-header-4 c-layout-header-default-mobile" data-minimize-offset="80">
+    <link href="~/Views/AboutCSS/css/layout.css" rel="stylesheet" type="text/css" />
+    <div class="c-topbar c-topbar-light c-solid-bg">
+        <div class="container preHeadContainer">
+            <nav class="c-top-menu c-pull-right width-30 text-right">
+                <ul class="c-links c-theme-ul">
+                    <li class="menu-toggle">
+                        <a href="">我的循环</a>
+                        <span></span>
+                        <div class="dropdownMenu service text-left">
+                            <ul>
+                                <li>
+                                    <a href="/PersonalCenter/Order?menu=order">
+                                        <i class="iconfont icon-wanchengdingdan"></i>
+                                        我的订单
+                                    </a>
+                                </li>
+                                <li>
+                                    <!--<a href="@Url.Action("Index","PersonalCenter")">我的账户</a>-->
+                                    <a href="/PersonalCenter/MyCount?menu=account">
+                                        <i class="iconfont icon-zhanghu"></i>
+                                        我的账户
+                                    </a>
+                                </li>
+                                <li>
+                                    <!--<a href="@Url.Action()">个人资料</a>-->
+                                    <a href="/PersonalCenter">
+                                        <i class="iconfont icon-dingdanshuliang"></i>
+                                        个人资料
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Admin">
+                                        <i class="iconfont icon-icon071"></i>
+                                        卖家中心
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="c-divider">|</li>
+                    <li class="menu-toggle">
+                        <a href="#">客服中心</a>
+                        <span></span>
+                        <div class="dropdownMenu service text-left">
+                            <ul>
+                                <li>
+                                    <a href="tencent://message/?uin=2100293805&Menu=yes"><i class="icon-earphones"></i> 在线客服</a>
+                                </li>
+                                <li>
+                                    <a href="http://xh.jwell56.com/About/ArticleDetail/8"><i class="icon-heart"></i> 帮助中心</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="c-divider">|</li>
+                    <li>
+                        <a href="/About/AnnouncementLists?menu=AnnouncementLists">公告中心</a>
+                    </li>
+                    <li class="c-divider">|</li>
+                    <li class="menu-toggle">
+                        <a href="#">APP下载</a>
+                        <span></span>
+                        <div class="dropdownMenu" style="width:150px;height:150px;">
+                            <div class="corse2">
+                                <img src="~/Views/Home/images/app-android.png" width="106px" />
+                                <p>扫一扫：下载APP</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</head>
+<body>
+    <div>
+
+    </div>
+</body>
+</html>
