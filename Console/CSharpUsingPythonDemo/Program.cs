@@ -34,6 +34,7 @@ namespace CSharpUsingPythonDemo
 
             proc.WaitForExit();
 
+            //取出计算结果
             Console.WriteLine(output[0]);
 
             Console.Read();
