@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,8 +15,31 @@ namespace ConsoleDemo
             //EnumTest();
 
             //在正则表达式中给取得的值命名
-            RegexDemo.Demo();
+            //RegexDemo.Demo();
+
+            //关闭之前进行一些操作
+            handler = new ConsoleEventDelegate(ConsoleEventCallback);
+            SetConsoleCtrlHandler(handler, true);
+            Console.ReadLine();
         }
+
+        #region 关闭之前进行一些操作
+        static bool ConsoleEventCallback(int eventType)
+        {
+            if (eventType == 2)
+            {
+                //这是关闭之前
+                Console.WriteLine("Console window closing, death imminent");
+            }
+            return false;
+        }
+        static ConsoleEventDelegate handler;   // Keeps it from getting garbage collected
+                                               // Pinvoke
+        private delegate bool ConsoleEventDelegate(int eventType);
+        [DllImport("kernel32.dll", SetLastError = true)]
+        private static extern bool SetConsoleCtrlHandler(ConsoleEventDelegate callback, bool add);
+
+        #endregion
 
         private static void EnumTest()
         {
