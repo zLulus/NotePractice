@@ -18,9 +18,13 @@ namespace ConsoleDemo
             //RegexDemo.Demo();
 
             //关闭之前进行一些操作
-            handler = new ConsoleEventDelegate(ConsoleEventCallback);
-            SetConsoleCtrlHandler(handler, true);
-            Console.ReadLine();
+            //handler = new ConsoleEventDelegate(ConsoleEventCallback);
+            //SetConsoleCtrlHandler(handler, true);
+            //Console.ReadLine();
+
+            //C# 元组、匿名对象、ref&out
+            ReturnsMultipleValuesTest test = new ReturnsMultipleValuesTest();
+            test.Test();
         }
 
         #region 关闭之前进行一些操作
