@@ -22,7 +22,7 @@ namespace ConsoleDemo
             number = returnValues.number;
             newNumber = returnValues.newNumber;
 
-
+            //匿名对象
             var returnValues2 = CaculateByDynamic(number);
             number = returnValues2.number;
             newNumber = returnValues2.newNumber;
