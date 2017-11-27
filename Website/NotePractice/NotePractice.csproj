@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1042,6 +1043,7 @@
     <Content Include="Views\Vue\Abbreviation.cshtml" />
     <Content Include="Views\AboutCSS\CheckBoxStyle.cshtml" />
     <Content Include="Views\AboutCSS\DropdownMenu.cshtml" />
+    <Content Include="Views\AngularjsStudy\TimeFormat.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

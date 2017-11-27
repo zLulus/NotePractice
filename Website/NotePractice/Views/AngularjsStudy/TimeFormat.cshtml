@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-app="TimeFormatApp" ng-controller="TimeFormatContrl as vm">
+    <h5>在AngularJs的controller里面进行格式化</h5>
+    {{vm.firstTime}}
+    <h5>在html中进行格式化</h5>
+    {{vm.secondTime | date:'yyyy-MM-dd hh:mm:ss'}}
+</div>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script>
+    var app = angular.module('TimeFormatApp', []);
+    app.controller('TimeFormatContrl', function ($scope, $http, $filter) {
+        var vm = this;
+        vm.getdata = function () {
+            $http({
+                method: 'POST',
+                url: '/AngularjsStudy/GetTime',
+                data: {}
+            }).then(function successCallback(data) {
+                debugger;
+                vm.firstTime = $filter('date')(data.data, "yyyy-MM-dd hh:mm:ss"); 
+                vm.secondTime = data.data;
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+        vm.getdata();
+    });
+</script>

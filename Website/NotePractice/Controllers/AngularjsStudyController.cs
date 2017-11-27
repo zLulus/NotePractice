@@ -199,5 +199,15 @@ namespace NotePractice.Views.AngularjsStudy
             //返回FormValidate文件夹下面的FormValidate.cshtml
             return View("FormValidate/FormValidate");
         }
+
+        public ActionResult TimeFormat()
+        {
+            return View();
+        }
+
+        public ActionResult GetTime()
+        {
+            return Json(DateTime.Now);
+        }
     }
 }
