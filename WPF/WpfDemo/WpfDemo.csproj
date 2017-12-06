@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="CustomerWindow\ButtonShowToolTip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Keyboard\InputNumberWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -73,6 +77,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CustomerWindow\ButtonShowToolTip.xaml.cs">
+      <DependentUpon>ButtonShowToolTip.xaml</DependentUpon>
     </Compile>
     <Compile Include="Keyboard\InputNumberWindow.xaml.cs">
       <DependentUpon>InputNumberWindow.xaml</DependentUpon>

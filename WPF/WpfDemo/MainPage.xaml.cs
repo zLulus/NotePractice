@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfDemo.CustomerWindow;
 using WpfDemo.Navigation;
 
 namespace WpfDemo
@@ -40,6 +41,12 @@ namespace WpfDemo
         private void UserControChange(object sender, RoutedEventArgs e)
         {
             ccl.Content = new PopChangeUserControl(this);
+        }
+
+        private void ButtonShowToolTip(object sender, RoutedEventArgs e)
+        {
+            ButtonShowToolTip window = new ButtonShowToolTip();
+            window.Show();
         }
     }
 }

@@ -26,6 +26,7 @@
             <Button Grid.Row="0" Grid.Column="0" Click="ShowKeyboard" Style="{StaticResource MainPageButton}">数字软键盘</Button>
             <Button Grid.Row="0" Grid.Column="1" Click="PagePop" Style="{StaticResource MainPageButton}">Page导航</Button>
             <Button Grid.Row="1" Grid.Column="0" Click="UserControChange" Style="{StaticResource MainPageButton}">切换小窗口</Button>
+            <Button Grid.Row="1" Grid.Column="1" Click="ButtonShowToolTip" Style="{StaticResource MainPageButton}">Button的ToolTip</Button>
         </Grid>
         
         
