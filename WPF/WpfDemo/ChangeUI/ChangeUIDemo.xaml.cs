@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,20 @@ namespace WpfDemo.ChangeUI
         public ChangeUIDemo()
         {
             InitializeComponent();
+
+            NameLabel.Content = "我用UI线程修改了NameLabel的文字";
+
+            Task t = new Task(() =>
+            {
+                //wrong
+                NameLabel.Content = "我用非UI线程修改NameLabel的文字，失败了";
+
+                NameLabel.Dispatcher.Invoke(new Action(delegate
+                {
+                    NameLabel.Content = "我用UI线程修改了NameLabel的文字";
+                }));
+            });
+            t.Start();
         }
     }
 }
