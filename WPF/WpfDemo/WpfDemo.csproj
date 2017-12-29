@@ -66,6 +66,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DependencyProperties\TestCustomBorder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Keyboard\InputNumberWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +99,10 @@
     <Compile Include="Bind\Models\Student.cs" />
     <Compile Include="CustomerWindow\ButtonShowToolTip.xaml.cs">
       <DependentUpon>ButtonShowToolTip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DependencyProperties\CustomBorder.cs" />
+    <Compile Include="DependencyProperties\TestCustomBorder.xaml.cs">
+      <DependentUpon>TestCustomBorder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Keyboard\InputNumberWindow.xaml.cs">
       <DependentUpon>InputNumberWindow.xaml</DependentUpon>
