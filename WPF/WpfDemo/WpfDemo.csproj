@@ -54,6 +54,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Bind\BindDemoForINotifyPropertyChanged.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bind\BindDemoForView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomerWindow\ButtonShowToolTip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -78,6 +86,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Bind\BindDemoForINotifyPropertyChanged.xaml.cs">
+      <DependentUpon>BindDemoForINotifyPropertyChanged.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bind\BindDemoForView.xaml.cs">
+      <DependentUpon>BindDemoForView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bind\Models\Student.cs" />
     <Compile Include="CustomerWindow\ButtonShowToolTip.xaml.cs">
       <DependentUpon>ButtonShowToolTip.xaml</DependentUpon>
     </Compile>
