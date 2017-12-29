@@ -62,6 +62,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ChangeUI\ChangeUIDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomerWindow\ButtonShowToolTip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -97,6 +101,9 @@
       <DependentUpon>BindDemoForView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bind\Models\Student.cs" />
+    <Compile Include="ChangeUI\ChangeUIDemo.xaml.cs">
+      <DependentUpon>ChangeUIDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomerWindow\ButtonShowToolTip.xaml.cs">
       <DependentUpon>ButtonShowToolTip.xaml</DependentUpon>
     </Compile>
