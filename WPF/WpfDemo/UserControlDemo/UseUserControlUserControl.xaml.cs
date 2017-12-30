@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfDemo.UserControl
+namespace WpfDemo.UserControlDemo
 {
     /// <summary>
-    /// OwnUserControl.xaml 的交互逻辑
+    /// UseUserControlUserControl.xaml 的交互逻辑
     /// </summary>
-    public partial class OwnUserControl : System.Windows.Controls.UserControl
+    public partial class UseUserControlUserControl : System.Windows.Controls.UserControl
     {
-        public OwnUserControl()
+        public UseUserControlUserControl()
         {
             InitializeComponent();
         }

@@ -54,13 +54,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="UserControl\OwnUserControl.xaml.cs">
+    <Compile Include="UserControlDemo\OwnUserControl.xaml.cs">
       <DependentUpon>OwnUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\UseUserControlUserControl.xaml.cs">
+    <Compile Include="UserControlDemo\UseUserControlUserControl.xaml.cs">
       <DependentUpon>UseUserControlUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\UseUserControlWindow.xaml.cs">
+    <Compile Include="UserControlDemo\UseUserControlWindow.xaml.cs">
       <DependentUpon>UseUserControlWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="ArrayExtension\ArrayExtensionDemo.xaml">
@@ -178,15 +178,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl\OwnUserControl.xaml">
+    <Page Include="UserControlDemo\OwnUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl\UseUserControlUserControl.xaml">
+    <Page Include="UserControlDemo\UseUserControlUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControl\UseUserControlWindow.xaml">
+    <Page Include="UserControlDemo\UseUserControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
