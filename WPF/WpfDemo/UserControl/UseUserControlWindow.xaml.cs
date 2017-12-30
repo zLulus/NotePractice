@@ -10,26 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfDemo.Navigation
+namespace WpfDemo.UserControl
 {
     /// <summary>
-    /// PopChangeUserControl.xaml 的交互逻辑
+    /// UseUserControlWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class PopChangeUserControl : System.Windows.Controls.UserControl
+    public partial class UseUserControlWindow : Window
     {
-        MainPage mainPage;
-        public PopChangeUserControl(MainPage _mainPage)
+        public UseUserControlWindow()
         {
             InitializeComponent();
-            mainPage = _mainPage;
-        }
-
-        private void GoNext(object sender, RoutedEventArgs e)
-        {
-            mainPage.ccl.Content = new PopUserControl(mainPage);
         }
     }
 }

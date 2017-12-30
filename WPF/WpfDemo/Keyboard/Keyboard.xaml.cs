@@ -18,7 +18,7 @@ namespace WpfDemo
     /// <summary>
     /// Keyboard.xaml 的交互逻辑
     /// </summary>
-    public partial class Keyboard : UserControl
+    public partial class Keyboard : System.Windows.Controls.UserControl
     {
         TextBox textBox;
         Canvas grid;

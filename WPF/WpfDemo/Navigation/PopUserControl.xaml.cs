@@ -18,7 +18,7 @@ namespace WpfDemo.Navigation
     /// <summary>
     /// PopUserControl.xaml 的交互逻辑
     /// </summary>
-    public partial class PopUserControl : UserControl
+    public partial class PopUserControl : System.Windows.Controls.UserControl
     {
         System.Windows.Threading.DispatcherTimer timer = new System.Windows.Threading.DispatcherTimer();
         MainPage mainPage;

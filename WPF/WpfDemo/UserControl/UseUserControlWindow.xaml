@@ -1,0 +1,21 @@
+﻿<Window x:Class="WpfDemo.UserControl.UseUserControlWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.UserControl"
+        mc:Ignorable="d"
+        Title="UseUserControlWindow" Height="600" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0.2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Content="使用OwnUserControl用户控件"></Label>
+        <local:OwnUserControl Grid.Row="1"></local:OwnUserControl>
+        <Label Grid.Row="2" Content="使用UseUserControlUserControl用户控件"></Label>
+        <local:UseUserControlUserControl Grid.Row="3"></local:UseUserControlUserControl>
+    </Grid>
+</Window>

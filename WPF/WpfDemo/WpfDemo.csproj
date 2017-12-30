@@ -54,6 +54,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UserControl\OwnUserControl.xaml.cs">
+      <DependentUpon>OwnUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\UseUserControlUserControl.xaml.cs">
+      <DependentUpon>UseUserControlUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl\UseUserControlWindow.xaml.cs">
+      <DependentUpon>UseUserControlWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="ArrayExtension\ArrayExtensionDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -166,6 +175,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Navigation\SecondPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\OwnUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\UseUserControlUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\UseUserControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
