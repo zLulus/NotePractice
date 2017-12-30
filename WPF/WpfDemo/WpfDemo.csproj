@@ -57,6 +57,9 @@
     <Compile Include="CheckBox\CheckBoxDemo.xaml.cs">
       <DependentUpon>CheckBoxDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MarginAndPadding\MarginAndPaddingDemo.xaml.cs">
+      <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RadioButton\RadioButtonDemo.xaml.cs">
       <DependentUpon>RadioButtonDemo.xaml</DependentUpon>
     </Compile>
@@ -178,6 +181,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MarginAndPadding\MarginAndPaddingDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MultiBinding\MultiBindingDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
