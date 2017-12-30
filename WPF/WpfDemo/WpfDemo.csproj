@@ -54,6 +54,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RadioButton\RadioButtonDemo.xaml.cs">
+      <DependentUpon>RadioButtonDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlDemo\OwnUserControl.xaml.cs">
       <DependentUpon>OwnUserControl.xaml</DependentUpon>
     </Compile>
@@ -175,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Navigation\SecondPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RadioButton\RadioButtonDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
