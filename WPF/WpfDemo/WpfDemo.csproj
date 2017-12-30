@@ -70,6 +70,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DataContextAndItemSource\DataContextAndItemSource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DependencyProperties\TestCustomBorder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,6 +111,10 @@
     <Compile Include="CustomerWindow\ButtonShowToolTip.xaml.cs">
       <DependentUpon>ButtonShowToolTip.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataContextAndItemSource\DataContextAndItemSource.xaml.cs">
+      <DependentUpon>DataContextAndItemSource.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DataContextAndItemSource\Models\Student.cs" />
     <Compile Include="DependencyProperties\CustomBorder.cs" />
     <Compile Include="DependencyProperties\TestCustomBorder.xaml.cs">
       <DependentUpon>TestCustomBorder.xaml</DependentUpon>
