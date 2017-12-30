@@ -82,6 +82,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Expander\ExpanderDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GetStaticFromBackgroundCode\GetStaticFromBackgroundCode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,6 +133,9 @@
     <Compile Include="DependencyProperties\CustomBorder.cs" />
     <Compile Include="DependencyProperties\TestCustomBorder.xaml.cs">
       <DependentUpon>TestCustomBorder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Expander\ExpanderDemo.xaml.cs">
+      <DependentUpon>ExpanderDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="GetStaticFromBackgroundCode\GetStaticFromBackgroundCode.xaml.cs">
       <DependentUpon>GetStaticFromBackgroundCode.xaml</DependentUpon>
