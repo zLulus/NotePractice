@@ -72,6 +72,13 @@
     <Compile Include="Template\ControlTemplate\ControlTemplateDemo3.xaml.cs">
       <DependentUpon>ControlTemplateDemo3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Template\DataTemplate\DataTemplateDemo.xaml.cs">
+      <DependentUpon>DataTemplateDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\DataTemplate\DataTemplateDemo2.xaml.cs">
+      <DependentUpon>DataTemplateDemo2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\DataTemplate\Models\Person.cs" />
     <Compile Include="Template\StyleUseTemplate\StyleUseTemplateDemo.xaml.cs">
       <DependentUpon>StyleUseTemplateDemo.xaml</DependentUpon>
     </Compile>
@@ -244,6 +251,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Template\DataTemplate\DataTemplateDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\DataTemplate\DataTemplateDemo2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Template\StyleUseTemplate\StyleUseTemplateDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -348,5 +363,6 @@
   <ItemGroup>
     <Resource Include="Template\ControlTemplate\Images\cat.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
