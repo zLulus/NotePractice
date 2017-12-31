@@ -74,6 +74,12 @@
     <Compile Include="RadioButton\RadioButtonDemo.xaml.cs">
       <DependentUpon>RadioButtonDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StartWindowAndDialog\Dialog.xaml.cs">
+      <DependentUpon>Dialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartWindowAndDialog\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Template\ControlTemplate\ControlTemplateDemo.xaml.cs">
       <DependentUpon>ControlTemplateDemo.xaml</DependentUpon>
     </Compile>
@@ -116,6 +122,9 @@
     </Compile>
     <Compile Include="Tag\TagDemo.xaml.cs">
       <DependentUpon>TagDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TextBlockRun\TextBlockRunDemo.xaml.cs">
+      <DependentUpon>TextBlockRunDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Trigger\DataTriggerDemo.xaml.cs">
       <DependentUpon>DataTriggerDemo.xaml</DependentUpon>
@@ -277,6 +286,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="StartWindowAndDialog\Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StartWindowAndDialog\StartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Template\ControlTemplate\ControlTemplateDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -334,6 +351,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tag\TagDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TextBlockRun\TextBlockRunDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
