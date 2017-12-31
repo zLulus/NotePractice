@@ -79,6 +79,9 @@
       <DependentUpon>DataTemplateDemo2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Template\DataTemplate\Models\Person.cs" />
+    <Compile Include="Template\ItemsPanelTemplate\ItemsPanelTemplateDemo.xaml.cs">
+      <DependentUpon>ItemsPanelTemplateDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Template\StyleUseTemplate\StyleUseTemplateDemo.xaml.cs">
       <DependentUpon>StyleUseTemplateDemo.xaml</DependentUpon>
     </Compile>
@@ -256,6 +259,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Template\DataTemplate\DataTemplateDemo2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\ItemsPanelTemplate\ItemsPanelTemplateDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
