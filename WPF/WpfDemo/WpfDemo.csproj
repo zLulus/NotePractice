@@ -63,6 +63,15 @@
     <Compile Include="RadioButton\RadioButtonDemo.xaml.cs">
       <DependentUpon>RadioButtonDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Template\ControlTemplate\ControlTemplateDemo.xaml.cs">
+      <DependentUpon>ControlTemplateDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\ControlTemplate\ControlTemplateDemo2.xaml.cs">
+      <DependentUpon>ControlTemplateDemo2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\ControlTemplate\ControlTemplateDemo3.xaml.cs">
+      <DependentUpon>ControlTemplateDemo3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Template\StyleUseTemplate\StyleUseTemplateDemo.xaml.cs">
       <DependentUpon>StyleUseTemplateDemo.xaml</DependentUpon>
     </Compile>
@@ -223,6 +232,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Template\ControlTemplate\ControlTemplateDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\ControlTemplate\ControlTemplateDemo2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\ControlTemplate\ControlTemplateDemo3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Template\StyleUseTemplate\StyleUseTemplateDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -325,7 +346,7 @@
     <Resource Include="Images\点击之前.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Template\ControlTemplate\" />
+    <Resource Include="Template\ControlTemplate\Images\cat.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

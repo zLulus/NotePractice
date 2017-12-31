@@ -1,0 +1,38 @@
+﻿<Window x:Class="WpfDemo.Template.ControlTemplate.ControlTemplateDemo2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.Template.ControlTemplate"
+        mc:Ignorable="d"
+        Title="ControlTemplateDemo2" Height="300" Width="500">
+    <Window.Resources>
+        <ControlTemplate x:Key="CheckBoxControlTemplate" TargetType="CheckBox">
+            <StackPanel>
+                <Rectangle Name="breakRectangle" Stroke="Red" StrokeThickness="2" Width="20" Height="20">
+                    <Rectangle.Fill>
+                        <!--默认Rectangle填充色为White-->
+                        <SolidColorBrush Color="White"></SolidColorBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <!--ContentPresenter 保留原控件属性-->
+                <ContentPresenter Margin="{TemplateBinding Padding}"></ContentPresenter>
+            </StackPanel>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter TargetName="breakRectangle" Property="Fill" Value="Coral"></Setter>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <CheckBox Content="我是普通CheckBox"></CheckBox>
+        <CheckBox Grid.Row="1" Template="{StaticResource CheckBoxControlTemplate}" Content="我是模板CheckBox"></CheckBox>
+        <CheckBox Grid.Row="2" Template="{StaticResource CheckBoxControlTemplate}" Content="我是模板CheckBox，我跟上一个模板的区别在于Padding" Padding="15"></CheckBox>
+    </Grid>
+</Window>
