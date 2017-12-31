@@ -1,0 +1,36 @@
+﻿<Window x:Class="WpfDemo.Converts.ConvertDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.Converts"
+        xmlns:converts="clr-namespace:WpfDemo.Converts.Converts"
+        mc:Ignorable="d"
+        Title="ConvertDemo" Height="300" Width="300">
+    <Window.Resources>
+        <!--在这里引入ColorConvert.cs 并给它一个前端的名称myConvert-->
+        <converts:ColorConvert x:Key="MyConvert"></converts:ColorConvert>
+        <Style x:Key="Item" TargetType="ListViewItem">
+            <!--表明将自身的背景颜色修改-->
+            <Setter Property="Background">
+                <Setter.Value>
+                    <!--RelativeSource="{RelativeSource Self}"的Self不能用控件名称代替-->
+                    <Binding RelativeSource="{RelativeSource Self}" Converter="{StaticResource MyConvert}"></Binding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <!--使用ItemContainerStyle将Style赋给ListView-->
+        <ListView ItemsSource="{Binding }" ItemContainerStyle="{StaticResource Item}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                        <GridViewColumn Header="年龄" DisplayMemberBinding="{Binding Age}"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

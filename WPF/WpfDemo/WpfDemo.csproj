@@ -57,6 +57,11 @@
     <Compile Include="CheckBox\CheckBoxDemo.xaml.cs">
       <DependentUpon>CheckBoxDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converts\ConvertDemo.xaml.cs">
+      <DependentUpon>ConvertDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converts\Converts\ColorConvert.cs" />
+    <Compile Include="Converts\Models\Student.cs" />
     <Compile Include="MarginAndPadding\MarginAndPaddingDemo.xaml.cs">
       <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
     </Compile>
@@ -151,6 +156,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CheckBox\CheckBoxDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Converts\ConvertDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
