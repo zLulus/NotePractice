@@ -69,6 +69,12 @@
     <Compile Include="Style\StyleDemo2.xaml.cs">
       <DependentUpon>StyleDemo2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Style\StyleInheritDemo.xaml.cs">
+      <DependentUpon>StyleInheritDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Style\StyleInheritDemo2.xaml.cs">
+      <DependentUpon>StyleInheritDemo2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TabSetting\TabSettingDemo.xaml.cs">
       <DependentUpon>TabSettingDemo.xaml</DependentUpon>
     </Compile>
@@ -216,6 +222,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Style\StyleDemo2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\StyleInheritDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\StyleInheritDemo2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
