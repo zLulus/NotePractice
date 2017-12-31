@@ -112,6 +112,7 @@
     <Compile Include="Trigger\EventTriggerDemo.xaml.cs">
       <DependentUpon>EventTriggerDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Trigger\Models\TypeClass.cs" />
     <Compile Include="Trigger\TriggerDemo.xaml.cs">
       <DependentUpon>TriggerDemo.xaml</DependentUpon>
     </Compile>

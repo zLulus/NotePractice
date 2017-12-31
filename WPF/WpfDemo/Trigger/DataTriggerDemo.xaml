@@ -6,7 +6,44 @@
         xmlns:local="clr-namespace:WpfDemo.Trigger"
         mc:Ignorable="d"
         Title="DataTriggerDemo" Height="300" Width="300">
+    <Window.Resources>
+        <!--单元格的样式-->
+        <Style TargetType="DataGridCell" x:Key="ColorCell">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Type}" Value="0">
+                    <Setter Property="Background" Value="Pink"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Type}" Value="1">
+                    <Setter Property="Background" Value="Coral"></Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Type}" Value="2">
+                    <Setter Property="Background" Value="Crimson"></Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <DataGrid ItemsSource="{Binding }" AutoGenerateColumns="False">
+            <!--行头的样式-->
+            <DataGrid.RowHeaderStyle>
+                <Style TargetType="DataGridRowHeader">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Type}" Value="0">
+                            <Setter Property="Background" Value="Pink"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Type}" Value="1">
+                            <Setter Property="Background" Value="Coral"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Type}" Value="2">
+                            <Setter Property="Background" Value="Crimson"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Type值" Width="*" Binding="{Binding TypeValue}"/>
+                <DataGridTextColumn Header="Type效果" Width="*" Binding="{Binding Type}" CellStyle="{StaticResource ColorCell}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
