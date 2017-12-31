@@ -63,6 +63,12 @@
     <Compile Include="RadioButton\RadioButtonDemo.xaml.cs">
       <DependentUpon>RadioButtonDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Style\StyleDemo.xaml.cs">
+      <DependentUpon>StyleDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Style\StyleDemo2.xaml.cs">
+      <DependentUpon>StyleDemo2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TabSetting\TabSettingDemo.xaml.cs">
       <DependentUpon>TabSettingDemo.xaml</DependentUpon>
     </Compile>
@@ -202,6 +208,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RadioButton\RadioButtonDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\StyleDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Style\StyleDemo2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
