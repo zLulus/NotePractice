@@ -60,6 +60,12 @@
     <Compile Include="MarginAndPadding\MarginAndPaddingDemo.xaml.cs">
       <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="PropertyChanged\ChangeStudentInfo.xaml.cs">
+      <DependentUpon>ChangeStudentInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PropertyChanged\Models\StudentByINotifyPropertyChanged.cs" />
+    <Compile Include="PropertyChanged\ViewModels\ChangeStudentInfoViewModel.cs" />
     <Compile Include="RadioButton\RadioButtonDemo.xaml.cs">
       <DependentUpon>RadioButtonDemo.xaml</DependentUpon>
     </Compile>
@@ -245,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Navigation\SecondPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PropertyChanged\ChangeStudentInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
