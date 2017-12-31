@@ -139,6 +139,9 @@
     <Compile Include="VisualStateManager\VisualStateManagerDemo.xaml.cs">
       <DependentUpon>VisualStateManagerDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowIconAndBackground\WindowIconAndBackgroundDemo.xaml.cs">
+      <DependentUpon>WindowIconAndBackgroundDemo.xaml</DependentUpon>
+    </Compile>
     <Page Include="ArrayExtension\ArrayExtensionDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -362,6 +365,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowIconAndBackground\WindowIconAndBackgroundDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MultiBinding\MultiBindingDemo.xaml.cs">
@@ -419,5 +426,9 @@
     <Resource Include="Template\ControlTemplate\Images\cat.jpg" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="WindowIconAndBackground\Images\background.jpg" />
+    <Resource Include="WindowIconAndBackground\Images\icon.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
