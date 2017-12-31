@@ -1,0 +1,45 @@
+﻿<Window x:Class="WpfDemo.Trigger.EventTriggerDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.Trigger"
+        mc:Ignorable="d"
+        Title="EventTriggerDemo" Height="300" Width="300">
+    <Grid>
+        <CheckBox Content="随着鼠标划入划出，长度改变" HorizontalAlignment="Left" Width="70">
+            <CheckBox.Resources>
+                <Style TargetType="{x:Type CheckBox}">
+                    <Setter Property="Foreground" Value="OrangeRed"></Setter>
+                    <Style.Triggers>
+                        <!--当鼠标划入，增加长度-->
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!--这里设置了一个动画，持续时间是0.2秒，改变属性为Width，目标数值是200-->
+                                        <DoubleAnimation Duration="0:0:0.2" 
+                                                         Storyboard.TargetProperty="Width" 
+                                                         To="200"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <!--当鼠标划出，减小长度-->
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.2" 
+                                                         Storyboard.TargetProperty="Width" 
+                                                         To="70"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </CheckBox.Resources>
+        </CheckBox>
+    </Grid>
+</Window>
