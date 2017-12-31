@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:WpfDemo"
              StartupUri="/Style/StyleInheritDemo2.xaml">
     <Application.Resources>
+        <ResourceDictionary x:Key="ResourceDictionary1">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/MyStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
         <!--主页按钮样式-->
         <Style x:Key="MainPageButton"  TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="20,5,20,5"></Setter>
