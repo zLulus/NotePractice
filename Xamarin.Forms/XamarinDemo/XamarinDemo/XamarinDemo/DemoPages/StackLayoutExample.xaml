@@ -1,0 +1,15 @@
+﻿<Page
+    x:Class="XamarinDemo.DemoPages.StackLayoutExample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:XamarinDemo.DemoPages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <StackLayout Spacing="10">
+        <Label Text="Stop" BackgroundColor="Red" Font="20" />
+        <Label Text="Slow down" BackgroundColor="Yellow" Font="20" />
+        <Label Text="Go" BackgroundColor="Green" Font="20" />
+    </StackLayout>
+</Page>

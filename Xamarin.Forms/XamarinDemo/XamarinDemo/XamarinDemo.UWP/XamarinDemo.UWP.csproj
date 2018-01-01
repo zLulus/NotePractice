@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{BEFA6CC0-3D66-4506-B44B-EA4664A28062}</ProjectGuid>
+    <ProjectGuid>{4EAF3043-5FA0-4406-B9BE-CB332560FA2C}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>XamarinDemo.UWP</RootNamespace>

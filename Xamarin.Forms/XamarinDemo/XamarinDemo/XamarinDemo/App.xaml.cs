@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using XamarinDemo.DemoPages;
 
 namespace XamarinDemo
 {
@@ -13,7 +14,7 @@ namespace XamarinDemo
 		{
 			InitializeComponent();
 
-			MainPage = new XamarinDemo.MainPage();
+			MainPage = new StackLayoutExample();
 		}
 
 		protected override void OnStart ()
