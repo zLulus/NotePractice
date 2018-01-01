@@ -14,7 +14,7 @@ namespace XamarinDemo
 		{
 			InitializeComponent();
 
-			MainPage = new StackLayoutExample();
+			MainPage = new ListViewInStackLayout();
 		}
 
 		protected override void OnStart ()
