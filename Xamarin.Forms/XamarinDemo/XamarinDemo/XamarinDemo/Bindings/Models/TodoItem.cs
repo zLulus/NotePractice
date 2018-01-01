@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace XamarinDemo.Binding.Models
+namespace XamarinDemo.Bindings.Models
 {
     public class TodoItem
     {

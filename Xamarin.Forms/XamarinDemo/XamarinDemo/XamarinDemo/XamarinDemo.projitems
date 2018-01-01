@@ -16,10 +16,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Binding\Models\TodoItem.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Binding\ShowTodoItem.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\TodoItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bindings\ShowTodoItem.xaml.cs">
       <DependentUpon>ShowTodoItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\Cells\EmployeeCell.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo.xaml.cs">
+      <DependentUpon>CustomizingCellDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\Models\Employee.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DemoPages\ListViewInStackLayout.xaml.cs">
       <DependentUpon>ListViewInStackLayout.xaml</DependentUpon>
     </Compile>
@@ -31,7 +36,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Binding\ShowTodoItem.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Bindings\ShowTodoItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

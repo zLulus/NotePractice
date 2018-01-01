@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
-using XamarinDemo.Binding;
+using XamarinDemo.Bindings;
+using XamarinDemo.CustomizingCell;
 using XamarinDemo.DemoPages;
 
 namespace XamarinDemo
@@ -15,7 +16,7 @@ namespace XamarinDemo
 		{
 			InitializeComponent();
 
-			MainPage = new ShowTodoItem();
+			MainPage = new CustomizingCellDemo();
 		}
 
 		protected override void OnStart ()
