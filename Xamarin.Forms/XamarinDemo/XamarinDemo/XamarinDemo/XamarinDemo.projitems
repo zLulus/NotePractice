@@ -24,6 +24,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo.xaml.cs">
       <DependentUpon>CustomizingCellDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo2.xaml.cs">
+      <DependentUpon>CustomizingCellDemo2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\Models\Employee.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DemoPages\ListViewInStackLayout.xaml.cs">
       <DependentUpon>ListViewInStackLayout.xaml</DependentUpon>
@@ -41,6 +44,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
