@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Xamarin.Forms;
+using XamarinDemo.Binding;
 using XamarinDemo.DemoPages;
 
 namespace XamarinDemo
@@ -14,7 +15,7 @@ namespace XamarinDemo
 		{
 			InitializeComponent();
 
-			MainPage = new ListViewInStackLayout();
+			MainPage = new ShowTodoItem();
 		}
 
 		protected override void OnStart ()
