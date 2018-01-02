@@ -16,6 +16,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName.xaml.cs">
+      <DependentUpon>BindingFirstName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\Employee.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\ShowTodoItem.xaml.cs">
       <DependentUpon>ShowTodoItem.xaml</DependentUpon>
@@ -39,6 +43,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Bindings\ShowTodoItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

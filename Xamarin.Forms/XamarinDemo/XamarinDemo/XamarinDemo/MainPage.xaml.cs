@@ -15,6 +15,10 @@ namespace XamarinDemo
 		public MainPage()
 		{
 			InitializeComponent();
+
+            Label NameLabel = new Label();
+            NameLabel.Text = "Demo列表";
+
             Button StackLayoutDemo1Button = new Button();
             StackLayoutDemo1Button.Clicked += StackLayoutDemo1Clicked;
             StackLayoutDemo1Button.Text = "StackLayout+Label";
@@ -27,9 +31,13 @@ namespace XamarinDemo
             CustomizingCellDemoButton1.Clicked += CustomizingCellDemoButton1Clicked;
             CustomizingCellDemoButton1.Text = "自定义单元格Demo";
 
-            Button ShowTodoItemButton1 = new Button();
-            ShowTodoItemButton1.Clicked += ShowTodoItemButton1Clicked;
-            ShowTodoItemButton1.Text = "数据绑定";
+            //Button ShowTodoItemButton1 = new Button();
+            //ShowTodoItemButton1.Clicked += ShowTodoItemButton1Clicked;
+            //ShowTodoItemButton1.Text = "数据绑定";
+
+            Button BindingFirstNameButton = new Button();
+            BindingFirstNameButton.Clicked += BindingFirstNameClicked;
+            BindingFirstNameButton.Text = "数据绑定(Binding FirstName - C#)";
 
             //内容
             Content = new StackLayout
@@ -38,10 +46,19 @@ namespace XamarinDemo
                 Spacing = 10,
                 Children =
                 {
+                    NameLabel,
                     StackLayoutDemo1Button,
-                    StackLayoutDemo1Button2
+                    StackLayoutDemo1Button2,
+                    CustomizingCellDemoButton1,
+                    //ShowTodoItemButton1,
+                    BindingFirstNameButton,
                 }
             };
+        }
+
+        private void BindingFirstNameClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new BindingFirstName());
         }
 
         private void ShowTodoItemButton1Clicked(object sender, EventArgs e)

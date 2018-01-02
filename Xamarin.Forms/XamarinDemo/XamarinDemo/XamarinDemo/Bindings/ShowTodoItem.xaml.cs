@@ -17,16 +17,17 @@ namespace XamarinDemo.Bindings
     {
         public ShowTodoItem()
         {
+            //todo 待完成
             var listView = new Xamarin.Forms.ListView
             {
                 RowHeight = 40
             };
             listView.ItemsSource = new TodoItem[] {
-                new TodoItem { Name = "Buy 2 pears" },
-                new TodoItem { Name = "Buy 3 oranges", Done=true} ,
-                new TodoItem { Name = "Buy 5 mangos" },
-                new TodoItem { Name = "Buy 7 apples", Done=true },
-                new TodoItem { Name = "Buy 8 bananas", Done=true }
+                new TodoItem { Count=2,Item="pears" },
+                new TodoItem { Count=3,Item="oranges", Done=true} ,
+                new TodoItem { Count=5,Item="mangos" },
+                new TodoItem { Count=7,Item="apples", Done=true },
+                new TodoItem { Count=8,Item="bananas", Done=true }
             };
             //TextCell是内置默认模板
             listView.ItemTemplate = new DataTemplate(typeof(TextCell));

@@ -18,6 +18,7 @@ namespace XamarinDemo.CustomizingCell
         public static List<Employee> Employees;
         public CustomizingCellDemo2()
         {
+            //todo 待完成
             Employees = new List<Employee>();
             Employees.Add(new Employee()
             {

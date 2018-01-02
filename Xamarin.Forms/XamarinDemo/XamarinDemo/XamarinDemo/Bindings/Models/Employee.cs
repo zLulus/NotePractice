@@ -1,35 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace XamarinDemo.Bindings.Models
 {
-    public class TodoItem : INotifyPropertyChanged
+    public class Employee : INotifyPropertyChanged
     {
-        private string name;
-        public string Name
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        string _firstName;
+        public string FirstName
         {
-            get { return name; }
+            get { return _firstName; }
             set
             {
-                if (value.Equals(name, StringComparison.Ordinal))
+                if (value.Equals(_firstName, StringComparison.Ordinal))
                 {
                     // Nothing to do - the value hasn't changed;
                     return;
                 }
-                name = value;
+                _firstName = value;
                 OnPropertyChanged();
 
             }
         }
 
-        public int Count { get; set; }
-        public string Item { get; set; }
-        public bool Done { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
         void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
