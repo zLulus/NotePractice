@@ -28,10 +28,16 @@ namespace XamarinDemo.DemoPages
                 "Buy apples",
                 "Buy bananas"
             };
+            var backButton = new Button();
+            backButton.Text = "返回";
+            backButton.Clicked += ((sender, e) =>
+            {
+                Navigation.PopModalAsync();
+            });
             Content = new StackLayout
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                Children = { listView }
+                Children = { listView, backButton }
             };
         }
     }

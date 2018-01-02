@@ -14,10 +14,15 @@ namespace XamarinDemo
 		{
 			InitializeComponent();
             Button StackLayoutDemo1Button = new Button();
-            StackLayoutDemo1Button.Clicked += StackLayoutDemo1Clicked;
+            StackLayoutDemo1Button.Clicked += ((sender,e)=>
+            {
+                Navigation.PushAsync(new StackLayoutExample());
+            });
             StackLayoutDemo1Button.Text = "StackLayout+Label";
             Button StackLayoutDemo1Button2 = new Button();
-            StackLayoutDemo1Button2.Clicked += StackLayoutDemo2Clicked;
+            StackLayoutDemo1Button2.Clicked += ((sender,e)=> {
+                Navigation.PushModalAsync(new ListViewInStackLayout());
+            });
             StackLayoutDemo1Button2.Text = "StackLayout+ListView";
 
             //内容
@@ -40,7 +45,7 @@ namespace XamarinDemo
 
         public void StackLayoutDemo2Clicked(object sender, EventArgs e)
         {
-
+            Navigation.PushModalAsync(new ListViewInStackLayout());
         }
     }
 }
