@@ -12,9 +12,9 @@ namespace XamarinDemo
 {
 	public partial class MainPage : ContentPage
 	{
-		public MainPage()
-		{
-			InitializeComponent();
+        public MainPage()
+        {
+            InitializeComponent();
 
             Label NameLabel = new Label();
             NameLabel.Text = "Demo列表";
@@ -47,6 +47,13 @@ namespace XamarinDemo
             SliderBindingsPageButton.Clicked += SliderBindingsPageClicked;
             SliderBindingsPageButton.Text = "数据绑定(Slider - XAML)";
 
+            //Button Page1Button = new Button();
+            //Page1Button.Clicked += ((sender,e) => 
+            //{
+            //    Navigation.PushAsync(new Page1());
+            //});
+            //Page1Button.Text = "创建ContentPage请选择ContentPage，不要选择Page";
+
             //内容
             Content = new StackLayout
             {
@@ -62,6 +69,7 @@ namespace XamarinDemo
                     //BindingFirstNameButton,
                     BindingFirstName2Button,
                     SliderBindingsPageButton,
+                    //Page1Button
                 }
             };
         }

@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Xamarin.Forms;
-using XamarinDemo.Bindings.Models;
+using System.Text;
+using System.Threading.Tasks;
 
-// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using XamarinDemo.Bindings.Models;
 
 namespace XamarinDemo.Bindings
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
-    public partial class BindingFirstName2 : ContentPage
-    {
-        public BindingFirstName2()
-        {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class BindingFirstName2 : ContentPage
+	{
+		public BindingFirstName2 ()
+		{
+			InitializeComponent ();
             BindingContext = new DetailsViewModel();
         }
-    }
+	}
 }

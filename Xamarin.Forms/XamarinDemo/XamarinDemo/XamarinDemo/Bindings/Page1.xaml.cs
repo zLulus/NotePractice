@@ -10,11 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace XamarinDemo.Bindings
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SliderBindingsPage : ContentPage
+	public partial class Page1 : ContentPage
 	{
-		public SliderBindingsPage ()
+		public Page1 ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 	}
 }
