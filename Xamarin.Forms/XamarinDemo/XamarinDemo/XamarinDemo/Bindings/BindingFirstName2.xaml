@@ -4,7 +4,6 @@
              x:Class="XamarinDemo.Bindings.BindingFirstName2">
     <ContentPage.Content>
         <StackLayout Padding="0,20,0,0">
-            <Label Text="Data Binding 101 Demo" FontAttributes="Bold" HorizontalOptions="Center" />
             <Label Text="Forename:" />
             <Entry Text="{Binding Forename, Mode=TwoWay}" />
             <Label Text="Surname:" />

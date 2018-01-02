@@ -43,6 +43,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo2.xaml.cs">
       <DependentUpon>CustomizingCellDemo2.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\Models\Employee.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DemoPages\ListViewInStackLayout.xaml.cs">
@@ -80,10 +81,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo2.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo2.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <Page Include="$(MSBuildThisFileDirectory)DemoPages\ListViewInStackLayout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Xamarin.Forms;
-using XamarinDemo.CustomizingCell.Models;
+using System.Text;
+using System.Threading.Tasks;
 
-// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using XamarinDemo.CustomizingCell.Models;
 
 namespace XamarinDemo.CustomizingCell
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
-    public sealed partial class CustomizingCellDemo2 : ContentPage
-    {
-        public static List<Employee> Employees;
-        public CustomizingCellDemo2()
-        {
-            //todo 待完成
-            Employees = new List<Employee>();
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class CustomizingCellDemo2 : ContentPage
+	{
+		public CustomizingCellDemo2 ()
+		{
+			InitializeComponent ();
+            List<Employee> Employees = new List<Employee>();
+
             Employees.Add(new Employee()
             {
                 DisplayName = "Jack",
@@ -38,6 +36,8 @@ namespace XamarinDemo.CustomizingCell
                 Twitter = "@wood564",
                 ImageUri = "http://v1.qzone.cc/avatar/201406/24/21/03/53a977066f053731.jpg!200x200.jpg"
             });
+
+            BindingContext = Employees;
         }
-    }
+	}
 }
