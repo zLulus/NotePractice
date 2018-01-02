@@ -4,13 +4,4 @@
              xmlns:local="clr-namespace:XamarinDemo"
              xmlns:demo="using:XamarinDemo.DemoPages"
              x:Class="XamarinDemo.MainPage">
-
-	<!--<Label Text="Welcome to Xamarin.Forms!" 
-           VerticalOptions="Center" 
-           HorizontalOptions="Center" />-->
-    <StackLayout Spacing="10">
-        <Label Text="Stop" BackgroundColor="Red" Font="20" />
-        <Label Text="Slow down" BackgroundColor="Yellow" Font="20" />
-        <Label Text="Go" BackgroundColor="Green" Font="20" />
-    </StackLayout>
 </ContentPage>

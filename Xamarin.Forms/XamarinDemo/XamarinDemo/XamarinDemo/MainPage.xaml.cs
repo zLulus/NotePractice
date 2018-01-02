@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using XamarinDemo.DemoPages;
 
 namespace XamarinDemo
 {
@@ -12,37 +13,34 @@ namespace XamarinDemo
 		public MainPage()
 		{
 			InitializeComponent();
+            Button StackLayoutDemo1Button = new Button();
+            StackLayoutDemo1Button.Clicked += StackLayoutDemo1Clicked;
+            StackLayoutDemo1Button.Text = "StackLayout+Label";
+            Button StackLayoutDemo1Button2 = new Button();
+            StackLayoutDemo1Button2.Clicked += StackLayoutDemo2Clicked;
+            StackLayoutDemo1Button2.Text = "StackLayout+ListView";
 
-            var red = new Label
-            {
-                Text = "Stop",
-                BackgroundColor = Color.Red,
-                FontSize = 20,
-                WidthRequest = 100
-            };
-            var yellow = new Label
-            {
-                Text = "Slow down",
-                BackgroundColor = Color.Yellow,
-                FontSize = 20,
-                WidthRequest = 100
-            };
-            var green = new Label
-            {
-                Text = "Go",
-                BackgroundColor = Color.Green,
-                FontSize = 20,
-                WidthRequest = 200
-            };
-
+            //内容
             Content = new StackLayout
             {
+                //间距
                 Spacing = 10,
-                VerticalOptions = LayoutOptions.End,
-                Orientation = StackOrientation.Horizontal,
-                HorizontalOptions = LayoutOptions.Start,
-                Children = { red, yellow, green }
+                Children =
+                {
+                    StackLayoutDemo1Button,
+                    StackLayoutDemo1Button2
+                }
             };
         }
-	}
+
+        public void StackLayoutDemo1Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new StackLayoutExample());
+        }
+
+        public void StackLayoutDemo2Clicked(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

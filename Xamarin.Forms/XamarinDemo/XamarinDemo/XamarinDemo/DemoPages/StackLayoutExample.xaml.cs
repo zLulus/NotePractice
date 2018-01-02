@@ -35,6 +35,12 @@ namespace XamarinDemo.DemoPages
                 BackgroundColor = Color.YellowGreen,
                 FontSize = 20
             };
+            var backButton = new Button();
+            backButton.Text = "返回";
+            backButton.Clicked += ((sender,e) =>
+            {
+                Navigation.PopAsync();
+            });
 
             //内容
             Content = new StackLayout
@@ -47,7 +53,7 @@ namespace XamarinDemo.DemoPages
                 Orientation = StackOrientation.Horizontal,
                 //水平方向上，从开始（左边）出发
                 HorizontalOptions = LayoutOptions.Start,
-                Children = { red, yellow, green }
+                Children = { red, yellow, green, backButton }
             };
         }
     }

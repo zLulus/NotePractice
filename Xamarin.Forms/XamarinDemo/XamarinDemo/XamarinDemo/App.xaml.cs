@@ -16,7 +16,7 @@ namespace XamarinDemo
 		{
 			InitializeComponent();
 
-			MainPage = new CustomizingCellDemo2();
+			MainPage = new NavigationPage(new MainPage());
 		}
 
 		protected override void OnStart ()
