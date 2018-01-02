@@ -19,10 +19,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName.xaml.cs">
       <DependentUpon>BindingFirstName.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName2.xaml.cs">
+      <DependentUpon>BindingFirstName2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\Employee.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\ShowTodoItem.xaml.cs">
       <DependentUpon>ShowTodoItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Bindings\SliderBindingsPage.xaml.cs">
+      <DependentUpon>SliderBindingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\Cells\EmployeeCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo.xaml.cs">
@@ -47,7 +53,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Bindings\ShowTodoItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Bindings\SliderBindingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -39,6 +39,14 @@ namespace XamarinDemo
             BindingFirstNameButton.Clicked += BindingFirstNameClicked;
             BindingFirstNameButton.Text = "数据绑定(Binding FirstName - C#)";
 
+            Button BindingFirstName2Button = new Button();
+            BindingFirstName2Button.Clicked += BindingFirstName2Clicked;
+            BindingFirstName2Button.Text = "数据绑定(Binding FirstName - XAML)";
+
+            Button SliderBindingsPageButton = new Button();
+            SliderBindingsPageButton.Clicked += SliderBindingsPageClicked;
+            SliderBindingsPageButton.Text = "数据绑定(Slider - XAML)";
+
             //内容
             Content = new StackLayout
             {
@@ -52,8 +60,20 @@ namespace XamarinDemo
                     CustomizingCellDemoButton1,
                     //ShowTodoItemButton1,
                     BindingFirstNameButton,
+                    BindingFirstName2Button,
+                    SliderBindingsPageButton,
                 }
             };
+        }
+
+        private void SliderBindingsPageClicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SliderBindingsPage());
+        }
+
+        private void BindingFirstName2Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new BindingFirstName2());
         }
 
         private void BindingFirstNameClicked(object sender, EventArgs e)
