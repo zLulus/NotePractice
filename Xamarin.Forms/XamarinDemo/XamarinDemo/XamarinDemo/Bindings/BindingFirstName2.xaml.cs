@@ -13,13 +13,11 @@ namespace XamarinDemo.Bindings
     /// <summary>
     /// 可用于自身或导航至 Frame 内部的空白页。
     /// </summary>
-    public sealed partial class BindingFirstName2 : ContentPage
+    public partial class BindingFirstName2 : ContentPage
     {
         public BindingFirstName2()
         {
-            Employee employee = new Employee();
-            employee.FirstName = "Test FirstName";
-            this.BindingContext = employee;
+            BindingContext = new DetailsViewModel();
         }
     }
 }

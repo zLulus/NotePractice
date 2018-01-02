@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName2.xaml.cs">
       <DependentUpon>BindingFirstName2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\DetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\Employee.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\ShowTodoItem.xaml.cs">
