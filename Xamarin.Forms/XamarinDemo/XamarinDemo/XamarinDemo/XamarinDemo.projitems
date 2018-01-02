@@ -51,6 +51,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DemoPages\StackLayoutExample.xaml.cs">
       <DependentUpon>StackLayoutExample.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -89,9 +90,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)DemoPages\StackLayoutExample.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)DemoPages\StackLayoutExample.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

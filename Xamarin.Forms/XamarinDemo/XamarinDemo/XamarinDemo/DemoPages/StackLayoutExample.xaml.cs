@@ -1,22 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Xamarin.Forms;
+using System.Text;
+using System.Threading.Tasks;
 
-// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace XamarinDemo.DemoPages
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
-    public partial class StackLayoutExample : ContentPage
-    {
-        public StackLayoutExample()
-        {
-            //同时设置xaml和cs代码,会以cs代码为准
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class StackLayoutExample : ContentPage
+	{
+		public StackLayoutExample()
+		{
+            //同时设置xaml和cs代码,哪个在后面，以哪个为准，相当于被覆盖了
+            //(详见region xaml和region C#)
+
+            #region xaml
+            //这里画界面上的内容
+            InitializeComponent();
+            #endregion
+
+            #region C#
             var red = new Label
             {
                 Text = "Stop",
@@ -37,7 +43,7 @@ namespace XamarinDemo.DemoPages
             };
             var backButton = new Button();
             backButton.Text = "返回";
-            backButton.Clicked += ((sender,e) =>
+            backButton.Clicked += ((sender, e) =>
             {
                 Navigation.PopAsync();
             });
@@ -55,6 +61,7 @@ namespace XamarinDemo.DemoPages
                 HorizontalOptions = LayoutOptions.Start,
                 Children = { red, yellow, green, backButton }
             };
+            #endregion
         }
     }
 }
