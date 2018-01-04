@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Xamarin.Forms;
+using System.Text;
+using System.Threading.Tasks;
 
-// https://go.microsoft.com/fwlink/?LinkId=234238 上介绍了“空白页”项模板
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace XamarinDemo.DemoPages
 {
-    /// <summary>
-    /// 可用于自身或导航至 Frame 内部的空白页。
-    /// </summary>
-    public sealed partial class ListViewInStackLayout : ContentPage
-    {
-        public ListViewInStackLayout()
-        {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class ListViewInStackLayout : ContentPage
+	{
+		public ListViewInStackLayout ()
+		{
+			InitializeComponent ();
             var listView = new Xamarin.Forms.ListView
             {
                 RowHeight = 40
@@ -40,5 +39,5 @@ namespace XamarinDemo.DemoPages
                 Children = { listView, backButton }
             };
         }
-    }
+	}
 }

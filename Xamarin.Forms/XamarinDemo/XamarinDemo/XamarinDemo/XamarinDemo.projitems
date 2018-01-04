@@ -18,6 +18,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName.xaml.cs">
       <DependentUpon>BindingFirstName.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName2.xaml.cs">
       <DependentUpon>BindingFirstName2.xaml</DependentUpon>
@@ -32,6 +33,7 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\ShowTodoItem.xaml.cs">
       <DependentUpon>ShowTodoItem.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\SliderBindingsPage.xaml.cs">
       <DependentUpon>SliderBindingsPage.xaml</DependentUpon>
@@ -40,6 +42,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\Cells\EmployeeCell.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo.xaml.cs">
       <DependentUpon>CustomizingCellDemo.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo2.xaml.cs">
       <DependentUpon>CustomizingCellDemo2.xaml</DependentUpon>
@@ -48,6 +51,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)CustomizingCell\Models\Employee.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DemoPages\ListViewInStackLayout.xaml.cs">
       <DependentUpon>ListViewInStackLayout.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)DemoPages\StackLayoutExample.xaml.cs">
       <DependentUpon>StackLayoutExample.xaml</DependentUpon>
@@ -58,10 +62,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Bindings\BindingFirstName2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -70,26 +74,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <Page Include="$(MSBuildThisFileDirectory)Bindings\ShowTodoItem.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Bindings\ShowTodoItem.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Bindings\SliderBindingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <Page Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)CustomizingCell\CustomizingCellDemo2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <Page Include="$(MSBuildThisFileDirectory)DemoPages\ListViewInStackLayout.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)DemoPages\ListViewInStackLayout.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)DemoPages\StackLayoutExample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
