@@ -18,6 +18,7 @@ namespace CoreWebsite
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
+            //CreateDefaultBuilder读取appsettings.json
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
                 .Build();

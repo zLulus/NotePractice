@@ -54,7 +54,6 @@ namespace CoreConsole
 
         public static void ReadConfigHotUpdate()
         {
-            //todo 不生效 mvc尝试?
             var builder = new ConfigurationBuilder()
                 //optional:是否可选
                 //reloadOnChange:修改后重新更新(热更新)
@@ -71,6 +70,10 @@ namespace CoreConsole
             while (true)
             {
                 Console.ReadLine();
+                //修改bin目录下的config数据，重新读一次，TotalCount生效，Students不生效
+                config = builder.Build();
+                //Microsoft.Extensions.Configuration.Binder
+                config.Bind(configTest);
                 Console.WriteLine(configTest.TotalCount);
                 Console.WriteLine(configTest.Students[0].Name);
                 Console.WriteLine(configTest.Students[0].Sex);
