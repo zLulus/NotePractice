@@ -6,6 +6,7 @@ namespace CoreConsole.Config.Models
 {
     public class ConfigTest
     {
-
+        public int TotalCount { get; set; }
+        public List<Student> Students { get; set; }
     }
 }

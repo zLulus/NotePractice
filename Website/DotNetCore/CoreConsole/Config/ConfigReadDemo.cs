@@ -1,11 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CoreConsole.Config.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 
 namespace CoreConsole
 {
     public class ConfigReadDemo
     {
+        private readonly ConfigTest configTestByOptions;
+        public ConfigReadDemo(IOptions<ConfigTest> options)
+        {
+            //todo
+            //ReadConfigByOptions
+            //Microsoft.Extensions.Options  MVC Controller测试
+            configTestByOptions = options.Value;
+            Console.WriteLine(configTestByOptions.TotalCount);
+            Console.WriteLine(configTestByOptions.Students[0].Name);
+            Console.WriteLine(configTestByOptions.Students[0].Sex);
+            Console.WriteLine(configTestByOptions.Students[1].Name);
+            Console.WriteLine(configTestByOptions.Students[1].Sex);
+        }
+
         public static void ReadConfig()
         {
             var builder = new ConfigurationBuilder();
@@ -22,17 +39,44 @@ namespace CoreConsole
 
         public static void ReadConfigByBind()
         {
-
-        }
-
-        public static void ReadConfigByOptions()
-        {
-
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("ConfigTest.json");
+            ConfigTest configTest=new ConfigTest();
+            var config = builder.Build();
+            //Microsoft.Extensions.Configuration.Binder
+            config.Bind(configTest);
+            Console.WriteLine(configTest.TotalCount);
+            Console.WriteLine(configTest.Students[0].Name);
+            Console.WriteLine(configTest.Students[0].Sex);
+            Console.WriteLine(configTest.Students[1].Name);
+            Console.WriteLine(configTest.Students[1].Sex);
         }
 
         public static void ReadConfigHotUpdate()
         {
-
+            //todo 不生效 mvc尝试?
+            var builder = new ConfigurationBuilder()
+                //optional:是否可选
+                //reloadOnChange:修改后重新更新(热更新)
+                .AddJsonFile("ConfigTest.json",false,true);
+            ConfigTest configTest = new ConfigTest();
+            var config = builder.Build();
+            //Microsoft.Extensions.Configuration.Binder
+            config.Bind(configTest);
+            Console.WriteLine(configTest.TotalCount);
+            Console.WriteLine(configTest.Students[0].Name);
+            Console.WriteLine(configTest.Students[0].Sex);
+            Console.WriteLine(configTest.Students[1].Name);
+            Console.WriteLine(configTest.Students[1].Sex);
+            while (true)
+            {
+                Console.ReadLine();
+                Console.WriteLine(configTest.TotalCount);
+                Console.WriteLine(configTest.Students[0].Name);
+                Console.WriteLine(configTest.Students[0].Sex);
+                Console.WriteLine(configTest.Students[1].Name);
+                Console.WriteLine(configTest.Students[1].Sex);
+            }
         }
     }
 }
