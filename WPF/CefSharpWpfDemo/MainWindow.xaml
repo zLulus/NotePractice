@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cefSharpWPF="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d" Name="hahaWindow" Loaded="Window_Loaded" ResizeMode="NoResize"
-        Title="积微大屏" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized">
+        Title="CefSharpWpfDemo" WindowStartupLocation="CenterScreen" WindowStyle="None" WindowState="Maximized">
     <Grid>
         <!--浏览器-->
         <cefSharpWPF:ChromiumWebBrowser Name="webBrowser" 

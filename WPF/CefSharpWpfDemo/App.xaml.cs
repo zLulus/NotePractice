@@ -80,11 +80,5 @@ namespace CefSharpWpfDemo
 
             return null;
         }
-
-        protected override void OnExit(ExitEventArgs e)
-        {
-            // TODO: 关闭当前程序相关进程，对系统影响未知
-            System.Diagnostics.Process.GetCurrentProcess().Kill();
-        }
     }
 }
