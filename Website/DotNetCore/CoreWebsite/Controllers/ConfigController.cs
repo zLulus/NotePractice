@@ -19,7 +19,7 @@ namespace CoreWebsite.Controllers
         }
         public IActionResult Index()
         {
-            //GetSection先读节点，必须
+            //GetSection:必须先读节点
             //ConfigTest实现接口IOptions<ConfigTest>
             _configTestByOptions = _configuration.GetSection("MyData").Get<ConfigTest>();
             return View();

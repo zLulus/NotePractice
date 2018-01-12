@@ -10,27 +10,14 @@ namespace CoreConsole
     public class ConfigReadDemo
     {
         private readonly ConfigTest configTestByOptions;
-        public ConfigReadDemo(IOptions<ConfigTest> options)
-        {
-            //todo
-            //ReadConfigByOptions
-            //Microsoft.Extensions.Options  MVC Controller测试
-            configTestByOptions = options.Value;
-            Console.WriteLine(configTestByOptions.TotalCount);
-            Console.WriteLine(configTestByOptions.Students[0].Name);
-            Console.WriteLine(configTestByOptions.Students[0].Sex);
-            Console.WriteLine(configTestByOptions.Students[1].Name);
-            Console.WriteLine(configTestByOptions.Students[1].Sex);
-        }
 
         public static void ReadConfig()
         {
             var builder = new ConfigurationBuilder();
-            //引用
-            //json属性-复制
             builder.AddJsonFile("ConfigTest.json");
             var config = builder.Build();
             Console.WriteLine(config["TotalCount"]);
+            //索引
             Console.WriteLine(config["Students:0:Name"]);
             Console.WriteLine(config["Students:0:Sex"]);
             Console.WriteLine(config["Students:1:Name"]);
