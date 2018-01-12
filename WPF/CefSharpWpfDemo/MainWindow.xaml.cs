@@ -20,6 +20,7 @@ using System.Configuration;
 using System.Diagnostics;
 using CefSharp;
 using CefSharpWpfDemo.Handler;
+using CefSharpWpfDemo.Helper;
 
 namespace CefSharpWpfDemo
 {
@@ -33,7 +34,7 @@ namespace CefSharpWpfDemo
             InitializeComponent();
 
             //在js里面注册对象bound，然后用该对象调用C#方法
-            //webBrowser.RegisterAsyncJsObject("bound", new BoundObject(this), BindingOptions.DefaultBinder); //Use the default binder to serialize values into complex objects
+            webBrowser.RegisterAsyncJsObject("bound", new BoundObject(this), BindingOptions.DefaultBinder); //Use the default binder to serialize values into complex objects
             //隐藏滚动条
             webBrowser.FrameLoadEnd += OnBrowserFrameLoadEnd;
             //右键菜单栏
