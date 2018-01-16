@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 
 namespace CoreWebsite
 {
@@ -38,6 +42,20 @@ namespace CoreWebsite
             }
 
             app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                        Path.Combine(Directory.GetCurrentDirectory(), @"Views")),
+                        RequestPath = new PathString("/Views"),
+                        ContentTypeProvider = new FileExtensionContentTypeProvider(
+                            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                            {
+                                { ".js", "application/javascript" },
+                                { ".css", "text/css" },
+                                { ".html", "text/html" },
+                            })
+                }
+             );
 
             app.UseMvc(routes =>
             {
