@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using CoreWebsite.EntityFramework;
 
 namespace CoreWebsite
 {
@@ -25,6 +27,9 @@ namespace CoreWebsite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //数据库配置
+            services.AddEntityFrameworkSqlServer().AddDbContext<WebsiteDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
+
             services.AddMvc();
         }
 

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2010
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebsite", "CoreWebsite\CoreWebsite.csproj", "{BF82FC75-1DE4-49C8-8572-C4194CAD25A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreConsole", "CoreConsole\CoreConsole.csproj", "{7F06AC83-B7A4-4074-941F-9BD0466CDEB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreConsole", "CoreConsole\CoreConsole.csproj", "{7F06AC83-B7A4-4074-941F-9BD0466CDEB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWebsite.EntityFramework", "CoreWebsite.EntityFramework\CoreWebsite.EntityFramework.csproj", "{82C97C24-7FD9-4C5F-B082-E560B9A08C89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{7F06AC83-B7A4-4074-941F-9BD0466CDEB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F06AC83-B7A4-4074-941F-9BD0466CDEB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F06AC83-B7A4-4074-941F-9BD0466CDEB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82C97C24-7FD9-4C5F-B082-E560B9A08C89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82C97C24-7FD9-4C5F-B082-E560B9A08C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82C97C24-7FD9-4C5F-B082-E560B9A08C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82C97C24-7FD9-4C5F-B082-E560B9A08C89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
