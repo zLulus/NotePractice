@@ -8,6 +8,12 @@ namespace CoreWebsite.EntityFramework
 {
     public class WebsiteDbContext : DbContext
     {
+
+        public WebsiteDbContext(DbContextOptions<WebsiteDbContext> options):base(options)
+        {
+
+        }
+
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityComment> ActivityComments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
