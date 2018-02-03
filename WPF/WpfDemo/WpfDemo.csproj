@@ -65,6 +65,9 @@
     <Compile Include="MarginAndPadding\MarginAndPaddingDemo.xaml.cs">
       <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NoneBorder\NoneBorderDemo.xaml.cs">
+      <DependentUpon>NoneBorderDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PropertyChanged\ChangeStudentInfo.xaml.cs">
       <DependentUpon>ChangeStudentInfo.xaml</DependentUpon>
@@ -275,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Navigation\SecondPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NoneBorder\NoneBorderDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
