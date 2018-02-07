@@ -24,7 +24,7 @@ namespace NotePractice.Controllers
             {
                 var state = "zl-" + DateTime.Now.Millisecond; //随机数，用于识别请求可靠性
                 Session["zl-weixin-sate"] = state; //储存随机数到Session
-                var userLogUrl = authorizeUrl + "/weixin/UserLoginForRedPackInterface?returnUrl=" + returnUrl.UrlEncode();
+                var userLogUrl = authorizeUrl + "/weixin/GetWechatUserInfoCallBackInterface?returnUrl=" + returnUrl.UrlEncode();
                 //微信授权网址
                 //先调微信的接口，再返回带的自己的接口
                 var urlUserInfo = OAuthApi.GetAuthorizeUrl(appId, userLogUrl, state, OAuthScope.snsapi_userinfo);
