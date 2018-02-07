@@ -52,7 +52,7 @@ namespace NotePractice.Controllers
                     var oAuthUserInfo = await OAuthApi.GetUserInfoAsync(token.access_token, token.openid);
                     return Json(JsonConvert.SerializeObject(oAuthUserInfo), JsonRequestBehavior.AllowGet);
                 }
-                return RedirectToAction("Error", "Layout");
+                return Json("请求失败！");
             }
             catch (Exception ex)
             {
