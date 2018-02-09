@@ -985,6 +985,7 @@
     <Compile Include="Controllers\FormSubmitController.cs" />
     <Compile Include="Controllers\JsController.cs" />
     <Compile Include="Controllers\LayerController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\VueController.cs" />
     <Compile Include="Controllers\WeiXinController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1069,6 +1070,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Test\" />
     <Folder Include="Views\WeiXin\" />
   </ItemGroup>
   <ItemGroup>
