@@ -23,8 +23,11 @@ namespace CoreWebsite.Controllers
             return Json(activitiesWithComments);
         }
 
-        public IActionResult TestAttchTpUpdate()
+        public IActionResult TestAttchToUpdate()
         {
+            //attch:
+            //如果没有id,attach的默认行为是新增
+            //如果有id,attach的默认行为是修改
             var updateAcitivity = new Activity()
             {
                 Id = 1,
@@ -44,7 +47,15 @@ namespace CoreWebsite.Controllers
             //删除Id=2的Comment
 
             _dbContext.Activities.Attach(updateAcitivity);
+            
             return Json("");
+        }
+
+        public IActionResult TestIncludeAndSelect()
+        {
+            var result= _dbContext.Activities.Where(x => x.Id == 3).Include(x => x.ActivityComments)
+                .Select(x => x.ActivityComments);
+            return Json(result);
         }
     }
 }
