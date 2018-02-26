@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div>
+        <label id="account">账号</label>
+        <input />
+        <label id="password">密码</label>
+        <input />
+        <button onclick="logIn()">登录</button>
+        <button onclick="getUserInfo()">获得账号信息</button>
+        <button onclick="logOut()">退出登录</button>
+        <br />
+        <label>返回结果</label>
+        <br />
+        <label id="response"></label>
+    </div>
+</body>
+</html>
+
+<script>
+    var newToken = "";
+    function logIn() {
+        $.ajax({
+            type: "POST",
+            url: "/TokenDemo/LogIn",
+            data: {
+                "UsernameOrEmailAddress": "admin",
+                "Password": "bb123456"
+            },
+            success: function (result) {
+                $("#response").text(JSON.stringify(result));
+                console.log(result);
+                newToken = result.result.result;
+                console.log(newToken);
+            }
+        });
+    }
+
+    function getUserInfo() {
+        console.log(newToken);
+        $.ajax({
+            type: "POST",
+            url: "/TokenDemo/GetUserInfo",
+            data: {
+                "Token": newToken
+            },
+            success: function (result) {
+                $("#response").text(JSON.stringify(result));
+                console.log(result);
+            }
+        });
+    }
+
+    function logOut() {
+        $.ajax({
+            type: "POST",
+            url: "/TokenDemo/LogOut",
+            data: {
+                
+            },
+            success: function (result) {
+                $("#response").text(JSON.stringify(result));
+                console.log(result);
+            }
+        });
+    }
+</script>

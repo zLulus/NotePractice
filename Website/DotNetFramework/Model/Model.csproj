@@ -49,6 +49,10 @@
     <Compile Include="AngularjsStudy\TaskModel.cs" />
     <Compile Include="Js\DictionaryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TokenDemo\GetUserInfoRequest.cs" />
+    <Compile Include="TokenDemo\LogInRequest.cs" />
+    <Compile Include="TokenDemo\LogInResponses\LogInResponse.cs" />
+    <Compile Include="TokenDemo\LogInResponses\LogInResponseResult.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
