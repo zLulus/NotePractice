@@ -1,0 +1,31 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <title></title>
+</head>
+<body>
+    <div>
+        <p>
+            <!-- 完整语法 -->
+            <a v-bind:href="url">v-bind完整写法</a>
+            <!-- 缩写 -->
+            <a :href="url">v-bind缩写</a>
+        </p>
+        
+        <p>
+            <!-- 完整语法 -->
+            <a v-on:click="doSomething">v-on完整写法</a>
+            <!-- 缩写 -->
+            @*<a @click="doSomething">v-on缩写</a>*@
+        </p>
+        
+    </div>
+</body>
+</html>

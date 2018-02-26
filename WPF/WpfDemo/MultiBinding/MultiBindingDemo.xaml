@@ -1,0 +1,27 @@
+﻿<Window x:Class="WpfDemo.MultiBinding.MultiBindingDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.MultiBinding"
+        mc:Ignorable="d"
+        Title="MultiBindingDemo" Height="300" Width="300">
+    <Grid>
+        <StackPanel>
+            <Slider x:Name="sl1" Minimum="10" Maximum="100"/>
+            <Slider x:Name="sl2" Minimum="10" Maximum="100"/>
+            <Label x:Name="label13" Background="Yellow" Foreground="Black">
+                <Label.Content>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}This is {0:N2} x {1:N2}">
+                                <Binding ElementName="sl1" Path="Value" />
+                                <Binding ElementName="sl2" Path="Value" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Label.Content>
+            </Label>
+        </StackPanel>
+    </Grid>
+</Window>

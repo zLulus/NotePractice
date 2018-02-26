@@ -1,0 +1,31 @@
+﻿@using System.Collections.Generic;
+@using BLL.Models.AboutDB;
+
+@{
+    ViewBag.Title = "Bit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>主键</th>
+                <th>是否删除</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ 
+                foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.PKID</td>
+                        <td>@item.IsDelete</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+

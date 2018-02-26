@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+<script src="~/Scripts/angular.min.js"></script>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <h1>姓氏为 {{lastname}} 家族成员:</h1>
+
+    <ul>
+       <!--从变量names里面循环变量x(x in names)-->
+        <li ng-repeat="x in names">{{x}} {{lastname}}</li>
+    </ul>
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    //传参里面，可以有$scope、$rootScope
+    app.controller('myCtrl', function($scope, $rootScope) {
+        $scope.names = ["Emil", "Tobias", "Linus","John"];
+        $rootScope.lastname = "Refsnes";
+    });
+</script>
+
+<p>注意 $rootScope 在循环对象内外都可以访问。</p>

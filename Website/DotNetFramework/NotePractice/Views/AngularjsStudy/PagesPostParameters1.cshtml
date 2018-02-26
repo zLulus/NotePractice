@@ -1,0 +1,37 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-app="app1" ng-controller="pageCtrl1 as vm">
+    <label>页面传递参数：</label>
+    <input ng-bind="vm.pageParameter"/>
+    <button ng-click="vm.postPageParameter()">传递</button>
+    <label>************美丽的分割线**************</label>
+    <label>窗口传递参数：</label>
+    <input ng-bind="vm.windowParameter" />
+    <button ng-click="vm.postWindowParameter()">传递</button>
+</div>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script> 
+    angular.module('app1', []).controller('pageCtrl1', ["$scope", "$stateParams"], function ($scope, $stateParams) {
+        var vm = this;
+        vm.postPageParameter = function () {
+
+        };
+        vm.postWindowParameter = function () {
+            //全局变量，可用于页面、窗口传参
+            $stateParams.postWindowParameter = vm.postWindowParameter;
+
+            //将弹窗赋给$stateParams.modalInstance
+            $stateParams.modalInstance = $uibModal.open({
+                templateUrl: "~/AngularjsStudy/PagesPostParameters3.cshtml",
+                controller: "pageCtrl3 as vm",
+                backdrop: "static",
+                resolve: {
+
+                }
+            });
+        };
+    });
+</script>

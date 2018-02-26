@@ -1,0 +1,118 @@
+﻿@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/Content/bootstrap.min.css">
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/MyJs/Binding.js"></script>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+
+
+<div class="member-wrap" ng-app="editResource">
+    <!--editResourceCtrl简写为vm-->
+    <div class="jwell-container" ng-controller="editResourceCtrl as vm">
+        <div class="m-main pull-right">
+            <div class="m-panel">
+                <div class="m-panel-head" data-rel="1">
+                    <i class="icon-m icon-m-head"></i>资源管理- <span>挂牌管理</span>
+                </div>
+            </div>
+            <div class="m-panel-body">
+                <div class="baseInfos">
+                    <h2>基础信息</h2>
+                    <p>资源名称：<span ng-bind="vm.resource.productName"></span></p>
+                    <p>型号：<span ng-bind="vm.resource.model"></span></p>
+                    <p>执行标准：<span ng-bind="vm.resource.standard"></span></p>
+                    <p>上传时间：<span ng-bind="vm.resource.uploadTime"></span></p>
+                    <p>资源编号：<span ng-bind="vm.resource.resourceCode"></span></p>
+                    <p>规格：<span ng-bind="vm.resource.specification "></span></p>
+                    <p>图号：<span ng-bind="vm.resource.drawingno"></span></p>
+                    <p>资源位置：<span ng-bind="vm.resource.resourceLocation"></span></p>
+                    <p>技术参数：<span ng-bind="vm.resource.technicalParameters"></span></p>
+                    <p>材质：<span ng-bind="vm.resource.material "></span></p>
+                    <p>单重：<span ng-bind="vm.resource.singleWeight "></span></p>
+                </div>
+                <div class="requiredInfos">
+                    <h2> <span class="red">*</span>必填项</h2>
+                    <form class="requiredInfosForm" name="requiredInfosForm" novalidate>
+                        <div class="form-group col-md-4">
+                            <label for="unitPrice"><span class="red">*</span>单价(元):</label>
+                            <input type="text" class="form-control width-60" ng-change="vm.getTotalPrice()"
+                                   ng-model="vm.editResource.unitPrice" id="unitPrice" name="unitPrice" required value="" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="amounts"><span class="red">*</span>挂牌数量:</label>
+                            <input type="text" class="form-control width-60" ng-change="vm.getTotalPrice()"
+                                   ng-model="vm.editResource.listingNumber" id="amounts" name="amounts" required value="" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label><span class="red">*</span>总价(元):</label>
+                            <input type="text" id="totalPrice" value="" name="totalPrice" disabled
+                                   ng-model="vm.editResource.totalPrice" required class="form-control width-60" />
+                        </div>
+
+                        <div class="form-group col-md-8 resourceSort">
+                            <label><span class="red">*</span>绑定分类:</label>
+                            <select ng-model="vm.first"
+                                    ng-options="x.displayName for x in vm.firstSort"
+                                    id="" value="" class="form-control width-25">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label><span class="red">*</span>交货期:</label>
+                            <input type="text" id="deliveryDate" name="deliveryDate"
+                                   ng-model="vm.editResource.deliveryDate" required value="" class="form-control width-60" />
+                        </div>
+                        <div class="form-group col-md-8 locationSort">
+                            <label><span class="red">*</span>提货地:</label>
+                            <!--ng-options加载所有选择项，ng-model记录当前选择项-->
+                            <select ng-model="vm.province" ng-options="x.name for x in vm.provinceSort"
+                                    ng-change="vm.selectProvince()" id="" value="" class="form-control width-25">
+                                <option value="">请选择</option>
+
+                            </select>
+                            <label>—</label>
+                            <select ng-model="vm.city" ng-options="x.name for x in vm.citySort" 
+                                    id="" value="" class="form-control width-25">
+                                <option value="">请选择</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label><span class="red">*</span>详细地址:</label>
+                            <input type="text" class="form-control width-60" id="detailAddress"
+                                   ng-model="vm.editResource.address" name="detailAddress" value="" />
+                        </div>
+                    </form>
+                </div>
+                <div class="notRequiredInfos">
+                    <h2>选填项</h2>
+                    <div class="notRequiredInfosContainer">
+                        <div class="form-group col-md-12">
+                            <label class="pull-left resourceTips">资源备注: <span>（该备注买家可见）</span>:</label>
+                            <input type="text" ng-model="vm.editResource.productRemark" class="form-control pull-right width-75" value="" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="pull-left brands">品牌:</label>
+                            <input type="text" ng-model="vm.editResource.brandName" class="form-control pull-left width-70" value="" />
+                        </div>
+                        <div class="form-group pull-left col-md-12 tinyMce">
+                            <textarea>
+                                {{vm.resource.descriptionRemark}}
+                            </textarea>
+                        </div>
+                        <div class="form-group pull-left">
+                            <button ng-click="vm.save($event)" class="btn btn-default">保存</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

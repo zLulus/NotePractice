@@ -1,0 +1,40 @@
+﻿<Window x:Class="WpfDemo.StyleUseTemplate.StyleUseTemplateDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.StyleUseTemplate"
+        mc:Ignorable="d"
+        Title="StyleUseTemplateDemo" Height="300" Width="300">
+    <Window.Resources>
+        <Style TargetType="CheckBox" x:Key="CheckBoxStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel>
+                            <!--设置Rectangle边框的宽度和颜色，设置Rectangle的高宽-->
+                            <Rectangle Name="breakRectangle" Stroke="Cyan" StrokeThickness="2" Width="20" Height="20">
+                                <Rectangle.Fill>
+                                    <!--默认Rectangle填充色为White-->
+                                    <SolidColorBrush Color="White"></SolidColorBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <!--没有ContentPresenter标签，则不保留原来的属性，显示不出文本-->
+                            <!--TemplateBinding Padding，则绑定每个CheckBox自己的Margin，更灵活-->
+                            <ContentPresenter Margin="{TemplateBinding Padding}"></ContentPresenter>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <!--目标为breakRectangle，当IsChecked=true的时候，将填充色设置为CornflowerBlue-->
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="breakRectangle" Property="Fill" Value="CornflowerBlue"></Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <CheckBox Style="{StaticResource CheckBoxStyle}"></CheckBox>
+    </Grid>
+</Window>

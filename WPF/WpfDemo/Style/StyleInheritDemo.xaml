@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfDemo.Style.StyleInheritDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.Style"
+        mc:Ignorable="d"
+        Title="StyleInheritDemo" Height="300" Width="300">
+    <Window.Resources>
+        <Style x:Key="ContentControlStyle" TargetType="ContentControl">
+            <Setter Property="Background" Value="Pink"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Style="{StaticResource ContentControlStyle}" Content="按钮和文本框使用了基于ContentControl的Style"></Label>
+        <Button Style="{StaticResource ContentControlStyle}" Content="按钮" Grid.Row="1"></Button>
+    </Grid>
+</Window>

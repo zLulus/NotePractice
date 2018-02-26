@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XamarinDemo"
+             xmlns:demo="using:XamarinDemo.DemoPages"
+             x:Class="XamarinDemo.MainPage">
+    <ScrollView>
+        <StackLayout>
+            <Label Text="Demo列表"></Label>
+            <Button Text="StackLayout+Label" Clicked="StackLayoutDemo1Clicked"></Button>
+            <Button Text="StackLayout+ListView" Clicked="StackLayoutDemo2Clicked"></Button>
+            <Button Text="自定义单元格Demo(C#)" Clicked="CustomizingCellDemoButton1Clicked"></Button>
+            <Button Text="自定义单元格Demo(XAML)" Clicked="CustomizingCellDemoButton2Clicked"></Button>
+            <Button Text="ListView使用" Clicked="ShowTodoItemButton1Clicked"></Button>
+            <Button Text="数据绑定(Binding FirstName - C#)" Clicked="CustomizingCellDemoButton1Clicked"></Button>
+            <Button Text="数据绑定(Binding FirstName - XAML)" Clicked="BindingFirstName2Clicked"></Button>
+            <Button Text="数据绑定(Slider - XAML)" Clicked="SliderBindingsPageClicked"></Button>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

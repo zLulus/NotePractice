@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-app="MultiDropDownApp" ng-controller="MultiDropDownControl as vm">
+    <label>选择地址:</label>
+    <!--ng-options加载所有选择项，ng-model记录当前选择项-->
+    <select ng-model="vm.province" ng-options="x.name for x in vm.provinceSort"
+            ng-change="vm.selectProvince()" id="" value="" class="form-control width-25">
+        <option value="">请选择</option>
+
+    </select>
+    <label>—</label>
+    <select ng-model="vm.city" ng-options="x.name for x in vm.citySort"
+            id="" value="" class="form-control width-25">
+        <option value="">请选择</option>
+
+    </select>
+</div>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script>
+    var app = angular.module('MultiDropDownApp', []);
+    //可以添加上自己注入的服务
+    app.controller('MultiDropDownControl', ['$scope', '$http',
+        function ($scope, $http) {
+            var vm = this;
+            vm.provinceSort = [];
+            vm.citySort = [];
+
+            //选择省级单位，初始化市级数据   二级联动
+            vm.selectProvince = function () {
+                var fatherID = vm.province.id;
+                vm.citySort = [];
+                $http({
+                    method: 'POST',
+                    url: '/AngularjsStudy/GetChildrenSort',
+                    data: { fatherID: fatherID }
+                }).then(function successCallback(data) {
+                    vm.citySort = data.data;
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                });
+            }
+
+            //初始化页面
+            function init() {
+                //省
+                $http({
+                    method: 'POST',
+                    url: '/AngularjsStudy/GetProvinceSort',
+                    data: {}
+                }).then(function successCallback(data) {
+                    //加载下拉框数据
+                    vm.provinceSort = data.data;
+                    //设置默认选项
+                    vm.province = vm.provinceSort[0];
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                });
+            }
+
+            //初始化
+            init();
+        }])
+</script>

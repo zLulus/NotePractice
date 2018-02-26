@@ -1,0 +1,47 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-app="CycleTableApp" ng-controller="CycleTableContrl as vm">
+    <h1>类别列表</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>类别编号</th>
+                <th>类别名称</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--ng-repeat指令，类似foreach循环-->
+            <tr ng-repeat="item in vm.firstSortList">
+                <td>
+                    <p>{{ item.id}}</p>
+                </td>
+                <td>
+                    <p>{{item.displayName}}</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script>
+    var app = angular.module('CycleTableApp', []);
+    app.controller('CycleTableContrl', function ($scope,$http) {
+        var vm = this;
+        vm.getdata = function () {
+            $http({
+                method: 'POST',
+                url: '/AngularjsStudy/GetFirstSort',
+                data: {}
+            }).then(function successCallback(data) {
+                //data有多余属性，data.data才是controller返回的data
+                vm.firstSortList = data.data;
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+        vm.getdata();
+    });
+</script>

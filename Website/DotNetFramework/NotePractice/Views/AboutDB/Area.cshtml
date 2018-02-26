@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "省市区选择";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <span>地区搜索：</span>@Html.DropDownList("Provinces", new SelectList(ViewBag.Province as System.Collections.IEnumerable, "PKID", "Name"), "请选择")
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="Citys">
+        <option value="">请选择</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <select id="Districts">
+        <option value="">请选择</option>
+    </select>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <button onclick="GetResult()">获取当前选择</button>
+</div>
+
+<script>
+    $("#Provinces").change(function () {
+        var self = $(this);
+        var parentId = self.val();
+        if (parentId != "") {
+            $("#Province").val(self.find("option:selected").val());
+            var option = GetRegion(parentId);
+            $("#Citys").html(option);
+            $("#Districts").html("<option value=''>请选择</option>");
+        } else {
+            $("#Citys").html("<option value=''>请选择</option>");
+            $("#Districts").html("<option value=''>请选择</option>");
+        }
+    });
+    $("#Citys").change(function () {
+        var self = $(this);
+        var parentId = self.val();
+        if (parentId != "") {
+            $("#City").val(self.find("option:selected").val());
+            $("#RegionID").val(parentId);
+            var option = GetRegion(parentId);
+            $("#Districts").html(option);
+        } else {
+            $("#Districts").html("<option value=''>请选择</option>");
+        }
+    });
+    function GetRegion(ParentID) {
+        var option = "<option value=''>请选择</option>";
+        $.ajax({
+            type: "get",
+            url: "/AboutDB/GetArea",
+            data: { "ParentID": ParentID },
+            async: false,
+            success: function (city) {
+                //拼接下拉框
+                $.each(city, function (index, item) {
+                    option += "<option value=" + item.PKID + ">" + item.Name + "</option>";
+                });
+            }
+        });
+        //返回下拉框html
+        return option;
+    }
+    function GetResult()
+    {
+        var Province = $("#Provinces").find("option:selected").text();
+        var City = $("#Citys").find("option:selected").text();
+        var District = $("#Districts").find("option:selected").text();
+        layer.alert(Province + "-" + City + "-" + District);
+    }
+</script>

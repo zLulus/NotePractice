@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div>
+    <button onclick="Click1()">原生confirm</button>
+    <button onclick="Click2()">layerUi</button>
+</div>
+<script>
+    var layerOpen = null;
+    function Click1() {
+        if (confirm("确定打开网页么吗?")) {
+            window.open("NewPage");
+        }
+    }
+    function Click2() {
+        layerOpen= layer.confirm('确定打开网页么吗?', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            window.open("NewPage");
+            layer.close(layerOpen);
+        }, function(){
+            
+        });
+    }
+</script>

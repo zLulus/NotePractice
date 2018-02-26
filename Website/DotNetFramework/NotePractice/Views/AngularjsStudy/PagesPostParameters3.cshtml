@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-app="app3" ng-controller="pageCtrl3  as vm">
+    <label>这是一个弹窗</label>
+    <label>你的传参是：{{vm.parameter}}</label>
+</div>
+
+
+<script src="~/Scripts/angular.min.js"></script>
+<script>
+    angular.module('app3', []).controller('pageCtrl3', function ($scope, $stateParams) {
+        var vm = this;
+        vm.parameter = $stateParams.postWindowParameter;
+    });
+</script>

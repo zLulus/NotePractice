@@ -1,0 +1,31 @@
+﻿{
+
+  "compilerOptions": {
+
+    "target": "es5",
+
+    "noImplicitAny": false,
+
+    "module": "commonjs",
+    //编译生成的JavaScript文件是否移除注释
+    "removeComments": true,
+
+    "sourceMap": true,
+
+    "outDir": "Golang/TypeScript/"
+
+  }
+
+  //"include":[
+
+  //     "ts"
+
+  // ],
+
+  //"exclude": [
+
+  //     "js"
+
+  // ]
+
+}

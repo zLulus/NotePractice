@@ -1,0 +1,70 @@
+﻿@{
+    Layout = null;
+}
+
+<!--引用jquery和bootstrap-->
+<link rel="stylesheet" href="~/Content/bootstrap.min.css">
+
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<div>
+    <!--上面的导航栏用ul来做-->
+    <ul class="nav nav-tabs">
+        <!--a标签的href设置为"#目标tab的id"-->
+        <!--设置tab1处于激活状态，一开始展现tab1-->
+        <li class="active"><a href="#tab1" data-toggle="tab">tab1</a></li>
+        <li><a href="#tab2" data-toggle="tab">tab2</a></li>
+        <li><a href="#tab3" data-toggle="tab">tab3</a></li>
+    </ul>
+    <!--tab-content  将所有tab放入其中-->
+    <div class="tab-content">
+        <!--tab1-->
+        <!--设置tab1的id-->
+        <div class="tab-pane fade in active" id="tab1">
+            <div class="row margin-bottom-5">
+                <div class="col-xs-6">
+                    <div class="page-head">
+                        <div class="page-title">
+                            <h1>
+                                <span>Tab1</span> <small>tab1</small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1>这里是Tab1</h1>
+        </div>
+        <!--tab2-->
+        <!--设置tab2的id-->
+        <div class="tab-pane fade " id="tab2">
+            <div class="row margin-bottom-5">
+                <div class="col-xs-6">
+                    <div class="page-head">
+                        <div class="page-title">
+                            <h1>
+                                <span>Tab2</span> <small>tab2</small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1>这里是Tab2</h1>
+        </div>
+        <!--tab3-->
+        <div class="tab-pane fade " id="tab3">
+            <div class="row margin-bottom-5">
+                <div class="col-xs-6">
+                    <div class="page-head">
+                        <div class="page-title">
+                            <h1>
+                                <span>Tab3</span> <small>tab3</small>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1>这里是Tab3</h1>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿/* 在线和线下按钮切换 */
+.buttonDiv button {
+   width:150px;
+   height:40px;
+   line-height:40px;
+   border:1px solid #c6e2e4;
+   /*padding-top:10px;*/
+   background-color:#fff;
+   color:#333;
+   float:left;
+   position:relative;
+   outline:0;
+}
+/*.offlineeBtnUp {
+    padding-top:5px;
+}
+.offlineeBtnUp i{
+    top: 0 !important;
+}*/
+
+.offlineeBtnWord {
+    font-style: normal;
+    font-size:14px !important;
+    color:#333 !important;
+    top:-5px !important;
+}
+.buttonDiv button i {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    margin-right: 10px;
+}
+/*span+图片偏移，完成小勾勾√*/
+.buttonDiv button span {
+    position: absolute;
+    background-image: url('../img/chargeSucceed.png');
+    background-size:100% 100%;
+    background-position:center;
+    background-repeat:no-repeat;
+    width:20px;
+    height:20px;
+    bottom:-8px;
+    right:-8px;
+    display:none;
+}
+.buttonDiv button.active span{
+    display:block;
+}
+.buttonDiv button.onlineBtnSelect{
+    margin-right:50px;
+}
+.buttonDiv button.active{
+    background-color:#ecf7f8;
+}

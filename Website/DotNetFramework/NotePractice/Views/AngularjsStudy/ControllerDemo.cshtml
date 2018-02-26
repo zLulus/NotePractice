@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+
+<script src="~/Scripts/angular.min.js"></script>
+
+<p>尝试修改以下表单。</p>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    名: <input type="text" ng-model="firstName"><br>
+    姓: <input type="text" ng-model="lastName"><br>
+    <br>
+    姓名: {{firstName + " " + lastName}}
+    <br />
+    全名: {{fullName()}}
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstName= "John";
+    $scope.lastName = "Doe";
+    $scope.fullName = function () {
+        debugger;
+        return $scope.firstName + " * " + $scope.lastName;
+    };
+});
+</script>

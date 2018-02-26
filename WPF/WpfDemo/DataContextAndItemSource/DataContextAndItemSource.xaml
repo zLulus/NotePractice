@@ -1,0 +1,20 @@
+﻿<Window x:Class="WpfDemo.DataContextAndItemSource.DataContextAndItemSource"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.DataContextAndItemSource"
+        xmlns:system="clr-namespace:System.IO;assembly=PresentationCore"
+        xmlns:system2="clr-namespace:System;assembly=PresentationCore"
+        mc:Ignorable="d"
+        Title="DataContextAndItemSource" Height="300" Width="300">
+    <Grid>
+        <!--ItemsSource绑定后台DataContext的数据-->
+        <DataGrid  AutoGenerateColumns="False" ItemsSource="{Binding}" CanUserAddRows="False" IsEnabled="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Binding="{Binding Name}" Header="名称" />
+                <DataGridTextColumn Width="*" Binding="{Binding Age}" Header="年龄" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

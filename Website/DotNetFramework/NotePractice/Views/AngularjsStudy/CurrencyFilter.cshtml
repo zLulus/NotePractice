@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+<script src="~/Scripts/angular.min.js"></script>
+
+<div ng-app="myApp" ng-controller="costCtrl">
+    计算乘法：
+    <br />
+    数量: <input type="number" ng-model="quantity">
+    价格: <input type="number" ng-model="price">
+    <p>总价 = {{ (quantity * price) | currency }}</p>
+
+    计算加法：
+    <br/>
+    <!--type是number,数字-->
+    第一个数字：<input type="number" ng-model="firstNumber">
+    第二个数字： <input type="number" ng-model="sencondNumber">
+    <p>总和 = {{ (firstNumber + sencondNumber) | currency }}</p>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('costCtrl', function($scope) {
+        $scope.quantity = 1;
+        $scope.price = 9.99;
+        $scope.firstNumber = 123;
+        $scope.sencondNumber = 321;
+    });
+</script>

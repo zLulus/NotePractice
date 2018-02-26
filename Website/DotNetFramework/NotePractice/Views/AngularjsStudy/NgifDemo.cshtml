@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+
+<div ng-app="NgifDemoApp" ng-controller="NgifDemoContrl as vm">
+    <h1>任务列表</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>任务编号</th>
+                <th>任务名称</th>
+                <th>任务状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--ng-repeat指令，类似foreach循环-->
+            <tr ng-repeat="item in vm.taskList">
+                <td><p>{{ item.Id }}</p></td>
+                <td><p>{{ item.TaskName }}</p></td>
+                <td>
+                    <!--此处的效果，也可以通过在TaskModel里面加一个string字符串，返回OwnStatus的字符串结果来完成-->
+                    <p ng-if="item.OwnStatus==0">准备开工</p>
+                    <p ng-if="item.OwnStatus==1">进行中</p>
+                    <p ng-if="item.OwnStatus==2">已经完成</p>
+                </td>
+                <td>
+                    <button ng-if="item.OwnStatus==0 || item.OwnStatus==1">更新任务情况</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script>
+    var app = angular.module('NgifDemoApp', []);
+    app.controller('NgifDemoContrl', function ($scope, $http) {
+        var vm = this;
+        vm.getdata = function () {
+            $http({
+                method: 'POST',
+                url: '/AngularjsStudy/GetNgifData',
+                data: {}
+            }).then(function successCallback(data) {
+                //data有多余属性，data.data才是controller返回的data
+                vm.taskList = data.data;
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+        vm.getdata();
+    });
+</script>

@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>base64加密</title>
+</head>
+<body>
+    <div>
+        base64加密
+    </div>
+</body>
+</html>
+
+<script type="text/javascript" src="~/Views/Encryption/js/base64.js"></script>
+<script type="text/javascript">
+
+        var b = new Base64();
+        var str = b.encode("mima123465");
+        alert("base64 encode:" + str);
+　　　　　//解密
+        str = b.decode(str);
+        alert("base64 decode:" + str);
+</script>  

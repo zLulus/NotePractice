@@ -1,0 +1,23 @@
+﻿<link rel="stylesheet" type="text/css" href="~/Content/datetimepicker/bootstrap-datetimepicker.min.css" />
+<link rel="stylesheet" type="text/css" href="~/Content/datetimepicker/bootstrap-theme.min.css" />
+<script type="text/javascript" src="~/Content/datetimepicker/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="~/Content/datetimepicker/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/Content/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="~/Content/datetimepicker/bootstrap-datetimepicker.zh-CN.js"></script>
+
+<input type="text" id="Applicationtime" name="Applicationtime" class="form-control selectTime"/>
+
+<script>
+    $("#Applicationtime").datetimepicker({
+        minDate: new Date(),
+        autoclose: true,
+        isRTL: false,
+        format: "yyyy-mm-dd hh:ii",
+        pickerPosition: ("bottom-left"),
+        //默认为E文按钮要中文，自己去找语言包
+        todayBtn: true,
+        language: "zh-CN",
+        startDate: new Date(),
+        todayHighlight: true
+    });
+</script>
