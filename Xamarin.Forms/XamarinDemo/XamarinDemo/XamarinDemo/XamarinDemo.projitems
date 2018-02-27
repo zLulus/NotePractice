@@ -24,8 +24,13 @@
       <DependentUpon>BindingFirstName2.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Bindings\BindingHeight.xaml.cs">
+      <DependentUpon>BindingHeight.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\DetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\Employee.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\HeightViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\Models\TodoItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bindings\Page1.xaml.cs">
       <DependentUpon>Page1.xaml</DependentUpon>
@@ -95,6 +100,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)DemoPages\StackLayoutExample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Bindings\BindingHeight.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

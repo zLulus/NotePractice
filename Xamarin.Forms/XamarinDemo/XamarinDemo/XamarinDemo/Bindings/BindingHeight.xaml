@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinDemo.Bindings.BindingHeight">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="{Binding GridLength, Mode=TwoWay}"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label BackgroundColor="Blue" Grid.Row="0" Text="Set Height:" />
+                <Entry BackgroundColor="Red" Grid.Row="1" Text="{Binding CustomHeight, Mode=TwoWay}" />
+                <Label BackgroundColor="Green" Grid.Row="2" Text="{Binding CustomHeight, Mode=TwoWay}" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
