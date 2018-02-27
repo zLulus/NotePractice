@@ -46,11 +46,13 @@
     }
 
     function getUserInfo() {
+        var token = $("#token").val();
+        console.log(token);
         $.ajax({
             type: "POST",
             url: "/TokenDemo/GetUserInfo",
             data: {
-                "Token": $("#token").val()
+                "Token": token
             },
             success: function (result) {
                 $("#response").text(JSON.stringify(result));
