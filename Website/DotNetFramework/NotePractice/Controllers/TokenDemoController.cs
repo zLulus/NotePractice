@@ -53,10 +53,10 @@ namespace NotePractice.Controllers
            
         }
 
-        public async Task<ActionResult> LogOut()
+        public async Task<ActionResult> LogOut(LogInRequest request)
         {
             HttpClient client = new HttpClient();
-            string str = JsonConvert.SerializeObject("");
+            string str = JsonConvert.SerializeObject(request);
             StringContent content = new StringContent(str, Encoding.UTF8, "application/json");
             var result = await client.PostAsync(baseUrl + "/account/LogoutForApp", content);
             var r = result.Content.ReadAsStringAsync().Result;

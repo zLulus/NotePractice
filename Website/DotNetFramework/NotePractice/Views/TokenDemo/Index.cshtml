@@ -12,10 +12,12 @@
 </head>
 <body>
     <div>
-        <label id="account">账号</label>
-        <input />
-        <label id="password">密码</label>
-        <input />
+        <label >账号</label>
+        <input id="account"/>
+        <label >密码</label>
+        <input id="password"/>
+        <label >token</label>
+        <input id="token"/>
         <button onclick="logIn()">登录</button>
         <button onclick="getUserInfo()">获得账号信息</button>
         <button onclick="logOut()">退出登录</button>
@@ -28,7 +30,6 @@
 </html>
 
 <script>
-    var newToken = "";
     function logIn() {
         $.ajax({
             type: "POST",
@@ -40,19 +41,16 @@
             success: function (result) {
                 $("#response").text(JSON.stringify(result));
                 console.log(result);
-                newToken = result.result.result;
-                console.log(newToken);
             }
         });
     }
 
     function getUserInfo() {
-        console.log(newToken);
         $.ajax({
             type: "POST",
             url: "/TokenDemo/GetUserInfo",
             data: {
-                "Token": newToken
+                "Token": $("#token").val()
             },
             success: function (result) {
                 $("#response").text(JSON.stringify(result));
@@ -66,7 +64,8 @@
             type: "POST",
             url: "/TokenDemo/LogOut",
             data: {
-                
+                "UsernameOrEmailAddress": "admin",
+                "Password": "bb123456"
             },
             success: function (result) {
                 $("#response").text(JSON.stringify(result));
