@@ -34,10 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\lib\uploadify\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\lib\uploadify\Change Log.txt" />
     <None Include="wwwroot\lib\uploadify\check-exists.php" />
     <None Include="wwwroot\lib\uploadify\index.php" />
