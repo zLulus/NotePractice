@@ -8,6 +8,7 @@ using Qiniu.Http;
 using Qiniu.IO;
 using Qiniu.IO.Model;
 using Qiniu.Util;
+using System.Web;
 
 namespace CoreWebsite.Controllers
 {
@@ -17,6 +18,13 @@ namespace CoreWebsite.Controllers
         //Install-Package Newtonsoft.Json
         //Install-Package Qiniu.Shared
         //参考资料：https://developer.qiniu.com/kodo/sdk/4056/c-sdk-v7-2-15#5
+
+        public IActionResult UploadFileTest()
+        {
+
+            return Json("ok");
+        }
+
 
         public IActionResult UploadByFile()
         {

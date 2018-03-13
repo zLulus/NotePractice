@@ -33,4 +33,23 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\uploadify\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\uploadify\Change Log.txt" />
+    <None Include="wwwroot\lib\uploadify\check-exists.php" />
+    <None Include="wwwroot\lib\uploadify\index.php" />
+    <None Include="wwwroot\lib\uploadify\jquery.uploadify.js" />
+    <None Include="wwwroot\lib\uploadify\jquery.uploadify.min.js" />
+    <None Include="wwwroot\lib\uploadify\license.txt" />
+    <None Include="wwwroot\lib\uploadify\uploadify-cancel.png" />
+    <None Include="wwwroot\lib\uploadify\uploadify.css" />
+    <None Include="wwwroot\lib\uploadify\uploadify.php" />
+    <None Include="wwwroot\lib\uploadify\uploadify.swf" />
+    <None Include="wwwroot\lib\uploadify\__MACOSX\._Change Log.txt" />
+    <None Include="wwwroot\lib\uploadify\__MACOSX\._uploadify.swf" />
+  </ItemGroup>
+
 </Project>
