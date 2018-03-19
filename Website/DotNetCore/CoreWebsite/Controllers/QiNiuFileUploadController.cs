@@ -9,6 +9,8 @@ using Qiniu.IO;
 using Qiniu.IO.Model;
 using Qiniu.Util;
 using System.Web;
+using Newtonsoft.Json;
+using CoreWebsite.Models.QiNiuFileUpload;
 
 namespace CoreWebsite.Controllers
 {
@@ -53,6 +55,7 @@ namespace CoreWebsite.Controllers
             string token = Auth.CreateUploadToken(mac, jstr);
             UploadManager um = new UploadManager();
             HttpResult result = um.UploadFile(localFile, saveKey, token);
+            QiNiuFileUploadResponse response = JsonConvert.DeserializeObject<QiNiuFileUploadResponse>(result.Text);
             return Json(result);
         }
 
@@ -96,7 +99,7 @@ namespace CoreWebsite.Controllers
 
         public IActionResult Download()
         {
-            //如果是公用的，直接访问即可：http://p2skdbze8.bkt.clouddn.com/XXX.png
+            //如果是公用的，直接访问即可：http://xxx.clouddn.com/XXX.png
             //如果是私有的，需要使用token才能访问
             return Json("");
         }
