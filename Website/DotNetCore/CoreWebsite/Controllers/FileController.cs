@@ -12,5 +12,10 @@ namespace CoreWebsite.Controllers
         {
             return View();
         }
+
+        public IActionResult EditorImageUpload()
+        {
+            return View();
+        }
     }
 }

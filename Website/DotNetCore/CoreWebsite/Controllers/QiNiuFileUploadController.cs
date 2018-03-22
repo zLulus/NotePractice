@@ -11,6 +11,9 @@ using Qiniu.Util;
 using System.Web;
 using Newtonsoft.Json;
 using CoreWebsite.Models.QiNiuFileUpload;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.Collections;
 
 namespace CoreWebsite.Controllers
 {
@@ -20,11 +23,84 @@ namespace CoreWebsite.Controllers
         //Install-Package Newtonsoft.Json
         //Install-Package Qiniu.Shared
         //参考资料：https://developer.qiniu.com/kodo/sdk/4056/c-sdk-v7-2-15#5
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        public QiNiuFileUploadController(IHostingEnvironment hostingEnvironment)
+        {
+            _hostingEnvironment = hostingEnvironment;
+        }
 
         public IActionResult UploadFileTest()
         {
 
             return Json("ok");
+        }
+
+        [HttpPost("UploadFiles")]
+        [Produces("application/json")]
+        public async Task<IActionResult> FroalaEditorUploadTest(List<IFormFile> files)
+        {
+            // Get the file from the POST request
+            var theFile = HttpContext.Request.Form.Files.GetFile("file");
+
+            // Get the server path, wwwroot
+            string webRootPath = _hostingEnvironment.WebRootPath;
+
+            // Building the path to the uploads directory
+            var fileRoute = Path.Combine(webRootPath, "uploads");
+
+            // Get the mime type
+            var mimeType = HttpContext.Request.Form.Files.GetFile("file").ContentType;
+
+            // Get File Extension
+            string extension = System.IO.Path.GetExtension(theFile.FileName);
+
+            // Generate Random name.
+            string name = Guid.NewGuid().ToString().Substring(0, 8) + extension;
+
+            // Build the full path inclunding the file name
+            string link = Path.Combine(fileRoute, name);
+
+            // Create directory if it does not exist.
+            FileInfo dir = new FileInfo(fileRoute);
+            dir.Directory.Create();
+
+            // Basic validation on mime types and file extension
+            string[] imageMimetypes = { "image/gif", "image/jpeg", "image/pjpeg", "image/x-png", "image/png", "image/svg+xml" };
+            string[] imageExt = { ".gif", ".jpeg", ".jpg", ".png", ".svg", ".blob" };
+
+            try
+            {
+                if (Array.IndexOf(imageMimetypes, mimeType) >= 0 && (Array.IndexOf(imageExt, extension) >= 0))
+                {
+                    // Copy contents to memory stream.
+                    Stream stream;
+                    stream = new MemoryStream();
+                    theFile.CopyTo(stream);
+                    stream.Position = 0;
+                    String serverPath = link;
+
+                    // Save the file
+                    //using (FileStream writerFileStream = System.IO.File.Create(serverPath))
+                    //{
+                    //    await stream.CopyToAsync(writerFileStream);
+                    //    writerFileStream.Dispose();
+                    //}
+                    var result = UploadStream(stream);
+
+                    // Return the file path as json
+                    Hashtable imageUrl = new Hashtable();
+                    imageUrl.Add("link", "/uploads/" + name);
+
+                    return Json(imageUrl);
+                }
+                throw new ArgumentException("The image did not pass the validation");
+            }
+
+            catch (ArgumentException ex)
+            {
+                return Json(ex.Message);
+            }
         }
 
 
@@ -61,11 +137,16 @@ namespace CoreWebsite.Controllers
 
         public IActionResult UploadByStream()
         {
+            string localFile = "C:\\Users\\86551\\Desktop\\test.png";
+            FileStream fileStream = new FileStream(localFile, FileMode.Open);
+            return UploadStream(fileStream);
+        }
+
+        private IActionResult UploadStream(Stream fileStream)
+        {
             Mac mac = new Mac("", "");
             string bucket = "mysso";
             string saveKey = Guid.NewGuid() + ".png";
-            string localFile = "C:\\Users\\86551\\Desktop\\test.png";
-            FileStream fileStream = new FileStream(localFile, FileMode.Open);
             PutPolicy putPolicy = new PutPolicy();
             putPolicy.Scope = bucket;
             putPolicy.SetExpires(3600);
