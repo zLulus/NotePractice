@@ -43,6 +43,8 @@ namespace CoreWebsite.Controllers
         //资料
         //https://www.froala.com/wysiwyg-editor/docs/concepts/image/upload
         //https://www.froala.com/wysiwyg-editor/docs/server/dotnet_core/image-upload
+        //https://www.froala.com/wysiwyg-editor/examples/getHTML
+        //https://stackoverflow.com/questions/24893209/add-text-to-froala-text-editor
 
         [HttpPost("UploadFiles")]
         [Produces("application/json")]
