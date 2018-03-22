@@ -24,6 +24,10 @@ namespace CoreWebsite.Controllers
         //Install-Package Qiniu.Shared
         //参考资料：https://developer.qiniu.com/kodo/sdk/4056/c-sdk-v7-2-15#5
         private readonly IHostingEnvironment _hostingEnvironment;
+        private string baseUrl = "http://p2skdbze8.bkt.clouddn.com/";
+        private string accessKey = "";
+        private string secretKey = "";
+        private string bucket = "";
 
         public QiNiuFileUploadController(IHostingEnvironment hostingEnvironment)
         {
@@ -35,6 +39,10 @@ namespace CoreWebsite.Controllers
 
             return Json("ok");
         }
+
+        //资料
+        //https://www.froala.com/wysiwyg-editor/docs/concepts/image/upload
+        //https://www.froala.com/wysiwyg-editor/docs/server/dotnet_core/image-upload
 
         [HttpPost("UploadFiles")]
         [Produces("application/json")]
@@ -86,11 +94,11 @@ namespace CoreWebsite.Controllers
                     //    await stream.CopyToAsync(writerFileStream);
                     //    writerFileStream.Dispose();
                     //}
-                    var result = UploadStream(stream);
+                    var key = UploadStream(stream);
 
                     // Return the file path as json
                     Hashtable imageUrl = new Hashtable();
-                    imageUrl.Add("link", "/uploads/" + name);
+                    imageUrl.Add("link", $"{baseUrl}/{key}");
 
                     return Json(imageUrl);
                 }
@@ -139,13 +147,14 @@ namespace CoreWebsite.Controllers
         {
             string localFile = "C:\\Users\\86551\\Desktop\\test.png";
             FileStream fileStream = new FileStream(localFile, FileMode.Open);
-            return UploadStream(fileStream);
+            string key= UploadStream(fileStream);
+            return Json($"{baseUrl}/{key}");
         }
 
-        private IActionResult UploadStream(Stream fileStream)
+        private string UploadStream(Stream fileStream)
         {
-            Mac mac = new Mac("", "");
-            string bucket = "mysso";
+            Mac mac = new Mac(accessKey, secretKey);
+            string bucket = this.bucket;
             string saveKey = Guid.NewGuid() + ".png";
             PutPolicy putPolicy = new PutPolicy();
             putPolicy.Scope = bucket;
@@ -155,7 +164,8 @@ namespace CoreWebsite.Controllers
             UploadManager um = new UploadManager();
             HttpResult result = um.UploadStream(fileStream, saveKey, token);
             fileStream.Close();
-            return Json(result);
+            QiNiuFileUploadResponse response = JsonConvert.DeserializeObject<QiNiuFileUploadResponse>(result.Text);
+            return response.key;
         }
 
         public IActionResult UploadByByte()
