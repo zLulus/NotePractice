@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <!--加载js需要翻墙！！！-->
+    <!--加载js/css需要翻墙！！！-->
 
     <!-- Include external CSS. -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -37,12 +37,14 @@
             $.getScript("https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.5.1//js/froala_editor.pkgd.min.js", function () {
                 $('#edit').froalaEditor({
                     // Set the image upload URL.
+                    //设置富文本框上传图片路径
                     imageUploadURL: '/UploadFiles',
 
                     imageUploadParams: {
                         id: 'my_editor'
                     }
                 });
+                //赋值富文本框
                 $('#edit').froalaEditor('html.set', '<p>ttttt</p>');
 
             });
@@ -50,6 +52,7 @@
         });
 
         function GetContent() {
+            //获得富文本框内容
             var html = $('#edit').froalaEditor('html.get');
             console.log(html);
         }

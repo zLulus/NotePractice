@@ -117,9 +117,9 @@ namespace CoreWebsite.Controllers
             // 生成(上传)凭证时需要使用此Mac
             // 这个示例单独使用了一个Settings类，其中包含AccessKey和SecretKey
             // 实际应用中，请自行设置您的AccessKey和SecretKey
-            Mac mac = new Mac("", "");
+            Mac mac = new Mac(accessKey, secretKey);
             //你的OSS的名称
-            string bucket = "mysso";
+            string bucket = this.bucket;
 
             string saveKey = Guid.NewGuid() + ".png";
             string localFile = "C:\\Users\\86551\\Desktop\\test.png";
@@ -170,8 +170,8 @@ namespace CoreWebsite.Controllers
 
         public IActionResult UploadByByte()
         {
-            Mac mac = new Mac("", "");
-            string bucket = "mysso";
+            Mac mac = new Mac(accessKey, secretKey);
+            string bucket = this.bucket;
             string saveKey = Guid.NewGuid() + ".png";
             string localFile = "C:\\Users\\86551\\Desktop\\test.png";
             FileStream fileStream = new FileStream(localFile, FileMode.Open);
