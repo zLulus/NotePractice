@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncDemo.cs" />
+    <Compile Include="ExcuteJsByPhantomjs\ExcuteJsByPhantomjsDemo.cs" />
     <Compile Include="ExcuteJs\ExcuteJsDemo.cs" />
     <Compile Include="RegexDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -57,6 +58,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExcuteJsByPhantomjs\phantomjs.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ExcuteJsByPhantomjs\Test2.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
