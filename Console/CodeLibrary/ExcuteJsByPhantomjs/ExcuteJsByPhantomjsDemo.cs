@@ -22,7 +22,6 @@ namespace CodeLibrary.ExcuteJsByPhantomjs
             pProcess.StartInfo.UseShellExecute = false;
             pProcess.EnableRaisingEvents = false;
             //在phantomjs.exe里面执行的命令
-            //Js文件中先抄写了jQuery，最后是自己的业务代码(希望有更好的解决方案???如果有请联系我~)
             pProcess.StartInfo.Arguments = $"//ExcuteJsByPhantomjs//Test2.js {url}";
             pProcess.Start();
             

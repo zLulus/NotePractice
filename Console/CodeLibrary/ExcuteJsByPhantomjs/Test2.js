@@ -7,4 +7,5 @@
 }
 
 Test();
+//关闭phantom
 phantom.exit();
