@@ -25,7 +25,6 @@ Page({
         console.log(res)
         if (res.code) {
           //调用后端接口获得sessionkey
-          //todo 
           util.postRequest('/AccountForMiniProgram/WechatGetSessionKey', { id: res.code }, that, "sessionKey");
         } else {
           console.log('登录失败！' + res.errMsg)
