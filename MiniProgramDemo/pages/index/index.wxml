@@ -1,0 +1,4 @@
+  <view class="container">
+    <button bindtap="testApi">Test Api</button>
+    
+  </view>
