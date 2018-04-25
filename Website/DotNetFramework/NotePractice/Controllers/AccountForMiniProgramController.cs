@@ -12,7 +12,7 @@ namespace NotePractice.Controllers
         [HttpGet]
         public ActionResult GetData()
         {
-            return Json(new { time=DateTime.Now,data=123 });
+            return Json(new { time=DateTime.Now,data=123 }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
