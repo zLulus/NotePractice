@@ -1,4 +1,12 @@
   <view class="container">
     <button bindtap="testApi">Test Api</button>
-    
+  </view>
+  <view class="container">
+    <button bindtap="testScope1">Test 作用域（正确1）</button>
+  </view>
+  <view class="container">
+    <button bindtap="testScope2">Test 作用域（正确2）</button>
+  </view>
+  <view class="container">
+    <button bindtap="testScope3">Test 作用域（错误）</button>
   </view>

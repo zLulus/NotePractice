@@ -53,6 +53,7 @@
     <Compile Include="TokenDemo\LogInRequest.cs" />
     <Compile Include="TokenDemo\LogInResponses\LogInResponse.cs" />
     <Compile Include="TokenDemo\LogInResponses\LogInResponseResult.cs" />
+    <Compile Include="WechatModel\WechatGetSessionKeyInput.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

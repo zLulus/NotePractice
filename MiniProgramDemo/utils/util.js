@@ -1,4 +1,4 @@
-var apiHost = "http://localhost:1107/";
+var apiHost = "http://localhost:5003/";
 var tokenKey = "token";
 var logInUrl = "/Account/LogInForMiniProgram";
 
