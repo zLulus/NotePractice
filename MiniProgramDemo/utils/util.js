@@ -22,7 +22,7 @@ function getRequest(url, that, targetName) {
 }
 
 //url添加最后的相对路径即可
-function postRequest(url, data, that, targetName, func, statusName, getfailFunc, ) {
+function postRequest(url, data, that, targetName) {
   var token = "";
   //无论是否拿到token，都去请求接口（eg.调用登录接口无需token）
   wx.getStorage({
@@ -56,18 +56,9 @@ function postRequest(url, data, that, targetName, func, statusName, getfailFunc,
               data: res.data.result
             })
           }
-          if (func != undefined) {
-            func();
-          }
         },
         fail: function (error) {
           console.log(error);
-          if (getfailFunc != undefined) {
-            var failparam = {};
-            failparam[statusName] = error;
-            that.setData(failparam);
-            getfailFunc();
-          }
         }
       })
     }
