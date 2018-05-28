@@ -24,6 +24,13 @@ namespace WechatDemo
                 await GetAllUsers();
             });
 
+            //微信模板消息资料
+            //三种推送消息的比较：https://blog.csdn.net/VikPan/article/details/60878263
+            //sdk文档：
+            //https://book.weixin.senparc.com/BookHelper    472#216
+            //TemplateApi.SendTemplateMessage(_appId, openId, templateId, "http://sdk.weixin.senparc.com", testData);
+            //其中url是点击之后的跳转页面
+
             Console.ReadLine();
         }
         private static async Task GetAllUsers()
