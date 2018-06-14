@@ -22,14 +22,9 @@ namespace NotePractice.Controllers
         private string authorizeUrl = "";
         private string appId = "";
         private string appSecret = "";
-        private Dictionary<string,User> bindWechatDictionary { get; set; }
+        private static Dictionary<string,User> bindWechatDictionary { get; set; }
 
         static WeiXinController()
-        {
-
-        }
-
-        public WeiXinController()
         {
             bindWechatDictionary = new Dictionary<string, User>();
         }
@@ -98,7 +93,7 @@ namespace NotePractice.Controllers
             bindWechatDictionary.Add(authorizeCode, user);
 
             //生成二维码
-            string url = $"?authorizeCode={authorizeCode}";
+            string url = $"{authorizeUrl}/weixin/GetWechatUserInfoInterfaceForBindWeChat?authorizeCode={authorizeCode}";
             QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(url, QRCodeGenerator.ECCLevel.Q);
             QRCode qrcode = new QRCode(qrCodeData);
@@ -143,8 +138,12 @@ namespace NotePractice.Controllers
                     var user = bindWechatDictionary.FirstOrDefault(x => x.Key == authorizeCode).Value;
                     if (user != null)
                     {
-                        //调用接口，绑定系统用户和微信用户信息
-                        string data = $"微信用户信息：{JsonConvert.SerializeObject(oAuthUserInfo)}\n系统用户信息：{JsonConvert.SerializeObject(user)}";
+                        //调用接口，绑定系统用户和微信用户信息(这里没有写)
+
+                        //移除这个key-value
+                        bindWechatDictionary.Remove(authorizeCode);
+                        //返回结果
+                        string data = $"微信用户信息：{JsonConvert.SerializeObject(oAuthUserInfo)},系统用户信息：{JsonConvert.SerializeObject(user)}";
                         return Json(data, JsonRequestBehavior.AllowGet);
                     }
                     else
