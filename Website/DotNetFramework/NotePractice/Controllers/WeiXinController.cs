@@ -1,10 +1,15 @@
-﻿using Newtonsoft.Json;
+﻿using Model.WechatModel;
+using Newtonsoft.Json;
+using QRCoder;
 using Senparc.Weixin;
 using Senparc.Weixin.HttpUtility;
 using Senparc.Weixin.MP;
 using Senparc.Weixin.MP.AdvancedAPIs;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -17,7 +22,13 @@ namespace NotePractice.Controllers
         private string authorizeUrl = "";
         private string appId = "";
         private string appSecret = "";
-        
+        private Dictionary<string,User> bindWechatDictionary { get; set; }
+
+        public WeiXinController()
+        {
+            bindWechatDictionary = new Dictionary<string, User>();
+        }
+
         public async Task<ActionResult> GetWechatUserInfoInterface(string returnUrl)
         {
             var state = "zl-" + DateTime.Now.Millisecond; //随机数，用于识别请求可靠性
@@ -58,6 +69,33 @@ namespace NotePractice.Controllers
             {
                 return Json("Token授权失败！");
             }
+        }
+
+        public ActionResult BindWeChat()
+        {
+            return View();
+        }
+
+        public ActionResult GetBindWeChatImg()
+        {
+            //查询用户信息
+            var user = new User()
+            {
+                Id = 1,
+                UserName = "Lulu"
+            };
+            string code = Guid.NewGuid().ToString();
+            //将用户信息和唯一标志绑定
+            bindWechatDictionary.Add(code, user);
+
+            //生成二维码
+            QRCodeGenerator qrGenerator = new QRCoder.QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode(code, QRCodeGenerator.ECCLevel.Q);
+            QRCode qrcode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrcode.GetGraphic(5, Color.Black, Color.White, null, 15, 6, false);
+            MemoryStream ms = new MemoryStream();
+            qrCodeImage.Save(ms, ImageFormat.Jpeg);
+            return File(ms.ToArray(), "image/jpeg");
         }
     }
 }

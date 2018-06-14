@@ -53,6 +53,7 @@
     <Compile Include="TokenDemo\LogInRequest.cs" />
     <Compile Include="TokenDemo\LogInResponses\LogInResponse.cs" />
     <Compile Include="TokenDemo\LogInResponses\LogInResponseResult.cs" />
+    <Compile Include="WechatModel\User.cs" />
     <Compile Include="WechatModel\WechatGetSessionKeyInput.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
