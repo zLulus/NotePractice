@@ -29,7 +29,7 @@ namespace NotePractice.Controllers
             bindWechatDictionary = new Dictionary<string, User>();
         }
 
-        #region 查询微信用户信息
+        #region 查询微信用户信息  即使没有关注公众号也可以查询用户信息，只要用户授权了即可
         public async Task<ActionResult> GetWechatUserInfoInterface(string returnUrl)
         {
             var state = "zl-" + DateTime.Now.Millisecond; //随机数，用于识别请求可靠性
