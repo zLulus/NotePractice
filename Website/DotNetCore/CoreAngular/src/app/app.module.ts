@@ -17,7 +17,6 @@ import { HeroService } from './hero.service';
 import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 import { NameChainsComponent } from './name-chains/name-chains.component';
-import { FormSetDynamicControlComponent } from './form-set-dynamic-control/form-set-dynamic-control.component';
 import { JsonExamplesComponent } from './json-examples/json-examples.component';
 
 @NgModule({
@@ -42,7 +41,6 @@ import { JsonExamplesComponent } from './json-examples/json-examples.component';
     MessagesComponent,
     HeroSearchComponent,
     NameChainsComponent,
-    FormSetDynamicControlComponent,
     JsonExamplesComponent
   ],
   providers: [ HeroService, MessageService ],

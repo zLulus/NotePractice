@@ -5,7 +5,6 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { NameChainsComponent } from './name-chains/name-chains.component';
-import { FormSetDynamicControlComponent } from './form-set-dynamic-control/form-set-dynamic-control.component';
 import { JsonExamplesComponent } from './json-examples/json-examples.component';
 
 const routes: Routes = [
@@ -14,7 +13,6 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'name-chains', component: NameChainsComponent },
-  { path: 'form-set-dynamic-control', component: FormSetDynamicControlComponent },
   { path: 'json-examples', component: JsonExamplesComponent },
 ];
 
