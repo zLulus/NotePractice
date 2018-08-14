@@ -6,7 +6,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NameChainsComponent implements OnInit {
 
-    data={};
+    data={
+        id:10,
+        text:{
+            title:'title',
+            content:'content'
+        },
+        image:{
+            url:'image url',
+            name:'image name',
+            size:'900KB'
+        }
+    };
     dataStr:string;
     mergeResult:any;
     mergeResultStr:string;
@@ -20,14 +31,6 @@ export class NameChainsComponent implements OnInit {
     }
 
     Test(): void {
-        this.data.id=10;
-        this.data.text={};
-        this.data.text.title="title";
-        this.data.text.content='content';
-        this.data.image={};
-        this.data.image.url='image url';
-        this.data.image.name='image name';
-        this.data.image.size='900KB';
         this.dataStr=JSON.stringify(this.data);
         this.objPro2ProDicResult=this.objPro2ProDic(this.data,undefined,undefined);
         console.log(this.objPro2ProDicResult);
