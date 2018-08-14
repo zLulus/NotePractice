@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { Menu, MenuService, SettingsService, TitleService } from '@delon/theme';
+// import { Menu, MenuService, SettingsService, TitleService } from '@delon/theme';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent implements OnInit{
   title = 'Angular Demo';
 
   constructor(
-    private menuService: MenuService
+    // private menuService: MenuService
   ) { }
 
   ngOnInit() {
@@ -18,14 +18,15 @@ export class AppComponent implements OnInit{
   }
 
   setMenu(): void{
-    let subMenu: Menu;
-    subMenu = {
-      text: 'dashboard',
-      link: '/dashboard',
-      icon: `icon iconfont icon-dashboard`
-    };
-    const arrMenu = new Array<Menu>();
-    arrMenu.push(subMenu);
-    this.menuService.add(arrMenu);
+    // todo menu
+    // let subMenu: Menu;
+    // subMenu = {
+    //   text: 'dashboard',
+    //   link: '/dashboard',
+    //   icon: `icon iconfont icon-dashboard`
+    // };
+    // const arrMenu = new Array<Menu>();
+    // arrMenu.push(subMenu);
+    // this.menuService.add(arrMenu);
   }
 }
