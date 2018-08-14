@@ -29,7 +29,7 @@ export class NameChainsComponent implements OnInit {
         this.data.image.name='image name';
         this.data.image.size='900KB';
         this.dataStr=JSON.stringify(this.data);
-        this.objPro2ProDicResult=this.objPro2ProDic(this.data);
+        this.objPro2ProDicResult=this.objPro2ProDic(this.data,undefined,undefined);
         console.log(this.objPro2ProDicResult);
         this.objPro2ProDicResultStr=JSON.stringify(this.objPro2ProDicResult);
         this.mergeResult=this.Merge(this.objPro2ProDicResult);
