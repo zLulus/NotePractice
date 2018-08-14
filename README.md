@@ -6,5 +6,5 @@
 | 3| IdentityServer        |IdentityServer示例demo                           |
 | 4| WCF && WCFServer     |WCF Rest,WCF SOAP,Windows服务,WCF 单元测试等 |
 | 6|WPF                                   |Wpf示例demo                      |
-| 7|Website                                 |asp .net mvc,asp .net core                  |
+| 7|Website                                 |asp .net mvc,asp .net core,angular                  |
 | 7|Xamarin.Forms                                |Xamarin.Forms示例demo                      |
