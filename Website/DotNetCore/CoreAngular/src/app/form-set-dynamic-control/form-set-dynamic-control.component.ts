@@ -14,9 +14,9 @@ export class FormSetDynamicControlComponent implements OnInit {
     {id:2,name:'文本框'},
   ]
 
-  properties=[
-    {nameChain:'input'，controlType:0,displayName:'输入框'}
-  ];
+  // properties=[
+  //   {nameChain:'input'，controlType:0,displayName:'输入框'}
+  // ];
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
