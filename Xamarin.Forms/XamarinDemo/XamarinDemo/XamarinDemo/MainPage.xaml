@@ -15,6 +15,7 @@
             <Button Text="数据绑定(Binding FirstName - C#)" Clicked="CustomizingCellDemoButton1Clicked"></Button>
             <Button Text="数据绑定(Binding FirstName - XAML)" Clicked="BindingFirstName2Clicked"></Button>
             <Button Text="数据绑定(Slider - XAML)" Clicked="SliderBindingsPageClicked"></Button>
+            <Button Text="数据绑定(Height)" Clicked="BindingHeightClicked"></Button>
         </StackLayout>
     </ScrollView>
 </ContentPage>

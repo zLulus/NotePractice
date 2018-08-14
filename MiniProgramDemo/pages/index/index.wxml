@@ -1,0 +1,16 @@
+  <view class="container">
+    <button bindtap="testApi">Test Api</button>
+    {{apiData.time}}
+    {{apiData.data}}
+  </view>
+  <view class="container">
+    <button bindtap="testScope1">Test 作用域（正确1）</button>
+    {{sessionKey.result}}
+  </view>
+  <view class="container">
+    <button bindtap="testScope2">Test 作用域（正确2）</button>
+    {{sessionKey2.result}}
+  </view>
+  <view class="container">
+    <button bindtap="testScope3">Test 作用域（错误）</button>
+  </view>

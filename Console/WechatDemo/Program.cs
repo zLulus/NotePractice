@@ -1,16 +1,61 @@
-﻿using Senparc.Weixin.MP.AdvancedAPIs;
+﻿using Newtonsoft.Json;
+using Senparc.Weixin.MP.AdvancedAPIs;
 using Senparc.Weixin.MP.Containers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using WechatDemo.Models.GetAllUsers;
 
 namespace WechatDemo
 {
     class Program
     {
         static void Main(string[] args)
+        {
+            //查询目标用户的信息
+            //GetTargetUserInfo();
+
+            Task.Run(async () =>
+            {
+                //查询所有用户
+                await GetAllUsers();
+            });
+
+            //微信模板消息资料
+            //三种推送消息的比较：https://blog.csdn.net/VikPan/article/details/60878263
+            //sdk文档：
+            //https://book.weixin.senparc.com/BookHelper    472#216
+            //TemplateApi.SendTemplateMessage(_appId, openId, templateId, "http://sdk.weixin.senparc.com", testData);
+            //其中url是点击之后的跳转页面
+
+            Console.ReadLine();
+        }
+        private static async Task GetAllUsers()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                var appId = "";
+                var appSecret = "";
+                //起始位置，为空则从头开始查询
+                var next_openid = "";
+                //注册一次即可
+                AccessTokenContainer.Register(appId, appSecret);
+                var token = AccessTokenContainer.GetAccessToken(appId);
+                string url = string.Format("https://api.weixin.qq.com/cgi-bin/user/get?access_token={0}", token);
+                if (!string.IsNullOrEmpty(next_openid))
+                {
+                    url += "&next_openid=" + next_openid;
+                }
+                var response = await client.GetAsync(url);
+                var resultStr = await response.Content.ReadAsStringAsync();
+                GetAllUsersOutput result = JsonConvert.DeserializeObject<GetAllUsersOutput>(resultStr);
+            }
+        }
+
+        private static void GetTargetUserInfo()
         {
             //微信查询用户信息
             string appId = "";

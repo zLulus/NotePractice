@@ -1,4 +1,6 @@
 ﻿using CodeLibrary;
+using CodeLibrary.ExcuteJs;
+using CodeLibrary.ExcuteJsByPhantomjs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +25,14 @@ namespace ConsoleDemo
             //Console.ReadLine();
 
             //C# 元组、匿名对象、ref&out
-            ReturnsMultipleValuesTest test = new ReturnsMultipleValuesTest();
-            test.Test();
+            //ReturnsMultipleValuesTest test = new ReturnsMultipleValuesTest();
+            //test.Test();
+
+            //C#调用js Jint库
+            //ExcuteJsDemo.ExcuteJs();
+
+            //C#调用js phantomjs
+            ExcuteJsByPhantomjsDemo.ExcuteJs();
         }
 
         #region 关闭之前进行一些操作

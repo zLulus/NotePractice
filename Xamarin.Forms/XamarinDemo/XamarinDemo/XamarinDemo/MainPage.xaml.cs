@@ -57,5 +57,10 @@ namespace XamarinDemo
         {
             Navigation.PushModalAsync(new ListViewInStackLayout());
         }
+
+        public void BindingHeightClicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new BindingHeight());
+        }
     }
 }
