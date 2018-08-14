@@ -10,9 +10,12 @@ import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 
 import { AppRoutingModule } from './app-routing.module';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CanDeactivateComponent } from './can-deactivate/can-deactivate.component';
 import { FormSetDynamicControlComponent } from './form-set-dynamic-control/form-set-dynamic-control.component';
+
+import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 
 registerLocaleData(zh);
 
@@ -31,7 +34,7 @@ registerLocaleData(zh);
     NgZorroAntdModule,
     AppRoutingModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }, CanDeactivateGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
