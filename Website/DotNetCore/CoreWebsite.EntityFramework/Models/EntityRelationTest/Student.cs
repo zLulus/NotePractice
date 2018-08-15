@@ -13,6 +13,8 @@ namespace CoreWebsite.EntityFramework.Models.EntityRelationTest
     {
         [Key]
         public long Id { get; set; }
+        public string StudentId { get; set; }
+        public string Name { get; set; }
         public long AdmissionRecordId { get; set; }
         //Student-AdmissionRecord 1:1
         [ForeignKey("AdmissionRecordId")]

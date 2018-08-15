@@ -17,9 +17,9 @@ namespace CoreWebsite.EntityFramework
 
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityComment> ActivityComments { get; set; }
-        //public DbSet<AdmissionRecord> AdmissionRecords { get; set; }
+        public DbSet<AdmissionRecord> AdmissionRecords { get; set; }
         //public DbSet<Class> Classes { get; set; }
-        //public DbSet<Student> Students { get; set; }
+        public DbSet<Student> Students { get; set; }
         //public DbSet<Teacher> Teachers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
