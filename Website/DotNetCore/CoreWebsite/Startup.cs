@@ -28,6 +28,7 @@ namespace CoreWebsite
         public void ConfigureServices(IServiceCollection services)
         {
             //数据库配置
+            //参考资料：https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/new-db
             services.AddEntityFrameworkSqlServer().AddDbContext<WebsiteDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
 
             services.AddMvc();
