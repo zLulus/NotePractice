@@ -51,7 +51,8 @@ namespace CoreWebsite.EntityFramework
             //    .HasForeignKey(k => k.ClassId)
             //    .OnDelete(DeleteBehavior.ClientSetNull);
 
-            //Student-Teacher m:n 通过StudentTeacherRelationship中间表
+            //Student-Teacher m:n 
+            //通过StudentTeacherRelationship中间表，通过实现两个1:n，实现m:n
             modelBuilder.Entity<StudentTeacherRelationship>()
                 .HasOne(p => p.Student)
                 .WithMany(p => p.StudentTeacherRelationships)
@@ -66,8 +67,11 @@ namespace CoreWebsite.EntityFramework
 
             //单表树状结构
             modelBuilder.Entity<TreeNode>()
+                //主语this，拥有Children
                 .HasMany(x => x.Children)
+                //主语Children，每个Child拥有一个Parent
                 .WithOne(x => x.Parent)
+                //主语Children，每个Child的外键是ParentId
                 .HasForeignKey(x => x.ParentId)
                 //这里必须是非强制关联，否则报错：Specify ON DELETE NO ACTION or ON UPDATE NO ACTION, or modify other FOREIGN KEY constraints.
                 .OnDelete(DeleteBehavior.ClientSetNull);
