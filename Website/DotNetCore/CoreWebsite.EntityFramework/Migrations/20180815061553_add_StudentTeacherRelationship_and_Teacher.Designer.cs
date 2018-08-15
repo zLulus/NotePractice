@@ -11,9 +11,10 @@ using System;
 namespace CoreWebsite.EntityFramework.Migrations
 {
     [DbContext(typeof(WebsiteDbContext))]
-    partial class WebsiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180815061553_add_StudentTeacherRelationship_and_Teacher")]
+    partial class add_StudentTeacherRelationship_and_Teacher
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
