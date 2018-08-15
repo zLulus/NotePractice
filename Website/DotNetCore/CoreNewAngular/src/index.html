@@ -9,6 +9,25 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <app-root></app-root>
+  <div class="wrapper">
+    <div class="router-progress-bar" *ngIf="isFetching"></div>
+    <div class="top-header">
+        <!-- <app-topnavbar class="navbar-header"></app-topnavbar>
+        <app-header class="header"></app-header> -->
+    </div>
+    <div class="aside-inner">
+      <sidebar-nav class="d-block"></sidebar-nav>
+    </div>
+    <section class="content">
+        <reuse-tab [max]="20"></reuse-tab>
+        <div class="content-body">
+            <app-root></app-root>
+        </div>
+        <!-- <app-footer></app-footer> -->
+        <div class="back-top" (click)="backTop()">
+            <i class="icon iconfont icon-fanhuidingbu"></i>
+        </div>
+    </section>
+  </div>
 </body>
 </html>
