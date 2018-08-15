@@ -11,6 +11,8 @@ import zh from '@angular/common/locales/zh';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { HeaderComponent } from './layout/header/header.component';
+import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CanDeactivateComponent } from './can-deactivate/can-deactivate.component';
 import { FormSetDynamicControlComponent } from './form-set-dynamic-control/form-set-dynamic-control.component';
@@ -22,6 +24,8 @@ registerLocaleData(zh);
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    SidebarComponent,
     DashboardComponent,
     CanDeactivateComponent,
     FormSetDynamicControlComponent
