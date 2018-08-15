@@ -20,7 +20,8 @@ namespace CoreWebsite.EntityFramework
         public DbSet<AdmissionRecord> AdmissionRecords { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Student> Students { get; set; }
-        //public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<StudentTeacherRelationship> StudentTeacherRelationships { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //导航属性
@@ -41,8 +42,25 @@ namespace CoreWebsite.EntityFramework
                 .WithOne(p => p.Class)
                 .HasForeignKey(p => p.ClassId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+            //下面写法也可以
+            //modelBuilder.Entity<Student>()
+            //    .HasOne(p => p.Class)
+            //    .WithMany(p=>p.Students)
+            //    .HasForeignKey(k => k.ClassId)
+            //    .OnDelete(DeleteBehavior.ClientSetNull);
 
+            //Student-Teacher m:n 通过StudentTeacherRelationship中间表
+            modelBuilder.Entity<StudentTeacherRelationship>()
+                .HasOne(p => p.Student)
+                .WithMany(p => p.StudentTeacherRelationships)
+                .HasForeignKey(k => k.StudentId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
+            modelBuilder.Entity<StudentTeacherRelationship>()
+                .HasOne(p => p.Teacher)
+                .WithMany(p => p.StudentTeacherRelationships)
+                .HasForeignKey(k => k.TeacherId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

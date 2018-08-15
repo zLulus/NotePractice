@@ -21,5 +21,6 @@ namespace CoreWebsite.EntityFramework.Models.EntityRelationTest
         public virtual AdmissionRecord AdmissionRecord { get; set; }
         public long ClassId { get; set; }
         public virtual Class Class { get; set; }
+        public virtual List<StudentTeacherRelationship> StudentTeacherRelationships { get; set; }
     }
 }

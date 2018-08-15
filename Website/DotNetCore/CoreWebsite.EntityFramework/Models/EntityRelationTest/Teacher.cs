@@ -12,5 +12,8 @@ namespace CoreWebsite.EntityFramework.Models.EntityRelationTest
     {
         [Key]
         public long Id { get; set; }
+        public string Name { get; set; }
+        public string TeacherId { get; set; }
+        public virtual List<StudentTeacherRelationship> StudentTeacherRelationships { get; set; }
     }
 }
