@@ -19,5 +19,7 @@ namespace CoreWebsite.EntityFramework.Models.EntityRelationTest
         //Student-AdmissionRecord 1:1
         [ForeignKey("AdmissionRecordId")]
         public virtual AdmissionRecord AdmissionRecord { get; set; }
+        public long ClassId { get; set; }
+        public virtual Class Class { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace CoreWebsite.EntityFramework
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityComment> ActivityComments { get; set; }
         public DbSet<AdmissionRecord> AdmissionRecords { get; set; }
-        //public DbSet<Class> Classes { get; set; }
+        public DbSet<Class> Classes { get; set; }
         public DbSet<Student> Students { get; set; }
         //public DbSet<Teacher> Teachers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -34,6 +34,14 @@ namespace CoreWebsite.EntityFramework
                 .HasForeignKey(x => x.ActivityId);
 
             //Student-AdmissionRecord 1:1  设置ForeignKey
+
+            //Student-Class n:1
+            modelBuilder.Entity<Class>()
+                .HasMany(p => p.Students)
+                .WithOne(p => p.Class)
+                .HasForeignKey(p => p.ClassId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
 
         }
     }
