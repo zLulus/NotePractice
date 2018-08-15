@@ -30,12 +30,12 @@
         {
           "text": "angular form set dynamic control",
           "link": "/form-set-dynamic-control",
-          "i18n": "angular_form_set_dynamic_control"
+          "i18n": "form-set-dynamic-control-demo"
         },
         {
           "text": "can deactivate",
           "link": "/can-deactivate",
-          "i18n": "can_deactivate"
+          "i18n": "can-deactivate-demo"
         }
       ]
     }
