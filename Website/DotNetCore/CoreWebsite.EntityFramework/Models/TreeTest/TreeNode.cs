@@ -9,7 +9,8 @@ namespace CoreWebsite.EntityFramework.Models.TreeTest
     {
         [Key]
         public long Id { get; set; }
-        public long ParentId { get; set; }
+        public string NodeName { get; set; }
+        public long? ParentId { get; set; }
         public virtual TreeNode Parent { get; set; }
         public virtual ICollection<TreeNode> Children { get; set; }
 

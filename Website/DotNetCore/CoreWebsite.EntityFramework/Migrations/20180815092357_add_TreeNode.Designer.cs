@@ -11,9 +11,10 @@ using System;
 namespace CoreWebsite.EntityFramework.Migrations
 {
     [DbContext(typeof(WebsiteDbContext))]
-    partial class WebsiteDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180815092357_add_TreeNode")]
+    partial class add_TreeNode
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,9 +134,7 @@ namespace CoreWebsite.EntityFramework.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("NodeName");
-
-                    b.Property<long?>("ParentId");
+                    b.Property<long>("ParentId");
 
                     b.HasKey("Id");
 
