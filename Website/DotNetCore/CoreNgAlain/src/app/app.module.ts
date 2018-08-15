@@ -31,9 +31,6 @@ import { NgxTinymceModule } from 'ngx-tinymce';
 // @delon/form: JSON Schema form
 import { JsonSchemaModule } from '@shared/json-schema/json-schema.module';
 
-// 业务
-import { DashboardComponent } from './routes/dashboard/dashboard.component';
-
 // 加载i18n语言文件
 export function I18nHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, `assets/tmp/i18n/`, '.json');
@@ -47,8 +44,7 @@ export function StartupServiceFactory(
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DashboardComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

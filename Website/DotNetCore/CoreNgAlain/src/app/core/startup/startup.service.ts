@@ -12,6 +12,7 @@ import {
 import { ACLService } from '@delon/acl';
 import { TranslateService } from '@ngx-translate/core';
 import { I18NService } from '../i18n/i18n.service';
+import { ReuseTabMatchMode, ReuseTabService } from '@delon/abc';
 
 /**
  * 用于应用启动时
@@ -28,12 +29,20 @@ export class StartupService {
     private titleService: TitleService,
     private httpClient: HttpClient,
     private injector: Injector,
+    private reuseTabService: ReuseTabService,
   ) {}
 
   load(): Promise<any> {
     // only works with promises
     // https://github.com/angular/angular/issues/15088
     return new Promise((resolve, reject) => {
+      // reuse-tab  是否重用页面,把这个页面排除了,所以只要跳转到别的页面 原tab就会消失
+      // https://github.com/cipchk/ng-alain/issues/101
+      this.reuseTabService.mode = ReuseTabMatchMode.URL;
+      const excludes = new Array<RegExp>();
+      excludes.push(new RegExp('/can-deactivate'));
+      this.reuseTabService.excludes = excludes;
+
       zip(
         this.httpClient.get(`assets/tmp/i18n/${this.i18n.defaultLang}.json`),
         this.httpClient.get('assets/tmp/app-data.json'),

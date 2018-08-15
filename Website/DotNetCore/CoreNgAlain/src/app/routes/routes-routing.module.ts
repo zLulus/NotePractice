@@ -14,6 +14,10 @@ import { Exception500Component } from './exception/500.component';
 
 // 业务
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CanDeactivateComponent } from './can-deactivate/can-deactivate.component';
+import { FormSetDynamicControlComponent } from './form-set-dynamic-control/form-set-dynamic-control.component';
+
+import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 
 const routes: Routes = [
   {
@@ -22,6 +26,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {path: 'dashboard', component: DashboardComponent},
+      {path: 'can-deactivate', component: CanDeactivateComponent, canDeactivate: [CanDeactivateGuardService]},
+      {path: 'form-set-dynamic-control', component: FormSetDynamicControlComponent},
     ],
   },
   // 单页不包裹Layout
