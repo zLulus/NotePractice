@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CoreWebsite.EntityFramework.Models;
 using CoreWebsite.EntityFramework.Models.EntityRelationTest;
+using CoreWebsite.EntityFramework.Models.TreeTest;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreWebsite.EntityFramework
@@ -22,6 +23,7 @@ namespace CoreWebsite.EntityFramework
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<StudentTeacherRelationship> StudentTeacherRelationships { get; set; }
+        public DbSet<TreeNode> TreeNodes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //导航属性
@@ -61,6 +63,12 @@ namespace CoreWebsite.EntityFramework
                 .WithMany(p => p.StudentTeacherRelationships)
                 .HasForeignKey(k => k.TeacherId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            //单表树状结构
+            modelBuilder.Entity<TreeNode>()
+                .HasMany(x => x.Children)
+                .WithOne(x => x.Parent)
+                .HasForeignKey(x=>x.ParentId);
         }
     }
 }
