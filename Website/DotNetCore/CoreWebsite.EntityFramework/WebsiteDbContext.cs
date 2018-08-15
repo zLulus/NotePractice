@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using CoreWebsite.EntityFramework.Models;
+using CoreWebsite.EntityFramework.Models.EntityRelationTest;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoreWebsite.EntityFramework
@@ -16,6 +17,10 @@ namespace CoreWebsite.EntityFramework
 
         public DbSet<Activity> Activities { get; set; }
         public DbSet<ActivityComment> ActivityComments { get; set; }
+        public DbSet<AdmissionRecord> AdmissionRecords { get; set; }
+        //public DbSet<Class> Classes { get; set; }
+        public DbSet<Student> Students { get; set; }
+        //public DbSet<Teacher> Teachers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //导航属性
@@ -27,6 +32,9 @@ namespace CoreWebsite.EntityFramework
                 .HasMany(x => x.ActivityComments)
                 .WithOne(x => x.Activity)
                 .HasForeignKey(x => x.ActivityId);
+
+            //Student-AdmissionRecord 1:1  设置ForeignKey
+
         }
     }
 }

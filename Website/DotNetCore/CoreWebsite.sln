@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreConsole", "CoreConsole\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebsite.EntityFramework", "CoreWebsite.EntityFramework\CoreWebsite.EntityFramework.csproj", "{82C97C24-7FD9-4C5F-B082-E560B9A08C89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreAngular", "CoreAngular\CoreAngular.csproj", "{11710E19-5BC7-4B7F-BA3C-98C008EDF9DA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{82C97C24-7FD9-4C5F-B082-E560B9A08C89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82C97C24-7FD9-4C5F-B082-E560B9A08C89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82C97C24-7FD9-4C5F-B082-E560B9A08C89}.Release|Any CPU.Build.0 = Release|Any CPU
-		{11710E19-5BC7-4B7F-BA3C-98C008EDF9DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11710E19-5BC7-4B7F-BA3C-98C008EDF9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11710E19-5BC7-4B7F-BA3C-98C008EDF9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11710E19-5BC7-4B7F-BA3C-98C008EDF9DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
