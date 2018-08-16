@@ -25,6 +25,9 @@ namespace DotNetCoreWithFullFramework
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //ef dbcontext配置
+            services.AddScoped((_) => new FullFrameworkDbContext(Configuration.GetConnectionString("SqlServer")));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -34,9 +37,6 @@ namespace DotNetCoreWithFullFramework
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            //ef dbcontext配置
-            services.AddScoped((_) => new FullFrameworkDbContext(Configuration.GetConnectionString("SqlServer")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

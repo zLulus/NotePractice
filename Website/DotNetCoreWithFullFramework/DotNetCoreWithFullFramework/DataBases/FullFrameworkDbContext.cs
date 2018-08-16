@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCoreWithFullFramework.DataBases
 {
+    [DbConfigurationType(typeof(CodeConfig))] // point to the class that inherit from DbConfiguration
     public class FullFrameworkDbContext: DbContext
     {
         public IDbSet<Student> Students { get; set; }
@@ -20,6 +21,15 @@ namespace DotNetCoreWithFullFramework.DataBases
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+        }
+    }
+
+    public class CodeConfig : DbConfiguration
+    {
+        public CodeConfig()
+        {
+            SetProviderServices("System.Data.SqlClient",
+                System.Data.Entity.SqlServer.SqlProviderServices.Instance);
         }
     }
 }
