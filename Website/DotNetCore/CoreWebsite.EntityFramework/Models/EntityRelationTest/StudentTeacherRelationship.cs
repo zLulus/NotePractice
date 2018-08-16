@@ -5,6 +5,9 @@ using System.Text;
 
 namespace CoreWebsite.EntityFramework.Models.EntityRelationTest
 {
+    /// <summary>
+    /// 学生-教师关系表
+    /// </summary>
     public class StudentTeacherRelationship
     {
         [Key]
