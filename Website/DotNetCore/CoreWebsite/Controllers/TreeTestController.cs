@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CoreWebsite.EntityFramework;
+using CoreWebsite.EntityFramework.Dtos.TreeTest;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,7 +24,8 @@ namespace CoreWebsite.Controllers
                 //不写则查询不到导航属性
                 .Include(x=>x.Children)
                 .FirstOrDefault(x => x.ParentId == null);
-            return Json(node);
+            var dto = Mapper.Map<TreeNodeDto>(node);
+            return Json(dto);
         }
     }
 }

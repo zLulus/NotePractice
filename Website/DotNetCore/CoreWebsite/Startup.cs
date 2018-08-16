@@ -12,6 +12,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using CoreWebsite.EntityFramework;
+using AutoMapper;
+using CoreWebsite.EntityFramework.Models.EntityRelationTest;
+using CoreWebsite.EntityFramework.Dtos.EntityRelationTest;
+using CoreWebsite.EntityFramework.Dtos.TreeTest;
+using CoreWebsite.EntityFramework.Models.TreeTest;
 
 namespace CoreWebsite
 {
@@ -32,6 +37,20 @@ namespace CoreWebsite
             services.AddEntityFrameworkSqlServer().AddDbContext<WebsiteDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
 
             services.AddMvc();
+
+            SetAutoMapper();
+        }
+
+        public void SetAutoMapper()
+        {
+            Mapper.Initialize(cfg => {
+                cfg.CreateMap<Student, StudentDto>();
+                cfg.CreateMap<AdmissionRecord, AdmissionRecordDto>();
+                cfg.CreateMap<Class, ClassDto>();
+                cfg.CreateMap<StudentTeacherRelationship, StudentTeacherRelationshipDto>();
+                cfg.CreateMap<Teacher, TeacherDto>();
+                cfg.CreateMap<TreeNode, TreeNodeDto>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

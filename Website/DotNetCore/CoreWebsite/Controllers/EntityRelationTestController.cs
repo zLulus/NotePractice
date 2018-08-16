@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using CoreWebsite.EntityFramework;
+using CoreWebsite.EntityFramework.Dtos.EntityRelationTest;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -25,8 +27,8 @@ namespace CoreWebsite.Controllers
                 .Include(x=>x.StudentTeacherRelationships)
                 .ToList();
             //需要map to dto，否则就循环了(eg.Student-StudentTeacherRelationship-Student)
-
-            return Json(students);
+            List<StudentDto> dto= Mapper.Map<List<StudentDto>>(students);
+            return Json(dto);
         }
     }
 }
