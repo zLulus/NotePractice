@@ -9,6 +9,6 @@ namespace CoreWebsite.EntityFramework.Models
     {
         [Key]
         public long Id { get; set; }
-        public List<ActivityComment> ActivityComments { get; set; }
+        public virtual List<ActivityComment> ActivityComments { get; set; }
     }
 }

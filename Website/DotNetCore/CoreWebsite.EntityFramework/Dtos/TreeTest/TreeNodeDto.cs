@@ -10,6 +10,6 @@ namespace CoreWebsite.EntityFramework.Dtos.TreeTest
         public long Id { get; set; }
         public string NodeName { get; set; }
         public long? ParentId { get; set; }
-        public virtual ICollection<TreeNode> Children { get; set; }
+        public virtual ICollection<TreeNodeDto> Children { get; set; }
     }
 }

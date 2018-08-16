@@ -22,15 +22,21 @@ namespace CoreWebsite.Controllers
 
         public IActionResult GetStudentList()
         {
-            var students = _dbContext.Students
-                .Include(x=>x.AdmissionRecord)
-                .Include(x => x.Class)
-                .Include(x=>x.StudentTeacherRelationships)
-                    //参考资料:https://docs.microsoft.com/en-us/ef/core/querying/related-data
-                    .ThenInclude(x=>x.Teacher)
-                .ToList();
-            //需要map to dto，否则就循环了(eg.Student-StudentTeacherRelationship-Student)
-            List<StudentDto> dto= Mapper.Map<List<StudentDto>>(students);
+            //没有启动延迟加载，需要这样写
+            //var students = _dbContext.Students
+            //    .Include(x=>x.AdmissionRecord)
+            //    .Include(x => x.Class)
+            //    .Include(x=>x.StudentTeacherRelationships)
+            //        //参考资料:https://docs.microsoft.com/zh-cn/ef/core/querying/related-data#eager-loading
+            //        .ThenInclude(x=>x.Teacher)
+            //    .ToList();
+            ////需要map to dto，否则就循环了(eg.Student-StudentTeacherRelationship-Student)
+            //List<StudentDto> dto= Mapper.Map<List<StudentDto>>(students);
+            //return Json(dto);
+
+            //启动延迟加载
+            var students = _dbContext.Students.ToList();
+            List<StudentDto> dto = Mapper.Map<List<StudentDto>>(students);
             return Json(dto);
         }
     }

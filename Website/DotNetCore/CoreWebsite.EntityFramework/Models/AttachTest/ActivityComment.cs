@@ -11,6 +11,6 @@ namespace CoreWebsite.EntityFramework.Models
         public long Id { get; set; }
         public string Content { get; set; }
         public long ActivityId { get; set; }
-        public Activity Activity { get; set; }
+        public virtual Activity Activity { get; set; }
     }
 }

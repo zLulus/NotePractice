@@ -34,7 +34,11 @@ namespace CoreWebsite
         {
             //数据库配置
             //参考资料：https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/new-db
-            services.AddEntityFrameworkSqlServer().AddDbContext<WebsiteDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
+            services.AddEntityFrameworkSqlServer()
+                .AddDbContext<WebsiteDbContext>(
+                //启动延迟加载
+                options => options.UseLazyLoadingProxies()
+                .UseSqlServer(Configuration.GetConnectionString("SqlServer")));
 
             services.AddMvc();
 
