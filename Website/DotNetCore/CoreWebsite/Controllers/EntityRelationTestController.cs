@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CoreWebsite.EntityFramework;
 using CoreWebsite.EntityFramework.Dtos.EntityRelationTest;
+using CoreWebsite.EntityFramework.Models.EntityRelationTest;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -25,6 +26,8 @@ namespace CoreWebsite.Controllers
                 .Include(x=>x.AdmissionRecord)
                 .Include(x => x.Class)
                 .Include(x=>x.StudentTeacherRelationships)
+                    //参考资料:https://docs.microsoft.com/en-us/ef/core/querying/related-data
+                    .ThenInclude(x=>x.Teacher)
                 .ToList();
             //需要map to dto，否则就循环了(eg.Student-StudentTeacherRelationship-Student)
             List<StudentDto> dto= Mapper.Map<List<StudentDto>>(students);

@@ -23,6 +23,7 @@ namespace CoreWebsite.Controllers
                 //命名空间：Microsoft.EntityFrameworkCore
                 //不写则查询不到导航属性
                 .Include(x=>x.Children)
+                    //.ThenInclude(x=>x.Parent)
                 .FirstOrDefault(x => x.ParentId == null);
             var dto = Mapper.Map<TreeNodeDto>(node);
             return Json(dto);
