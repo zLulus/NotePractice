@@ -22,6 +22,7 @@ namespace CoreWebsite.Controllers
             //因为是递归查询，无法使用Include，需要启动延迟加载
             //https://docs.microsoft.com/zh-cn/ef/core/querying/related-data#lazy-loading
             var node = _dbContext.TreeNodes
+                //这里默认只有一个根节点，ParentId=null
                 .FirstOrDefault(x => x.ParentId == null);
             var dto = Mapper.Map<TreeNodeDto>(node);
             return Json(dto);
