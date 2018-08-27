@@ -17,6 +17,7 @@ using CoreWebsite.EntityFramework.Models.EntityRelationTest;
 using CoreWebsite.EntityFramework.Dtos.EntityRelationTest;
 using CoreWebsite.EntityFramework.Dtos.TreeTest;
 using CoreWebsite.EntityFramework.Models.TreeTest;
+using AspNetCore.ResponseCaching.Extensions;
 
 namespace CoreWebsite
 {
@@ -39,10 +40,14 @@ namespace CoreWebsite
                 //启动延迟加载
                 options => options.UseLazyLoadingProxies()
                 .UseSqlServer(Configuration.GetConnectionString("SqlServer")));
-
+            services.AddDiskBackedMemoryResponseCaching((x, y) =>
+            {
+                x.MaximumBodySize = 5 * 1024 * 1024; // Default of 64MB is probably way too big for most scenarios
+            });
             services.AddMvc();
 
             SetAutoMapper();
+
         }
 
         public void SetAutoMapper()
@@ -85,7 +90,7 @@ namespace CoreWebsite
                             })
                 }
              );
-
+            app.UseCustomResponseCaching();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
