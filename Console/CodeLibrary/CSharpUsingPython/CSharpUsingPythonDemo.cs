@@ -12,7 +12,7 @@ namespace CodeLibrary.CSharpUsingPython
     {
         public static void ExcutePython()
         {
-            string progToRun = "//CSharpUsingPython//test.py";
+            string progToRun = $"{Environment.CurrentDirectory}//CSharpUsingPython//test.py";
             char[] spliter = { '\r' };
 
             Process proc = new Process();
