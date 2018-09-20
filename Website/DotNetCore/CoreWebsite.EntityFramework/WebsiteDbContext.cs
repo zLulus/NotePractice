@@ -37,6 +37,10 @@ namespace CoreWebsite.EntityFramework
                 .HasForeignKey(x => x.ActivityId);
 
             //Student-AdmissionRecord 1:1  设置ForeignKey
+            //modelBuilder.Entity<Student>()
+            //    .HasOne(p => p.AdmissionRecord)
+            //    .WithOne(p => p.Student)
+            //    .HasForeignKey<Student>(p => p.AdmissionRecordId);
 
             //Student-Class n:1
             modelBuilder.Entity<Class>()
