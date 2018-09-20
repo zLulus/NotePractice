@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncDemo.cs" />
+    <Compile Include="CSharpUsingPython\CSharpUsingPythonDemo.cs" />
     <Compile Include="ExcuteJsByPhantomjs\ExcuteJsByPhantomjsDemo.cs" />
     <Compile Include="ExcuteJs\ExcuteJsDemo.cs" />
     <Compile Include="RegexDemo.cs" />
@@ -57,6 +58,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CSharpUsingPython\test.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

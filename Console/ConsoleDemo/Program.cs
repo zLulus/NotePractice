@@ -1,4 +1,5 @@
 ﻿using CodeLibrary;
+using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
 using System;
@@ -32,7 +33,41 @@ namespace ConsoleDemo
             //ExcuteJsDemo.ExcuteJs();
 
             //C#调用js phantomjs
-            ExcuteJsByPhantomjsDemo.ExcuteJs();
+            //ExcuteJsByPhantomjsDemo.ExcuteJs();
+
+            //i++,++i
+            //TestCycle();
+
+            //Aggregate
+            //TestAggregate();
+
+            //C#调用Python
+            CSharpUsingPythonDemo.ExcutePython();
+
+            Console.ReadLine();
+        }
+
+        private static void TestAggregate()
+        {
+            var list = Enumerable.Range(1, 100);
+            var result = list.Aggregate((a, b) => (a + b));
+            Console.WriteLine($"1到100的和为{result}");
+            var nums = Enumerable.Range(2, 4);
+            var sum = nums.Aggregate(1, (a, b) => a * b);
+            Console.WriteLine($"2到5的积为{sum}");
+        }
+
+        private static void TestCycle()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine(i);
+            }
+            for (int i = 0; i < 5; ++i)
+            {
+                Console.WriteLine(i);
+            }
+            Console.Read();
         }
 
         #region 关闭之前进行一些操作

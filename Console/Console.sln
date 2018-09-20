@@ -4,15 +4,16 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleDemo", "ConsoleDemo\ConsoleDemo.csproj", "{1C0C4D4C-9647-42CC-8983-205F3B1003D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{98120C63-1DDA-469A-923F-0A9E94E66ED8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpUsingPythonDemo", "CSharpUsingPythonDemo\CSharpUsingPythonDemo.csproj", "{D0651DB4-43AE-457A-8832-EA855770AD1E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCoreConsole", "DotNetCoreConsole\DotNetCoreConsole.csproj", "{BD68C286-A47F-4CD4-8613-9C4A852472F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLibrary", "CodeLibrary\CodeLibrary.csproj", "{8F1F87F2-4BCC-481C-A721-2E5BB4B3D5DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WechatDemo", "WechatDemo\WechatDemo.csproj", "{921A25BC-7C47-49D1-9FE6-496CE91A635F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9845A450-A23D-4781-8C18-9D5D8A547FDC}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,14 +25,6 @@ Global
 		{1C0C4D4C-9647-42CC-8983-205F3B1003D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C0C4D4C-9647-42CC-8983-205F3B1003D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C0C4D4C-9647-42CC-8983-205F3B1003D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98120C63-1DDA-469A-923F-0A9E94E66ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98120C63-1DDA-469A-923F-0A9E94E66ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98120C63-1DDA-469A-923F-0A9E94E66ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98120C63-1DDA-469A-923F-0A9E94E66ED8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0651DB4-43AE-457A-8832-EA855770AD1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0651DB4-43AE-457A-8832-EA855770AD1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0651DB4-43AE-457A-8832-EA855770AD1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0651DB4-43AE-457A-8832-EA855770AD1E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD68C286-A47F-4CD4-8613-9C4A852472F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BD68C286-A47F-4CD4-8613-9C4A852472F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD68C286-A47F-4CD4-8613-9C4A852472F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
