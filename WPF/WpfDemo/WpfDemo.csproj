@@ -57,6 +57,17 @@
     <Compile Include="CheckBox\CheckBoxDemo.xaml.cs">
       <DependentUpon>CheckBoxDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Command\CommandDemoWithBindParameters.xaml.cs">
+      <DependentUpon>CommandDemoWithBindParameters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Command\CommandDemoWithParameters.xaml.cs">
+      <DependentUpon>CommandDemoWithParameters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Command\Commands\DelegateCommand.cs" />
+    <Compile Include="Command\Models\Person.cs" />
+    <Compile Include="Command\Commands\RelayCommand.cs" />
+    <Compile Include="Command\ViewModels\CommandDemoWithBindParametersViewModel.cs" />
+    <Compile Include="Command\ViewModels\CommandDemoWithParametersViewModel.cs" />
     <Compile Include="Converts\ConvertDemo.xaml.cs">
       <DependentUpon>ConvertDemo.xaml</DependentUpon>
     </Compile>
@@ -171,6 +182,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CheckBox\CheckBoxDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Command\CommandDemoWithBindParameters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Command\CommandDemoWithParameters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,22 @@
+﻿<Window x:Class="WpfDemo.Command.CommandDemoWithParameters"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.Command"
+        mc:Ignorable="d"
+        Title="CommandDemoWithParameters" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0">请输入参数</Label>
+        <TextBox Name="textBox1" Grid.Row="0" Grid.Column="1"></TextBox>
+        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding SubmitCommand}" CommandParameter="{Binding ElementName=textBox1,Path=Text}" Content="提交参数"></Button>
+    </Grid>
+</Window>
