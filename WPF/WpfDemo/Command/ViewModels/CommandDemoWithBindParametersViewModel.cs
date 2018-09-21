@@ -14,9 +14,10 @@ namespace WpfDemo.Command.ViewModels
         public Person Person { get; set; }
         public ICommand SubmitCommand => _submitCommand;
         private DelegateCommand _submitCommand = new DelegateCommand(new Action<object>(ShowMessage));
-        private void ShowMessage(object obj)
+        private static void ShowMessage(object obj)
         {
-            MessageBox.Show($"{Person.Name},{Person.Age}");
+            Person person = obj as Person;
+            MessageBox.Show($"{person.Name},{person.Age}");
         }
     }
 }

@@ -26,11 +26,11 @@ namespace WpfDemo.Command
         {
             InitializeComponent();
             vm = new CommandDemoWithBindParametersViewModel();
-            vm.Person=new Person()
+            vm.Person = new Person()
             {
-                Name="请输入姓名",
-                Age="请输入年龄"
-            }
+                Name = "请输入姓名",
+                Age = "请输入年龄"
+            };
             DataContext = vm;
         }
     }

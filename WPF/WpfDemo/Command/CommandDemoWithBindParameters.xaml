@@ -20,6 +20,6 @@
         <TextBox Name="name" Grid.Row="0" Grid.Column="1" Text="{Binding Person.Name}"></TextBox>
         <Label Grid.Row="1">年龄：</Label>
         <TextBox Name="age" Grid.Row="1" Grid.Column="1" Text="{Binding Person.Age}"></TextBox>
-        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding SubmitCommand}" Content="提交参数"></Button>
+        <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Command="{Binding SubmitCommand}" CommandParameter="{Binding Person}" Content="提交参数"></Button>
     </Grid>
 </Window>
