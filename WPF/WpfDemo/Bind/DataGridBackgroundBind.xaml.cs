@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -31,11 +34,29 @@ namespace WpfDemo.Bind
         private void GenerateDataGrid()
         {
             DataGrid dataGrid = new DataGrid();
-            dataGrid.AutoGenerateColumns = false;
-            DataGridTextColumn dataGridTextColumn = new DataGridTextColumn();
-            dataGridTextColumn.Binding = new Binding("ReportDetails.EmployeeName");
-            dataGrid.Columns.Add(dataGridTextColumn);
-            dataGrid.ItemsSource = reports;
+            var _ds = new DataSet("Test");
+            DataTable dt= _ds.Tables.Add("月度绩效表");
+            //create columns
+            //创建列
+            dt.Columns.Add("月份");
+            foreach (var item in reports[0].ReportDetails)
+            {
+                dt.Columns.Add(item.EmployeeName);
+            }
+            //fill data to rows
+            //赋值数据
+            for(int i=0;i< reports.Count;i++)
+            {
+                var theRow = dt.NewRow();
+                theRow[0] = reports[i].StatisticalDate;
+                for (int j = 0; j < reports[i].ReportDetails.Count; j++)
+                {
+                    theRow[j+1] = reports[i].ReportDetails[j].Data;
+                }
+                dt.Rows.Add(theRow);
+            }
+            dataGrid.ItemsSource = dt.AsDataView();
+            //将控件添加到Grid
             MyGrid.Children.Add(dataGrid);
         }
 

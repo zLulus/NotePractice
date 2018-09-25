@@ -7,6 +7,5 @@
         mc:Ignorable="d"
         Title="DataGridBackgroundBind" Height="450" Width="800">
     <Grid Name="MyGrid">
-        
     </Grid>
 </Window>
