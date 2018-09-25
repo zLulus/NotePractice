@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfDemo.Bind.DataGridBindMultiData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.Bind"
+        mc:Ignorable="d"
+        Title="DataGridBindMultiData" Height="450" Width="800">
+    <Grid>
+        <DataGrid ItemsSource="{Binding }" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="编号" Binding="{Binding SchoolNumber}"/>
+                <DataGridTextColumn Header="姓名" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="性别" Binding="{Binding Sex}"/>
+                <!--格式化日期-->
+                <DataGridTextColumn Header="入职时间" Binding="{Binding Path=TeacherDetailInfo.EntryTime, StringFormat=\{0:yyyy年MM月dd日\}}"/>
+                <!--如果这里是双向绑定，则是下面的写法，Mode是双向(TwoWay)，触发器是变化即触发-->
+                <!--<DataGridTextColumn Header="入职时间" Binding="{Binding Path=TeacherDetailInfo.EntryTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
+                <DataGridTextColumn Header="住址" Binding="{Binding Path=TeacherDetailInfo.Address}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
