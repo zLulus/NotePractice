@@ -60,6 +60,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bind\DataGridBackgroundBind.xaml.cs">
+      <DependentUpon>DataGridBackgroundBind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bind\Models\Report.cs" />
+    <Compile Include="Bind\Models\ReportDetail.cs" />
     <Compile Include="CheckBox\CheckBoxDemo.xaml.cs">
       <DependentUpon>CheckBoxDemo.xaml</DependentUpon>
     </Compile>
@@ -189,6 +194,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Bind\BindDemoForView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bind\DataGridBackgroundBind.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
