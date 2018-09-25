@@ -7,5 +7,10 @@
         mc:Ignorable="d"
         Title="DataGridBackgroundBind" Height="450" Width="800">
     <Grid Name="MyGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="1" Click="ChangeData" MinHeight="20" Content="修改第一行的数据"></Button>
     </Grid>
 </Window>

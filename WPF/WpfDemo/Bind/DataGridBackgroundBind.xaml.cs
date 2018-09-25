@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
@@ -21,8 +22,25 @@ namespace WpfDemo.Bind
     /// <summary>
     /// Interaction logic for DataGridBackgroundBind.xaml
     /// </summary>
-    public partial class DataGridBackgroundBind : Window
+    public partial class DataGridBackgroundBind : Window, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private DataTable _dt;
+        public DataTable Dt
+        {
+            get
+            {
+                return _dt;
+            }
+            set
+            {
+                _dt = value;
+                if (this.PropertyChanged != null)
+                {
+                    this.PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Dt"));
+                }
+            }
+        }
         List<Report> reports;
         public DataGridBackgroundBind()
         {
@@ -35,27 +53,27 @@ namespace WpfDemo.Bind
         {
             DataGrid dataGrid = new DataGrid();
             var _ds = new DataSet("Test");
-            DataTable dt= _ds.Tables.Add("月度绩效表");
+            Dt = _ds.Tables.Add("月度绩效表");
             //create columns
             //创建列
-            dt.Columns.Add("月份");
+            Dt.Columns.Add("月份");
             foreach (var item in reports[0].ReportDetails)
             {
-                dt.Columns.Add(item.EmployeeName);
+                Dt.Columns.Add(item.EmployeeName);
             }
             //fill data to rows
             //赋值数据
             for(int i=0;i< reports.Count;i++)
             {
-                var theRow = dt.NewRow();
+                var theRow = Dt.NewRow();
                 theRow[0] = reports[i].StatisticalDate;
                 for (int j = 0; j < reports[i].ReportDetails.Count; j++)
                 {
                     theRow[j+1] = reports[i].ReportDetails[j].Data;
                 }
-                dt.Rows.Add(theRow);
+                Dt.Rows.Add(theRow);
             }
-            dataGrid.ItemsSource = dt.AsDataView();
+            dataGrid.ItemsSource = Dt.AsDataView();
             //将控件添加到Grid
             MyGrid.Children.Add(dataGrid);
         }
@@ -99,6 +117,19 @@ namespace WpfDemo.Bind
                     new ReportDetail(){ EmployeeName="张屹",Data=(decimal)1.1},
                 }
             });
+        }
+
+        /// <summary>
+        /// 修改数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ChangeData(object sender, RoutedEventArgs e)
+        {
+            for (int j = 0; j < reports[0].ReportDetails.Count; j++)
+            {
+                Dt.Rows[0][j + 1] = 9.9;
+            }
         }
     }
 }
