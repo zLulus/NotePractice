@@ -156,18 +156,11 @@
     <Compile Include="TextBlockRun\TextBlockRunDemo.xaml.cs">
       <DependentUpon>TextBlockRunDemo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Trigger\Commands\InteractiveCommand.cs" />
     <Compile Include="Trigger\DataTriggerDemo.xaml.cs">
       <DependentUpon>DataTriggerDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Trigger\EventTriggerDemo.xaml.cs">
       <DependentUpon>EventTriggerDemo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Trigger\InteractionTriggers.xaml.cs">
-      <DependentUpon>InteractionTriggers.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Trigger\InteractionTriggersOtherSolution.xaml.cs">
-      <DependentUpon>InteractionTriggersOtherSolution.xaml</DependentUpon>
     </Compile>
     <Compile Include="Trigger\Models\AppointmentEditingEventArgs.cs" />
     <Compile Include="Trigger\Models\ShowDialogEventArgs.cs" />
@@ -422,14 +415,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Trigger\EventTriggerDemo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Trigger\InteractionTriggers.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Trigger\InteractionTriggersOtherSolution.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
