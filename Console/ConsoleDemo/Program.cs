@@ -43,7 +43,9 @@ namespace ConsoleDemo
 
             //C#调用Python
             //保证已安装任意版本的python，并将其添加到环境变量(或者拷贝python.exe至bin目录根目录)
-            CSharpUsingPythonDemo.ExcutePython();
+            //CSharpUsingPythonDemo.ExcutePython();
+
+            //
 
             Console.ReadLine();
         }
