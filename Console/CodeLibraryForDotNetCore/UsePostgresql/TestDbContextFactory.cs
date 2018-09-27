@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +15,12 @@ namespace CodeLibraryForDotNetCore.UsePostgresql
         public TestDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<TestDbContext>();
-            optionsBuilder.UseNpgsql("Server=127.0.0.1;Port=5432;Database=postgres;User Id=postgres;Password=12345679;CommandTimeout=20;");
+            //appsettings.json设置为“始终复制”
+            var builder = new ConfigurationBuilder()
+                     .AddJsonFile("appsettings.json");
+            var configuration = builder.Build();
+            var connection = configuration.GetConnectionString("Default");
+            optionsBuilder.UseNpgsql(connection);
 
             return new TestDbContext(optionsBuilder.Options);
         }
