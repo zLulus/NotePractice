@@ -51,7 +51,7 @@ namespace ConsoleDemo
             //Postgresql测试
             Task.Run(async () =>
             {
-                await PostgresqlDemo.PostgresqlTest();
+                await UsePostgresqlDemo.PostgresqlTest();
             });
 
             Console.ReadLine();

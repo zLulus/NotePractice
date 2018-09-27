@@ -1,5 +1,7 @@
 ﻿using CodeLibraryForDotNetCore;
+using CodeLibraryForDotNetCore.UsePostgresql;
 using System;
+using System.Threading.Tasks;
 
 namespace DotNetCoreConsole
 {
@@ -7,7 +9,15 @@ namespace DotNetCoreConsole
     {
         static void Main(string[] args)
         {
-            RedisDemo.Run();
+            //redis
+            //RedisDemo.Run();
+
+            //postgresql
+            Task.Run(async () =>
+            {
+                await (new UsePostgresqlDemo(new TestDbContextFactory().CreateDbContext(args))).Run();
+            });
+            Console.ReadLine();
         }
 
         

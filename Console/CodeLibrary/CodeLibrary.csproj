@@ -78,7 +78,7 @@
     <Compile Include="ReturnsMultipleValuesTest.cs" />
     <Compile Include="UsePostgresql\Enums\SexEnum.cs" />
     <Compile Include="UsePostgresql\Models\Cat.cs" />
-    <Compile Include="UsePostgresql\PostgresqlDemo.cs" />
+    <Compile Include="UsePostgresql\UsePostgresqlDemo.cs" />
     <Compile Include="UsePostgresql\TestDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
