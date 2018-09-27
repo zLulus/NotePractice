@@ -25,6 +25,9 @@ namespace CodeLibrary.UsePostgresql
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //设置默认模式，ef默认是dbo
+            // PostgreSQL uses the public schema by default - not dbo.
+            modelBuilder.HasDefaultSchema("public");
             base.OnModelCreating(modelBuilder);
         }
     }

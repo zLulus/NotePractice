@@ -72,11 +72,13 @@
     <Compile Include="CSharpUsingPython\CSharpUsingPythonDemo.cs" />
     <Compile Include="ExcuteJsByPhantomjs\ExcuteJsByPhantomjsDemo.cs" />
     <Compile Include="ExcuteJs\ExcuteJsDemo.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RegexDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReturnsMultipleValuesTest.cs" />
     <Compile Include="UsePostgresql\Enums\SexEnum.cs" />
     <Compile Include="UsePostgresql\Models\Cat.cs" />
+    <Compile Include="UsePostgresql\PostgresqlHelper.cs" />
     <Compile Include="UsePostgresql\TestDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
