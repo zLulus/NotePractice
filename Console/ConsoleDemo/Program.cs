@@ -2,6 +2,9 @@
 using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
+using CodeLibrary.UsePostgresql;
+using CodeLibrary.UsePostgresql.Enums;
+using CodeLibrary.UsePostgresql.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +48,11 @@ namespace ConsoleDemo
             //保证已安装任意版本的python，并将其添加到环境变量(或者拷贝python.exe至bin目录根目录)
             //CSharpUsingPythonDemo.ExcutePython();
 
-            //
+            //Postgresql测试
+            Task.Run(async () =>
+            {
+                await PostgresqlDemo.PostgresqlTest();
+            });
 
             Console.ReadLine();
         }
