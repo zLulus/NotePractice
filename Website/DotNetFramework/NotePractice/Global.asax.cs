@@ -17,6 +17,7 @@ namespace NotePractice
             //在注册默认路由之前 before registering the default Web Application route as that would otherwise take precedence.
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalConfiguration.Configuration.EnsureInitialized();
         }
     }
 }

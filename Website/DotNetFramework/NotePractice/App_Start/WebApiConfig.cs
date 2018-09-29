@@ -15,12 +15,18 @@ namespace NotePractice.App_Start
         {
             configuration.Routes.MapHttpRoute("API Default", "api/{controller}/{id}",
                 new { id = RouteParameter.Optional });
-            //ODataModelBuilder builder = new ODataConventionModelBuilder();
-            //builder.EntitySet<Product>("Products");
-            //configuration.MapODataServiceRoute(
-            //    routeName: "ODataStudy",
-            //    routePrefix: null,
-            //    model: builder.GetEdmModel());
+            ODataModelBuilder builder = new ODataConventionModelBuilder();
+            //多个实体，不能重名
+            builder.EntitySet<Product>("Products");
+            builder.EntitySet<Supplier>("Suppliers");
+            //定义自定义方法
+            builder.Function("GetSalesTaxRate")
+                    .Returns<double>()
+                    .Parameter<int>("PostalCode");
+            configuration.MapODataServiceRoute(
+                routeName: "ODataRoute",
+                routePrefix: null,
+                model: builder.GetEdmModel());
         }
     }
 }

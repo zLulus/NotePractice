@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotePractice", "NotePractice\NotePractice.csproj", "{CBD98945-2E97-4DF8-A474-7D74C340C93D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OData.Client", "OData.Client\OData.Client.csproj", "{C2D7C783-EEF1-4E72-8DA6-690B0C9E5B12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{CBD98945-2E97-4DF8-A474-7D74C340C93D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBD98945-2E97-4DF8-A474-7D74C340C93D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBD98945-2E97-4DF8-A474-7D74C340C93D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2D7C783-EEF1-4E72-8DA6-690B0C9E5B12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2D7C783-EEF1-4E72-8DA6-690B0C9E5B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2D7C783-EEF1-4E72-8DA6-690B0C9E5B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2D7C783-EEF1-4E72-8DA6-690B0C9E5B12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

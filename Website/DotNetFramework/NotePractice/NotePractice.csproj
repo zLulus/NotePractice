@@ -1037,7 +1037,8 @@
     <Compile Include="Controllers\FormSubmitController.cs" />
     <Compile Include="Controllers\JsController.cs" />
     <Compile Include="Controllers\LayerController.cs" />
-    <Compile Include="Controllers\ODataStudyController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TokenDemoController.cs" />
     <Compile Include="Controllers\VueController.cs" />
@@ -1131,6 +1132,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\AccountForMiniProgram\" />
     <Folder Include="Views\ODataStudy\" />
+    <Folder Include="Views\Products\" />
+    <Folder Include="Views\Suppliers\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>

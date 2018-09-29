@@ -50,6 +50,7 @@
     <Compile Include="AngularjsStudy\TaskModel.cs" />
     <Compile Include="Js\DictionaryModel.cs" />
     <Compile Include="ODataStudy\Product.cs" />
+    <Compile Include="ODataStudy\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TokenDemo\GetUserInfoRequest.cs" />
     <Compile Include="TokenDemo\LogInRequest.cs" />
