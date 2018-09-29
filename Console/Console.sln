@@ -23,11 +23,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNetFramework", "DotNetFr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{B0E83734-41B3-4F5A-990D-2940F7D59FDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.MSTest.Test", "DotNetCore.MSTest.Test\DotNetCore.MSTest.Test.csproj", "{EB57B6BC-9CFA-4897-A753-22BA9D1F1BCB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.MSTest.Test", "DotNetCore.MSTest.Test\DotNetCore.MSTest.Test.csproj", "{EB57B6BC-9CFA-4897-A753-22BA9D1F1BCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.xUnit.Test", "DotNetCore.xUnit.Test\DotNetCore.xUnit.Test.csproj", "{75316FE8-B68E-427A-9E06-67E92243664D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.xUnit.Test", "DotNetCore.xUnit.Test\DotNetCore.xUnit.Test.csproj", "{75316FE8-B68E-427A-9E06-67E92243664D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.NUnit.Test", "DotNetCore.NUnit.Test\DotNetCore.NUnit.Test.csproj", "{7F5E9405-F0F6-424C-9E51-036759C812ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.NUnit.Test", "DotNetCore.NUnit.Test\DotNetCore.NUnit.Test.csproj", "{7F5E9405-F0F6-424C-9E51-036759C812ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
