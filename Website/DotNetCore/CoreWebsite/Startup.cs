@@ -18,17 +18,21 @@ using CoreWebsite.EntityFramework.Dtos.EntityRelationTest;
 using CoreWebsite.EntityFramework.Dtos.TreeTest;
 using CoreWebsite.EntityFramework.Models.TreeTest;
 using AspNetCore.ResponseCaching.Extensions;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 
 namespace CoreWebsite
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private readonly IHostingEnvironment _hostingEnvironment;
+        public IConfiguration _configuration { get; }
 
-        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration,
+            IHostingEnvironment hostingEnvironment)
+        {
+            _configuration = configuration;
+            _hostingEnvironment = hostingEnvironment;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -39,13 +43,19 @@ namespace CoreWebsite
                 .AddDbContext<WebsiteDbContext>(
                 //启动延迟加载
                 options => options.UseLazyLoadingProxies()
-                .UseSqlServer(Configuration.GetConnectionString("SqlServer")));
+                .UseSqlServer(_configuration.GetConnectionString("SqlServer")));
             services.AddDiskBackedMemoryResponseCaching((x, y) =>
             {
                 x.MaximumBodySize = 5 * 1024 * 1024; // Default of 64MB is probably way too big for most scenarios
             });
             services.AddMvc();
-
+            //spa参考资料：
+            //http://www.talkingdotnet.com/implement-asp-net-core-spa-template-feature-in-angular6-app/
+            //https://docs.microsoft.com/zh-cn/aspnet/core/client-side/spa/angular?view=aspnetcore-2.1&tabs=visual-studio
+            services.AddSpaStaticFiles(c =>
+            {
+                c.RootPath = "CoreNgAlain/dist";
+            });
             SetAutoMapper();
 
         }
@@ -90,12 +100,26 @@ namespace CoreWebsite
                             })
                 }
              );
+            app.UseSpaStaticFiles();
             app.UseCustomResponseCaching();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
+                //这里是angular项目的根目录
+                spa.Options.SourcePath = $"{_hostingEnvironment.ContentRootPath}\\..\\CoreNgAlain";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
             });
         }
     }
