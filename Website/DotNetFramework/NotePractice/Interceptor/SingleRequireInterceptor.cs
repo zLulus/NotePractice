@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
+using NotePractice.Async;
+using NotePractice.Reflection;
 
 namespace NotePractice.Interceptor
 {
@@ -58,7 +60,7 @@ namespace NotePractice.Interceptor
         //        }
         //        else
         //        {
-        //            throw new UserFriendlyException("请不要重复提交！");
+        //            throw new Exception("请不要重复提交！");
         //        }
         //    }
         //    else
@@ -93,13 +95,13 @@ namespace NotePractice.Interceptor
         //    //#endif
         //}
 
-        //private static bool AllowAnonymous(MemberInfo methodInfo, Type type)
-        //{
-        //    return ReflectionHelper
-        //        .GetAttributesOfMemberAndType(methodInfo, type)
-        //        .OfType<SingleRequireAttribute>()
-        //        .Any();
-        //}
+        private static bool AllowAnonymous(MemberInfo methodInfo, Type type)
+        {
+            return ReflectionHelper
+                .GetAttributesOfMemberAndType(methodInfo, type)
+                .OfType<SingleRequireAttribute>()
+                .Any();
+        }
 
         public static bool IsAsyncMethod(MethodInfo method)
         {
