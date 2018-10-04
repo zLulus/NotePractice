@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 
-namespace NotePractice.Reflection
+namespace NotePractice.Tools.Reflections
 {
     /// <summary>
     /// Defines helper methods for reflection.

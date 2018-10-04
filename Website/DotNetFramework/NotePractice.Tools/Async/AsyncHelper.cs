@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace NotePractice.Async
+namespace NotePractice.Tools.Async
 {
     public static class AsyncHelper
     {

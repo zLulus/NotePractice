@@ -1031,7 +1031,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Async\AsyncHelper.cs" />
     <Compile Include="Controllers\AboutCController.cs" />
     <Compile Include="Controllers\AboutCSSController.cs" />
     <Compile Include="Controllers\AboutDBController.cs" />
@@ -1045,6 +1044,7 @@
     <Compile Include="Controllers\JsController.cs" />
     <Compile Include="Controllers\LayerController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SingleRequireController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TokenDemoController.cs" />
@@ -1060,7 +1060,6 @@
     <Compile Include="Interceptor\SingleRequireInterceptoRegistrar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\AngularjsStudyController.cs" />
-    <Compile Include="Reflection\ReflectionHelper.cs" />
     <Compile Include="SignalRConnections\AppConnection.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1148,6 +1147,7 @@
     <Folder Include="Views\ClientInfo\" />
     <Folder Include="Views\ODataStudy\" />
     <Folder Include="Views\Products\" />
+    <Folder Include="Views\SingleRequire\" />
     <Folder Include="Views\Suppliers\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
@@ -1159,6 +1159,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{6cd5820a-0602-4e7c-b85d-599cb412e8dd}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotePractice.Tools\NotePractice.Tools.csproj">
+      <Project>{dcf36229-4baf-42ad-9c7e-d6e86eb7aea2}</Project>
+      <Name>NotePractice.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
