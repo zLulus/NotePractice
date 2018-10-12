@@ -1,6 +1,7 @@
 ﻿using CodeLibraryForDotNetCore;
 using CodeLibraryForDotNetCore.SendEmail;
 using CodeLibraryForDotNetCore.UsePostgresql;
+using CodeLibraryForDotNetCore.UseYield;
 using CoreConsole;
 using System;
 using System.Threading.Tasks;
@@ -26,7 +27,10 @@ namespace DotNetCoreConsole
             //ConfigReadDemo.ReadConfigHotUpdate();
 
             //send email
-            SendEmailDemo.Run();
+            //SendEmailDemo.Run();
+
+            //yield
+            UseYieldDemo.Run();
 
             Console.ReadLine();
         }
