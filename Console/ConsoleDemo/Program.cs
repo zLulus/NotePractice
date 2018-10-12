@@ -2,6 +2,7 @@
 using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
+using CodeLibrary.SendEmail;
 using CodeLibrary.UsePostgresql;
 using CodeLibrary.UsePostgresql.Enums;
 using CodeLibrary.UsePostgresql.Models;
@@ -49,10 +50,13 @@ namespace ConsoleDemo
             //CSharpUsingPythonDemo.ExcutePython();
 
             //Postgresql测试
-            Task.Run(async () =>
-            {
-                await UsePostgresqlDemo.PostgresqlTest();
-            });
+            //Task.Run(async () =>
+            //{
+            //    await UsePostgresqlDemo.PostgresqlTest();
+            //});
+
+            //send email
+            SendEmailDemo.Run();
 
             Console.ReadLine();
         }
