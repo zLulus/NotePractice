@@ -1,4 +1,5 @@
 ﻿using CodeLibraryForDotNetCore;
+using CodeLibraryForDotNetCore.SendEmail;
 using CodeLibraryForDotNetCore.UsePostgresql;
 using CoreConsole;
 using System;
@@ -21,8 +22,11 @@ namespace DotNetCoreConsole
 
             //read config
             //ConfigReadDemo.ReadConfig();
-            ConfigReadDemo.ReadConfigByBind();
+            //ConfigReadDemo.ReadConfigByBind();
             //ConfigReadDemo.ReadConfigHotUpdate();
+
+            //send email
+            SendEmailDemo.Run();
 
             Console.ReadLine();
         }
