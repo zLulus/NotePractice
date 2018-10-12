@@ -5,101 +5,78 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Web;
+using NotePractice.Tools.Async;
+using NotePractice.Tools.Caches;
+using NotePractice.Tools.ClientInfoProviders;
+using NotePractice.Tools.Reflections;
 
 namespace NotePractice.Interceptor
 {
-    public class SingleRequireInterceptor //: IInterceptor
+    public class SingleRequireInterceptor : IInterceptor
     {
-        //private readonly ICacheManager _cacheManager;
-        //private readonly IClientInfoProvider _clientInfo;
+        private readonly MemoryCacheManager _cacheManager;
 
-        //public SingleRequireInterceptor(
-        //    ICacheManager cacheManager,
-        //    IClientInfoProvider clientInfo)
-        //{
-        //    _cacheManager = cacheManager;
-        //    _clientInfo = clientInfo;
+        public SingleRequireInterceptor(
+            MemoryCacheManager cacheManager)
+        {
+            _cacheManager = cacheManager;
 
-        //}
+        }
 
-        //public void Intercept(IInvocation invocation)
-        //{
-        //    if (AllowAnonymous(invocation.MethodInvocationTarget, invocation.TargetType))
-        //    {
-        //        var key = invocation.Method.Name + invocation.Method.ReflectedType.Name + _clientInfo.ClientIpAddress + _clientInfo.BrowserInfo + _clientInfo.ComputerName;
-        //        var keycache = _cacheManager.GetCache("singleRequireCache").GetOrDefault(key);
-        //        if (keycache == null)
-        //        {
-        //            _cacheManager.GetCache("singleRequireCache").Set(key, 1);
-        //            invocation.Proceed();
+        public void Intercept(IInvocation invocation)
+        {
+            if (AllowAnonymous(invocation.MethodInvocationTarget, invocation.TargetType))
+            {
+                var clientInfo = ClientInfoProvider.GetClientInfo();
+                var key = invocation.Method.Name + invocation.Method.ReflectedType.Name + clientInfo.ClientIpAddress  + clientInfo.ComputerName;
+                var keycache = _cacheManager.GetCache(key);
+                if (keycache == null)
+                {
+                    //3秒内不能重复提交
+                    _cacheManager.SetCache(key, DateTime.Now,3);
+                    invocation.Proceed();
 
-        //            if (invocation.Method.IsAsync())
-        //            {
-        //                if (invocation.Method.ReturnType == typeof(Task))
-        //                {
-        //                    invocation.ReturnValue = AsyncHelper.AwaitTaskWithFinally(
-        //                        (Task)invocation.ReturnValue,
-        //                        exception => _cacheManager.GetCache("singleRequireCache").Remove(key)
-        //                    );
-        //                }
-        //                else
-        //                {
-        //                    invocation.ReturnValue = AsyncHelper.CallAwaitTaskWithFinallyAndGetResult(
-        //                        invocation.Method.ReturnType.GenericTypeArguments[0],
-        //                        invocation.ReturnValue,
-        //                        exception => _cacheManager.GetCache("singleRequireCache").Remove(key)
-        //                    );
-        //                }
-        //            }
-        //            else
-        //            {
-        //                _cacheManager.GetCache("singleRequireCache").Remove(key);
-        //            }
-        //        }
-        //        else
-        //        {
-        //            throw new UserFriendlyException("请不要重复提交！");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        invocation.Proceed();
-        //    }
+                    if (invocation.Method.IsAsync())
+                    {
+                        if (invocation.Method.ReturnType == typeof(Task))
+                        {
+                            invocation.ReturnValue = AsyncHelper.AwaitTaskWithFinally(
+                                (Task)invocation.ReturnValue,
+                                exception => _cacheManager.Remove(key)
+                            );
+                        }
+                        else
+                        {
+                            invocation.ReturnValue = AsyncHelper.CallAwaitTaskWithFinallyAndGetResult(
+                                invocation.Method.ReturnType.GenericTypeArguments[0],
+                                invocation.ReturnValue,
+                                exception => _cacheManager.Remove(key)
+                            );
+                        }
+                    }
+                    else
+                    {
+                        _cacheManager.Remove(key);
+                    }
+                }
+                else
+                {
+                    throw new Exception("请不要重复提交！");
+                }
+            }
+            else
+            {
+                invocation.Proceed();
+            }
+        }
 
-        //    //#if DEBUG
-
-        //    //            invocation.Proceed();
-
-        //    //#else
-        //    //            if (invocation.Method.Name != "L")
-        //    //            {
-        //    //                var key = invocation.Method.Name + invocation.Method.ReflectedType.Name + _clientInfo.ClientIpAddress + _clientInfo.BrowserInfo + _clientInfo.ComputerName;
-        //    //                var keycache = _cacheManager.GetCache("singleRequireCache").GetOrDefault(key);
-        //    //                if (keycache == null)
-        //    //                {
-        //    //                    _cacheManager.GetCache("singleRequireCache").Set(key, 1);
-        //    //                    invocation.Proceed();
-        //    //                }
-        //    //                else
-        //    //                {
-        //    //                    throw new UserFriendlyException("方法" + invocation.Method.Name + "出现多次访问，联系前端修改");
-        //    //                }
-        //    //            }
-        //    //            else
-        //    //            {
-        //    //                invocation.Proceed();
-        //    //            }
-
-        //    //#endif
-        //}
-
-        //private static bool AllowAnonymous(MemberInfo methodInfo, Type type)
-        //{
-        //    return ReflectionHelper
-        //        .GetAttributesOfMemberAndType(methodInfo, type)
-        //        .OfType<SingleRequireAttribute>()
-        //        .Any();
-        //}
+        private static bool AllowAnonymous(MemberInfo methodInfo, Type type)
+        {
+            return ReflectionHelper
+                .GetAttributesOfMemberAndType(methodInfo, type)
+                .OfType<SingleRequireAttribute>()
+                .Any();
+        }
 
         public static bool IsAsyncMethod(MethodInfo method)
         {

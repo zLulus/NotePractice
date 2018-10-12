@@ -146,6 +146,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
@@ -1035,12 +1036,15 @@
     <Compile Include="Controllers\AboutDBController.cs" />
     <Compile Include="Controllers\AccountForMiniProgramController.cs" />
     <Compile Include="Controllers\AddTimeStampController.cs" />
+    <Compile Include="Controllers\CacheTestController.cs" />
+    <Compile Include="Controllers\ClientInfoController.cs" />
     <Compile Include="Controllers\DatetimeController.cs" />
     <Compile Include="Controllers\EncryptionController.cs" />
     <Compile Include="Controllers\FormSubmitController.cs" />
     <Compile Include="Controllers\JsController.cs" />
     <Compile Include="Controllers\LayerController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SingleRequireController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\TokenDemoController.cs" />
@@ -1139,8 +1143,11 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\AccountForMiniProgram\" />
+    <Folder Include="Views\CacheTest\" />
+    <Folder Include="Views\ClientInfo\" />
     <Folder Include="Views\ODataStudy\" />
     <Folder Include="Views\Products\" />
+    <Folder Include="Views\SingleRequire\" />
     <Folder Include="Views\Suppliers\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
@@ -1152,6 +1159,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{6cd5820a-0602-4e7c-b85d-599cb412e8dd}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NotePractice.Tools\NotePractice.Tools.csproj">
+      <Project>{dcf36229-4baf-42ad-9c7e-d6e86eb7aea2}</Project>
+      <Name>NotePractice.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

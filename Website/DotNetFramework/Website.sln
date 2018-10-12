@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotePractice", "NotePractic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OData.Client", "OData.Client\OData.Client.csproj", "{C2D7C783-EEF1-4E72-8DA6-690B0C9E5B12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotePractice.Tools", "NotePractice.Tools\NotePractice.Tools.csproj", "{DCF36229-4BAF-42AD-9C7E-D6E86EB7AEA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{C2D7C783-EEF1-4E72-8DA6-690B0C9E5B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2D7C783-EEF1-4E72-8DA6-690B0C9E5B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2D7C783-EEF1-4E72-8DA6-690B0C9E5B12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCF36229-4BAF-42AD-9C7E-D6E86EB7AEA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCF36229-4BAF-42AD-9C7E-D6E86EB7AEA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCF36229-4BAF-42AD-9C7E-D6E86EB7AEA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCF36229-4BAF-42AD-9C7E-D6E86EB7AEA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
