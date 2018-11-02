@@ -1044,6 +1044,7 @@
     <Compile Include="Controllers\JsController.cs" />
     <Compile Include="Controllers\LayerController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\RedirectUrlController.cs" />
     <Compile Include="Controllers\SingleRequireController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -1133,6 +1134,8 @@
     <Content Include="Views\AddTimeStamp\AddTimeStampDemo.cshtml" />
     <Content Include="Views\TokenDemo\Index.cshtml" />
     <Content Include="Views\WeiXin\BindWeChat.cshtml" />
+    <Content Include="Views\RedirectUrl\RedirectByForm.cshtml" />
+    <Content Include="Views\RedirectUrl\RedirectByAjax.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
