@@ -12,6 +12,8 @@ import { Exception500Component } from './exception/500.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CanDeactivateComponent } from './can-deactivate/can-deactivate.component';
 import { FormSetDynamicControlComponent } from './form-set-dynamic-control/form-set-dynamic-control.component';
+import { DataTransferComponent } from './data-transfer/data-transfer.component';
+import { DataTransferChildComponent } from './data-transfer/data-transfer-child/data-transfer-child.component';
 
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 
@@ -22,7 +24,9 @@ const COMPONENTS = [
   Exception500Component,
   DashboardComponent,
   CanDeactivateComponent,
-  FormSetDynamicControlComponent
+  FormSetDynamicControlComponent,
+  DataTransferComponent,
+  DataTransferChildComponent
 ];
 const COMPONENTS_NOROUNT = [];
 
