@@ -3,6 +3,15 @@
     <nz-tab nzTitle="Tab1">
       <form nz-form [formGroup]="validateForm">
         <nz-form-item>
+            <nz-form-label [nzSpan]="3" nzRequired>编码</nz-form-label>
+            <nz-form-control [nzSpan]="8" nzHasFeedback>
+              <input nz-input formControlName="code" placeholder="请输入编码">
+              <!--表单验证-->
+              <nz-form-explain *ngIf="validateForm.get('code').dirty && validateForm.get('code').errors">
+                <ng-container *ngIf="validateForm.get('code').hasError('required')">请输入编码</ng-container>
+                <ng-container *ngIf="validateForm.get('code').hasError('existSameCode')">已存在相同编码</ng-container>
+              </nz-form-explain>
+            </nz-form-control>
           <nz-form-label [nzSpan]="3" nzRequired>姓名</nz-form-label>
           <nz-form-control [nzSpan]="8" nzHasFeedback>
             <input nz-input formControlName="name" placeholder="请输入姓名">

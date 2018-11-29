@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
+import { TestService } from '../../api/test-service.service';
 
 @Component({
   selector: 'app-data-transfer',
@@ -12,16 +13,19 @@ export class DataTransferComponent implements OnInit {
     childValidateForm: FormGroup;
     data: any;
     constructor(private fb: FormBuilder,
-        private msg: NzMessageService
+        private msg: NzMessageService,
+        private testService: TestService,
     )
     {
         this.validateForm = this.fb.group({
+            code: [null, [Validators.required], [this.checkData]], // 编码
             name: [null, [Validators.required]], // 姓名
             age: [null, [Validators.required, this.isMoreThanZero]], // 年龄
         });
     }
     ngOnInit() {
         this.data = {
+            code:'',
             name:'',
             age:0,
             time:'2018/11/28'
@@ -61,5 +65,20 @@ export class DataTransferComponent implements OnInit {
             // 注意，这里返回的是isMoreThanZero，才能对应.hasError('isMoreThanZero')
             return {  isMoreThanZero: true };
         }
+    }
+
+    checkData: AsyncValidatorFn = (control: FormControl): Promise<ValidationErrors | null> =>{
+        return new Promise((resolve2) => {
+            setTimeout(() => {
+                this.testService.checkData({code:control.value})
+                    .then((response: any) => {
+                        if (response) {
+                            resolve2({existSameCode: true});
+                        } else {
+                            resolve2(null);
+                        }
+                    });
+            }, 1500);
+        });
     }
 }
