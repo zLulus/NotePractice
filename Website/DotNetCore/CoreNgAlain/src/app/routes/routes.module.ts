@@ -14,6 +14,7 @@ import { CanDeactivateComponent } from './can-deactivate/can-deactivate.componen
 import { FormSetDynamicControlComponent } from './form-set-dynamic-control/form-set-dynamic-control.component';
 import { DataTransferComponent } from './data-transfer/data-transfer.component';
 import { DataTransferChildComponent } from './data-transfer/data-transfer-child/data-transfer-child.component';
+import { PromiseTestComponent } from './promise-test/promise-test.component';
 
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 
@@ -26,7 +27,8 @@ const COMPONENTS = [
   CanDeactivateComponent,
   FormSetDynamicControlComponent,
   DataTransferComponent,
-  DataTransferChildComponent
+  DataTransferChildComponent,
+  PromiseTestComponent
 ];
 const COMPONENTS_NOROUNT = [];
 

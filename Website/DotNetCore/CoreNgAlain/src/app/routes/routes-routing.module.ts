@@ -17,6 +17,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CanDeactivateComponent } from './can-deactivate/can-deactivate.component';
 import { FormSetDynamicControlComponent } from './form-set-dynamic-control/form-set-dynamic-control.component';
 import { DataTransferComponent } from './data-transfer/data-transfer.component';
+import { PromiseTestComponent } from './promise-test/promise-test.component';
 
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 
@@ -31,6 +32,7 @@ const routes: Routes = [
       {path: 'can-deactivate', component: CanDeactivateComponent, canDeactivate: [CanDeactivateGuardService]},
       {path: 'form-set-dynamic-control', component: FormSetDynamicControlComponent},
       {path: 'data-transfer', component: DataTransferComponent},
+      {path: 'promise-test', component: PromiseTestComponent},
     ],
   },
   // 单页不包裹Layout

@@ -67,6 +67,9 @@ export class DataTransferComponent implements OnInit {
         }
     }
 
+    /**
+     * @description  自定义表单验证:查询编码是否重复
+     */
     checkData: AsyncValidatorFn = (control: FormControl): Promise<ValidationErrors | null> =>{
         return new Promise((resolve2) => {
             setTimeout(() => {

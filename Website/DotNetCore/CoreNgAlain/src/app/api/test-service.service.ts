@@ -28,4 +28,26 @@ export class TestService {
         // return this.requestHelperService.postRequest(`${this.UrlPre}/CheckData`, params);
     }
 
+    callNormal(): Promise<any> {
+        // resolve
+        // reject
+        return new Promise(function (resolve,reject){
+            resolve('调用正常')
+        }).then(function(value){
+            return value;
+        }).catch(function onRejected(error){
+            return error;
+        });
+    }
+
+    callException(): Promise<any> {
+        return new Promise(function (resolve,reject){
+            reject('调用异常')
+        }).then(function(value){
+            return value;
+        }).catch(function onRejected(error){
+            return error;
+        });
+    }
+
 }
