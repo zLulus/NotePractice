@@ -13,6 +13,7 @@ export class DataTransferTwoComponent implements OnInit {
     validateForm: FormGroup;
     childValidateForm: FormGroup;
     data: any;
+    // 根据前端的命名获得组件
     @ViewChild('dataTransferTwoChild') compDataTransferTwoChild: DataTransferTwoChildComponent; // 子组件
     constructor(private fb: FormBuilder,
         private msg: NzMessageService,
@@ -41,6 +42,7 @@ export class DataTransferTwoComponent implements OnInit {
                 return;
             }
         }
+        // 验证子组件表单
         for (const i in this.compDataTransferTwoChild.childValidateForm.controls){
             if (this.compDataTransferTwoChild.childValidateForm.controls[i].errors != null) {
                 this.msg.error('请确认表单输入');
@@ -48,6 +50,7 @@ export class DataTransferTwoComponent implements OnInit {
             }
         }
         this.data=Object.assign(this.data, this.validateForm.value);
+        // 获得子组件数据
         let childData=Object.assign(this.data, this.compDataTransferTwoChild.childValidateForm.value);
         this.data.time=childData.time;
         // 输出
