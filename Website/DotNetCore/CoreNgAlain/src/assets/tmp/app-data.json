@@ -46,6 +46,11 @@
           "text": "promise test",
           "link": "/promise-test",
           "i18n": "promise-test-demo"
+        },
+        {
+          "text": "data transfer two",
+          "link": "/data-transfer-two",
+          "i18n": "data-transfer-two-demo"
         }
       ]
     }

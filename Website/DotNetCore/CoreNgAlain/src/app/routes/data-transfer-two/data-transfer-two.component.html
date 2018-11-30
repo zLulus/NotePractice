@@ -1,0 +1,63 @@
+<nz-spin [nzSpinning]="false">
+    <nz-tabset [(nzSelectedIndex)]="tabIndex">
+      <nz-tab nzTitle="Tab1">
+        <form nz-form [formGroup]="validateForm">
+          <div nz-row>
+            <div nz-col nzSpan="12">
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="3" nzRequired>编码</nz-form-label>
+                    <nz-form-control [nzSpan]="8" nzHasFeedback>
+                      <input nz-input formControlName="code" placeholder="请输入编码">
+                      <!--表单验证-->
+                      <nz-form-explain *ngIf="validateForm.get('code').dirty && validateForm.get('code').errors">
+                        <ng-container *ngIf="validateForm.get('code').hasError('required')">请输入编码</ng-container>
+                        <ng-container *ngIf="validateForm.get('code').hasError('existSameCode')">已存在相同编码</ng-container>
+                      </nz-form-explain>
+                    </nz-form-control>
+                </nz-form-item>
+            </div>
+          </div>
+          <div nz-row>
+              <div nz-col nzSpan="12">
+                  <nz-form-item>
+                      <nz-form-label [nzSpan]="3" nzRequired>姓名</nz-form-label>
+                      <nz-form-control [nzSpan]="8" nzHasFeedback>
+                        <input nz-input formControlName="name" placeholder="请输入姓名">
+                        <!--表单验证-->
+                        <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">
+                          <ng-container *ngIf="validateForm.get('name').hasError('required')">请输入姓名</ng-container>
+                        </nz-form-explain>
+                      </nz-form-control>
+                  </nz-form-item>
+              </div>
+          </div>
+          <div nz-row>
+              <div nz-col nzSpan="12">
+                  <nz-form-item>
+                    <nz-form-label [nzSpan]="3" nzRequired>年龄</nz-form-label>
+                    <nz-form-control [nzSpan]="8" nzHasFeedback>
+                      <input nz-input formControlName="age" placeholder="请输入年龄">
+                      <nz-form-explain *ngIf="validateForm.get('age').dirty && validateForm.get('age').errors">
+                        <ng-container *ngIf="validateForm.get('age').hasError('required')">请输入年龄</ng-container>
+                        <!--自定义验证  注意加单引号-->
+                        <ng-container *ngIf="validateForm.get('age').hasError('isMoreThanZero')">年龄必须为数字，且大于等于0</ng-container>
+                      </nz-form-explain>
+                    </nz-form-control>
+                  </nz-form-item>
+              </div>
+          </div>
+        </form>
+      </nz-tab>
+      <nz-tab nzTitle="Tab2">
+        <!--[]代表输入，()代表输出-->
+        <!--data和dataChange是自定义的输入输出，输入的是数据，输出的是方法-->
+        <app-data-transfer-two-child #dataTransferTwoChild [data]='data'></app-data-transfer-two-child>
+      </nz-tab>
+    </nz-tabset>
+    <section>
+      <button nz-button (click)="submit()">提交</button>
+    </section>
+  </nz-spin>
+  
+  
+  
