@@ -9,8 +9,6 @@ import { NzMessageService } from 'ng-zorro-antd';
 export class DataTransferTwoChildComponent implements OnInit, OnChanges {
     // 输入
     @Input() data;
-    // 输出
-    @Output() dataChange: EventEmitter<any> = new EventEmitter();
     childValidateForm: FormGroup;
     constructor(private fb: FormBuilder
     )
