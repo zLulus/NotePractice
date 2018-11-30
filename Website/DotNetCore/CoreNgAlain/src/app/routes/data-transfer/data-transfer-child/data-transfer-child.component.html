@@ -1,9 +1,13 @@
 <form nz-form [formGroup]="childValidateForm">
-  <nz-form-item>
-    <nz-form-label [nzSpan]="3" nzRequired>登记时间</nz-form-label>
-    <nz-form-control [nzSpan]="8" nzHasFeedback>
-      <!--使用ngModelChange随时监听数据变化-->
-      <nz-date-picker [nzFormat]="yyyy/MM/dd" id="_time" formControlName="time" (ngModelChange)="changeData()"></nz-date-picker>
-    </nz-form-control>
-  </nz-form-item>
+    <div nz-row>
+        <div nz-col nzSpan="12">
+            <nz-form-item>
+                <nz-form-label [nzSpan]="3" nzRequired>登记时间</nz-form-label>
+                <nz-form-control [nzSpan]="8" nzHasFeedback>
+                  <!--使用ngModelChange随时监听数据变化-->
+                  <nz-date-picker [nzFormat]="yyyy/MM/dd" id="_time" formControlName="time" (ngModelChange)="changeData()"></nz-date-picker>
+                </nz-form-control>
+              </nz-form-item>
+        </div>
+    </div>
 </form>

@@ -14,9 +14,9 @@ export class TestService {
         const pRequest =new Promise(function(resolve, reject) {
             let existCodeList=['1','2','3'];
             if(existCodeList.indexOf(params.code) > -1){
-                return true;
+                resolve(true);
             }
-            return false;
+            resolve(false);
         }).then((ret: any) => {
             return ret;
         });
