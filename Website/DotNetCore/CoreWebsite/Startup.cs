@@ -61,6 +61,7 @@ namespace CoreWebsite
                 c.RootPath = "CoreNgAlain/dist";
             });
             SetAutoMapper();
+            //依赖注入:https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1
             services.AddScoped<IMyDependency, MyDependency>();
         }
 

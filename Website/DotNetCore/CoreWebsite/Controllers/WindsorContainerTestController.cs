@@ -21,7 +21,6 @@ namespace CoreWebsite.Controllers
 
         public async Task<ActionResult> TestMyDependency()
         {
-            //https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1
             var r = await _myDependency.WriteMessage(
                 "WindsorContainerTestController.TestMyDependency created this message.");
             return Json(r);
