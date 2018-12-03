@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="AspNetCore.ResponseCaching.Extensions" Version="1.0.1" />
     <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Castle.Windsor" Version="4.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.1.1" />
@@ -24,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CoreWebsite.Castle.Windsor.Demo\CoreWebsite.Castle.Windsor.Demo.csproj" />
     <ProjectReference Include="..\CoreWebsite.EntityFramework\CoreWebsite.EntityFramework.csproj" />
   </ItemGroup>
 

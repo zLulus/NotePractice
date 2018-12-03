@@ -19,6 +19,8 @@ using CoreWebsite.EntityFramework.Dtos.TreeTest;
 using CoreWebsite.EntityFramework.Models.TreeTest;
 using AspNetCore.ResponseCaching.Extensions;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Castle.Windsor;
+using Castle.MicroKernel.Registration;
 
 namespace CoreWebsite
 {
@@ -57,7 +59,6 @@ namespace CoreWebsite
                 c.RootPath = "CoreNgAlain/dist";
             });
             SetAutoMapper();
-
         }
 
         public void SetAutoMapper()
