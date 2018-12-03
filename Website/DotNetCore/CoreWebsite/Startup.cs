@@ -21,6 +21,8 @@ using AspNetCore.ResponseCaching.Extensions;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Castle.Windsor;
 using Castle.MicroKernel.Registration;
+using CoreWebsite.Castle.Windsor.Demo.Interfaces;
+using CoreWebsite.Castle.Windsor.Demo.Classes;
 
 namespace CoreWebsite
 {
@@ -59,6 +61,7 @@ namespace CoreWebsite
                 c.RootPath = "CoreNgAlain/dist";
             });
             SetAutoMapper();
+            services.AddScoped<IMyDependency, MyDependency>();
         }
 
         public void SetAutoMapper()
