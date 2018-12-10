@@ -21,6 +21,7 @@ export class DataTransferComponent implements OnInit {
             code: [null, [Validators.required], [this.checkData]], // 编码
             name: [null, [Validators.required]], // 姓名
             age: [null, [Validators.required, this.isMoreThanZero]], // 年龄
+            number: [null, [Validators.required, this.checkNumber]]
         });
     }
     ngOnInit() {
@@ -84,4 +85,16 @@ export class DataTransferComponent implements OnInit {
             }, 1500);
         });
     }
+
+    checkNumber = (control: FormControl) => {
+        // 表单验证多种情况可以返回不同的key，来实现不同的提示，不用分成不同的方法（这样可能造成多次提示）
+        if (!control.value) {
+            return { required: true };
+        } else if (isNaN(Number(control.value))) {
+            return {  isNotNumber: true };
+        } else if(control.value < 0){
+            return {  isMoreThanZero: true };
+        }
+    }
+
 }

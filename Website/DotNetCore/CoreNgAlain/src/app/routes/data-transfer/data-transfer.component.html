@@ -46,6 +46,22 @@
                 </nz-form-item>
             </div>
         </div>
+        <div nz-row>
+          <div nz-col nzSpan="12">
+              <nz-form-item>
+                <nz-form-label [nzSpan]="3" nzRequired>想不出名字的某数字= =</nz-form-label>
+                <nz-form-control [nzSpan]="8" nzHasFeedback>
+                  <input nz-input formControlName="number" placeholder="请输入数字">
+                  <nz-form-explain *ngIf="validateForm.get('number').dirty && validateForm.get('number').errors">
+                    <ng-container *ngIf="validateForm.get('number').hasError('required')">此为必填项</ng-container>
+                    <!--自定义验证  多种情况-->
+                    <ng-container *ngIf="validateForm.get('number').hasError('isNotNumber')">必须填写数字</ng-container>
+                    <ng-container *ngIf="validateForm.get('number').hasError('isMoreThanZero')">必须大于等于0</ng-container>
+                  </nz-form-explain>
+                </nz-form-control>
+              </nz-form-item>
+          </div>
+      </div>
       </form>
     </nz-tab>
     <nz-tab nzTitle="Tab2">
