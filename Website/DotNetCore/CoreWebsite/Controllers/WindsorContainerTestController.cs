@@ -13,6 +13,18 @@ namespace CoreWebsite.Controllers
 {
     public class WindsorContainerTestController : Controller
     {
+        private readonly IMyDependency _myDependency;
+        public WindsorContainerTestController(IMyDependency myDependency)
+        {
+            _myDependency = myDependency;
+        }
+
+        public async Task<ActionResult> TestMyDependency()
+        {
+            var r = await _myDependency.WriteMessage(
+                "WindsorContainerTestController.TestMyDependency created this message.");
+            return Json(r);
+        }
 
         public IActionResult DoSomething()
         {
