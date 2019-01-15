@@ -3,6 +3,7 @@ using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
 using CodeLibrary.SendEmail;
+using CodeLibrary.SpoofIpAddress;
 using CodeLibrary.UsePostgresql;
 using CodeLibrary.UsePostgresql.Enums;
 using CodeLibrary.UsePostgresql.Models;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleDemo
@@ -56,7 +58,16 @@ namespace ConsoleDemo
             //});
 
             //send email
-            SendEmailDemo.Run();
+            //SendEmailDemo.Run();
+
+            //Spoof Ip Address
+            for (int i = 0; i < 100; i++)
+            {
+                SpoofIpAddressDemo.get("url");
+                Thread.Sleep(500);
+                Console.WriteLine(i);
+            }
+            
 
             Console.ReadLine();
         }

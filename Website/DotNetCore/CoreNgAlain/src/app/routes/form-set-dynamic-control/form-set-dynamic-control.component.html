@@ -8,8 +8,8 @@
     </nz-select>
 </div>
 <form nz-form [formGroup]="validateForm">
-    <nz-form-item *ngFor="let property of properties">
-        <nz-form-label [nzSm]="2" [nzXs]="2" nzRequired>{{property.displayName}}</nz-form-label>
+    <nz-form-item *ngFor="let property of properties;let i = index">
+        <nz-form-label [nzSm]="2" [nzXs]="2" nzRequired>{{i+1}} {{property.displayName}}</nz-form-label>
         <!--输入框-->
         <nz-form-control [nzSm]="4" [nzXs]="4" *ngIf="property.controlType==0">
             <input nz-input [formControlName]="property.nameChain" type="text" class="form-control" name="{{property.nameChain}}" [(ngModel)]="dataObj[property.nameChain]">
