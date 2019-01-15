@@ -1,13 +1,15 @@
-目录结构   
-	DotNetCore   
-		DotNetCoreConsole:.net core运行程序  
-		CodeLibraryForDotNetCore:.net core工具类库   
-		单元测试相关  
-			DotNetCore.MSTest.Test   
-			DotNetCore.NUnit.Test  
-			DotNetCore.xUnit.Test   
-	DotNetFramework     
-		CodeLibrary:.net framework工具类库  
-		ConsoleDemo:.net framework运行程序  
-	独立示例程序:  
-		WechatDemo:微信相关功能示例    
+## 鐩綍缁撴瀯   
+```
+DotNetCore   
+	DotNetCoreConsole:.net core杩愯绋嬪簭  
+	CodeLibraryForDotNetCore:.net core宸ュ叿绫诲簱   
+	鍗曞厓娴嬭瘯鐩稿叧  
+		DotNetCore.MSTest.Test   
+		DotNetCore.NUnit.Test  
+		DotNetCore.xUnit.Test   
+DotNetFramework     
+	CodeLibrary:.net framework宸ュ叿绫诲簱  
+	ConsoleDemo:.net framework杩愯绋嬪簭  
+鐙珛绀轰緥绋嬪簭:  
+	WechatDemo:寰俊鐩稿叧鍔熻兘绀轰緥    
+```
