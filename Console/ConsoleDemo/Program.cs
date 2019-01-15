@@ -9,7 +9,10 @@ using CodeLibrary.UsePostgresql.Enums;
 using CodeLibrary.UsePostgresql.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -61,14 +64,27 @@ namespace ConsoleDemo
             //SendEmailDemo.Run();
 
             //Spoof Ip Address
-            for (int i = 0; i < 100; i++)
-            {
-                SpoofIpAddressDemo.get("https://www.cnblogs.com/lovesong/p/10269793.html");
-                Thread.Sleep(500);
-                Console.WriteLine(i);
-            }
-            
+            //string url = "";
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    SpoofIpAddressDemo.get(url);
+            //    Thread.Sleep(500);
+            //    Console.WriteLine(i);
+            //}
 
+            //Spoof Ip Address 3
+            //免费代理IP:
+            //需要翻墙：https://free-proxy-list.net/
+            //http://ip.zdaye.com/dayProxy/ip/220993.html
+            string ip = "";
+            int port = 80;
+            string url = "";
+            //验证代理IP地址是否可用
+            SpoofIpAddressDemo3.ChecKedForIP((result) => { Console.WriteLine($"ChecKedForIP:{result}"); }, ip, port);
+            //在请求时设置代理
+            SpoofIpAddressDemo3.SpoofIpAddressBySetProxyWhileRequest(ip, port,url);
+            //全局设置代理
+            //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyForSystem(ip, port);
             Console.ReadLine();
         }
 
