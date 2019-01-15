@@ -69,11 +69,20 @@ namespace CodeLibrary.SpoofIpAddress
         /// </summary>
         /// <param name="ip"></param>
         /// <param name="port"></param>
-        public static void SpoofIpAddressBySetProxyForSystem(string ip,int port)
+        public static void SpoofIpAddressBySetProxyForSystem(string ip,int port,string url)
         {
             SetProxy($"{ip}:{port}");
+            //设置之后，可以查询当前IP
             //在这里发送请求
+            var str = new HttpClient().GetAsync(url).Result.Content.ReadAsStringAsync().Result;
             UnSetProxy();
+
+            //另解
+            //IEProxy ieProxy = new IEProxy($"{ip}:{port}");
+            //ieProxy.RefreshIESettings();
+            ////在这里发送请求
+            //var str= new HttpClient().GetAsync(url).Result.Content.ReadAsStringAsync().Result;
+            //ieProxy.DisableIEProxy();
         }
 
         /// <summary>
@@ -116,6 +125,7 @@ namespace CodeLibrary.SpoofIpAddress
 
         }
 
+        #region 设置全局代理IP 1
 
         [DllImport(@"wininet", SetLastError = true, CharSet = CharSet.Auto, EntryPoint = "InternetSetOption", CallingConvention = CallingConvention.StdCall)]
         public static extern bool InternetSetOption
@@ -125,7 +135,6 @@ namespace CodeLibrary.SpoofIpAddress
                IntPtr lpBuffer,
                int dwBufferLength
                );
-
         /// <summary>
         /// 设置代理
         /// </summary>
@@ -163,5 +172,102 @@ namespace CodeLibrary.SpoofIpAddress
             InternetSetOption(0, 39, IntPtr.Zero, 0);
             InternetSetOption(0, 37, IntPtr.Zero, 0);
         }
+        #endregion
+
+        #region 设置全局代理IP 2
+
+        [DllImport("wininet.dll", SetLastError = true)]
+        private static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int lpdwBufferLength);
+        public struct Struct_INTERNET_PROXY_INFO
+        {
+            public int dwAccessType;
+            public IntPtr proxy;
+            public IntPtr proxyBypass;
+        };
+        //strProxy为代理IP:端口
+        private void RefreshIESettings(string strProxy)
+        {
+            const int INTERNET_OPTION_PROXY = 38;
+            const int INTERNET_OPEN_TYPE_PROXY = 3;
+            const int INTERNET_OPEN_TYPE_DIRECT = 1;
+
+            Struct_INTERNET_PROXY_INFO struct_IPI;
+            // Filling in structure
+            struct_IPI.dwAccessType = INTERNET_OPEN_TYPE_PROXY;
+            struct_IPI.proxy = Marshal.StringToHGlobalAnsi(strProxy);
+            struct_IPI.proxyBypass = Marshal.StringToHGlobalAnsi("local");
+
+            // Allocating memory
+            IntPtr intptrStruct = Marshal.AllocCoTaskMem(Marshal.SizeOf(struct_IPI));
+            if (string.IsNullOrEmpty(strProxy) || strProxy.Trim().Length == 0)
+            {
+                strProxy = string.Empty;
+                struct_IPI.dwAccessType = INTERNET_OPEN_TYPE_DIRECT;
+
+            }
+            // Converting structure to IntPtr
+            Marshal.StructureToPtr(struct_IPI, intptrStruct, true);
+
+            bool iReturn = InternetSetOption(IntPtr.Zero, INTERNET_OPTION_PROXY, intptrStruct, Marshal.SizeOf(struct_IPI));
+        }
+        public class IEProxy
+        {
+            private const int INTERNET_OPTION_PROXY = 38;
+            private const int INTERNET_OPEN_TYPE_PROXY = 3;
+            private const int INTERNET_OPEN_TYPE_DIRECT = 1;
+
+            private string ProxyStr;
+
+
+            [DllImport("wininet.dll", SetLastError = true)]
+
+            private static extern bool InternetSetOption(IntPtr hInternet, int dwOption, IntPtr lpBuffer, int lpdwBufferLength);
+
+            public struct Struct_INTERNET_PROXY_INFO
+            {
+                public int dwAccessType;
+                public IntPtr proxy;
+                public IntPtr proxyBypass;
+            }
+
+            private bool InternetSetOption(string strProxy)
+            {
+                int bufferLength;
+                IntPtr intptrStruct;
+                Struct_INTERNET_PROXY_INFO struct_IPI;
+
+                if (string.IsNullOrEmpty(strProxy) || strProxy.Trim().Length == 0)
+                {
+                    strProxy = string.Empty;
+                    struct_IPI.dwAccessType = INTERNET_OPEN_TYPE_DIRECT;
+                }
+                else
+                {
+                    struct_IPI.dwAccessType = INTERNET_OPEN_TYPE_PROXY;
+                }
+                struct_IPI.proxy = Marshal.StringToHGlobalAnsi(strProxy);
+                struct_IPI.proxyBypass = Marshal.StringToHGlobalAnsi("local");
+                bufferLength = Marshal.SizeOf(struct_IPI);
+                intptrStruct = Marshal.AllocCoTaskMem(bufferLength);
+                Marshal.StructureToPtr(struct_IPI, intptrStruct, true);
+                return InternetSetOption(IntPtr.Zero, INTERNET_OPTION_PROXY, intptrStruct, bufferLength);
+
+            }
+            public IEProxy(string strProxy)
+            {
+                this.ProxyStr = strProxy;
+            }
+            //设置代理
+            public bool RefreshIESettings()
+            {
+                return InternetSetOption(this.ProxyStr);
+            }
+            //取消代理
+            public bool DisableIEProxy()
+            {
+                return InternetSetOption(string.Empty);
+            }
+        }
+        #endregion
     }
 }

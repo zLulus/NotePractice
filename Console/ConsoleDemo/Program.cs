@@ -80,11 +80,13 @@ namespace ConsoleDemo
             int port = 80;
             string url = "";
             //验证代理IP地址是否可用
-            SpoofIpAddressDemo3.ChecKedForIP((result) => { Console.WriteLine($"ChecKedForIP:{result}"); }, ip, port);
+            //SpoofIpAddressDemo3.ChecKedForIP((result) => { Console.WriteLine($"ChecKedForIP:{result}"); }, ip, port);
             //在请求时设置代理
-            SpoofIpAddressDemo3.SpoofIpAddressBySetProxyWhileRequest(ip, port,url);
+            //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyWhileRequest(ip, port,url);
             //全局设置代理
-            //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyForSystem(ip, port);
+            //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyForSystem(ip, port,url);
+
+
             Console.ReadLine();
         }
 
