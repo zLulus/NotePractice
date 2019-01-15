@@ -82,6 +82,7 @@
     <Compile Include="ReturnsMultipleValuesTest.cs" />
     <Compile Include="SendEmail\SendEmailDemo.cs" />
     <Compile Include="SpoofIpAddress\SpoofIpAddressDemo.cs" />
+    <Compile Include="SpoofIpAddress\SpoofIpAddressDemo2.cs" />
     <Compile Include="UsePostgresql\Enums\SexEnum.cs" />
     <Compile Include="UsePostgresql\Models\Cat.cs" />
     <Compile Include="UsePostgresql\UsePostgresqlDemo.cs" />

@@ -22,7 +22,10 @@ namespace CodeLibrary.SpoofIpAddress
             {
                 var request = (HttpWebRequest)WebRequest.Create(url);
                 // 这里设置随机IP
+                //"X-FORWARDED-FOR" 是代理服务器通过 HTTP Headers 提供的客户端IP。代理服务器可以伪造任何IP。
+                //要防止伪造，不要读这个IP即可（同时告诉用户不要用HTTP 代理）。
                 request.Headers.Add("X-Forwarded-For", getRandomIp());
+                request.Headers.Add("CLIENT_IP", getRandomIp());
                 request.Method = "GET";
                 request.ContentType = "text/html;charset=UTF-8";
                 request.UserAgent = null;

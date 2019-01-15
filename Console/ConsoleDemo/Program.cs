@@ -63,7 +63,7 @@ namespace ConsoleDemo
             //Spoof Ip Address
             for (int i = 0; i < 100; i++)
             {
-                SpoofIpAddressDemo.get("url");
+                SpoofIpAddressDemo.get("https://www.cnblogs.com/lovesong/p/10269793.html");
                 Thread.Sleep(500);
                 Console.WriteLine(i);
             }
