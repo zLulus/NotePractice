@@ -3,6 +3,7 @@ using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
 using CodeLibrary.SendEmail;
+using CodeLibrary.SimulateMouseAndKeyboardEvent;
 using CodeLibrary.SpoofIpAddress;
 using CodeLibrary.UsePostgresql;
 using CodeLibrary.UsePostgresql.Enums;
@@ -76,16 +77,18 @@ namespace ConsoleDemo
             //免费代理IP:
             //需要翻墙：https://free-proxy-list.net/
             //http://ip.zdaye.com/dayProxy/ip/220993.html
-            string ip = "";
-            int port = 80;
-            string url = "";
-            //验证代理IP地址是否可用
+            //string ip = "";
+            //int port = 80;
+            //string url = "";
+            ////验证代理IP地址是否可用
             //SpoofIpAddressDemo3.ChecKedForIP((result) => { Console.WriteLine($"ChecKedForIP:{result}"); }, ip, port);
-            //在请求时设置代理
+            ////在请求时设置代理
             //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyWhileRequest(ip, port,url);
-            //全局设置代理
+            ////全局设置代理
             //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyForSystem(ip, port,url);
 
+            //模拟键盘、鼠标操作
+            SimulateMouseAndKeyboardEventDemo.Run();
 
             Console.ReadLine();
         }
