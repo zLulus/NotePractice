@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -62,6 +63,35 @@ namespace CodeLibrary.SpoofIpAddress
             var client = new HttpClient(handler: httpClientHandler, disposeHandler: true);
             var response = client.GetAsync(url).Result;
             var str = response.Content.ReadAsStringAsync().Result;
+        }
+
+        public static void SpoofIpAddressBySetProxyWhileRequest2(string ip, int port, string url)
+        {
+            string address = $"{ip}:{port}";
+            WebResponse response = null;
+            HttpWebRequest request = null;
+            try
+            {
+                WebProxy webProxy = new WebProxy(address, true);
+                webProxy.Credentials = CredentialCache.DefaultCredentials;
+
+                request = (HttpWebRequest)WebRequest.Create(url);
+                request.Proxy = webProxy;
+                request.Timeout = 15 * 1000;
+                request.ReadWriteTimeout = 15 * 1000;
+
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+                response = request.GetResponse();
+                stopwatch.Stop();
+                var totalMilliseconds= stopwatch.Elapsed.TotalMilliseconds;
+
+                response.Dispose();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         /// <summary>
