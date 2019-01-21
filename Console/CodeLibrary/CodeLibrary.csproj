@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncDemo.cs" />
+    <Compile Include="CancleRequest\CancleRequestDemo.cs" />
     <Compile Include="CSharpUsingPython\CSharpUsingPythonDemo.cs" />
     <Compile Include="ExcuteJsByPhantomjs\ExcuteJsByPhantomjsDemo.cs" />
     <Compile Include="ExcuteJs\ExcuteJsDemo.cs" />

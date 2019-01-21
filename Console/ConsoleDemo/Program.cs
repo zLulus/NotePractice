@@ -1,4 +1,5 @@
 ﻿using CodeLibrary;
+using CodeLibrary.CancleRequest;
 using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
@@ -88,7 +89,12 @@ namespace ConsoleDemo
             //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyForSystem(ip, port,url);
 
             //模拟键盘、鼠标操作
-            SimulateMouseAndKeyboardEventDemo.Run();
+            //SimulateMouseAndKeyboardEventDemo.Run();
+
+            //网络延迟，取消请求
+            //CancleRequestDemo.CancleRequestByTimeout("http://localhost:1107");
+            CancleRequestDemo.CancleRequestByTask("http://localhost:1107");
+
 
             Console.ReadLine();
         }
