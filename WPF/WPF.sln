@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfDemo", "WpfDemo\WpfDemo.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CefSharpWpfDemo", "CefSharpWpfDemo\CefSharpWpfDemo.csproj", "{9B3FD686-10BA-4927-AA39-C0E537FB326F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISWpfDemo", "ArcGISWpfDemo\ArcGISWpfDemo.csproj", "{8D39F3B2-AA84-42D8-A4C2-C8E2D2F8A417}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{9B3FD686-10BA-4927-AA39-C0E537FB326F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B3FD686-10BA-4927-AA39-C0E537FB326F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B3FD686-10BA-4927-AA39-C0E537FB326F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D39F3B2-AA84-42D8-A4C2-C8E2D2F8A417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D39F3B2-AA84-42D8-A4C2-C8E2D2F8A417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D39F3B2-AA84-42D8-A4C2-C8E2D2F8A417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D39F3B2-AA84-42D8-A4C2-C8E2D2F8A417}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
