@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinDemo.PopUps.PopUpsDemo">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button Clicked="DisplayAlertClicked" Grid.Row="0" Text="Display Alert"></Button>
+                <Button Clicked="OnAlertYesNoClicked" Grid.Row="1" Text="Yes Or No Clicked"></Button>
+                <Button Clicked="OnActionSheetSimpleClicked" Grid.Row="2" Text="Sheet Simple Clicked"></Button>
+                <Button Clicked="OnActionSheetCancelDeleteClicked" Grid.Row="3" Text="Sheet With Cancel And Delete Clicked"></Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

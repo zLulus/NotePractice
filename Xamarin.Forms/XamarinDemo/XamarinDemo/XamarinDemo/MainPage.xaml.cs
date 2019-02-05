@@ -8,6 +8,7 @@ using XamarinDemo.Bindings;
 using XamarinDemo.CustomizingCell;
 using XamarinDemo.DemoPages;
 using XamarinDemo.Parameters;
+using XamarinDemo.PopUps;
 
 namespace XamarinDemo
 {
@@ -67,6 +68,11 @@ namespace XamarinDemo
         public void SetParameterClicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new SetParameter());
+        }
+
+        public void PopUpsClicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new PopUpsDemo());
         }
     }
 }

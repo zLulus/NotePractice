@@ -1,5 +1,4 @@
-﻿using Android.Content;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,9 +26,10 @@ namespace XamarinDemo.Messages
         public void SendSmsClicked(object sender, EventArgs e)
         {
             var data = BindingContext as SendSmsViewModel;
+            //Xamarin.Essentials入门：https://docs.microsoft.com/zh-cn/xamarin/essentials/get-started?context=xamarin%2Fxamarin-forms&tabs=windows%2Candroid
             //https://docs.microsoft.com/zh-cn/xamarin/essentials/sms
             //var message = new SmsMessage(data.Content, new[] { data.PhoneNumber });
-            //Task.Run(async()=> { await Sms.ComposeAsync(message)});
+            //Task.Run(async () => { await Sms.ComposeAsync(message)});
         }
     }
 }

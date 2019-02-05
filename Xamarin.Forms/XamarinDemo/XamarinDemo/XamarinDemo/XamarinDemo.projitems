@@ -23,6 +23,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)PopUps\PopUpsDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -90,6 +94,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Parameters\SetParameter.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>SetParameter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)PopUps\PopUpsDemo.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>PopUpsDemo.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
