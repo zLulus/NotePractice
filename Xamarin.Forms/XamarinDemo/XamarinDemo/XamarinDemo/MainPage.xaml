@@ -16,7 +16,7 @@
             <Button Text="数据绑定(Binding FirstName - XAML)" Clicked="BindingFirstName2Clicked"></Button>
             <Button Text="数据绑定(Slider - XAML)" Clicked="SliderBindingsPageClicked"></Button>
             <Button Text="数据绑定(Height)" Clicked="BindingHeightClicked"></Button>
-            <Button Text="Activity传参" Clicked="SetParameterClicked"></Button>
+            <Button Text="Page传参" Clicked="SetParameterClicked"></Button>
         </StackLayout>
     </ScrollView>
 </ContentPage>

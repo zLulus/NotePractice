@@ -66,7 +66,6 @@ namespace XamarinDemo
 
         public void SetParameterClicked(object sender, EventArgs e)
         {
-            
             Navigation.PushModalAsync(new SetParameter());
         }
     }
