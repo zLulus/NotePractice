@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using XamarinDemo.Bindings;
 using XamarinDemo.CustomizingCell;
 using XamarinDemo.DemoPages;
+using XamarinDemo.Parameters;
 
 namespace XamarinDemo
 {
@@ -61,6 +62,12 @@ namespace XamarinDemo
         public void BindingHeightClicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new BindingHeight());
+        }
+
+        public void SetParameterClicked(object sender, EventArgs e)
+        {
+            
+            Navigation.PushModalAsync(new SetParameter());
         }
     }
 }
