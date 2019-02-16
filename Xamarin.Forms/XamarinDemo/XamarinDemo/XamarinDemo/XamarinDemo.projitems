@@ -23,6 +23,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)PhoneCalls\PhoneCall.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)PopUps\PopUpsDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -94,6 +98,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Parameters\SetParameter.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>SetParameter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)PhoneCalls\Interfaces\IPhoneCall.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PhoneCalls\Models\PhoneCallViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PhoneCalls\PhoneCall.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>PhoneCall.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)PopUps\PopUpsDemo.xaml.cs">
       <SubType>Code</SubType>
