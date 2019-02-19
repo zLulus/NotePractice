@@ -49,7 +49,7 @@ namespace CoreWebsite.Controllers
                 return Json($"查询不到id为{citiId}的城市");
             }
             city.CityName = cityName;
-            city.Location= GetLocation(x, y);
+            city.Location = GetLocation(x, y);
             return Json("ok");
         }
 
