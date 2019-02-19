@@ -25,7 +25,7 @@ namespace DotNetCoreConsole
             //});
 
             //read config
-            //ConfigReadDemo.ReadConfig();
+            ConfigReadDemo.ReadConfig();
             //ConfigReadDemo.ReadConfigByBind();
             //ConfigReadDemo.ReadConfigHotUpdate();
 
