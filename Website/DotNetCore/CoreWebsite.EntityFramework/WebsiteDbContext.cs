@@ -27,6 +27,7 @@ namespace CoreWebsite.EntityFramework
         public DbSet<TreeNode> TreeNodes { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Road> Roads { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //导航属性

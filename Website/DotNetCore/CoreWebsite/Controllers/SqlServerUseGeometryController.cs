@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 using CoreWebsite.EntityFramework;
 using CoreWebsite.EntityFramework.Models.UseGeometry;
 using GeoAPI.Geometries;
+using GeoJSON.Net.Geometry;
 using Microsoft.AspNetCore.Mvc;
 using NetTopologySuite;
+using NetTopologySuite.Geometries;
+using Newtonsoft.Json;
 
 namespace CoreWebsite.Controllers
 {
@@ -16,12 +19,14 @@ namespace CoreWebsite.Controllers
         //https://docs.microsoft.com/zh-cn/ef/core/modeling/spatial
         //https://docs.microsoft.com/zh-cn/sql/t-sql/spatial-geometry/spatial-types-geometry-transact-sql?view=sql-server-2017
         private readonly WebsiteDbContext _dbContext;
+        private static int srid = 4326;
         public SqlServerUseGeometryController(WebsiteDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public IActionResult CreatePoint(string cityName,double x, double y)
+        //http://localhost:61541/SqlServerUseGeometry/CreatePoint?cityName=%E5%8C%97%E4%BA%AC&x=100&y=10
+        public IActionResult CreatePoint(string cityName, double x, double y)
         {
             IPoint currentLocation = GetLocation(x, y);
             _dbContext.Cities.Add(new City()
@@ -35,12 +40,14 @@ namespace CoreWebsite.Controllers
 
         private static IPoint GetLocation(double x, double y)
         {
-            //SRID:所使用的坐标空间引用系统
-            var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
+            //空间引用标识符(spatial reference identifier, SRID):所使用的坐标空间引用系统
+            //srid=4326:wgs84
+            var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: srid);
             var currentLocation = geometryFactory.CreatePoint(new Coordinate(x, y));
             return currentLocation;
         }
 
+        //http://localhost:61541/SqlServerUseGeometry/UpdatePoint?citiId=1&cityName=%E6%88%90%E9%83%BD&x=100&y=10
         public IActionResult UpdatePoint(int citiId, string cityName, double x, double y)
         {
             var city = _dbContext.Cities.FirstOrDefault(c => c.CityID == citiId);
@@ -50,11 +57,50 @@ namespace CoreWebsite.Controllers
             }
             city.CityName = cityName;
             city.Location = GetLocation(x, y);
+            _dbContext.SaveChanges();
             return Json("ok");
         }
 
-        public IActionResult GetPoint()
+        //http://localhost:61541/SqlServerUseGeometry/GetPoint/1
+        [Route("/SqlServerUseGeometry/GetPoint/{citiId}")]
+        public IActionResult GetPoint(int citiId)
         {
+            var city = _dbContext.Cities.FirstOrDefault(c => c.CityID == citiId);
+            if (city == null)
+            {
+                return Json($"查询不到id为{citiId}的城市");
+            }
+            //geojson:http://geojson.org/
+            //todo GeoJSON.Net:https://github.com/GeoJSON-Net/GeoJSON.Net
+            Position position = new Position(city.Location.X, city.Location.Y);
+            GeoJSON.Net.Geometry.Point point = new GeoJSON.Net.Geometry.Point(position);
+            var s = JsonConvert.SerializeObject(point);
+            return Json(s);
+        }
+
+        //http://localhost:61541/SqlServerUseGeometry/CreatePolygon/%E4%B8%AD%E5%9B%BD
+        [Route("/SqlServerUseGeometry/CreatePolygon/{countryName}")]
+        public IActionResult CreatePolygon(string countryName)
+        {
+            var geom =
+             new NetTopologySuite.Geometries.Polygon(
+                new LinearRing(new Coordinate[]
+                {
+                    //逆时针绘制
+                    new Coordinate(10,0),
+                    new Coordinate(10,10),
+                    new Coordinate(0,10),
+                    new Coordinate(0,0),
+                    new Coordinate(10,0),
+                }));
+            //设置坐标系
+            geom.SRID = srid;
+            _dbContext.Countries.Add(new Country()
+            {
+                CountryName = countryName,
+                Border = geom
+            });
+            _dbContext.SaveChanges();
             return Json("ok");
         }
 
