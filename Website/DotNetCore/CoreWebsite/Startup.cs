@@ -47,7 +47,10 @@ namespace CoreWebsite
                 .AddDbContext<WebsiteDbContext>(
                 //启动延迟加载
                 options => options.UseLazyLoadingProxies()
-                .UseSqlServer(_configuration.GetConnectionString("SqlServer")));
+                .UseSqlServer(_configuration.GetConnectionString("SqlServer"),
+                    //https://docs.microsoft.com/zh-cn/ef/core/modeling/spatial
+                    //映射到空间数据的数据库中的类型在模型中使用 NTS 类型
+                    x => x.UseNetTopologySuite()));
             services.AddDiskBackedMemoryResponseCaching((x, y) =>
             {
                 x.MaximumBodySize = 5 * 1024 * 1024; // Default of 64MB is probably way too big for most scenarios
