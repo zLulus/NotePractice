@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CoreWebsite.Converters;
 using CoreWebsite.EntityFramework;
 using CoreWebsite.EntityFramework.Models.UseGeometry;
 using GeoAPI.Geometries;
@@ -174,25 +175,24 @@ namespace CoreWebsite.Controllers
             }
 
             //Geometry to GeoJSON
-            //todo 这里只写了一条line的情况
             //https://nettopologysuite.github.io/html/class_net_topology_suite_1_1_geometries_1_1_polygon.html
+            //https://github.com/synhershko/nettopologysuite/blob/master/NetTopologySuite.IO/NetTopologySuite.IO.GeoJSON/Converters/GeometryConverter.cs
+            //已copy到GeometryConverter和GeometryArrayConverter
             var lines = new List<GeoJSON.Net.Geometry.LineString>();
-            var coordinates = new List<IPosition>();
-            foreach (var item in country.Border.Coordinates)
+            var polygon = country.Border as NetTopologySuite.Geometries.Polygon;
+            List<Coordinate[]> res = new List<Coordinate[]>();
+            res.Add(polygon.Shell.Coordinates);
+            foreach (ILineString interiorRing in polygon.InteriorRings)
+                res.Add(interiorRing.Coordinates);
+            foreach(var line in res)
             {
-                coordinates.Add(new Position(item.X, item.Y, item.Z));
+                var coordinates = new List<IPosition>();
+                foreach (var item in line)
+                {
+                    coordinates.Add(new Position(item.X, item.Y, item.Z));
+                }
+                lines.Add(new GeoJSON.Net.Geometry.LineString(coordinates));
             }
-            lines.Add(new GeoJSON.Net.Geometry.LineString(coordinates));
-            //var polygon = country.Border as NetTopologySuite.Geometries.Polygon;
-            //foreach (var ring in polygon.InteriorRings)
-            //{
-            //    var coordinates = new List<IPosition>();
-            //    foreach (var p in ring.Coordinates)
-            //    {
-            //        coordinates.Add(new Position(p.X, p.Y, p.Z));
-            //    }
-            //    lines.Add(new GeoJSON.Net.Geometry.LineString(coordinates));
-            //}
             GeoJSON.Net.Geometry.Polygon jsonPolygon = new GeoJSON.Net.Geometry.Polygon(lines);
             var s = JsonConvert.SerializeObject(jsonPolygon);
             //Geometry to wkt
