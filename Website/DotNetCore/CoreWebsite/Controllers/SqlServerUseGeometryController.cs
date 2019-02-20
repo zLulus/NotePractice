@@ -143,8 +143,7 @@ namespace CoreWebsite.Controllers
         [Route("/SqlServerUseGeometry/CreatePolygon/{countryName}")]
         public IActionResult CreatePolygon(string countryName)
         {
-            var geom =
-             new NetTopologySuite.Geometries.Polygon(
+            var geom = new NetTopologySuite.Geometries.Polygon(
                 new LinearRing(new Coordinate[]
                 {
                     //逆时针绘制
@@ -177,7 +176,7 @@ namespace CoreWebsite.Controllers
             //Geometry to GeoJSON
             //https://nettopologysuite.github.io/html/class_net_topology_suite_1_1_geometries_1_1_polygon.html
             //https://github.com/synhershko/nettopologysuite/blob/master/NetTopologySuite.IO/NetTopologySuite.IO.GeoJSON/Converters/GeometryConverter.cs
-            //已copy到GeometryConverter和GeometryArrayConverter
+            //->已copy到GeometryConverter和GeometryArrayConverter
             var lines = new List<GeoJSON.Net.Geometry.LineString>();
             var polygon = country.Border as NetTopologySuite.Geometries.Polygon;
             List<Coordinate[]> res = new List<Coordinate[]>();
@@ -200,6 +199,40 @@ namespace CoreWebsite.Controllers
             var writer = new NetTopologySuite.IO.WKTWriter();
             var s2 = writer.Write(country.Border);
             return Json($"GeoJSON结果:{s},WKT结果:{s2}");
+        }
+        #endregion
+
+        #region Calculation
+        [Route("/SqlServerUseGeometry/CalculateDistanceBetweenPoints/{x1}/{y1}/{x2}/{y2}")]
+        public IActionResult CalculateDistanceBetweenPoints(double x1, double y1, double x2, double y2)
+        {
+            //https://nettopologysuite.github.io/html/class_net_topology_suite_1_1_operation_1_1_distance_1_1_distance_op.html
+            var point1 = new NetTopologySuite.Geometries.Point(x1, y1) { SRID = srid };
+            var point2 = new NetTopologySuite.Geometries.Point(x2, y2) { SRID = srid };
+            var distance= NetTopologySuite.Operation.Distance.DistanceOp.Distance(point1, point2);
+            return Json($"点({x1},{y1})和点({x2},{y2})的距离是{distance}.");
+        }
+
+        [Route("/SqlServerUseGeometry/CheckIsPointInRegion/{x}/{y}")]
+        public IActionResult CheckIsPointInRegion(double x, double y)
+        {
+            var geom = new NetTopologySuite.Geometries.Polygon(
+               new LinearRing(new Coordinate[]
+               {
+                    //逆时针绘制
+                    new Coordinate(10,0),
+                    new Coordinate(10,10),
+                    new Coordinate(0,10),
+                    new Coordinate(0,0),
+                    new Coordinate(10,0),
+               }));
+            //设置坐标系
+            geom.SRID = srid;
+            var point = new NetTopologySuite.Geometries.Point(x, y) { SRID = srid };
+            //https://stackoverflow.com/questions/53820355/fast-find-if-points-belong-to-polygon-nettopologysuite-geometries-c-net-cor
+            var prepGeom = NetTopologySuite.Geometries.Prepared.PreparedGeometryFactory.Prepare(geom);
+            var isContain = prepGeom.Contains(point);
+            return Json(isContain?$"点({x},{y})包含在面以内": $"点({x},{y})不包含在面以内");
         }
         #endregion
     }
