@@ -25,6 +25,7 @@ namespace CoreWebsite.Controllers
             _dbContext = dbContext;
         }
 
+        #region Point
         //http://localhost:61541/SqlServerUseGeometry/CreatePoint?cityName=%E5%8C%97%E4%BA%AC&x=100&y=10
         public IActionResult CreatePoint(string cityName, double x, double y)
         {
@@ -70,14 +71,52 @@ namespace CoreWebsite.Controllers
             {
                 return Json($"查询不到id为{citiId}的城市");
             }
-            //geojson:http://geojson.org/
-            //todo GeoJSON.Net:https://github.com/GeoJSON-Net/GeoJSON.Net
+
+            //理解:Geometry/geojson/WKT
+            //Geometry to GeoJSON
+            //GeoJSON:http://geojson.org/
+            //GeoJSON.Net:https://github.com/GeoJSON-Net/GeoJSON.Net
             Position position = new Position(city.Location.X, city.Location.Y);
             GeoJSON.Net.Geometry.Point point = new GeoJSON.Net.Geometry.Point(position);
             var s = JsonConvert.SerializeObject(point);
+
+            //Geometry to wkt
+            //var wkt = SharpMap.Converters.WellKnownText.GeometryToWKT.Write(city.Location);
             return Json(s);
         }
+        #endregion
 
+        #region Road
+        [Route("/SqlServerUseGeometry/CreateRoad/{roadName}")]
+        public IActionResult CreateRoad(string roadName)
+        {
+            //LinearRing的点必须形成一个封闭的线串，而LineString则不需要
+            var line = new NetTopologySuite.Geometries.LineString(new Coordinate[]
+            {
+                new Coordinate(10,0),
+                new Coordinate(10,10),
+                new Coordinate(0,10),
+                new Coordinate(0,0),
+                //new Coordinate(10,0),
+            });
+            //设置坐标系
+            line.SRID = srid;
+            _dbContext.Roads.Add(new Road()
+            {
+                RoadName= roadName,
+                Line = line
+            });
+            _dbContext.SaveChanges();
+            return Json("ok");
+        }
+
+        public IActionResult GetRoad(int roadId)
+        {
+            return Json("ok");
+        }
+        #endregion
+
+        #region Polygon
         //http://localhost:61541/SqlServerUseGeometry/CreatePolygon/%E4%B8%AD%E5%9B%BD
         [Route("/SqlServerUseGeometry/CreatePolygon/{countryName}")]
         public IActionResult CreatePolygon(string countryName)
@@ -108,5 +147,6 @@ namespace CoreWebsite.Controllers
         {
             return Json("ok");
         }
+        #endregion
     }
 }

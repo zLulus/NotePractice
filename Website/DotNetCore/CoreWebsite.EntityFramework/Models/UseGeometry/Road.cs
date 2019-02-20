@@ -15,6 +15,6 @@ namespace CoreWebsite.EntityFramework.Models.UseGeometry
 
         public string RoadName { get; set; }
 
-        public ILinearRing Line { get; set; }
+        public ILineString Line { get; set; }
     }
 }
