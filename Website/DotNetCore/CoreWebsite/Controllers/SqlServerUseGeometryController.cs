@@ -72,17 +72,21 @@ namespace CoreWebsite.Controllers
                 return Json($"查询不到id为{citiId}的城市");
             }
 
-            //理解:Geometry/geojson/WKT
+            //理解:Geometry/geojson/WKT 三者可以互转
             //Geometry to GeoJSON
             //GeoJSON:http://geojson.org/
-            //GeoJSON.Net:https://github.com/GeoJSON-Net/GeoJSON.Net
+            //GeoJSON.Net:
+            //https://github.com/GeoJSON-Net/GeoJSON.Net
+            //https://github.com/GeoJSON-Net/GeoJSON.Net/tree/master/src/GeoJSON.Net.Tests/Geometry
+            //原理是先把Geometry对象转成geojson对象，然后再序列化
             Position position = new Position(city.Location.X, city.Location.Y);
             GeoJSON.Net.Geometry.Point point = new GeoJSON.Net.Geometry.Point(position);
             var s = JsonConvert.SerializeObject(point);
 
             //Geometry to wkt
-            //var wkt = SharpMap.Converters.WellKnownText.GeometryToWKT.Write(city.Location);
-            return Json(s);
+            //http://nettopologysuite.github.io/html/class_net_topology_suite_1_1_i_o_1_1_w_k_t_reader.html
+            var s2= NetTopologySuite.IO.WKTWriter.ToPoint(city.Location.Coordinate);
+            return Json($"GeoJSON结果:{s},WKT结果:{s2}");
         }
         #endregion
 
@@ -110,9 +114,26 @@ namespace CoreWebsite.Controllers
             return Json("ok");
         }
 
+        [Route("/SqlServerUseGeometry/GetRoad/{roadId}")]
         public IActionResult GetRoad(int roadId)
         {
-            return Json("ok");
+            var road = _dbContext.Roads.FirstOrDefault(x => x.RoadID == roadId);
+            if (road == null)
+            {
+                return Json($"查询不到id为{roadId}的道路");
+            }
+
+            //Geometry to GeoJSON
+            var coordinates = new List<IPosition>();
+            foreach (var item in road.Line.Coordinates)
+            {
+                coordinates.Add(new Position(item.X, item.Y, item.Z));
+            }
+            GeoJSON.Net.Geometry.LineString line = new GeoJSON.Net.Geometry.LineString(coordinates);
+            var s= JsonConvert.SerializeObject(line);
+            //Geometry to wkt
+            var s2 = NetTopologySuite.IO.WKTWriter.ToLineString(road.Line.CoordinateSequence);
+            return Json($"GeoJSON结果:{s},WKT结果:{s2}");
         }
         #endregion
 
@@ -143,9 +164,42 @@ namespace CoreWebsite.Controllers
             return Json("ok");
         }
 
-        public IActionResult GetPolygon()
+        [Route("/SqlServerUseGeometry/GetPolygon/{countryId}")]
+        public IActionResult GetPolygon(int countryId)
         {
-            return Json("ok");
+            var country = _dbContext.Countries.FirstOrDefault(x => x.CountryID == countryId);
+            if (country == null)
+            {
+                return Json($"查询不到id为{countryId}的国家");
+            }
+
+            //Geometry to GeoJSON
+            //todo 这里只写了一条line的情况
+            //https://nettopologysuite.github.io/html/class_net_topology_suite_1_1_geometries_1_1_polygon.html
+            var lines = new List<GeoJSON.Net.Geometry.LineString>();
+            var coordinates = new List<IPosition>();
+            foreach (var item in country.Border.Coordinates)
+            {
+                coordinates.Add(new Position(item.X, item.Y, item.Z));
+            }
+            lines.Add(new GeoJSON.Net.Geometry.LineString(coordinates));
+            //var polygon = country.Border as NetTopologySuite.Geometries.Polygon;
+            //foreach (var ring in polygon.InteriorRings)
+            //{
+            //    var coordinates = new List<IPosition>();
+            //    foreach (var p in ring.Coordinates)
+            //    {
+            //        coordinates.Add(new Position(p.X, p.Y, p.Z));
+            //    }
+            //    lines.Add(new GeoJSON.Net.Geometry.LineString(coordinates));
+            //}
+            GeoJSON.Net.Geometry.Polygon jsonPolygon = new GeoJSON.Net.Geometry.Polygon(lines);
+            var s = JsonConvert.SerializeObject(jsonPolygon);
+            //Geometry to wkt
+            //点和线的是静态方法，面的是方法_(:з」∠)_
+            var writer = new NetTopologySuite.IO.WKTWriter();
+            var s2 = writer.Write(country.Border);
+            return Json($"GeoJSON结果:{s},WKT结果:{s2}");
         }
         #endregion
     }
