@@ -20,7 +20,10 @@ namespace CodeLibraryForDotNetCore.UsePostgresql
                      .AddJsonFile("appsettings.json");
             var configuration = builder.Build();
             var connection = configuration.GetConnectionString("Default");
-            optionsBuilder.UseNpgsql(connection);
+            optionsBuilder.UseNpgsql(connection,
+                //要设置NetTopologySuite插件，请将Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite nuget添加到您的项目中
+                //To set up the NetTopologySuite plugin, add the Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite nuget to your project
+                o => o.UseNetTopologySuite());
 
             return new TestDbContext(optionsBuilder.Options);
         }
