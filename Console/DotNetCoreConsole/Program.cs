@@ -36,11 +36,18 @@ namespace DotNetCoreConsole
             //UseYieldDemo.Run();
 
             //扩展方法同名
-            var str = "Test Extensions";
-            bool r1= CodeLibraryForDotNetCore.Extensions2.StringExtension2.IsNullOrEmptyCustomExtension(str);
-            bool r2= CodeLibraryForDotNetCore.Extensions1.StringExtension1.IsNullOrEmptyCustomExtension(str);
+            //var str = "Test Extensions";
+            //bool r1= CodeLibraryForDotNetCore.Extensions2.StringExtension2.IsNullOrEmptyCustomExtension(str);
+            //bool r2= CodeLibraryForDotNetCore.Extensions1.StringExtension1.IsNullOrEmptyCustomExtension(str);
             //如果同时引用了两个命名空间，无法写的效果
             //bool r = str.IsNullOrEmptyCustomExtension();
+
+            //Postgresql 使用空间数据
+            Task.Run(async () =>
+            {
+                await (new PostgresqlUseGeometryDemo(new TestDbContextFactory().CreateDbContext(args))).Run();
+            });
+            
 
             Console.ReadLine();
         }
