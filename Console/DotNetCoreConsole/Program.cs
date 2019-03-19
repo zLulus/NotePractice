@@ -44,10 +44,10 @@ namespace DotNetCoreConsole
             //bool r = str.IsNullOrEmptyCustomExtension();
 
             //Postgresql 使用空间数据
-            //Task.Run(async () =>
-            //{
-            //    await (new PostgresqlUseGeometryDemo(new TestDbContextFactory().CreateDbContext(args))).Run();
-            //});
+            Task.Run(async () =>
+            {
+                await (new PostgresqlUseGeometryDemo(new TestDbContextFactory().CreateDbContext(args))).Run();
+            });
 
             //linq 使用lambda表达式
             new LinqToolDemo(new TestDbContextFactory().CreateDbContext(args)).Run();
