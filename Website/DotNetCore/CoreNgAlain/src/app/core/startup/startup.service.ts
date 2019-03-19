@@ -69,7 +69,27 @@ export class StartupService {
             this.settingService.setUser(res.user);
             // ACL：设置权限为全量
             this.aclService.setFull(true);
-            // 初始化菜单
+             // 初始化菜单
+            // 在后端创建子菜单
+            res.menu.push({
+              text: "",
+              i18n: "子菜单",
+              acl: "",
+            });
+            let index=res.menu.length-1;
+            res.menu[index].children=[];
+            res.menu[index].children.push({
+              text: "导航1",
+              i18n: "menu1",
+              acl: "",
+              link: "/menu1",
+            });
+            res.menu[index].children.push({
+              text: "导航2",
+              i18n: "menu2",
+              acl: "",
+              link: "/menu2",
+            });
             this.menuService.add(res.menu);
             // 设置页面标题的后缀
             this.titleService.suffix = res.app.name;
