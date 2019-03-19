@@ -13,7 +13,7 @@ namespace CodeLibraryForDotNetCore.UsePostgresql.Models.UseGeometry
         public long Id { get; set; }
         public string CityName { get; set; }
         public Point Location { get; set; }
-        public long CountryId { get; set; }
+        public long? CountryId { get; set; }
         [ForeignKey("CountryId")]
         public virtual Country Country { get; set; }
 }
