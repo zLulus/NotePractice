@@ -19,8 +19,10 @@ import { FormSetDynamicControlComponent } from './form-set-dynamic-control/form-
 import { DataTransferComponent } from './data-transfer/data-transfer.component';
 import { PromiseTestComponent } from './promise-test/promise-test.component';
 import { DataTransferTwoComponent } from './data-transfer-two/data-transfer-two.component';
-
+import { CanActivateComponent } from './can-activate/can-activate.component';
+// 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
+import { CanActivateGuard } from './can-activate/can-activate-guard';
 
 
 const routes: Routes = [
@@ -35,6 +37,14 @@ const routes: Routes = [
       {path: 'data-transfer', component: DataTransferComponent},
       {path: 'promise-test', component: PromiseTestComponent},
       {path: 'data-transfer-two', component: DataTransferTwoComponent},
+      {
+        path: 'can-activate', 
+        component: CanActivateComponent,
+        //权限permission，CanActivateGuard判定
+        data:{permission:'yourPermission',title: '你的标题'},
+        //设置路由守卫为CanActivateGuard
+        canActivate: [CanActivateGuard],
+      },
     ],
   },
   // 单页不包裹Layout

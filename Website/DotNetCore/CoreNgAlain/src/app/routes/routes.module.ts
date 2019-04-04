@@ -17,8 +17,10 @@ import { DataTransferChildComponent } from './data-transfer/data-transfer-child/
 import { PromiseTestComponent } from './promise-test/promise-test.component';
 import { DataTransferTwoComponent } from './data-transfer-two/data-transfer-two.component';
 import { DataTransferTwoChildComponent } from './data-transfer-two/data-transfer-two-child/data-transfer-two-child.component';
-
+import { CanActivateComponent } from './can-activate/can-activate.component';
+// 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
+import { CanActivateGuard } from './can-activate/can-activate-guard';
 
 const COMPONENTS = [
   CallbackComponent,
@@ -32,7 +34,8 @@ const COMPONENTS = [
   DataTransferChildComponent,
   PromiseTestComponent,
   DataTransferTwoComponent,
-  DataTransferTwoChildComponent
+  DataTransferTwoChildComponent,
+  CanActivateComponent
 ];
 const COMPONENTS_NOROUNT = [];
 
@@ -41,7 +44,8 @@ const COMPONENTS_NOROUNT = [];
   declarations: [...COMPONENTS, ...COMPONENTS_NOROUNT],
   entryComponents: COMPONENTS_NOROUNT,
   providers:[
-    CanDeactivateGuardService
+    CanDeactivateGuardService,
+    CanActivateGuard
   ]
 })
 export class RoutesModule {}

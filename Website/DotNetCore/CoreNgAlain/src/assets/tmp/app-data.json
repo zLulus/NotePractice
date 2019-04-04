@@ -38,6 +38,11 @@
           "i18n": "can-deactivate-demo"
         },
         {
+          "text": "can activate",
+          "link": "/can-activate",
+          "i18n": "can-activate-demo"
+        },
+        {
           "text": "data transfer",
           "link": "/data-transfer",
           "i18n": "data-transfer-demo"
