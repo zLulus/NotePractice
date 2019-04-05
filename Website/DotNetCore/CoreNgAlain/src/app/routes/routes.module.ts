@@ -18,6 +18,8 @@ import { PromiseTestComponent } from './promise-test/promise-test.component';
 import { DataTransferTwoComponent } from './data-transfer-two/data-transfer-two.component';
 import { DataTransferTwoChildComponent } from './data-transfer-two/data-transfer-two-child/data-transfer-two-child.component';
 import { CanActivateComponent } from './can-activate/can-activate.component';
+import { FileUploadDefaulltComponent } from './file-upload/file-upload-defaullt/file-upload-defaullt.component';
+import { FileUploadForCustomRequestComponent } from './file-upload/file-upload-for-custom-request/file-upload-for-custom-request.component';
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
@@ -35,7 +37,9 @@ const COMPONENTS = [
   PromiseTestComponent,
   DataTransferTwoComponent,
   DataTransferTwoChildComponent,
-  CanActivateComponent
+  CanActivateComponent,
+  FileUploadDefaulltComponent,
+  FileUploadForCustomRequestComponent
 ];
 const COMPONENTS_NOROUNT = [];
 

@@ -20,6 +20,8 @@ import { DataTransferComponent } from './data-transfer/data-transfer.component';
 import { PromiseTestComponent } from './promise-test/promise-test.component';
 import { DataTransferTwoComponent } from './data-transfer-two/data-transfer-two.component';
 import { CanActivateComponent } from './can-activate/can-activate.component';
+import { FileUploadDefaulltComponent } from './file-upload/file-upload-defaullt/file-upload-defaullt.component';
+import { FileUploadForCustomRequestComponent } from './file-upload/file-upload-for-custom-request/file-upload-for-custom-request.component';
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
@@ -45,6 +47,8 @@ const routes: Routes = [
         //设置路由守卫为CanActivateGuard
         canActivate: [CanActivateGuard],
       },
+      {path: 'file-upload-defaullt', component: FileUploadDefaulltComponent},
+      {path: 'file-upload-for-custom-request', component: FileUploadForCustomRequestComponent},
     ],
   },
   // 单页不包裹Layout

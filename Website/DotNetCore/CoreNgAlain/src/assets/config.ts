@@ -6,7 +6,7 @@ class Config {
 
     constructor() {
         this.isDebug = !environment.production;
-        this.apiHost = this.isDebug ? 'http://localhost:53006' : '';
+        this.apiHost = this.isDebug ? 'http://localhost:61541' : 'your product environment api';
     }
 }
 
