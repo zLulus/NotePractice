@@ -1,2 +1,28 @@
-<nz-tag *ngFor="let tag of tags" (nzOnClose)="onClose(tag)" nzMode="closeable">{{tag}}</nz-tag>
-<button nz-button nzType="primary" (click)="getTags()">获得当前tag列表</button>
+
+<nz-card nzTitle="Method 1:filter">
+  <nz-tag *ngFor="let tag of tags1" (nzOnClose)="onClose1(tag)" nzMode="closeable">{{tag}}</nz-tag>
+  <br/>
+  <button nz-button nzType="primary" (click)="getTags()">获得当前tag列表</button>
+  <br/>
+  结果：
+  <nz-alert nzType="success" [nzMessage]="tagsStr1"></nz-alert>
+</nz-card>
+
+<nz-card nzTitle="Method 2:splice">
+  <nz-tag *ngFor="let tag of tags2" (nzOnClose)="onClose2(tag)" nzMode="closeable">{{tag}}</nz-tag>
+  <br/>
+  <button nz-button nzType="primary" (click)="getTags()">获得当前tag列表</button>
+  <br/>
+  结果：
+  <nz-alert nzType="success" [nzMessage]="tagsStr2"></nz-alert>
+</nz-card>
+
+
+<nz-card nzTitle="Method 3:delete">
+  <nz-tag *ngFor="let tag of tags3" (nzOnClose)="onClose3(tag)" nzMode="closeable">{{tag}}</nz-tag>
+  <br/>
+  <button nz-button nzType="primary" (click)="getTags()">获得当前tag列表</button>
+  <br/>
+  结果：
+  <nz-alert nzType="success" [nzMessage]="tagsStr3"></nz-alert>
+</nz-card>
