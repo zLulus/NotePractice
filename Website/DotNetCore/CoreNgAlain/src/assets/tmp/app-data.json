@@ -56,6 +56,16 @@
           "text": "data transfer two",
           "link": "/data-transfer-two",
           "i18n": "data-transfer-two-demo"
+        },
+        {
+          "text": "file upload defaullt",
+          "link": "/file-upload-defaullt",
+          "i18n": "file-upload-defaullt-demo"
+        },
+        {
+          "text": "file upload for custom request",
+          "link": "/file-upload-for-custom-request",
+          "i18n": "file-upload-for-custom-request-demo"
         }
       ]
     }
