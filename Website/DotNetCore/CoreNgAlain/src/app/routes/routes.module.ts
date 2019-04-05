@@ -20,6 +20,7 @@ import { DataTransferTwoChildComponent } from './data-transfer-two/data-transfer
 import { CanActivateComponent } from './can-activate/can-activate.component';
 import { FileUploadDefaulltComponent } from './file-upload/file-upload-defaullt/file-upload-defaullt.component';
 import { FileUploadForCustomRequestComponent } from './file-upload/file-upload-for-custom-request/file-upload-for-custom-request.component';
+import { ArrayRemoveComponent } from './array-remove/array-remove.component'; 
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
@@ -39,7 +40,8 @@ const COMPONENTS = [
   DataTransferTwoChildComponent,
   CanActivateComponent,
   FileUploadDefaulltComponent,
-  FileUploadForCustomRequestComponent
+  FileUploadForCustomRequestComponent,
+  ArrayRemoveComponent
 ];
 const COMPONENTS_NOROUNT = [];
 

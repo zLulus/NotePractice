@@ -66,6 +66,11 @@
           "text": "file upload for custom request",
           "link": "/file-upload-for-custom-request",
           "i18n": "file-upload-for-custom-request-demo"
+        },
+        {
+          "text": "array remove",
+          "link": "/array-remove",
+          "i18n": "array-remove-demo"
         }
       ]
     }

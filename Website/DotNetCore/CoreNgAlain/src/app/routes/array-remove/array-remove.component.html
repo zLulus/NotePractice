@@ -1,0 +1,2 @@
+<nz-tag *ngFor="let tag of tags" (nzOnClose)="onClose(tag)" nzMode="closeable">{{tag}}</nz-tag>
+<button nz-button nzType="primary" (click)="getTags()">获得当前tag列表</button>
