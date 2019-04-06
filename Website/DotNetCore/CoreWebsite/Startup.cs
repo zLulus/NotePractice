@@ -66,6 +66,9 @@ namespace CoreWebsite
             SetAutoMapper();
             //依赖注入:https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1
             services.AddScoped<IMyDependency, MyDependency>();
+
+            //允许跨域
+            //services.AddCors();
         }
 
         public void SetAutoMapper()
@@ -110,6 +113,12 @@ namespace CoreWebsite
              );
             app.UseSpaStaticFiles();
             app.UseCustomResponseCaching();
+            //允许跨域
+            //app.UseCors(builder => builder
+            //    .AllowAnyOrigin()
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader()
+            //    .AllowCredentials());
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

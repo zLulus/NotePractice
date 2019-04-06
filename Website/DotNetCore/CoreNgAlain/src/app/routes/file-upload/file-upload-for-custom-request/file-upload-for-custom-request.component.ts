@@ -70,7 +70,9 @@ export class FileUploadForCustomRequestComponent implements OnInit {
           item.onSuccess(event['body'], {
             status: 'done'
           });
-        }, err => this.notification.create('error','error',`图片上传失败，请重试`));
+        }, err => {
+          this.notification.create('error','error',`图片上传失败，请重试`);
+        });
     } catch (e) {
         const msg = e.message ? e.message : e;
         this.notification.create('error','error',`图片上传失败，请重试：${msg}`);
