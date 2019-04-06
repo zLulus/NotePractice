@@ -56,7 +56,7 @@ const routes: Routes = [
       {path: 'array-remove', component: ArrayRemoveComponent},
       {path: 'echarts-baidu', component: EchartsBaiduComponent},
       {path: 'router-link-page1', component: RouterLinkPage1Component},
-      {path: 'router-link-page2/:parameter', component: RouterLinkPage2Component},
+      {path: 'router-link-page2/:parameter/:parameter2/:parameter3', component: RouterLinkPage2Component},
       {path: 'router-link-page3', component: RouterLinkPage3Component},
     ],
   },

@@ -6,13 +6,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './router-link-page3.component.html',
 })
 export class RouterLinkPage3Component implements OnInit {
-    parameter2:string;
+    page3Parameter:string;
   constructor(
     private _activatedroute:ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.parameter2=this._activatedroute.snapshot.queryParams['parameter2'];
+    this.page3Parameter=this._activatedroute.snapshot.queryParams['page3Parameter'];
   }
 
 }
