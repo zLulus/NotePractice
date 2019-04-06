@@ -22,6 +22,8 @@ import { FileUploadDefaulltComponent } from './file-upload/file-upload-defaullt/
 import { FileUploadForCustomRequestComponent } from './file-upload/file-upload-for-custom-request/file-upload-for-custom-request.component';
 import { ArrayRemoveComponent } from './array-remove/array-remove.component'; 
 import { EchartsBaiduComponent } from './echarts-baidu/echarts-baidu.component'; 
+import { RouterLinkPage1Component } from './router-link/router-link-page1/router-link-page1.component';
+import { RouterLinkPage2Component } from './router-link/router-link-page2/router-link-page2.component';
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
@@ -43,7 +45,9 @@ const COMPONENTS = [
   FileUploadDefaulltComponent,
   FileUploadForCustomRequestComponent,
   ArrayRemoveComponent,
-  EchartsBaiduComponent
+  EchartsBaiduComponent,
+  RouterLinkPage1Component,
+  RouterLinkPage2Component
 ];
 const COMPONENTS_NOROUNT = [];
 
