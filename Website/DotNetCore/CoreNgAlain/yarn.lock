@@ -5515,9 +5515,10 @@ neo-async@^2.5.0, neo-async@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
 
-ng-alain@^1.1.5:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/ng-alain/-/ng-alain-1.5.2.tgz#521329c8c6b6ca8b54a713ba4c37e3500ec7cd70"
+ng-alain@^7.0.0-rc.11:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/ng-alain/-/ng-alain-7.1.0.tgz#9bb9b85d81e3146a532062a5f0599b4df2125584"
+  integrity sha512-v9igXFMb/9iq2bCveGnWFlODWz+N228lrZZI2hozqNo/mtDuMwcWVvkVjXqX/71sJ0LXcNZ+RnK2lYx9OEm6IQ==
 
 ng-zorro-antd@^1.2.0:
   version "1.8.1"

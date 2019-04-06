@@ -48,7 +48,6 @@ export class FileUploadForCustomRequestComponent implements OnInit {
         });
         item.file=compressionFile;
         
-
         if (compressionFile.size > 0.5 * 1024 * 1024) throw {message: '压缩后的图片超过了0.5M'}
 
         //这里是请求后端接口的写法
