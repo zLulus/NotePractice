@@ -71,6 +71,11 @@
           "text": "array remove",
           "link": "/array-remove",
           "i18n": "array-remove-demo"
+        },
+        {
+          "text": "echarts baidu",
+          "link": "/echarts-baidu",
+          "i18n": "echarts-baidu-demo"
         }
       ]
     }

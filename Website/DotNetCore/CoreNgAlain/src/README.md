@@ -6,3 +6,4 @@
 /app/routes/routes-routing.module.ts
 
 # config
+/assets/config.ts

@@ -21,6 +21,7 @@ import { CanActivateComponent } from './can-activate/can-activate.component';
 import { FileUploadDefaulltComponent } from './file-upload/file-upload-defaullt/file-upload-defaullt.component';
 import { FileUploadForCustomRequestComponent } from './file-upload/file-upload-for-custom-request/file-upload-for-custom-request.component';
 import { ArrayRemoveComponent } from './array-remove/array-remove.component'; 
+import { EchartsBaiduComponent } from './echarts-baidu/echarts-baidu.component'; 
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
@@ -41,7 +42,8 @@ const COMPONENTS = [
   CanActivateComponent,
   FileUploadDefaulltComponent,
   FileUploadForCustomRequestComponent,
-  ArrayRemoveComponent
+  ArrayRemoveComponent,
+  EchartsBaiduComponent
 ];
 const COMPONENTS_NOROUNT = [];
 
