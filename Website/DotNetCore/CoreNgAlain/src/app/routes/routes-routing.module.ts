@@ -26,6 +26,7 @@ import { ArrayRemoveComponent } from './array-remove/array-remove.component';
 import { EchartsBaiduComponent } from './echarts-baidu/echarts-baidu.component'; 
 import { RouterLinkPage1Component } from './router-link/router-link-page1/router-link-page1.component';
 import { RouterLinkPage2Component } from './router-link/router-link-page2/router-link-page2.component';
+import { RouterLinkPage3Component } from './router-link/router-link-page3/router-link-page3.component';
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
@@ -55,7 +56,8 @@ const routes: Routes = [
       {path: 'array-remove', component: ArrayRemoveComponent},
       {path: 'echarts-baidu', component: EchartsBaiduComponent},
       {path: 'router-link-page1', component: RouterLinkPage1Component},
-      {path: 'router-link-page2', component: RouterLinkPage2Component},
+      {path: 'router-link-page2/:parameter', component: RouterLinkPage2Component},
+      {path: 'router-link-page3', component: RouterLinkPage3Component},
     ],
   },
   // 单页不包裹Layout

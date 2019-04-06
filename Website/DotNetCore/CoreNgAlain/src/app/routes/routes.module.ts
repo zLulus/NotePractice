@@ -24,6 +24,7 @@ import { ArrayRemoveComponent } from './array-remove/array-remove.component';
 import { EchartsBaiduComponent } from './echarts-baidu/echarts-baidu.component'; 
 import { RouterLinkPage1Component } from './router-link/router-link-page1/router-link-page1.component';
 import { RouterLinkPage2Component } from './router-link/router-link-page2/router-link-page2.component';
+import { RouterLinkPage3Component } from './router-link/router-link-page3/router-link-page3.component';
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
@@ -47,7 +48,8 @@ const COMPONENTS = [
   ArrayRemoveComponent,
   EchartsBaiduComponent,
   RouterLinkPage1Component,
-  RouterLinkPage2Component
+  RouterLinkPage2Component,
+  RouterLinkPage3Component
 ];
 const COMPONENTS_NOROUNT = [];
 

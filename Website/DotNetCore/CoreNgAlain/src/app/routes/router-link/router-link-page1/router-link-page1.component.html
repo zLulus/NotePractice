@@ -1,0 +1,5 @@
+<input nz-input placeholder="传参" [(ngModel)]="parameter" />
+<a [routerLink]="['/router-link-page2', parameter]">前往Page2</a>
+
+<input nz-input placeholder="传参" [(ngModel)]="parameter2" />
+<a [routerLink]="['/router-link-page3']" [queryParams]="{parameter2:parameter2 | json }">前往Page3</a>
