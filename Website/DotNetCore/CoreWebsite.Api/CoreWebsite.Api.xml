@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoreWebsite.Api</name>
+    </assembly>
+    <members>
+        <member name="M:CoreWebsite.Api.Controllers.SwaggerTestController.Get">
+            <summary>
+            获取所有信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebsite.Api.Controllers.SwaggerTestController.Get(System.Int32)">
+            <summary>
+            根据ID获取信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoreWebsite.Api.Controllers.SwaggerTestController.Post(System.String)">
+            <summary>
+            POST了一个数据信息
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:CoreWebsite.Api.Controllers.SwaggerTestController.Put(System.Int32,System.String)">
+            <summary>
+            根据ID put 数据
+            </summary>
+            <param name="id"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:CoreWebsite.Api.Controllers.SwaggerTestController.Delete(System.Int32)">
+            <summary>
+            根据ID删除数据
+            </summary>
+            <param name="id"></param>
+        </member>
+    </members>
+</doc>
