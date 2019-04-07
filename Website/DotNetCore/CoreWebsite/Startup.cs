@@ -23,6 +23,8 @@ using Castle.Windsor;
 using Castle.MicroKernel.Registration;
 using CoreWebsite.Castle.Windsor.Demo.Interfaces;
 using CoreWebsite.Castle.Windsor.Demo.Classes;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace CoreWebsite
 {
@@ -55,7 +57,19 @@ namespace CoreWebsite
             {
                 x.MaximumBodySize = 5 * 1024 * 1024; // Default of 64MB is probably way too big for most scenarios
             });
+
             services.AddMvc();
+
+            //Swagger
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "CoreWebsite", Version = "v1" });
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "CoreWebsite.xml");
+                c.IncludeXmlComments(xmlPath);
+            });
+            services.AddMvcCore().AddApiExplorer();
+
             //spa参考资料：
             //http://www.talkingdotnet.com/implement-asp-net-core-spa-template-feature-in-angular6-app/
             //https://docs.microsoft.com/zh-cn/aspnet/core/client-side/spa/angular?view=aspnetcore-2.1&tabs=visual-studio
@@ -113,17 +127,30 @@ namespace CoreWebsite
              );
             app.UseSpaStaticFiles();
             app.UseCustomResponseCaching();
+
             //允许跨域
             //app.UseCors(builder => builder
             //    .AllowAnyOrigin()
             //    .AllowAnyMethod()
             //    .AllowAnyHeader()
             //    .AllowCredentials());
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            //Swagger  保证在UseSpa之前
+            app.UseSwagger(c =>
+            {
+            });
+            app.UseSwaggerUI(c =>
+            {
+                c.ShowExtensions();
+                c.ValidatorUrl(null);
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CoreWebsite API V1");
             });
 
             app.UseSpa(spa =>
