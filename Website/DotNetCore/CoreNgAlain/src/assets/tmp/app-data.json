@@ -119,8 +119,12 @@
               "i18n": "router-link-page3-demo"
             }
           ]
+        },
+        {
+          "text": "drawer all back",
+          "link": "/drawer-call-back-list",
+          "i18n": "drawer-call-back-list-demo"
         }
-        
       ]
     }
   ]

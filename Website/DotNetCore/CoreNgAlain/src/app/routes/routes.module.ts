@@ -25,6 +25,8 @@ import { EchartsBaiduComponent } from './echarts-baidu/echarts-baidu.component';
 import { RouterLinkPage1Component } from './router-link/router-link-page1/router-link-page1.component';
 import { RouterLinkPage2Component } from './router-link/router-link-page2/router-link-page2.component';
 import { RouterLinkPage3Component } from './router-link/router-link-page3/router-link-page3.component';
+import { DrawerCallBackListComponent } from './drawer-call-back/drawer-call-back-list/drawer-call-back-list.component';
+import { DrawerCallBackEditComponent } from './drawer-call-back/drawer-call-back-edit/drawer-call-back-edit.component';
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
@@ -49,7 +51,9 @@ const COMPONENTS = [
   EchartsBaiduComponent,
   RouterLinkPage1Component,
   RouterLinkPage2Component,
-  RouterLinkPage3Component
+  RouterLinkPage3Component,
+  DrawerCallBackListComponent,
+  DrawerCallBackEditComponent
 ];
 const COMPONENTS_NOROUNT = [];
 
