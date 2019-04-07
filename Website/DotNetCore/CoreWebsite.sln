@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebsite", "CoreWebsite\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebsite.EntityFramework", "CoreWebsite.EntityFramework\CoreWebsite.EntityFramework.csproj", "{82C97C24-7FD9-4C5F-B082-E560B9A08C89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreWebsite.Castle.Windsor.Demo", "CoreWebsite.Castle.Windsor.Demo\CoreWebsite.Castle.Windsor.Demo.csproj", "{DF80C0E5-20F2-4B5D-B06B-BF9C8942F228}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreWebsite.Castle.Windsor.Demo", "CoreWebsite.Castle.Windsor.Demo\CoreWebsite.Castle.Windsor.Demo.csproj", "{DF80C0E5-20F2-4B5D-B06B-BF9C8942F228}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{56F305D6-A66E-4764-A02C-D7925C9868AC}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

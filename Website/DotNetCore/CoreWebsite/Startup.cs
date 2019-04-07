@@ -23,8 +23,6 @@ using Castle.Windsor;
 using Castle.MicroKernel.Registration;
 using CoreWebsite.Castle.Windsor.Demo.Interfaces;
 using CoreWebsite.Castle.Windsor.Demo.Classes;
-using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.Extensions.PlatformAbstractions;
 
 namespace CoreWebsite
 {
@@ -59,16 +57,6 @@ namespace CoreWebsite
             });
 
             services.AddMvc();
-
-            //Swagger
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "CoreWebsite", Version = "v1" });
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
-                var xmlPath = Path.Combine(basePath, "CoreWebsite.xml");
-                c.IncludeXmlComments(xmlPath);
-            });
-            services.AddMvcCore().AddApiExplorer();
 
             //spa参考资料：
             //http://www.talkingdotnet.com/implement-asp-net-core-spa-template-feature-in-angular6-app/
@@ -142,29 +130,20 @@ namespace CoreWebsite
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //Swagger  保证在UseSpa之前
-            app.UseSwagger(c =>
+            //使用Angular SPA from ASP.NET Core
+            //但不建议这样操作，可以直接建立Angular站点，将Angular站点与ASP.NET Core站点独立开来，速度更快
+            if (env.IsDevelopment())
             {
-            });
-            app.UseSwaggerUI(c =>
-            {
-                c.ShowExtensions();
-                c.ValidatorUrl(null);
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CoreWebsite API V1");
-            });
-
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-                //这里是angular项目的根目录
-                spa.Options.SourcePath = $"{_hostingEnvironment.ContentRootPath}\\..\\CoreNgAlain";
-
-                if (env.IsDevelopment())
+                app.UseSpa(spa =>
                 {
+                    // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                    // see https://go.microsoft.com/fwlink/?linkid=864501
+                    //这里是angular项目的根目录
+                    spa.Options.SourcePath = $"{_hostingEnvironment.ContentRootPath}\\..\\CoreNgAlain";
                     spa.UseAngularCliServer(npmScript: "start");
-                }
-            });
+                });
+            }
+                
         }
     }
 }
