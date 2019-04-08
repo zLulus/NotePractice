@@ -1,4 +1,5 @@
 ## 项目结构
+基于`asp .net core`和`Angular && TypeScript`的项目示例，提取典型功能点     
 #### 前端
 CoreNgAlain:基于ng-zorro和ng-alain的前端示例,现在使用较多.   
 CoreAngular:基于angular的前端示例  
