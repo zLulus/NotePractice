@@ -25,7 +25,7 @@ namespace CoreWebsite.Api.Controllers
         /// <returns></returns>
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public string GetById(int id)
         {
             return "value";
         }

@@ -32,7 +32,7 @@ export class SwaggerTestServiceProxy {
      * 获取所有信息
      * @return Success
      */
-    getGet(): Observable<string[]> {
+    get(): Observable<string[]> {
         let url_ = this.baseUrl + "/api/SwaggerTest/Get";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -45,11 +45,11 @@ export class SwaggerTestServiceProxy {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetGet(response_);
+            return this.processGet(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetGet(<any>response_);
+                    return this.processGet(<any>response_);
                 } catch (e) {
                     return <Observable<string[]>><any>_observableThrow(e);
                 }
@@ -58,7 +58,7 @@ export class SwaggerTestServiceProxy {
         }));
     }
 
-    protected processGetGet(response: HttpResponseBase): Observable<string[]> {
+    protected processGet(response: HttpResponseBase): Observable<string[]> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -88,8 +88,8 @@ export class SwaggerTestServiceProxy {
      * 根据ID获取信息
      * @return Success
      */
-    getGet(id: number): Observable<string> {
-        let url_ = this.baseUrl + "/api/SwaggerTest/Get/{id}";
+    getById(id: number): Observable<string> {
+        let url_ = this.baseUrl + "/api/SwaggerTest/GetById/{id}";
         if (id === undefined || id === null)
             throw new Error("The parameter 'id' must be defined.");
         url_ = url_.replace("{id}", encodeURIComponent("" + id)); 
@@ -104,11 +104,11 @@ export class SwaggerTestServiceProxy {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetGet(response_);
+            return this.processGetById(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetGet(<any>response_);
+                    return this.processGetById(<any>response_);
                 } catch (e) {
                     return <Observable<string>><any>_observableThrow(e);
                 }
@@ -117,7 +117,7 @@ export class SwaggerTestServiceProxy {
         }));
     }
 
-    protected processGetGet(response: HttpResponseBase): Observable<string> {
+    protected processGetById(response: HttpResponseBase): Observable<string> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 

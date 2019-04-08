@@ -10,7 +10,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:CoreWebsite.Api.Controllers.SwaggerTestController.Get(System.Int32)">
+        <member name="M:CoreWebsite.Api.Controllers.SwaggerTestController.GetById(System.Int32)">
             <summary>
             根据ID获取信息
             </summary>
