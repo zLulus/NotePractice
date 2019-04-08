@@ -34,6 +34,7 @@ import { JsonSchemaModule } from '@shared/json-schema/json-schema.module';
 // 服务
 import { RequestHelperService } from './api/request-helper.service';
 import { TestService } from './api/test-service.service';
+import { ServiceProxyModule } from '../shared/service-proxies/service-proxy.module'; 
 
 // 加载i18n语言文件
 export function I18nHttpLoaderFactory(http: HttpClient) {
@@ -83,6 +84,7 @@ export function StartupServiceFactory(
     }),
     // JSON-Schema form
     JsonSchemaModule,
+    ServiceProxyModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'zh-Hans' },
