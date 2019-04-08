@@ -103,6 +103,7 @@
     "lint-staged": "^7.1.0",
     "mockjs": "^1.0.1-beta3",
     "ng-alain": "^7.0.0-rc.11",
+    "nswag": "^12.1.0",
     "parse5": "5.0.0",
     "prettier": "^1.12.1",
     "prettier-stylelint": "^0.4.2",
