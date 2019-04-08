@@ -28,6 +28,7 @@ import { RouterLinkPage1Component } from './router-link/router-link-page1/router
 import { RouterLinkPage2Component } from './router-link/router-link-page2/router-link-page2.component';
 import { RouterLinkPage3Component } from './router-link/router-link-page3/router-link-page3.component';
 import { DrawerCallBackListComponent } from './drawer-call-back/drawer-call-back-list/drawer-call-back-list.component';
+import { NswagEnumTestComponent } from './nswag-enum-test/nswag-enum-test.component';
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
@@ -60,6 +61,7 @@ const routes: Routes = [
       {path: 'router-link-page2/:parameter/:parameter2/:parameter3', component: RouterLinkPage2Component},
       {path: 'router-link-page3', component: RouterLinkPage3Component},
       {path: 'drawer-call-back-list', component: DrawerCallBackListComponent},
+      {path: 'nswag-enum-test', component: NswagEnumTestComponent},
     ],
   },
   // 单页不包裹Layout

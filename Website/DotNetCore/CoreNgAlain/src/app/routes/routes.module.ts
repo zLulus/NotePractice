@@ -27,6 +27,7 @@ import { RouterLinkPage2Component } from './router-link/router-link-page2/router
 import { RouterLinkPage3Component } from './router-link/router-link-page3/router-link-page3.component';
 import { DrawerCallBackListComponent } from './drawer-call-back/drawer-call-back-list/drawer-call-back-list.component';
 import { DrawerCallBackEditComponent } from './drawer-call-back/drawer-call-back-edit/drawer-call-back-edit.component';
+import { NswagEnumTestComponent } from './nswag-enum-test/nswag-enum-test.component';
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
@@ -53,7 +54,8 @@ const COMPONENTS = [
   RouterLinkPage2Component,
   RouterLinkPage3Component,
   DrawerCallBackListComponent,
-  DrawerCallBackEditComponent
+  DrawerCallBackEditComponent,
+  NswagEnumTestComponent
 ];
 const COMPONENTS_NOROUNT = [];
 

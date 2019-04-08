@@ -124,6 +124,11 @@
           "text": "drawer all back",
           "link": "/drawer-call-back-list",
           "i18n": "drawer-call-back-list-demo"
+        },
+        {
+          "text": "nswag enum test",
+          "link": "/nswag-enum-test",
+          "i18n": "nswag-enum-test-demo"
         }
       ]
     }

@@ -7,8 +7,8 @@ CoreAngular:基于angular的前端示例
 CoreWebsite:asp .net core项目,端口61541   
 	包括多项测试用例和对应的测试页面 ,由于博客有引用,所以无法迁移.新接口将写在CoreWebsite.Api中.    
 CoreWebsite.Api:asp .net core项目,端口49849,为前端提供api接口    
-CoreWebsite.Castle.Windsor.Demo   
-CoreWebsite.EntityFramework:EF相关类库    
+CoreWebsite.Castle.Windsor.Demo:WindsorContainer demo   
+CoreWebsite.EntityFramework:EF相关类库,CoreWebsite和CoreWebsite.Api共用    
 
 #### 注意事项
 1.涉及数据库的操作     
