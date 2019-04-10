@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NzModalService } from 'ng-zorro-antd';
-import config from '../../assets/config';
+import { Config } from '../../assets/config';
 
 @Injectable()
 export class RequestHelperService {
@@ -61,7 +61,7 @@ export class RequestHelperService {
             cancelText = '';
             zIndex = 99;
             onOk = () => {
-                (<any>window).location = `${config.apiHost}/account/login?returnUrl=${encodeURIComponent(window.location.href)}`;
+                (<any>window).location = `${Config.apiHost}/account/login?returnUrl=${encodeURIComponent(window.location.href)}`;
             };
 
             // 如果全屏loading还在 干掉

@@ -31,6 +31,9 @@ import { NswagEnumTestComponent } from './nswag-enum-test/nswag-enum-test.compon
 // 路由守卫
 import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard.service';
 import { CanActivateGuard } from './can-activate/can-activate-guard';
+// api变量
+import { API_BASE_URL } from '../../shared/service-proxies/service-proxies';
+import { Config } from '../../assets/config';
 
 const COMPONENTS = [
   CallbackComponent,
@@ -59,13 +62,18 @@ const COMPONENTS = [
 ];
 const COMPONENTS_NOROUNT = [];
 
+export function getApiBaseUrl(): string {
+  return Config.apiHost;
+}
+
 @NgModule({
   imports: [SharedModule, RouteRoutingModule],
   declarations: [...COMPONENTS, ...COMPONENTS_NOROUNT],
   entryComponents: COMPONENTS_NOROUNT,
   providers:[
     CanDeactivateGuardService,
-    CanActivateGuard
+    CanActivateGuard,
+    { provide: API_BASE_URL, useFactory: getApiBaseUrl },
   ]
 })
 export class RoutesModule {}
