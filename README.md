@@ -19,4 +19,4 @@
 | 4| WCF     |WCF Rest,WCF SOAP,Windows服务,WCF 单元测试等 |
 | 5| WCFServer     |WCF Rest,WCF SOAP,Windows服务,WCF 单元测试等 |
 | 6|Xamarin.Forms                                |Xamarin.Forms示例demo                      |
-| 7| MiniProgramDemo                                    |语法上的练习等                     |
+| 7| MiniProgramDemo                                    |微信小程序demo                     |
