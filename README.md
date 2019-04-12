@@ -1,7 +1,7 @@
 # This porject is an practice project for [My Note](https://github.com/zLulus/My_Note)
 |Serial number | Module name                                          |  Technical point                        |                     
 |---|----------------------------------------------------|----------------------------------|
-| 1| Console                                    |.net grammar                     |
+| 1| Console                                    |grammar of C#                     |
 | 2|WPF                                   |Wpf demo                      |
 | 3|Website                                 |asp .net mvc,asp .net core,angular                  |
 | 4| WCF     |WCF Rest,WCF SOAP,Windows service,WCF unit test, etc. |
