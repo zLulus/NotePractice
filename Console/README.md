@@ -1,4 +1,21 @@
-## 目录结构   
+## Introduction 
+```
+DotNetCore   
+	DotNetCoreConsole:.net core console program  
+	CodeLibraryForDotNetCore:.net core tool library  
+	Unit test related projects  
+		DotNetCore.MSTest.Test   
+		DotNetCore.NUnit.Test  
+		DotNetCore.xUnit.Test   
+DotNetFramework     
+	CodeLibrary:.net framework tool library  
+	ConsoleDemo:.net framework console program  
+Independent sample program     
+	WechatDemo:WeChat related function demo        
+```
+
+中文如下：
+## 项目说明  
 ```
 DotNetCore   
 	DotNetCoreConsole:.net core运行程序  
