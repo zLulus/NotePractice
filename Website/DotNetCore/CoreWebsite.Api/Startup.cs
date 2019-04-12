@@ -33,6 +33,10 @@ namespace CoreWebsite.Api
                 //c.OperationFilter<AddAuthTokenHeaderParameter>();
             });
             services.AddMvcCore().AddApiExplorer();
+
+            //在 .NET Core 中运行 JavaScript
+            //https://www.cnblogs.com/stulzq/p/10535310.html
+            services.AddNodeServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
