@@ -1,4 +1,4 @@
-# This porject is an exercise project for [My Note](https://github.com/zLulus/My_Note)
+# This porject is an practice project for [My Note](https://github.com/zLulus/My_Note)
 |Serial number | Module name                                          |  Technical point                        |                     
 |---|----------------------------------------------------|----------------------------------|
 | 1| Console                                    |.net grammar                     |
