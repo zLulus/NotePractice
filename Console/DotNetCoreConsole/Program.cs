@@ -9,6 +9,7 @@ using CodeLibraryForDotNetCore.Extensions1;
 using CodeLibraryForDotNetCore.Extensions2;
 using IsNullOrEmptyCustomExtension= CodeLibraryForDotNetCore.Extensions2.StringExtension2;
 using CodeLibraryForDotNetCore.LinqTools;
+using CodeLibraryForDotNetCore.GenerateRegularExpressionByCode.UseCSharpVerbalExpressions;
 
 namespace DotNetCoreConsole
 {
@@ -44,14 +45,16 @@ namespace DotNetCoreConsole
             //bool r = str.IsNullOrEmptyCustomExtension();
 
             //Postgresql 使用空间数据
-            Task.Run(async () =>
-            {
-                await (new PostgresqlUseGeometryDemo(new TestDbContextFactory().CreateDbContext(args))).Run();
-            });
+            //Task.Run(async () =>
+            //{
+            //    await (new PostgresqlUseGeometryDemo(new TestDbContextFactory().CreateDbContext(args))).Run();
+            //});
 
             //linq 使用lambda表达式
-            new LinqToolDemo(new TestDbContextFactory().CreateDbContext(args)).Run();
+            //new LinqToolDemo(new TestDbContextFactory().CreateDbContext(args)).Run();
 
+            //使用代码动态生成正则表达式
+            UseCSharpVerbalExpressionsDemo.Run();
 
             Console.ReadLine();
         }
