@@ -1,0 +1,7 @@
+ngFor && index 用法
+<nz-card *ngFor="let item of data;let i = index" [nzTitle]="getTitle(i)">
+    <nz-alert *ngIf="i%1==0" nzType="success" nzMessage="Success Text'"></nz-alert>
+    <nz-alert *ngIf="i%2==0" nzType="info" nzMessage="Info Text"></nz-alert>
+    <nz-alert *ngIf="i%3==0" nzType="warning" nzMessage="Warning Text"></nz-alert>
+    <nz-alert *ngIf="i%4==0" nzType="error" nzMessage="Error Text"></nz-alert>
+</nz-card>

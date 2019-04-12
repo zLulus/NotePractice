@@ -129,6 +129,11 @@
           "text": "nswag enum test",
           "link": "/nswag-enum-test",
           "i18n": "nswag-enum-test-demo"
+        },
+        {
+          "text": "front count",
+          "link": "/front-count",
+          "i18n": "front-count-demo"
         }
       ]
     }
