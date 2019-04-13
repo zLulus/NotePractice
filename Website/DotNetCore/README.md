@@ -14,7 +14,7 @@ Like other Angular projects, run it with the command line `ng serve`.
 
 #### 注意事项
 1.Database related operations     
-All operations involving the database, you need to modify the ConnectionStrings in appsettings.json, connect to your database, then use the command line `update-database` to update the database, and then run the program.           
+For all operations involving the database, you need to modify the ConnectionStrings in appsettings.json, connect to your database, then use the command line `update-database` to update the database, and then run the program.           
 
 
 中文如下：
