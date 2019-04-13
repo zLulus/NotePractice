@@ -1,5 +1,5 @@
 ## Introduction
-Using the 'asp.net` and `ef` technologies, the demo is based on the university's curriculum and student management. The project is no longer updated.       
+Using the 'asp.net` and `ef` technologies. This is a demo for managing students and courses in university. The project is no longer updated.       
 
 You need to modify the connection string `SchoolContext` in Web.config, connect and update the database(`update-database`), and then run the program.  
 ```C#
