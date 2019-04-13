@@ -4,7 +4,7 @@ Extract typical functional points based on project examples of `asp.net core` an
 1.CoreNgAlain:Front end example based on `ng-zorro` and `ng-alain`.(Project currently in use.)   
 2.CoreAngular:Angular-based front end example.(Stop updating)  
 Like other Angular projects, run it with the command line `ng serve`. 
-#### rear end
+#### backend
 1.CoreWebsite:asp .net core project, port 61541   
 	Includes multiple test cases and corresponding test pages. 
 	Since the blog has references, the old features cannot be migrated. The new interface will be written in CoreWebsite.Api.    
