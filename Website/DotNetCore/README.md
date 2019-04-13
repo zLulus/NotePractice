@@ -1,20 +1,16 @@
 ## Introduction
 Extract typical functional points based on project examples of `asp.net core` and `Angular && TypeScript`   
 #### front end
-```
 CoreNgAlain:Front end example based on `ng-zorro` and `ng-alain`.(Project currently in use.)   
 CoreAngular:Angular-based front end example.(Stop updating)  
 Like other Angular projects, run it with the command line `ng serve`. 
-```
 #### rear end
-```
 CoreWebsite:asp .net core project, port 61541   
 	Includes multiple test cases and corresponding test pages. 
 	Since the blog has references, the old features cannot be migrated. The new interface will be written in CoreWebsite.Api.    
 CoreWebsite.Api:asp .net coreproject, port 49849, provide apis for the front end.    
 CoreWebsite.Castle.Windsor.Demo:WindsorContainer demo   
 CoreWebsite.EntityFramework:EF tool library, CoreWebsite and CoreWebsite.Api share   
-```
 
 #### 注意事项
 1.Database related operations     
