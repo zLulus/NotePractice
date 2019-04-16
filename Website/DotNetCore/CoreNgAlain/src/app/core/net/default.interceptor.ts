@@ -96,12 +96,8 @@ export class DefaultInterceptor implements HttpInterceptor {
     if (!url.startsWith('https://') && !url.startsWith('http://')) {
       url = environment.SERVER_URL + url;
     }
-    req.headers.append('Access-Control-Allow-Headers', '*');
-    req.headers.append('Access-Control-Allow-Methods', '*');
-    req.headers.append('Access-Control-Allow-Origin', '*');
     const newReq = req.clone({
       url: url,
-      
     });
     return next.handle(newReq).pipe(
       mergeMap((event: any) => {

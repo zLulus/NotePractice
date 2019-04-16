@@ -45,6 +45,14 @@ namespace CoreWebsite.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //跨域  注意顺序
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowAnyOrigin();
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -66,16 +74,6 @@ namespace CoreWebsite.Api
             {
                 context.Response.Redirect("/swagger");
             });
-
-            //跨域
-            app.UseCors(builder =>
-            {
-                builder.AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowAnyOrigin();
-            });
-            app.UseMvc();
-
         }
     }
 }
