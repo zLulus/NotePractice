@@ -90,7 +90,7 @@ export function StartupServiceFactory(
     { provide: LOCALE_ID, useValue: 'zh-Hans' },
     //网络请求拦截器
     // { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: DefaultInterceptor, multi: true },
     { provide: ALAIN_I18N_TOKEN, useClass: I18NService, multi: false },
     StartupService,
     {

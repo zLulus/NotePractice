@@ -6,4 +6,6 @@
 /app/routes/routes-routing.module.ts
 
 # config
-/assets/config.ts
+/environments/environment.hmr.ts
+/environments/environment.prod.ts
+/environments/environment.ts
