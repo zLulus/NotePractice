@@ -31,7 +31,7 @@ export class EnumTestServiceProxy {
     /**
      * @return Success
      */
-    getMember(): Observable<void> {
+    getMember(): Observable<MemberViewModel> {
         let url_ = this.baseUrl + "/api/EnumTest/GetMember";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -39,6 +39,7 @@ export class EnumTestServiceProxy {
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
+                "Accept": "application/json"
             })
         };
 
@@ -49,14 +50,14 @@ export class EnumTestServiceProxy {
                 try {
                     return this.processGetMember(<any>response_);
                 } catch (e) {
-                    return <Observable<void>><any>_observableThrow(e);
+                    return <Observable<MemberViewModel>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<void>><any>_observableThrow(response_);
+                return <Observable<MemberViewModel>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetMember(response: HttpResponseBase): Observable<void> {
+    protected processGetMember(response: HttpResponseBase): Observable<MemberViewModel> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -65,20 +66,23 @@ export class EnumTestServiceProxy {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            return _observableOf<void>(<any>null);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? MemberViewModel.fromJS(resultData200) : new MemberViewModel();
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<void>(<any>null);
+        return _observableOf<MemberViewModel>(<any>null);
     }
 
     /**
      * @return Success
      */
-    getPerson(): Observable<void> {
+    getPerson(): Observable<PersonViewModel> {
         let url_ = this.baseUrl + "/api/EnumTest/GetPerson";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -86,6 +90,7 @@ export class EnumTestServiceProxy {
             observe: "response",
             responseType: "blob",
             headers: new HttpHeaders({
+                "Accept": "application/json"
             })
         };
 
@@ -96,14 +101,14 @@ export class EnumTestServiceProxy {
                 try {
                     return this.processGetPerson(<any>response_);
                 } catch (e) {
-                    return <Observable<void>><any>_observableThrow(e);
+                    return <Observable<PersonViewModel>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<void>><any>_observableThrow(response_);
+                return <Observable<PersonViewModel>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetPerson(response: HttpResponseBase): Observable<void> {
+    protected processGetPerson(response: HttpResponseBase): Observable<PersonViewModel> {
         const status = response.status;
         const responseBlob = 
             response instanceof HttpResponse ? response.body : 
@@ -112,14 +117,17 @@ export class EnumTestServiceProxy {
         let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }};
         if (status === 200) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
-            return _observableOf<void>(<any>null);
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = resultData200 ? PersonViewModel.fromJS(resultData200) : new PersonViewModel();
+            return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<void>(<any>null);
+        return _observableOf<PersonViewModel>(<any>null);
     }
 }
 
@@ -528,6 +536,101 @@ export class UserServiceProxy {
     }
 }
 
+export class MemberViewModel implements IMemberViewModel {
+    gender: MemberViewModelGender | undefined;
+
+    constructor(data?: IMemberViewModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.gender = data["gender"];
+        }
+    }
+
+    static fromJS(data: any): MemberViewModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new MemberViewModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["gender"] = this.gender;
+        return data; 
+    }
+
+    clone(): MemberViewModel {
+        const json = this.toJSON();
+        let result = new MemberViewModel();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IMemberViewModel {
+    gender: MemberViewModelGender | undefined;
+}
+
+export class PersonViewModel implements IPersonViewModel {
+    gender: PersonViewModelGender | undefined;
+
+    constructor(data?: IPersonViewModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(data?: any) {
+        if (data) {
+            this.gender = data["gender"];
+        }
+    }
+
+    static fromJS(data: any): PersonViewModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new PersonViewModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["gender"] = this.gender;
+        return data; 
+    }
+
+    clone(): PersonViewModel {
+        const json = this.toJSON();
+        let result = new PersonViewModel();
+        result.init(json);
+        return result;
+    }
+}
+
+export interface IPersonViewModel {
+    gender: PersonViewModelGender | undefined;
+}
+
+export enum MemberViewModelGender {
+    _1 = 1, 
+    _2 = 2, 
+}
+
+export enum PersonViewModelGender {
+    _1 = 1, 
+    _2 = 2, 
+}
 
 export class SwaggerException extends Error {
     message: string;

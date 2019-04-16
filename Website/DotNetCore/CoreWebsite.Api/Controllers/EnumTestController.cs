@@ -12,15 +12,15 @@ namespace CoreWebsite.Api.Controllers
     public class EnumTestController : Controller
     {
         [HttpGet]
-        public IActionResult GetMember()
+        public MemberViewModel GetMember()
         {
-            return new JsonResult(new MemberViewModel() { Gender = GenderEnum.Man });
+            return new MemberViewModel() { Gender = GenderEnum.Man };
         }
 
         [HttpGet]
-        public IActionResult GetPerson()
+        public PersonViewModel GetPerson()
         {
-            return new JsonResult(new PersonViewModel() { Gender = GenderEnum.Man });
+            return new PersonViewModel() { Gender = GenderEnum.Man };
         }
     }
 }

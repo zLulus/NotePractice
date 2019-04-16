@@ -26,7 +26,7 @@ export class CallbackComponent implements OnInit {
   private mockModel() {
     this.socialService.callback({
       token: '123456789',
-      name: 'cipchk',
+      name: 'zenglu.17',
       email: `${this.type}@${this.type}.com`,
       id: 10000,
       time: +new Date(),
