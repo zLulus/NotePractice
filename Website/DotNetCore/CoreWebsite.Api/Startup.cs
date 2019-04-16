@@ -19,6 +19,9 @@ namespace CoreWebsite.Api
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            //跨域
+            services.AddCors();
+
             //swagger
             //https://www.cnblogs.com/OMango/p/8460092.html
             services.AddMvc();
@@ -63,6 +66,16 @@ namespace CoreWebsite.Api
             {
                 context.Response.Redirect("/swagger");
             });
+
+            //跨域
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowAnyOrigin();
+            });
+            app.UseMvc();
+
         }
     }
 }

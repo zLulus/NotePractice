@@ -3,7 +3,7 @@
   "defaultVariables": null,
   "swaggerGenerator": {
     "fromSwagger": {
-      "url": "https://localhost:44399/swagger/v1/swagger.json",
+      "url": "http://localhost:49849/swagger/v1/swagger.json",
       "output": null
     }
   },
