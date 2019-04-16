@@ -34,7 +34,7 @@ import { CanDeactivateGuardService } from './can-deactivate/can-deactivate-guard
 import { CanActivateGuard } from './can-activate/can-activate-guard';
 // api变量
 import { API_BASE_URL } from '../../shared/service-proxies/service-proxies';
-import { Config } from '../../assets/config';
+import { environment } from '@env/environment';
 
 const COMPONENTS = [
   CallbackComponent,
@@ -65,7 +65,7 @@ const COMPONENTS = [
 const COMPONENTS_NOROUNT = [];
 
 export function getApiBaseUrl(): string {
-  return Config.apiHost;
+  return environment.SERVER_URL;
 }
 
 @NgModule({
