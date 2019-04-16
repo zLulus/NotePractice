@@ -1,16 +1,37 @@
-## ÏîÄ¿½á¹¹
-»ùÓÚ`asp .net core`ºÍ`Angular && TypeScript`µÄÏîÄ¿Ê¾Àı£¬ÌáÈ¡µäĞÍ¹¦ÄÜµã     
-#### Ç°¶Ë
-CoreNgAlain:»ùÓÚng-zorroºÍng-alainµÄÇ°¶ËÊ¾Àı,ÏÖÔÚÊ¹ÓÃ½Ï¶à.   
-CoreAngular:»ùÓÚangularµÄÇ°¶ËÊ¾Àı  
-ºÍÆäËûAngularÏîÄ¿Ò»Ñù,Ê¹ÓÃÃüÁîĞĞ `ng serve`ÔËĞĞ   
-#### ºó¶Ë
-CoreWebsite:asp .net coreÏîÄ¿,¶Ë¿Ú61541   
-	°üÀ¨¶àÏî²âÊÔÓÃÀıºÍ¶ÔÓ¦µÄ²âÊÔÒ³Ãæ ,ÓÉÓÚ²©¿ÍÓĞÒıÓÃ,ËùÒÔÎŞ·¨Ç¨ÒÆ.ĞÂ½Ó¿Ú½«Ğ´ÔÚCoreWebsite.ApiÖĞ.    
-CoreWebsite.Api:asp .net coreÏîÄ¿,¶Ë¿Ú49849,ÎªÇ°¶ËÌá¹©api½Ó¿Ú    
-CoreWebsite.Castle.Windsor.Demo:WindsorContainer demo   
-CoreWebsite.EntityFramework:EFÏà¹ØÀà¿â,CoreWebsiteºÍCoreWebsite.Api¹²ÓÃ    
+## Introduction
+Extract typical functional points based on project examples of `asp.net core` and `Angular && TypeScript`   
+#### front end
+1.CoreNgAlain:Front end example based on `ng-zorro` and `ng-alain`.(Project currently in use.)   
+2.CoreAngular:Angular-based front end example.(Stop updating)  
+Like other Angular projects, run it with the command line `ng serve`. 
+#### backend
+1.CoreWebsite:asp .net core project, port 61541   
+	Includes multiple test cases and corresponding test pages. 
+	Since the blog has references, the old features cannot be migrated. The new interface will be written in CoreWebsite.Api.    
+2.CoreWebsite.Api:asp .net coreproject, port 49849, provide apis for the front end.    
+3.CoreWebsite.Castle.Windsor.Demo:WindsorContainer demo   
+4.CoreWebsite.EntityFramework:EF tool library, CoreWebsite and CoreWebsite.Api share   
 
-#### ×¢ÒâÊÂÏî
-1.Éæ¼°Êı¾İ¿âµÄ²Ù×÷     
-ËùÓĞÉæ¼°Êı¾İ¿âµÄ²Ù×÷£¬ĞèÒªÏÈĞŞ¸Äappsettings.jsonÖĞµÄConnectionStrings,Á¬½Ó²¢¸üĞÂÊı¾İ¿â `update-database` Ö®ºó£¬ÔÙ²âÊÔ       
+#### æ³¨æ„äº‹é¡¹
+1.Database related operations     
+For all operations involving the database, you need to modify the ConnectionStrings in appsettings.json, connect to your database, then use the command line `update-database` to update the database, and then run the program.           
+
+
+ä¸­æ–‡å¦‚ä¸‹ï¼š
+## é¡¹ç›®ç»“æ„
+åŸºäº`asp .net core`å’Œ`Angular && TypeScript`çš„é¡¹ç›®ç¤ºä¾‹ï¼Œæå–å…¸å‹åŠŸèƒ½ç‚¹     
+#### å‰ç«¯
+1.CoreNgAlain:åŸºäº`ng-zorro`å’Œ`ng-alain`çš„å‰ç«¯ç¤ºä¾‹.(ç°åœ¨ä½¿ç”¨è¾ƒå¤š)   
+2.CoreAngular:åŸºäº`angular`çš„å‰ç«¯ç¤ºä¾‹(åœæ­¢æ›´æ–°)  
+å’Œå…¶ä»–Angularé¡¹ç›®ä¸€æ ·,ä½¿ç”¨å‘½ä»¤è¡Œ `ng serve`è¿è¡Œ   
+#### åç«¯
+1.CoreWebsite:asp .net coreé¡¹ç›®,ç«¯å£61541   
+	åŒ…æ‹¬å¤šé¡¹æµ‹è¯•ç”¨ä¾‹å’Œå¯¹åº”çš„æµ‹è¯•é¡µé¢.    
+	ç”±äºåšå®¢æœ‰å¼•ç”¨,æ‰€ä»¥æ— æ³•è¿ç§».æ–°æ¥å£å°†å†™åœ¨CoreWebsite.Apiä¸­.    
+2.CoreWebsite.Api:asp .net coreé¡¹ç›®,ç«¯å£49849,ä¸ºå‰ç«¯æä¾›apiæ¥å£    
+3.CoreWebsite.Castle.Windsor.Demo:WindsorContainer demo   
+4.CoreWebsite.EntityFramework:EFç›¸å…³ç±»åº“,CoreWebsiteå’ŒCoreWebsite.Apiå…±ç”¨    
+
+#### æ³¨æ„äº‹é¡¹
+1.æ¶‰åŠæ•°æ®åº“çš„æ“ä½œ     
+æ‰€æœ‰æ¶‰åŠæ•°æ®åº“çš„æ“ä½œï¼Œéœ€è¦å…ˆä¿®æ”¹appsettings.jsonä¸­çš„ConnectionStrings,è¿æ¥ä¸Šä½ çš„æ•°æ®åº“ï¼Œå†ä½¿ç”¨å‘½ä»¤è¡Œ`update-database` æ›´æ–°æ•°æ®åº“ï¼Œæ‰å¯ä»¥è¿è¡Œç¨‹åº          
