@@ -20,17 +20,10 @@ export class NswagEnumTestComponent implements OnInit {
   }
 
   fetchData(){
-    try{
-
-        this._enumTestServiceProxy.getMember()
-        .subscribe((result)=>{
-            this.member=result;
-    
-        });
-    }
-    catch(ex){
-        console.log(ex);
-    }
+    this._enumTestServiceProxy.getMember()
+    .subscribe((result)=>{
+        this.member=result;
+    });
     this._enumTestServiceProxy.getPerson()
     .subscribe((result)=>{
         this.person=result;
