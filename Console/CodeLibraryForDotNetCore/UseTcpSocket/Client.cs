@@ -30,7 +30,7 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
             //开始连接到服务器
             client.BeginConnect(ipe, asyncResult =>
             {
-                //client.EndConnect(asyncResult);
+                client.EndConnect(asyncResult);
                 //向服务器发送消息
                 AsynSend(client, "你好我是客户端");
                 AsynSend(client, "第一条消息");

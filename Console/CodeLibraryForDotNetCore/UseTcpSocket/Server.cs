@@ -45,6 +45,9 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
                 AsyncSend(client, "服务器收到连接请求");
                 AsyncSend(client, string.Format("欢迎你{0}", client.RemoteEndPoint));
                 AsyncReveive(client);
+
+                //递归
+                AsyncAccept(socket);
             }, null);
         }
 
@@ -63,6 +66,9 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
                 {
                     int length = socket.EndReceive(asyncResult);
                     Console.WriteLine(string.Format("客户端发送消息:{0}", Encoding.UTF8.GetString(data)));
+
+                    //递归
+                    AsyncReveive(socket);
                 }, null);
             }
             catch (Exception ex)
