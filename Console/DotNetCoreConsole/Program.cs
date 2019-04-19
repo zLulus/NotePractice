@@ -10,6 +10,7 @@ using CodeLibraryForDotNetCore.Extensions2;
 using IsNullOrEmptyCustomExtension= CodeLibraryForDotNetCore.Extensions2.StringExtension2;
 using CodeLibraryForDotNetCore.LinqTools;
 using CodeLibraryForDotNetCore.GenerateRegularExpressionByCode.UseCSharpVerbalExpressions;
+using CodeLibraryForDotNetCore.UseTcpSocket;
 
 namespace DotNetCoreConsole
 {
@@ -54,7 +55,10 @@ namespace DotNetCoreConsole
             //new LinqToolDemo(new TestDbContextFactory().CreateDbContext(args)).Run();
 
             //使用代码动态生成正则表达式
-            UseCSharpVerbalExpressionsDemo.Run();
+            //UseCSharpVerbalExpressionsDemo.Run();
+
+            //tcp socket demo
+            UseTcpSocketDemo.Run();
 
             Console.ReadLine();
         }
