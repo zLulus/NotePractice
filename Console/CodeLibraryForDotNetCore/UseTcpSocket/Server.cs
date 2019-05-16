@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CodeLibraryForDotNetCore.UseTcpSocket
 {
@@ -14,40 +16,97 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
         {
             this.ipaddress = ipaddress;
             this.port = port;
-            Start();
+            Task.Run(async () =>
+            {
+                await Start();
+            });
         }
 
-        public void Start()
+        public async Task Start()
         {
 
             //创建套接字
             IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ipaddress), port);
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+            //https://www.codeproject.com/Articles/117557/Set-Keep-Alive-Values
+            //http://blog.stephencleary.com/2009/05/detection-of-half-open-dropped.html
+            SetTcpKeepAlive(socket, 600000, 1000);
             //绑定端口和IP
             socket.Bind(ipe);
             //设置监听
             socket.Listen(10);
             //连接客户端
-            AsyncAccept(socket);
+            await AsyncAccept(socket);
+        }
+
+        public static void SetTcpKeepAlive(Socket socket, uint keepaliveTime, uint keepaliveInterval)
+        {
+            /* the native structure
+            struct tcp_keepalive {
+            ULONG onoff;
+            ULONG keepalivetime;
+            ULONG keepaliveinterval;
+            };
+            */
+
+            // marshal the equivalent of the native structure into a byte array
+            uint dummy = 0;
+            byte[] inOptionValues = new byte[Marshal.SizeOf(dummy) * 3];
+            BitConverter.GetBytes((uint)(keepaliveTime)).CopyTo(inOptionValues, 0);
+            BitConverter.GetBytes((uint)keepaliveTime).CopyTo(inOptionValues, Marshal.SizeOf(dummy));
+            BitConverter.GetBytes((uint)keepaliveInterval).CopyTo(inOptionValues, Marshal.SizeOf(dummy) * 2);
+
+            // write SIO_VALS to Socket IOControl
+            socket.IOControl(IOControlCode.KeepAliveValues, inOptionValues, null);
         }
 
         /// <summary>
-        /// 连接到客户端
+        /// check socket是否正常连接
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        private bool CheckSocketConnected(Socket s)
+        {
+            //https://stackoverflow.com/questions/2661764/how-to-check-if-a-socket-is-connected-disconnected-in-c
+            bool part1 = s.Poll(1000, SelectMode.SelectRead);
+            bool part2 = (s.Available == 0);
+            if (part1 && part2)
+                return false;
+            else
+                return true;
+        }
+
+        /// <summary>
+        /// 接收client连接
         /// </summary>
         /// <param name="socket"></param>
-        private void AsyncAccept(Socket socket)
+        private async Task AsyncAccept(Socket socket)
         {
-            socket.BeginAccept(asyncResult =>
+            socket.BeginAccept(async asyncResult => 
             {
-                //获取客户端套接字
-                Socket client = socket.EndAccept(asyncResult);
-                Console.WriteLine(string.Format("客户端{0}请求连接...", client.RemoteEndPoint));
-                AsyncSend(client, "服务器收到连接请求");
-                AsyncSend(client, string.Format("欢迎你{0}", client.RemoteEndPoint));
-                AsyncReveive(client);
+                try
+                {
+                    //获取客户端套接字
+                    Socket client = socket.EndAccept(asyncResult);
+                    Console.WriteLine(string.Format("客户端{0}请求连接...", client.RemoteEndPoint));
+                    await AsyncSend(client, "服务器收到连接请求");
+                    await AsyncSend(client, string.Format("欢迎你{0}", client.RemoteEndPoint));
+                    await AsyncReveive(client);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    //递归
+                    await AsyncAccept(socket);
+                }
+               
 
-                //递归
-                AsyncAccept(socket);
+                
             }, null);
         }
 
@@ -55,25 +114,45 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
         /// 接收消息
         /// </summary>
         /// <param name="client"></param>
-        private void AsyncReveive(Socket socket)
+        private async Task AsyncReveive(Socket socket)
         {
             byte[] data = new byte[1024];
             try
             {
-                //开始接收消息
-                socket.BeginReceive(data, 0, data.Length, SocketFlags.None,
-                asyncResult =>
-                {
-                    int length = socket.EndReceive(asyncResult);
-                    Console.WriteLine(string.Format("客户端发送消息:{0}", Encoding.UTF8.GetString(data)));
+                //bool isHaveData = false;
+                //for(int i = 0; i < data.Length; i++)
+                //{
+                //    if (data[i] != 0)
+                //    {
+                //        isHaveData = true;
+                //        break;
+                //    }
+                //}
+                //if (isHaveData)
+                //{
+                    //开始接收消息
+                    socket.BeginReceive(data, 0, data.Length, SocketFlags.None,
+                    async asyncResult =>
+                    {
+                        int length = socket.EndReceive(asyncResult);
+                        Console.WriteLine(string.Format("客户端发送消息:{0}", Encoding.UTF8.GetString(data)));
 
-                    //递归
-                    AsyncReveive(socket);
-                }, null);
+                    }, null);
+                //}
+               
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                //递归
+                //如果客户端已经断开，则不递归
+                if (socket != null && CheckSocketConnected(socket))
+                {
+                    await AsyncReveive(socket);
+                }
             }
         }
 
@@ -82,7 +161,7 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
         /// </summary>
         /// <param name="client"></param>
         /// <param name="p"></param>
-        private void AsyncSend(Socket client, string p)
+        private async Task AsyncSend(Socket client, string p)
         {
             if (client == null || p == string.Empty) return;
             //数据转码
@@ -91,7 +170,7 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
             try
             {
                 //开始发送消息
-                client.BeginSend(data, 0, data.Length, SocketFlags.None, asyncResult =>
+                client.BeginSend(data, 0, data.Length, SocketFlags.None,async asyncResult =>
                 {
                     //完成消息发送
                     int length = client.EndSend(asyncResult);

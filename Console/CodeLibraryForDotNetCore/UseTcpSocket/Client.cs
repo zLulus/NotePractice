@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CodeLibraryForDotNetCore.UseTcpSocket
 {
@@ -14,13 +15,16 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
         {
             this.ipaddress = ipaddress;
             this.port = port;
-            AsynConnect();
+            Task.Run(async () =>
+            {
+                await AsynConnect();
+            });
         }
 
         /// <summary>
         /// 连接到服务器
         /// </summary>
-        public void AsynConnect()
+        public async Task AsynConnect()
         {
             
             //端口及IP
@@ -28,15 +32,15 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
             //创建套接字
             Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             //开始连接到服务器
-            client.BeginConnect(ipe, asyncResult =>
+            client.BeginConnect(ipe,async asyncResult =>
             {
                 client.EndConnect(asyncResult);
                 //向服务器发送消息
-                AsynSend(client, "你好我是客户端");
-                AsynSend(client, "第一条消息");
-                AsynSend(client, "第二条消息");
+                await AsynSend(client, "你好我是客户端");
+                await AsynSend(client, "第一条消息");
+                await AsynSend(client, "第二条消息");
                 //接受消息
-                AsynRecive(client);
+                await AsynRecive(client);
             }, null);
         }
 
@@ -45,14 +49,15 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
         /// </summary>
         /// <param name="socket"></param>
         /// <param name="message"></param>
-        public void AsynSend(Socket socket, string message)
+        public async Task AsynSend(Socket socket, string message)
         {
             if (socket == null || message == string.Empty) return;
             //编码
             byte[] data = Encoding.UTF8.GetBytes(message);
             try
             {
-                socket.BeginSend(data, 0, data.Length, SocketFlags.None, asyncResult =>
+                socket.BeginSend(data, 0, data.Length, SocketFlags.None, 
+                async asyncResult =>
                 {
                     //完成发送消息
                     int length = socket.EndSend(asyncResult);
@@ -69,23 +74,27 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
         /// 接收消息
         /// </summary>
         /// <param name="socket"></param>
-        public void AsynRecive(Socket socket)
+        public async Task AsynRecive(Socket socket)
         {
             byte[] data = new byte[1024];
             try
             {
                 //开始接收数据
                 socket.BeginReceive(data, 0, data.Length, SocketFlags.None,
-                asyncResult =>
+                async asyncResult =>
                 {
                     int length = socket.EndReceive(asyncResult);
                     Console.WriteLine(string.Format("收到服务器消息:{0}", Encoding.UTF8.GetString(data)));
-                    AsynRecive(socket);
                 }, null);
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine("异常信息：", ex.Message);
+            }
+            finally
+            {
+                await AsynRecive(socket);
             }
         }
 
