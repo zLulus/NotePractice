@@ -11,6 +11,7 @@ using IsNullOrEmptyCustomExtension= CodeLibraryForDotNetCore.Extensions2.StringE
 using CodeLibraryForDotNetCore.LinqTools;
 using CodeLibraryForDotNetCore.GenerateRegularExpressionByCode.UseCSharpVerbalExpressions;
 using CodeLibraryForDotNetCore.UseTcpSocket;
+using CodeLibraryForDotNetCore.UseArray;
 
 namespace DotNetCoreConsole
 {
@@ -58,7 +59,10 @@ namespace DotNetCoreConsole
             //UseCSharpVerbalExpressionsDemo.Run();
 
             //tcp socket demo
-            UseTcpSocketDemo.Run();
+            //UseTcpSocketDemo.Run();
+
+            //数组
+            UseArrayDemo.Run();
 
             Console.ReadLine();
         }
