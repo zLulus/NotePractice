@@ -12,6 +12,7 @@ using CodeLibraryForDotNetCore.LinqTools;
 using CodeLibraryForDotNetCore.GenerateRegularExpressionByCode.UseCSharpVerbalExpressions;
 using CodeLibraryForDotNetCore.UseTcpSocket;
 using CodeLibraryForDotNetCore.UseArray;
+using CodeLibraryForDotNetCore.StringConverters;
 
 namespace DotNetCoreConsole
 {
@@ -62,7 +63,10 @@ namespace DotNetCoreConsole
             //UseTcpSocketDemo.Run();
 
             //数组
-            UseArrayDemo.Run();
+            //UseArrayDemo.Run();
+
+            //byte to string
+            StringDemo.Run();
 
             Console.ReadLine();
         }
