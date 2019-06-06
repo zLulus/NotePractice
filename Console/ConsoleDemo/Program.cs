@@ -97,7 +97,12 @@ namespace ConsoleDemo
             //CancleRequestDemo.CancleRequestByTask("http://localhost:1107");
 
             //RabbitMQ Receiver
-            Receive.Run("localhost", 5673,"guest", "guest");
+            var host = "localhost";
+            var port = 5673;
+            var userName = "guest";
+            var password = "guest";
+            //Receive.Run(host, port, userName, password);
+            Worker.Run(host, port, userName, password);
 
 
             Console.ReadLine();

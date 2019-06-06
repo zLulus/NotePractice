@@ -70,7 +70,12 @@ namespace DotNetCoreConsole
             //StringDemo.Run();
 
             //RabbitMQ Sender
-            Send.Run("localhost", 5673, "guest", "guest");
+            var host = "localhost";
+            var port = 5673;
+            var userName = "guest";
+            var password = "guest";
+            //Send.Run(host, port, userName, password);
+            NewTask.Run(host, port, userName, password);
 
             Console.ReadLine();
         }

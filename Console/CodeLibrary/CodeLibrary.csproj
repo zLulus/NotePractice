@@ -100,6 +100,7 @@
     <Compile Include="UsePostgresql\UsePostgresqlDemo.cs" />
     <Compile Include="UsePostgresql\TestDbContext.cs" />
     <Compile Include="UseRabbitMQ\Receive.cs" />
+    <Compile Include="UseRabbitMQ\Worker.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ExcuteJs\TestJs.js">
