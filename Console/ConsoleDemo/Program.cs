@@ -102,7 +102,8 @@ namespace ConsoleDemo
             var userName = "guest";
             var password = "guest";
             //Receive.Run(host, port, userName, password);
-            Worker.Run(host, port, userName, password);
+            //Worker.Run(host, port, userName, password);
+            ReceiveLogs.Run(host, port, userName, password);
 
 
             Console.ReadLine();

@@ -29,6 +29,7 @@ namespace CodeLibraryForDotNetCore.UseRabbitMQ
                 var body = Encoding.UTF8.GetBytes(message);
 
                 var properties = channel.CreateBasicProperties();
+                //将消息标记为持久性
                 properties.Persistent = true;
 
                 channel.BasicPublish(exchange: "",

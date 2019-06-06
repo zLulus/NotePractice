@@ -75,7 +75,8 @@ namespace DotNetCoreConsole
             var userName = "guest";
             var password = "guest";
             //Send.Run(host, port, userName, password);
-            NewTask.Run(host, port, userName, password);
+            //NewTask.Run(host, port, userName, password);
+            EmitLog.Run(host, port, userName, password);
 
             Console.ReadLine();
         }
