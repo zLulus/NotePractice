@@ -69,8 +69,8 @@ namespace DotNetCoreConsole
             //byte to string
             //StringDemo.Run();
 
-            //RabbitMQ
-            UseRabbitMQDemo.Run();
+            //RabbitMQ Sender
+            Send.Run("localhost", 5673, "guest", "guest");
 
             Console.ReadLine();
         }

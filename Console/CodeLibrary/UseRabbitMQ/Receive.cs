@@ -1,16 +1,17 @@
 ﻿using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using System.Timers;
+using System.Threading.Tasks;
 
-namespace CodeLibraryForDotNetCore.UseRabbitMQ
+namespace CodeLibrary.UseRabbitMQ
 {
-    public class Send
+    public class Receive
     {
         public static IConnection connection { get; set; }
         public static IModel channel { get; set; }
-
         public static void Run(string ipaddress, int port, string userName, string password)
         {
             var factory = new ConnectionFactory() { HostName = ipaddress, Port = port, UserName = userName, Password = password };
@@ -22,24 +23,16 @@ namespace CodeLibraryForDotNetCore.UseRabbitMQ
                                  autoDelete: false,
                                  arguments: null);
 
-
-            Timer aTimer = new System.Timers.Timer(2000);
-            int count = 1;
-            // Hook up the Elapsed event for the timer. 
-            aTimer.Elapsed += (sender, e) =>
+            var consumer = new EventingBasicConsumer(channel);
+            consumer.Received += (model, ea) =>
             {
-                string message = $"Hello World:{count}";
-                var body = Encoding.UTF8.GetBytes(message);
-                channel.BasicPublish(exchange: "",
-                                routingKey: "hello",
-                                basicProperties: null,
-                                body: body);
-                Console.WriteLine($"{DateTime.Now} [x] Sent {message}" );
-                count++;
+                var body = ea.Body;
+                var message = Encoding.UTF8.GetString(body);
+                Console.WriteLine($"{DateTime.Now} [x] Received {message}");
             };
-            aTimer.AutoReset = true;
-            aTimer.Enabled = true;
-
+            channel.BasicConsume(queue: "hello",
+                                 autoAck: true,
+                                 consumer: consumer);
         }
     }
 }

@@ -9,6 +9,7 @@ using CodeLibrary.SpoofIpAddress;
 using CodeLibrary.UsePostgresql;
 using CodeLibrary.UsePostgresql.Enums;
 using CodeLibrary.UsePostgresql.Models;
+using CodeLibrary.UseRabbitMQ;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -93,7 +94,10 @@ namespace ConsoleDemo
 
             //网络延迟，取消请求
             //CancleRequestDemo.CancleRequestByTimeout("http://localhost:1107");
-            CancleRequestDemo.CancleRequestByTask("http://localhost:1107");
+            //CancleRequestDemo.CancleRequestByTask("http://localhost:1107");
+
+            //RabbitMQ Receiver
+            Receive.Run("localhost", 5673,"guest", "guest");
 
 
             Console.ReadLine();
