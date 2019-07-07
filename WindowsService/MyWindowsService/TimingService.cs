@@ -47,5 +47,12 @@ namespace MyWindowsService
             var logger = NLogHelper.GetFileLogger(LogNames.ServiceLog);
             logger.Info("TimingService Stop");
         }
+
+        internal void TestStartupAndStop(string[] args)
+        {
+            this.OnStart(args);
+            Console.ReadLine();
+            this.OnStop();
+        }
     }
 }

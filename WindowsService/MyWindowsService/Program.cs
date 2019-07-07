@@ -12,7 +12,7 @@ namespace MyWindowsService
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main()
+        static void Main(string[] args)
         {
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
@@ -20,6 +20,11 @@ namespace MyWindowsService
                 new TimingService()
             };
             ServiceBase.Run(ServicesToRun);
+
+            //test service
+            //右键项目属性，将项目改为控制台程序
+            //TimingService timingService = new TimingService();
+            //timingService.TestStartupAndStop(args);
         }
     }
 }
