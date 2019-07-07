@@ -137,7 +137,7 @@
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.InstallButton);
             this.Name = "ServiceManageForm";
-            this.Text = "Form1";
+            this.Text = "管理Windows服务";
             this.ResumeLayout(false);
             this.PerformLayout();
 
