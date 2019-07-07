@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Configuration.Install;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
@@ -15,13 +16,16 @@ namespace MyWindowsService.Client
 {
     public partial class ServiceManageForm : Form
     {
-        //需要引用MyWindowsService项目
-        string serviceFilePath = $"{Application.StartupPath}\\MyWindowsService.exe";
-        //这里是设置的serviceName，不是项目名称或者生成的exe的名称
-        string serviceName = "TimingService";
+        
+        private string ServiceFilePath { get { return FilePathTextBox.Text; } }
+        //这里是在serviceInstaller1中设置的serviceName，不是项目名称或者生成的exe的名称
+        private string ServiceName { get { return ServiceNameTextBox.Text; } }
         public ServiceManageForm()
         {
             InitializeComponent();
+            //需要引用MyWindowsService项目
+            FilePathTextBox.Text = $"{Application.StartupPath}\\MyWindowsService.exe";
+            ServiceNameTextBox.Text = "TimingService";
         }
 
         /// <summary>
@@ -31,9 +35,9 @@ namespace MyWindowsService.Client
         /// <param name="e"></param>
         private void InstallButton_Click(object sender, EventArgs e)
         {
-            if (this.IsServiceExisted(serviceName))
-                this.UninstallService(serviceName);
-            this.InstallService(serviceFilePath);
+            if (this.IsServiceExisted(ServiceName))
+                this.UninstallService(ServiceName);
+            this.InstallService(ServiceFilePath);
         }
 
         /// <summary>
@@ -43,8 +47,8 @@ namespace MyWindowsService.Client
         /// <param name="e"></param>
         private void StartButton_Click(object sender, EventArgs e)
         {
-            if (this.IsServiceExisted(serviceName))
-                this.ServiceStart(serviceName);
+            if (this.IsServiceExisted(ServiceName))
+                this.ServiceStart(ServiceName);
         }
 
         /// <summary>
@@ -54,7 +58,7 @@ namespace MyWindowsService.Client
         /// <param name="e"></param>
         private void StopButton_Click(object sender, EventArgs e)
         {
-            if (this.IsServiceExisted(serviceName)) this.ServiceStop(serviceName);
+            if (this.IsServiceExisted(ServiceName)) this.ServiceStop(ServiceName);
         }
 
         /// <summary>
@@ -64,10 +68,10 @@ namespace MyWindowsService.Client
         /// <param name="e"></param>
         private void UninstallButton_Click(object sender, EventArgs e)
         {
-            if (this.IsServiceExisted(serviceName))
+            if (this.IsServiceExisted(ServiceName))
             {
-                this.ServiceStop(serviceName);
-                this.UninstallService(serviceFilePath);
+                this.ServiceStop(ServiceName);
+                this.UninstallService(ServiceFilePath);
             }
         }
 
@@ -128,6 +132,31 @@ namespace MyWindowsService.Client
                 if (control.Status == ServiceControllerStatus.Running)
                 {
                     control.Stop();
+                }
+            }
+        }
+
+        private void SelectFileButton_Click(object sender, EventArgs e)
+        {
+            //初始化一个OpenFileDialog类
+            OpenFileDialog fileDialog = new OpenFileDialog();
+
+            //判断用户是否正确的选择了文件
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                //获取用户选择文件的后缀名
+                string extension = Path.GetExtension(fileDialog.FileName);
+                //声明允许的后缀名
+                string[] str = new string[] { ".exe"};
+                if (!((IList)str).Contains(extension))
+                {
+                    MessageBox.Show("仅能选择.exe文件！");
+                }
+                else
+                {
+                    //获取用户选择的文件，并判断文件大小不能超过20K，fileInfo.Length是以字节为单位的
+                    FileInfo fileInfo = new FileInfo(fileDialog.FileName);
+                    FilePathTextBox.Text = fileInfo.DirectoryName;
                 }
             }
         }
