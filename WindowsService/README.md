@@ -1,12 +1,16 @@
-## ÏîÄ¿½á¹¹
-MyWindowsService:
-	Windows service±¾Ìå£¬ÔÚTimingServiceµÄ´úÂë²ãÃæĞ´ÒµÎñ´úÂë
-MyWindowsService.Client:
-	¹ÜÀíWindows serviceµÄ¿ÉÊÓ»¯½çÃæ£¬¿ÉÒÔÑ¡ÔñWindows service³ÌĞò¡¢ÌîĞ´serviceÃû³Æ£¬¶Ô·şÎñ½øĞĞ¹ÜÀí
-	Ä¬ÈÏ¹ÜÀíMyWindowsService
+## é¡¹ç›®ç»“æ„
+#### MyWindowsService    
+Windows serviceæœ¬ä½“ï¼Œåœ¨TimingServiceçš„ä»£ç å±‚é¢å†™ä¸šåŠ¡ä»£ç    
+#### MyWindowsService.Client    
+ç®¡ç†Windows serviceçš„å¯è§†åŒ–ç•Œé¢ï¼Œå¯ä»¥é€‰æ‹©Windows serviceç¨‹åºã€å¡«å†™serviceåç§°ï¼Œå¯¹æœåŠ¡è¿›è¡Œç®¡ç†   
+é»˜è®¤ç®¡ç†MyWindowsService     
+![13](https://user-images.githubusercontent.com/19277908/60768690-72154780-a0b6-11e9-8388-b41515c977af.png)     
 
-## Ê¹ÓÃËµÃ÷
-Ñ¡ÔñMyWindowsService.Client£¬ÓÒ¼üÉú³É
-µ½\bin\DebugÄ¿Â¼ÏÂ£¬°üÀ¨MyWindowsService.Client.exeºÍMyWindowsService.exeµÈÄÚÈİ
-´ò¿ªMyWindowsService.Client.exe£¬°²×°²¢Æô¶¯MyWindowsService.exe
-Ä¬ÈÏ¹¦ÄÜÊÇÔÚ·şÎñ¿ªÆô¡¢¹Ø±ÕÊ±´òÈÕÖ¾£¬Ã¿¸ôÒ»·ÖÖÓ´òÒ»´ÎÈÕÖ¾£¬ÈÕÖ¾ÔÚ\bin\Debug\outputÄ¿Â¼ÏÂ
+## ä½¿ç”¨è¯´æ˜
+é€‰æ‹©MyWindowsService.Clientï¼Œå³é”®ç”Ÿæˆ    
+åˆ°\bin\Debugç›®å½•ä¸‹ï¼ŒåŒ…æ‹¬MyWindowsService.Client.exeå’ŒMyWindowsService.exeç­‰å†…å®¹   
+æ‰“å¼€MyWindowsService.Client.exeï¼Œå®‰è£…å¹¶å¯åŠ¨MyWindowsService.exe    
+é»˜è®¤åŠŸèƒ½æ˜¯åœ¨æœåŠ¡å¼€å¯ã€å…³é—­æ—¶æ‰“æ—¥å¿—ï¼Œæ¯éš”ä¸€åˆ†é’Ÿæ‰“ä¸€æ¬¡æ—¥å¿—ï¼Œæ—¥å¿—åœ¨\bin\Debug\outputç›®å½•ä¸‹       
+
+## æ–‡æ¡£è¯´æ˜
+[åˆ›å»ºWindows Service](https://github.com/zLulus/My_Note/wiki/%E5%88%9B%E5%BB%BAWindows-Service)
