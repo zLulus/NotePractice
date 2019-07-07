@@ -1,7 +1,7 @@
 ## 项目结构
-MyWindowsService:    
+#### MyWindowsService    
 	Windows service本体，在TimingService的代码层面写业务代码   
-MyWindowsService.Client:    
+#### MyWindowsService.Client    
 	管理Windows service的可视化界面，可以选择Windows service程序、填写service名称，对服务进行管理   
 	默认管理MyWindowsService     
 ![13](https://user-images.githubusercontent.com/19277908/60768690-72154780-a0b6-11e9-8388-b41515c977af.png)     
