@@ -34,14 +34,13 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
             IPEndPoint ipe2 = new IPEndPoint(IPAddress.Any, port);
 
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
             //https://www.codeproject.com/Articles/117557/Set-Keep-Alive-Values
             //http://blog.stephencleary.com/2009/05/detection-of-half-open-dropped.html
             SetTcpKeepAlive(socket, 600000, 1000);
             //绑定端口和IP
             socket.Bind(ipe);
-            //设置监听
+            //设置监听数
             socket.Listen(10);
             //连接客户端
             await AsyncAccept(socket);
