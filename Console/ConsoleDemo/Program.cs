@@ -3,6 +3,7 @@ using CodeLibrary.CancleRequest;
 using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
+using CodeLibrary.IPAddresses;
 using CodeLibrary.SendEmail;
 using CodeLibrary.SimulateMouseAndKeyboardEvent;
 using CodeLibrary.SpoofIpAddress;
@@ -96,14 +97,17 @@ namespace ConsoleDemo
             //CancleRequestDemo.CancleRequestByTimeout("http://localhost:1107");
             //CancleRequestDemo.CancleRequestByTask("http://localhost:1107");
 
-            //RabbitMQ Receiver
-            var host = "localhost";
-            var port = 5673;
-            var userName = "guest";
-            var password = "guest";
-            //Receive.Run(host, port, userName, password);
-            //Worker.Run(host, port, userName, password);
-            ReceiveLogs.Run(host, port, userName, password);
+            ////RabbitMQ Receiver
+            //var host = "localhost";
+            //var port = 5673;
+            //var userName = "guest";
+            //var password = "guest";
+            ////Receive.Run(host, port, userName, password);
+            ////Worker.Run(host, port, userName, password);
+            //ReceiveLogs.Run(host, port, userName, password);
+
+            //获得IPAddress列表
+            IPAddressTool.GetIPAddressList();
 
 
             Console.ReadLine();

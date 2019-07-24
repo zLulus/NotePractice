@@ -84,6 +84,7 @@
     <Compile Include="CSharpUsingPython\CSharpUsingPythonDemo.cs" />
     <Compile Include="ExcuteJsByPhantomjs\ExcuteJsByPhantomjsDemo.cs" />
     <Compile Include="ExcuteJs\ExcuteJsDemo.cs" />
+    <Compile Include="IPAddresses\IPAddressTool.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="RegexDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
