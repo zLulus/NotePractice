@@ -27,6 +27,12 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
 
             //创建套接字
             IPEndPoint ipe = new IPEndPoint(IPAddress.Parse(ipaddress), port);
+            //也可以使用IPAddress.Any，监听所有网络接口上的客户端活动
+            //https://docs.microsoft.com/en-us/dotnet/api/system.net.ipaddress.any?view=netframework-4.7.2
+            //一般来说，服务端套接字都是直接bind端口，不会显式指明ip地址
+            //否则切换了服务器还需要修改，或者也可以动态获取IP，但是没必要
+            IPEndPoint ipe2 = new IPEndPoint(IPAddress.Any, port);
+
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);

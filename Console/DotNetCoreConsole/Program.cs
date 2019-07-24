@@ -14,6 +14,7 @@ using CodeLibraryForDotNetCore.UseTcpSocket;
 using CodeLibraryForDotNetCore.UseArray;
 using CodeLibraryForDotNetCore.StringConverters;
 using CodeLibraryForDotNetCore.UseRabbitMQ;
+using CodeLibraryForDotNetCore.IPAddresses;
 
 namespace DotNetCoreConsole
 {
@@ -70,13 +71,16 @@ namespace DotNetCoreConsole
             //StringDemo.Run();
 
             //RabbitMQ Sender
-            var host = "localhost";
-            var port = 5673;
-            var userName = "guest";
-            var password = "guest";
+            //var host = "localhost";
+            //var port = 5673;
+            //var userName = "guest";
+            //var password = "guest";
             //Send.Run(host, port, userName, password);
             //NewTask.Run(host, port, userName, password);
-            EmitLog.Run(host, port, userName, password);
+            //EmitLog.Run(host, port, userName, password);
+
+            //获得IPAddress列表
+            IPAddressTool.GetIPAddressList();
 
             Console.ReadLine();
         }
