@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using CoreConsole.Config.Models;
 using Microsoft.Extensions.Configuration;
@@ -10,6 +11,18 @@ namespace CoreConsole
     public class ConfigReadDemo
     {
         private readonly ConfigTest configTestByOptions;
+
+        public static void ReadConfig2()
+        {
+            var builder = new ConfigurationBuilder()
+                        //保证执行文件下有json文件
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json");
+            IConfiguration config = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", true, true)
+                .Build();
+            var yourValue = config["YourKey"];
+        }
 
         public static void ReadConfig()
         {

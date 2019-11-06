@@ -35,6 +35,7 @@ namespace DotNetCoreConsole
             //ConfigReadDemo.ReadConfig();
             //ConfigReadDemo.ReadConfigByBind();
             //ConfigReadDemo.ReadConfigHotUpdate();
+            //ConfigReadDemo.ReadConfig2();
 
             //send email
             //SendEmailDemo.Run();
