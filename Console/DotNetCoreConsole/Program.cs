@@ -15,6 +15,9 @@ using CodeLibraryForDotNetCore.UseArray;
 using CodeLibraryForDotNetCore.StringConverters;
 using CodeLibraryForDotNetCore.UseRabbitMQ;
 using CodeLibraryForDotNetCore.IPAddresses;
+using System.Collections;
+using CodeLibraryForDotNetCore.Algorithms;
+using CodeLibraryForDotNetCore.Algorithms.Enums;
 
 namespace DotNetCoreConsole
 {
@@ -81,7 +84,10 @@ namespace DotNetCoreConsole
             //EmitLog.Run(host, port, userName, password);
 
             //获得IPAddress列表
-            IPAddressTool.GetIPAddressList();
+            //IPAddressTool.GetIPAddressList();
+
+            var sortList1= BubblingAlgorithm.Sort(new int[] { 2,33,22,1,0,9,5},SortMethodEnum.FromLargeToSmall);
+            var sortList2 = BubblingAlgorithm.Sort(new int[] { 2, 33, 22, 1, 0, 9, 5 }, SortMethodEnum.FromSmallToLarge);
 
             Console.ReadLine();
         }
