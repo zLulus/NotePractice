@@ -21,4 +21,4 @@
 | 6|Xamarin.Forms                                |Xamarin.Forms示例demo                      |
 | 7| MiniProgramDemo                                    |微信小程序demo                     |
 
-If you have any questions about My_Note, you can create issues.
+If you have any questions about NotePractice, you can create issues.
