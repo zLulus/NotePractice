@@ -18,6 +18,8 @@ using CodeLibraryForDotNetCore.IPAddresses;
 using System.Collections;
 using CodeLibraryForDotNetCore.Algorithms;
 using CodeLibraryForDotNetCore.Algorithms.Enums;
+using System.Reflection;
+using CodeLibraryForDotNetCore.UseEqualsAndHashCodes;
 
 namespace DotNetCoreConsole
 {
@@ -86,12 +88,22 @@ namespace DotNetCoreConsole
             //获得IPAddress列表
             //IPAddressTool.GetIPAddressList();
 
-            var sortList1= BubblingAlgorithm.Sort(new int[] { 2,33,22,1,0,9,5},SortMethodEnum.FromLargeToSmall);
-            var sortList2 = BubblingAlgorithm.Sort(new int[] { 2, 33, 22, 1, 0, 9, 5 }, SortMethodEnum.FromSmallToLarge);
+            //排序算法：https://www.cnblogs.com/onepixel/articles/7674659.html
+            //var sortList1 = BubbleSort.Sort(new int[] { 2,33,22,1,0,9,5},SortMethodEnum.FromLargeToSmall);
+            //var sortList2 = BubbleSort.Sort(new int[] { 2, 33, 22, 1, 0, 9, 5 }, SortMethodEnum.FromSmallToLarge);
+
+            //var sortList3 = SelectionSort.Sort(new int[] { 2, 33, 22, 1, 0, 9, 5 }, SortMethodEnum.FromLargeToSmall);
+            //var sortList4 = SelectionSort.Sort(new int[] { 2, 33, 22, 1, 0, 9, 5 }, SortMethodEnum.FromSmallToLarge);
+
+            //hash code
+            UseEqualsAndHashCodesDemo.Run();
 
             Console.ReadLine();
         }
 
-        
+        ~Program()
+        {
+
+        }
     }
 }

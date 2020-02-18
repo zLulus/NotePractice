@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CodeLibraryForDotNetCore.Algorithms
 {
-    public static class BubblingAlgorithm
+    public static class BubbleSort
     {
         public static int[] Sort(int[] data, SortMethodEnum sortMethod)
         {
