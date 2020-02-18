@@ -20,6 +20,7 @@ using CodeLibraryForDotNetCore.Algorithms;
 using CodeLibraryForDotNetCore.Algorithms.Enums;
 using System.Reflection;
 using CodeLibraryForDotNetCore.UseEqualsAndHashCodes;
+using CodeLibraryForDotNetCore.UseString;
 
 namespace DotNetCoreConsole
 {
@@ -96,8 +97,11 @@ namespace DotNetCoreConsole
             //var sortList4 = SelectionSort.Sort(new int[] { 2, 33, 22, 1, 0, 9, 5 }, SortMethodEnum.FromSmallToLarge);
 
             //hash code
-            UseEqualsAndHashCodesDemo.TestHashCode();
-            UseEqualsAndHashCodesDemo.TestEquals();
+            //UseEqualsAndHashCodesDemo.TestHashCode();
+            //UseEqualsAndHashCodesDemo.TestEquals();
+
+            //string
+            UseStringDemo.Run();
 
             Console.ReadLine();
         }
