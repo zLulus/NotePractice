@@ -16,6 +16,13 @@ namespace CodeLibraryForDotNetCore.UseEqualsAndHashCodes
             Console.WriteLine($"t1:{t1.GetHashCode()}");
             Console.WriteLine($"t2:{t2.GetHashCode()}");
             Console.WriteLine($"t3:{t3.GetHashCode()}");
+
+            var p1 = new Person() { Name="HAHA"};
+            var p2 = p1;
+            var p3 = new Person() { Name = "HAHA" };
+            Console.WriteLine($"p1:{p1.GetHashCode()}");
+            Console.WriteLine($"p2:{p2.GetHashCode()}");
+            Console.WriteLine($"p3:{p3.GetHashCode()}");
         }
 
         public static void TestEquals()
