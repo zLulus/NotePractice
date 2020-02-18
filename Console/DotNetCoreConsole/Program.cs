@@ -96,7 +96,8 @@ namespace DotNetCoreConsole
             //var sortList4 = SelectionSort.Sort(new int[] { 2, 33, 22, 1, 0, 9, 5 }, SortMethodEnum.FromSmallToLarge);
 
             //hash code
-            UseEqualsAndHashCodesDemo.Run();
+            UseEqualsAndHashCodesDemo.TestHashCode();
+            UseEqualsAndHashCodesDemo.TestEquals();
 
             Console.ReadLine();
         }
