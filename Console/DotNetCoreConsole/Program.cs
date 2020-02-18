@@ -21,6 +21,7 @@ using CodeLibraryForDotNetCore.Algorithms.Enums;
 using System.Reflection;
 using CodeLibraryForDotNetCore.UseEqualsAndHashCodes;
 using CodeLibraryForDotNetCore.UseString;
+using CodeLibraryForDotNetCore.UseConstAndReadonly;
 
 namespace DotNetCoreConsole
 {
@@ -101,7 +102,11 @@ namespace DotNetCoreConsole
             //UseEqualsAndHashCodesDemo.TestEquals();
 
             //string
-            UseStringDemo.Run();
+            //UseStringDemo.Run();
+            //UseStringDemo.Run2();
+
+            //const && readonly
+            var demo = new UseConstAndReadonlyDemo();
 
             Console.ReadLine();
         }
