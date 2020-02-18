@@ -103,10 +103,10 @@ namespace DotNetCoreConsole
 
             //string
             //UseStringDemo.Run();
-            //UseStringDemo.Run2();
+            UseStringDemo.Run2();
 
             //const && readonly
-            var demo = new UseConstAndReadonlyDemo();
+            //var demo = new UseConstAndReadonlyDemo();
 
             Console.ReadLine();
         }

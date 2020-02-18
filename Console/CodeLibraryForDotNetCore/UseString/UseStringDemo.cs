@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using System.Timers;
 
 namespace CodeLibraryForDotNetCore.UseString
 {
@@ -28,9 +30,30 @@ namespace CodeLibraryForDotNetCore.UseString
 
         public static void Run2()
         {
-            StringBuilder text = new StringBuilder("123456", 12);
-            text.Append("789");
-            var a= text.ToString();
+            var count = 100000;
+            var addStr = "1234567890";
+            Stopwatch stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < count; i++)
+            {
+                stringBuilder.Append(addStr);
+            }
+            var a = stringBuilder.ToString();
+            stopwatch.Stop();
+            var t1= stopwatch.ElapsedMilliseconds;
+            Console.WriteLine($"StringBuilder耗时:{t1}");
+
+            stopwatch.Restart();
+            var s = "";
+            for (int i = 0; i < count; i++)
+            {
+                s += addStr;
+            }
+            stopwatch.Stop();
+            var t2 = stopwatch.ElapsedMilliseconds;
+            Console.WriteLine($"String耗时:{t2}");
         }
     }
 }
