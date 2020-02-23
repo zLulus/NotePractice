@@ -22,6 +22,9 @@ using System.Reflection;
 using CodeLibraryForDotNetCore.UseEqualsAndHashCodes;
 using CodeLibraryForDotNetCore.UseString;
 using CodeLibraryForDotNetCore.UseConstAndReadonly;
+using CodeLibraryForDotNetCore.DelegateAndEvent;
+using CodeLibraryForDotNetCore.DelegateAndEvent.Delegate;
+using CodeLibraryForDotNetCore.DelegateAndEvent.Event;
 
 namespace DotNetCoreConsole
 {
@@ -103,10 +106,17 @@ namespace DotNetCoreConsole
 
             //string
             //UseStringDemo.Run();
-            UseStringDemo.Run2();
+            //UseStringDemo.Run2();
 
             //const && readonly
             //var demo = new UseConstAndReadonlyDemo();
+
+            //委托和事件
+            //DelegateDemo.DelegateDemo1();
+            //DelegateDemo.DelegateDemo2();
+            //DelegateDemo.DelegateDemo3();
+            //DelegateDemo.DelegateDemo4();
+            EventDemo.Run();
 
             Console.ReadLine();
         }
