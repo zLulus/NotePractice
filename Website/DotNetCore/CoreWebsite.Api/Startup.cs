@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreWebsite.Api.Filters;
+using CoreWebsite.Api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,9 @@ namespace CoreWebsite.Api
             //在 .NET Core 中运行 JavaScript
             //https://www.cnblogs.com/stulzq/p/10535310.html
             services.AddNodeServices();
+
+            //依赖注入
+            services.AddScoped<ILogService, TxtLogService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
