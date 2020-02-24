@@ -25,6 +25,7 @@ using CodeLibraryForDotNetCore.UseConstAndReadonly;
 using CodeLibraryForDotNetCore.DelegateAndEvent;
 using CodeLibraryForDotNetCore.DelegateAndEvent.Delegate;
 using CodeLibraryForDotNetCore.DelegateAndEvent.Event;
+using CodeLibraryForDotNetCore.UseDependencyInjection;
 
 namespace DotNetCoreConsole
 {
@@ -116,7 +117,11 @@ namespace DotNetCoreConsole
             //DelegateDemo.DelegateDemo2();
             //DelegateDemo.DelegateDemo3();
             //DelegateDemo.DelegateDemo4();
-            EventDemo.Run();
+            //EventDemo.Run();
+
+            //依赖注入
+            var demo = new UseDependencyInjectionDemo();
+            demo.Run("依赖注入测试...");
 
             Console.ReadLine();
         }
