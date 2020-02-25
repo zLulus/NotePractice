@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,8 +17,16 @@ namespace CoreWebsite.Api
 {
     public class Startup
     {
+        private readonly IHostingEnvironment _appEnvironment;
+
+        public Startup(IHostingEnvironment appEnvironment)
+        {
+            _appEnvironment = appEnvironment;
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        //依赖注入
         public void ConfigureServices(IServiceCollection services)
         {
             //跨域
@@ -47,8 +56,37 @@ namespace CoreWebsite.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        //管道、中间件
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //自定义中间件
+            app.Use(async (context, next) =>
+            {
+                //进入管道
+                //code executed before the next middleware
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
+
+                await next.Invoke();
+
+                //退出管道
+                // code executed after the next middleware
+                stopWatch.Stop();
+
+                var time = stopWatch.ElapsedMilliseconds;
+                var path = $"{_appEnvironment.WebRootPath}\\Log.txt";
+                using (FileStream fs = new FileStream(path, FileMode.Append, FileAccess.Write))
+                {
+                    //获得字节数组
+                    byte[] data = System.Text.Encoding.Default.GetBytes($"执行时间:{time}\n");
+                    //开始写入
+                    fs.Write(data, 0, data.Length);
+                    //清空缓冲区、关闭流
+                    fs.Flush();
+                    fs.Close();
+                }
+            });
+
             //跨域  注意顺序
             app.UseCors(builder =>
             {
@@ -73,6 +111,8 @@ namespace CoreWebsite.Api
                 c.ValidatorUrl(null);
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "CoreWebsite.Api V1");
             });
+
+            
 
             app.Run(async (context) =>
             {

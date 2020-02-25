@@ -22,7 +22,7 @@ namespace CoreWebsite.Api.Services
             using(FileStream fs = new FileStream(path, FileMode.Append, FileAccess.Write))
             {
                 //获得字节数组
-                byte[] data = System.Text.Encoding.Default.GetBytes(content);
+                byte[] data = System.Text.Encoding.Default.GetBytes($"记录日志：{content}\n");
                 //开始写入
                 fs.Write(data, 0, data.Length);
                 //清空缓冲区、关闭流
