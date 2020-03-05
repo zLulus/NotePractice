@@ -26,6 +26,8 @@ using CodeLibraryForDotNetCore.DelegateAndEvent;
 using CodeLibraryForDotNetCore.DelegateAndEvent.Delegate;
 using CodeLibraryForDotNetCore.DelegateAndEvent.Event;
 using CodeLibraryForDotNetCore.UseDependencyInjection;
+using CodeLibraryForDotNetCore.UseTry;
+using CodeLibraryForDotNetCore.GetLength;
 
 namespace DotNetCoreConsole
 {
@@ -120,8 +122,14 @@ namespace DotNetCoreConsole
             //EventDemo.Run();
 
             //依赖注入
-            var demo = new UseDependencyInjectionDemo();
-            demo.Run("依赖注入测试...");
+            //var demo = new UseDependencyInjectionDemo();
+            //demo.Run("依赖注入测试...");
+
+            //try-finally
+            //UseTryDemo.Run();
+
+            //length
+            GetLengthDemo.Run();
 
             Console.ReadLine();
         }
