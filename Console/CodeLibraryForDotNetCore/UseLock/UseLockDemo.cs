@@ -19,19 +19,21 @@ namespace CodeLibraryForDotNetCore.UseLock
             var stock = 10;
             //假设有商品库存为10
             Console.WriteLine($"假设有商品库存为10");
-            //顾客100名进行抢购
+            //初始化顾客
             Customers = new List<Customer>();
             for (int i = 0; i < customerCount; i++)
             {
                 Customers.Add(new Customer() { Id = i, Name = $"顾客{i}" });
             }
             Console.WriteLine($"顾客{customerCount}名进行抢购");
+            Console.WriteLine("---------------------------");
             //不加lock的情况
-            NormalMethod(customerCount, stock);
+            WithoutLock(customerCount, stock);
             //加lock的情况
+            Console.WriteLine("---------------------------");
             UseLock(customerCount, stock);
-
             //加Monitor方法
+            Console.WriteLine("---------------------------");
             UseMonitor(customerCount, stock);
         }
 
@@ -45,7 +47,7 @@ namespace CodeLibraryForDotNetCore.UseLock
                 try
                 {
                     System.Threading.Monitor.Enter(inStockLock, ref lockWasTaken);
-                    TryToBuySth(customerCount);
+                    TryToBuyGoods(customerCount);
                 }
                 finally
                 {
@@ -64,53 +66,36 @@ namespace CodeLibraryForDotNetCore.UseLock
             {
                 lock (inStockLock)
                 {
-                    TryToBuySth(customerCount);
+                    TryToBuyGoods(customerCount);
                 }
             });
             Console.WriteLine($"最终库存：{inStock}");
         }
 
-        private void NormalMethod(int customerCount, int stock)
+        private void WithoutLock(int customerCount, int stock)
         {
             inStock = stock;//重置库存
             Console.WriteLine($"不加lock的情况:");
-            //var actions = new Action[customerCount];
-            //for (int i = 0; i < customerCount; i++)
-            //{
-            //    var action = new Action(() =>
-            //     {
-            //         var buyCustomer = Customers[random.Next(0, customerCount)];
-            //         if (inStock > 0)
-            //         {
-            //             inStock--;
-            //             Console.WriteLine($"顾客{buyCustomer.Name}购买了一件商品");
-            //         }
-            //     });
-            //    actions[i]=action;
-            //}
-            ////配置选项
-            //ParallelOptions parallelOptions = new ParallelOptions();
-            ////设置并发任务最大数目
-            //parallelOptions.MaxDegreeOfParallelism = customerCount;
-
-            //Parallel.Invoke(parallelOptions, actions);
-
             Parallel.For(0, customerCount, (i) =>
             {
-                TryToBuySth(customerCount);
+                TryToBuyGoods(customerCount);
             });
 
             Console.WriteLine($"最终库存：{inStock}");
         }
 
-        private void TryToBuySth(int customerCount)
+        private void TryToBuyGoods(int customerCount)
         {
             var buyCustomer = Customers[random.Next(0, customerCount)];
+            var sleepTime = random.Next(1000, 10000);
             if (inStock > 0)
             {
+                //模拟购物业务逻辑处理时间(占用资源)
+                Thread.Sleep(sleepTime);
                 inStock--;
                 Console.WriteLine($"顾客{buyCustomer.Name}购买了一件商品");
             }
+            //Console.WriteLine($"当前库存:{inStock}");
         }
     }
 }

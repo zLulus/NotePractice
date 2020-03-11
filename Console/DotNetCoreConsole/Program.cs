@@ -134,7 +134,7 @@ namespace DotNetCoreConsole
             //GetLengthDemo.Run();
 
             //lock
-            new UseLockDemo().Run();
+            //new UseLockDemo().Run();
 
             //线程安全集合
             //ConcurrentCollectionDemo.ConcurrentBagDemo();
