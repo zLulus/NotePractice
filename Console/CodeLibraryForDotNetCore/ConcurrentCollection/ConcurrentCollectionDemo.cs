@@ -15,15 +15,20 @@ namespace CodeLibraryForDotNetCore.ConcurrentCollection
         /// </summary>
         public static void ConcurrentBagDemo()
         {
-            ConcurrentBag<int> list = new ConcurrentBag<int>();
-            Parallel.For(0, 10000, item =>
+            var random = new Random();
+            var totalCount = 100;
+            ConcurrentBag<int> bag = new ConcurrentBag<int>();
+            Parallel.For(0, totalCount*10, item =>
             {
-                list.Add(item);
+                if(bag.Count<= totalCount)
+                {
+                    bag.Add(item);
+                }
             });
-            //能够达到10000
-            Console.WriteLine("ConcurrentBag's count is {0}", list.Count());
+            //有时会超过100个
+            Console.WriteLine("ConcurrentBag's count is {0}", bag.Count());
             int n = 0;
-            foreach (int i in list)
+            foreach (int i in bag)
             {
                 if (n > 10)
                     break;
@@ -31,7 +36,7 @@ namespace CodeLibraryForDotNetCore.ConcurrentCollection
                 //输出结果随机，因为是并行的
                 Console.WriteLine("Item[{0}] = {1}", n, i);
             }
-            Console.WriteLine("ConcurrentBag's max item is {0}", list.Max());
+            Console.WriteLine("ConcurrentBag's max item is {0}", bag.Max());
         }
 
         /// <summary>

@@ -93,6 +93,8 @@ namespace CodeLibraryForDotNetCore.UseLock
                 //模拟购物业务逻辑处理时间(占用资源)
                 Thread.Sleep(sleepTime);
                 inStock--;
+                //上述流程是先处理一系列业务逻辑，后减库存，在不加lock的情况下会出现超卖现象
+                //建议的逻辑是，先减库存-处理业务逻辑-后续库存不足，恢复库存，并提示用户“购买失败”
                 Console.WriteLine($"顾客{buyCustomer.Name}购买了一件商品");
             }
             //Console.WriteLine($"当前库存:{inStock}");
