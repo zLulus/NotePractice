@@ -28,6 +28,8 @@ using CodeLibraryForDotNetCore.DelegateAndEvent.Event;
 using CodeLibraryForDotNetCore.UseDependencyInjection;
 using CodeLibraryForDotNetCore.UseTry;
 using CodeLibraryForDotNetCore.GetLength;
+using CodeLibraryForDotNetCore.UseLock;
+using CodeLibraryForDotNetCore.ConcurrentCollection;
 
 namespace DotNetCoreConsole
 {
@@ -129,7 +131,16 @@ namespace DotNetCoreConsole
             //UseTryDemo.Run();
 
             //length
-            GetLengthDemo.Run();
+            //GetLengthDemo.Run();
+
+            //lock
+            new UseLockDemo().Run();
+
+            //线程安全集合
+            //ConcurrentCollectionDemo.ConcurrentBagDemo();
+            //ConcurrentCollectionDemo.ConcurrentQueueDemo();
+            //ConcurrentCollectionDemo.ConcurrentStackDemo();
+            //ConcurrentCollectionDemo.ConcurrentDictionaryDemo();
 
             Console.ReadLine();
         }
