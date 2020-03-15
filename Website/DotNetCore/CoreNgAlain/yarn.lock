@@ -707,16 +707,6 @@ abbrev@1.0.x:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.0.9.tgz#91b4792588a7738c25f35dd6f63752a2f8776135"
 
-abp-ng2-module@^3.2.5:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/abp-ng2-module/-/abp-ng2-module-3.2.5.tgz#244899af82c888c447b90fb045c5075d83cd034c"
-  integrity sha512-Dn7JH/lxeRa9oiJCBR1kqT7vHIullE8hDgFU2mXSQhbWFqDlg4wcqKQWubbegFUBHX90b1EAgWkpNzxoBzI17g==
-
-abp-web-resources@^3.8.5:
-  version "3.8.5"
-  resolved "https://registry.yarnpkg.com/abp-web-resources/-/abp-web-resources-3.8.5.tgz#841bc7e8ab27530d1f2a2514156ee16c4b9c658e"
-  integrity sha512-bALG7Cpt+tHWmBVZZq6gk3PVVejvRB7R0M6RctEg4ESoFCoagvY5gMsj3icHOawErblHimRtjsaDzv4dyWpGgw==
-
 abs-svg-path@~0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/abs-svg-path/-/abs-svg-path-0.1.1.tgz#df601c8e8d2ba10d4a76d625e236a9a39c2723bf"
@@ -742,8 +732,9 @@ acorn-dynamic-import@^3.0.0:
     acorn "^5.0.0"
 
 acorn@^5.0.0, acorn@^5.3.0:
-  version "5.7.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
+  version "5.7.4"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
+  integrity sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==
 
 adler-32@~1.2.0:
   version "1.2.0"
