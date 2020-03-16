@@ -42,6 +42,15 @@ namespace CodeLibraryForDotNetCore.UseEqualsAndHashCodes
             Console.WriteLine($"l1==l2?:{l1 == l2}");//true
             Console.WriteLine($"l1==l3?:{l1 == l3}");//false
             Console.WriteLine($"l2==l3?:{l2 == l3}");//false
+
+            //string:特殊引用类型，比较的是数值
+            var s1 = "aaa";
+            var s2 = s1;
+            var s3 = "aaa";
+            Console.WriteLine($"s1==s2?:{s1 == s2}");//true
+            Console.WriteLine($"s1==s3?:{s1 == s3}");//true
+            Console.WriteLine($"s2==s3?:{s2 == s3}");//true
+            Console.WriteLine($"s1.Equals(s3)?:{s1.Equals(s3)}");//true
         }
     }
 }

@@ -107,7 +107,7 @@ namespace DotNetCoreConsole
 
             //hash code
             //UseEqualsAndHashCodesDemo.TestHashCode();
-            //UseEqualsAndHashCodesDemo.TestEquals();
+            UseEqualsAndHashCodesDemo.TestEquals();
 
             //string
             //UseStringDemo.Run();
@@ -137,7 +137,7 @@ namespace DotNetCoreConsole
             //new UseLockDemo().Run();
 
             //线程安全集合
-            ConcurrentCollectionDemo.ConcurrentBagDemo();
+            //ConcurrentCollectionDemo.ConcurrentBagDemo();
             //ConcurrentCollectionDemo.ConcurrentQueueDemo();
             //ConcurrentCollectionDemo.ConcurrentStackDemo();
             //ConcurrentCollectionDemo.ConcurrentDictionaryDemo();
