@@ -32,6 +32,7 @@ using CodeLibraryForDotNetCore.UseLock;
 using CodeLibraryForDotNetCore.ConcurrentCollection;
 using CodeLibraryForDotNetCore.Formats.UseIFormattable;
 using CodeLibraryForDotNetCore.Formats.UseIFormatProvider;
+using CodeLibraryForDotNetCore.EnumTools;
 
 namespace DotNetCoreConsole
 {
@@ -109,7 +110,7 @@ namespace DotNetCoreConsole
 
             //hash code
             //UseEqualsAndHashCodesDemo.TestHashCode();
-            UseEqualsAndHashCodesDemo.TestEquals();
+            //UseEqualsAndHashCodesDemo.TestEquals();
 
             //string
             //UseStringDemo.Run();
@@ -147,6 +148,9 @@ namespace DotNetCoreConsole
             //IFormattable和IFormatProvider
             //UseIFormattableDemo.Run();
             //UseIFormatProviderDemo.Run();
+
+            //枚举扩展方法获得描述
+            EnumToolDemo.Run();
 
             Console.ReadLine();
         }
