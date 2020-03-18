@@ -89,6 +89,10 @@
     </Compile>
     <Compile Include="Converts\Converts\ColorConvert.cs" />
     <Compile Include="Converts\Models\Student.cs" />
+    <Compile Include="LoadingDataAsync\LoadingDataAsyncWindow.xaml.cs">
+      <DependentUpon>LoadingDataAsyncWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingDataAsync\Models\Doctor.cs" />
     <Compile Include="MarginAndPadding\MarginAndPaddingDemo.xaml.cs">
       <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
     </Compile>
@@ -248,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Keyboard\Keyboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadingDataAsync\LoadingDataAsyncWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
