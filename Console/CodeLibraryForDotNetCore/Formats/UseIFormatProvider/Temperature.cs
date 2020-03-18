@@ -11,8 +11,7 @@ namespace CodeLibraryForDotNetCore.Formats.UseIFormatProvider
         public Temperature(decimal temperature)
         {
             if (temperature < -273.15m)
-                throw new ArgumentOutOfRangeException(String.Format("{0} is less than absolute zero.",
-                                                      temperature));
+                throw new ArgumentOutOfRangeException(String.Format("{0}低于绝对零度.",temperature));
             this.temp = temperature;
         }
     }

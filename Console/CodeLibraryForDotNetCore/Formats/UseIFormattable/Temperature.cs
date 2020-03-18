@@ -15,8 +15,7 @@ namespace CodeLibraryForDotNetCore.Formats.UseIFormattable
         public Temperature(decimal temperature)
         {
             if (temperature < -273.15m)
-                throw new ArgumentOutOfRangeException(String.Format("{0}低于绝对零度",
-                                                      temperature));
+                throw new ArgumentOutOfRangeException(String.Format("{0}低于绝对零度",temperature));
             this.temp = temperature;
         }
 
@@ -59,6 +58,7 @@ namespace CodeLibraryForDotNetCore.Formats.UseIFormattable
             if (String.IsNullOrEmpty(format)) format = "G";
             if (provider == null) provider = CultureInfo.CurrentCulture;
 
+            //G（默认，摄氏度）、C（摄氏度）、F（华氏度）、K（开尔文）
             switch (format.ToUpperInvariant())
             {
                 case "G":

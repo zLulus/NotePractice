@@ -14,6 +14,7 @@ namespace CodeLibraryForDotNetCore.Formats.UseIFormattable
             // Use composite formatting with format string in the format item.
             //在格式项中使用带有格式字符串的复合格式
             Temperature temp1 = new Temperature(0);
+            //带有格式化字符串C/K/F
             Console.WriteLine("{0:C} (Celsius) = {0:K} (Kelvin) = {0:F} (Fahrenheit)\n", temp1);
 
             // Use composite formatting with a format provider.
