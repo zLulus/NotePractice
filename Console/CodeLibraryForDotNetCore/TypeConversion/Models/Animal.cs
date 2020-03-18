@@ -21,8 +21,10 @@ namespace CodeLibraryForDotNetCore.TypeConversion.Models
             return new Animal(cat.Name, cat.Weight);
         }
 
-        //显示转换
-        //写一个即可
+        /// <summary>
+        /// 显示转换:不支持隐式转换的写法
+        /// </summary>
+        /// <param name="cat"></param>
         //public static explicit operator Animal(Cat cat)
         //{
         //    return new Animal(cat.Name, cat.Weight);

@@ -11,7 +11,7 @@ namespace CodeLibraryForDotNetCore.TypeConversion
         {
             Cat cat = new Cat("喵喵",15);
             var animal = (Animal)cat;//显示转换
-            Animal animal12 = cat;//隐式转换
+            Animal animal12 = cat;//隐式转换(explicit写法不支持)
         }
     }
 }
