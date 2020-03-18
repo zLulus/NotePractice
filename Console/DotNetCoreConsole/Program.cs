@@ -30,6 +30,8 @@ using CodeLibraryForDotNetCore.UseTry;
 using CodeLibraryForDotNetCore.GetLength;
 using CodeLibraryForDotNetCore.UseLock;
 using CodeLibraryForDotNetCore.ConcurrentCollection;
+using CodeLibraryForDotNetCore.Formats.UseIFormattable;
+using CodeLibraryForDotNetCore.Formats.UseIFormatProvider;
 
 namespace DotNetCoreConsole
 {
@@ -107,7 +109,7 @@ namespace DotNetCoreConsole
 
             //hash code
             //UseEqualsAndHashCodesDemo.TestHashCode();
-            UseEqualsAndHashCodesDemo.TestEquals();
+            //UseEqualsAndHashCodesDemo.TestEquals();
 
             //string
             //UseStringDemo.Run();
@@ -141,6 +143,10 @@ namespace DotNetCoreConsole
             //ConcurrentCollectionDemo.ConcurrentQueueDemo();
             //ConcurrentCollectionDemo.ConcurrentStackDemo();
             //ConcurrentCollectionDemo.ConcurrentDictionaryDemo();
+
+            //IFormattable和IFormatProvider
+            UseIFormattableDemo.Run();
+            UseIFormatProviderDemo.Run();
 
             Console.ReadLine();
         }
