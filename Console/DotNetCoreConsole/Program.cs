@@ -33,6 +33,7 @@ using CodeLibraryForDotNetCore.ConcurrentCollection;
 using CodeLibraryForDotNetCore.Formats.UseIFormattable;
 using CodeLibraryForDotNetCore.Formats.UseIFormatProvider;
 using CodeLibraryForDotNetCore.EnumTools;
+using CodeLibraryForDotNetCore.TypeConversion;
 
 namespace DotNetCoreConsole
 {
@@ -150,7 +151,11 @@ namespace DotNetCoreConsole
             //UseIFormatProviderDemo.Run();
 
             //枚举扩展方法获得描述
-            EnumToolDemo.Run();
+            //EnumToolDemo.Run();
+
+            //自定义显隐式类型转换
+            TypeConversionDemo.Run();
+
 
             Console.ReadLine();
         }
