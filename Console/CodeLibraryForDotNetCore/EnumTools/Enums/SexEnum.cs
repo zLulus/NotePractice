@@ -12,6 +12,7 @@ namespace CodeLibraryForDotNetCore.EnumTools.Enums
         [Description("女性")]
         Woman =2,
         [Description("未知")]
-        Unknown =3
+        Unknown =3,
+        TestNoDescription=4
     }
 }
