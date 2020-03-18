@@ -109,7 +109,7 @@ namespace DotNetCoreConsole
 
             //hash code
             //UseEqualsAndHashCodesDemo.TestHashCode();
-            //UseEqualsAndHashCodesDemo.TestEquals();
+            UseEqualsAndHashCodesDemo.TestEquals();
 
             //string
             //UseStringDemo.Run();
@@ -145,8 +145,8 @@ namespace DotNetCoreConsole
             //ConcurrentCollectionDemo.ConcurrentDictionaryDemo();
 
             //IFormattable和IFormatProvider
-            UseIFormattableDemo.Run();
-            UseIFormatProviderDemo.Run();
+            //UseIFormattableDemo.Run();
+            //UseIFormatProviderDemo.Run();
 
             Console.ReadLine();
         }

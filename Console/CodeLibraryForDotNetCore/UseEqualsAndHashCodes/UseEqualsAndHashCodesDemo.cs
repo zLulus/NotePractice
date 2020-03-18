@@ -34,6 +34,8 @@ namespace CodeLibraryForDotNetCore.UseEqualsAndHashCodes
             Console.WriteLine($"i1:{i1.GetHashCode()}");
             Console.WriteLine($"i2:{i2.GetHashCode()}");
             Console.WriteLine($"i1==i2?:{i1==i2}");//true
+            //Object.ReferenceEquals静态方法比较:比较的是引用地址
+            Console.WriteLine($"ReferenceEquals(i1, i2):{ReferenceEquals(i1, i2)}");//false
 
             //引用类型
             var l1 = new List<int>();
@@ -42,6 +44,10 @@ namespace CodeLibraryForDotNetCore.UseEqualsAndHashCodes
             Console.WriteLine($"l1==l2?:{l1 == l2}");//true
             Console.WriteLine($"l1==l3?:{l1 == l3}");//false
             Console.WriteLine($"l2==l3?:{l2 == l3}");//false
+            //Object.ReferenceEquals静态方法比较:比较的是引用地址
+            Console.WriteLine($"ReferenceEquals(l1, l2):{ReferenceEquals(l1, l2)}");//true
+            Console.WriteLine($"ReferenceEquals(l1, l3):{ReferenceEquals(l1, l3)}");//false
+            Console.WriteLine($"ReferenceEquals(l2, l3):{ReferenceEquals(l2, l3)}");//false
 
             //string:特殊引用类型，比较的是数值
             var s1 = "aaa";
