@@ -35,6 +35,7 @@ using CodeLibraryForDotNetCore.Formats.UseIFormatProvider;
 using CodeLibraryForDotNetCore.EnumTools;
 using CodeLibraryForDotNetCore.TypeConversion;
 using CodeLibraryForDotNetCore.Attributes;
+using CodeLibraryForDotNetCore.DelegateAndEvent.AnonymousMethods;
 
 namespace DotNetCoreConsole
 {
@@ -127,6 +128,9 @@ namespace DotNetCoreConsole
             //DelegateDemo.DelegateDemo3();
             //DelegateDemo.DelegateDemo4();
             //EventDemo.Run();
+            //含匿名方法
+            AnonymousMethodDemo.Run1();
+            AnonymousMethodDemo.Run2();
 
             //依赖注入
             //var demo = new UseDependencyInjectionDemo();
@@ -158,7 +162,7 @@ namespace DotNetCoreConsole
             //TypeConversionDemo.Run();
 
             //Attribute
-            AttributeDemo.Run();
+            //AttributeDemo.Run();
 
             Console.ReadLine();
         }
