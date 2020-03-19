@@ -129,8 +129,8 @@ namespace DotNetCoreConsole
             //DelegateDemo.DelegateDemo4();
             //EventDemo.Run();
             //含匿名方法
-            AnonymousMethodDemo.Run1();
-            AnonymousMethodDemo.Run2();
+            //AnonymousMethodDemo.Run1();
+            //AnonymousMethodDemo.Run2();
 
             //依赖注入
             //var demo = new UseDependencyInjectionDemo();
@@ -158,6 +158,9 @@ namespace DotNetCoreConsole
             //枚举扩展方法获得描述
             //EnumToolDemo.Run();
 
+            //类型转换
+            //基类、子类之间的类型转换
+            BaseAndSubClassTypeConversionDemo.Run();
             //自定义显隐式类型转换
             //TypeConversionDemo.Run();
 

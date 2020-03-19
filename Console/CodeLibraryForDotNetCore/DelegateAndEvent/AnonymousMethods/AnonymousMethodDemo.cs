@@ -12,13 +12,13 @@ namespace CodeLibraryForDotNetCore.DelegateAndEvent.AnonymousMethods
         {
             Console.WriteLine("Run1");
             // 使用匿名方法创建委托实例
-            WriteResult nc = delegate (string str)
+            WriteResult wr = delegate (string str)
             {
                 Console.WriteLine("Anonymous Method Write Result: {0}", str);
             };
 
             // 使用匿名方法调用委托
-            nc("Test Anonymous Method");
+            wr("Test Anonymous Method");
         }
 
         #region Run2

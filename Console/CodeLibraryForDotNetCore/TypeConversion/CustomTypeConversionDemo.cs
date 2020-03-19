@@ -5,7 +5,10 @@ using System.Text;
 
 namespace CodeLibraryForDotNetCore.TypeConversion
 {
-    public class TypeConversionDemo
+    /// <summary>
+    /// 自定义显隐式类型转换
+    /// </summary>
+    public class CustomTypeConversionDemo
     {
         public static void Run()
         {
