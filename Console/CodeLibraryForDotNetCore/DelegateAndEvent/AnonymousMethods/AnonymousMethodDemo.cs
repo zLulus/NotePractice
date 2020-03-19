@@ -6,22 +6,24 @@ namespace CodeLibraryForDotNetCore.DelegateAndEvent.AnonymousMethods
 {
     public class AnonymousMethodDemo
     {
-        delegate void NumberChanger(int n);
+        delegate void WriteResult(string str);
 
         public static void Run1()
         {
             Console.WriteLine("Run1");
             // 使用匿名方法创建委托实例
-            NumberChanger nc = delegate (int x)
+            WriteResult nc = delegate (string str)
             {
-                Console.WriteLine("Anonymous Method: {0}", x);
+                Console.WriteLine("Anonymous Method Write Result: {0}", str);
             };
 
             // 使用匿名方法调用委托
-            nc(10);
+            nc("Test Anonymous Method");
         }
 
         #region Run2
+
+        delegate void NumberChanger(int n);
         public static void Run2()
         {
             Console.WriteLine("Run2");
