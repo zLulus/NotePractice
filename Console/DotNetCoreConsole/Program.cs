@@ -34,6 +34,7 @@ using CodeLibraryForDotNetCore.Formats.UseIFormattable;
 using CodeLibraryForDotNetCore.Formats.UseIFormatProvider;
 using CodeLibraryForDotNetCore.EnumTools;
 using CodeLibraryForDotNetCore.TypeConversion;
+using CodeLibraryForDotNetCore.Attributes;
 
 namespace DotNetCoreConsole
 {
@@ -154,8 +155,10 @@ namespace DotNetCoreConsole
             //EnumToolDemo.Run();
 
             //自定义显隐式类型转换
-            TypeConversionDemo.Run();
+            //TypeConversionDemo.Run();
 
+            //Attribute
+            AttributeDemo.Run();
 
             Console.ReadLine();
         }
