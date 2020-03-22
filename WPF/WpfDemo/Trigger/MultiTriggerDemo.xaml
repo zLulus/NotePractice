@@ -19,7 +19,7 @@
 
                     <MultiTrigger.Setters>
                         <Setter Property="FontSize" Value="20" />
-                        <Setter Property="Foreground" Value="Orange" />
+                        <Setter Property="Foreground" Value="Blue" />
                     </MultiTrigger.Setters>
                 </MultiTrigger>
             </Style.Triggers>

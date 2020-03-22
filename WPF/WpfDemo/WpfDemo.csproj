@@ -97,6 +97,21 @@
     <Compile Include="MarginAndPadding\MarginAndPaddingDemo.xaml.cs">
       <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modules\ModuleMainWindow.xaml.cs">
+      <DependentUpon>ModuleMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\UserControls\ContentContainer.xaml.cs">
+      <DependentUpon>ContentContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\UserControls\Header.xaml.cs">
+      <DependentUpon>Header.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\UserControls\LeftToolBar.xaml.cs">
+      <DependentUpon>LeftToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\UserControls\TopToolBar.xaml.cs">
+      <DependentUpon>TopToolBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NoneBorder\NoneBorderDemo.xaml.cs">
       <DependentUpon>NoneBorderDemo.xaml</DependentUpon>
     </Compile>
@@ -323,6 +338,26 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MarginAndPadding\MarginAndPaddingDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\ModuleMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\UserControls\ContentContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\UserControls\Header.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\UserControls\LeftToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\UserControls\TopToolBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
