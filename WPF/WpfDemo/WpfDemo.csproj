@@ -39,6 +39,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -98,6 +99,10 @@
     </Compile>
     <Compile Include="NoneBorder\NoneBorderDemo.xaml.cs">
       <DependentUpon>NoneBorderDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenFiles\Commands\OpenFileCommand.cs" />
+    <Compile Include="OpenFiles\OpenTxtFileWindow.xaml.cs">
+      <DependentUpon>OpenTxtFileWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PropertyChanged\ChangeStudentInfo.xaml.cs">
@@ -335,6 +340,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NoneBorder\NoneBorderDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpenFiles\OpenTxtFileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
