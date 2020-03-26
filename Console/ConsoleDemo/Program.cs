@@ -4,6 +4,7 @@ using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
 using CodeLibrary.IPAddresses;
+using CodeLibrary.ReadMdbFiles;
 using CodeLibrary.SendEmail;
 using CodeLibrary.SimulateMouseAndKeyboardEvent;
 using CodeLibrary.SpoofIpAddress;
@@ -107,7 +108,10 @@ namespace ConsoleDemo
             //ReceiveLogs.Run(host, port, userName, password);
 
             //获得IPAddress列表
-            IPAddressTool.GetIPAddressList();
+            //IPAddressTool.GetIPAddressList();
+
+            //读取mdb文件
+            ReadMdbFileDemo.Run();
 
 
             Console.ReadLine();
