@@ -36,6 +36,7 @@ using CodeLibraryForDotNetCore.EnumTools;
 using CodeLibraryForDotNetCore.TypeConversion;
 using CodeLibraryForDotNetCore.Attributes;
 using CodeLibraryForDotNetCore.DelegateAndEvent.AnonymousMethods;
+using CodeLibraryForDotNetCore.Reflections;
 
 namespace DotNetCoreConsole
 {
@@ -160,12 +161,15 @@ namespace DotNetCoreConsole
 
             //类型转换
             //基类、子类之间的类型转换
-            BaseAndSubClassTypeConversionDemo.Run();
+            //BaseAndSubClassTypeConversionDemo.Run();
             //自定义显隐式类型转换
             //TypeConversionDemo.Run();
 
             //Attribute
             //AttributeDemo.Run();
+
+            //反射
+            ReflectionDemo.Run();
 
             Console.ReadLine();
         }
