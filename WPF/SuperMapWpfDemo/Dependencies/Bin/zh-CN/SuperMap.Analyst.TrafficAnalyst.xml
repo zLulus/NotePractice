@@ -1,0 +1,967 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.TrafficAnalyst</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo">
+      <summary>
+            公交票价字段信息类。该类用来获取或设置代表公交票价相关信息的字段，包括公交票价类型字段、起步价格范围的字段、起步价格字段、票价递增步长字段以及票价递增范围字段。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.#ctor">
+      <summary>
+            构造一个新的 FareFieldInfo 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.#ctor(SuperMap.Analyst.TrafficAnalyst.FareFieldInfo)">
+      <summary>
+            根据给定的 FareFieldInfo 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="fareFieldInfo">指定的 FareFieldInfo 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.FareTypeField">
+      <summary>
+            获取或设置公交票价类型字段，即公交的计费方式。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.StartFareRangeField">
+      <summary>
+            获取或设置起步价格范围字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.StartFareField">
+      <summary>
+            获取或设置起步价格字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.FareStepField">
+      <summary>
+            获取或设置票价递增步长字段。票价递增步长是指每增加一个票价递增范围（<see cref="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.FareStepRangeField">FareStepRangeField</see>）所增加的票价。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.FareStepRangeField">
+      <summary>
+            获取或设置超出起步价范围后的票价递增范围字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.FareInfo">
+      <summary>
+            公交票价信息类。该类用于获取公交票价的相关信息，包括公交票价的类型、起步价格范围、起步价格、票价递增范围以及票价递增步长。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareInfo.Type">
+      <summary>
+            获取公交票价类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareInfo.StartFareRange">
+      <summary>
+            获取起步价格范围。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareInfo.StartFare">
+      <summary>
+            获取起步价格。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareInfo.FareStep">
+      <summary>
+            获取票价递增步长。票价递增步长是指每增加一站（按站数计价）或者一个距离单位所增加的票价（按距离计价）。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareInfo.FareStepRange">
+      <summary>
+            获取超出起步价范围后的票价递增范围。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferLine">
+      <summary>
+            乘车段类。该类用于获取乘车段的上车站、下车站的名称及所乘线路的名称。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferLine.#ctor(System.Int64,System.Int32,System.Int32)">
+      <summary>
+            根据指定的参数构造一个新的 TransferLine 对象。
+            </summary>
+      <param name="lineID">指定的一个乘车段所乘公交线路的 ID。</param>
+      <param name="startIndex">指定的一个乘车段的上车站点 ID。</param>
+      <param name="endIndex">指定的一个乘车段的下车站点 ID。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.OnName">
+      <summary>
+            获取乘车段的上车站的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.DownName">
+      <summary>
+            获取乘车段的下车站的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.LineName">
+      <summary>
+            获取乘车段所乘线路的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.LineID">
+      <summary>
+            获取乘车段所乘线路的 ID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.StartIndex">
+      <summary>
+            获取乘车段的上车站点在对应的完整公交线路中的索引值。该值表示站点在公交线路中位于第几站，从0开始计数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.EndIndex">
+      <summary>
+            获取乘车段的下车站点在对应的完整公交线路中的索引值。该值表示站点在公交线路中位于第几站，从0开始计数。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferLines">
+      <summary>
+            乘车段集合类。该类用于获取公交换乘方案的乘车段集合中指定索引处地乘车段及乘车段的总数。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferLines.GetEnumerator">
+      <summary>
+            返回一个循环访问集合的枚举数。 
+            </summary>
+      <returns>可用于循环访问集合的 IEnumerator 对象。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLines.Count">
+      <summary>
+            获取乘车段集合中乘车段的数量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLines.Item(System.Int32)">
+      <summary>
+            获取乘车段集合中指定索引处的乘车段。
+            </summary>
+      <param name="index">指定的索引值，从0开始。</param>
+      <returns>乘车段集合中指定索引处的乘车段。</returns>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferPreference">
+      <summary>
+            该枚举定义了在进行公交换乘分析时的乘车偏好类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferPreference.None">
+      <summary>
+            无偏好。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferPreference.Bus">
+      <summary>
+            优先乘坐公交汽车。选择此项，公交换乘分析时会优先考虑公交汽车线路，但最优换乘方案是由多个参数共同决定的，因此并不一定会包含这些线路。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferPreference.Subway">
+      <summary>
+            优先乘坐地铁。选择此项，公交换乘分析时会优先考虑地铁线路，但最优换乘方案是由多个参数共同决定的，因此并不一定会包含这些线路。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferPreference.NoSubway">
+      <summary>
+            不乘地铁。选择此项，公交换乘分析的结果方案中不会包含乘坐地铁的线路。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferSearchMode">
+      <summary>
+            该枚举定义了公交换乘分析时的搜索模式常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferSearchMode.ID">
+      <summary>
+            ID 模式，即使用起始站点 ID 和终止站点 ID 作为公交换乘的起点和终点进行分析。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferSearchMode.Point">
+      <summary>
+            坐标点模式，即使用两个任意点（<see cref="T:SuperMap.Data.Point2D">Point2D</see>）作为公交换乘的起点和终点进行分析。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst">
+      <summary>
+            公交分析类。该类主要用于进行公交换乘分析、根据经过的站点查询公交线路的信息、查询指定公交线路上的站点的信息。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.#ctor">
+      <summary>
+            构造一个新的 TransferAnalyst 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.Load(SuperMap.Analyst.TrafficAnalyst.LineSetting,SuperMap.Analyst.TrafficAnalyst.StopSetting,SuperMap.Analyst.TrafficAnalyst.RelationSetting)">
+      <summary>
+            使用公交分析基础功能时，加载公交数据。注意，该方法不支持多线程处理，否则可能出错。
+            </summary>
+      <param name="lineSetting">指定的公交线路环境设置。</param>
+      <param name="stopSetting">指定的公交站点环境设置。</param>
+      <param name="relationSetting">指定的公交关系设置。</param>
+      <returns>一个布尔值，表示是否加载公交数据成功。如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.Check(SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting)">
+      <summary>
+            根据公交分析环境设置对公交数据进行检查，检查出的错误写入源数据属性表中。注意，该方法不支持多线程处理，否则可能出错。
+            </summary>
+      <param name="transferAnalystSetting">指定的公交分析环境设置对象。</param>
+      <returns>一个布尔值，表示是否检查出错误。如果检查成功且没有检查出错误返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.Load(SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting)">
+      <summary>
+             根据公交分析环境设置加载公交数据。注意，该方法不支持多线程处理，否则可能出错。
+             </summary>
+      <param name="transferAnalystSetting">指定的公交分析环境设置。</param>
+      <returns>一个布尔值，表示是否加载公交数据成功。如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.FindTransferLines(SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter)">
+      <summary>
+             公交换乘分析试用接口。根据指定的公交换乘分析参数对象进行公交换乘分析，返回公交分析结果。
+             </summary>
+      <param name="parameter">指定的公交换乘分析参数对象。</param>
+      <returns>公交分析结果对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.FindTransferSolutions(SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter)">
+      <summary>
+             根据指定的公交换乘分析参数对象进行公交换乘分析，返回公交换乘方案集合。
+             </summary>
+      <param name="parameter">指定的公交换乘分析参数对象。</param>
+      <returns>公交换乘方案集合。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.GetDetailInfo(System.Int64,System.Int64,SuperMap.Analyst.TrafficAnalyst.TransferLine[])">
+      <summary>
+            根据起始站点 ID、终止站点 ID 和乘车段集合获取完整的公交换乘导引。 
+            </summary>
+      <param name="startID">指定的公交换乘分析的起始站点 ID。</param>
+      <param name="endID">指定的公交换乘分析的终止站点 ID。</param>
+      <param name="transferLines">指定的乘车段数组。</param>
+      <returns>完整的公交换乘导引。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.GetDetailInfo(SuperMap.Data.Point2D,SuperMap.Data.Point2D,SuperMap.Analyst.TrafficAnalyst.TransferLine[])">
+      <summary>
+            根据起点、终点和乘车段集合获取完整的公交换乘导引。 
+            </summary>
+      <param name="startPoint">指定的公交换乘分析的起点。</param>
+      <param name="endPoint">指定的公交换乘分析的终点。</param>
+      <param name="transferLines">指定的乘车段数组。</param>
+      <returns>完整的公交换乘导引。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.FindLinesByStop(System.Int64)">
+      <summary>
+             根据指定的公交站点 ID 查找经过该站点的公交线路。
+             </summary>
+      <param name="stopID">指定的公交站点 ID。</param>
+      <returns>经过该站点的公交线路信息对象集合。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.FindStopsByLine(System.Int64)">
+      <summary>
+             根据指定的公交线路 ID 查找该线路经过的站点。
+             </summary>
+      <param name="lineID">指定的公交线路 ID。</param>
+      <returns>经过该线路的公交站点信息对象集合。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.Dispose">
+      <summary>
+            释放 TransferAnalyst 占有的本地资源。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter">
+      <summary>
+            公交换乘分析参数类。该类主要用于设置公交换乘分析所需的参数，包括分析的起始点（或起始站点 ID）和终止点（或终止站点 ID）、最大换乘导引次数、步行与公交的权重比、换乘策略与偏好，以及优先和避让的站点、线路集合。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.#ctor">
+      <summary>
+            构造一个公交换乘分析参数类的新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.#ctor(SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter)">
+      <summary>
+            根据指定的公交换乘分析参数对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="transferAnalystParameter">指定的公交换乘分析参数对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.Dispose">
+      <summary>
+            释放 TransferAnalystParameter 所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.StartStopID">
+      <summary>
+            获取或设置公交换乘分析时输入的起始站点 ID。
+            </summary>
+      <value>默认值为-1。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.EndStopID">
+      <summary>
+            获取或设置公交换乘分析时输入的终止站点 ID。
+            </summary>
+      <value>默认值为-1。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.StartPosition">
+      <summary>
+            获取或设置公交换乘分析时输入的起点的坐标，可以是任意位置。
+            </summary>
+      <value>默认值为一个空的 <see cref="T:SuperMap.Data.Point2D">Point2D</see> 对象。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.EndPosition">
+      <summary>
+            获取或设置公交换乘分析时输入的终点的坐标，可以是任意位置。
+            </summary>
+      <value>默认值为一个空的 <see cref="T:SuperMap.Data.Point2D">Point2D</see> 对象。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.SolutionCount">
+      <summary>
+            获取或设置公交换乘分析返回的换乘方案的最大数量。最多可以获取20个。
+            </summary>
+      <value>默认值为 5 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.WalkingRatio">
+      <summary>
+            获取或设置步行与乘车的权重比。
+            </summary>
+      <value>默认值为 10。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.Tactic">
+      <summary>
+            获取或设置公交换乘策略类型。
+            </summary>
+      <value>默认值为 <b>TransferTactic.LessTransfer</b>。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.Preference">
+      <summary>
+            获取或设置乘车偏好。
+            </summary>
+      <value>默认值为 <b>TransferPreference.None</b>，即对无偏好。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.SearchMode">
+      <summary>
+            获取或设置公交换乘的搜索模式。
+            </summary>
+      <value>默认值为 ID 模式，即 <b>TransferSearchMode.ID</b>。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.EvadeLines">
+      <summary>
+            获取或设置避让线路的线路 ID 集合。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.EvadeStops">
+      <summary>
+            获取或设置避让站点的站点 ID 集合。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.PriorLines">
+      <summary>
+            获取或设置优先线路的线路 ID 数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.PriorStops">
+      <summary>
+            获取或设置优先站点的站点 ID 数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.TravelTime">
+      <summary>
+            获取或设置公交换乘分析的出行时间。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferAnalystResult">
+      <summary>
+             公交换乘分析结果类。该类用于获取公交换乘分析的公交换乘导引集合。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystResult.Dispose">
+      <summary>
+             释放 TransferAnalystResult 所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystResult.TransferGuides">
+      <summary>
+            获取公交换乘导引对象集合，即 TransferGuide 类型对象组成的数组。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting">
+      <summary>
+            公交分析环境设置类。该类用于提供公交分析时所需要的参数信息的设置，包括公交线路环境设置、公交站点环境设置、公交关系设置、公交站点捕捉容限、公交站点归并容限、步行阀值等。公交分析环境中的设置会直接影响到分析的结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.#ctor">
+      <summary>
+            构造一个新的 TransferAnalystSetting 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.#ctor(SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting)">
+      <summary>
+            根据指定的 TransferAnalystSetting 对象构造一个与其完全相同的新对象。 
+            </summary>
+      <param name="transferAnalystSetting">指定的公交分析环境设置类对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.LineSetting">
+      <summary>
+            获取或设置公交线路环境设置。
+            </summary>
+      <value>默认值为 null 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.StopSetting">
+      <summary>
+            获取或设置公交站点环境设置。
+            </summary>
+      <value>默认值为 null 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.RelationSetting">
+      <summary>
+            获取或设置公交关系设置。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.SnapTolerance">
+      <summary>
+            获取或设置公交站点捕捉容限。
+            </summary>
+      <value>默认值为 0.1 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.MergeTolerance">
+      <summary>
+            获取或设置公交站点归并容限。已过时，从7.0.1版本开始不需要设置公交站点归并容限。
+            </summary>
+      <value>默认值为 100 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.WalkingTolerance">
+      <summary>
+            获取或设置步行阈值，即从当前站点步行到达换乘站点时可接受的最大步行距离。
+            </summary>
+      <value>默认值为 1500。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.Unit">
+      <summary>
+            获取或设置站点捕捉容限、站点归并容限和步行阈值的单位。
+            </summary>
+      <value>默认值为 Unit.Meter。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferGuide">
+      <summary>
+            公交换乘导引类。通过该类可获取公交换乘分析的公交换乘导引的各个子项、换乘次数、总距离、总费用以及所花费的总时间等信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.Count">
+      <summary>
+            获取公交换乘导引对象中子项的个数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.Item(System.Int32)">
+      <summary>
+            根据指定的序号获取公交换乘导引中的子项对象。
+            </summary>
+      <param name="index">指定的需要索引项的序号，index 从0开始。</param>
+      <returns>公交换乘导引中的子项对象。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.TotalDistance">
+      <summary>
+            获取公交换乘导引的总距离，即当前换乘方案的总距离。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.TotalFare">
+      <summary>
+            获取公交换乘导引的费用总和，即当前换乘方案的总票价。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.TotalTime">
+      <summary>
+            获取公交换乘导引的总时间，即当前换乘方案所花费的总的时间。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.TransferCount">
+      <summary>
+            获取公交换乘次数，因为换乘方案中可能有步行的子项，所以公交换乘次数不能根据 TransferGuide.Count 来简单计算。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem">
+      <summary>
+            公交换乘导引子项类。该类用于获取换乘导引子项（即一段乘车或步行路线）的详细信息，包括该子项是步行还是乘车路线，步行路线的起点和终点位置，乘车路线的起始站点和终止站点的名称和索引值，乘车路线的线路名称，子项对应的线对象以及距离、费用和时间等。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.LineName">
+      <summary>
+            获取换乘导引子项所表示的一段乘车路线的线路名称。只当 <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> 为 false 时有效。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.LineType">
+      <summary>
+            获取换乘导引子项所表示的一段乘车路线的线路类型。该值从公交线路环境设置（<see cref="T:SuperMap.Analyst.TrafficAnalyst.LineSetting">LineSetting</see>）中的 <see cref="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.LineTypeField">LineTypeField</see> 属性所指定的字段中获得。只当 <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> 为 false 时有效。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.StartName">
+      <summary>
+            获取换乘导引子项所表示的一段乘车路线的上车站点的名称。只当 <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> 为 false 时有效。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.EndName">
+      <summary>
+            获取换乘导引子项所表示的一段乘车路线的下车站点的名称。只当 <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> 为 false 时有效。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.StartIndex">
+      <summary>
+            获取换乘导引子项所表示的一段乘车路线的上车站点在对应的完整的公交线路中的索引值。该值表示站点在公交线路中位于第几站，从0开始计数。只当 <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> 为 false 时有效。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.EndIndex">
+      <summary>
+            获取换乘导引子项所表示的一段乘车路线的下车站点在对应的完整的公交线路中的索引值。该值表示站点在公交线路中位于第几站，从0开始计数。只当 <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> 为 false 时有效。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.PassStopCount">
+      <summary>
+            获取换乘导引子项所表示的一段乘车路线所经过的站点个数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.StartPosition">
+      <summary>
+            获取换乘导引子项所表示的一段乘车（或步行）路线的上车站点（或起点）的坐标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.EndPosition">
+      <summary>
+            获取换乘导引子项所表示的一段乘车（或步行）路线的下车站点（或终点）的坐标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.Distance">
+      <summary>
+            获取换乘导引子项所表示的一段乘车或步行路线的距离。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.Fare">
+      <summary>
+            获取换乘导引子项所表示的一段乘车路线的费用（即票价）。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.Time">
+      <summary>
+            获取换乘导引子项所表示的一段乘车或步行路线所花费的时间。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">
+      <summary>
+            获取换乘导引子项所表示是步行路线还是乘车路线。如果为 true，表示为步行路线，否则为乘车路线。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.Route">
+      <summary>
+            获取换乘导引子项所表示的一段乘车或步行路线对应的线对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.FirstTime">
+      <summary>
+            获取换乘导引子项所表示的一段乘车路线的首班车发车时间，其中小时和分钟是有效值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.LastTime">
+      <summary>
+            获取换乘导引子项所表示的一段乘车路线的末班车发车时间，其中小时和分钟是有效值。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.LineInfo">
+      <summary>
+            公交线路信息类。该类用于获取公交线路的信息，包括公交线路 ID、公交线路名称、公交线路首班车发车时间、公交线路末班车发车时间、公交线路发车时间间隔、公交行车速度、公交线路票价信息、公交线路总长度、公交线路总耗费、公交线路总站数等。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.ID">
+      <summary>
+            获取公交线路的 SMID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.LineID">
+      <summary>
+            获取公交线路 ID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.Name">
+      <summary>
+            获取公交线路名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.Alias">
+      <summary>
+            获取公交线路别名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.StartTime">
+      <summary>
+            获取公交线路首班车发车时间。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.TerminalTime">
+      <summary>
+            获取公交线路末班车发车时间。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.Interval">
+      <summary>
+            获取公交线路发车时间间隔。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.Speed">
+      <summary>
+            获取公交车行车速度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.FareInfo">
+      <summary>
+            获取公交线路票价信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.TotalDistance">
+      <summary>
+            获取公交线路总长度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.TotalFare">
+      <summary>
+            获取公交线路总费用，即全程票价。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.TotalTime">
+      <summary>
+            获取公交线路全程所花费的总时间。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.StopCount">
+      <summary>
+            获取公交线路总站数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.LineType">
+      <summary>
+            获取公交线路的类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.TotalLine">
+      <summary>
+            获取完整的公交线路，是一个 <see cref="T:SuperMap.Data.GeoLine">GeoLine</see> 对象。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.LineSetting">
+      <summary>
+            公交线路环境设置类。通过该类可以设置公交线路所属的数据集，设置数据集中用来表示公交线路相关信息的字段，比如线路名称，线路别名，该线路首末车开始时间，发车间隔，公交线路票价等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.LineSetting.#ctor">
+      <summary>
+            构造一个新的 LineSetting 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.LineSetting.#ctor(SuperMap.Analyst.TrafficAnalyst.LineSetting)">
+      <summary>
+            根据给定的 LineSetting 对象构造一个新的与其完全相同的 LineSetting 对象。
+            </summary>
+      <param name="lineSetting">给定的 LineSetting 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.Dataset">
+      <summary>
+            获取或设置公交线路所属的数据集。要求数据集类型为线数据集。如果未设置或指定的数据集类型为其他类型，将抛出异常。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.LineIDField">
+      <summary>
+            获取或设置公交线路数据集中的公交线路 ID 字段。该字段为必设字段，要求字段类型为32位整型或64位整型。如果线路数据集中不存在该字段或字段类型不匹配，将抛出异常。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.NameField">
+      <summary>
+            获取或设置公交线路的名称字段。该字段为必设字段。如果线路数据集中不存在该字段，将抛出异常。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.LengthField">
+      <summary>
+            获取或设置公交线路的长度字段。要求长度单位为米。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.AliasField">
+      <summary>
+            获取或设置公交线路别名字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.FirstTimeField">
+      <summary>
+            获取或设置公交线路首班车发车时间字段。字段类型必须是DateTime日期时间类型。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.LastTimeField">
+      <summary>
+            获取或设置公交线路末班车发车时间字段。字段类型必须是DateTime日期时间类型。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.IntervalField">
+      <summary>
+            获取或设置公交线路发车时间间隔字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.SpeedField">
+      <summary>
+            获取或设置公交行车速度字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.FareFieldInfo">
+      <summary>
+            获取或设置公交线路票价字段信息。
+            </summary>
+      <value>默认值为一个空的 <see cref="T:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo">FareFieldInfo</see> 对象。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.LineTypeField">
+      <summary>
+            获取或设置标识公交线路类型的字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.RelationSetting">
+      <summary>
+            公交关系设置类。通过该类可以设置站点与线路关系数据集、站点与出入口关系数据集以及网络数据集的相关信息。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.RelationSetting.#ctor">
+      <summary>
+            构造一个新的 RelationSetting 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.RelationSetting.#ctor(SuperMap.Analyst.TrafficAnalyst.RelationSetting)">
+      <summary>
+            根据给定的 RelationSetting 对象构造一个与其完全相同的的新对象。
+            </summary>
+      <param name="relationSetting">指定的 RelationSetting 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.Dataset">
+      <summary>
+            获取或设置站点与线路关系数据集。要求数据集类型为纯属性表类型。如果未设置或指定的数据集类型为其他类型，将抛出异常。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.StopIDField">
+      <summary>
+            获取或设置站点与线路关系数据集中的站点 ID 字段。该字段为必设字段，要求字段类型为32位整型或64位整型。如果站点与线路关系数据集中不存在该字段或字段类型不匹配，将抛出异常。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.LineIDField">
+      <summary>
+            获取或设置站点与线路关系数据集中的线路 ID 字段。该字段为必设字段，要求字段类型为32位整型或64位整型。如果站点与线路关系数据集中不存在该字段或字段类型不匹配，将抛出异常。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.SerialNumField">
+      <summary>
+            获取或设置站点与线路关系数据集中存储了站点在线路中的顺序号（即该站点为线路中的第几站）的字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.DatasetPath">
+      <summary>
+            获取或设置站点与出入口关系数据集。要求数据集类型为线数据集。如果指定的数据集类型为其他类型，将抛出异常。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.ExitIDField">
+      <summary>
+            获取或设置站点与出入口关系数据集中的出入口 ID 字段。该字段为必设字段，要求字段类型为32位整型或64位整型。如果站点与线路关系数据集中不存在该字段或字段类型不匹配，将抛出异常。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.StationIDField">
+      <summary>
+            获取或设置站点与出入口关系数据集中的站点 ID 字段。该字段为必设字段，要求字段类型为32位整型或64位整型。如果站点与线路关系数据集中不存在该字段或字段类型不匹配，将抛出异常。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.ExitNameCField">
+      <summary>
+            获取或设置站点与出入口关系数据集中的出入口中文名称字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.ExitNamePYField">
+      <summary>
+            获取或设置站点与出入口关系数据集中的出入口名称拼音字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.DatasetNetwork">
+      <summary>
+            获取或设置网络数据集。根据网络数据集的弧段和结点信息来获取换乘时的实际步行路线。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.EdgeIDField">
+      <summary>
+            获取或设置网络数据集中的弧段 ID 字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.NodeIDField">
+      <summary>
+            获取或设置网路数据集中的结点 ID 的字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.FNodeIDField">
+      <summary>
+            获取或设置网络数据集中的弧段起始结点 ID 的字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.TNodeIDField">
+      <summary>
+            获取或设置网络数据集中的弧段终止结点 ID 的字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.StopInfo">
+      <summary>
+            公交站点信息类。该类用于获取公交站点的信息，包括站点 ID、SMID、站点位置、站点名称及别名等。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopInfo.ID">
+      <summary>
+            获取公交站点的 SMID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopInfo.StopID">
+      <summary>
+            获取公交站点 ID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopInfo.Name">
+      <summary>
+            获取公交站点名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopInfo.Alias">
+      <summary>
+            获取公交站点别名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopInfo.Position">
+      <summary>
+            获取公交站点位置，即在公交站点数据集中该站点的位置。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.StopSetting">
+      <summary>
+            公交站点环境设置类。该类用于设置公交站点的环境的有关参数，包括所属数据集、站点 ID 字段、名称字段以及别名字段。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.StopSetting.#ctor">
+      <summary>
+            构造一个新的 StopSetting 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.StopSetting.#ctor(SuperMap.Analyst.TrafficAnalyst.StopSetting)">
+      <summary>
+            根据给定的 StopSetting 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="stopSetting">给定的公交站点环境设置对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopSetting.Dataset">
+      <summary>
+            获取或设置公交站点所属数据集。要求数据集类型为点数据集。如果未设置或指定的数据集类型为其他类型，将抛出异常。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopSetting.StopIDField">
+      <summary>
+            获取或设置公交站点数据集中的公交站点 ID 字段。该字段为必设字段，要求字段类型为32位整型或64位整型。如果站点数据集中不存在该字段或字段类型不匹配，将抛出异常。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopSetting.NameField">
+      <summary>
+            获取或设置公交站点名称字段。该字段为必设字段。如果站点数据集中不存在该字段，将抛出异常。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopSetting.AliasField">
+      <summary>
+            获取或设置公交站点别名字段。
+            </summary>
+      <value>默认值为一个空的字符串。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferSolution">
+      <summary>
+            公交换乘方案类。该类用于获取公交换乘方案的换乘次数和方案中指定索引处的乘车段集合。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferSolution.GetEnumerator">
+      <summary>
+            返回一个循环访问集合的枚举数。 
+            </summary>
+      <returns>可用于循环访问集合的 IEnumerator 对象。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferSolution.TransferTime">
+      <summary>
+            获取公交换乘方案的换乘次数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferSolution.Item(System.Int32)">
+      <summary>
+            获取公交换乘方案中指定索引处的乘车段集合。
+            </summary>
+      <param name="index">指定的索引值，从0开始。</param>
+      <returns>方案中指定索引处地乘车段集合。</returns>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferSolutions">
+      <summary>
+            公交换乘方案集合类。该类用于获取公交换乘方案集合中指定索引处的公交换乘方案及换乘方案的总数。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferSolutions.GetEnumerator">
+      <summary>
+            返回一个循环访问集合的枚举数。 
+            </summary>
+      <returns>可用于循环访问集合的 IEnumerator 对象。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferSolutions.Item(System.Int32)">
+      <summary>
+            获取公交换乘方案集合中指定索引处的公交换乘方案。
+            </summary>
+      <param name="index">指定的索引值，从0开始。</param>
+      <returns>集合中指定索引处的公交换乘方案。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferSolutions.Count">
+      <summary>
+            获取公交换乘方案集合中公交换乘方案的个数。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferTactic">
+      <summary>
+            该枚举定义了公交换乘策略类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferTactic.LessTransfer">
+      <summary>
+            少换乘。即优先从起点到终点需要换乘的次数较少的换乘方案。如果换乘次数相同，则优先加权总距离小的方案。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferTactic.MinDistance">
+      <summary>
+            距离最短。即优先从起点到终点加权总距离最短的换乘方案。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferTactic.LessWalk">
+      <summary>
+            少步行。即优先从起点到终点需要步行的距离较短且加权总距离较短的换乘方案。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferTactic.LessTime">
+      <summary>
+            较快捷。即优先从起点到终点耗费最少的换乘方案。
+            </summary>
+    </member>
+  </members>
+</doc>

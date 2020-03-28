@@ -1,0 +1,2210 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Realspace.ThreeDDesigner</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.AttachOption">
+      <summary>
+            该枚举定义了矢量数据与模型匹配的依附类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.AttachOption.Bottom">
+      <summary>
+            底面
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.AttachOption.Top">
+      <summary>
+            顶面
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.BooleanOperator3D">
+      <summary>
+            三维几何对象布尔运算类。
+            对三维模型对象进行交、并、差运算；并可以对模型的位置关系进行判断。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.BooleanOperator3D.Intersect(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D)">
+      <summary>
+            两个指定三维几何对象的交运算。
+            </summary>
+      <param name="geometry1">指定的Geometry3D对象geometry1。</param>
+      <param name="geometry2">指定的Geometry3D对象geometry2。</param>
+      <returns>返回结果Geometry3D对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.BooleanOperator3D.Intersect(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D,SuperMap.Data.DatasetVector)">
+      <summary>
+             两个指定三维几何对象的交运算。
+            </summary>
+      <param name="geometry1">指定的Geometry3D对象geometry1。</param>
+      <param name="geometry2">指定的Geometry3D对象geometry2。</param>
+      <param name="desDataset">指定的目标数据集。</param>
+      <returns>返回结果Geometry3D对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.BooleanOperator3D.Erase(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D)">
+      <summary>
+            两个指定三维几何对象的差运算。
+            </summary>
+      <param name="geometry">指定的Geometry3D对象geometry。</param>
+      <param name="eraseGeometry">参与差运算的Geometry3D对象eraseGeometry</param>
+      <returns>返回结果Geometry3D对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.BooleanOperator3D.Erase(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D,SuperMap.Data.DatasetVector)">
+      <summary>
+            两个指定三维几何对象的差运算。
+            </summary>
+      <param name="geometry">指定的Geometry3D对象geometry。</param>
+      <param name="eraseGeometry">参与差运算的Geometry3D对象eraseGeometry</param>
+      <param name="desDataset">指定的目标数据集。</param>
+      <returns>返回结果Geometry3D对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.BooleanOperator3D.Union(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D)">
+      <summary>
+            三维模型对象进行布尔运算-求并运算
+            </summary>
+      <param name="geometry1">指定的Geometry3D对象geometry。</param>
+      <param name="geometry2">参与并运算的Geometry3D对象eraseGeometry</param>
+      <returns>返回结果Geometry3D对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.BooleanOperator3D.IsClosed(SuperMap.Data.Geometry3D)">
+      <summary>
+            检查指定的Geometry3D对象是否闭合。
+            </summary>
+      <param name="geometry3D">指定的Geometry3D对象</param>
+      <returns>true表示闭合，false表示不闭合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.BooleanOperator3D.Check(SuperMap.Data.Geometry3D)">
+      <summary>
+            对模型对象进行检查
+            </summary>
+      <param name="geoModel">指定的三维模型对象</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.BorderType">
+      <summary>
+            该枚举定义了约束边界类型常量。
+            提取模型边界接口ExtractBorder使用。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.BorderType.ProjectBorder">
+      <summary>
+            几何体投影轮廓边界。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.BorderType.TopoBorder">
+      <summary>
+            几何体拓扑边界。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.BufferParameter">
+      <summary>
+            三维缓冲参数类，该类提供了对三维点、线、面及实体模型对象拓展参数设置。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.BufferParameter.#ctor">
+      <summary>
+            默认构造函数，构造一个和类名相同的 BufferParameter 对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.BufferParameter.Offset">
+      <summary>
+            缓冲距离
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.BufferParameter.Type">
+      <summary>
+            衔接样式，包括尖角、圆角、斜角。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D">
+      <summary>
+            TIN、倾斜处理类
+            包括对TIN、倾斜数据的裁剪、镶嵌、布尔运算等操作以及操作历史数据的管理。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.BuildGeoBody(System.String,System.String,System.String,System.String,SuperMap.Data.GeoRegion)">
+      <summary>
+            构建地质体
+            </summary>
+      <param name="sctFile0">sct文件0</param>
+      <param name="sctFile1">sct文件1</param>
+      <param name="scpOutputFolder">缓存生成路径</param>
+      <param name="scpCacheName">缓存名称</param>
+      <param name="ClippingRegion">指定的裁剪区域</param>
+      <returns>true表示构建成功，false表示构建失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Clip(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.String,System.String,SuperMap.Realspace.ThreeDDesigner.ClippingType,SuperMap.Realspace.ThreeDDesigner.ConstraintType)">
+      <summary>
+            倾斜数据处理时，裁剪后的数据单独输出到指定路径下。
+            </summary>
+      <param name="scpFile">倾斜模型缓存scp文件</param>
+      <param name="clipRegionList">裁剪面集合</param>
+      <param name="OutputFolder">裁剪后，倾斜缓存输出路径</param>
+      <param name="CacheName">倾斜缓存名称</param>
+      <param name="clippingType">裁剪类型</param>
+      <param name="constraintType">约束类型</param>
+      <returns>true表示裁剪成功，false表示裁剪失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Clip(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},SuperMap.Realspace.ThreeDDesigner.ClippingType,SuperMap.Realspace.ThreeDDesigner.ConstraintType)">
+      <summary>
+            倾斜数据处理时，裁剪后的数据默认存储到以当前时间命名的文件夹内。
+            </summary>
+      <param name="scpFile">倾斜模型缓存scp文件</param>
+      <param name="clipRegionList">裁剪面集合</param>
+      <param name="clippingType">裁剪类型</param>
+      <param name="constraintType">约束类型</param>
+      <returns>true表示裁剪成功，false表示裁剪失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.ClipTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.String,System.String,SuperMap.Realspace.ThreeDDesigner.ClippingType,SuperMap.Realspace.ThreeDDesigner.ConstraintType)">
+      <summary>
+            Tin地形数据预览处理时，裁剪后的数据默认存储到以当前时间命名的文件夹内。
+            </summary>
+      <param name="sctFile">Tin地形缓存sct文件</param>
+      <param name="clipRegionList">裁剪面集合</param>
+      <param name="OutputFolder">裁剪后，Tin缓存输出路径</param>
+      <param name="CacheName">Tin缓存名称</param>
+      <param name="clippingType">裁剪类型</param>
+      <param name="constraintType">约束类型</param>
+      <returns>true表示裁剪成功，false表示裁剪失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.ClipTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},SuperMap.Realspace.ThreeDDesigner.ClippingType,SuperMap.Realspace.ThreeDDesigner.ConstraintType)">
+      <summary>
+            Tin地形数据预览处理时，裁剪后的数据默认存储到以当前时间命名的文件夹内。
+            </summary>
+      <param name="sctFile">Tin缓存sct文件</param>
+      <param name="clipRegionList">裁剪面集合</param>
+      <param name="clippingType">裁剪类型</param>
+      <param name="constraintType">约束类型</param>
+      <returns>true表示裁剪成功，false表示裁剪失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.UnionTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry3D})">
+      <summary>
+            Tin地形与模型对象进行布尔运算-求并运算。
+            </summary>
+      <param name="sctFile">Tin缓存文件</param>
+      <param name="geometryList">模型对象集合</param>
+      <returns>true表示布尔运算成功，false表示布尔运算失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.EraseTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry3D})">
+      <summary>
+            Tin地形缓存与模型对象进行布尔运算-求差，输出Tin地形。
+            </summary>
+      <param name="sctFile">Tin缓存sct文件</param>
+      <param name="geometryList">模型对象集合</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.GetHistory(System.String,System.Collections.Generic.List{System.DateTime})">
+      <summary>
+            获取对倾斜或Tin数据处理获取历史记录。
+            </summary>
+      <param name="scFile">倾斜或Tin缓存文件</param>
+      <param name="times">时间节点集合</param>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.HollowTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.String,System.String,SuperMap.Realspace.ThreeDDesigner.ClippingType,SuperMap.Realspace.ThreeDDesigner.ConstraintType)">
+      <summary>
+            对Tin地形缓存进行镂空处理后，单独输出到指定路径下。
+            </summary>
+      <param name="sctFile">Tin缓存sct文件</param>
+      <param name="clipRegionList">镂空区域集合</param>
+      <param name="OutputFolder">镂空后，Tin缓存输出路径</param>
+      <param name="CacheName">Tin缓存名称</param>
+      <param name="clippingType">裁剪类型</param>
+      <param name="constraintType">约束类型</param>
+      <returns>true表示镂空成功，false表示镂空失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.HollowTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},SuperMap.Realspace.ThreeDDesigner.ClippingType,SuperMap.Realspace.ThreeDDesigner.ConstraintType)">
+      <summary>
+            对Tin地形缓存进行镂空处理后，Tin数据默认存储到以当前时间命名的文件夹内。
+            </summary>
+      <param name="sctFile">Tin缓存sct文件</param>
+      <param name="clipRegionList">镂空区域集合</param>
+      <param name="clippingType">裁剪类型</param>
+      <param name="constraintType">约束类型</param>
+      <returns>true表示镂空成功，false表示镂空失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Mosaic(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.String,System.String)">
+      <summary>
+            倾斜数据的镶嵌处理，结果数据单独输出到指定路径下。
+            </summary>
+      <param name="scpFile">倾斜模型缓存scp文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <param name="OutputFolder">镶嵌后，倾斜模型缓存输出路径</param>
+      <param name="CacheName">缓存名称</param>
+      <returns>true表示镶嵌成功，false表示镶嵌失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Mosaic(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry})">
+      <summary>
+            倾斜数据的镶嵌处理，便于结合回滚、回看历史记录所开接口。
+            </summary>
+      <param name="scpFile">倾斜模型缓存scp文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <returns>true表示镶嵌成功，false表示镶嵌失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Mosaic(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.String,System.String,System.Double)">
+      <summary>
+            倾斜数据的带护坡镶嵌处理，结果数据单独输出到指定路径下。
+            </summary>
+      <param name="scpFile">倾斜模型缓存scp文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <param name="OutputFolder">镶嵌后，倾斜模型缓存输出路径</param>
+      <param name="CacheName">缓存名称</param>
+      <param name="SlopeWidth">护坡宽度</param>
+      <returns>镶嵌成功在指定路径下生成带护坡的倾斜数据</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Mosaic(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Double)">
+      <summary>
+            倾斜数据的带护坡镶嵌处理，便于结合回滚、回看历史记录所开接口。
+            </summary>
+      <param name="scpFile">倾斜模型缓存scp文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <param name="SlopeWidth">护坡宽度</param>
+      <returns>镶嵌成功后当前倾斜生成指定宽度的护坡。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Mosaic(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Collections.Generic.List{SuperMap.Data.Geometry},System.String,System.String)">
+      <summary>
+            倾斜数据的带护坡镶嵌处理，针对镶嵌面两端护坡处理所开接口，结果数据单独输出到指定路径下。
+            </summary>
+      <param name="scpFile">倾斜模型缓存scp文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <param name="refOffsettingRegionList">与镶嵌面对应的护坡面集合</param>
+      <param name="OutputFolder">指定带护坡镶嵌处理后，倾斜数据输出路径</param>
+      <param name="CacheName">缓存名称</param>
+      <returns>镶嵌成功在指定路径下生成带护坡的倾斜数据</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Mosaic(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Collections.Generic.List{SuperMap.Data.Geometry})">
+      <summary>
+            倾斜数据的带护坡镶嵌处理，针对镶嵌面两端护坡处理，便于结合回滚、回看历史记录所开接口。
+            </summary>
+      <param name="scpFile">倾斜模型缓存scp文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <param name="refOffsettingRegionList">与镶嵌面对应的护坡面集合</param>
+      <returns>镶嵌成功后倾斜模型生成指定宽度的护坡。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Mosaic(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Drawing.Color,System.String,System.String)">
+      <summary>
+            倾斜数据纹理替换，结果数据单独输出到指定路径下。
+            </summary>
+      <param name="scpFile">倾斜模型缓存scp文件</param>
+      <param name="mosaicRegionList">指定替换纹理的区域</param>
+      <param name="replaceColor">指定替换区域颜色</param>
+      <param name="OutputFolder">纹理替换后，倾斜数据输出路径</param>
+      <param name="CacheName">缓存名称</param>
+      <returns>成功后，将指定区域替换完纹理的倾斜数据输出到指定目录下。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Mosaic(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Drawing.Color)">
+      <summary>
+            倾斜数据纹理替换，便于结合回滚、回看历史记录所开接口。支持对纹理替换区域的倾斜数据压平效果。
+            </summary>
+      <param name="scpFile">倾斜模型缓存scp文件</param>
+      <param name="mosaicRegionList">指定替换纹理的区域</param>
+      <param name="replaceColor">指定替换区域颜色</param>
+      <returns>成功后，在指定区域对倾斜数据替换纹理，并有压平效果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.MosaicTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.String,System.String)">
+      <summary>
+            Tin地形缓存的镶嵌处理，结果数据单独输出到指定路径下。
+            </summary>
+      <param name="sctFile">Tin缓存sct文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <param name="OutputFolder">镶嵌后，缓存输出路径</param>
+      <param name="CacheName">缓存名称</param>
+      <returns>true表示镶嵌成功，false表示镶嵌失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.MosaicTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry})">
+      <summary>
+            Tin地形缓存的镶嵌处理，便于结合回滚、回看历史记录所开接口。
+            </summary>
+      <param name="sctFile">Tin缓存sct文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <returns>true表示镶嵌成功，false表示镶嵌失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.MosaicTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.String,System.String,System.Double)">
+      <summary>
+            Tin地形缓存的带护坡镶嵌处理，结果数据单独输出到指定路径下。
+            </summary>
+      <param name="sctFile">Tin缓存sct文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <param name="OutputFolder">Tin地形缓存带护坡镶嵌输出路径</param>
+      <param name="CacheName">缓存名称</param>
+      <param name="SlopeWidth">护坡宽度</param>
+      <returns>成功后在指定路径下生成带护坡的Tin地形缓存。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.MosaicTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Double)">
+      <summary>
+            Tin地形缓存的带护坡镶嵌处理，便于结合回滚、回看历史记录所开接口。
+            </summary>
+      <param name="sctFile">Tin缓存sct文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <param name="SlopeWidth">护坡宽度</param>
+      <returns>镶嵌成功后，Tin地形生成指定宽度的护坡。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.MosaicTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Collections.Generic.List{SuperMap.Data.Geometry},System.String,System.String)">
+      <summary>
+            Tin地形缓存的带护坡镶嵌处理，针对镶嵌面两端护坡处理所开接口，结果数据单独输出到指定路径下。
+            </summary>
+      <param name="sctFile">Tin缓存sct文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <param name="refOffsettingRegionList">与镶嵌面对应的护坡面集合</param>
+      <param name="OutputFolder">Tin地形缓存带护坡镶嵌输出路径</param>
+      <param name="CacheName">缓存名称</param>
+      <returns>成功后在指定路径下生成带护坡的Tin地形缓存。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.MosaicTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Collections.Generic.List{SuperMap.Data.Geometry})">
+      <summary>
+            Tin地形缓存的带护坡镶嵌处理，针对镶嵌面两端护坡处理，便于结合回滚、回看历史记录所开接口。
+            </summary>
+      <param name="sctFile">Tin缓存sct文件</param>
+      <param name="mosaicRegionList">镶嵌面集合</param>
+      <param name="refOffsettingRegionList">与镶嵌面对应的护坡面集合</param>
+      <returns>镶嵌成功后，Tin地形生成指定宽度的护坡。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.RollBack(System.String,System.DateTime)">
+      <summary>
+            回滚对倾斜、Tin数据操作后的历史记录。
+            </summary>
+      <param name="scFile">倾斜或Tin缓存文件</param>
+      <param name="time">历史记录时间</param>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.UnionTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry3D},System.String,System.String)">
+      <summary>
+            Tin地形与模型对象进行布尔运算-求并运算。
+            </summary>
+      <param name="sctFile">Tin缓存文件</param>
+      <param name="geometryList">模型对象集合</param>
+      <param name="OutputFolder">布尔运算后，Tin缓存输出路径</param>
+      <param name="CacheName">缓存名称</param>
+      <returns>true表示布尔运算成功，false表示布尔运算失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.RemovePagedLODInfo(System.String)">
+      <summary>
+            移除scp中的根节文件夹中的XML文件。
+            </summary>
+      <param name="configFile">scp文件路径</param>
+      <returns>返回true表示成功移除scp中的根节文件夹中的XML文件</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.BuildPagedLODInfo(System.String)">
+      <summary>
+            为scp中的根节点构建xml记录范围。
+            </summary>
+      <param name="configFile">scp文件路径</param>
+      <returns>返回true表示成功为scp中的根节点构建xml记录范围</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.HasPagedLODInfo(System.String)">
+      <summary>
+            是否已经存在
+            </summary>
+      <param name="configFile">scp文件路径</param>
+      <returns>返回true表示存在</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.CompTextureAndDiscret(System.String,System.String,SuperMap.Realspace.ThreeDDesigner.TextureCompressType,SuperMap.Data.DatasetVector,System.String,SuperMap.Realspace.ThreeDDesigner.ModelFileType)">
+      <summary>
+            倾斜摄影模型纹理压缩并同步ID单体化。OSGB格式仅支持纹理压缩，S3M格式支持纹理压缩并同步ID单体化。
+            </summary>
+      <param name="scpFileName">倾斜摄影模型配置文件（scp文件）。</param>
+      <param name="outputFolder">纹理压缩并同步ID单体化后数据输出路径。</param>
+      <param name="type">压缩纹理处理生成的数据格式类型</param>
+      <param name="pDatasetVector">ID单体化对应的矢量面数据集</param>
+      <param name="strFieldName">ID单体化的目标字段名称</param>
+      <param name="outputFileType">输出文件类型S3M/OSGB</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.GeometryMatch(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry})">
+      <summary>
+            根据倾斜摄影模型将二维点、线、面数据提取为三维点、线、面。
+            </summary>
+      <param name="scpFile">倾斜摄影模型配置文件（scp文件）。</param>
+      <param name="geos">指定的二维点（线、面）对象集合</param>
+      <returns>根据倾斜摄影模型提取得到的三维点（线、面）对象集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.GeometryMatch(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Double)">
+      <summary>
+            设置插值采样距离，根据倾斜摄影模型将线、面数据提取为三维线、面。
+            </summary>
+      <param name="scpFile">倾斜摄影模型配置文件（scp文件）。</param>
+      <param name="geos">指定的线、面对象集合。</param>
+      <param name="sampleDistance">设置插值采样距离。</param>
+      <returns>成功后返回三维线或面数据集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.GeometryMatch(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},SuperMap.Data.PrjCoordSys,System.Double)">
+      <summary>
+            设置插值采样距离，根据倾斜摄影模型将线、面数据提取为三维线、面。支持投影坐标转换。
+            </summary>
+      <param name="scpFile">倾斜摄影模型配置文件（scp文件）。</param>
+      <param name="geos">指定的线、面对象集合。</param>
+      <param name="prjCoordSys">设置投影坐标系。</param>
+      <param name="sampleDistance">设置插值采样距离。</param>
+      <returns>成功后返回三维线或面数据集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.GeometryMatch(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},SuperMap.Realspace.ThreeDDesigner.MatchParameter)">
+      <summary>
+            设置匹配参数，根据倾斜摄影模型将线、面数据提取为三维线、面。
+            </summary>
+      <param name="scpFile">倾斜摄影模型配置文件（scp文件）。</param>
+      <param name="geos">指定的线、面对象集合。</param>
+      <param name="matchParam">设置匹配参数。</param>
+      <returns>成功后返回三维线或面数据集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.GeometryMatchTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry})">
+      <summary>
+            根据TIN地形将二维点、线、面数据提取为三维点、线、面。
+            </summary>
+      <param name="sctFile">TIN地形缓存配置文件(sct文件)。</param>
+      <param name="geos">指定的二维点（线、面）对象集合</param>
+      <returns>根据Tin地形缓存提取得到的三维点（线、面）对象集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.GeometryMatchTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Double)">
+      <summary>
+            设置插值采样距离，根据TIN地形插值采样距离将线、面数据提取为三维线、面。
+            </summary>
+      <param name="sctFile">TIN地形缓存配置文件（sct文件）。</param>
+      <param name="geos">指定的线、面对象集合。</param>
+      <param name="sampleDistance">设置插值采样距离。</param>
+      <returns>成功后返回三维线或面数据集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.GeometryMatchTIN(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},SuperMap.Realspace.ThreeDDesigner.MatchParameter)">
+      <summary>
+            设置匹配参数，根据TIN地形插值采样距离将线、面数据提取为三维线、面。
+            </summary>
+      <param name="sctFile">TIN地形缓存配置文件（sct文件）。</param>
+      <param name="geos">指定的线、面对象集合。</param>
+      <param name="matchParam">设置匹配参数。</param>
+      <returns>成功后返回三维线或面数据集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.DiscretExtremum(System.String,SuperMap.Data.DatasetVector,System.String,System.String)">
+      <summary>
+            支持根据倾斜摄影模型提取高程值，作用于面数据对象，将底部高程和顶部高程信息提取到属性字段里。
+            </summary>
+      <param name="scpFileName">倾斜摄影模型配置文件（scp文件）。</param>
+      <param name="pDatasetVector">面数据集</param>
+      <param name="bottomName">底部高程字段名称</param>
+      <param name="extrudeName">顶部高程字段名称</param>
+      <returns>成功后，可以在该面数据集的属性表中，查看提取的高程信息。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.ExtractTINSurface(System.String,System.Int32)">
+      <summary>
+            TIN地形拉伸闭合体，支持指定某一层TIN地形的有效区域拉伸成模型。
+            </summary>
+      <param name="sctFile">TIN地形缓存配置文件(sct文件)。</param>
+      <param name="nLevel">指定的地形层级</param>
+      <returns>成功后将指定层级的TIN地形有效区域生成一个模型对象。</returns>
+    </member>
+    <!-- Badly formed XML comment ignored for member "M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.ReplaceTextureByColor(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry},System.Drawing.Color)" -->
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.EraseTINSurface(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry3D})">
+      <summary>
+      </summary>
+      <param name="sctFile">TIN地形SCT文件全路径。</param>
+      <param name="geometryList">模型对象集合。</param>
+      <returns>true表示表面运算-求差成功，false表示运算失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.UnionTINSurface(System.String,System.Collections.Generic.List{SuperMap.Data.Geometry3D})">
+      <summary>
+            TIN地形与模型进行表面运算-合并。
+            </summary>
+      <param name="sctFile">TIN地形SCT文件全路径。</param>
+      <param name="geometryList">模型对象集合。</param>
+      <returns>true表示表面运算-合并成功，false表示运算失败。</returns>
+    </member>
+    <!-- Badly formed XML comment ignored for member "E:SuperMap.Realspace.ThreeDDesigner.CacheProcessor3D.Stepped" -->
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ChamferStyle">
+      <summary>
+            该枚举定义了放样的倒角样式类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ChamferStyle.SOBC_CIRCLE_ARC">
+      <summary>
+            圆弧
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ChamferStyle.SOBC_ELLIPSE_ACR">
+      <summary>
+            椭圆弧
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ClipParameter">
+      <summary>
+            剔除参数设置类。用于裁剪参数管理。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ClipParameter.#ctor">
+      <summary>
+            默认构造一个新的ClipParameter对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ClipParameter.Dispose">
+      <summary>
+            释放资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ClipParameter.Constraint">
+      <summary>
+            获取或设置约束类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ClipParameter.Keep">
+      <summary>
+            获取或设置裁剪类型。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ClippingType">
+      <summary>
+            该枚举定义了裁剪类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ClippingType.KeepInside">
+      <summary>
+            保留裁剪区域内数据。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ClippingType.KeepOutside">
+      <summary>
+            保留裁剪区域外数据。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ConstraintType">
+      <summary>
+            该枚举定义了TIN、倾斜数据处理使用约束条件类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ConstraintType.HardConstraint">
+      <summary>
+            约束条件-硬约束。表示操作的边界高程与绘制或者选择三维面边界的高程一致。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ConstraintType.SoftConstraint">
+      <summary>
+            约束条件-软约束。表示操作的边界高程不变。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.DataImport3D">
+      <summary>
+            导入模型数据类，通过该类可以将外部模型数据（文件型）导入到SuperMap的格式。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.DataImport3D.#ctor">
+      <summary>
+            默认构造一个新的DataImport3D对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.DataImport3D.Run">
+      <summary>
+            执行导入数据集的操作，返回导入结果 <see cref="T:SuperMap.Realspace.ThreeDDesigner.ImportResult3D">ImportResult3D</see>。
+            </summary>
+      <returns>导入结果，包含成功和失败的任务对应的 <see cref="T:SuperMap.Realspace.ThreeDDesigner.ImportResult3D">ImportResult3D</see> 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.DataImport3D.SetCancel">
+      <summary>
+            设置取消导入。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.DataImport3D.Dispose">
+      <summary>
+            释放所占资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.DataImport3D.Completed">
+      <summary>
+            获取或设置完成进度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.DataImport3D.ImportSettings">
+      <summary>
+            导入设置集合，可以完成多个导入任务的设置
+            </summary>
+    </member>
+    <member name="E:SuperMap.Realspace.ThreeDDesigner.DataImport3D.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.FileType">
+      <summary>
+            该枚举定义了转换文件类型常量。暂时用于导入达索3dxml文件数据使用。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.FileType.None">
+      <summary>
+            未知类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.FileType.Model3DXML">
+      <summary>
+            达索3dxml数据。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ImageSetting">
+      <summary>
+            图像设置类
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImageSetting.#ctor">
+      <summary>
+            构造一个新的ImageSetting对象
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImageSetting.Brightness">
+      <summary>
+            获取或设置亮度，值域为[-255,255],默认为0。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImageSetting.Contrast">
+      <summary>
+            获取或设置对比度。值域为[0,3]，默认为1.0。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImageSetting.Hue">
+      <summary>
+            获取或设置色相。值域为[-1.0,1.0]，默认为0.0。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImageSetting.Saturation">
+      <summary>
+            获取或设置饱和度。值域为[-1.0,1.0]，默认为0.0。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ImageToolkit">
+      <summary>
+            图像处理类。
+            对图像调整亮度、对比度、饱和度、色相及修复操作。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImageToolkit.#ctor">
+      <summary>
+            构造一个新的ImageToolkit对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImageToolkit.AdjustProperties(System.Drawing.Bitmap,System.Drawing.Bitmap,SuperMap.Realspace.ThreeDDesigner.ImageSetting)">
+      <summary>
+            调节图像属性。
+            </summary>
+      <param name="inputBitmap">进行图像修复的图片。</param>
+      <param name="maskBitmap">掩膜图像，一个和待编辑图像一样大小的图像。
+            掩膜图像中像素值不为0的像素对应的原图像中的像素才会参与编辑。</param>
+      <param name="imageSetting">设置指定图像的属性，如亮度、对比度、饱和度、色相。</param>
+      <returns>成功，则返回图像的对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImageToolkit.AdjustProperties(System.Drawing.Bitmap,System.Drawing.Bitmap,SuperMap.Realspace.ThreeDDesigner.ImageSetting,System.Drawing.Color)">
+      <summary>
+            调节图像属性。
+            </summary>
+      <param name="inputBitmap">进行图像修复的图片</param>
+      <param name="maskBitmap">掩膜图像，一个和待编辑图像一样大小的图像,掩膜图像中像素值不为0的像素对应的原图像才会参与编辑。
+            如果编辑图像时参数传入了掩膜，那么编辑就只对掩膜区域中有颜色部分对应的像素起作用。如果掩膜为空，编辑就对整个图像起作用。</param>
+      <param name="imageSetting">设置指定图像的属性，如亮度、对比度、饱和度、色相。</param>
+      <param name="backgroundColor">场景背景色，图像中与背景色一样的像素不会被修改。</param>
+      <returns>成功，则返回图像的对象</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImageToolkit.Inpaint(System.Drawing.Bitmap,System.Drawing.Bitmap,System.Single)">
+      <summary>
+            图像修复，用修复区域周围的像素值来预测并替换修复区域内的像素值。
+            </summary>
+      <param name="inputBitmap">进行图像修复的图片</param>
+      <param name="maskBitmap">掩膜图像，一个和待编辑图像一样大小的图像，掩膜图像中像素值不为0的像素对应的原像素为修复区。
+            如果编辑图像时参数传入了掩膜，那么编辑就只对掩膜区域中有颜色部分对应的像素起作用。如果掩膜为空，编辑就对整个图像起作用。</param>
+      <param name="inpaintRadius">修复半径，单位为像素，设置的值越大则参与预测修复区的像素越多。</param>
+      <returns>成功，则返回调整后的图像对象</returns>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ImportResult3D">
+      <summary>
+            导入模型结果类。该类提供 SucceedSettings 和 FailedSettings 两种方法，用以查看成功和失败的任务对应的转换设置。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportResult3D.GetSucceedDatasetNames(SuperMap.Realspace.ThreeDDesigner.ImportSetting3D)">
+      <summary>
+            获取成功导入后 <see cref="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D">ImportSetting</see> 集合对应的数据集的名称。
+            </summary>
+      <param name="importSetting">导入成功的 <see cref="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D">ImportSetting</see> 对象。该 ImportSetting 对象必须是通过ImportResult.SucceedSettings 属性获取的 ImportSetting 对象。</param>
+      <returns>数据集名称。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportResult3D.GetSucceedMapNames(SuperMap.Realspace.ThreeDDesigner.ImportSetting3D)">
+      <summary>
+            获取成功导入后 <see cref="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D">ImportSetting</see> 集合对应的地图名称。
+            </summary>
+      <param name="importSetting">导入成功的 <see cref="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D">ImportSetting</see> 对象。该 ImportSetting 对象必须是通过ImportResult.SucceedSettings 属性获取的 ImportSetting 对象。</param>
+      <returns>对应的地图名称。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportResult3D.Dispose">
+      <summary>
+            释放所占资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportResult3D.SucceedSettings">
+      <summary>
+            获取导入成功的任务的 <see cref="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D">ImportSetting</see>  集合。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportResult3D.FailedSettings">
+      <summary>
+            获取导入失败的任务的 <see cref="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D">ImportSetting</see> 集合，用户可以通过查看失败任务的个数是否为0来判断导入是否全部成功。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D">
+      <summary>
+            模型导入设置信息类。各模型类型导入设置的基类，提供导入设置的公共属性、方法等功能。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D.Dispose">
+      <summary>
+            释放所占资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D.ImportMode">
+      <summary>
+            设置或获取当同名数据集存在时，导入的模式。
+            如果None则返回false。如果是Overwrite，则强制覆盖。
+            如果为Append则要求同名数据集有相同的名称和完全相同的数据集结构，进行追加操作，否则返回false。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D.SourceFilePath">
+      <summary>
+            获取或设置需要导入的模型文件路径。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D.SourceFileType">
+      <summary>
+            需要导入模型数据的类型。该值与实例所属的类型相对应。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D.TargetDatasetName">
+      <summary>
+            目标数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D.TargetDatasource">
+      <summary>
+            设置或获取需要导入的数据源对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D.TargetDatasourceConnectionInfo">
+      <summary>
+            获取或设置需要导入的数据源连接信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D.TargetPrjCoordSys">
+      <summary>
+            设置或获取导入后目标数据的坐标系
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3Ds">
+      <summary>
+            模型导入设置信息集合类。该类是导入设置信息 <see cref="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D"> ImportSetting3D</see>  类对象的集合。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportSetting3Ds.Add(SuperMap.Realspace.ThreeDDesigner.ImportSetting3D)">
+      <summary>
+            在导入设置信息集合中加入一个指定的元素。
+            </summary>
+      <param name="importSetting">要加入的导入设置信息对象。</param>
+      <returns>新加入元素的序列号。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportSetting3Ds.Clear">
+      <summary>
+            从导入设置信息集合中移除全部项。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportSetting3Ds.Insert(System.Int32,SuperMap.Realspace.ThreeDDesigner.ImportSetting3D)">
+      <summary>
+            在导入设置信息集合中的指定序号处加入一个元素。
+            </summary>
+      <param name="index">指定的序号。</param>
+      <param name="importSetting">要加入的导入设置信息对象。</param>
+      <returns>加入成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportSetting3Ds.Remove(System.Int32)">
+      <summary>
+            从导入设置信息集合中移除指定的索引处的项。
+            </summary>
+      <param name="index">将要删除元素的索引。</param>
+      <returns>移除成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportSetting3Ds.Count">
+      <summary>
+            获取给定的导入设置信息集合中元素的总数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportSetting3Ds.Item(System.Int32)">
+      <summary>
+            根据给定的索引值 Index 获取导入设置信息集合对象中的导入设置信息对象。
+            </summary>
+      <param name="index">需要索引项的 Index 值，index 从0开始。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3dxml">
+      <summary>
+            3DXML文件导入的参数设置类。继承自 <see cref="T:SuperMap.Realspace.ThreeDDesigner.ImportSetting3D"> ImportSetting3D</see>  类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportSetting3dxml.#ctor">
+      <summary>
+            默认构造函数，构造一个新的 ImportSetting3dxml 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportSetting3dxml.#ctor(SuperMap.Realspace.ThreeDDesigner.ImportSetting3dxml)">
+      <summary>
+            拷贝构造函数，根据给定的importSetting对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="importSetting">用于初始化 ImportSetting3dxml 新实例的对象。</param>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportSetting3dxml.#ctor(System.String,SuperMap.Data.DatasourceConnectionInfo)">
+      <summary>
+            根据指定的参数构造ImportSetting3dxml类的新实例。
+            </summary>
+      <param name="sourceFilePath">指定被导入的3dxml文件的路径。</param>
+      <param name="targetConnectionInfo">指定导入的目标数据源连接信息对象。</param>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ImportSetting3dxml.#ctor(System.String,SuperMap.Data.Datasource)">
+      <summary>
+            根据指定的参数构造ImportSetting3dxml类的新实例。
+            </summary>
+      <param name="sourceFilePath">指定被导入的3dxml文件的路径。</param>
+      <param name="targetDatasource">指定导入的目标数据源对象。</param>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ImportSetting3dxml.Position">
+      <summary>
+            获取或设置导入模型的定位点。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.JoinType">
+      <summary>
+            该枚举定义了多边形拓展时拐角处的衔接样式类型常量
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.JoinType.Miter">
+      <summary>
+            尖角衔接样式
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.JoinType.Round">
+      <summary>
+            圆角衔接样式
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.JoinType.Square">
+      <summary>
+            斜角衔接样式
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter">
+      <summary>
+            该类用于对线性拉伸参数设置。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter.#ctor">
+      <summary>
+            默认构造函数，构造一个与类名相同的新实例。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter.HasLOD">
+      <summary>
+            获取或设置线性拉伸对象是否构建LOD。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter.Height">
+      <summary>
+            获取或设置拉伸高度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter.IsCreateTexCoord">
+      <summary>
+            获取或设置是否创建纹理坐标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter.IsGroup">
+      <summary>
+            获取或设置是否对拉伸的对象打组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter.HasTopFace">
+      <summary>
+            获取或设置拉伸对象是否有顶面。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter.HasBottomFace">
+      <summary>
+            获取或设置拉伸对象是否有底面。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter.HasSideFace">
+      <summary>
+            获取或设置拉伸对象是否有侧面。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.MatchParameter">
+      <summary>
+            匹配参数设置类，用于矢量数据与模型匹配时使用。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.MatchParameter.#ctor">
+      <summary>
+            默认构造一个新的MatchParameter对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.MatchParameter.Dispose">
+      <summary>
+            释放占用资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.MatchParameter.Attach">
+      <summary>
+            获取或设置依附类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.MatchParameter.SampleDistance">
+      <summary>
+            获取或设置采样间距。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D">
+      <summary>
+            三维建模类
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.BuildTIN(SuperMap.Data.Point3Ds,System.Boolean,SuperMap.Data.Geometry)">
+      <summary>
+            点集构建三角网模型,支持非经纬度坐标点集构建三角网模型。
+            </summary>
+      <param name="ptList">指定的点集</param>
+      <param name="bLonLat">判断是否是经纬度坐标</param>
+      <param name="clipRegions">指定的裁剪区域</param>
+      <returns>构建成功返回存储了三角网的实体模型对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.BuildGeoBody(SuperMap.Data.Point3Ds,System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double})">
+      <summary>
+            点集中每个点位对应的最大高度和最小高度构建地质体
+            </summary>
+      <param name="ptList">指定的点集</param>
+      <param name="maxHighList">指定点集中每个点对应的最大高度值的集合</param>
+      <param name="minHighList">指定点集中每个点对应的最小高度值的集合</param>
+      <returns>成功，则返回生成的地质体模型</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.BuildGeoBody(System.Collections.Generic.List{SuperMap.Data.Geometry3D},System.Collections.Generic.List{SuperMap.Data.Point3Ds},System.Boolean,SuperMap.Data.Geometry)">
+      <summary>
+            多层点集构建地质体,支持非经纬度坐标的点数据构建地质体。
+            </summary>
+      <param name="geoBlocks">生成的地质体模型集合</param>
+      <param name="ptLevels">指定的多层点集</param>
+      <param name="bLonLat">判断是否是经纬度坐标</param>
+      <param name="clipRegions">指定的裁剪区域</param>
+      <returns>构建地质体成功返回true，否则返回false</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.CombineSkeletonByMaterial(SuperMap.Data.Model,SuperMap.Data.Model)">
+      <summary>
+            对模型的骨架进行同材质合并
+            </summary>
+      <param name="modelSrc">指定处理的源模型对象</param>
+      <param name="modelResult">结果模型</param>
+      <returns>true表示骨架同材质合并成功，false表示骨架同材质合并失败</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.ConvexHull(SuperMap.Data.Model)">
+      <summary>
+            计算凸包
+            </summary>
+      <param name="modelSrc">指定计算凸包的源模型对象</param>
+      <returns>成功返回模型的凸包</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.ConvexHull(SuperMap.Data.Skeleton,System.Double[])">
+      <summary>
+            计算凸包，根据骨架和矩阵构建凸包。可与ConvexHullPerSkeleton方法集合使用。
+            </summary>
+      <param name="skeleton">指定模型骨架</param>
+      <param name="matrix">矩阵，一个Double数组。</param>
+      <returns>成功返回模型骨架的凸包</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.ConvexHull(SuperMap.Data.Model,SuperMap.Data.SkeletonID)">
+      <summary>
+            计算凸包，根据模型骨架构建构建凸包。
+            </summary>
+      <param name="modelSrc">指定计算凸包的源模型对象</param>
+      <param name="id">指定模型骨架ID</param>
+      <returns>成功返回模型骨架的凸包</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.ConvexHull(System.Collections.Generic.List{SuperMap.Data.GeoPoint3D},System.Boolean)">
+      <summary>
+            计算凸包
+            </summary>
+      <param name="geoPnts">指定计算凸包的三维点对象集合</param>
+      <param name="bLonLat">标识geoPnts是否是经纬度</param>
+      <returns>成功返回模型的凸包</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.ConvexHull(SuperMap.Data.Point3Ds,System.Boolean)">
+      <summary>
+            计算凸包
+            </summary>
+      <param name="pnts">指定计算凸包的三维点对象</param>
+      <param name="bLonLat">标识geoPnts是否是经纬度</param>
+      <returns>成功返回模型的凸包</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.ConvexHullPerSkeleton(SuperMap.Data.Model)">
+      <summary>
+            计算凸包：每个子对象对应一个凸包
+            </summary>
+      <param name="modelSrc">指定计算凸包的源模型对象</param>
+      <returns>成功返回模型每个子对象的凸包</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Envelop(SuperMap.Data.GeoModel3D,System.Double)">
+      <summary>
+            构建三角网的闭合体
+            </summary>
+      <param name="geomodel">指定构建闭合体的三维实体模型对象</param>
+      <param name="dbZ">指定拉伸的高程值，该值在模型高程最值之间构建闭合体会失败
+            如果该值小于模型对象的高程最小值，则向下拉伸；反之，则向上拉伸</param>
+      <returns>成功则返回三维实体模型对象集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Envelop(SuperMap.Data.GeoRegion3D,System.Double)">
+      <summary>
+            三维面几何对象构建闭合体
+            </summary>
+      <param name="geometry">指定构建闭合体的三维面几何对象</param>
+      <param name="dZ">指定拉伸的高程值，该值在面对象各顶点Z值之间构建闭合体会失败</param>
+      <returns>成功则返回三维实体模型对象集合</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Envelop(SuperMap.Data.GeoRegion3D,System.Double,System.Boolean)">
+      <summary>
+            三维面几何对象构建闭合体,支持非经纬度坐标三维面几何对象构建闭合体。
+            </summary>
+      <param name="geometry">指定构建闭合体的三维面几何对象</param>
+      <param name="dZ">指定拉伸的高程值，该值在面对象各顶点Z值之间构建闭合体会失败</param>
+      <param name="bLonLat">是否是经纬度坐标，true为经纬度</param>
+      <returns>成功则返回三维实体模型对象集合</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.ExtractBorder(SuperMap.Data.GeoModel3D,SuperMap.Realspace.ThreeDDesigner.BorderType)">
+      <summary>
+            提取边界
+            </summary>
+      <param name="geoModel">指定提取边界的三维实体模型对象</param>
+      <param name="borderType">边界类型</param>
+      <returns>成功返回提取的模型边界GeoRegion3D对象集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Flatten(SuperMap.Data.GeoModel3D,SuperMap.Data.Geometry,System.Double)">
+      <summary>
+            压平
+            </summary>
+      <param name="model">指定压平的三维实体模型对象</param>
+      <param name="geometry">压平区域</param>
+      <param name="dTolerance">容差</param>
+      <returns>压平成功返回true，压平失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.LinearExtrude(SuperMap.Data.Geometry,System.Boolean,System.Double,System.Double,System.Double,System.Double)">
+      <summary>
+            线性拉伸
+            </summary>
+      <param name="geometry">指定进行线性拉伸的面对像</param>
+      <param name="bLonLat">是否是经纬度</param>
+      <param name="height">拉伸高度</param>
+      <param name="twist">旋转角度</param>
+      <param name="scaleX">绕X轴方向缩放</param>
+      <param name="scaleY">绕Y轴方向缩放</param>
+      <returns>成功，则返回三维实体模型对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.LinearExtrude(SuperMap.Data.Geometry,System.Boolean,System.Double,System.Double,System.Double,System.Double,SuperMap.Realspace.ThreeDDesigner.TextureMapParameter)">
+      <summary>
+            线性拉伸,可进行纹理编辑。
+            </summary>
+      <param name="geometry">指定进行线性拉伸的面对像</param>
+      <param name="bLonLat">是否是经纬度</param>
+      <param name="height">拉伸高度</param>
+      <param name="twist">旋转角度</param>
+      <param name="scaleX">绕X轴方向缩放</param>
+      <param name="scaleY">绕Y轴方向缩放</param>
+      <param name="uvwParam">贴图设置</param>
+      <returns>成功，则返回三维实体模型对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.LinearExtrude(SuperMap.Data.Geometry,System.Boolean,SuperMap.Realspace.ThreeDDesigner.LinearExtrudeParameter,SuperMap.Realspace.ThreeDDesigner.TextureMapParameter)">
+      <summary>
+            线性拉伸,可进行纹理编辑。
+            </summary>
+      <param name="geometry">指定进行线性拉伸的面对像</param>
+      <param name="bLonLat">是否是经纬度</param>
+      <param name="extParam">设置线性拉伸参数，包括拉伸高度、是否构建LOD等。</param>
+      <param name="uvwParam">贴图设置</param>
+      <returns>成功，则返回三维实体模型对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Loft(SuperMap.Data.Geometry,SuperMap.Data.GeoLine3D,System.Boolean,System.Int32,SuperMap.Realspace.ThreeDDesigner.ChamferStyle)">
+      <summary>
+            放样
+            </summary>
+      <param name="geometry">指定三维线放样的模型横截面</param>
+      <param name="line">待进行放样的三维线对象</param>
+      <param name="bLonLat">是否是经纬度</param>
+      <param name="Chamfer">平滑程度</param>
+      <param name="style">倒角样式</param>
+      <returns>成功，则返回三维实体模型对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Loft(SuperMap.Data.Geometry,SuperMap.Data.GeoLine3D,System.Boolean,System.Int32,SuperMap.Realspace.ThreeDDesigner.ChamferStyle,SuperMap.Realspace.ThreeDDesigner.TextureMapParameter)">
+      <summary>
+            放样
+            </summary>
+      <param name="geometry">指定三维线放样的模型横截面</param>
+      <param name="line">待进行放样的三维线对象</param>
+      <param name="bLonLat">是否是经纬度</param>
+      <param name="Chamfer">平滑程度</param>
+      <param name="style">倒角样式</param>
+      <param name="uvwParam">纹理编辑</param>
+      <returns>成功，则返回三维实体模型对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.PlaneProjection(SuperMap.Data.GeoModel3D)">
+      <summary>
+            平面投影
+            </summary>
+      <param name="model">待获取平面投影的三维几何模型对象</param>
+      <returns>成功，则返回GeoRegion对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.PlaneProjection(SuperMap.Data.GeoModel3D,SuperMap.Data.Plane)">
+      <summary>
+            平面投影
+            </summary>
+      <param name="model">待获取平面投影的三维几何模型对象</param>
+      <param name="plane">投影平面</param>
+      <returns>成功，则返回GeoRegion3D对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.PlaneProjection2D(SuperMap.Data.GeoModel3D,SuperMap.Data.Plane)">
+      <summary>
+            平面投影,将获得的投影转到XY上。
+            </summary>
+      <param name="model">待获取平面投影的三维几何模型对象</param>
+      <param name="plane">投影平面转成二维面</param>
+      <returns>成功，则返回GeoRegion对象。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.ReComputeNormal(SuperMap.Data.Model,SuperMap.Data.Model,SuperMap.Realspace.ThreeDDesigner.NormalComputeMode,System.Double)">
+      <summary>
+            使用拆包算法重新计算法线
+            </summary>
+      <param name="modelSrc">待重新计算法线的模型对象</param>
+      <param name="modelResult">结果模型</param>
+      <param name="normalMode">法线计算模式</param>
+      <param name="dAngle">拆分的角度阈值</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.RemoveDuplicateVertex(SuperMap.Data.Model,SuperMap.Data.Model)">
+      <summary>
+            移除重复顶点；返回移除的点个数。
+            </summary>
+      <param name="modelSrc">待移除重复点的模型对象</param>
+      <param name="modelResult">输出模型</param>
+      <returns>成功，则返回移除的点个数。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.RemoveUnreferencedVertex(SuperMap.Data.Model,SuperMap.Data.Model)">
+      <summary>
+            移除孤立顶点；返回移除的点个数。
+            </summary>
+      <param name="modelSrc">待移除孤立顶点的模型对象</param>
+      <param name="modelResult">输出模型</param>
+      <returns>成功，则返回移除的点个数。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.RotateExtrude(SuperMap.Data.Geometry,System.Double)">
+      <summary>
+            旋转拉伸,不支持投影坐标系三维点数据。
+            </summary>
+      <param name="geometry">指定旋转拉伸的三维点对象</param>
+      <param name="angle">旋转角度</param>
+      <returns>成功，则返回旋转拉伸的三维模型。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.RotateExtrude(SuperMap.Data.Geometry,SuperMap.Realspace.ThreeDDesigner.RotateExtrudeParameter)">
+      <summary>
+            旋转拉伸,通过设置拉伸参数对三维点对象进行旋转拉伸，不支持投影坐标系三维点数据。
+            </summary>
+      <param name="geometry">指定旋转拉伸的三维点对象</param>
+      <param name="rotParam">旋转拉伸参数设置</param>
+      <returns>成功，则返回旋转拉伸的三维模型。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.SectionProjection(SuperMap.Data.GeoModel3D)">
+      <summary>
+            截面投影
+            </summary>
+      <param name="model">待进行截面投影的三维几何模型对象</param>
+      <returns>成功返回二维几何面</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.SectionProjection(SuperMap.Data.GeoModel3D,SuperMap.Data.Plane)">
+      <summary>
+            截面投影
+            </summary>
+      <param name="model">待进行截面投影的三维几何模型对象</param>
+      <param name="plane">平面投影</param>
+      <returns>成功返回三维几何面</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.SectionProjection(System.Collections.Generic.List{SuperMap.Data.GeoModel3D},SuperMap.Data.Plane)">
+      <summary>
+            批量获取模型截面。
+            </summary>
+      <param name="models">获取截面的模型对象集合</param>
+      <param name="plane">平面投影</param>
+      <returns>成功则获取平面投影上的模型截面集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.SectionProjection(SuperMap.Data.GeoModel3D,System.Collections.Generic.List{SuperMap.Data.Plane})">
+      <summary>
+            批量获取模型截面。
+            </summary>
+      <param name="model">获取截面的模型对象</param>
+      <param name="planes">平面投影集合。</param>
+      <returns>成功则获取平面投影上的模型截面集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.SectionProjection2D(SuperMap.Data.GeoModel3D,SuperMap.Data.Plane)">
+      <summary>
+            截面投影,将获得的截面转到XY上。
+            </summary>
+      <param name="model">待进行截面投影的三维几何模型对象</param>
+      <param name="plane">平面投影</param>
+      <returns>成功返回二维几何面</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.ShadowVolume(SuperMap.Data.GeoModel3D,SuperMap.Realspace.ThreeDDesigner.ShadowVolumeSetting)">
+      <summary>
+            创建阴影体
+            </summary>
+      <param name="model">待创建阴影体的三维几何模型</param>
+      <param name="param">构建阴影体的参数设置类型</param>
+      <returns>成功返回创建的阴影体</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Simplify(SuperMap.Data.Model,SuperMap.Data.Model,System.Double,System.Double)">
+      <summary>
+            对精细层简化。
+            </summary>
+      <param name="modelSrc">指定简化的源模型对象</param>
+      <param name="modelResult">简化结果：modelResult；外部可以事先设置关联的EM。</param>
+      <param name="dbRatio">简化率，即简化为原来的多少。</param>
+      <param name="dbThreshold">边长大于dbThreshold的，不参与简化。</param>
+      <returns>简化成功返回true，简化失败返回false。不支持约束边界</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Simplify(SuperMap.Data.Model,SuperMap.Data.Model,System.Collections.Generic.List{SuperMap.Data.SkeletonID},System.Collections.Generic.List{System.Double},System.Collections.Generic.List{System.Double})">
+      <summary>
+            对精细层指定骨架简化。
+            </summary>
+      <param name="modelSrc">指定简化的源模型对象</param>
+      <param name="modelResult">简化结果：modelResult；外部可以事先设置关联的EM。</param>
+      <param name="listIDs">子骨架ID集合</param>
+      <param name="listRatio">简化率，即简化为原来的多少。</param>
+      <param name="listThreshold">边长大于dbThreshold的，不参与简化。</param>
+      <returns>指定骨架简化成功返回true，指定骨架简化失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Simplify(SuperMap.Data.Model,SuperMap.Data.Model,System.Double,System.Boolean)">
+      <summary>
+            对精细层简化(VCG的算法)。
+            </summary>
+      <param name="modelSrc">指定简化的源模型对象</param>
+      <param name="modelResult">简化结果：modelResult；外部可以事先设置关联的EM。</param>
+      <param name="dbRatio">简化率</param>
+      <param name="bConstrainBorder">是否约束边界。</param>
+      <returns>精细层简化成功返回true，精细层简化失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Simplify(SuperMap.Data.Model,SuperMap.Data.Model,System.Collections.Generic.List{SuperMap.Data.SkeletonID},System.Collections.Generic.List{System.Double},System.Boolean)">
+      <summary>
+            对精细层指定骨架简化(VCG的算法)。
+            </summary>
+      <param name="modelSrc">指定简化的源模型对象</param>
+      <param name="modelResult">简化结果：modelResult；外部可以事先设置关联的EM。</param>
+      <param name="listIDs">子骨架ID集合</param>
+      <param name="listRatio">简化率，即简化为原来的多少。</param>
+      <param name="bConstrainBorder">是否约束边界。</param>
+      <returns>成功返回true，失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Split(SuperMap.Data.Model,SuperMap.Data.Model)">
+      <summary>
+            拆分
+            </summary>
+      <param name="modelSrc">待拆分的源模型对象</param>
+      <param name="modelResult">结果模型</param>
+      <returns>成功返回拆分个数</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Split(SuperMap.Data.Model,SuperMap.Data.Model,System.Double)">
+      <summary>
+            按阈值拆分子骨架
+            </summary>
+      <param name="modelSrc">待拆分的源模型对象</param>
+      <param name="modelResult">拆分子骨架后的结果模型对象</param>
+      <param name="dThreshold">距离阈值，即距离小于此值的子骨架合并为一个骨架</param>
+      <returns>拆分得到模型骨架个数</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.SplitSkeleton(SuperMap.Data.Model,SuperMap.Data.Model,System.Boolean)">
+      <summary>
+            对模型的骨架进行拆分
+            </summary>
+      <param name="modelSrc">待拆分的源模型对象</param>
+      <param name="modelResult">结果模型</param>
+      <param name="bVertexPositionConsidered">拆分时是否考虑顶点位置</param>
+      <returns>骨架拆分成功返回true，骨架拆分失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.StitchBorder(SuperMap.Data.Model)">
+      <summary>
+            缝合边界
+            </summary>
+      <param name="model">待缝合边界的原模型对象</param>
+      <returns>缝合边界成功返回true，缝合边界失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.StraightSkeleton(SuperMap.Data.Geometry,System.Boolean,System.Double)">
+      <summary>
+            构建坡屋顶
+            </summary>
+      <param name="geometry">构建坡屋顶的面对象</param>
+      <param name="bLonLat">是否是经纬度</param>
+      <param name="dAngle">坡屋顶角度，一个Double值，值域（0.1,90）,单位为度。</param>
+      <para>
+      </para>
+      <returns>成功返回三维几何模型</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.UVWMap(SuperMap.Data.GeoModel3D,SuperMap.Realspace.ThreeDDesigner.TextureMapParameter)">
+      <summary>
+            根据纹理信息对指定模型贴纹理
+            按模型整体进行纹理贴图映射。
+            </summary>
+      <param name="model">进行纹理贴图的三维几何模型对象</param>
+      <param name="texParam">纹理贴图设置</param>
+      <returns>纹理贴图成功返回true，纹理贴图失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.UVWMap(SuperMap.Data.Skeleton,SuperMap.Realspace.ThreeDDesigner.TextureMapParameter)">
+      <summary>
+            根据纹理信息对指定骨架贴纹理
+            按单个骨架计算纹理贴图映射。
+            </summary>
+      <param name="skeleton">进行纹理贴图的模型骨架</param>
+      <param name="texParam">纹理贴图设置</param>
+      <returns>纹理贴图成功返回true，纹理贴图失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.SunlightAnalysis(SuperMap.Data.Point3Ds,SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting,System.Boolean)">
+      <summary>
+            三维点日照分析查询
+            </summary>
+      <param name="ptList">进行日照分析查询的三维点对象集合</param>
+      <param name="param">对三维点对象日照分析设置</param>
+      <param name="bLatLon">三维点是否是经纬度坐标</param>
+      <returns>成功返回日照分析结果集合</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.SunlightAnalysis(SuperMap.Data.Geometry3D,SuperMap.Data.GeoModel3D,SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting,System.Boolean)">
+      <summary>
+            日照分析查询
+            </summary>
+      <param name="geometry">三维几何对象，这里是指三维线、三维面、模型</param>
+      <param name="geoModelDes">分析结果保存成三维实体模型</param>
+      <param name="param">分析参数</param>
+      <param name="bLatLon">阴影率查询的对象是否是经纬度坐标</param>
+      <returns>成功返回日照分析结果点集</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.MergeSkeleton(SuperMap.Data.Model,SuperMap.Data.Model,System.Boolean)">
+      <summary>
+            根据材质合并骨架，不支持LOD。
+            </summary>
+      <param name="modelSrc">需要合并骨架的源模型对象</param>
+      <param name="modelResult">成功合并骨架后的模型对象</param>
+      <param name="bHasLOD">结果模型不带LOD，如果为true,则合并失败。</param>
+      <returns>合并骨架成功返回true,否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Mosaic(SuperMap.Data.GeoModel3D,System.Collections.Generic.List{SuperMap.Data.Geometry})">
+      <summary>
+            模型镶嵌
+            </summary>
+      <param name="model">进行镶嵌的三维模型对象</param>
+      <param name="mosaicRegionList">指定镶嵌的几何面对象集合</param>
+      <returns>true表示模型与指定几何面对象镶嵌成功。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Clip(SuperMap.Data.GeoModel3D,System.Collections.Generic.List{SuperMap.Data.Geometry},SuperMap.Realspace.ThreeDDesigner.ClippingType,SuperMap.Realspace.ThreeDDesigner.ConstraintType)">
+      <summary>
+            模型裁剪
+            </summary>
+      <param name="model">进行裁剪的三维模型对象</param>
+      <param name="clipRegionList">指定裁剪的几何面对象集合</param>
+      <param name="clippingType">裁剪类型</param>
+      <param name="constraintType">约束条件</param>
+      <returns>true表示模型与指定几何面对象裁剪成功。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.BuildTIM(SuperMap.Data.DatasetVector,System.String)">
+      <summary>
+            构建不规则四面体网格
+            </summary>
+      <param name="pDatasetVector">待构建不规则四面体网格的点数据集</param>
+      <param name="strFieldName">特征字段名</param>
+      <returns>得到不规则四面体，需要将GeoTIM转成GeoModel再存储。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.BuildTIM(System.Collections.Generic.Dictionary{SuperMap.Data.Point3D,System.Double},System.Boolean)">
+      <summary>
+            构建不规则四面体网格
+            </summary>
+      <param name="dicPoints">点对象集合。键值为三维点对象，值为特征值。</param>
+      <param name="bLatLon">是否是经纬度</param>
+      <returns>得到不规则四面体，需要将GeoTIM转成GeoModel再存储。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.RemoveDuplicateVertex2(SuperMap.Data.Model,SuperMap.Data.Model)">
+      <summary>
+            移除重复顶点；结果为带属性的Index。
+            结果另存也可覆盖源数据。
+            </summary>
+      <param name="modelSrc">源模型对象</param>
+      <param name="modelResult">移除重复点后的结果模型对象</param>
+      <returns>返回带属性的索引号</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.RemoveDuplicateVertex2(SuperMap.Data.Skeleton)">
+      <summary>
+            移除重复顶点；结果为带属性的Index。
+            </summary>
+      <param name="skeleton">模型骨架</param>
+      <returns>返回带属性的索引号</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.CreateBuffer(SuperMap.Data.Geometry,System.Boolean,SuperMap.Realspace.ThreeDDesigner.BufferParameter)">
+      <summary>
+            三维缓冲，支持三维线、三维面缓冲（拓展）成三维面；支持三维线、三维面、模型缓冲（拓展）成三维实体模型。
+            </summary>
+      <param name="geometry">三维线、面及模型对象</param>
+      <param name="isLonLat">支持经纬度</param>
+      <param name="parameter">缓冲参数设置</param>
+      <returns>成功返回三维面或三维实体模型。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.CorrectTopology(SuperMap.Data.Skeleton)">
+      <summary>
+            骨架三角网拓扑校正。
+            </summary>
+      <param name="skeleton">指定进行三角网拓扑校正的骨架。</param>
+      <returns>成功则返回进行三角网拓扑校正的骨架。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.RemoveDuplicateTriangle(SuperMap.Data.Skeleton)">
+      <summary>
+            骨架移除重复三角形。
+            </summary>
+      <param name="skeleton">指定移除重复三角形的模型骨架。</param>
+      <returns>成功则返回移除重复三角形的骨架。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.ExtractAttributeVoxelGrid(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVolume,SuperMap.Data.Datasource,System.String,SuperMap.Data.ColorDictionary,System.Double)">
+      <summary>
+            支持通过网格细分阈值，从体元栅格数据中提取属性。三维点会另存到三维点数据集中；三维线、面及模型会另存一个模型数据集,并将提取的属性存到新建模型数据的W位。
+            </summary>
+      <param name="pDatasetVector">矢量数据集</param>
+      <param name="pDatasetVolume">体元栅格数据集</param>
+      <param name="pTargetDatasource">结果数据源</param>
+      <param name="strDatasetDes">结果数据集名称</param>
+      <param name="colorDictTable">颜色表</param>
+      <param name="subdivisionThreshold">网格细分阈值，单位为米。提取属性信息插值距离，一个Double值。</param>
+      <returns>成功，则在目标数据源下生成对应的数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.CorrectNonManifold(SuperMap.Data.Skeleton,System.Collections.Generic.List{System.Collections.Generic.KeyValuePair{SuperMap.Data.Point3D,SuperMap.Data.Point3D}},System.Collections.Generic.List{SuperMap.Data.Point3D})">
+      <summary>
+            校正非流形的骨架。
+            </summary>
+      <param name="skeleton">进行校正的骨架。</param>
+      <param name="edges">构成骨架有问题的棱角边线集合，即有问题边。键为有问题的某一边线的起始点，值为该边线的终止点。</param>
+      <param name="points">有问题的点集合。</param>
+      <returns>校正成功后，如果满足闭合条件，则骨架处理成闭合的。返回false，则校正失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.GeometryMatch(SuperMap.Data.GeoModel3D,System.Collections.Generic.List{SuperMap.Data.Geometry},SuperMap.Realspace.ThreeDDesigner.MatchParameter)">
+      <summary>
+            矢量数据匹配模型。支持点、线、面数据。
+            </summary>
+      <param name="model">模型对象。</param>
+      <param name="geos">与模型匹配的矢量数据集合。</param>
+      <param name="matchParam">设置匹配参数。点数据集不用设置采样距离。</param>
+      <returns>成功则返回匹配后的三维矢量数据集合。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.MakeSurfaceMesh(SuperMap.Realspace.ThreeDDesigner.SurfaceMeshParameter)">
+      <summary>
+            参数化表面建模。
+            </summary>
+      <param name="param">表面建模参数化设置。</param>
+      <returns>成功则返回三维模型对象；返回null，表示建模失败。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Mirror(SuperMap.Data.GeoModel3D,SuperMap.Data.Plane)">
+      <summary>
+            镜像。可实现根据一个平面对模型镜像复制。
+            </summary>
+      <param name="model">进行镜像复制的三维模型对象。</param>
+      <param name="plane">指定一个平面。</param>
+      <returns>返回true，则模型镜像复制完成。</returns>
+    </member>
+    <member name="E:SuperMap.Realspace.ThreeDDesigner.ModelBuilder3D.Stepped">
+      <summary>
+            启动进度条事件时触发。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ModelClipType">
+      <summary>
+            该枚举定义了模型对象裁剪类型枚举常量
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelClipType.KeepOpen">
+      <summary>
+            开口。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelClipType.KeepClose">
+      <summary>
+            封口。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ModelConvertor">
+      <summary>
+            模型转换类。该类用于模型转换成指定格式的文件来存储数据。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelConvertor.FromFile(SuperMap.Data.Model,SuperMap.Realspace.ThreeDDesigner.ModelFileSetting)">
+      <summary>
+            根据指定的模型文件类型及路径创建Model对象。
+            </summary>
+      <param name="model">创建的Model对象</param>
+      <param name="setting">模型的文件类型及路径设置</param>
+      <returns>获取到模型数据为true，失败为false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelConvertor.ToFile(SuperMap.Data.Model,SuperMap.Realspace.ThreeDDesigner.ModelFileSetting)">
+      <summary>
+            将Model对象导出为指定格式的模型文件。
+            </summary>
+      <param name="model">指定的Model对象</param>
+      <param name="setting">目标模型的文件类型及路径设置</param>
+      <returns>导出模型文件成功为true，失败为false。</returns>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ModelFileSetting">
+      <summary>
+            模型文件设置类。该类提供了获取或设置模型文件路径、是否忽略LOD（仅对osgb起作用）、获取模型文件类型。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelFileSetting.#ctor">
+      <summary>
+            构造一个新的ModelFileSetting对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ModelFileSetting.FilePath">
+      <summary>
+            获取或设置模型文件路径
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ModelFileSetting.FileType">
+      <summary>
+            获取模型文件类型
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ModelFileSetting.IgnoreLOD">
+      <summary>
+            获取或设置是否忽略LOD。仅对 osgb 起作用
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ModelFileType">
+      <summary>
+            该枚举定义了模型文件类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelFileType.OFF">
+      <summary>
+            Off文件格式，支持FromFile和ToFile。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelFileType.OSGB">
+      <summary>
+            倾斜摄影模型文件格式，支持FromFile和ToFile。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelFileType.S3M">
+      <summary>
+            SuperMap 3D Model数据格式，支持FromFile和ToFile。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelFileType.SGM">
+      <summary>
+            SuperMap提供的一种三维模型存储格式，支持FromFile。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelFileType.STL">
+      <summary>
+            STL格式，可用以3D打印。支持FromFile和ToFile
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelFileType.TINTile">
+      <summary>
+            SuperMap Tin文件。支持FromFile
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelFileType.UNKNOWN">
+      <summary>
+            未知类型数据。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelFileType.DAE">
+      <summary>
+            DAE文件格式。支持FromFile和ToFile。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ModelImportMode">
+      <summary>
+            该枚举定义了导入模式类型常量。用于控制在数据导入时出现的设置的目标对象（数据集等）名称已存在情况下，即设置的名称已有名称冲突时的操作模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelImportMode.None">
+      <summary>
+            如有名称冲突，则返回false
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelImportMode.Append">
+      <summary>
+            如有名称冲突，则追加，追加的条件为数据集的类型，结构完全一致，否则返回false
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ModelImportMode.Overwrite">
+      <summary>
+            如有名称冲突，则强制覆盖
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ModelTools">
+      <summary>
+            模型工具类
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelTools.Compose(System.Collections.Generic.List{SuperMap.Data.GeoModel3D})">
+      <summary>
+            多个GeoModel3D合并成一个
+            </summary>
+      <param name="listGeoModels">将要合并的多个GeoModel3D对象列表</param>
+      <returns>成功返回一个GeoModel3D对象</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelTools.GetInstanceInfo(SuperMap.Data.DatasetVector,System.Collections.Generic.Dictionary{System.String,System.Int32},System.Collections.Generic.Dictionary{System.String,System.Int32},System.Collections.Generic.Dictionary{System.String,System.Int32})">
+      <summary>
+            获取数据集中实体的实例化信息，返回每个实体名字及其被引用的次数
+            </summary>
+      <param name="dtModel">模型数据集</param>
+      <param name="dicSkeleton">骨架及对应引用次数</param>
+      <param name="dicMaterial">材质及对应引用次数</param>
+      <param name="dicTexture">纹理及对应引用次数</param>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelTools.BuildLOD(SuperMap.Data.DatasetVector,System.Collections.Generic.List{System.Double})">
+      <summary>
+            给模型数据集构建LOD
+            </summary>
+      <param name="dtModel">模型数据集</param>
+      <param name="listRatio">LOD层级数</param>
+      <returns>模型数据集构建LOD成功返回true，失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelTools.RemoveLOD(SuperMap.Data.DatasetVector)">
+      <summary>
+            移除模型数据集构建的LOD
+            </summary>
+      <param name="dtModel">模型数据集</param>
+      <returns>移除模型数据集构建的LOD成功返回true，失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelTools.Rotate(System.Collections.Generic.List{SuperMap.Data.GeoModel3D},SuperMap.Data.Point3D,System.Double,System.Double,System.Double)">
+      <summary>
+            模型对象批量旋转。
+            </summary>
+      <param name="listGeoModel">指定旋转的三维模型对象集合</param>
+      <param name="rotatePoint">指定旋转的中心点</param>
+      <param name="dXAngle">以指定三维点为直角坐标原点，绕X轴旋转角度。</param>
+      <param name="dYAngle">以指定三维点为直角坐标原点，绕Y轴旋转角度。</param>
+      <param name="dZAngle">以指定三维点为直角坐标原点，绕Z轴旋转角度。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ModelTools.Translate(System.Collections.Generic.List{SuperMap.Data.GeoModel3D},System.Double,System.Double,System.Double)">
+      <summary>
+            模型对象批量平移。
+            </summary>
+      <param name="listGeoModel">指定平移的三维模型对象集合</param>
+      <param name="dbX">以指定三维点为直角坐标原点，绕X轴平移距离。</param>
+      <param name="dbY">以指定三维点为直角坐标原点，绕Y轴平移距离。</param>
+      <param name="dbZ">以指定三维点为直角坐标原点，绕Z轴平移距离。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.NormalComputeMode">
+      <summary>
+            该枚举定义了法线计算模式类型常量
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.NormalComputeMode.AngleWeight">
+      <summary>
+            按照三角面夹角权重计算。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.NormalComputeMode.Average">
+      <summary>
+            按照各三角面法线平均值计算。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.NormalComputeMode.NelsonMax">
+      <summary>
+            采用NelsonMax算法计算。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.PositionMode">
+      <summary>
+            该枚举类定义了模型位置关系类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.PositionMode.Unknown">
+      <summary>
+            未知类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.PositionMode.Identical">
+      <summary>
+            重合模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.PositionMode.Disjoint">
+      <summary>
+            分离模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.PositionMode.Intersects">
+      <summary>
+            相交模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.PositionMode.Within">
+      <summary>
+            被包含模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.PositionMode.Contains">
+      <summary>
+            包含模式。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.RotateExtrudeParameter">
+      <summary>
+            旋转拉伸参数设置类。支持三维点数据根据纵剖面进行旋转拉伸。相较于之前，现在的旋转拉伸方式，参数控制更详细，适用于军事雷达项目。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.RotateExtrudeParameter.#ctor">
+      <summary>
+            默认构造一个新的RotateExtrudeParameter对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.RotateExtrudeParameter.Dispose">
+      <summary>
+            释放所占资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.RotateExtrudeParameter.Angle">
+      <summary>
+            获取或设置旋转角度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.RotateExtrudeParameter.HasEndFace">
+      <summary>
+            获取或设置终止面。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.RotateExtrudeParameter.HasRingFace">
+      <summary>
+            获取或设置环管面。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.RotateExtrudeParameter.HasStartFace">
+      <summary>
+            获取或设置起始面。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.RotateExtrudeParameter.IsGroup">
+      <summary>
+            是否成一组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.RotateExtrudeParameter.Slices">
+      <summary>
+            获取或设置切片数量。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.S3mInfo">
+      <summary>
+            S3m信息类。便于S3M动态裁剪时，避免重复调用配置文件。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.S3mInfo.#ctor">
+      <summary>
+            默认构造一个新的S3mInfo类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.S3mInfo.IsValid">
+      <summary>
+            判断是否有效。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.S3mInfo.Load(System.String)">
+      <summary>
+            读取Scp文件。
+            </summary>
+      <param name="filename">SCP文件全路径。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.S3mInfo.Dispose">
+      <summary>
+            释放占用资源。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisPointResult">
+      <summary>
+            日照分析点集结果类。
+            包含阴影率，日照时间段，三维点位置。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisPointResult.SunSpanTime">
+      <summary>
+            获取日照时长对应的起始时间
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisPointResult.ShadowRatio">
+      <summary>
+            获取日照分析阴影率
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisPointResult.Position">
+      <summary>
+            获取结果点集三维点位置
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting">
+      <summary>
+            日照分析设置类。
+            支持某时区内，一个时间段间隔时间里，设置网格细分阈值和距离误差，对矢量线、矢量面、模型进行日照分析；支持对分析结果设置颜色，可将结果保存到点数据集和模型数据集中。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting.#ctor">
+      <summary>
+            默认构造函数，构造一个日照分析设置类的新实例。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting.BaseUtcOffset">
+      <summary>
+            获取或设置时区偏移
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting.ColorDictTable">
+      <summary>
+            获取或设置颜色对照表,对日照分析结果进行颜色设置
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting.DistanceThreshold">
+      <summary>
+            获取或设置距离误差
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting.EndTime">
+      <summary>
+            获取或设置分析的结束时间
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting.QueryDatasets">
+      <summary>
+            设置待查询的数据集数组
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting.StartTime">
+      <summary>
+            获取或设置分析的开始时间
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting.SubdivisionThreshold">
+      <summary>
+            获取或设置网格细分阈值
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunlightAnalysisSetting.TimeInterval">
+      <summary>
+            获取或设置时间间隔
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ShadowVolumeSetting">
+      <summary>
+            构建阴影体参数设置类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ShadowVolumeSetting.#ctor">
+      <summary>
+            构造一个新的构建阴影体参数设置类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.ShadowVolumeSetting.Dispose">
+      <summary>
+            释放ShadowVolumeSetting对象占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ShadowVolumeSetting.ShadowLightType">
+      <summary>
+            获取或设置光源类型
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ShadowVolumeSetting.SunTime">
+      <summary>
+            获取或设置太阳光时间
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.ShadowVolumeSetting.ViewerPosition">
+      <summary>
+            获取或设置观察者位置
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.ShadowVolumeType">
+      <summary>
+            该枚举定义了阴影体光源类型常量
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ShadowVolumeType.SUNLIGHT">
+      <summary>
+            太阳光源
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.ShadowVolumeType.POINTLIGHT">
+      <summary>
+            点光源
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.SpatialQuery3D">
+      <summary>
+            三维空间查询类
+            包括三维点与模型、模型与模型之间的空间位置查询。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.SpatialQuery3D.GetRelativePosition(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D)">
+      <summary>
+            获取两个对象的空间位置关系。
+            </summary>
+      <param name="geometry1">指定的第一个对象。</param>
+      <param name="geometry2">指定的另一个对象。</param>
+      <returns>成功返回两个对象的空间位置关系。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.SpatialQuery3D.SpatialQuery(SuperMap.Data.Geometry3D,SuperMap.Data.Recordset,SuperMap.Realspace.ThreeDDesigner.PositionMode)">
+      <summary>
+            在modelRecordset中查询，得到与geometry具备posMode位置关系的IDs。外部保证geometry 与 modelRecordset的坐标系一致。
+            </summary>
+      <param name="geometry">geometry可以是三维点或模型对象</param>
+      <param name="modelRecordset">modelRecordset可以是三维点数据或模型数据</param>
+      <param name="posMode">指定对象的空间位置关系</param>
+      <returns>成功返回在modelRecordset中查询，得到与geometry具备posMode位置关系的IDs</returns>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.SunDataTimeInfo">
+      <summary>
+            太阳光时间参数类
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.SunDataTimeInfo.#ctor">
+      <summary>
+            构造一个新的太阳光时间参数类
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.SunDataTimeInfo.#ctor(System.DateTime,System.TimeSpan)">
+      <summary>
+            根据指定日期或时间间隔显示太阳光时间参数
+            </summary>
+      <param name="dataTime">当前太阳时间</param>
+      <param name="timeSpan">当前时区</param>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.SunDataTimeInfo.Dispose">
+      <summary>
+            释放SunDataTimeInfo对象占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunDataTimeInfo.BaseUtcOffset">
+      <summary>
+            获取或设置计算太阳位置时所用的时区偏移
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SunDataTimeInfo.SunDateTime">
+      <summary>
+            获取或设置计算太阳位置时所用的时间
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.SurfaceMeshParameter">
+      <summary>
+            表面建模参数设置类。可用于参数化构建表面网格，支持极坐标或者平面坐标构建。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.SurfaceMeshParameter.#ctor">
+      <summary>
+            默认构造一个新的SurfaceMeshParameter对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.SurfaceMeshParameter.Dispose">
+      <summary>
+            释放占用资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SurfaceMeshParameter.Colors">
+      <summary>
+            获取或设置颜色表。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SurfaceMeshParameter.Intensities">
+      <summary>
+            获取或设置强度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SurfaceMeshParameter.IsPolarParametric">
+      <summary>
+            是否极坐标方式构建。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SurfaceMeshParameter.TextureCoords">
+      <summary>
+            获取或设置纹理坐标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.SurfaceMeshParameter.Vertices">
+      <summary>
+            获取或设置顶点。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.TextureCompressType">
+      <summary>
+            该枚举类定义了倾斜摄影模型数据经压缩纹理处理生成的数据格式类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.TextureCompressType.TEXTURECOMPRESS_NONE">
+      <summary>
+            未知类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.TextureCompressType.TEXTURECOMPRESS_DXT">
+      <summary>
+            适用于PC端的DXT数据格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.TextureCompressType.TEXTURECOMPRESS_ETC">
+      <summary>
+            适用于Android设备的ETC数据格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.TextureCompressType.TEXTURECOMPRESS_PVR">
+      <summary>
+            适用于iOS设备的PVR数据格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.TextureCompressType.TEXTURECOMPRESS_JPG">
+      <summary>
+            JPG数据格式，适用于所有终端设备。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.TextureCompressType.TEXTURECOMPRESS_PNG">
+      <summary>
+            PNG数据格式，适用于所有终端设备。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter">
+      <summary>
+            纹理映射参数设置类
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.#ctor">
+      <summary>
+            构造一个新的TextureMapParameter函数
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.Dispose">
+      <summary>
+            释放TextureMapParameter对象占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.IsRealTexMapSize">
+      <summary>
+            获取或设置纹理坐标计算是否使用纹理图片实际尺寸计算
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.IsRealWorldMapSize">
+      <summary>
+            获取或设置纹理坐标是否按照模型实际尺寸计算
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.IsUFlip">
+      <summary>
+            获取或设置U方向是否翻转
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.IsVFlip">
+      <summary>
+            获取或设置V方向是否翻转
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.IsWFlip">
+      <summary>
+            获取或设置W方向是否翻转
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.MappingMode">
+      <summary>
+            获取或设置纹理贴图映射模式
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.MappingModelHeight">
+      <summary>
+            获取或设置纹理映射模型的高度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.MappingModelLength">
+      <summary>
+            获取或设置纹理映射模型的长度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.MappingModelWidth">
+      <summary>
+            获取或设置纹理映射模型的宽度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.UAngle">
+      <summary>
+            获取或设置U方向旋转角度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.UOffset">
+      <summary>
+            获取或设置U方向位移
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.UTiling">
+      <summary>
+            获取或设置U方向缩放
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.VAngle">
+      <summary>
+             获取或设置V方向旋转角度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.VOffset">
+      <summary>
+            获取或设置V方向位移
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.VTiling">
+      <summary>
+            获取或设置V方向缩放
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.WAngle">
+      <summary>
+            获取或设置W方向旋转角度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.WOffset">
+      <summary>
+            获取或设置W方向位移
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.ThreeDDesigner.TextureMapParameter.WTiling">
+      <summary>
+            获取或设置W方向缩放
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.ThreeDDesigner.TextureMappingMode">
+      <summary>
+            该枚举定义了纹理贴图映射模式类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.TextureMappingMode.BOX">
+      <summary>
+            立方体(盒子)贴图
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.TextureMappingMode.PLANAR">
+      <summary>
+            平面贴图
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.ThreeDDesigner.TextureMappingMode.SPHERICAL">
+      <summary>
+            球形贴图
+            </summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,450 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Data.Topology</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Data.Topology.ArcAndVertexFilterMode">
+      <summary>
+            This enumeration defines the ArcAndVertexFilterMode constant.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.ArcAndVertexFilterMode.None">
+      <summary>
+            Do not filter, break line objects at all the intersections.
+            <para>As shown below:</para><para></para></summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.ArcAndVertexFilterMode.Arc">
+      <summary>
+            Only filter with the filter expression. That is, the line objects find with the filter expression will not be break.
+            <para>As shown below:</para><para></para></summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.ArcAndVertexFilterMode.Vertex">
+      <summary>
+            Only filter with the filter point recordset.
+            <para>As shown below:</para><para></para></summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.ArcAndVertexFilterMode.ArcAndVertex">
+      <summary>
+            The filter expression and the filter point recordset determine which position do not break.
+            <para>As shown below:</para><para></para><para><b><font color="red">Note</font></b>: In this mode, if only one filter was set, it will not be effective.</para></summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.ArcAndVertexFilterMode.ArcOrVertex">
+      <summary>
+            The filter expression and the filter point recordset determine which position do not break.
+            <para>As shown below:</para><para></para><para>Note: In this mode, you can set only one filter.</para></summary>
+    </member>
+    <member name="T:SuperMap.Data.Topology.TopologyPreprocessOptions">
+      <summary>
+            This class provides the setting information about topology pre-processing.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyPreprocessOptions.#ctor">
+      <summary>
+            Initializes a new instance of TopologyPreprocessOptions.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyPreprocessOptions.#ctor(SuperMap.Data.Topology.TopologyPreprocessOptions)">
+      <summary>
+            Initializes a new instance according to the specified TopologyPreprocessOptions object.
+            </summary>
+      <param name="topologyPreprocessOptions">The specified TopologyPreprocessOptions object.</param>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyPreprocessOptions.AreArcsInserted">
+      <summary>
+            Gets or sets whether to insert node at the insertion.
+            </summary>
+      <value>The default value is true.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyPreprocessOptions.AreVertexArcInserted">
+      <summary>
+            Returns or sets whether to insert node between nodes and lines.
+            </summary>
+      <value>The default value is true.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyPreprocessOptions.AreVertexesSnapped">
+      <summary>
+            Returns or sets whether to perform node snapping.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyPreprocessOptions.ArePolygonsChecked">
+      <summary>
+            Gets or sets whether to adjust the trend of the polygon.
+            </summary>
+      <value>The default value is true.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyPreprocessOptions.AreVertexAdjusted">
+      <summary>
+            Gets or sets whether to adjust the position of the node.
+            </summary>
+      <value>The default value is true.</value>
+    </member>
+    <member name="T:SuperMap.Data.Topology.TopologyProcessing">
+      <summary>
+            The TopologyProcessing class. This class is used for the topology processing.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.BuildRegions(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Builds the region dataset according to the specified parameters with line dataset or network dataset by the topology processing.
+            </summary>
+      <param name="sourceDataset">The specified source dataset that is used for polygon topology processing. It can only be a line dataset or a network dataset.</param>
+      <param name="outputDatasource">Datasource for storing the output datasets.</param>
+      <param name="outputDatasetName">The name of the result region dataset.</param>
+      <returns>The result region dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.BuildRegions(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Data.Topology.TopologyProcessingOptions)">
+      <summary>
+            Builds the region dataset according to the specified parameters with line dataset or network dataset by the topology processing.
+            </summary>
+      <param name="sourceDataset">The specified source dataset that is used for polygon topology processing. It can only be a line dataset or a network dataset.</param>
+      <param name="outputDatasource">The datasource that will output the result dataset.</param>
+      <param name="outputDatasetName">The name of the output region dataset.</param>
+      <param name="options">The topology processing options specified.</param>
+      <returns>The result region dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.Clean(SuperMap.Data.DatasetVector,SuperMap.Data.Topology.TopologyProcessingOptions)">
+      <summary>
+            Performs the topology processing according to the specified TopologyProcessingOptions object.
+            </summary>
+      <param name="datasetVector">The specified dataset for topology processing.</param>
+      <param name="options">The specified topology processing option, where the value of AreLinesIntersected (Intersect Arcs) property can be false, i.e. when processing topology, it is not necessary to intersect arcs firstly.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.PickupLeftRightRegions(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,System.Boolean)">
+      <summary>
+            Extracts the left and right region of the line object in the line dataset relating with the specified region dataset.
+            </summary>
+      <param name="regionDataset">The given region dataset.</param>
+      <param name="lineDataset">The associated line dataset specified.</param>
+      <param name="preProcessed">Specifies whether to do topology preprocessing.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.PickupBorder(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Boolean)">
+      <summary>
+            Extracts the boundaries of the region objects or line objects and returns the line dataset. If  the regions/lines have the common edge and the edge will be extracted one time.
+            </summary>
+      <param name="regionDataset">The given region or line dataset.</param>
+      <param name="outputDatasource">Datasource for storing the output border datasets.</param>
+      <param name="outputDatasetName">The name of the result border dataset.</param>
+      <param name="preProcessed">Specifies whether to do topology preprocessing.</param>
+      <returns>Line dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.PickupBorder(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Int32[],System.Boolean)">
+      <summary>
+            Extract the boundary of the surface object corresponding to the array of the given ID array and save the line data set.If multiple surfaces have a common boundary, the boundary will only be extracted once.
+            </summary>
+      <param name="regionDataset">Specify the speck (surface).</param>
+      <param name="outputDatasource">Specifies the data source for storing the result boundary data set.</param>
+      <param name="outputDatasetName">Specifies the name of the result boundary data set.</param>
+      <param name="extractIDs">Specifies an array of facets ids.</param>
+      <param name="preProcessed">Specifies whether topological preprocessing is performed.</param>
+      <returns>Line data set.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.SplitLinesByRegions(SuperMap.Data.Recordset,SuperMap.Data.Recordset)">
+      <summary>
+            The split line of the polygon.
+            </summary>
+      <param name="lineRecordset">Specifies the split line recordset.</param>
+      <param name="regionRecordset">Specifies the region recordset that is used to split the line recordset.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="E:SuperMap.Data.Topology.TopologyProcessing.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Topology.TopologyProcessingOptions">
+      <summary>
+            The TopologyProcessingOptions class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessingOptions.#ctor">
+      <summary>
+            Constructs a new TopologyProcessingOptions object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessingOptions.#ctor(SuperMap.Data.Topology.TopologyProcessingOptions)">
+      <summary>
+            Initializes a new instance of TopologyProcessingOptions according to the specified Tolerance object.
+            </summary>
+      <param name="topologyProcessingOptions">The specified TopologyProcessingOptions object.</param>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.ArePseudoNodesCleaned">
+      <summary>
+            Gets or sets whether to clean pseudo nodes or not.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreOvershootsCleaned">
+      <summary>
+            Gets or sets whether to clean overshoots.
+            </summary>
+      <value>The default is False.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreRedundantVerticesCleaned">
+      <summary>
+            Gets or sets whether to clean redundant vertices or not.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreUndershootsExtended">
+      <summary>
+            Gets or sets whether to extend undershoots or not.
+            </summary>
+      <value>The default is false.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreDuplicatedLinesCleaned">
+      <summary>
+            Gets or sets whether to clean duplicated line or not.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreLinesIntersected">
+      <summary>
+            Gets or sets whether to perform intersecting arcs.
+            </summary>
+      <value>The default value is true.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreAdjacentEndpointsMerged">
+      <summary>
+            Gets or sets whether to union adjacent endpoints or not.
+            </summary>
+      <value>The default is False.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.OvershootsTolerance">
+      <summary>
+            Gets or sets the value of the overshoot tolerance. The unit is the same as the datasets to topology process.
+            </summary>
+      <value>The default value is 0.0.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.VertexFilterRecordset">
+      <summary>
+             Gets or sets the Vertex Filter Record set of arc intersection.
+             </summary>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.FilterMode">
+      <summary>
+            Sets or gets the filter mode of intersect arcs.
+            </summary>
+      <value>The default value is <b>ArcAndVertexFilterMode.None</b>, which means to break in all intersection points.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.ArcFilterString">
+      <summary>
+            Gets or set the arc filter string of arcs intersection.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.UndershootsTolerance">
+      <summary>
+            Gets or sets the value of the undershoot tolerance. The unit is the same as the datasets to topology process.
+            </summary>
+      <value>The default value is 0.0.</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.VertexTolerance">
+      <summary>
+            Gets or sets the vertex tolerance. It is used to merge adjacent points, intersect arcs, remove pseudo points and remove redundant points. The unit is the same as the datasets to topology process.
+            </summary>
+      <value>The default value is 0.0.</value>
+    </member>
+    <member name="T:SuperMap.Data.Topology.TopologyValidator">
+      <summary>
+            Used for performing topology processing, topology check and repair topology errors automatically.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.DatasetTopology)">
+      <summary>
+            Performs the topology preprocessing.
+            </summary>
+      <param name="datasetTopology">The topology dataset to be preprocessed.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.TopologyDatasetRelationItem[],System.Double)">
+      <summary>
+            Performs the topology preprocessing according to the specified collection of the TopologyDatasetRelationItem objects.
+            </summary>
+      <param name="items">The specified collection of the TopologyDatasetRelationItem objects to be topologically processed.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the datasets to preprocess. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.DatasetVector[],System.Int32[],System.Double)">
+      <summary>
+            Performs the topology preprocessing according to the specified collection of the vector datasets and the array of the precision order.
+            </summary>
+      <param name="datasetVectors">The specified datasets.</param>
+      <param name="precisionOrders">The precision order array specified. The less the precisionOrders, the higher the precision. When perform vertex snap, the points in a low precision dataset will be snapped to the points in a high precision dataset. There must be the same amount of precisionOrders with the datasets to process and they must in one to one correspondence.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the datasets to preprocess. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.DatasetVector[],System.Int32[],SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double)">
+      <summary>
+            Perform topology pre-processing according to the parameters specified.
+            </summary>
+      <param name="datasetVectors">The dataset collection specified for the pre-processing.</param>
+      <param name="precisionOrders">The precision order array specified. The less the precisionOrders, the higher the precision. When perform vertex snap, the points in a low precision dataset will be snapped to the points in a high precision dataset. There must be the same amount of precisionOrders with the datasets to process and they must in one to one correspondence.</param>
+      <param name="options">The topology pre-processing option object specified.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the datasets to preprocess. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.Recordset[],System.Int32[],SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double)">
+      <summary>
+            Perform topology pre-processing according to the parameters specified.
+            </summary>
+      <param name="recordsets">The recordset collection specified for the pre-processing.</param>
+      <param name="precisionOrders">The precision order array specified. The less the precisionOrders, the higher the precision. When perform vertex snap, the points in a low precision recordset will be snapped to the points in a high precision recordset. There must be the same amount of precisionOrders with the recordset to process and they must in one to one correspondence.</param>
+      <param name="options">The topology pre-processing option object specified.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the recordset to preprocess. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.DatasetVector,SuperMap.Data.Geometry,SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double,System.Boolean)">
+      <summary>
+            Perform topology pre-processing according to the parameters specified.
+            </summary>
+      <param name="datasetVector">The recordset collection specified for the pre-processing.</param>
+      <param name="geometryTarget">The geometry specified for the pre-processing.</param>
+      <param name="options">The topology pre-processing option object specified.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the recordset to preprocess. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <param name="bStd">Whether to set the standard reference, when it is true, the standard dataset datasetVector is not pre-processed, the specified geometry object geometryTarget will be pre-processed. Otherwise, both will be pre-processed.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.Recordset,SuperMap.Data.Geometry,SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double,System.Boolean)">
+      <summary>
+            Perform topology pre-processing according to the parameters specified.
+            </summary>
+      <param name="recordset">The recordset collection specified for the pre-processing.</param>
+      <param name="geometryTarget">The geometry specified for the pre-processing.</param>
+      <param name="options">The topology pre-processing option object specified.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the recordset to preprocess. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <param name="bStd">Whether to set the standard reference, when it is true, the standard recordset recordset is not pre-processed, the specified geometry object geometryTarget will be pre-processed. Otherwise, both will be pre-processed.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.Geometry,SuperMap.Data.Geometry,SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double,System.Boolean)">
+      <summary>
+            Perform topology pre-processing according to the parameters specified.
+            </summary>
+      <param name="geometrySource">The source geometry specified for the pre-processing.</param>
+      <param name="geometryTarget">The target geometry specified for the pre-processing.</param>
+      <param name="options">The topology pre-processing option object specified.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the recordset to preprocess. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <param name="bStd">Whether to set the standard reference, when it is true, the standard source geometry object geometrySource is not pre-processed, the specified geometry object geometryTarget will be pre-processed. Otherwise, both will be pre-processed.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.PreprocessAdjustVertex(SuperMap.Data.DatasetVector[],System.Double)">
+      <summary>
+            Node adjustment preprocessing for given vector datasets.
+            </summary>
+      <param name="datasetVectors">The dataset collection specified for the pre-processing.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the recordset to preprocess. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.PreprocessVertexSnap(SuperMap.Data.DatasetVector[],SuperMap.Data.Topology.VertexSnapType,System.Double,System.Double)">
+      <summary>
+            Node snapping preprocessing for given vector datasets according to given method.
+            </summary>
+      <param name="datasetVectors">The dataset collection specified for the pre-processing.</param>
+      <param name="type">Node snapping preprocessing mode.</param>
+      <param name="dCloseNodeTolerance">Tolerance value of merging adjacent nodes.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the recordset to preprocess. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Validate(SuperMap.Data.DatasetTopology,SuperMap.Data.GeoRegion)">
+      <summary>
+            Performs the topology validating according to the specified topology dataset.
+            </summary>
+      <param name="datasetTopology">The specified topology dataset.</param>
+      <param name="validateRegion">
+        <para>The specified areas to be checked. If the area is null, then check dirty areas of the entire topology dataset (datasetTopology), otherwise topologically check the validate region. The dirty area is an area that has not been topologically checked yet.</para>
+        <para>Dirty region is the region which is build without being checked for topology error. If the user edits the data in some area, dirty region will be generated in the area again.</para>
+      </param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Validate(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,SuperMap.Data.TopologyRule,System.Double,SuperMap.Data.GeoRegion,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Performs the topology validating on the dataset and returns the dataset which has the topology error.
+            </summary>
+      <param name="sourceDataset">The dataset to be checked.</param>
+      <param name="validatingDataset">The reference dataset specified for check. if the topology rules used does not need to refer dataset, set as null.</param>
+      <param name="rule">The topology rule specified.</param>
+      <param name="tolerance">The tolerance specified for the topology checking. The unit is the same as the datasets to topology checking. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <param name="validateRegion">The areas specified to be checked.  If the area is null, check the entire topology dataset (validatingDataset) by default, otherwise topologically check the validateRegion.</param>
+      <param name="outputDatasource">The specified datasource, which the output topology error result dataset belongs to.</param>
+      <param name="outputDatasetName">The name of the specified dataset which the output topology error result belongs to.</param>
+      <returns>The dataset which has the topology error.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Validate(SuperMap.Data.Recordset,SuperMap.Data.Recordset,SuperMap.Data.TopologyRule,System.Double,SuperMap.Data.GeoRegion,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Performs the topology validating on the recordset and returns the dataset which has the topology error.
+            </summary>
+      <param name="sourceRecordset">The dataset specified to be checked.</param>
+      <param name="validatingRecordset">The reference recordset specified for check. if the topology rules used does not need to refer recordset, set as null.</param>
+      <param name="rule">The topology rule specified.</param>
+      <param name="tolerance">The tolerance specified for the topology checking. The unit is the same as the datasets to topology checking. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <param name="validateRegion">The areas specified to be checked.  If the area is null, check the entire topology dataset (validatingDataset) by default, otherwise topologically check the validateRegion.</param>
+      <param name="outputDatasource">The specified datasource, which the output topology error result dataset belongs to.</param>
+      <param name="outputDatasetName">The name of the specified dataset which the output topology error result belongs to.</param>
+      <returns>The dataset which has the topology error.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.FixTopoError(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector)">
+      <summary>
+            Perform topology error fix automatically.
+            </summary>
+      <param name="sourceDataset">The dataset specified to perform topology error fix.</param>
+      <param name="validatingDataset">The reference dataset specified. It's the reference dataset for topology check.</param>
+      <param name="topoErrorDataset">The dataset specified which stores the topology errors.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="E:SuperMap.Data.Topology.TopologyValidator.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Topology.TopologyValidator3D">
+      <summary>
+            3D data topology checking class. It is used for 3D line preprocessing.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator3D.Preprocess(SuperMap.Data.DatasetVector[],System.Int32[],System.Double)">
+      <summary>
+            To perform topology preprocessing according to given vector dataset and accuracy level. Only support for node snapping.
+            </summary>
+      <param name="datasetVectors">Specified dataset collection, which must be 3D line datasets.</param>
+      <param name="precisionOrders">The precision order array specified. The less the precisionOrders, the higher the precision. When perform node snap, the points in a low precision dataset will be snapped to the points in a high precision dataset. There must be the same amount of precisionOrders with the datasets to process and they must in one to one correspondence.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the Z of the 3D line node. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator3D.Preprocess(SuperMap.Data.DatasetVector[],System.Int32[],SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double)">
+      <summary>
+            Perform topology preprocessing according to specified parameters. Only support for node snapping.
+            </summary>
+      <param name="datasetVectors">Specified dataset collection to be preprocessed, which must be 3D line datasets.</param>
+      <param name="precisionOrders">The precision order array specified. The less the precisionOrders, the higher the precision. When perform node snap, the points in a low precision dataset will be snapped to the points in a high precision dataset. There must be the same amount of precisionOrders with the datasets to process and they must in one to one correspondence.</param>
+      <param name="options">Specified topology preprocessing option object. Only support for node snapping.</param>
+      <param name="tolerance">The specified necessary tolerance control for processing. The unit is the same as the Z of the 3D line node. The range is greater than or equal to 0 and the value less than 0 will throw an exception.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="E:SuperMap.Data.Topology.TopologyValidator3D.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Topology.VertexSnapType">
+      <summary>
+            Defines the node snapping preprocessing mode constant.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.VertexSnapType.VertexSnapVertexs">
+      <summary>
+            node snapping by node.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.VertexSnapType.NodeSnapNodes">
+      <summary>
+            End point snapping by end point.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.VertexSnapType.NodeSnapVertexs">
+      <summary>
+            node snapping by end point. The end point(non standard dataset) is snapped by the node(standard dataset, also called the first dataset).
+            </summary>
+    </member>
+  </members>
+</doc>

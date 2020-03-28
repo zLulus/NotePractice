@@ -1,0 +1,450 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Data.Topology</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Data.Topology.ArcAndVertexFilterMode">
+      <summary>
+            该枚举定义了弧段求交过滤模式常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.ArcAndVertexFilterMode.None">
+      <summary>
+            不过滤，即在所有交点处打断线对象。该模式下设置过滤线表达式或过滤点数据集均无效。
+            <para>如下图所示，线对象 A、B、C、D 在它们的相交处分别打断，即 A、B 在它们相交处分别被打断，C 在与 A、D 的相交处被打断。</para><para></para></summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.ArcAndVertexFilterMode.Arc">
+      <summary>
+            仅由过滤线表达式过滤，即过滤线表达式查询出的线对象不打断。该模式下设置过滤点记录集无效。
+            <para>如下图所示，线对象 C 是满足过滤线表达式的对象，则线对象 C 整条线不会在任何位置被打断。</para><para></para></summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.ArcAndVertexFilterMode.Vertex">
+      <summary>
+            仅由过滤点记录集过滤，即线对象在过滤点所在位置（或与过滤点的距离在容限范围内）处不打断。该模式下设置过滤线表达式无效。
+            <para>如下图所示，某个过滤点位于线对象 A 和 C 在相交处，则在该处 C 不会被打断，其他相交位置仍会打断。</para><para></para></summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.ArcAndVertexFilterMode.ArcAndVertex">
+      <summary>
+            由过滤线表达式和过滤点记录集共同决定哪些位置不打断，二者为且的关系，即只有过滤线表达式查询出的线对象在过滤点位置处（或二者在容限范围内）不打断。
+            <para>如下图所示，线对象 C 是满足过滤线表达式的对象，A、B 相交处，C、D 相交处分别有一个过滤点，根据该模式规则，过滤线上过滤点所在的位置不会被打断，即 C 在与 D 的相交处不打断。</para><para></para><para><b><font color="red">注意</font></b>：此模式下，如果只设置了一个过滤条件，则该条件不会生效，而是在相交处全部打断。</para></summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.ArcAndVertexFilterMode.ArcOrVertex">
+      <summary>
+            过滤线表达式查询出的线对象以及过滤点位置处（或与过滤点距离在容限范围内）的线对象不打断，二者为并的关系。
+            <para>如下图所示，线对象 C 是满足过滤线表达式的对象，A、B 相交处，C、D 相交处分别有一个过滤点，根据该模式规则，结果如右图所示，C 整体不被打断，A、B 相交处也不打断。</para><para></para><para>注意，此模式下，可以只设置其中的一个过滤条件，此时将按照该过滤条件进行弧段求交。</para></summary>
+    </member>
+    <member name="T:SuperMap.Data.Topology.TopologyPreprocessOptions">
+      <summary>
+            拓扑预处理选项类。该类提供了关于拓扑预处理的相关设置信息。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyPreprocessOptions.#ctor">
+      <summary>
+            构造一个新的 TopologyPreprocessOptions 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyPreprocessOptions.#ctor(SuperMap.Data.Topology.TopologyPreprocessOptions)">
+      <summary>
+            根据给定的 TopologyPreprocessOptions 对象构造一个与其完全相同的的新对象。
+            </summary>
+      <param name="topologyPreprocessOptions">指定的 TopologyPreprocessOptions 对象。</param>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyPreprocessOptions.AreArcsInserted">
+      <summary>
+            获取或设置是否进行线段间求交插入节点。该值为 true 表示在相交处插入节点，false 表示不插入节点。
+            </summary>
+      <value>默认值为 true。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyPreprocessOptions.AreVertexArcInserted">
+      <summary>
+            返回或设置是否进行节点与线段间插入节点。
+            </summary>
+      <value>默认值为 true。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyPreprocessOptions.AreVertexesSnapped">
+      <summary>
+            返回或设置是否进行节点捕捉。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyPreprocessOptions.ArePolygonsChecked">
+      <summary>
+            获取或设置是否进行多边形走向调整。
+            </summary>
+      <value>默认值为 true。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyPreprocessOptions.AreVertexAdjusted">
+      <summary>
+            获取或设置是否进行节点位置调整。
+            </summary>
+      <value>默认值为 true。</value>
+    </member>
+    <member name="T:SuperMap.Data.Topology.TopologyProcessing">
+      <summary>
+            拓扑处理类。用于进行拓扑处理。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.BuildRegions(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            根据指定的参数，将线数据集或者网络数据集，通过拓扑处理来构建面数据集。
+            </summary>
+      <param name="sourceDataset">指定的用于进行多边形拓扑处理的源数据集，只能是线数据集或网络数据集。</param>
+      <param name="outputDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="outputDatasetName">指定的结果面数据集的名称。</param>
+      <returns>结果面数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.BuildRegions(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Data.Topology.TopologyProcessingOptions)">
+      <summary>
+            根据指定的参数，将线数据集或者网络数据集，通过拓扑处理来构建面数据集。
+            </summary>
+      <param name="sourceDataset">指定的用于进行多边形拓扑处理的源数据集，只能是线数据集或网络数据集。</param>
+      <param name="outputDatasource">用于存放输出结果的数据源。</param>
+      <param name="outputDatasetName">输出结果面数据集的名称。</param>
+      <param name="options">指定的拓扑处理选项。</param>
+      <returns>结果面数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.Clean(SuperMap.Data.DatasetVector,SuperMap.Data.Topology.TopologyProcessingOptions)">
+      <summary>
+            根据拓扑处理选项对给定的数据集进行拓扑处理。
+            </summary>
+      <param name="datasetVector">指定的拓扑处理的数据集。</param>
+      <param name="options">指定的拓扑处理选项。其中 options 的 AreLinesIntersected 弧段求交属性值可以为 false，即在做拓扑处理时，可以先不进行弧段求交。</param>
+      <returns>成功返回 true，失败返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.PickupLeftRightRegions(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,System.Boolean)">
+      <summary>
+            根据给定的面数据集和关联的线数据集，提取关联线数据集中线对象的左右多边形。
+            </summary>
+      <param name="regionDataset">指定的图斑（面）数据集。</param>
+      <param name="lineDataset">指定的关联的线数据集。</param>
+      <param name="preProcessed">指定是否进行拓扑预处理。</param>
+      <returns>成功返回 true，失败返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.PickupBorder(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Boolean)">
+      <summary>
+            提取面（或线）的边界，并保存为线数据集。若多个面（或线）共边界（线段），该边界（线段）只会被提取一次。
+            </summary>
+      <param name="regionDataset">指定的图斑（面）、或线数据集。</param>
+      <param name="outputDatasource">指定的用于存储结果边界线数据集的数据源。</param>
+      <param name="outputDatasetName">指定的结果边界线数据集的名称。</param>
+      <param name="preProcessed">指定是否进行拓扑预处理。</param>
+      <returns>线数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.PickupBorder(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Int32[],System.Boolean)">
+      <summary>
+            提取给定ID数组对应的面对象的边界，并保存为线数据集。若多个面共边界，该边界只会被提取一次。
+            </summary>
+      <param name="regionDataset">指定的图斑（面）。</param>
+      <param name="outputDatasource">指定的用于存储结果边界线数据集的数据源。</param>
+      <param name="outputDatasetName">指定的结果边界线数据集的名称。</param>
+      <param name="extractIDs">指定的面ID数组。</param>
+      <param name="preProcessed">指定是否进行拓扑预处理。</param>
+      <returns>线数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessing.SplitLinesByRegions(SuperMap.Data.Recordset,SuperMap.Data.Recordset)">
+      <summary>
+            多边形分割线。
+            </summary>
+      <param name="lineRecordset">指定的被分割的线记录集。</param>
+      <param name="regionRecordset">指定的用于分割线记录集的面记录集。</param>
+      <returns>成功返回 true，失败返回 false。</returns>
+    </member>
+    <member name="E:SuperMap.Data.Topology.TopologyProcessing.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Topology.TopologyProcessingOptions">
+      <summary>
+            拓扑处理选项类。该类提供了关于拓扑处理的设置信息。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessingOptions.#ctor">
+      <summary>
+            构造一个新的 TopologyProcessingOptions 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyProcessingOptions.#ctor(SuperMap.Data.Topology.TopologyProcessingOptions)">
+      <summary>
+            根据给定的 TopologyProcessingOptions 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="topologyProcessingOptions">指定的 TopologyProcessingOptions 对象。</param>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.ArePseudoNodesCleaned">
+      <summary>
+            获取或设置是否去除假结点。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreOvershootsCleaned">
+      <summary>
+            获取或设置是否去除短悬线。
+            </summary>
+      <value>默认值为 false 。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreRedundantVerticesCleaned">
+      <summary>
+            获取或设置是否去除冗余点。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreUndershootsExtended">
+      <summary>
+            获取或设置是否进行长悬线延伸。
+            </summary>
+      <value>默认值为false 。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreDuplicatedLinesCleaned">
+      <summary>
+            获取或设置是否去除重复线。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreLinesIntersected">
+      <summary>
+            获取或设置是否进行弧段求交。
+            </summary>
+      <value>默认值为 true。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.AreAdjacentEndpointsMerged">
+      <summary>
+            获取或设置是否进行邻近端点合并。
+            </summary>
+      <value>默认值为 false 。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.OvershootsTolerance">
+      <summary>
+            获取或设置短悬线容限。该容限用于在去除短悬线时判断悬线是否是短悬线。单位与进行拓扑处理的数据集单位相同。
+            </summary>
+      <value>默认值为 0.0。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.VertexFilterRecordset">
+      <summary>
+             获取或设置弧段求交的过滤点记录集，即此记录集中的点位置线段不进行求交打断。
+             </summary>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.FilterMode">
+      <summary>
+            获取或设置弧段求交的过滤模式。
+            </summary>
+      <value>默认值为 <b>ArcAndVertexFilterMode.None</b>，即在所有相交处打断。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.ArcFilterString">
+      <summary>
+            获取或设置弧段求交的过滤线表达式。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.UndershootsTolerance">
+      <summary>
+            获取或设置长悬伸容限。该容限用于在长悬线延伸时判断悬线是否延伸。单位与进行拓扑处理的数据集单位相同。
+            </summary>
+      <value>默认值为 0.0。</value>
+    </member>
+    <member name="P:SuperMap.Data.Topology.TopologyProcessingOptions.VertexTolerance">
+      <summary>
+            获取或设置节点容限。该容限用于邻近端点合并、弧段求交、去除假结点和去除冗余点。单位与进行拓扑处理的数据集单位相同。
+            </summary>
+      <value>默认值为 0.0。</value>
+    </member>
+    <member name="T:SuperMap.Data.Topology.TopologyValidator">
+      <summary>
+            拓扑检查类。用于进行拓扑预处理、拓扑检查和拓扑错误自动修复。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.DatasetTopology)">
+      <summary>
+            对给定的拓扑数据集进行拓扑预处理。
+            </summary>
+      <param name="datasetTopology">被预处理的拓扑数据集。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.TopologyDatasetRelationItem[],System.Double)">
+      <summary>
+            根据给定的拓扑预处理项对象数组进行拓扑预处理。
+            </summary>
+      <param name="items">指定的拓扑预处理项对象数组。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与进行拓扑预处理的数据集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.DatasetVector[],System.Int32[],System.Double)">
+      <summary>
+            根据给定的矢量数据集集合和精度等级数组进行拓扑预处理。
+            </summary>
+      <param name="datasetVectors">指定的数据集集合。</param>
+      <param name="precisionOrders">指定的精度等级数组。精度等级的值越小，代表对应数据集的精度越高，数据质量越好。在进行顶点捕捉时，低精度的数据集中的点将被捕捉到高精度数据集中的点的位置上。精度等级数组必须与要进行拓扑预处理的数据集集合元素数量相同并一一对应。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与进行拓扑预处理的数据集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.DatasetVector[],System.Int32[],SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double)">
+      <summary>
+            根据给定的参数进行拓扑预处理。
+            </summary>
+      <param name="datasetVectors">指定的待进行预处理的数据集集合。</param>
+      <param name="precisionOrders">指定的精度等级数组。精度等级的值越小，代表对应数据集的精度越高，数据质量越好。在进行顶点捕捉时，低精度的数据集中的点将被捕捉到高精度数据集中的点的位置上。精度等级数组必须与要进行拓扑预处理的数据集集合元素数量相同并一一对应。</param>
+      <param name="options">指定的拓扑预处理选项对象。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与进行拓扑预处理的数据集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.Recordset[],System.Int32[],SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double)">
+      <summary>
+            根据给定的参数进行拓扑预处理。
+            </summary>
+      <param name="recordsets">指定的待进行预处理的记录集集合。</param>
+      <param name="precisionOrders">指定的精度等级数组。精度等级的值越小，代表对应记录集的精度越高，数据质量越好。在进行顶点捕捉时，低精度的记录集中的点将被捕捉到高精度记录集中的点的位置上。精度等级数组必须与要进行拓扑预处理的记录集集合元素数量相同并一一对应。</param>
+      <param name="options">指定的拓扑预处理选项对象。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与进行拓扑预处理的记录集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.DatasetVector,SuperMap.Data.Geometry,SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double,System.Boolean)">
+      <summary>
+            根据给定的参数进行拓扑预处理。
+            </summary>
+      <param name="datasetVector">指定的待进行预处理的记录集。</param>
+      <param name="geometryTarget">指定的待进行预处理的几何对象。</param>
+      <param name="options">指定的拓扑预处理选项对象。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与进行拓扑预处理的记录集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <param name="bStd">是否设置标准参考，设置为true时，标准数据集datasetVector不进行预处理，指定几何对象geometryTarget进行预处理。否则都进行预处理。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.Recordset,SuperMap.Data.Geometry,SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double,System.Boolean)">
+      <summary>
+            根据给定的参数进行拓扑预处理。
+            </summary>
+      <param name="recordset">指定的待进行预处理的记录集。</param>
+      <param name="geometryTarget">指定的待进行预处理的几何对象。</param>
+      <param name="options">指定的拓扑预处理选项对象。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与进行拓扑预处理的记录集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <param name="bStd">是否设置标准参考，设置为true时，标准记录集recordset不进行预处理，指定几何对象geometryTarget进行预处理。否则都进行预处理。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Preprocess(SuperMap.Data.Geometry,SuperMap.Data.Geometry,SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double,System.Boolean)">
+      <summary>
+            根据给定的参数进行拓扑预处理。
+            </summary>
+      <param name="geometrySource">指定的待进行预处理的源几何对象。</param>
+      <param name="geometryTarget">指定的待进行预处理的目标几何对象。</param>
+      <param name="options">指定的拓扑预处理选项对象。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与进行拓扑预处理的记录集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <param name="bStd">是否设置标准参考，设置为true时，标准源几何对象geometrySource不进行预处理，指定几何对象geometryTarget进行预处理。否则都进行预处理。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.PreprocessAdjustVertex(SuperMap.Data.DatasetVector[],System.Double)">
+      <summary>
+            对给定的矢量数据集集合进行节点调整预处理。
+            </summary>
+      <param name="datasetVectors">指定的待进行预处理的数据集集合。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与进行拓扑预处理的记录集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.PreprocessVertexSnap(SuperMap.Data.DatasetVector[],SuperMap.Data.Topology.VertexSnapType,System.Double,System.Double)">
+      <summary>
+            对给定的矢量数据集集合根据给定的方式进行节点捕捉预处理。
+            </summary>
+      <param name="datasetVectors">指定的待进行预处理的数据集集合。</param>
+      <param name="type">节点捕捉预处理模式。</param>
+      <param name="dCloseNodeTolerance">邻接节点合并的容限值。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与进行拓扑预处理的记录集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Validate(SuperMap.Data.DatasetTopology,SuperMap.Data.GeoRegion)">
+      <summary>
+            根据给定的拓扑数据集进行拓扑错误检查。
+            </summary>
+      <param name="datasetTopology">指定的拓扑数据集。</param>
+      <param name="validateRegion">
+        <para>指定的被检查的区域，如果区域为null，则对整个拓扑数据集（datasetTopology）的脏区进行检查，否则对 validateRegion 进行拓扑检查。脏区就是尚未进行拓扑检查的区域。</para>
+        <para>脏区指的是未进行拓扑检查的区域，就已经进行了拓扑检查的区域，若用户在局部对数据进行了部分编辑时，则在此局部区域又将生成新的脏区。</para>
+      </param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Validate(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,SuperMap.Data.TopologyRule,System.Double,SuperMap.Data.GeoRegion,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            对数据集进行拓扑错误检查，返回含有拓扑错误的结果数据集。
+            </summary>
+      <param name="sourceDataset">指定的被检查的数据集。</param>
+      <param name="validatingDataset">指定的用于检查的参考数据集。如果使用的拓扑规则不需要参考数据集，则设置为 null。</param>
+      <param name="rule">指定的拓扑规则。</param>
+      <param name="tolerance">指定的拓扑错误检查时使用的容限。单位与进行拓扑错误检查的数据集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <param name="validateRegion">指定的被检查区域，如果区域为null，则默认对整个拓扑数据集（validatingDataset）进行检查，否则对 validateRegion 区域进行拓扑检查。</param>
+      <param name="outputDatasource">指定的输出拓扑错误结果数据集所在的数据源。</param>
+      <param name="outputDatasetName">指定的输出拓扑错误结果数据集的名称。</param>
+      <returns>含有拓扑错误的结果数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.Validate(SuperMap.Data.Recordset,SuperMap.Data.Recordset,SuperMap.Data.TopologyRule,System.Double,SuperMap.Data.GeoRegion,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            对记录集进行拓扑错误检查，返回含有拓扑错误的结果数据集。
+            </summary>
+      <param name="sourceRecordset">指定的被检查的记录集。</param>
+      <param name="validatingRecordset">指定的用于检查的参考记录集。如果使用的拓扑规则不需要参考记录集，则设置为 null。</param>
+      <param name="rule">指定的拓扑规则。</param>
+      <param name="tolerance">指定的拓扑错误检查时使用的容限。单位与进行拓扑错误检查的数据集单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <param name="validateRegion">指定的被检查区域，如果区域为null，则默认对整个拓扑数据集（validatingDataset）进行检查，否则对 validateRegion 区域进行拓扑检查。</param>
+      <param name="outputDatasource">指定的输出拓扑错误结果数据集所在的数据源。</param>
+      <param name="outputDatasetName">指定的输出拓扑错误结果数据集的名称。</param>
+      <returns>含有拓扑错误的结果数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator.FixTopoError(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector)">
+      <summary>
+            进行拓扑错误自动修复。该方法在拓扑检查之后调用。
+            </summary>
+      <param name="sourceDataset">指定的需要进行拓扑错误修复的数据集。</param>
+      <param name="validatingDataset">指定的参考数据集。该数据集为进行拓扑检查时的参考数据集。</param>
+      <param name="topoErrorDataset">指定的存储了拓扑错误的数据集。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="E:SuperMap.Data.Topology.TopologyValidator.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Topology.TopologyValidator3D">
+      <summary>
+            三维数据拓扑检查类。用于进行三维线的预处理。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator3D.Preprocess(SuperMap.Data.DatasetVector[],System.Int32[],System.Double)">
+      <summary>
+            根据给定的矢量数据集集合和精度等级数组进行拓扑预处理。现在只支持节点捕捉功能。
+            </summary>
+      <param name="datasetVectors">指定的数据集集合，数据集必须为三维线数据集。</param>
+      <param name="precisionOrders">指定的精度等级数组。精度等级的值越小，代表对应数据集的精度越高，数据质量越好。在进行节点捕捉时，低精度的数据集中的点将被捕捉到高精度数据集中的点的位置上。精度等级数组必须与要进行拓扑预处理的数据集集合元素数量相同并一一对应。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与三维线节点坐标的Z值坐标单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Topology.TopologyValidator3D.Preprocess(SuperMap.Data.DatasetVector[],System.Int32[],SuperMap.Data.Topology.TopologyPreprocessOptions,System.Double)">
+      <summary>
+            根据给定的参数进行拓扑预处理。现在只支持节点捕捉功能。
+            </summary>
+      <param name="datasetVectors">指定的待进行预处理的数据集集合，数据集必须为三维线数据集。</param>
+      <param name="precisionOrders">指定的精度等级数组。精度等级的值越小，代表对应数据集的精度越高，数据质量越好。在进行节点捕捉时，低精度的数据集中的点将被捕捉到高精度数据集中的点的位置上。精度等级数组必须与要进行拓扑预处理的数据集集合元素数量相同并一一对应。</param>
+      <param name="options">指定的拓扑预处理选项对象。只支持节点捕捉。</param>
+      <param name="tolerance">指定的处理时需要的容限控制。单位与三维线节点坐标的Z值坐标单位相同。取值范围为大于等于0，小于0将抛出异常。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="E:SuperMap.Data.Topology.TopologyValidator3D.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Topology.VertexSnapType">
+      <summary>
+            该枚举定义了节点捕捉预处理模式常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.VertexSnapType.VertexSnapVertexs">
+      <summary>
+            节点捕捉节点。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.VertexSnapType.NodeSnapNodes">
+      <summary>
+            端点捕捉端点。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Topology.VertexSnapType.NodeSnapVertexs">
+      <summary>
+            端点捕捉节点。端点（非标准数据集）被节点（标准数据集，也叫第一数据集）捕捉的模式。
+            </summary>
+    </member>
+  </members>
+</doc>

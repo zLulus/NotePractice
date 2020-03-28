@@ -1,0 +1,795 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Realspace.NetworkAnalyst</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.BurstAnalyse3DResult">
+      <summary>
+            The pipe-broken analysis result class. The result of pipe-broken returns the crucial facility nodes, common facility nodes and arcs.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.BurstAnalyse3DResult.CriticalNodes">
+      <summary>
+            Obtain the key facilities in the burst analysis to influence the upstream and downstream of the burst position.
+            <remark>
+           Key facilities include two facilities:
+            <para>1. The location of the pipe in the upper part of the pipe directly affect the location of the facilities.</para><para>2. In the downstream, there is a direct impact on the location of the pipe and the outflow (ie, the degree is greater than 0).</para></remark></summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.BurstAnalyse3DResult.NormalNodes">
+      <summary>
+            Gets the common facility nodes that are affected by the pipe-broken position.
+            </summary>
+      <remark>Ordinary facilities include three types:
+            <para>1. Allowed by the location of the pipe directly affected and no outflow (out of 0) facilities.</para><para>2.The upstream of each of the key facilities points out of the arc, which directly affects all facilities A, (except for all key facilities), and facility A needs to be met: the upstream critical facility point to the point A of the facility A and the upstream and downstream key The influence of the facility has a common part of the arc.</para><para>3.(Point 2 and common facility point 1) which are directly affected by the location of the pipe in the downstream direction of the pipe burst, the facility point B in the upper reaches of the facility A directly affects the facility point B of the facility A (excluding all key facilities) And the need to meet the facilities A to the point B of the impact of the arc and the impact of the upstream and downstream key facilities have a common part of the arc.</para></remark>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.BurstAnalyse3DResult.Edges">
+      <summary>
+            Gets the edges that affect the pipe-broken position and the are affected by the pipe-broken.  The edges that two-way search the crucial facility point and common facility points from the pipe-broken position.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D">
+      <summary>
+            The FacilityAnalyst3D class is used for checking data, finding the edges between node/edge and source/sink, tracing upstream, tracing downstream, finding the upstream closest facility, etc.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.#ctor">
+      <summary>
+            Creates a new FacilityAnalyst3D object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.Load">
+      <summary>
+            loads the network model according to the environment parameters of the FacilityAnalystSetting3D class.
+            </summary>
+      <returns>A boolean value denotes whether the network model loads successfully or not. True if successful; otherwise, false.</returns>
+      <para>Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSourceFromEdge(System.Int32,System.String,System.Boolean)">FindSourceFromEdge</see>, <see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceUpFromEdge(System.Int32,System.String,System.Boolean)">TraceUpFromEdge</see> and <see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesUpFromEdge(System.Int32[],System.Int32,System.Boolean)">FindCriticalFacilitiesUpFromEdge</see>.</para>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.Check">
+      <summary>
+            Checks the data for the 3D facility network dataset, and returns the results object of the Check class.
+            </summary>
+      <returns>The data check result of the 3D facility network analysis.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSourceFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+             Finds the source according to the given edge ID. i.e., from the given edge, finding the network source that flows to this edge according to the flow, and returning the edges, nodes and cost in least path cost.
+             </summary>
+      <param name="edgeID">The specified edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see> value of a certain <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> object of the <see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSourceFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            Finds the source according to the given node ID. i.e., from the given node, finding the network source that flows to this node according to the flow, and returning the edges, nodes and cost in least path cost. 
+            </summary>
+      <param name="nodeID">The specified Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see> value of a certain <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> object of the <see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSinkFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            Finds the sink according to the given edge ID. i.e., from the given edge, finding the downstream sink that flows out this edge according to the flow, and returning the edges, nodes and cost in least path cost from gien edge to this sink. 
+            </summary>
+      <param name="edgeID">The specified edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see> value of a certain <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> object of the <see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSinkFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            Finds the sink according to the given node ID. i.e., from the given node, finding the downstream sink that flows out this node according to the flow, and returning the edges, nodes and cost in least path cost from given node to this sink.
+            </summary>
+      <param name="nodeID">The specified Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see> value of a certain <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> object of the <see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceUpFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+             According to the given arc ID, perform the tracing upstream. Namely, finding the arcs, nodes and cost of the upstream.
+             </summary>
+      <param name="edgeID">The specified edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see> value of a certain <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> object of the <see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceUpFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            According to the given node ID, perform the tracing upstream. Namely, finding the arcs, nodes and cost of the upstream.
+            </summary>
+      <param name="nodeID">The specified Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see> value of a certain <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> object of the <see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceDownFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            According to the given arc ID, perform the tracing downstream. Namely, finding the arcs, nodes and cost of the downstream.
+            </summary>
+      <param name="edgeID">The specified edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see> value of a certain <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> object of the <see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceDownFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            According to the given node ID, perform the tracing downstream. Namely, finding the arcs, nodes and cost of the downstream.
+            </summary>
+      <param name="nodeID">The specified Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see> value of a certain <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> object of the <see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesUpFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+             Crucial facility analysis in upstream, i.e., finding the crucial facility nodes in the upstream of the given edge, and returning the crucial node ID array and it edge Id array of downstream.
+             </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="edgeID">The specified analysis arc ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The facility analysis result. Returns null if it doesn't search the crucial facility node.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesUpFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            Crucial facility analysis in upstream, i.e., finding the crucial facility nodes in the upstream of the given node, and returning the crucial node ID array and it edge Id array of downstream.
+            </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="nodeID">The specified analysis node ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The facility analysis result. Returns null if it doesn't search the crucial facility node.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesDownFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            Crucial facility analysis in upstream, i.e., finding the crucial facility nodes in the upstream of the given edge, and returning the crucial node ID array and it edge Id array of downstream.
+            </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="edgeID">The specified analysis arc ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The facility analysis result. Returns null if it doesn't search the crucial facility node.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesDownFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            Crucial facility analysis in downstream, i.e., finding the crucial facility nodes in the downstream of the given node, and returning the crucial node ID array and it edge Id array of downstream.
+            </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="nodeID">The specified analysis node ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The facility analysis result. Returns null if it doesn't search the crucial facility node.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.BurstAnalyseFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            Two-way tube-broken analysis. Through specifying the pipe-broken node, search the nodes that affect the pipe-broken position and are affected by the pipe-broken position in the pipe-broken node upstream and downstream.
+            </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="nodeID">The specified analysis node ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="!:NetworkBuilder.BuildFacilityNetworkDirections">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The pipe-broken analysis result</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.BurstAnalyseFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            Two-way tube-broken analysis. Through specifying the pipe-broken edge, search the nodes that affect the pipe-broken position and are affected by the pipe-broken position in the pipe-broken edge upstream and downstream.
+            </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="edgeID">The specified analysis arc ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="!:NetworkBuilder.BuildFacilityNetworkDirections">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The pipe-broken analysis result</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.Dispose">
+      <summary>
+            Releases all resources that the object occupies.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.AnalystSetting">
+      <summary>
+            Gets or sets the environment of the 3D facility network analysis.
+            </summary>
+      <value>The default value is an initialized <see cref="T:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D">FacilityAnalystSetting3D</see> object.</value>
+      <para>Please refer to <see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSourceFromEdge(System.Int32,System.String,System.Boolean)">FindSourceFromEdge</see>, <see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceUpFromEdge(System.Int32,System.String,System.Boolean)">TraceUpFromEdge</see> and <see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesUpFromEdge(System.Int32[],System.Int32,System.Boolean)">FindCriticalFacilitiesUpFromEdge</see>.</para>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystCheckResult3D">
+      <summary>
+            The FacilityAnalystCheckResult3D class provides the check result of the network dataset of the 3D facility network analysis, including the edge error information and node error information.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystCheckResult3D.NodeErrorInfos">
+      <summary>
+            Gets the node error information. The key is the SMID of the error node, and the value is the error type. For more information about the error type, see the <see cref="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Check">Check</see> method of the TransportationAnalyst3D class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystCheckResult3D.ArcErrorInfos">
+      <summary>
+            Gets the edge error information. The key is the SMID of the edge node, and the value is the error type. For more information about the error type, see the <see cref="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Check">Check</see> method of the TransportationAnalyst3D class.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystResult3D">
+      <summary>
+            The 3D facility network analyst class. This class is used to get the analysis results of finding source and sink, tracing upstream and downstream, crucial facility nodes, including edge ID array, result node ID array and the cost.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystResult3D.Edges">
+      <summary>
+            Gets the edge ID array in the facility network analysis results.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystResult3D.Nodes">
+      <summary>
+            Gets the node ID array in the facility network analysis results.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystResult3D.Cost">
+      <summary>
+            Gets the cost in the facility network analysis results.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D">
+      <summary>
+            The FacilityAnalystSetting3D class provides all the required parameters for the 3D facility network analysis, including 3D network dataset, direction field, barrier edges, barrier nodes, weight field, etc. The settings of these parameters will directly influence the final analysis result. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.#ctor">
+      <summary>
+            Creates a new FacilityAnalystSetting3D object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.#ctor(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D)">
+      <summary>
+            Creates a new FacilityAnalystSetting3D object which is the same with the specified FacilityAnalystSetting3D object.
+            </summary>
+      <param name="facilityAnalystSetting">The specifped FacilityAnalystSetting3D object.</param>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.NetworkDataset">
+      <summary>
+            Gets or sets the 3D network dataset to be analyzed. It is required.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.NodeIDField">
+      <summary>
+            Gets or sets the field that identifies the node ID in the 3D network dataset. The ID field identifying the network node must be set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmNodeID.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.EdgeIDField">
+      <summary>
+            Gets or sets the field that identifies the edge ID in the 3D network dataset. The ID field identifying the network edge must be set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmID.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.FNodeIDField">
+      <summary>
+            Gets or sets the field that identifies the start node ID in the 3D network dataset. The ID field identifying the start node must be correctly set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmFNode.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.TNodeIDField">
+      <summary>
+            Gets or sets the field that identifies the end node ID in the 3D network dataset. The ID field identifying the end node must be correctly set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmTNode.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">
+      <summary>
+            Gets or sets the WeightFieldInfos object.
+            </summary>
+      <value>The default value contains the WeightFieldInfos3D object of an element. The Name of the element is "Length". Both FTWeightField and TFWeightField are "SmLength".</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.Tolerance">
+      <summary>
+            Gets or sets the distance tolerance from the point to the edge. The unit is meter. 
+            </summary>
+      <value>The default value is 0.0.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.BarrierNodes">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.BarrierEdges">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.DirectionField">
+      <summary>
+            Gets or sets the direction field of the 3D network dataset. If it is not specified, the default direction value is 0 which is in the same direction with the digitization. You must set the property when creating the direction.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D">
+      <summary>
+            The NetworkBuilder3D class provides the functions such as creating the 3D network dataset and creating the flow direction for the 3D network dataset.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildNetwork(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,System.String,System.String,System.String,System.String,SuperMap.Data.Datasource,System.String)">
+      <summary>
+             Builds the 3D network dataset according to the 3D point/line data and the existing field that represents the topological relationship between the edges and nodes.
+             </summary>
+      <param name="line3D">The specified 3D line dataset to build the 3D network dataset.</param>
+      <param name="point3D">The specified 3D point dataset to build the 3D network dataset.</param>
+      <param name="edgeIDField">The field that denotes the edge ID in the specified line dataset. If it is null or null string, or the specified field doesn't exist, then it will automatically use SMID as the edge ID. It supports 16-bit integer and 32-bit integer.</param>
+      <param name="fromNodeField">The field that denotes the start node ID in the specified line dataset. It supports 16-bit integer and 32-bit integer.</param>
+      <param name="toNodeField">The field that denotes the end node ID in the specified line dataset. It supports 16-bit integer and 32-bit integer.</param>
+      <param name="nodeIDField">The field that denotes the node ID in the specified point dataset. It supports 16-bit integer and 32-bit integer.</param>
+      <param name="outputDatasource">Datasource for storing the output datasets.</param>
+      <param name="networkDatasetName">The specified name of the result 3D network dataset.</param>
+      <returns>The created 3D network dataset.</returns>
+      <exception cref="T:System.ArgumentException">The dataset type specified by the lineDataset parameter is not Line3D, or the dataset type specified by the pointDataset parameter is not Point3D.</exception>
+      <exception cref="T:System.ArgumentException">The field types specified by the edgeIDField, nodeIDField, fromNodeField and toNodeField parameters are not Int16 or Int32.</exception>
+      <exception cref="T:System.ArgumentException">The field specified by the nodeIDField, fromNodeField and toNodeField parameters doesn't exist.</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildNetwork(SuperMap.Data.DatasetVector,System.String[],SuperMap.Data.Datasource,System.String,SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D,System.Double)">
+      <summary>
+             Creates the 3D network dataset by the 3D line data. It can set the saved non-system field and the split mode.
+             </summary>
+      <param name="line3D">The specified 3D line dataset to build the 3D network dataset.</param>
+      <param name="lineFieldNames">The specified array to store the non-system field name of the line dataset in the output network dataset.</param>
+      <param name="outputDatasource">The specified datasource for storing the output 3D network dataset.</param>
+      <param name="networkDatasetName">The specified name of the result 3D network dataset.</param>
+      <param name="networkSplitMode">The specified split mode. But note that it doesn't support the <see cref="F:SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D.LineSplitByPoint">LineSplitByPoint</see> mode.</param>
+      <param name="tolerance">The specified split tolerance which is used for judging whether the two lines intersect. The unit is meter. If the distance from the node of a line to the line is less than the tolerance, the point will be as a node of the network dataset.</param>
+      <returns>The created 3D network dataset.</returns>
+      <exception cref="T:System.ArgumentException">The type of the dataset specified by the lineDataset parameter is not Line3D.</exception>
+      <exception cref="T:System.ArgumentException">Specified the networkSplitMode parameter as NetworkSplitMode3D.LineSplitByPoint.</exception>
+      <exception cref="T:System.ArgumentException">The tolerance is less than 0.</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildNetwork(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,System.String[],System.String[],SuperMap.Data.Datasource,System.String,SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D,System.Double)">
+      <summary>
+             Creates the 3D network dataset by the 3D point data (optional) and 3D line data. It can set the saved non-system field and the split mode.
+             </summary>
+      <param name="line3D">The specified 3D line dataset to build the 3D network dataset.</param>
+      <param name="point3D">The specified 3D point dataset to build the 3D network dataset. It is optional.</param>
+      <param name="lineFieldNames">The specified array to store the non-system field name of the 3D line dataset in the output network dataset.</param>
+      <param name="pointFieldNames">The specified array to store the non-system field name of the 3D point dataset in the output network dataset.</param>
+      <param name="outputDatasource">The specified datasource for storing the output 3D network dataset.</param>
+      <param name="networkDatasetName">The specified name of the result 3D network dataset.</param>
+      <param name="networkSplitMode">The specified split mode.</param>
+      <param name="tolerance">The specified split tolerance which is used for judging whether the points are the nodes of the network dataset. The unit is meter. If the distance from the point to the line is less than the tolerance, the point will be as a node of the network dataset.</param>
+      <returns>The created 3D network dataset.</returns>
+      <exception cref="T:System.ArgumentException">The dataset type specified by the lineDataset parameter is not Line3D, or the dataset type specified by the pointDataset parameter is not Point3D.</exception>
+      <exception cref="T:System.ArgumentException">The tolerance is less than 0.</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">
+      <summary>
+             Builds the direction for the 3D network dataset according to the locations of the specified source and sink. Only the 3D network dataset that has created the direction can perform the facility network analysis.
+             </summary>
+      <param name="facilityAnalystSetting">The specified FacilityAnalystSetting3D object. Note that when building the direction for the facility network, the settings of the BarrierEdges or BarrierNodes properties of the facilityAnalystSetting parameter will be invalid. The settings of the BarrierEdges and BarrierNodes are only valid in the facility analysis, irrespective of the topological structure.</param>
+      <param name="sourceIDs">The network node ID array corresponding to the specified source. The source-node array and sink-node array cannot be simultaneously empty.</param>
+      <param name="sinkIDs">The network node ID array corresponding to the specified sink. The source-node array and sink-node array cannot be simultaneously empty.</param>
+      <param name="nodeTypeField">The field name of the specified node type which is the field of the network node dataset. If it doesn't exist, then you need to create this field. See note for the field value and its meaning.</param>
+      <returns>A boolean value denotes whether the creation of the direction is successful. True if successful; otherwise, false.</returns>
+    </member>
+    <member name="E:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D">
+      <summary>
+            The enumeration defines the constant of the split mode type used to create the 3D network dataset.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D.None">
+      <summary>
+            Do not split lines.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D.LineSplitByPoint">
+      <summary>
+            Splits the lines at the intersection of points and lines.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D.LineSplitByPointAndLine">
+      <summary>
+            Splits the lines at the intersection of lines and splits the lines at the intersection of points and lines.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D">
+      <summary>
+            The TransportationAnalyst3D class is used to provide the transportation analyst function based on the 3D network dataset. Currently, it only supports the optimal path analysis. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.#ctor">
+      <summary>
+            Constructs a new TransportationAnalyst3D object.
+            </summary>
+      <value>The default value is an initialized <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D">TransportationAnalystSetting3D</see> object.</value>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Load">
+      <summary>
+            Loads the network model according to the TransportationAnalyst3D settings.
+            </summary>
+      <returns>A boolean value denotes whether the network model loads successfully or not. True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Check">
+      <summary>
+            Checks the data for the 3D transportation network dataset, and returns the results object of the Check class.
+            </summary>
+      <returns>The data check result of the 3D transportation network analysis.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.FindPath(SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D)">
+      <summary>
+             Optimal path analysis.
+             </summary>
+      <param name="parameter">The specified environmental settings of the 3D transportation network analysis.</param>
+      <returns>The results of the 3D transportation network analysis.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Dispose">
+      <summary>
+            Disposes the resources occupied by the TransportationAnalyst object. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.AnalystSetting">
+      <summary>
+            Gets or sets the 3D transportation network analysis environment.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystCheckResult3D">
+      <summary>
+            The TransportationAnalystCheckResult3D class provides the check result of the network dataset of the 3D facility network analysis, including the edge error information and node error information.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystCheckResult3D.NodeErrorInfos">
+      <summary>
+            Gets the node error information. The key is the SMID of the error node, and the value is the error type. For more information about the error type, see the <see cref="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Check">Check</see> method of the TransportationAnalyst3D class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystCheckResult3D.ArcErrorInfos">
+      <summary>
+            Gets the edge error information. The key is the SMID of the edge node, and the value is the error type. For more information about the error type, see the <see cref="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Check">Check</see> method of the TransportationAnalyst3D class.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">
+      <summary>
+            The TransportationAnalystParameter3D class is used to set all the parameters of the 3D transportation network analysis, such as the nodes (or arbitrary points) dataset passed by the analysis, weight information, obstacle points/edges, whether the analysis results contain the analyzed nodes/edges dataset and the route objects, etc. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.#ctor">
+      <summary>
+            Constructs a new TransportationAnalystParameter3D object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.#ctor(SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D)">
+      <summary>
+            Initializes a new instance of the TransportationAnalystParameter3D class which is identical with the specified TransportationAnalystParameter3D.
+            </summary>
+      <param name="transportationAnalystParameter">The specified TransportationAnalystParameter3D object.</param>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Dispose">
+      <summary>
+            Disposes the resources occupied by TransportationAnalystParameter3D. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.WeightName">
+      <summary>
+            Gets or sets the name of the Weight field information. It is the Name value of a certain WeightFieldInfos3D object in the TransportationAnalystSetting3D class. The default value is the Name value of the first WeightFieldInfo3D object if you don't set it in the analysis.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Nodes">
+      <summary>
+            Sets the node ID dataset passed by the analysis. It is required, but it is exclusive with the <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Points">Points</see> property. If you set them at the same time, only the last set before the analysis is valid. For example, firstly you specify the nodes data and then the coordinates dataset, then it will only analyze the coordinate points.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Points">
+      <summary>
+            Gets or sets the points dataset passed by the analysis. It is required, but it is exclusive with the <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Nodes">Points</see> property. If you set them at the same time, only the last set before the analysis is valid. For example, firstly you specify the nodes data and then the coordinates dataset, then it will only analyze the coordinate points.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.BarrierNodes">
+      <summary>
+            Gets or sets the ID list of the obstacle nodes. It is optional. The specified obstacle nodes here and the obstacle nodes specified by <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D">TransportationAnalystSetting3D</see> will be used together in the 3D transportation network analysis.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.BarrierEdges">
+      <summary>
+            Gets or sets the ID list of the obstacle edges. It is optional. The specified obstacle edges here and the obstacle edges specified by <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D">TransportationAnalystSetting3D</see> will be used together in the 3D transportation network analysis.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.BarrierPoints">
+      <summary>
+            Gets or sets the coordinate list of the obstacle points. It is optional. The specified obstacle point may not be on the network (neither on the edge nor on the node), then the obstacle point will be classified to the closest network according to the distance tolerance (<see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.Tolerance">Tolerance</see>).
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsNodesReturn">
+      <summary>
+            Gets or sets whether to keep the passed nodes in the analysis result. If true, after the analysis is successful, you will get the passed nodes from the <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Nodes">Nodes</see> property of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D">TransportationAnalystResult3D</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsEdgesReturn">
+      <summary>
+            Gets or sets whether to keep the passed edges in the analysis result. If true, after the analysis is successful, you will get the passed edges from the <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Edges">Edges</see> property of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D">TransportationAnalystResult3D</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsRoutesReturn">
+      <summary>
+            Gets or sets whether to keep the route objects (<see cref="T:SuperMap.Data.GeoLineM">GeoLineM</see>) in the analysis result. If true, after the analysis is successful, you will get the route dataset from the <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Routes">Routes</see> property of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D">TransportationAnalystResult3D</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsStopIndexesReturn">
+      <summary>
+            Gets or sets whether to keep the stop-index dataset in the analysis result. If true, after the analysis is successful, you will get the stop-index dataset from the <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.StopIndexes">StopIndexes</see> property of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D">TransportationAnalystResult3D</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D">
+      <summary>
+            The TransportationAnalystResult3D class is used to get the results of various 3D transportation network analyses, including the route dataset, the node/edge ID dataset, the stop ID dataset, the weight dataset, the cost of each stop, etc.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Dispose">
+      <summary>
+            Releases the resources occupied by TransportationAnalystResult3D. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Routes">
+      <summary>
+            Gets the route dataset of the analysis result that is the dataset of the <see cref="T:SuperMap.Data.GeoLine3D">GeoLine3D</see> object. Note: The <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsRoutesReturn"> IsRoutesReturn</see> property of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see> class must be set as true so that the analysis results can contain the route dataset; otherwise, it is a null array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Nodes">
+      <summary>
+            Gets the nodes dataset of the analysis result. Note: The <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsNodesReturn">IsNodesReturn</see> property of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see> object must be set as true so that the analysis results can contain the nodes dataset; otherwise, it is a null array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Edges">
+      <summary>
+            Gets the edges dataset of the analysis result. Note: The <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsEdgesReturn">IsEdgesReturn</see> property of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see> object must be set as true so that the analysis results can contain the edges dataset; otherwise, it is a null array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.StopIndexes">
+      <summary>
+            Gets the two-dimensional array of the stop indexes which reflects the order of the stops after analysis. Note: The <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsStopIndexesReturn">IsStopIndexesReturn</see> property of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see> object must be set as true so that the analysis results can contain the stop-index dataset; otherwise, it is a null array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Weights">
+      <summary>
+            Gets the weight array represented the cost. It has the same unit with the weight field of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> object specified the <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.WeightName">WeightName</see> property of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see> object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.StopWeights">
+      <summary>
+            Gets the values of the weights passed by the analysis. It has the same unit with the weight field of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> object specified the <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.WeightName">WeightName</see> property of the <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see> object.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D">
+      <summary>
+            The TransportationAnalystSetting3D class provides all the required parameters for the 3D transportation network analysis, including 3D network dataset, barrier edges, barrier nodes, weight field, etc. The settings of these parameters will directly influence the final analysis result.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.#ctor">
+      <summary>
+            Constructs a new TransportationAnalystSetting3D object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.#ctor(SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D)">
+      <summary>
+            Constructs a new object identical to the given  TransportationAnalystSetting3D object.
+            </summary>
+      <param name="transportationAnalystSetting">The specified TransportationAnalystSetting3D object.</param>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.NetworkDataset">
+      <summary>
+            Gets or sets the 3D network dataset to be analyzed. It is required.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.NodeIDField">
+      <summary>
+            Gets or sets the field that identifies the node ID in the 3D network dataset. The ID field identifying the network node must be set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmNodeID.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.EdgeIDField">
+      <summary>
+            Gets or sets the field that identifies the edge ID in the 3D network dataset. The ID field identifying the network edge must be set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmEdgeID.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.FNodeIDField">
+      <summary>
+            Gets or sets the field that identifies the start node ID in the 3D network dataset. The ID field identifying the start node must be correctly set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmFNode.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.TNodeIDField">
+      <summary>
+            Gets or sets the field that identifies the end node ID in the 3D network dataset. The ID field identifying the end node must be correctly set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmTNode.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.WeightFieldInfos">
+      <summary>
+            Gets or sets the WeightFieldInfos object.
+            </summary>
+      <value>The default value contains the WeightFieldInfos3D object of an element. The Name of the element is "Length". Both FTWeightField and TFWeightField are "SmLength".</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.Tolerance">
+      <summary>
+            Gets or sets the distance tolerance from the point to the edge. The unit is meter. Note: When using the coordinate point mode (<see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Points">Points</see>, i.e., the specified analysis point is the coordinate point ID, not the node ID) or the specified barrier coordinate point (<see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.BarrierPoints">BarrierPoints</see>) in the analysis, you need to set an appropriate distance tolerance to avoid the incorrect analysis result due to that the selected analysis points or barrier points can not be adjusted into the network.
+            </summary>
+      <value>The default value is 0.0.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.BarrierNodes">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.BarrierEdges">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.NodeNameField">
+      <summary>
+            Gets or sets the field of the node name. It is optional.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.EdgeNameField">
+      <summary>
+            Gets or sets the field of the edge name. It is optional.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.RuleField">
+      <summary>
+            Gets or sets the traffic rule field of the network edge in the network dataset. The field type must be text. It is optional.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.FTSingleWayRuleValues">
+      <summary>
+            Gets or sets the string array which represents the from-to oneway line. It is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.TFSingleWayRuleValues">
+      <summary>
+            Gets or sets the string array which represents the to-from oneway line. It is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.ProhibitedWayRuleValues">
+      <summary>
+            Gets or sets the string array which represents the forbidden line. It is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.TwoWayRuleValues">
+      <summary>
+            Gets or sets the string array which represents the two-way traffic line. It is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.EdgeFilter">
+      <summary>
+            Gets or sets the edge filter expression. It is optional.
+            </summary>
+      <value>The default value is String.Empty.</value>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">
+      <summary>
+            The WeightFieldInfo3D class is used to get or set the information of the weight field in the 3D network analysis including the FTWeightField property and TFWeightField property. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.#ctor">
+      <summary>
+            Initializes a new instance of WeightFieldInfo3D.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.#ctor(SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D)">
+      <summary>
+            Constructs a new object identical to the given WeightFieldInfo3D object.
+            </summary>
+      <param name="WeightFieldInfo">The specified WeightFieldInfo3D object.</param>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">
+      <summary>
+            Gets or sets the name of the WeightFieldInfo object.
+            </summary>
+      <value>The default value is "UntitledWeightFieldInfo3D".</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.FTWeightField">
+      <summary>
+            Gets or sets the forward weight fields or expressions. 
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.TFWeightField">
+      <summary>
+            Gets or sets the reverse weight fields or expressions. 
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D">
+      <summary>
+            The <see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see> class is the collection of the weight field information objects, which is used to manage the weight field information such as Add, Delete, getting the weight filed information of the specified name and index.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.#ctor">
+      <summary>
+            Creates a new WeightFieldInfos3D object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.#ctor(SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D)">
+      <summary>
+            Constructs a new object identical to the given WeightFieldInfos3D object.
+            </summary>
+      <param name="weightFieldInfos">The specified WeightFieldInfos3D object.</param>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Add(SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D)">
+      <summary>
+            Adds the specified WeightFieldInfo object in the WeightFieldInfos object.
+            </summary>
+      <param name="weightFieldInfo">The specified WeightFieldInfo object.</param>
+      <returns>Returns the index of the added object in the WeightFieldInfos3D object.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.IndexOf(System.String)">
+      <summary>
+            Gets the index of the specified WeightFieldInfo3D.Name object in the WeightFieldInfos3D object.
+            </summary>
+      <param name="name">The name of the specified WeightFieldInfo3D object.</param>
+      <returns>Returns the index of the WeightFieldInfo3D object that has been specified the name in the WeightFieldInfos3D object.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Remove(System.String)">
+      <summary>
+            Removes the WeightFieldInfo3D object that has been specified the name from the WeightFieldInfos3D object.
+            </summary>
+      <param name="name">The specified name of the WeightFieldInfo3D to be removed.</param>
+      <returns>A boolean value denotes whether the Delete is successful. True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Remove(System.Int32)">
+      <summary>
+            Removes the WeightFieldInfo3D object that has been indexed from the WeightFieldInfos3D object.
+            </summary>
+      <param name="index">The index of the specified WeightFieldInfo3D to be removed.</param>
+      <returns>A boolean value denotes whether the Delete is successful. True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Clear">
+      <summary>
+            Empties the WeightFieldInfo3D objects in the WeightFieldInfos3D object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.GetEnumerator">
+      <summary>
+            Returns an enumerator that can iterate through the collection.
+            </summary>
+      <returns>An IEnumerator object used to iterate through a collection.</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Count">
+      <summary>
+            Gets the count of the elements in the WeightFieldInfos3D object. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Item(System.Int32)">
+      <summary>
+            Gets the WeightFieldInfo3D object that has been indexed from the WeightFieldInfos3D object. 
+            </summary>
+      <param name="index">The specified index, which begins with 0.</param>
+      <returns>The WeightFieldInfo3D object that has been specified the index.</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Item(System.String)">
+      <summary>
+            Gets the specified WeightFieldInfo3D.Name object in the WeightFieldInfos3D object. 
+            </summary>
+      <param name="name">The name of the specified WeightFieldInfo3D object.</param>
+      <returns>The WeightFieldInfo3D object that has been specified the name.</returns>
+    </member>
+  </members>
+</doc>

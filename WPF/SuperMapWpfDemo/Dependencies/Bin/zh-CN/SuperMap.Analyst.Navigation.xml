@@ -1,0 +1,630 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.Navigation</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.Navigation.CompilerParameter">
+      <summary>
+            为路网数据编译提供必要的参数信息，包括预备编译的路网数据的数据源、名称、编译数据输出路径、结果数据打包类型等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.CompilerParameter.#ctor">
+      <summary>
+            构造一个新的路网数据编译参数对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.CompilerParameter.#ctor(SuperMap.Analyst.Navigation.CompilerParameter)">
+      <summary>
+            根据给定的路网数据编译参数对象构造一个新的与其完全相同的对象。
+            </summary>
+      <param name="parameter">给定的路网数据编译参数对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.Datasource">
+      <summary>
+            获取或设置输入的路网数据所在的数据源。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameRoadLine">
+      <summary>
+            获取或设置输入的路网基础道路线数据集的名称。
+            以四维导航电子地图数据交换格式为例，对应R表。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameRoadPoint">
+      <summary>
+            获取或设置输入的路网结点数据集的名称。
+            以四维导航电子地图数据交换格式为例，对应N表
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameCondPoint">
+      <summary>
+            获取或设置路网转向结点数据集的名称。
+            以四维导航电子地图数据交换格式为例，对应C表
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameAdminCode">
+      <summary>
+            获取或设置输入的路网数据行政区划表数据集名称。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameRoadNameLink">
+      <summary>
+            获取或设置预备编译的路网数据基础道路线与道路名称关系表的名称。
+            以四维导航电子地图数据交换格式为例，对应R_LNAME表。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameRoadName">
+      <summary>
+            获取或设置预备编译的路网数据道路名称表的名称。
+            以四维导航电子地图数据交换格式为例，对应R_NAME表。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.ExportPath">
+      <summary>
+            获取或设置路网数据编译的输出文件夹路径，文件夹路径必须是已存在的。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.DistrictName">
+      <summary>
+            获取或设置当前编译的路网数据区域名称
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.PackageTypes">
+      <summary>
+            获取或设置编译结果数据打包类型。
+            </summary>
+      <value>默认值为 null 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.SourceDataVersion">
+      <summary>
+            获取或设置输入的路网数据版本。
+            </summary>
+      <value>默认值为 NIG2013SumGreatChina 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.Language">
+      <summary>
+            获取或设置四维导航数据编译时道路名称的语言类型。具体参考四维导航数据说明。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.CompilerParameterSSC">
+      <summary>
+            构建SSC文件参数类。
+            为路网数据编译为SCC捷径文件提供所需要设置的参数。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.CompilerParameterSSC.#ctor">
+      <summary>
+            构造一个新的构建SSC文件参数对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.CompilerParameterSSC.#ctor(SuperMap.Analyst.Navigation.CompilerParameterSSC)">
+      <summary>
+            根据给定的参数对象构造一个新的与其完全相同的对象。
+            </summary>
+      <param name="parameter">给定的构建SSC文件参数对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.NetworkDataset">
+      <summary>
+            获取或设置用于生成SSC文件的网络数据集。必设。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.NodeIDField">
+      <summary>
+            获取或设置网络数据集结点ID字段。
+            </summary>
+      <value>默认值为 "SmNodeID"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.EdgeIDField">
+      <summary>
+            获取或设置网络数据集弧段ID字段。
+            </summary>
+      <value>默认值为 "SmEdgeID"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.FNodeIDField">
+      <summary>
+            获取或设置弧段起始结点ID的字段。
+            </summary>
+      <value>默认值为 "SmFNode"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TNodeIDField">
+      <summary>
+            获取或设置弧段终止结点ID的字段。
+            </summary>
+      <value>默认值为 "SmTNode"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.WeightField">
+      <summary>
+            获取或设置弧段权值字段。
+            </summary>
+      <value>默认值为 "SmLength"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.EdgeNameField">
+      <summary>
+            获取或设置弧段的名称字段。
+            </summary>
+      <value>默认值为 "SmEdgeID"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TurnDataset">
+      <summary>
+            获取或设置禁行转向表数据集，在该数据集中记录的都为禁止转向的信息。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TurnNodeIDField">
+      <summary>
+            获取或设置转向结点ID字段。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TurnFEdgeIDField">
+      <summary>
+            获取或设置转向起始弧段ID字段。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TurnTEdgeIDField">
+      <summary>
+            获取或设置转向终止弧段ID字段。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.RuleField">
+      <summary>
+            获取或设置交通规则字段名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.FTSingleWayRuleValues">
+      <summary>
+            获取或设置用于表示正向单行线的字符串的数组，即RuleField字段的值是数组其中的一项的值的时候，表示的是正向单行线。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TFSingleWayRuleValues">
+      <summary>
+            获取或设置用于表示逆向单行线的字符串的数组，即RuleField字段的值是数组其中的一项的值的时候，表示的是逆向单行线。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.ProhibitedWayRuleValues">
+      <summary>
+            获取或设置用于表示禁行线的字符串的数组，即RuleField字段的值是数组其中的一项的值的时候，表示的是禁行线。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TwoWayRuleValues">
+      <summary>
+            获取或设置用于表示双向通行线的字符串的数组，即RuleField字段的值是数组其中的一项的值的时候，表示的是双向通行线。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.FilePath">
+      <summary>
+            获取或设置要创建的SSC文件的路径。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.LevelField">
+      <summary>
+            获取或设置道路等级字段，取值范围为1-3，必须字段，其中3的道路等级最高（高速路等），1的道路等级最低（乡村道路等）。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.SpeedField">
+      <summary>
+            获取或设置道路速度字段，非必须字段。整数型字段，其中1的道路速度最高（150km/h），2的速度为130km/h，3的速度为100km/h，4的速度为90km/h，5的速度为70km/h，6的速度为50km/h，7的速度为30km/h，其他值的速度统一为10km/h。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.DataCompiler">
+      <summary>
+            路网数据编译类。该类可以完成对路网数据的编译，从而支持对路网数据的分析。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.#ctor">
+      <summary>
+            构造路网数据编译类的对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.Finalize">
+      <summary>
+            在通过垃圾回收将 DataCompiler 回收之前，释放非托管资源并执行其他清理操作。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.Dispose">
+      <summary>
+            释放 DataCompiler 所占用的资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.CompileBaseRoad(SuperMap.Analyst.Navigation.CompilerParameter,System.Int32[])">
+      <summary>
+            基础道路数据编译。
+            </summary>
+      <param name="parameter">指定的路网数据编译参数类。</param>
+      <param name="mapIDs">指定的路网数据编译的图幅ID数组。可以直接通过调用<see cref="M:SuperMap.Analyst.Navigation.DataCompiler.CompileMapID(SuperMap.Analyst.Navigation.CompilerParameter,System.String)">CompileMapID</see>方法获取，也可自行指定合理的图幅ID值。图幅ID值也可以不指定，则默认编译全部路网数据。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.CompileGuideData(SuperMap.Analyst.Navigation.CompilerParameter,System.Int32[])">
+      <summary>
+            引导数据编译。
+            </summary>
+      <param name="parameter">指定的路网数据编译参数类。</param>
+      <param name="mapIDs">指定的路网数据编译的图幅ID数组。可以直接通过调用<see cref="M:SuperMap.Analyst.Navigation.DataCompiler.CompileMapID(SuperMap.Analyst.Navigation.CompilerParameter,System.String)">CompileMapID</see>方法获取，也可自行指定合理的图幅ID值。图幅ID值也可以不指定，则默认编译全部路网数据。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.CompileTopologyData(SuperMap.Analyst.Navigation.CompilerParameter,System.Int32[])">
+      <summary>
+            拓扑数据编译。
+            </summary>
+      <param name="parameter">指定的路网数据编译参数类。</param>
+      <param name="mapIDs">指定的路网数据编译的图幅ID数组。可以直接通过调用<see cref="M:SuperMap.Analyst.Navigation.DataCompiler.CompileMapID(SuperMap.Analyst.Navigation.CompilerParameter,System.String)">CompileMapID</see>方法获取，也可自行指定合理的图幅ID值。图幅ID值也可以不指定，则默认编译全部路网数据。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.PackageData(SuperMap.Analyst.Navigation.CompilerParameter,System.Int32[])">
+      <summary>
+            数据打包。
+            </summary>
+      <param name="parameter">指定的路网数据编译参数类。</param>
+      <param name="mapIDs">指定的路网数据编译的图幅ID数组。可以直接通过调用<see cref="M:SuperMap.Analyst.Navigation.DataCompiler.CompileMapID(SuperMap.Analyst.Navigation.CompilerParameter,System.String)">CompileMapID</see>方法获取，也可自行指定合理的图幅ID值。图幅ID值也可以不指定，则默认编译全部路网数据。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.UpdatePathName(SuperMap.Analyst.Navigation.CompilerParameter)">
+      <summary>
+             更新道路名称字段。
+            </summary>
+      <param name="parameter">指定的路网数据编译参数类。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.CompileMapID(SuperMap.Analyst.Navigation.CompilerParameter,System.String)">
+      <summary>
+            获取图幅ID数组。
+            </summary>
+      <param name="parameter">指定的路网数据编译参数类。</param>
+      <param name="resultCoverageDatasetName">指定的图幅范围数据集名称，用于生成图幅范围数据集，该数据集包含了预备编译的路网数据的图幅范围。</param>
+      <returns>获取的图幅ID数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.ExtractAdminCode(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            从四维导航数据的Admin表和FName表中提取行政区划表（AdminCode）数据集。
+            </summary>
+      <param name="datasetAdmin">Admin表所在的数据集。</param>
+      <param name="datasetFName">FName表所在的数据集。</param>
+      <param name="datasource">结果行政区划数据集所在的数据源。</param>
+      <param name="resultDatasetName">结果行政区划数据集名称，必须有效。</param>
+      <returns>返回结果行政区划数据集，失败返回null。</returns>
+    </member>
+    <!-- Badly formed XML comment ignored for member "M:SuperMap.Analyst.Navigation.DataCompiler.ExtractAdminCode(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Int32)" -->
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.ExtractRoadDirection(SuperMap.Data.DatasetVector,System.Double,System.Double,System.String[],SuperMap.Data.Datasource,System.String)">
+      <summary>
+             从四维导航数据的道路线数据集中提取道路的方向，每条道路会沿着道路方向生成一条或多条方向线段，线段的走向表示道路方向。
+             </summary>
+      <param name="datasetRoad">需要生成道路方向的线数据集，对应于四维导航数据集中的R表。</param>
+      <param name="segmentLength">结果方向线段的长度，单位与道路线数据集坐标系单位一致。</param>
+      <param name="spacingLength">每个结果方向线段的间隔距离，单位与道路线数据集坐标系单位一致。</param>
+      <param name="roadKinds">需要生成的道路方向的道路等级，在四维导航数据的R表中，道路等级存放在Kind字段中，例如，在2013年夏季数据版本中，定义有0x00高速路、0x01都市高速路、0x02国道、0x03省道、0x04县道、0x06乡镇道路、0x08其他道路、0x09九级路、0x0a轮渡、0x0b行人道路，具体可以参考四维导航数据各个版本的代码表。</param>
+      <param name="outputDatasource">结果数据集所在的数据源。</param>
+      <param name="resultDatasetName">结果数据集的名称，必须有效。</param>
+      <returns>返回表示道路方向的线数据集，失败返回null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.CompileSSCData(SuperMap.Analyst.Navigation.CompilerParameterSSC)">
+      <summary>
+            将网络数据编译为包含捷径信息的SSC文件。
+            </summary>
+      <param name="parameter">指定的SSC文件编译参数类。</param>
+      <returns>是否成功，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.Navigation.DataCompiler.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.DataVersion">
+      <summary>
+                       该枚举定义了来源路网数据的版本。各个厂家或同一厂家发布的各个数据版本可能存在差异，在进行基础道路数据编译时需要用户明确指定输入路网数据的版本。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.DataVersion.NIG2012WinGreatChina">
+      <summary>
+              四维2012冬导航电子地图数据交换格式及之前版本的数据。
+             </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.DataVersion.NIG2013SumGreatChina">
+      <summary>
+              四维2013夏导航电子地图数据交换格式。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.GPSData">
+      <summary>
+            GPS数据类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.GPSData.#ctor">
+      <summary>
+            构造一个新的GPS数据类的新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.GPSData.#ctor(SuperMap.Analyst.Navigation.GPSData)">
+      <summary>
+            根据给定的GPS数据对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="data">给定的GPS数据。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.GPSData.Point">
+      <summary>
+            获取或设置GPS点的坐标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.GPSData.TimeValue">
+      <summary>
+            获取或设置GPS点的时间值（单位为秒）。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.MapMatchParameter">
+      <summary>
+            地图匹配点预处理参数类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.MapMatchParameter.#ctor">
+      <summary>
+            构造一个新的地图匹配点预处理参数对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.MapMatchParameter.#ctor(SuperMap.Analyst.Navigation.MapMatchParameter)">
+      <summary>
+            根据给定的地图匹配点预处理参数对象构造一个新的与其完全相同的对象。
+            </summary>
+      <param name="parameter">给定的地图匹配点预处理参数对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.MapMatchParameter.DatasetVector">
+      <summary>
+            获取或设置输入的地图匹配点数据集。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.MapMatchParameter.Velocity">
+      <summary>
+            获取或设置输入的地图匹配点数据集的速度字段。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.MapMatchParameter.Time">
+      <summary>
+            获取或设置输入的地图匹配点数据集的时间字段，为整型字段，单位为秒，必设字段。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.MapMatchParameter.Angle">
+      <summary>
+            获取或设置输入的地图匹配点数据集的角度字段。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.PackageType">
+      <summary>
+                       该枚举定义了路网数据编译中数据打包的类型。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.PackageType.PackageLine">
+      <summary>
+                       打包基础道路数据。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.PackageType.PackageTopo">
+      <summary>
+                       打包拓扑数据。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.PackageType.PackageGuide">
+      <summary>
+                       打包引导数据。
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.PathAnalyst">
+      <summary>
+            导航分析类。该类通过数据编译后得到的数据来进行导航分析。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.#ctor">
+      <summary>
+            构造导航分析类的对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.Dispose">
+      <summary>
+             释放导航分析类的对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.ConnectData(System.String)">
+      <summary>
+            连接编译结果数据。
+            </summary>
+      <param name="strPath">编译后数据的具体路径。</param>
+      <returns>是否链接成功，成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.Plan">
+      <summary>
+            进行路径规划。
+            </summary>
+      <returns>是否分析成功，成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetPathPoints">
+      <summary>
+            返回分析结果的途经点集合。
+            </summary>
+      <returns>分析结果的途经点坐标的集合。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetPathLength">
+      <summary>
+            返回分析结果的总长度。
+            </summary>
+      <returns>分析结果的总长度。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetPathInfos">
+      <summary>
+            返回分析结果的引导信息集合。
+            </summary>
+      <returns>分析结果的引导信息集合。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetPathTime">
+      <summary>
+            返回分析结果的行驶时间，单位为秒。
+            </summary>
+      <returns>分析结果的行驶时间。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetAltPathPoints">
+      <summary>
+            返回备选分析结果的途经点集合。
+            </summary>
+      <returns>备选分析结果的途经点坐标的集合。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetAltPathLength">
+      <summary>
+            返回备选分析结果的总长度。
+            </summary>
+      <returns>备选分析结果的总长度。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetAltPathInfos">
+      <summary>
+            返回备选分析结果的引导信息集合。
+            </summary>
+      <returns>备选分析结果的引导信息集合。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetAltPathTime">
+      <summary>
+            返回备选分析结果的行驶时间，单位为秒。
+            </summary>
+      <returns>备选分析结果的行驶时间。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.SetSSCEnvironment(SuperMap.Analyst.Navigation.SSCDataEnvironment)">
+      <summary>
+            设置SSC数据分析环境。
+            </summary>
+      <param name="environment">SSC数据环境对象。</param>
+      <returns>是否成功，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.MapMatch(SuperMap.Analyst.Navigation.GPSData[],System.Int32)">
+      <summary>
+            地图匹配分析接口。
+            </summary>
+      <param name="datas">GPS数据数组。</param>
+      <param name="candidateCount">候选点个数。</param>
+      <returns>GPS匹配结果点数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.PrepareData(SuperMap.Analyst.Navigation.MapMatchParameter,System.String)">
+      <summary>
+            地图匹配点预处理接口。
+            </summary>
+      <param name="param">预处理参数，主要设置GPS点数据集以及需要的字段名称。</param>
+      <param name="name">处理后返回的GPS点数据集名称（如果设置的名称为已有数据集名称，则会删掉该数据集，然后生成新的数据集）。</param>
+      <returns>成功返回处理后GPS点数据集数组。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathAnalyst.StartPoint">
+      <summary>
+            设置导航分析的起始点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathAnalyst.EndPoint">
+      <summary>
+            设置导航分析的终止点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathAnalyst.Points">
+      <summary>
+            设置导航分析的中间点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathAnalyst.RouteMode">
+      <summary>
+            设置导航分析的模式，默认值为RouteType.RECOMMEND。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathAnalyst.IsAlternative">
+      <summary>
+            获取或设置是否返回备选方案。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.PathInfo">
+      <summary>
+            导航引导信息类。通过该类，可以获得导航分析后路线的导引信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathInfo.Length">
+      <summary>
+            获得当前道路的长度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathInfo.RouteName">
+      <summary>
+            获得当前道路的名称，当道路名称为“PathPoint”时，表示到达途径点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathInfo.Junction">
+      <summary>
+            获得到下一条道路的路口点坐标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathInfo.DirToSwerve">
+      <summary>
+            返回到下一条道路的转弯方向。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.RouteType">
+      <summary>
+                       该类定义了导航分析的分析模式。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.RouteType.Recommend">
+      <summary>
+                       推荐模式。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.RouteType.MinLength">
+      <summary>
+                       距离最短。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.RouteType.NoHighWay">
+      <summary>
+                       不走高速。
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.SSCDataEnvironment">
+      <summary>
+            SSC数据环境类。为路径规划提供高性能分析环境，多个PathAnalyst路径分析对象可共用此分析环境。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.SSCDataEnvironment.#ctor">
+      <summary>
+            构造一个新的SSC数据环境对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.SSCDataEnvironment.Dispose">
+      <summary>
+            释放SSC数据环境对象。调用该方法之后，此对象不再可用。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.SSCDataEnvironment.ConnectData(System.String,SuperMap.Data.DatasetVector)">
+      <summary>
+            连接SSC编译结果数据，同时加载网络数据集相关信息。
+            </summary>
+      <param name="sscFilePath">SSC文件路径，包括文件名。</param>
+      <param name="networkDataset">与SSC文件相关联的网络数据集。</param>
+      <returns>是否成功，成功返回true，否则返回false。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.SSCDataEnvironment.Tolerance">
+      <summary>
+            获取或设置距离容限。
+            </summary>
+      <value>默认值为0。</value>
+    </member>
+    <member name="E:SuperMap.Analyst.Navigation.SSCDataEnvironment.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,1404 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Layout</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Layout.ElementEventArgs">
+      <summary>
+            The ElementEventArgs class that provides data for <see cref="E:SuperMap.UI.MapLayoutControl.ElementDeleting">ElementDeleting</see>, <see cref="E:SuperMap.UI.MapLayoutControl.ElementAdded">ElementAdded</see>, <see cref="E:SuperMap.UI.MapLayoutControl.ElementModifying">ElementModifying</see>, and <see cref="E:SuperMap.UI.MapLayoutControl.ElementModified">ElementModified</see>.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.ElementEventArgs.#ctor(System.Int32,System.Boolean)">
+      <summary>
+            Builds a new object according to the parameters.
+            </summary>
+      <param name="id">Edits the ID of the layout element.</param>
+      <param name="cancel">Indicates whether to cancel corresponding operations when the parameter class acts as the parameter event.</param>
+    </member>
+    <member name="M:SuperMap.Layout.ElementEventArgs.ToString">
+      <summary>
+            returns the string which describes the instance of object.the format is as {ID=,Cancel=}.
+            </summary>
+      <returns>The string describing the object instance.</returns>
+    </member>
+    <member name="P:SuperMap.Layout.ElementEventArgs.ID">
+      <summary>
+            Gets the ID of the layout element being edited
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.ElementEventArgs.Cancel">
+      <summary>
+            Gets or sets whether to cancel the event. True indicates to cancel; while false indicates not.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Layout.ElementEventHandler">
+      <summary>
+            The method for <see cref="E:SuperMap.UI.MapLayoutControl.ElementDeleting">ElementDeleting</see>, <see cref="E:SuperMap.UI.MapLayoutControl.ElementAdded">ElementAdded</see>, <see cref="E:SuperMap.UI.MapLayoutControl.ElementModifying">ElementModifying</see>, and <see cref="E:SuperMap.UI.MapLayoutControl.ElementModified">ElementModified</see>.
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The <see cref="T:SuperMap.Layout.ElementEventArgs">LayoutClearingEventArgs</see> class.</param>
+    </member>
+    <member name="T:SuperMap.Layout.ElementSelectChangedEventArgs">
+      <summary>
+            Provides data for <see cref="E:SuperMap.UI.MapLayoutControl.ElementSelectChanged">ElementSelectChanged</see> event. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.ElementSelectChangedEventArgs.#ctor(System.Int32)">
+      <summary>
+            builds a new instance of this class 
+            </summary>
+      <param name="count">The specified count of the selected layout elements.</param>
+    </member>
+    <member name="P:SuperMap.Layout.ElementSelectChangedEventArgs.Count">
+      <summary>
+            Gets the count of the selected layout elements. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Layout.ElementSelectChangedEventHandler">
+      <summary>
+            The method for <see cref="E:SuperMap.UI.MapLayoutControl.ElementSelectChanged">ElementSelectChanged</see> event. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The <see cref="T:SuperMap.Layout.ElementSelectedEventArgs">ElementSelectChangedEventArgs</see> class object.</param>
+    </member>
+    <member name="T:SuperMap.Layout.ElementSelectedEventArgs">
+      <summary>
+            Provides data for <see cref="E:SuperMap.UI.MapLayoutControl.ElementSelected">ElementSelected</see> event. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.ElementSelectedEventArgs.#ctor(System.Int32)">
+      <summary>
+            builds a new instance for this class 
+            </summary>
+      <param name="count">The specified count of the selected layout elements.</param>
+    </member>
+    <member name="M:SuperMap.Layout.ElementSelectedEventArgs.ToString">
+      <summary>
+            returns the string which describes the instance of object.The format is {Count=}.
+            </summary>
+      <returns>The string describing the object instance.</returns>
+    </member>
+    <member name="P:SuperMap.Layout.ElementSelectedEventArgs.Count">
+      <summary>
+            Gets the count of the selected layout elements. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Layout.ElementSelectedEventHandler">
+      <summary>
+            The method class  for <see cref="E:SuperMap.UI.MapLayoutControl.ElementSelected">ElementSelected</see>. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">A <see cref="T:SuperMap.Layout.ElementSelectedEventArgs">ElementSelectedEventArgs</see> class.</param>
+    </member>
+    <member name="T:SuperMap.Layout.LayoutElements">
+      <summary>
+            The LayoutElements class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.AddNew(SuperMap.Data.Geometry)">
+      <summary>
+            Adds new instance to the LayoutElement class.
+            </summary>
+      <param name="geometry">Add the geometry object to the layout elements.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.Delete">
+      <summary>
+            Deletes the current object in the LayoutElements class, returns true if successful.
+            </summary>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.Delete(System.Int32[])">
+      <summary>
+            Deletes the layout elements object in the LayoutElements class by the specified array of ID.
+            </summary>
+      <param name="ids">The specified ID array.</param>
+      <returns>The count of the object deleted successfully.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.DeleteAll">
+      <summary>
+            Deletes all the layout elements object in the LayoutElements class.
+            </summary>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.GetGeometry">
+      <summary>
+            Gets the Geometry object in the current layout element.
+            </summary>
+      <returns>Returns the Geometry object in the Layout if successful; otherwise null.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.GetID">
+      <summary>
+            Gets the ID of the Geometry object in the current Layout.
+            </summary>
+      <returns>The ID of the Geometry object.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.Move(System.Int32)">
+      <summary>
+            Moves the pointer in the current layout element, returns true if successful.
+            </summary>
+      <param name="count">The number of rows to move.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.MoveFirst">
+      <summary>
+            Moves the pointer in the current layout element to the first layout element, returns true if successful.
+            </summary>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.MoveLast">
+      <summary>
+            Moves the pointer in the current layout element to the last layout element. Returns true if successful.
+            </summary>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.MoveNext">
+      <summary>
+            Moves the pointer in the current layout element to the next layout element. Returns true if successful.
+            </summary>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.MovePrev">
+      <summary>
+            Moves the pointer in the current layout element to the previous layout element. Returns true if successful.
+            </summary>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.MoveTo(System.Int32)">
+      <summary>
+            Moves the pointer in the current layout element to the specified layout element. Returns true if successful.
+            </summary>
+      <param name="position">The specified position, namely the ID of record to which the current record position moved. The position starts from zero, that is, MoveTo(0) is equivalent to MoveFirs().</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.Refresh">
+      <summary>
+            Refreshes the layout elements.
+            </summary>
+      <returns>Returns true if successfully modified; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.SeekID(System.Int32)">
+      <summary>
+            Seeks the layout element by the specified ID in the LayoutElements class, and pitches the pointer in the current layout element to the specified layout element.
+            </summary>
+      <param name="id">The ID to be searched.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.SetGeometry(SuperMap.Data.Geometry)">
+      <summary>
+            Modifies the Geometry object in the current position of the LayoutElements class, and replaces the old Geometry object in the LayoutElements class. Returns true if successful.
+            </summary>
+      <param name="geometry">The new layout element geometry object that is used to cover previous layout element geometry object.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.SetTagWithID(System.Int32,System.String)">
+      <summary>
+            Modifies the layout element label whose ID is specified in the layout element collection to cover previous layout element label.
+            </summary>
+      <param name="id">The specified layout element ID.</param>
+      <param name="tag">The specified new layout element label which is used to cover the previous layout element label.</param>
+      <returns>Returns true if successful, otherwise false. </returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.GetTagWithID(System.Int32)">
+      <summary>
+            Gets the layout element label according to the specified layout element ID of the layout element collection.
+            </summary>
+      <param name="id">The specified layout element ID.</param>
+      <returns>If successful, it returns the corresponding layout element with the specified ID, otherwise returns null. </returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutElements.SeekTag(System.String)">
+      <summary>
+            Seeks the layout element by the specified ID in the LayoutElements class, and pitches the pointer in the current layout element to the specified layout element.
+            </summary>
+      <param name="tag">The specified layout element tag.</param>
+      <returns>Returns true if successful, otherwise false.</returns>
+    </member>
+    <member name="P:SuperMap.Layout.LayoutElements.Count">
+      <summary>
+            Gets the count of the object in the LayoutElements class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.LayoutElements.IsBOF">
+      <summary>
+            Indicates whether the current pointer is positioned at the start in the LayoutElements object. If it is returns true; otherwise returns false.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.LayoutElements.IsEOF">
+      <summary>
+            Indicates whether the current pointer is positioned at the end in the LayoutElements object. If it is returns true; otherwise returns false.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.LayoutElements.IsEmpty">
+      <summary>
+            Decides whether the LayoutElements object is empty. True means empty.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Layout.LayoutPainter">
+      <summary>
+            Map CustomDisplay type, used in user customizing object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutPainter.DrawGeometry(SuperMap.Data.Geometry)">
+      <summary>
+            Draws a Geometry object.
+            </summary>
+      <param name="geometry">The specified geometry object to be drawn.</param>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutPainter.DrawGeometry(System.Collections.Generic.IEnumerable{SuperMap.Data.Geometry},SuperMap.Data.GeoStyle)">
+      <summary>
+            Draws the Geometry object in batch. This interface only can be drawn in the same style.
+            </summary>
+      <param name="geometies">The batch drawn Geometry object array</param>
+      <param name="style">The style in drawing</param>
+    </member>
+    <member name="P:SuperMap.Layout.LayoutPainter.Graphics">
+      <summary>
+            Gets the Graphics objects. Users can use this object to draw the custom object
+            </summary>
+    </member>
+    <member name="T:SuperMap.Layout.LayoutSelection">
+      <summary>
+            The LayoutSelection class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutSelection.#ctor">
+      <summary>
+            Initializes a new instance of the LayoutSelection class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutSelection.#ctor(SuperMap.Layout.LayoutSelection)">
+      <summary>
+            Initializes a new instance of the LayoutSelection class which is identical with the specified LayoutSelection object.
+            </summary>
+      <param name="layoutSelection">The specified LayoutSelection object.</param>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutSelection.Add(System.Int32)">
+      <summary>
+            Adds new Geometry object to the LayoutSelection object by the specified ID.
+            </summary>
+      <param name="geometryID">The geometry object ID in the layout that is added to the selection collection object.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutSelection.AddRange(System.Int32[])">
+      <summary>
+            Adds Geometry object to the LayoutSelection object by the specified array of ID.
+            </summary>
+      <param name="geometryIDs">The specified Geometry ID array.</param>
+      <returns>The count of newly added objects.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutSelection.Remove(System.Int32)">
+      <summary>
+            Removes the specified geometric object from the selection and makes it unselected.
+            </summary>
+      <param name="geometryID">The ID of the object to delete.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutSelection.RemoveRange(System.Int32,System.Int32)">
+      <summary>
+            Deletes the specified Geometry objects by the given index of the first Geometry object to be deleted, and the given count of the Geometry object to be deleted. These Geometry objects change from the state of selected to the state of unselected.
+            </summary>
+      <param name="index">The index of the first geometric object to delete.</param>
+      <param name="count">Removes the specified geometric objects from the selection and makes them unselected.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutSelection.Clear">
+      <summary>
+            Clears the collection of the LayoutSelection. After this operation, the selected object will change to the state of unselected.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.LayoutSelection.Dispose">
+      <summary>
+            Releases all resources that the object occupies.  
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.LayoutSelection.Count">
+      <summary>
+            Returns the count of the Geometry object in the LayoutSelection class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.LayoutSelection.Item(System.Int32)">
+      <summary>
+            Gets the ID of the specified Geometry object in the collection of LayoutSelection.
+            </summary>
+      <param name="index">The specified ID of the Geometry object in the LayoutSelection class.</param>
+    </member>
+    <member name="P:SuperMap.Layout.LayoutSelection.Style">
+      <summary>
+            Gets or sets the style of the Geometry object.
+            </summary>
+      <value>The default value is {FillBackColor=Color [A=255, R=255, G=255, B=255],FillForeColor=Color [A=255, R=189, G=235, B=255],FillGradientAngle=0,FillGradientMode=None,FillGradientOffsetRatioX=0,FillGradientOffsetRatioY=0,FillOpaqueRate=100,FillSymbolID=0,LineColor=Color [A=255, R=0, G=0, B=0],LineSymbolID=0,LineWidth=0.1,MarkerAngle=0,MarkerSize={Width=2.4,Height=-0.1},MarkerSymbolID=0}.</value>
+    </member>
+    <member name="T:SuperMap.UI.MapLayoutDrawingEventArgs">
+      <summary>
+            Provides data for the <see cref="E:SuperMap.Layout.MapLayout.Drawing">Drawing</see> event.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.MapLayoutEventArgs">
+      <summary>
+            Layout Event class. it's the base class of this type
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.MapLayoutEventArgs.#ctor(SuperMap.Layout.MapLayout)">
+      <summary>
+            builds a new object based on specified object
+            </summary>
+      <param name="mapLayout">The specified object of the layout.</param>
+    </member>
+    <member name="P:SuperMap.UI.MapLayoutEventArgs.MapLayout">
+      <summary>
+            Gets the Layout object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.MapLayoutDrawingEventArgs.#ctor(SuperMap.Layout.MapLayout,System.Boolean)">
+      <summary>
+             Builds a new instance of this class
+             </summary>
+      <param name="mapLayout">The specified object of the layout.</param>
+      <param name="cancel">A value indicating whether the event should be canceled.</param>
+    </member>
+    <member name="M:SuperMap.UI.MapLayoutDrawingEventArgs.#ctor(SuperMap.Layout.MapLayout,System.Boolean,SuperMap.Layout.LayoutPainter)">
+      <summary>
+            Constructs a new MapLayoutDrawingEventArgs object according to the given arguments.
+            </summary>
+      <param name="mapLayout">The MapLayout object specified.</param>
+      <param name="cancel">The value indicating whether the event should be canceled or not. True if the event should be canceled; otherwise, false.</param>
+      <param name="painter">The custom object drawn by user.</param>
+    </member>
+    <member name="P:SuperMap.UI.MapLayoutDrawingEventArgs.Cancel">
+      <summary>
+            Gets or sets a value indicating whether the event should be canceled. True indicates to cancel and false indicates the opposite.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MapLayoutDrawingEventArgs.Painter">
+      <summary>
+            Gets the custom object drawn by user.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.MapLayoutDrawingEventHandler">
+      <summary>
+            The method class for <see cref="E:SuperMap.Layout.MapLayout.Drawing">Drawing</see>.
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">A <see cref="T:SuperMap.UI.MapLayoutDrawingEventArgs">MapLayoutDrawingEventArgs</see> class that contains the event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.MapLayoutDrawnEventArgs">
+      <summary>
+            provide data for the <see cref="E:SuperMap.Layout.MapLayout.Drawn">Drawn</see> event.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.MapLayoutDrawnEventArgs.#ctor(SuperMap.Layout.MapLayout)">
+      <summary>
+             Initializes a new instance for the MapLayoutDrawnEventArgs class according to the specified parameters.
+            </summary>
+      <param name="mapLayout">The specified object of the layout.</param>
+    </member>
+    <member name="M:SuperMap.UI.MapLayoutDrawnEventArgs.#ctor(SuperMap.Layout.MapLayout,SuperMap.Layout.LayoutPainter)">
+      <summary>
+            Constructs a new MapLayoutDrawnEventArgs object according to the given arguments.
+            </summary>
+      <param name="mapLayout">The MapLayout object specified.</param>
+      <param name="painter">The custom object drawn by user.</param>
+    </member>
+    <member name="P:SuperMap.UI.MapLayoutDrawnEventArgs.Painter">
+      <summary>
+            Gets the custom object drawn by user.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.MapLayoutDrawnEventHandler">
+      <summary>
+            The <see cref="E:SuperMap.Layout.MapLayout.Drawn">Drawn</see> event class.
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">A <see cref="T:SuperMap.UI.MapLayoutDrawnEventArgs">MapLayoutDrawnEventArgs</see> that contains the event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.MapLayoutGeoUserDefinedDrawingEventArgs">
+      <summary>
+            Layout the custom element drawing parameters.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.MapLayoutGeoUserDefinedDrawingEventArgs.LayoutToPrinter(SuperMap.Data.Point2D)">
+      <summary>
+            Converts the coordinates of the specified point to the pixel coordinates in layout map.
+            </summary>
+      <param name="point2d">The specified point whose coordinates are to be transformed.</param>
+      <returns>Returns the converted coordinate value.</returns>
+    </member>
+    <member name="P:SuperMap.UI.MapLayoutGeoUserDefinedDrawingEventArgs.Graphics">
+      <summary>
+            Gets the Graphics objects. Users can use this object to draw the custom object
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MapLayoutGeoUserDefinedDrawingEventArgs.Geometry">
+      <summary>
+            Gets the object drawn by user.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MapLayoutGeoUserDefinedDrawingEventArgs.Cancel">
+      <summary>
+            Gets or sets a value indicating whether the event should be canceled. True indicates to cancel and false indicates the opposite.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MapLayoutGeoUserDefinedDrawingEventArgs.IsPrinting">
+      <summary>
+            Gets whether the layout is in the printing status. It is in the printing status if it is true; otherwise, false.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.MapLayoutGeoUserDefinedDrawingEventHandler">
+      <summary>
+            Represents the method class of drawing custom object event (<see cref="E:SuperMap.Layout.MapLayout.GeoUserDefinedDrawing">GeoUserDefindedDrawing</see>)
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">A <see cref="T:SuperMap.UI.MapLayoutGeoUserDefinedDrawingEventArgs">MapLayoutDrawingEventArgs</see> class that contains the custom object drawing event parameter of the event data.</param>
+    </member>
+    <member name="T:SuperMap.Layout.Paper">
+      <summary>
+            The Paper class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.Paper.BackgroundColor">
+      <summary>
+            Gets or sets the color of the background in the Paper.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.Paper.Orientation">
+      <summary>
+            Gets or sets the orientation of the Paper.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.Paper.Width">
+      <summary>
+            Gets or sets the width of the Paper. The unit is the unit which is set in the Paper.Unit.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.Paper.Height">
+      <summary>
+            Gets or sets the height of the Paper. The unit is the unit which is set in the Paper.Unit.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.Paper.Size">
+      <summary>
+            Gets or sets the size of the Paper.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.Paper.Margin">
+      <summary>
+            Gets the margin of the Paper.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.Paper.Grid">
+      <summary>
+            Gets or sets the GridSetting object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Layout.Paper.IsVisible">
+      <summary>
+            Gets or sets whether the paper is visible.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Layout.MapLayout">
+      <summary>
+             The MapLayout class.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.#ctor">
+      <summary>
+            Initializes a new instance of the MapLayout class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.#ctor(SuperMap.Data.Workspace)">
+      <summary>
+            Initializes a new instance of the MapLayout class with the Workspace object.
+            </summary>
+      <param name="workspace">Gets an instance of Workspace.</param>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.#ctor(System.ComponentModel.IContainer)">
+      <summary>
+            Initializes a new instance of the MapLayout attached to IContainer.
+            </summary>
+      <param name="container">The specified IContainer object.</param>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.Open(System.String)">
+      <summary>
+             Open the existed layout in the workspace, and display it in the layout window.
+             </summary>
+      <param name="name">The name of the existing layout in the workspace.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.LoadTemplate(System.String)">
+      <summary>
+            Loads the template of the layout.
+            </summary>
+      <param name="templateName">The full path name of the layout template file.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.SaveAsTemplate(System.String)">
+      <summary>
+            Saves as Layout template.
+            </summary>
+      <param name="templateName">The full path name of the layout template file.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.ZoomToPaper">
+      <summary>
+            Zooms the paper to fit the layout window.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.ZoomToPaperWidth">
+      <summary>
+            Zooms the paper to the extent of the layout window according to the width of the paper.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.OutputLayoutToJPG(System.String,System.Int32,System.Int32)">
+      <summary>
+             outputs the  content to JPG file
+             </summary>
+      <param name="fileName">The full path of the output JPG file.</param>
+      <param name="dpi">The DPI of the output image.</param>
+      <param name="compress">The compression level of the output JPG image ranges from 10 to 100. The smaller the value is, the higher the compression rate is, and the image quality is accordingly lower.  Here, the value of 100 means no compression.</param>
+      <returns>Returns true if successful, otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.ZoomToPaperHeight">
+      <summary>
+            Zooms the paper to the extent of the layout window according to the height of the paper.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.Zoom(System.Double)">
+      <summary>
+            Zooms the paper according to the zoom ratio. The scale of the zoomed paper is obtained by multiplying the original scale and the scale ratio. The number or quantity obtained by multiplying two or more numbers together.
+            </summary>
+      <param name="ratio">The zooming scale.</param>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.Pan(System.Double,System.Double)">
+      <summary>
+            Moves the Layout object.
+            </summary>
+      <param name="offsetX">The moving distance in X direction.</param>
+      <param name="offsetY">The moving distance in Y direction.</param>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.Refresh">
+      <summary>
+            Refreshes the layout.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.PixelToLayout(System.Drawing.Point)">
+      <summary>
+            Transforms the pixel coordinate to the layout coordinate.
+            </summary>
+      <param name="point">The pixel coordinate value that will be converted into the layout coordinate.</param>
+      <returns>The layout coordinates.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.LayoutToPixel(SuperMap.Data.Point2D)">
+      <summary>
+            Transforms the layout coordinate to the pixel coordinate.
+            </summary>
+      <param name="point">The layout coordinate value that will be converted into the pixel coordinate.</param>
+      <returns>The pixel coordinates.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.LayoutToLogical(SuperMap.Data.Point2D)">
+      <summary>
+            Converts the layout coordinates of the specified point to the logical coordinates.
+            </summary>
+      <param name="point2D">The layout coordinate value that will be converted into the logical coordinate.</param>
+      <returns>The logical coordinates.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.LogicalToLayout(SuperMap.Data.Point2D)">
+      <summary>
+            Converts the logical coordinates of the specified point to the layout coordinates.
+            </summary>
+      <param name="point2D">The logical coordinate value that will be converted into the layout coordinate.</param>
+      <returns>The layout coordinates.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.LogicalToPixel(SuperMap.Data.Point2D)">
+      <summary>
+            Converts the logical coordinates of the specified point to the pixel coordinates.
+            </summary>
+      <param name="point2D">The logical coordinate value that will be converted into the screen coordinate.</param>
+      <returns>The screen coordinates.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.PixelToLogical(System.Drawing.Point)">
+      <summary>
+            Converts the pixel coordinates of the specified point to the logical coordinates.
+            </summary>
+      <param name="point">The screen coordinate value that will be converted into the logical coordinate.</param>
+      <returns>The screen coordinates.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.OutputLayoutToBMP(System.String,System.Int32)">
+      <summary>
+            outputs the layout to BMP file
+            </summary>
+      <param name="fileName">The full path of the exported BMP file.</param>
+      <param name="dpi">The given output resolution uses the screen resolution.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.OutputLayoutToJPG(System.String)">
+      <summary>
+            Outputs the visible extent of the layout to JPG file. When outputting without a layout view, the output extent is decided by the ImageSize property.
+            </summary>
+      <param name="fileName">The full path of the output JPG file.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.OutputLayoutToPNG(System.String,System.Boolean)">
+      <summary>
+            Outputs the layout to PNG file.
+            </summary>
+      <param name="fileName">The full path of the output PNG file.</param>
+      <param name="isBackTransparent">Specifies whether the background is transparent.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.OutputLayoutToEPS(System.String)">
+      <summary>
+            Outputs the layout to EPS file.
+            </summary>
+      <param name="fileName">The full path of the exported EPS file.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.OutputLayoutToEMF(System.String)">
+      <summary>
+            Outputs the layout to EMF file.
+            </summary>
+      <param name="fileName">The full path of the output EMF file.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.OutputLayoutToBitmap">
+      <summary>
+            Outputs the visible extent of the layout to memory images. When outputting without a layout view, the output extent is decided by the ImageSize property.
+            </summary>
+      <returns>The memory image object.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.Close">
+      <summary>
+            Closes current layout.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.FromXML(System.String)">
+      <summary>
+            Creates a MapLayout object with the specified character string which is xml format.
+            </summary>
+      <param name="xml">The specified XML string.</param>
+      <returns>True, if successful; Otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.ToXML">
+      <summary>
+            Returns the description of the MapLayout object which is the character string of xml.
+            </summary>
+      <returns>Returns the description of the MapLayout object which is the character string of xml.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.OutputLayoutToGIF(System.String,System.Boolean)">
+      <summary>
+            Outputs the layout to GIF file.
+            </summary>
+      <param name="filename">The full path of the output GIF file.</param>
+      <param name="isBackTransparent">Specifies whether the background is transparent.</param>
+      <returns>True if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.EnsureVisible(SuperMap.Data.Rectangle2D)">
+      <summary>
+            Pans the layout to the specified bounds.
+            </summary>
+      <param name="bounds">The specified display extent.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.PrintToFile(System.String,SuperMap.Layout.PrintFileType,System.Int32)">
+      <summary>Outputs all the content within the paper extent of the layout to file. This method supports setting for output file type and the DPI output format. For a large sheet of map with high-volume data, you can use this interface to output the map to a certain type of high-resolution image, and then print the map.</summary>
+      <param name="filename">The full path of the output file.</param>
+      <param name="type">Sets the type for the output image.</param>
+      <param name="dpi">The number of dots per inch for image output.</param>
+      <returns>Returns true if successful, otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.PrintToFile(System.String,SuperMap.Layout.PrintFileType,System.Int32,System.Boolean)">
+      <summary>Outputs all the content within the paper extent of the layout to file. This method supports setting for output file type and the DPI output format. For a large sheet of map with high-volume data, you can use this interface to output the map to a certain type of high-resolution image, and then print the map. </summary>
+      <param name="filename">The full path of the output file.</param>
+      <param name="type">Sets the type for the output image.</param>
+      <param name="dpi">The number of dots per inch for image output.</param>
+      <param name="isMultiPageWithPrinterPaper">Indicates whether to export a map to multiple pages. True means exporting the map to multiple pages, and false means exporting the map to a single page.</param>
+      <returns>Returns true if successful, otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.HitTest(SuperMap.Data.Point2D,System.Double)">
+      <summary>
+            returns the collection of selected layout  elements. If the is distance between the specified point and the nearest point in the layout element is less than the tolerance, then the layout element is selected. If there are more than one layout elements meet the condition. Then they will all be selected and returned with a collection of them. 
+            </summary>
+      <param name="pt">The specified point object.</param>
+      <param name="tolerance">The specified tolerance.</param>
+      <returns>The collection of the selected layout elements.</returns>
+    </member>
+    <member name="M:SuperMap.Layout.MapLayout.AdjustLayoutPaperSize">
+      <summary>
+            Sets the layout page (excluding margins) to fit the extent of all geometry objects, i.e. adjusting the size of the layout page into the minimum bounding rectangle of all geometry objects in the layout.
+            </summary>
+      <returns>Returns true if successful, otherwise false.</returns>
+    </member>
+         <member name="M:SuperMap.Layout.MapLayout.OutputLayoutToPDF(System.String,System.Int32)">
+             <summary>
+             Output the layout as a PDF file.
+             </summary>
+             <param name="fileName">Specify the path to save the PDF file, the path is the full path containing the file name. </param>
+             <param name="dpi">When the layout output is PDF, if the layout contains raster type map data or illustrated pictures in the layout, you can specify the output resolution here. The default value is 96. </param>
+             <returns>The output returns true if successful; otherwise, it returns false. </returns>
+             
+         </member>
+         <member name="E:SuperMap.Layout.MapLayout.Drawing">
+             <summary>
+            The event occurs when drawing the layout.
+            </summary></member><member name="E:SuperMap.Layout.MapLayout.Drawn"><summary>
+            The event occurs after the drawing on the layout finished.
+            </summary></member><member name="P:SuperMap.Layout.MapLayout.Name"><summary>
+            Gets or sets the name of the Layout object.
+            </summary><value>The default value is UntitledPlacemark.</value></member><member name="P:SuperMap.Layout.MapLayout.Paper"><summary>
+            Gets the Paper object.
+            </summary><value>The default value is an empty Paper object.</value></member><member name="P:SuperMap.Layout.MapLayout.PrintPreview"><summary>
+            Gets or sets whether to display the preview.
+            </summary><value>The default is False.</value></member><member name="P:SuperMap.Layout.MapLayout.Printer"><summary>
+            Gets the Printer object.
+            </summary><value>The default value is an empty Printer object.</value></member><member name="P:SuperMap.Layout.MapLayout.RulerLines"><summary>
+            Gets the RulerLines object.
+            </summary><value>The default value is an empty RulerLines object.</value></member><member name="P:SuperMap.Layout.MapLayout.RulerSetting"><summary>
+            Gets the RulerSetting object.
+            </summary><value>The default value is an empty RulerSetting object.</value></member><member name="P:SuperMap.Layout.MapLayout.Bounds"><summary>
+            Gets or sets the bound of the viewable scale of the layout.
+            </summary><value>The default value is  {Left=-200,Bottom=-200,Right=1900,Top=2770}.</value></member><member name="P:SuperMap.Layout.MapLayout.ViewBounds"><summary>
+            Gets or sets the bound of the viewable scale of the layout.
+            </summary><value>The default value is  {Left=-855.326409495549,Bottom=-420.326409495549,Right=2555.32640949555,Top=2990.32640949555}.</value></member><member name="P:SuperMap.Layout.MapLayout.Center"><summary>
+            Gets or sets the center point of the layout.
+            </summary><value>The default value is X=850,Y=1285 .</value></member><member name="P:SuperMap.Layout.MapLayout.ZoomRatio"><summary>
+            Gets or sets the zoom ratio of the current layout.
+            </summary><value>The default value is 1.97616E-05.</value></member><member name="P:SuperMap.Layout.MapLayout.MaxZoomRatio"><summary>
+            Gets or sets the maximum zoom ration of the layout.
+            </summary><value>The default value is 1E+12.</value></member><member name="P:SuperMap.Layout.MapLayout.MinZoomRatio"><summary>
+            Gets or sets the minimum zoom ration of the layout.
+            </summary><value>The default value is 0.</value></member><member name="P:SuperMap.Layout.MapLayout.HorizontalPaperCount"><summary>
+            Gets or sets the count of the horizontal papers.
+            </summary><value>The default value is 1.</value></member><member name="P:SuperMap.Layout.MapLayout.VerticalPaperCount"><summary>
+            Gets or sets the count of the vertical papers.
+            </summary><value>The default value is 1.</value></member><member name="P:SuperMap.Layout.MapLayout.Workspace"><summary>
+            Gets or sets the workspace of the Layout object.
+            </summary><value>The default value is null.</value></member><member name="P:SuperMap.Layout.MapLayout.Elements"><summary>
+            Gets the collection of the layout elements in the Layout object.
+            </summary><value>The default value is an empty LayoutElements object.</value></member><member name="P:SuperMap.Layout.MapLayout.ImageSize"><summary>
+            Gets or sets the collection of the layout elements in the Layout object.
+            </summary><value>The default value is {Width=256, Height=256}.</value></member><member name="P:SuperMap.Layout.MapLayout.Selection"><summary>
+            Gets or sets the selection of the MapLayout object.
+            </summary><value>The default value is an empty LayoutSelection object.</value></member><member name="P:SuperMap.Layout.MapLayout.BackgroundStyle"><summary>
+            The value of the logical DPI and the value of the device DPI is more similar, the print effect is better. If you need higher print effect, the value of this property needs to be larger, but this will cost much more memory.
+            </summary><value>The default value is {FillBackColor=Color [A=255, R=255, G=255, B=255],FillForeColor=Color [A=255, R=189, G=235, B=255],FillGradientAngle=0,FillGradientMode=None,FillGradientOffsetRatioX=0,FillGradientOffsetRatioY=0,FillOpaqueRate=100,FillSymbolID=0,LineColor=Color [A=255, R=0, G=0, B=0],LineSymbolID=0,LineWidth=0.1,MarkerAngle=0,MarkerSize={Width=2.4,Height=-0.1},MarkerSymbolID=0}.</value></member><member name="P:SuperMap.Layout.MapLayout.Ruler"><summary>
+            Gets the ruler in the layout.
+            </summary></member><member name="P:SuperMap.Layout.MapLayout.IsModified"><summary>
+            Gets the ruler of the layout.
+            </summary></member><member name="P:SuperMap.Layout.MapLayout.IsOverlapDisplayed"><summary>
+            Gets or sets whether the layout is modified or not.Gets or sets whether the overlapping of texts or graph map is displayed or not.
+            </summary></member><member name="P:SuperMap.Layout.MapLayout.OverlapLengthOfPrinterPaper"><summary>
+            Gets or sets the length of overlap part in millimeters when outputting a map to multiple pages.
+            </summary></member><member name="P:SuperMap.Layout.MapLayout.IsTextAntialias"><summary>
+            Gets or sets whether to active the text antialias function.
+            </summary></member><member name="P:SuperMap.Layout.MapLayout.IsLineAntialias"><summary>
+            Gets or sets whether to active the line antilias function.
+            </summary></member><member name="E:SuperMap.Layout.MapLayout.GeoUserDefinedDrawing"><summary>
+            The event occurs when drawing the custom objects.
+            </summary></member><member name="T:SuperMap.UI.MapLayoutControl"><summary>
+             The MapLayoutControl class.
+             </summary></member><member name="M:SuperMap.UI.MapLayoutControl.#ctor"><summary>
+            Initializes a new instance of the MapLayoutControl class.
+            </summary></member><member name="M:SuperMap.UI.MapLayoutControl.Redo"><summary>
+            Executes the operation of redoing, returns whether the redoing is successful.
+            </summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.Undo"><summary>
+            Executes the operation of undoing, returns whether the undoing is successful.
+            </summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.Copy"><summary>
+            Executes the operation of copying, returns whether the copying is successful.
+            </summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.Cut"><summary>
+            Executes the operation of cutting, returns whether the cutting is successful.
+            </summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.Paste"><summary>
+            Executes the operation of pasting, returns whether the pasting is successful.
+            </summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.Delete"><summary>
+            Executes the operation of deleting, returns whether the pasting is successful.
+            </summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.Align(SuperMap.UI.ElementsAlignment)"><summary>Aligns the selected objects, the last selected object is the base objects. Return true if successful.</summary><param name="alignment">Element align.</param><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.MakeSameWidth"><summary>Makes the width of selected objects equal to the base object, the last selected objects is the base object. Return true if successful.</summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.MakeSameHeight"><summary>Makes the height of selected objects equal to the base object, the last selected objects is the base object. Return true if successful.</summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.MakeSameSize"><summary>Makes the size of selected objects equal to the base object, the last selected objects is the base object. Return true if successful.</summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.MakeVerticalSpacingEqual"><summary>Makes the vertical spacing equal of the selected objects. Return true if successful.</summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.MakeHorizontalSpacingEqual"><summary>Makes the horizontal spacing equal of the selected objects. Return true if successful.</summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.MakeSpacingEqual"><summary>Makes the vertical and horizontal spacing both equal of the selected objects. Return true if successful.</summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.BringForward"><summary>Moves the selected object position forward. Return true if successful.</summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.SendBackward"><summary>Moves the selected object position backward. Return true if successful.</summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.BringToFront"><summary>Moves the selected object position to the top. Return true if successful.</summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.SendToBack"><summary>Moves the selected object position to the bottom. Return true if successful.</summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.Combination"><summary>
+            Implements the operation of the layer element combination.
+            </summary><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.UI.MapLayoutControl.Split"><summary>
+            Implements the operation of the layer element division.
+            </summary><returns>Returns true if successful; otherwise false.</returns></member><member name="P:SuperMap.UI.MapLayoutControl.IsWaitCursorEnabled"><summary>
+            Gets or sets whether the waiting cursor in the current map window is available.
+            </summary><value>The default value is true.</value></member><member name="P:SuperMap.UI.MapLayoutControl.IsCursorCustomized"><summary>
+            Gets or sets whether the custom cursor change in this MapControl is valid or not.
+            </summary><value>The default value is false.</value></member><member name="E:SuperMap.UI.MapLayoutControl.EditHandleMove"><summary>
+            Occurs when editing the handle moving.
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.LayoutActionChanged"><summary>
+            The event occurs when the action of MapLayoutControl changes.
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.ElementSelected"><summary>
+            The event occurs when the Geometry object is selected.
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.ElementDeleted"><summary>The event occurs after deleting the Geometry object.</summary></member><member name="E:SuperMap.UI.MapLayoutControl.ElementDeleting"><summary>
+            The event occurs when deleting the Geometry object.
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.ElementSelectChanged"><summary>
+            triggered when the geometry object selected in the layout changes 
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.ElementAdded"><summary>
+            The event occurs when a Geometry object is added to the current layout.
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.ElementModifying"><summary>
+            The event occurs when modifying the Geometry object in the layout.
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.ElementModified"><summary>
+            The event occurs when the Geometry object in the current layout is modified.
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.Tracking"><summary>
+            The event occurs when tracking the drawing Geometry object in the current layout.
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.Tracked"><summary>
+            The event occurs when the drawing of the Geometry object in the current layout is finished.
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.PointInputed"><summary>
+            The event occurs when the point is inputted in the current layout.
+            </summary></member><member name="E:SuperMap.UI.MapLayoutControl.ActionCursorChanging"><summary>
+            The event occurs when changing the action cursor in the current layout. The custom of the action cursor can be available by this event.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.MapLayout"><summary>
+            Gets the Layout object.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.ActiveGeoMapID"><summary>
+             Gets or sets the ID of active Map object.
+             </summary></member><member name="P:SuperMap.UI.MapLayoutControl.MapAction"><summary>
+            Gets or sets the Action object in the locked layout.
+            </summary><value>The default value is of the Point type.</value></member><member name="P:SuperMap.UI.MapLayoutControl.LayoutAction"><summary>
+            Gets or sets the Action object in the layout.
+            </summary><value>The default value is of the Select2 type.</value></member><member name="P:SuperMap.UI.MapLayoutControl.TrackMode"><summary>
+            Gets or sets the track of the MapLayoutControl object's drawing action.
+            </summary><value>The default value is of the Edit type.</value></member><member name="P:SuperMap.UI.MapLayoutControl.IsHorizontalScrollbarVisible"><summary>
+            Gets or sets whether to display the horizontal scrollbar.
+            </summary><value>The default value is true.</value></member><member name="P:SuperMap.UI.MapLayoutControl.IsVerticalScrollbarVisible"><summary>
+            Gets or sets whether to display the vertical scrollbar.
+            </summary><value>The default value is true.</value></member><member name="P:SuperMap.UI.MapLayoutControl.CanRedo"><summary>
+            Gets whether the redoing operation is available in the current window.
+            </summary><value>The default is False.</value></member><member name="P:SuperMap.UI.MapLayoutControl.CanUndo"><summary>
+            Gets whether the undoing operation is available in the current window.
+            </summary><value>The default is False.</value></member><member name="P:SuperMap.UI.MapLayoutControl.CanCut"><summary>
+            Gets whether the cutting operation is available in the current window.
+            </summary><value>The default is False.</value></member><member name="P:SuperMap.UI.MapLayoutControl.CanCopy"><summary>
+            Gets whether the copying operation is available in the current window.
+            </summary><value>The default is False.</value></member><member name="P:SuperMap.UI.MapLayoutControl.CanPaste"><summary>
+            Gets whether the pasting operation is available in the current window.
+            </summary><value>The default is False.</value></member><member name="P:SuperMap.UI.MapLayoutControl.EditHistory"><summary>
+            gets the edit history of layout space 
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.CanDelete"><summary>
+            Gets whether the deleting operation is available in the current window.
+            </summary><value>The default value is false.</value></member><member name="P:SuperMap.UI.MapLayoutControl.ActiveMap"><summary>
+            Gets the current active map object. When the state is not active, the property is null.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.IsGridSnapable"><summary>Gets or sets whether the grid can be snapped. The default value is false.</summary></member><member name="P:SuperMap.UI.MapLayoutControl.RefreshAtTracked"><summary>
+            Gets or sets whether to support the instant refreshing when any element editing is finished.
+            </summary><value>The default value is true, indicating instant refreshing at the end of element editing is supported.</value></member><member name="P:SuperMap.UI.MapLayoutControl.RefreshInInvalidArea"><summary>
+            Gets or sets a value indicating whether to only refresh local changed area when panning.
+            </summary><value>The default value is true, indicating refreshing only the changed region when panning is supported.</value></member><member name="T:SuperMap.UI.MapLayoutControl.Cursors"><summary>
+            This class is the nested class of the MapControl class. This class is used to provide the cursor style in the map window. The property of this class is initialized when first calling it. It will find the relevant cursor file in the specified directory which is BinMappingCursors, if there is no cursor file needed, it will find it in the resources.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.Busy"><summary>
+            Gets or sets the cursor when it is busy in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.Arrow"><summary>
+            Gets or sets the common cursor in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.MarginPanLeft"><summary>
+            Gets or sets the cursor in the layout window when scrolling in the left direction.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.MarginPanRight"><summary>
+            Gets or sets the cursor in the layout window when scrolling in the right direction.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.MarginPanTop"><summary>
+            Gets or sets the cursor in the layout window when scrolling up.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.MarginPanBottom"><summary>
+            Gets or sets the cursor in the layout window when scrolling downwards.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.MarginPanTopLeft"><summary>
+            Gets or sets the cursor in the layout window when scrolling in the direction of top left corner.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.MarginPanTopRight"><summary>
+            Gets or sets the cursor in the layout window when scrolling in the direction of top right corner.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.MarginPanBottomRight"><summary>
+            Gets or sets the cursor in the layout window when scrolling in the direction of bottom right corner.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.MarginPanBottomLeft"><summary>
+            Gets or sets the cursor in the layout window when scrolling in the direction of bottom left corner.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.ZoomFree"><summary>
+            Gets or sets the cursor in the layout window when zooming layout in/out.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.ZoomFree2"><summary>
+            Gets or sets the cursor in the layout window when zooming layout in/out extendedly.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.Pan"><summary>
+            Gets or sets the cursor in the layout window when panning the layout.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.Pan2"><summary>
+            Gets or sets the cursor in the layout window when panning the layout at real time.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.ZoomIn"><summary>
+            Gets or sets the cursor in the layout window when zooming layout in.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.ZoomOut"><summary>
+            Gets or sets the cursor in the layout window when zooming layout out.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.Select"><summary>
+            Gets or sets the cursor in the layout window when selecting objects.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.Select2"><summary>
+            Gets or sets the cursor in the layout window when selecting objects by clicking or dragging a rectangle.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SelectCircle"><summary>
+            Gets or sets the cursor in the layout window when selecting objects by drawing a circle.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SelectRegion"><summary>
+            Gets or sets the cursor in the layout window when selecting objects by drawing a polygon.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SelectLine"><summary>
+            Gets or sets the cursor in the layout window when selecting objects by drawing a line.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreatePoint"><summary>
+            Gets or sets the cursor when drawing points in the map window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateLine"><summary>
+            Gets or sets the cursor when drawing segments in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreatePolyline"><summary>
+            Gets or sets the cursor when drawing polylines in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateEllipseArc"><summary>
+            Gets or sets the cursor when drawing elliptic arcs in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateArc3P"><summary>
+            Gets or sets the cursor when drawing arcs with 3P in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateCurve"><summary>
+            Gets or sets the cursor when drawing curves in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateRectangle"><summary>
+            Gets or sets the cursor when drawing a rectangle in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateRoundRectangle"><summary>
+            Gets or sets the cursor when drawing a rounded rectangle in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateCircle"><summary>
+            Gets or sets the cursor when drawing a circle in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateCircle2P"><summary>
+            Gets or sets the cursor when drawing circles with 2P in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateCircle3P"><summary>
+            Gets or sets the cursor when drawing circles with 3P in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateEllipse"><summary>
+            Gets or sets the cursor when drawing an ellipse in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateObliqueEllipse"><summary>
+            Gets or sets the cursor when drawing an oblique ellipse in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreatePolygon"><summary>
+            Gets or sets the cursor when drawing polygons in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateText"><summary>
+            Gets or sets the cursor when drawing texts in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateAlongLineText"><summary>
+            Gets or sets the cursor when drawing texts along line in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateParallel"><summary>
+            Gets or sets the cursor when drawing parallels in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreatePie"><summary>
+            Gets or sets the cursor when drawing pies in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateParallelogram"><summary>
+            Gets or sets the cursor when drawing a parallelogram in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.Cross"><summary>
+            Gets or sets the cross cursor in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.Rotation"><summary>
+            Gets or sets the circumrotation cursor in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.Beam"><summary>
+            Gets or sets the I-shaped cursor in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.Move"><summary>
+            Gets or sets the cursor when moving in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.NorthSouth"><summary>
+            Gets or sets the cursor when moving in the direction of north and south in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.WestEast"><summary>
+            Gets or sets the cursor when moving in the direction of east and west in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.NorthwestSoutheast"><summary>
+            Gets or sets the cursor when moving in the direction of northwest and southeast in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.NortheastSouthwest"><summary>
+            Gets or sets the cursor when moving in the direction of northeast and southwest in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SnapPoint"><summary>
+            Gets or sets the cursor of the point snapping in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SnapVertex"><summary>
+            Gets or sets the cursor of the vertex snapping in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SnapMidpoint"><summary>
+            Gets or sets the cursor of the midpoint snapping in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SnapLine"><summary>
+            Gets or sets the cursor of the line snapping in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SnapVertical"><summary>
+            Gets or sets the cursor of the vertical snapping in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SnapParallel"><summary>
+            Gets or sets the cursor of the parallel snapping in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.MoveRotationBase"><summary>
+            Gets or sets the cursor of the base point of rotation in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SelectRectangle"><summary>
+            Gets or sets the cursor of selecting with the rectangle in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateNorthArrow"><summary>
+            Gets or sets the cursor of creating the north arrow in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateMapScale"><summary>
+            Gets or sets the cursor of creating the map scale in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateGeoLegend"><summary>
+            Gets or sets the cursor of creating the GeoLegend object in the map window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SelectHorizontalRulerLine"><summary>
+            Gets or sets the cursor of selecting the horizontal ruler line in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.SelectVerticalRulerLine"><summary>
+            Gets or sets the cursor of selecting the vertical ruler line in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateBSpline"><summary>
+            Gets or sets the cursors for creating free curve in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateMap"><summary>
+            Gets or sets the cursors of map in the layout window
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateFreePolyline"><summary>
+            Gets or sets the cursors for creating free curve in the layout window.
+            </summary></member><member name="P:SuperMap.UI.MapLayoutControl.Cursors.CreateCardinal"><summary>
+            gets or sets the cursors of Cardinal object in the layout window
+            </summary></member><member name="T:SuperMap.Layout.PaperMargin"><summary>
+            The PaperMargin class.
+            </summary></member><member name="M:SuperMap.Layout.PaperMargin.#ctor(System.Int32)"><summary>
+            Initializes a new instance of the PaperMargin class. The values of all the page margins equal the specified value.
+            </summary><param name="margin">Specify a value as the value of all margins of the paper object.</param></member><member name="M:SuperMap.Layout.PaperMargin.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)"><summary>
+            Initializes a new instance of the PaperMargin class according to the parameters.
+            </summary><param name="left">The left margin of the paper.</param><param name="right">The right margin of the paper.</param><param name="top">The top margin of the paper.</param><param name="bottom">The bottom margin of the paper.</param></member><member name="M:SuperMap.Layout.PaperMargin.ToString"><summary>
+            Returns the character string describing the PaperMargin object. The format is that "Left=%f,Right=%f,Top=%f,Bottom=%f", left, bottom,right, top.
+            </summary><returns>The character string describing the PaperMargin object.</returns></member><member name="M:SuperMap.Layout.PaperMargin.Equals(System.Object)"><summary>
+            Tests whether the two objects are equal. If the given object is also a PaperMargin object and the properties such as Left, Bottom, Right and Top of the two PaperMargin objects are equal separately the two objects are equal.
+            </summary><param name="obj">The object to be tested.</param><returns>Returns true if the given object is also a PaperMargin object and the properties such as Left, Bottom, Right and Top of the two PaperMargin objects are equal separately the two objects are equal; otherwise false.</returns></member><member name="M:SuperMap.Layout.PaperMargin.Equals(SuperMap.Layout.PaperMargin)"><summary>
+            Determines whether the two PaperMargin objects are equal. If the Left, Bottom, Right and Top properties of the two PaperMargin objects are equal respectively, the two PaperMargin objects are equal.
+            </summary><param name="paperMargin">The PaperMargin object to test.</param><returns>Returns true if the Left, Bottom, Right and Top properties of the two PaperMargin objects are equal respectively; otherwise false.</returns></member><member name="M:SuperMap.Layout.PaperMargin.op_Equality(SuperMap.Layout.PaperMargin,SuperMap.Layout.PaperMargin)"><summary>
+            Determines whether the two PaperMargin objects are equal. If the Left, Bottom, Right and Top properties of the two PaperMargin objects are equal respectively, the two PaperMargin objects are equal.
+            </summary><param name="left">The PaperMargein object to compare.</param><param name="right">The PaperMargein object to compare.</param><returns>Returns true if the Left, Bottom, Right and Top properties of the two PaperMargin objects are equal respectively; otherwise false.</returns></member><member name="M:SuperMap.Layout.PaperMargin.op_Inequality(SuperMap.Layout.PaperMargin,SuperMap.Layout.PaperMargin)"><summary>
+            Tests whether the two PaperMargin objects are not equal. If the properties such as Left, Bottom, Right and Top of the two PaperMargin objects exist unequal the two PaperMargin objects are not equal.
+            </summary><param name="left">The PaperMargein object to compare.</param><param name="right">The PaperMargein object to compare.</param><returns>Returns true if the properties such as Left, Bottom, Right and Top of the two PaperMargin objects exist unequal the two PaperMargin objects are not equal; otherwise false.</returns></member><member name="M:SuperMap.Layout.PaperMargin.GetHashCode"><summary>
+            Returns the hash code of the PaperMargin object.
+            </summary><returns>Returns the hash code of the PaperMargin object.</returns></member><member name="P:SuperMap.Layout.PaperMargin.Top"><summary>
+            Gets or sets the top margin of the page, the unit is millimeter.
+            </summary><value>The default value is 200.</value></member><member name="P:SuperMap.Layout.PaperMargin.Bottom"><summary>
+            Gets or sets the bottom margin of the page, the unit is millimeter.
+            </summary><value>The default value is 200.</value></member><member name="P:SuperMap.Layout.PaperMargin.Left"><summary>
+            Gets or sets the left margin of the page, the unit is millimeter.
+            </summary><value>The default value is 200.</value></member><member name="P:SuperMap.Layout.PaperMargin.Right"><summary>
+            Gets or sets the right margin of the page, the unit is millimeter.
+            </summary><value>The default value is 200.</value></member><member name="T:SuperMap.Layout.PaperOrientation"><summary>
+            Defines the enumeration of the paper orientations.
+            </summary></member><member name="F:SuperMap.Layout.PaperOrientation.Portrait"><summary>
+            Portrait.
+            </summary></member><member name="F:SuperMap.Layout.PaperOrientation.Landscape"><summary>
+            Landscape.
+            </summary></member><member name="T:SuperMap.Layout.PaperSize"><summary>
+            Defines the enumeration of the paper sizes.
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Letter"><summary>
+            Letter 8 1/2 x 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.LetterSmall"><summary>
+            Letter Small 8 1/2 x 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Tabloid"><summary>
+            Tabloid 11 x 17 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Ledger"><summary>
+            Ledger 17 x 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Legal"><summary>
+            Legal 8 1/2 x 14 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Statement"><summary>
+            Statement 5 1/2 x 8 1/2 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Executive"><summary>
+            Executive 7 1/4 x 10 1/2 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A3"><summary>
+            A3 297 x 420 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A4"><summary>
+            A4 210 x 297 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A4Small"><summary>
+            A4 Small 210 x 297 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A5"><summary>
+            A5 148 x 210 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.B4"><summary>
+            B4 (JIS) 250 x 354 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.B5"><summary>
+            B5 (JIS) 182 x 257 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Folio"><summary>
+            Folio 8 1/2 x 13 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Quarto"><summary>
+            Quarto 215 x 275 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Size10x14"><summary>
+            10x14 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Size11x17"><summary>
+            11x17 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Note"><summary>
+            Note 8 1/2 x 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Envelope9"><summary>
+            Envelope #9 3 7/8 x 8 7/8
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Envelope10"><summary>
+            Envelope #10 4 1/8 x 9 1/2
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Envelope11"><summary>
+            Envelope #11 4 1/2 x 10 3/8
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Envelope12"><summary>
+            Envelope #12 4 \\276 x 11
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Envelope14"><summary>
+            Envelope #14 5 x 11 1/2
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.CSheet"><summary>
+            C size sheet
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.DSheet"><summary>
+            D size sheet
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.ESheet"><summary>
+            E size sheet
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeDL"><summary>
+            Envelope DL 110 x 220mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeC5"><summary>
+            Envelope C5 162 x 229 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeC3"><summary>
+            Envelope C3 324 x 458 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeC4"><summary>
+            Envelope C4 229 x 324 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeC6"><summary>
+            Envelope C6 114 x 162 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeC65"><summary>
+            Envelope C65 114 x 229 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeB4"><summary>
+            Envelope B4 250 x 353 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeB5"><summary>
+            Envelope B5 176 x 250 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeB6"><summary>
+            Envelope B6 176 x 125 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeItaly"><summary>
+            Envelope 110 x 230 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeMonarch"><summary>
+            Envelope Monarch 3.875 x 7.5 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopePersonal"><summary>
+            6 3/4 Envelope 3 5/8 x 6 1/2 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Fanfold_US"><summary>
+            US Std Fanfold 14 7/8 x 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Fanfold_StdGerman"><summary>
+            German Std Fanfold 8 1/2 x 12 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Fanfold_Legal_German"><summary>
+            German Legal Fanfold 8 1/2 x 13 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.ISOB4"><summary>
+            B4 (ISO) 250 x 353 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapanesePostcard"><summary>
+            Japanese Postcard 100 x 148 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Size9x11"><summary>
+            9 x 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Size10x11"><summary>
+            10 x 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Size15x11"><summary>
+            15 x 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.EnvelopeInvite"><summary>
+            Envelope Invite 220 x 220 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Reserved48"><summary>
+            RESERVED--DO NOT USE
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Reserved49"><summary>
+            RESERVED--DO NOT USE
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.LetterExtra"><summary>
+            Letter Extra 9 \\275 x 12 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.LegalExtra"><summary>
+            Legal Extra 9 \\275 x 15 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.TabloidExtra"><summary>
+            Tabloid Extra 11.69 x 18 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A4Extra"><summary>
+            A4 Extra 9.27 x 12.69 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.LetterTransverse"><summary>
+            Letter Transverse 8 \\275 x 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A4Transverse"><summary>
+            A4 Transverse 210 x 297 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.LetterExtraTransverse"><summary>
+            Letter Extra Transverse 9\\275 x 12 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.APlus"><summary>
+            SuperA/SuperA/A4 227 x 356 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.BPlus"><summary>
+            SuperB/SuperB/A3 305 x 487 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.LetterPlus"><summary>
+            Letter Plus 8.5 x 12.69 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A4Plus"><summary>
+            A4 Plus 210 x 330 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A5Transverse"><summary>
+            A5 Transverse 148 x 210 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.B5Transverse"><summary>
+            B5 (JIS) Transverse 182 x 257 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A3Extra"><summary>
+            A3 Extra 322 x 445 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A5Extra"><summary>
+            A5 Extra 174 x 235 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.B5Extra"><summary>
+            B5 (ISO) Extra 201 x 276 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A2"><summary>
+            A2 420 x 594 mm,
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A3Transverse"><summary>
+            A3 Transverse 297 x 420 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A3ExtraTransverse"><summary>
+            A3 Extra Transverse 322 x 445 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseDoublePostcard"><summary>
+            Japanese Double Postcard 200 x 148 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A6"><summary>
+            A6 105 x 148 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseEnvelopeKaku2"><summary>
+            Japanese Envelope Kaku #2
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseEnvelopeKaku3"><summary>
+            Japanese Envelope Kaku #3
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseEnvelopeChou3"><summary>
+            Japanese Envelope Chou #3
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseEnvelopeChou4"><summary>
+            Japanese Envelope Chou #4
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.LetterRotated"><summary>
+            Letter Rotated 11 x 8 1/2 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A3Rotated"><summary>
+            A3 Rotated 420 x 297 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A4Rotated"><summary>
+            A4 Rotated 297 x 210 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A5Rotated"><summary>
+            A5 Rotated 210 x 148 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.B4JISRotated"><summary>
+            B4 (JIS) Rotated 364 x 257 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.B5JISRotated"><summary>
+            B5 (JIS) Rotated 257 x 182 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapanesePostcardRotated"><summary>
+            Japanese Postcard Rotated 148 x 100 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseDoublePostcardRotated"><summary>
+            Double Japanese Postcard Rotated 148 x 200 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.A6Rotated"><summary>
+            A6 Rotated 148 x 105 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseEnvelopeKaku2Rotated"><summary>
+            Japanese Envelope Kaku #2 Rotated
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseEnvelopeKaku3Rotated"><summary>
+            Japanese Envelope Kaku #3 Rotated
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseEnvelopeChou3Rotated"><summary>
+            Japanese Envelope Chou #3 Rotated
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseEnvelopeChou4Rotated"><summary>
+            Japanese Envelope Chou #4 Rotated
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.B6JIS"><summary>
+            B6 (JIS) 128 x 182 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.B6JISRotated"><summary>
+            B6 (JIS) Rotated 182 x 128 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.Size12x11"><summary>
+            12 x 11 in
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseEnvelopeYou4"><summary>
+            Japanese Envelope You #4
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JapaneseEnvelopeYou4Rotated"><summary>
+            Japanese Envelope You #4 Rotated
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.P16K"><summary>
+            PRC 16K 146 x 215 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.P32K"><summary>
+            PRC 32K 97 x 151 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.P32KBig"><summary>
+            PRC 32K(Big) 97 x 151 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope1"><summary>
+            PRC Envelope #1 102 x 165 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope2"><summary>
+            PRC Envelope #2 102 x 176 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope3"><summary>
+            PRC Envelope #3 125 x 176 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope4"><summary>
+            PRC Envelope #4 110 x 208 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope5"><summary>
+            PRC Envelope #5 110 x 220 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope6"><summary>
+            PRC Envelope #6 120 x 230 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope7"><summary>
+            PRC Envelope #7 160 x 230 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope8"><summary>
+            PRC Envelope #8 120 x 309 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope9"><summary>
+            PRC Envelope #9 229 x 324 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope10"><summary>
+            PRC Envelope #10 324 x 458 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.P16KRotated"><summary>
+            PRC 16K Rotated
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.P32KRotated"><summary>
+            PRC 32K Rotated
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.P32KBIGRotated"><summary>
+            PRC 32K(Big) Rotated
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope1Rotated"><summary>
+            PRC Envelope #1 Rotated 165 x 102 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope2Rotated"><summary>
+            PRC Envelope #2 Rotated 176 x 102 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope3Rotated"><summary>
+            PRC Envelope #3 Rotated 176 x 125 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope4Rotated"><summary>
+            PRC Envelope #4 Rotated 208 x 110 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope5Rotated"><summary>
+            PRC Envelope #5 Rotated 220 x 110 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope6Rotated"><summary>
+            PRC Envelope #6 Rotated 230 x 120 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope7Rotated"><summary>
+            PRC Envelope #7 Rotated 230 x 160 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope8Rotated"><summary>
+            PRC Envelope #8 Rotated 309 x 120 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope9Rotated"><summary>
+            PRC Envelope #9 Rotated 324 x 229 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.PEnvelope10Rotated"><summary>
+            PRC Envelope #10 Rotated 458 x 324 mm
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.ISOA2"><summary>
+            ISO_A2
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.ISOA1"><summary>
+            ISO_A1
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.ISOA0"><summary>
+            ISO_A0
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.ISOEuropeB4"><summary>
+            ISO_B4(Europe) 
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.ISOEuropeB3"><summary>
+            ISO_B3(Europe)
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.ISOEuropeB2"><summary>
+            ISO_B2(Europe) 
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.ISOEuropeB1"><summary>
+            ISO_B1(Europe) 
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JISB4"><summary>
+            ISO_B4(Japan) 
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JISB3"><summary>
+            ISO_B3(Japan) 
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JISB2"><summary>
+            ISO_B2(Japan)
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.JISB1"><summary>
+            ISO_B1(Japan) 
+            </summary></member><member name="F:SuperMap.Layout.PaperSize.UserDefined"><summary>
+            User defined paper size
+            </summary></member><member name="T:SuperMap.Layout.Printer"><summary>
+             The Printer class.
+             </summary></member><member name="M:SuperMap.Layout.Printer.Print"><summary>
+            Prints the layout.
+            </summary></member><member name="M:SuperMap.Layout.Printer.ShowPrintDialog"><summary>
+            Sets the print layout according to the pop-up dialog box.
+            </summary></member><member name="P:SuperMap.Layout.Printer.Margin"><summary>
+            Gets or sets the Margin object.
+            </summary></member><member name="P:SuperMap.Layout.Printer.PaperSize"><summary>
+            Gets or sets the size of the pages to be printed.
+            </summary></member><member name="P:SuperMap.Layout.Printer.Orientation"><summary>
+            Gets or sets the orientation of the pages to be printed.
+            </summary></member><member name="P:SuperMap.Layout.Printer.Copies"><summary>
+            Gets or sets the count of the copies to be printed. The default of this property is one.
+            </summary></member><member name="P:SuperMap.Layout.Printer.IsVectorPrint"><summary>
+            Gets or sets whether print the target in the form of vector or raster. True represent in the form of vector; otherwise raster.
+            </summary></member><member name="P:SuperMap.Layout.Printer.LogicDPI"><summary>
+            Gets or sets the logical DPI when preprocessing the layout to be printed in the form of raster. The default is 200.
+            </summary><value>The default value is 200.</value></member><member name="P:SuperMap.Layout.Printer.FromPage"><summary>
+            Gets or sets the start page from which to print.
+            </summary></member><member name="P:SuperMap.Layout.Printer.ToPage"><summary>
+            Gets or sets the end page to which the print stops.
+            </summary></member><member name="P:SuperMap.Layout.Printer.DeviceDPI"><summary>
+            Gets or sets the device DPI of the printer.
+            </summary></member><member name="P:SuperMap.Layout.Printer.PrinterName"><summary>
+            Gets or sets the name of the printer.
+            </summary></member><member name="P:SuperMap.Layout.Printer.PrintFileName"><summary>
+            Gets or sets the name of the print file, which is available when the layout is printed by virtual printer.
+            </summary></member><member name="P:SuperMap.Layout.Printer.IsValidPrinter"><summary>
+            Gets whether the printer is valid.
+            </summary></member><member name="P:SuperMap.Layout.Printer.PaperWidth"><summary>
+            Gets or sets the width of page to be printed. The unit is logical unit, this is 0.1mm. It is used when the user customize PaperSize. 
+            </summary></member><member name="P:SuperMap.Layout.Printer.PaperHeight"><summary>
+            Gets or sets the height of page to be printed. The unit is logical unit, this is 0.1mm. It is used when the user customize PaperSize. 
+            </summary></member><member name="T:SuperMap.Layout.PrintFileType"><summary>This enumeration defines the constant of the image types.</summary></member><member name="F:SuperMap.Layout.PrintFileType.PNG"><summary>
+            Output in PNG type.
+            </summary></member><member name="F:SuperMap.Layout.PrintFileType.JPG"><summary>
+            Output in JPG type.
+            </summary></member><member name="F:SuperMap.Layout.PrintFileType.BMP"><summary>
+            Output in BMP type.
+            </summary></member><member name="F:SuperMap.Layout.PrintFileType.TIFF"><summary>
+            the TIFF format.
+            </summary></member><member name="T:SuperMap.Layout.Ruler"><summary>
+            The Ruler class. 
+            </summary></member><member name="P:SuperMap.Layout.Ruler.BackColor"><summary>
+            Gets or sets the background color of the ruler. 
+            </summary></member><member name="P:SuperMap.Layout.Ruler.ScaleColor"><summary>
+            Gets or sets the scale color of the ruler. 
+            </summary></member><member name="P:SuperMap.Layout.Ruler.FontColor"><summary>
+            Gets or sets the font color of the ruler. 
+            </summary></member><member name="T:SuperMap.Layout.RulerLine"><summary>
+             The RulerLine class.
+             </summary></member><member name="M:SuperMap.Layout.RulerLine.#ctor"><summary>
+            Initializes a new instance of the RulerLine class.
+            </summary></member><member name="M:SuperMap.Layout.RulerLine.#ctor(SuperMap.Layout.RulerLine)"><summary>
+            Initializes a new instance of the RulerLine object with the specified RulerLine object.
+            </summary><param name="rulerLine">The RulerLine object.</param></member><member name="M:SuperMap.Layout.RulerLine.#ctor(System.Double,SuperMap.Layout.RulerLineType)"><summary>
+            Initializes a new instance of the RulerLine object with the parameters of the position and the type of the ruler line.
+            </summary><param name="position">The ruler line position, whose unit is the same as the layout unit.</param><param name="type">The type of the ruler line.</param></member><member name="M:SuperMap.Layout.RulerLine.Dispose"><summary>
+            Releases all resources that the object occupies. 
+            </summary></member><member name="P:SuperMap.Layout.RulerLine.Type"><summary>
+            Gets or sets the type of the ruler line. There are two types of the ruler line, the horizontal and the vertical.
+            </summary><value>The default value is of the Vertical type.</value></member><member name="P:SuperMap.Layout.RulerLine.Position"><summary>
+            Gets or sets the position of the ruler line, which is indicated by the unit of the layout.
+            </summary><value>The default value is 0.</value></member><member name="T:SuperMap.Layout.RulerLines"><summary>
+            The RulerLines class.
+            </summary></member><member name="M:SuperMap.Layout.RulerLines.Add(SuperMap.Layout.RulerLine)"><summary>
+            Adds RulerLine object to the collection, returns the index of the added object if successful.
+            </summary><param name="rulerLine">The RulerLine to be added.</param><returns>The index of the object to be added.</returns></member><member name="M:SuperMap.Layout.RulerLines.AddRange(SuperMap.Layout.RulerLine[])"><summary>
+            Adds RulerLine object to the collection in the format of array, returns the count of the added RulerLine object if successful.
+            </summary><param name="rulerLines">The RulerLines to be added.</param><returns>Returns the count of the added RulerLine object.</returns></member><member name="M:SuperMap.Layout.RulerLines.Remove(System.Int32)"><summary>
+            Deletes the RulerLine object with the specified index in the collection, returns true if successful.
+            </summary><param name="index">The index number of the RulerLine object.</param><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.Layout.RulerLines.RemoveRange(System.Int32,System.Int32)"><summary>
+            Deletes the RulerLine object with the specified start index and the specified count, returns the count of the object deleted successfully.
+            </summary><param name="index">The specified starting index.</param><param name="count">The specified count.</param><returns>The count of the object deleted successfully.</returns></member><member name="M:SuperMap.Layout.RulerLines.Clear"><summary>
+            Clears all the RulerLine object.
+            </summary></member><member name="M:SuperMap.Layout.RulerLines.ToArray"><summary>
+            Convert the RulerLine object to the array of RulerLine object.
+            </summary><returns>The array of RulerLine object.</returns></member><member name="M:SuperMap.Layout.RulerLines.GetEnumerator"><summary>
+            Returns an enumerator that can iterate through the collection. 
+            </summary><returns>An IEnumerator object used to iterate through a collection.</returns></member><member name="P:SuperMap.Layout.RulerLines.Count"><summary>
+            Gets the count of the ruler line.
+            </summary></member><member name="P:SuperMap.Layout.RulerLines.Item(System.Int32)"><summary>
+            Gets the specified RulerLine object with the specified index in the collection.
+            </summary><param name="index">The index of the RulerLine object.</param></member><member name="P:SuperMap.Layout.RulerLines.IsVisible"><summary>
+            Gets or sets whether all the RulerLine object is visible.
+            </summary></member><member name="T:SuperMap.Layout.RulerLineType"><summary>
+            Defines the enumeration of the ruler line types.
+            </summary></member><member name="F:SuperMap.Layout.RulerLineType.Vertical"><summary>
+            The vertical ruler line.
+            </summary></member><member name="F:SuperMap.Layout.RulerLineType.Horizontal"><summary>
+            The horizontal ruler line.
+            </summary></member><member name="T:SuperMap.Layout.RulerSetting"><summary>
+            The RulerSetting class.
+            </summary></member><member name="P:SuperMap.Layout.RulerSetting.IsRulerVisible"><summary>
+            Gets or sets whether the ruler is visible.
+            </summary></member></members>
+</doc>

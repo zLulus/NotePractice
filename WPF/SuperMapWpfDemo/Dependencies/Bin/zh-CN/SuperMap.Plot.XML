@@ -1,0 +1,2233 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Plot</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Plot.ActionGraphicObject">
+      <summary>二维标绘操作类。该类提供了二维标绘操作的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.ActionGraphicObject.#ctor">
+      <summary>
+            构造一个新的ActionGraphicObject对象
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.ActionGraphicObject.Action">
+      <summary>
+            设置、获取鼠标标绘状态
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.ActionGraphicObject.Parma1">
+      <summary>
+             设置、获取军标库ID
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.ActionGraphicObject.Parma2">
+      <summary>
+            设置、获取军标标号
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.ActionGraphicObject.Parma3">
+      <summary>
+            预留参数，暂时没有使用
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.ActionGraphicObject.Parma4">
+      <summary>
+            当设置的标号是标签时，Parma4为标签的内容
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.ActionGraphicObject3D">
+      <summary>三维标绘操作类。该类提供了三维标绘操作的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.ActionGraphicObject3D.#ctor">
+      <summary>
+            构造一个新的ActionGraphicObject3D对象
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.ActionGraphicObject3D.Action">
+      <summary>
+            设置、获取鼠标标绘状态
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.ActionGraphicObject3D.Parma1">
+      <summary>
+             设置、获取军标库ID
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.ActionGraphicObject3D.Parma2">
+      <summary>
+            设置、获取军标标号
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.ActionGraphicObject3D.Parma3">
+      <summary>
+            预留参数，暂时没有使用
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.ActionGraphicObject3D.Parma4">
+      <summary>
+            当设置的标号是标签时，Parma4为标签的内容；当设置标号是图片时，Parma4为图片的路径
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationAttribute">
+      <summary>属性动画类。该类提供了属性动画的一系列属性。</summary>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationGO">
+      <summary>所有动画的基类。该类提供了所有动画共有的的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.#ctor">
+      <summary>
+            构造函数
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.Dispose">
+      <summary>
+            释放AnimationGO对象
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.GetAnimationType">
+      <summary>
+            获取动画的类型
+            </summary>
+      <returns>动画类型</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.SetName(System.String)">
+      <summary>
+            设置动画的名称
+            </summary>
+      <param name="animationName">动画名称</param>
+      <returns>设置成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.GetName">
+      <summary>
+            获取动画的名称
+            </summary>
+      <returns>动画名称</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.SetGeometry(SuperMap.Data.Geometry3D,SuperMap.UI.SceneControl,System.String)">
+      <summary>
+            设置添加动画的Geometry对象
+            该方法已废弃。
+            </summary>
+      <param name="pGeometry">创建动画的Geometry对象</param>
+      <param name="sceneControl">三维场景对象</param>
+      <param name="layerName">对象所在的图层名</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.SetGeometry(SuperMap.Data.Geometry3D,SuperMap.UI.MapControl,System.String)">
+      <summary>
+            设置添加动画的Geometry对象
+            该方法已废弃。
+            </summary>
+      <param name="pGeometry">创建动画的Geometry对象</param>
+      <param name="mapControl">二维地图控件对象</param>
+      <param name="layerName">对象所在的图层名</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.SetGeometry(System.String)">
+      <summary>
+            设置添加动画的Geometry对象
+            </summary>
+      <param name="geometryUuid">创建动画的Geometry对象的UUID</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.GetGeometry">
+      <summary>
+            获取动画的Geometry对象ID
+            </summary>
+      <returns>Geometry对象ID</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.GetGeometryUUID">
+      <summary>
+            获取动画的Geometry对象UUID
+            </summary>
+      <returns>Geometry对象UUID</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.SetStartTime(System.Double)">
+      <summary>
+            设置动画的开始播放时间
+            </summary>
+      <param name="nStartTime">开始时间</param>
+      <returns>设置成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.GetStartTime">
+      <summary>
+            获取动画的开始播放时间
+            </summary>
+      <returns>动画的开始播放时间</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.SetDuration(System.Double)">
+      <summary>
+            设置动画的播放时长
+            </summary>
+      <param name="Timelong">播放时长</param>
+      <returns>设置成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.GetDuration">
+      <summary>
+            获取动画的播放时长
+            </summary>
+      <returns>播放时长</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.GetControlName">
+      <summary>
+            获取二维地图控件对象或三维场景对象名称
+            </summary>
+      <returns>二维地图控件对象或三维场景对象名称</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGO.GetLayerName">
+      <summary>
+            获取图层名称
+            </summary>
+      <returns>图层名称</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetLineColorAttr(System.Boolean)">
+      <summary>
+            设置线色动画是否有效
+            </summary>
+      <param name="blinecolor">线色动画是否有效</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetLineColorAttr">
+      <summary>
+            获取线色动画是否有效
+            </summary>
+      <returns>线色动画是否有效</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetStartLineColor(System.Drawing.Color)">
+      <summary>
+            设置开始线色
+            </summary>
+      <param name="lineColor">开始线色</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetStartLineColor">
+      <summary>
+            获取开始线色
+            </summary>
+      <returns>开始线色</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetEndLineColor(System.Drawing.Color)">
+      <summary>
+            设置结束线色
+            </summary>
+      <param name="lineColor">结束线色</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetEndLineColor">
+      <summary>
+            获取结束线的颜色。
+            </summary>
+      <returns>结束线的颜色</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetLineWidthAttr(System.Boolean)">
+      <summary>
+            设置线宽动画是否有效
+            </summary>
+      <param name="bLineWidth">线宽动画是否有效</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetLineWidthAttr">
+      <summary>
+            获取线宽动画是否有效
+            </summary>
+      <returns>线宽动画是否有效</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetStartLineWidth(System.Double)">
+      <summary>
+            设置开始线宽
+            </summary>
+      <param name="lineWidth">开始线宽</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetStartLineWidth">
+      <summary>
+            获取开始线宽
+            </summary>
+      <returns>开始线宽</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetEndLineWidth(System.Double)">
+      <summary>
+            设置结束线宽
+            </summary>
+      <param name="lineWidth">结束线宽</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetEndLineWidth">
+      <summary>
+            获取结束线的宽度。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetSurroundLineWidthAttr(System.Boolean)">
+      <summary>
+            设置衬线宽动画是否有效
+            </summary>
+      <param name="bSurroundLineWidth">衬线宽动画是否有效</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetSurroundLineWidthAttr">
+      <summary>
+            获取衬线宽动画是否有效
+            </summary>
+      <returns>衬线宽动画是否有效</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetStartSurroundLineWidth(System.Double)">
+      <summary>
+            设置开始衬线宽度
+            </summary>
+      <param name="width">开始衬线宽度</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetStartSurroundLineWidth">
+      <summary>
+            获取开始衬线宽度
+            </summary>
+      <returns>开始衬线宽度</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetEndSurroundLineWidth(System.Double)">
+      <summary>
+            设置结束衬线宽度
+            </summary>
+      <param name="width">结束衬线宽度</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetEndSurroundLineWidth">
+      <summary>
+            获取结束衬线的宽度。
+            </summary>
+      <returns>结束衬线的宽度</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetSurroundLineColorAttr(System.Boolean)">
+      <summary>
+            设置衬线颜色动画是否有效
+            </summary>
+      <param name="bSurroundLineColor">衬线颜色动画是否有效</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetSurroundLineColorAttr">
+      <summary>
+            获取衬线颜色动画是否有效
+            </summary>
+      <returns>衬线颜色动画是否有效</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetStartSurroundLineColor(System.Drawing.Color)">
+      <summary>
+            设置开始衬线颜色
+            </summary>
+      <param name="colorValue">开始衬线颜色</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetStartSurroundLineColor">
+      <summary>
+            获取开始衬线颜色
+            </summary>
+      <returns>开始衬线颜色</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.SetEndSurroundLineColor(System.Drawing.Color)">
+      <summary>
+            设置结束衬线颜色 
+            </summary>
+      <param name="colorValue">结束衬线颜色</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationAttribute.GetEndSurroundLineColor">
+      <summary>
+            获取结束衬线的颜色。
+            </summary>
+      <returns>结束衬线颜色</returns>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationBlink">
+      <summary>闪烁动画类。该类提供了闪烁动画的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.GetBlinkInterval">
+      <summary>
+            获取闪烁间隔
+            </summary>
+      <returns>闪烁间隔(单位毫秒)</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.SetBlinkInterval(System.Double)">
+      <summary>
+            设置闪烁间隔
+            </summary>
+      <param name="blinkinterval">闪烁间隔(单位毫秒)</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.GetBlinkNumberofTimes">
+      <summary>
+            获取闪烁次数
+            </summary>
+      <returns>闪烁次数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.SetBlinkNumberofTimes(System.Int32)">
+      <summary>
+            设置闪烁次数
+            </summary>
+      <param name="blinkNumber">闪烁次数</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.GetBlinkStyle">
+      <summary>
+            获取闪烁类型
+            </summary>
+      <returns>闪烁类型</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.SetBlinkStyle(SuperMap.Plot.BlinkAnimationBlinkStyle)">
+      <summary>
+            设置闪烁类型，是按照次数闪烁还是按照间隔闪烁
+            </summary>
+      <param name="blinkstyle">闪烁类型</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.GetReplaceStyle">
+      <summary>
+            获取闪烁替换方式
+            </summary>
+      <returns>闪烁替换方式</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.SetReplaceStyle(SuperMap.Plot.BlinkAnimationReplaceStyle)">
+      <summary>
+            设置闪烁替换方式
+            </summary>
+      <param name="replacestyle">闪烁替换方式</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.SetBlinkAnimationReplaceColor(System.Drawing.Color)">
+      <summary>
+            设置闪烁动画替换颜色
+            </summary>
+      <param name="replacecolor">替换颜色</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.GetBlinkAnimationReplaceColor">
+      <summary>
+            获取闪烁动画替换的颜色
+            </summary>
+      <returns>替换颜色</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.GetBlinkAnimationStartColor">
+      <summary>
+            获取闪烁动画开始的颜色
+            </summary>
+      <returns>开始颜色</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationBlink.SetBlinkAnimationStartColor(System.Drawing.Color)">
+      <summary>
+            设置闪烁动画开始颜色
+            </summary>
+      <param name="replacecolor">开始颜色</param>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationGroup">
+      <summary>动画分组类。该类提供了动画分组的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.#ctor">
+      <summary>
+            构造函数
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.Dispose">
+      <summary>
+            释放 AnimationGroup 对象占用的资源。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.AddAnimation(SuperMap.Plot.AnimationGO)">
+      <summary>
+            分组中添加动画的方法
+            </summary>
+      <param name="pAnimation">动画对象</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetGroupName">
+      <summary>
+            获取动画组的名称
+            </summary>
+      <returns>动画组的名称</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.SetGroupName(System.String)">
+      <summary>
+            设置动画组的名称
+            </summary>
+      <param name="groupName">动画组的名称</param>
+      <returns>设置成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetAnimationCount">
+      <summary>
+            获取动画的总数
+            </summary>
+      <returns>动画的总数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetAnimationByIndex(System.Int32)">
+      <summary>
+            通过索引获取动画对象
+            </summary>
+      <param name="index">索引</param>
+      <returns>动画对象</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetAnimationByName(System.String)">
+      <summary>
+            通过动画的名称获取动画对象
+            </summary>
+      <param name="AnimationName">动画的名称</param>
+      <returns>动画对象</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetAllAnimationByGeometry(System.Int32,System.String,System.String)">
+      <summary>
+            通过geometry对象ID获取所有动画。
+            该方法已废弃。改用GetAllAnimationByUUID。
+            </summary>
+      <param name="geomtryID">geometry对象的ID</param>
+      <param name="controlName">二维地图控件对象或三维场景对象名称</param>
+      <param name="layerName">图层名称</param>
+      <returns>动画对象数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetAllAnimationByUUID(System.String)">
+      <summary>
+            通过geometry对象UUID获取所有动画
+            </summary>
+      <param name="geometryUuid">geometry对象的UUID</param>
+      <returns>动画对象数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetAllAnimationByType(SuperMap.Plot.AnimationType)">
+      <summary>
+            通过动画的类型获取所有动画
+            </summary>
+      <param name="type">动画的类型</param>
+      <returns>动画对象数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetAllAnimation">
+      <summary>
+            获取所有动画
+            </summary>
+      <returns>动画对象数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.RemoveAnimation(System.String)">
+      <summary>
+            通过动画名称移除动画组中的动画
+            </summary>
+      <param name="animationId">动画名称</param>
+      <returns>移除成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.RemoveAllAnimations">
+      <summary>
+            移除所有的动画
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.RemoveAllAnimationByGeometry(System.Int32,System.String,System.String)">
+      <summary>
+            移除分组中包含geometry对象的ID的所有动画
+            该方法已废弃。改用RemoveAllAnimationByUUID。
+            </summary>
+      <param name="geometryId">geometry对象的ID</param>
+      <param name="controlName">二维地图控件对象或三维场景对象名称</param>
+      <param name="layerName">图层名称</param>
+      <returns>移除成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.RemoveAllAnimationByUUID(System.String)">
+      <summary>
+            移除分组中包含geometry对象的UUID的所有动画
+            </summary>
+      <param name="geometryUuid">geometry对象的UUID</param>
+      <returns>移除成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.DeleteAnimation(System.String)">
+      <summary>
+            根据动画名称删除动画
+            </summary>
+      <param name="animatinId">动画名称</param>
+      <returns>删除成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.DeleteAllAnimations">
+      <summary>
+            删除所有的动画
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.DeleteAllAnimationByUUID(System.String)">
+      <summary>
+            根据geometry对象的UUID删除动画，删除geometry对象的所有动画
+            </summary>
+      <param name="geometryUuid">geometry对象的UUID</param>
+      <returns>删除成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetStartTime">
+      <summary>
+            获取动画组的开始播放时间
+            </summary>
+      <returns>开始播放时间</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetDuration">
+      <summary>
+            获取动画组的播放时长
+            </summary>
+      <returns>播放时长</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGroup.GetAnimationGroupPlayState">
+      <summary>
+            获取动画组的播放状态
+            </summary>
+      <returns>动画组的播放状态</returns>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationGrow">
+      <summary>生长动画类。该类提供了生长动画的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGrow.GetEndLocation">
+      <summary>
+            获取生长动画的结束状态
+            </summary>
+      <returns>动画的结束状态</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGrow.GetStartLocation">
+      <summary>
+            获取生长动画的开始状态
+            </summary>
+      <returns>动画的开始状态</returns>&gt;
+        </member>
+    <member name="M:SuperMap.Plot.AnimationGrow.SetEndLocation(System.Double)">
+      <summary>
+            设置生长动画的结束状态
+            </summary>
+      <param name="location">结束状态,范围为[0,1]</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationGrow.SetStartLocation(System.Double)">
+      <summary>
+            设置生长动画的开始状态
+            </summary>
+      <param name="location">开始状态,范围为[0,1]</param>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationManager">
+      <summary>动画管理类。该类提供了动画管理类的一系列功能。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.#ctor">
+      <summary>
+            构造函数
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.Dispose">
+      <summary>
+            释放AnimationGO对象
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.AddAnimationGroup(System.String)">
+      <summary>
+            创建动画组
+            </summary>
+      <param name="strgroupname">动画组的名称，该名称是动画组的唯一标识</param>
+      <returns>新创建出来的动画组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.AddSceneControl(SuperMap.UI.SceneControl)">
+      <summary>
+            添加要制作动画的三维场景控件对象
+            </summary>
+      <param name="pSceneControl">三维场景控件对象</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.RemoveSceneControl(SuperMap.UI.SceneControl)">
+      <summary>
+            移除三维场景控件对象
+            </summary>
+      <param name="pSceneControl">三维场景控件对象</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.RemoveAllSceneControl">
+      <summary>
+            全部移除三维场景控件对象
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.AddMapControl(SuperMap.UI.MapControl)">
+      <summary>
+            添加要制作动画的二维地图控件对象
+            </summary>
+      <param name="pMapControl">二维地图控件对象</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.RemoveMapControl(SuperMap.UI.MapControl)">
+      <summary>
+            移除二维地图控件对象
+            </summary>
+      <param name="pMapControl">二维地图控件对象</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.RemoveAllMapControl">
+      <summary>
+            全部移除二维地图控件对象
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.CreateAnimation(SuperMap.Plot.AnimationType)">
+      <summary>
+            创建动画
+            </summary>
+      <param name="animationType">动画类型</param>
+      <returns>新创建出来的动画</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.DeleteAll">
+      <summary>
+            删除所有动画
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.DeleteAnimationManager">
+      <summary>
+            释放动画管理器，在动画整体使用完之后要释放，否则内存泄露
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.DeleteGroupByName(System.String)">
+      <summary>
+            根据名称删除动画组
+            </summary>
+      <param name="groupName">动画组名称</param>
+      <returns>删除是否成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.Excute">
+      <summary>
+            动画播放时，需要用计时器循环触发的驱动方法
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GetAnimationFromXML(System.String)">
+      <summary>
+            从动画脚本文件（XML文件）中加载动画类信息
+            </summary>
+      <param name="filePath">动画脚本路径</param>
+      <returns>是否读取成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GetAnimationFromJSON(System.String)">
+      <summary>
+            从动画脚本文件（Json文件）中加载动画类信息
+            </summary>
+      <param name="filePath">动画脚本路径</param>
+      <returns>是否读取成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GetCountOfPlayRange">
+      <summary>
+            获得要播放的组的个数
+            </summary>
+      <returns>要播放的组的个数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GetCurrentGroup">
+      <summary>
+            获得当前播放的动画组
+            </summary>
+      <returns>动画组名称</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GetDeletedGeoAnimations">
+      <summary>
+            获得所有动画对象被删除的动画
+            </summary>
+      <returns>动画组名称的数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GetGroupByIndex(System.Int32)">
+      <summary>
+            根据索引获得动画组
+            </summary>
+      <param name="ipos">动画组的索引</param>
+      <returns>索引对应的动画组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GetGroupByName(System.String)">
+      <summary>
+            根据名称获得动画组
+            </summary>
+      <param name="groupName">动画组的名称</param>
+      <returns>动画组对象</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GetGroupCount">
+      <summary>
+            获得动画组的个数
+            </summary>
+      <returns>动画组个数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GetStartGroupOfPlayRange">
+      <summary>
+            获得动画组的播放范围的起始组
+            </summary>
+      <returns>起始播放组的索引</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GetEndGroupOfPlayRange">
+      <summary>
+            获得动画组的播放范围的终止组
+            </summary>
+      <returns>终止播放组的索引</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.Instance">
+      <summary>
+            获取动画管理器单例实体
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.Merge(System.String,System.String)">
+      <summary>
+            合并动画组，将名为groupName2的动画组合并到名为groupName1的动画组
+            </summary>
+      <param name="groupName1">动画组1的名称</param>
+      <param name="groupName2">动画组2的名称</param>
+      <returns>合并是否成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.MoveNext(System.Int32)">
+      <summary>
+            动画组后移
+            </summary>
+      <param name="iGroupIndex">动画组索引</param>
+      <returns>后移是否成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.MovePrev(System.Int32)">
+      <summary>
+            动画组前移
+            </summary>
+      <param name="iGroupIndex">动画组索引</param>
+      <returns>前移是否成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.Pause">
+      <summary>
+            暂停
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.Play">
+      <summary>
+            播放
+            </summary>Play
+        </member>
+    <member name="M:SuperMap.Plot.AnimationManager.Reset">
+      <summary>
+            重置
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.SaveAnimationToXML(System.String)">
+      <summary>
+            将已创建的动画类落地成XML动画脚本文件
+            </summary>
+      <param name="filePath">保存脚本的路径</param>
+      <returns>保存是否成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.SaveAnimationToJSON(System.String)">
+      <summary>
+            将已创建的动画类落地成JSON动画脚本文件
+            </summary>
+      <param name="filePath">保存脚本的路径</param>
+      <returns>保存是否成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.UGAnimationToGeoJson">
+      <summary>
+            将已创建的动画类落地成JSON
+            </summary>
+      <returns>Json字符串</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.GeoJsonToUGAnimation(System.String)">
+      <summary>
+            从JSON中加载动画类信息
+            </summary>
+      <param name="strGeoJson">Json字符串</param>
+      <returns>加载是否成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.SetPlayRange(System.Int32,System.Int32)">
+      <summary>
+            设置动画组的播放范围
+            </summary>
+      <param name="iStartGroup">起始播放组</param>
+      <param name="iCount">播放数量</param>
+      <returns>设置是否成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.split(System.String,System.Int32,System.String)">
+      <summary>
+            拆分动画组，将名为oldGroupName的动画组从index开始拆分为名为newGroupName的动画组
+            </summary>
+      <param name="oldGroupName">要拆分动画组的名称</param>
+      <param name="index">从第几个索引开始拆分</param>
+      <param name="newGroupName">拆出来的动画组的名称</param>
+      <returns>拆分是否成功</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationManager.Stop">
+      <summary>
+            停止
+            </summary>
+    </member>
+    <member name="E:SuperMap.Plot.AnimationManager.AnimationPlayFinish">
+      <summary>
+            一个动画播放结束时触发该事件
+            </summary>
+    </member>
+    <member name="E:SuperMap.Plot.AnimationManager.AnimationPlayBegin">
+      <summary>
+            一个动画播放开始时触发事件
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationPlayBeginArgs">
+      <summary>
+            包含事件数据的动画播放开始事件参数类
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.AnimationPlayBeginArgs.strname">
+      <summary>
+            动画名称
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationPlayBeginHandler">
+      <summary>
+            动画播放开始事件
+            </summary>
+      <param name="sender">源事件</param>
+      <param name="e">包含事件数据的动画播放开始事件参数类</param>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationPlayFinishArgs">
+      <summary>
+            包含事件数据的动画播放结束事件参数类
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.AnimationPlayFinishArgs.strname">
+      <summary>
+            动画名称
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationPlayFinishHandler">
+      <summary>
+            动画播放结束事件
+            </summary>
+      <param name="sender">源事件</param>
+      <param name="e">包含事件数据的动画播放结束事件参数类</param>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationRotate">
+      <summary>旋转动画类。该类提供了旋转动画的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationRotate.SetRotateDirection(SuperMap.Plot.RotateDirection)">
+      <summary>
+            设置旋转动画的旋转方向
+            </summary>
+      <param name="rotatedurectuib">旋转方向</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationRotate.GetRotateDirection">
+      <summary>
+            获取旋转动画的旋转方向
+            </summary>
+      <returns>旋转方向</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationRotate.SetStartAngle(SuperMap.Data.Point3D)">
+      <summary>
+            设置旋转动画的开始旋转角度
+            </summary>
+      <param name="startangle">开始的旋转角度</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationRotate.GetStartAngle">
+      <summary>
+            获取旋转动画的开始旋转角度
+            </summary>
+      <returns>开始的旋转角度</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationRotate.SetEndAngle(SuperMap.Data.Point3D)">
+      <summary>
+            设置旋转动画的结束旋转角度
+            </summary>
+      <param name="endangle">结束的旋转角度</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationRotate.GetEndAngle">
+      <summary>
+            获取旋转动画的结束旋转角度
+            </summary>
+      <returns>结束的旋转角度</returns>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationScale">
+      <summary>比例动画类。该类提供了比例动画的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationScale.GetEndScaleFactor">
+      <summary>
+            获取结束比例
+            </summary>
+      <returns>结束比例</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationScale.GetStartScaleFactor">
+      <summary>
+            获取开始比例
+            </summary>
+      <returns>开始比例</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationScale.SetEndScaleFactor(System.Double)">
+      <summary>
+            设置结束比例
+            </summary>
+      <param name="dScalefactor">结束比例</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationScale.SetStartScaleFactor(System.Double)">
+      <summary>
+            设置开始比例
+            </summary>
+      <param name="dScalefactor">开始比例</param>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationShow">
+      <summary>显隐动画类。该类提供了显隐动画的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationShow.GetShowEffect">
+      <summary>
+            获取显隐特效,0-无效果，1－淡入淡出
+            </summary>
+      <returns>显隐特效</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationShow.GetShowState">
+      <summary>
+            获取显隐动画的最终显示状态
+            </summary>
+      <returns>最终显示状态</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationShow.SetShowEffect(System.Int32)">
+      <summary>
+            设置显隐动画的显隐特效
+            </summary>
+      <param name="showEffect">显隐特效,0-无效果，1－淡入淡出</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationShow.SetShowState(System.Boolean)">
+      <summary>
+            设置显隐动画的最终显示状态
+            </summary>
+      <param name="bstate">最终显示状态</param>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationWay">
+      <summary>路径动画类。该类提供了路径动画的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.SetPathType(SuperMap.Plot.PathType)">
+      <summary>
+            设置路径的类型
+            </summary>
+      <param name="pathType">路径类型</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.GetPathType">
+      <summary>
+            获取路径类型
+            </summary>
+      <returns>路径类型</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.AddPathPt(SuperMap.Data.Point3D)">
+      <summary>
+            添加路径点
+            </summary>
+      <param name="vecPath">路径点</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.AddPathPts(SuperMap.Data.Point3Ds)">
+      <summary>
+            添加路径点
+            </summary>
+      <param name="pts3D">路径点串</param>
+      <returns>添加成功返回true,否则返回false</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.InsertPathPt(System.Int32,SuperMap.Data.Point3D)">
+      <summary>
+            插入路径点
+            </summary>
+      <param name="index">索引</param>
+      <param name="vecPath">路径点</param>
+      <returns>插入成功返回true，否则返回false</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.SetPathPt(System.Int32,SuperMap.Data.Point3D)">
+      <summary>
+            设置路径点
+            </summary>
+      <param name="index">索引</param>
+      <param name="vecPath">路径点</param>
+      <returns>设置成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.RemovePathPtAt(System.Int32)">
+      <summary>
+            移除指定索引位置的路径点
+            </summary>
+      <param name="index">索引</param>
+      <returns>移除成功返回TRUE，否则返回FALSE</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.GetPathPtAt(System.Int32)">
+      <summary>
+            获取指定索引的路径点
+            </summary>
+      <param name="index">索引</param>
+      <returns>路径点</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.GetPathPtCount">
+      <summary>
+            获取路径点的总数
+            </summary>
+      <returns>路径点的总数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.GetAllPathPt">
+      <summary>
+            获取所有路径点
+            </summary>
+      <returns>路径点数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.RemoveAllPathPt">
+      <summary>
+            移除所有路径点
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.ShowPathTrack(System.Boolean)">
+      <summary>
+            设置是否显示跟踪线
+            </summary>
+      <param name="bShowPathTrack">是否显示跟踪线</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.isShowPathTrack">
+      <summary>
+            是否显示跟踪线
+            </summary>
+      <returns>是否显示跟踪线</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.SetPathTrackDir(System.Boolean)">
+      <summary>
+            设置动画对象是否沿路径的切线方向
+            </summary>
+      <param name="bPathTrack">是否沿切线方向</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.GetPathTrackDir">
+      <summary>
+            获取动画对象是否沿路径的切线方向
+            </summary>
+      <returns>是否沿路径的切线方向</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.SetTrackLineWidth(System.Double)">
+      <summary>
+            设置跟踪线的宽度
+            </summary>
+      <param name="width">跟踪线的宽度</param>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.GetTrackLineWidth">
+      <summary>
+            获取路径跟踪线的宽度
+            </summary>
+      <returns>跟踪线的宽度</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.GetTrackLineColor">
+      <summary>
+            获取路径跟踪线的颜色
+            </summary>
+      <returns>跟踪线的颜色</returns>
+    </member>
+    <member name="M:SuperMap.Plot.AnimationWay.SetTrackLineColor(System.Drawing.Color)">
+      <summary>
+            设置跟踪线的颜色
+            </summary>
+      <param name="nColor">跟踪线的颜色</param>
+    </member>
+    <member name="T:SuperMap.Plot.GeoGraphicObject">
+      <summary>图形标绘类。该类提供了图形标绘的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.#ctor">
+      <summary>
+            构造一个新的GeoGraphicObject对象
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.#ctor(SuperMap.Plot.GeoGraphicObject)">
+      <summary>
+            根据指定的图形标绘类对象构造一个新的与其一致的图形标绘类对象。
+            </summary>
+      <param name="geoGraphicObject">图形标绘类对象</param>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.Clone">
+      <summary>
+             克隆一个相同的Geometry对象
+            </summary>
+      <returns>Geometry对象</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetSymbolName">
+      <summary>
+            获取标号名称
+            </summary>
+      <returns>标号名称</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetSymbolType">
+      <summary>
+            获取标号类型
+            </summary>
+      <returns>标号类型</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetGeometryShape">
+      <summary>
+            获取符号位置点
+            </summary>
+      <returns>符号位置点数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.SetGeometryShape(System.Int32,System.Int32,SuperMap.Data.Point3Ds,System.Int32)">
+      <summary>
+            创建指定符号，并传入所需的位置点
+            </summary>
+      <param name="libId">符号库ID</param>
+      <param name="code">符号编码</param>
+      <param name="points">位置点数组</param>
+      <param name="pcount">位置点个数</param>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetSubSymbolCount">
+      <summary>
+            获取线面标号的子标号个数
+            </summary>
+      <returns>线面标号的子标号个数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetSubSymbols">
+      <summary>
+            获取线面标号的子标号数组
+            </summary>
+      <returns>线面标号的子标号数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.SetAlgoSubSymbol(System.Int32,System.Int32,System.Int32)">
+      <summary>
+            设置线面标号的子标号
+            </summary>
+      <param name="libId">子标号所属的符号库ID</param>
+      <param name="code">子标号编码</param>
+      <param name="npos">子标号在线面标号所处的索引位置</param>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.RemoveAlgoSubSymbolByKey(System.Int32)">
+      <summary>
+            移除子标号
+            </summary>
+      <param name="nKey">子标号索引</param>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.RemoveAllAlgoSubSymbol">
+      <summary>
+            移除所有子标号
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetScaleValueCount">
+      <summary>
+            获取修饰点比例值的个数
+            </summary>
+      <returns>返回比例值的个数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetScaleValue(System.Int32)">
+      <summary>
+            获取指定比例值
+            </summary>
+      <param name="nIndex">比例值索引</param>
+      <returns>返回指定的比例值</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.SetScaleValue(System.Int32,System.Double)">
+      <summary>
+            设置指定的比例值
+            </summary>
+      <param name="index">指定的索引</param>
+      <param name="scaleValue">指定索引的比例值</param>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetSymbolLidID">
+      <summary>
+            获取符号库的ID
+            </summary>
+      <returns>符号库ID</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetCode">
+      <summary>
+            获取标号的编号
+            </summary>
+      <returns>标号的编号</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.AddAvoidRegion(SuperMap.Data.GeoRegion)">
+      <summary>
+            为线面标号添加避让区域
+            </summary>
+      <param name="GeoGraphicObject">标号对象</param>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetAvoidRegion(System.Int32)">
+      <summary>
+            根据索引获取避让区域
+            </summary>
+      <param name="index">避让区域的索引</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.SetAvoidRegion(SuperMap.Data.GeoRegion,System.Int32)">
+      <summary>
+            根据索引设置避让区域
+            </summary>
+      <param name="avoidRegion">避让区域</param>
+      <param name="index">避让区域的索引</param>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.GetAvoidRegionCount">
+      <summary>
+            获取避让区域个数
+            </summary>
+      <returns>避让区域个数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.RemoveAvoidRegion(System.Int32)">
+      <summary>
+            根据索引移除避让区域
+            </summary>
+      <param name="index">避让区域索引</param>
+      <returns>移除成功返回true，否则返回false</returns>
+    </member>
+    <member name="M:SuperMap.Plot.GeoGraphicObject.RemoveAllAvoidRegion">
+      <summary>
+            移除所有避让区域
+            </summary>
+      <returns>移除成功返回true，否则返回false</returns>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.WholeHeight">
+      <summary>
+            设置整体高度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.SymbolRank">
+      <summary>
+            设置、获取标号级别
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.MarkPos">
+      <summary>
+            设置、获取点标号注记位置
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.TextContent">
+      <summary>
+            设置、获取标签内容或点标号注记内容
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.MarkHalo">
+      <summary>
+            设置、获取三维字体是否按标签形式显示
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.ShowTipLength">
+      <summary>
+            设置、获取三维字体标签高度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.TextStyle2D">
+      <summary>
+            设置、获取二维文本的样式
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.TextStyle3D">
+      <summary>
+            设置、获取三维文本的样式
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.SurroundLineColor">
+      <summary>
+            设置、获取衬线色
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.SurroundLineType">
+      <summary>
+            设置、获取衬线类型
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.ScaleByMap">
+      <summary>
+            设置、获取点标号随图缩放
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.LineColorLimit">
+      <summary>
+            设置、获取线色限定
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.LineTypeLimit">
+      <summary>
+            设置、获取线类型限定
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.LineWidthLimit">
+      <summary>
+            设置、获取线宽限定
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.FillTypeLimit">
+      <summary>
+            设置、获取填充类型限定
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.DotMode">
+      <summary>
+            设置、获取点标号显示模式
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.GridMainLineWidth3D">
+      <summary>
+            设置、获取点标号公告板模式线宽
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.GridSurroundLineWidth3D">
+      <summary>
+            设置、获取点标号公告板模式衬线宽
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.GridSymbolSize">
+      <summary>
+            设置、获取点标号公告板模式大小
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.SymbolSize">
+      <summary>
+            设置、获取二维标号大小
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.WidthHeightLimit">
+      <summary>
+            设置、获取二维点标号是否宽高锁定
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.MainLineWidth3D">
+      <summary>
+            设置、获取三维线宽
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.SurroundLineWidth">
+      <summary>
+            设置、获取二维衬线宽度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.SurroundLineWidth3D">
+      <summary>
+            设置、获取三维标号衬线宽度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.Scale3D">
+      <summary>
+            设置、获取三维标号矢量模式缩放比例
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.Rotate">
+      <summary>
+            设置、获取二维标号旋转角度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.Rotate3D">
+      <summary>
+            设置、获取三维标号矢量模式旋转角度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.ModelID">
+      <summary>
+            设置、获取模型ID
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.ModelRotate">
+      <summary>
+            设置、获取点标号模型模式旋转角度
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.ModelScale">
+      <summary>
+            设置、获取点标号模型模式缩放比例
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.PictureSymbolSize">
+      <summary>
+            设置、获取点标号图片模式的图片大小
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.PicturePath">
+      <summary>
+            设置、获取点标号图片模式的图片路径
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.NegativeImage">
+      <summary>
+            设置、获取点标号镜像
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.DrawWall">
+      <summary>
+            设置、获取是否绘制墙
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.GeoGraphicObject.WallOpaqueRate">
+      <summary>
+            设置、获取墙的透明度
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.MarkPos">
+      <summary>
+            该枚举定义了标号注记的位置。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.MarkPos.LeftUp">
+      <summary>
+        <para>设置标号注记位置在标号左上角 。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.MarkPos.LeftDown">
+      <summary>
+        <para>设置标号注记位置在标号左下角 。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.MarkPos.RightUp">
+      <summary>
+        <para>设置标号注记位置在标号右上角 。  </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.MarkPos.RightDown">
+      <summary>
+        <para>设置标号注记位置在标号右下角 。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.MarkPos.Up">
+      <summary>
+        <para>设置标号注记位置在标号上边 。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.MarkPos.Down">
+      <summary>
+        <para>设置标号注记位置在标号下边 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.MarkPos.Left">
+      <summary>
+        <para>设置标号注记位置在标号左边 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.MarkPos.Right">
+      <summary>
+        <para>设置标号注记位置在标号右边 。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.MarkPos.Middle">
+      <summary>
+        <para>设置标号注记位置在标号中间 。 </para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Plot.PlotMapping">
+      <summary>二维图形标绘类。该类提供了二维图形标绘类的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.PlotMapping.SetMapControl(SuperMap.UI.MapControl)">
+      <summary>
+            设置要标绘的地图控件
+            </summary>
+      <param name="map">地图控件对象</param>
+    </member>
+    <member name="P:SuperMap.Plot.PlotMapping.ActionGraphicObject">
+      <summary>
+            设置鼠标标绘参数，包括要标绘对象的军标库ID和军标CODE
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.PlotRealspace">
+      <summary>三维图形标绘类。该类提供了三维图形标绘的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.PlotRealspace.SetSceneControl(SuperMap.UI.SceneControl)">
+      <summary>
+            设置三维场景的控件器
+            </summary>
+      <param name="scene">三维场景控件对象</param>
+    </member>
+    <member name="P:SuperMap.Plot.PlotRealspace.ActionGraphicObject3D">
+      <summary>
+            设置鼠标标绘参数，包括要标绘对象的军标库ID和军标CODE
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.SubSymbol">
+      <summary>
+            子标号结构。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.SubSymbol.LibID">
+      <summary>
+            设置、获取符号库ID
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.SubSymbol.Code">
+      <summary>
+            设置、获取符号编码
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.SubSymbol.symbolKey">
+      <summary>
+            设置、获取子标号索引
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.SurroundLineType">
+      <summary>
+            该枚举定义了衬线的类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.SurroundLineType.SURROUNDLINE_ALL">
+      <summary>
+        <para>双衬线</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.SurroundLineType.SURROUNDLINE_INNER">
+      <summary>
+        <para>内衬线</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.SurroundLineType.SURROUNDLINE_NONE">
+      <summary>
+        <para>无衬线</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.SurroundLineType.SURROUNDLINE_OUT">
+      <summary>
+        <para>外衬线</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Plot.SymbolDefaultStyle">
+      <summary>
+            标号缺省属性类。该类提供了标号的缺省属性。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.GetDefaultLineWidth">
+      <summary>
+            获取标号缺省属性的线宽
+            </summary>
+      <returns>线宽</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.GetDefaultSymbolSize">
+      <summary>
+            获取标号缺省属性的标号大小
+            </summary>
+      <returns>标号大小</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.GetDefaultLineColor">
+      <summary>
+            获取标号缺省属性的标号线色
+            </summary>
+      <returns>标号线色</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.GetDefaultShowMode">
+      <summary>
+            获取标号缺省属性的点标号显示模式
+            </summary>
+      <returns>点标号显示模式</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.GetDefaultSurroundLineType">
+      <summary>
+            获取标号缺省属性的衬线类型
+            </summary>
+      <returns>衬线类型</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.GetDefaultGridSymbolSize">
+      <summary>
+            获取标号缺省属性的点标号公告板模式大小
+            </summary>
+      <returns>点标号公告板模式大小</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.GetDefaultGridLineWidth">
+      <summary>
+            获取标号缺省属性的点标号公告板模式线宽
+            </summary>
+      <returns>点标号公告板模式线宽</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.isUseDefaultStyle">
+      <summary>
+            获取是否使用缺省属性
+            </summary>
+      <returns>是否使用缺省属性</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.SetDefaultLineWidth(System.Double)">
+      <summary>
+            设置标号缺省属性的线宽
+            </summary>
+      <param name="dWidth">标号线宽</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.SetDefaultSymbolSize(SuperMap.Data.Size2D)">
+      <summary>
+            设置标号缺省属性的标号大小
+            </summary>
+      <param name="size">标号大小</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.SetDefaultShowMode(SuperMap.Plot.DotShowMode)">
+      <summary>
+            设置标号缺省属性的点标号显示模式
+            </summary>
+      <param name="mode">点标号显示模式</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.SetDefaultGridSymbolSize(SuperMap.Data.Size2D)">
+      <summary>
+            设置标号缺省属性的点标号公告板模式大小
+            </summary>
+      <param name="size">点标号公告板模式大小</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.SetDefaultSurroundLineType(SuperMap.Plot.SurroundLineType)">
+      <summary>
+            设置标号缺省属性的标号衬线类型
+            </summary>
+      <param name="type">衬线类型</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.SetDefaultGridLineWidth(System.Double)">
+      <summary>
+            设置标号缺省属性的点标号公告板模式线宽
+            </summary>
+      <param name="dWidth">点标号公告板模式线宽</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.SetDefaultLineColor(System.Drawing.Color)">
+      <summary>
+            设置标号缺省属性的标号线色
+            </summary>
+      <param name="color">标号线色</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.SetUseDefaultStyle(System.Boolean)">
+      <summary>
+            设置是否使用缺省属性
+            </summary>
+      <param name="bIsUse">是否使用缺省属性</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolDefaultStyle.ResetDefaultStyle">
+      <summary>
+            重置缺省属性
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.SymbolInfo">
+      <summary>标号信息类。该类提供了标号信息的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolInfo.#ctor">
+      <summary>
+            构造一个新的SymbolInfo对象
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolInfo.Dispose">
+      <summary>
+            释放SymbolInfo对象
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolInfo.#ctor(SuperMap.Plot.SymbolInfo)">
+      <summary>
+            构造一个新的SymbolInfo对象
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.SymbolInfo.ChildSymbolCount">
+      <summary>
+            获取或设置组节点下子节点个数
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.SymbolInfo.ChildSymbolList">
+      <summary>
+            获取或设置组节点下的子节点列表
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.SymbolInfo.LibID">
+      <summary>
+            获取或设置标号所属的标号库ID
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.SymbolInfo.Code">
+      <summary>
+            获取或设置标号的编号
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.SymbolInfo.SymbolCategory">
+      <summary>
+            获取或设置标号的类型，点标号或者线面标号
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.SymbolInfo.SymbolName">
+      <summary>
+            获取或设置标号的名称
+            </summary>
+    </member>
+    <member name="P:SuperMap.Plot.SymbolInfo.SymbolType">
+      <summary>
+            获取或设置节点类型
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.SymbolLibManager">
+      <summary>标号库管理类。该类提供了标号库管理类的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.#ctor">
+      <summary>
+            构造一个新的SymbolLibManager对象
+            </summary>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.CloseSymbolLib(System.Int32)">
+      <summary>
+            关闭标号库
+            </summary>
+      <param name="libID">标号库ID</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.GetSymbolType(System.Int32,System.Int32)">
+      <summary>
+            获取指定标号库指定标号的类型
+            </summary>
+      <param name="libId">标号库ID</param>
+      <param name="code">标号的编号</param>
+      <returns>标号的对象类型</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.GetSymbolName(System.Int32,System.Int32)">
+      <summary>
+            获取符号名称
+            </summary>
+      <param name="libId">标号库id</param>
+      <param name="code">标号唯一标识符</param>
+      <returns>标号名称</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.QuerySymbol(System.String)">
+      <summary>
+            根据关键字获取标号信息的数组
+            </summary>
+      <param name="strKey">查询关键字</param>
+      <returns>标号信息数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.AddSymbolLib(System.String)">
+      <summary>
+            添加标号库
+            </summary>
+      <param name="symbolPath">标号库路径</param>
+      <returns>标号库ID</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.AddModelLib(System.String)">
+      <summary>
+            添加模型库
+            </summary>
+      <param name="symbolPath">模型库路径</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.GetAllSymbolLibs">
+      <summary>
+            获取已加载的所有标号库的ID
+            </summary>
+      <returns>标号库ID数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.GetSymbolLib(System.Int32)">
+      <summary>
+            获取指定标号库ID的标号库
+            </summary>
+      <param name="libId">标号库ID</param>
+      <returns>符号库对象</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.GetSymbolMaxEidtPts(System.Int32,System.Int32)">
+      <summary>
+            获取线面标号的最大编辑点
+            </summary>
+      <param name="libId">标号库ID</param>
+      <param name="code">标号code</param>
+      <returns>最大编辑点个数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolLibManager.GetSymbolMinEidtPts(System.Int32,System.Int32)">
+      <summary>
+            获取线面标号的最小编辑点
+            </summary>
+      <param name="libId">标号库ID</param>
+      <param name="code">标号code</param>
+      <returns>最小编辑点个数</returns>
+    </member>
+    <member name="T:SuperMap.Plot.SymbolParser">
+      <summary>标号库分析类。该类提供了标号库分析类的一系列属性。</summary>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetSymbolLibName">
+      <summary>
+            获取标号库名称
+            </summary>
+      <returns>标号库名称</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetSymbolName(System.Int32)">
+      <summary>
+            获取符号名称
+            </summary>
+      <param name="code">标号编码，标号唯一标识符</param>
+      <returns>标号类型</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetClassFication">
+      <summary>
+            获取标号库密级
+            </summary>
+      <returns>标号库密级</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.SetClassFication(System.String)">
+      <summary>
+            设置标号库密级。
+            </summary>
+      <param name="strClassFication">标号库密级</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetCreateTime">
+      <summary>
+            获取标号库创建时间
+            </summary>
+      <returns>标号库创建时间</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.SetCreateTime(System.String)">
+      <summary>
+            设置标号库创建时间
+            </summary>
+      <param name="strCreateTime">标号库创建时间</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetCreator">
+      <summary>
+            获取标号库创建单位
+            </summary>
+      <returns>标号库创建单位</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.SetCreator(System.String)">
+      <summary>
+            设置标号库创建单位
+            </summary>
+      <param name="strCreator">标号库创建单位</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetModifyTime">
+      <summary>
+            获取标号库修改时间
+            </summary>
+      <returns>标号库修改时间</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.SetModifyTime(System.String)">
+      <summary>
+            设置标号库修改时间
+            </summary>
+      <param name="strModifyTime">标号库修改时间</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetVersion">
+      <summary>
+            获取标号库版本
+            </summary>
+      <returns>标号库版本</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.SetVersion(System.String)">
+      <summary>
+            设置标号库版本
+            </summary>
+      <param name="strVersion">标号库版本</param>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetSymbolCount">
+      <summary>
+            获取标号库标号的个数
+            </summary>
+      <returns>标号库标号的个数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetSymbolDotCount">
+      <summary>
+            获取标号库点标号的个数
+            </summary>
+      <returns>点标号的个数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetSymbolAlgoCount">
+      <summary>
+            获取标号库线面标号的个数
+            </summary>
+      <returns>线面标号的个数</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetSymbolInfo">
+      <summary>
+            获取标号库树的根节点信息（名字、代码、类型等），
+            </summary>
+      <returns>符号库节点对象</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetSymbolInfo(System.Int32)">
+      <summary>
+            根据code获取标号库树的根节点信息（名字、代码、类型等），
+            </summary>
+      <param name="code">标号唯一标识符</param>
+      <returns>标号信息</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.QuerySymbol(System.String)">
+      <summary>
+            根据关键字获取标号信息的数组
+            </summary>
+      <param name="strKey">查询关键字</param>
+      <returns>标号信息数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetDefaultShowMode(System.Int32)">
+      <summary>
+            获取标号默认的显示方式
+            </summary>
+      <param name="code">标号的编号</param>
+      <returns>返回标号的显示模式</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.FindSymbolCode(System.Int32)">
+      <summary>
+            查询code对应的标号是否存在
+            </summary>
+      <param name="code">标号code</param>
+      <returns>如果标号存在返回true，否则返回false</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.GetSymbolRanks(System.Int32)">
+      <summary>
+            获取标号都可以设置哪些等级
+            </summary>
+      <param name="code">标号的编号</param>
+      <returns>标号级别数组</returns>
+    </member>
+    <member name="M:SuperMap.Plot.SymbolParser.IsMiddlePositionExist(System.Int32)">
+      <summary>
+            获取是否存在中间注记
+            </summary>
+      <param name="code">标号的编号</param>
+    </member>
+    <member name="P:SuperMap.Plot.SymbolParser.LibID">
+      <summary>
+            设置或获取标号库ID
+            </summary>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationGroupPlayState">
+      <summary>
+            该枚举定义了动画组的播放状态。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationGroupPlayState.UnKnownState">
+      <summary>
+        <para>动画组为未知的播放状态 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationGroupPlayState.PlayingState">
+      <summary>
+        <para>动画组为播放状态 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationGroupPlayState.PauseState">
+      <summary>
+        <para>动画组为暂停播放状态 。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationGroupPlayState.StopState">
+      <summary>
+        <para>动画组为停止播放状态 。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationGroupPlayState.ResetState">
+      <summary>
+        <para>动画组为重置播放状态 。 </para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Plot.AnimationType">
+      <summary>
+            该枚举定义了动画的类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationType.UnknowAnimation">
+      <summary>
+        <para>未知动画 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationType.WayAnimation">
+      <summary>
+        <para>路径动画 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationType.BlinkAnimation">
+      <summary>
+        <para>闪烁动画 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationType.AttribAnimation">
+      <summary>
+        <para>属性动画 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationType.ShowAnimation">
+      <summary>
+        <para>显隐动画 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationType.RotateAnimation">
+      <summary>
+        <para>旋转动画 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationType.ScaleAnimation">
+      <summary>
+        <para>比例动画 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.AnimationType.GrowAnimation">
+      <summary>
+        <para>生长动画 。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Plot.BlinkAnimationBlinkStyle">
+      <summary>
+            该枚举定义了闪烁动画的闪烁方式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.BlinkAnimationBlinkStyle.FrequencyBlink">
+      <summary>
+        <para>设置闪烁动画的闪烁方式为频率闪烁 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.BlinkAnimationBlinkStyle.NumberBlink">
+      <summary>
+        <para>设置闪烁动画的闪烁方式为次数闪烁 。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Plot.BlinkAnimationReplaceStyle">
+      <summary>
+            该枚举定义了闪烁动画的替换方式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.BlinkAnimationReplaceStyle.NoColorReplace">
+      <summary>
+        <para>设置闪烁动画的替换方式为无颜色替换 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.BlinkAnimationReplaceStyle.ColorReplace">
+      <summary>
+        <para>设置闪烁动画的替换方式为有颜色替换 。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Plot.PathType">
+      <summary>
+            该枚举定义了路径类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.PathType.POLYLINE">
+      <summary>
+        <para>设置标号路径类型为折线类型 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.PathType.CURVE">
+      <summary>
+        <para>设置标号路径类型为曲线类型 。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Plot.RotateDirection">
+      <summary>
+            该枚举定义了旋转方向。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.RotateDirection.ClockWise">
+      <summary>
+        <para>
+        </para>
+        <para>顺时针方向旋转</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.RotateDirection.AntiClockWise">
+      <summary>
+        <para>逆时针方向旋转</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Plot.SymbolInfoType">
+      <summary>
+            该枚举定义了标号标记的节点位置。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.SymbolInfoType.SYMBOL_GROUP">
+      <summary>
+        <para>设置标号为组标号 。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.SymbolInfoType.SYMBOL_NODE">
+      <summary>
+        <para>设置标号为叶子标号 。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Plot.GraphicType">
+      <summary>
+            该枚举定义了标号类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_UNKNOW">
+      <summary>
+        <para>未知类型。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_DOT">
+      <summary>
+        <para>点标号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_ALGO">
+      <summary>
+        <para>线面标号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_POLYLINE">
+      <summary>
+        <para>折线符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_ARC">
+      <summary>
+        <para>圆弧符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_RECTANGLE">
+      <summary>
+        <para>矩形符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_REGULARPOLYGON">
+      <summary>
+        <para>正多边形符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_CIRCLE">
+      <summary>
+        <para>圆形符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_PIE">
+      <summary>
+        <para>扇形符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_CHORD">
+      <summary>
+        <para>弓形符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_PICTURE">
+      <summary>
+        <para>图片符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_KIDNEY">
+      <summary>
+        <para>集结地符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_POLYBEZIER">
+      <summary>
+        <para>多段贝塞尔曲线符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_ARBITRARYPOLYGON">
+      <summary>
+        <para>任意多边形符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_ELLIPSE">
+      <summary>
+        <para>椭圆符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_PARALLELOGRAM">
+      <summary>
+        <para>平行四边形。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_PARALLELLINE">
+      <summary>
+        <para>平行线。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_BRACE">
+      <summary>
+        <para>大括号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_LABEL">
+      <summary>
+        <para>标签。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_ANNOFRAME">
+      <summary>
+        <para>注记指示框。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_ANNOLINE">
+      <summary>
+        <para>注记指示线。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_TRAPEZOID">
+      <summary>
+        <para>梯形。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_POLYBEZIER_CLOSE">
+      <summary>
+        <para>闭合多段贝塞尔曲线符号。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_CYLINDER3D">
+      <summary>
+        <para>圆柱。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_BOX3D">
+      <summary>
+        <para>长方体。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_PYRAMID3D">
+      <summary>
+        <para>角锥。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_CONE3D">
+      <summary>
+        <para>圆锥。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.GraphicType.SYMBOL_SPHERE3D">
+      <summary>
+        <para>球。 </para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Plot.DotShowMode">
+      <summary>
+            该枚举定义了点标号显示模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Plot.DotShowMode.DotModeUnknow">
+      <summary>
+        <para>未定义。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.DotShowMode.DotModeVector">
+      <summary>
+        <para>矢量模式。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.DotShowMode.DotModeGrid">
+      <summary>
+        <para>公告板模式。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.DotShowMode.DotModeMarker">
+      <summary>
+        <para>模型模式。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Plot.DotShowMode.DotModePicture">
+      <summary>
+        <para>图片模式。 </para>
+      </summary>
+    </member>
+  </members>
+</doc>

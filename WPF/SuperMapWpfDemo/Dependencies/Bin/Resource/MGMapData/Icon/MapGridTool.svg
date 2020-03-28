@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>32-地图网格</title>
+    <desc>Created with Sketch.</desc>
+    <g id="10-地图" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="地图" transform="translate(-241.000000, -88.000000)">
+            <g id="10-地图" transform="translate(13.000000, 12.000000)">
+                <g id="gallery" transform="translate(0.000000, 76.000000)">
+                    <g id="32-地图网格" transform="translate(228.000000, 0.000000)">
+                        <g id="分组-91" transform="translate(3.000000, 3.000000)">
+                            <rect id="矩形" stroke="#5D6D7E" fill="#FFFFFF" x="0.5" y="0.5" width="25" height="25" rx="1"></rect>
+                            <path d="M17,18 L9,18 L9,25 L8,25 L8,18 L0,18 L0,17 L8,17 L8,9 L0,9 L0,8 L8,8 L8,1 L9,1 L9,8 L17,8 L17,1 L18,1 L18,8 L26,8 L26,9 L18,9 L18,17 L26,17 L26,18 L18,18 L18,25 L17,25 L17,18 Z M17,17 L17,9 L9,9 L9,17 L17,17 Z" id="合并形状" fill="#5D6D7E"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

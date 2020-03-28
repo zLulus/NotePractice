@@ -1,0 +1,623 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.Navigation</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.Navigation.CompilerParameter">
+      <summary>
+            Provides the necessary parameter information for road network data compiling, including the datasource, name, output path, result data package type and so on.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.CompilerParameter.#ctor">
+      <summary>
+            Constructs a new road network data compiling parameter object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.CompilerParameter.#ctor(SuperMap.Analyst.Navigation.CompilerParameter)">
+      <summary>
+            Builds a same road network data compiling object as the specified object.
+            </summary>
+      <param name="parameter">The specified road data network compiling parameter object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.Datasource">
+      <summary>
+            Gets or sets the datasource of input road network data.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameRoadLine">
+      <summary>
+            Gets or sets the name of road network basic line dataset.
+            Take 4D navigation electronic maps data exchange format as an example, corresponding to R table.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameRoadPoint">
+      <summary>
+            Gets or sets the name of road network node dataset.
+            Take 4D navigation electronic maps data exchange format as an example, corresponding to N table.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameCondPoint">
+      <summary>
+            Gets or sets the name of road network turn node dataset.
+            Take 4D navigation electronic maps data exchange format as an example, corresponding to C table.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameAdminCode">
+      <summary>
+            Gets or sets the dataset name of input road network administrative division table.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameRoadNameLink">
+      <summary>
+            Gets or sets the name of road network data basic line to be complied and road name relationship table.
+            Take 4D navigation electronic maps data exchange format as an example, corresponding to R_LNAME table.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.NameRoadName">
+      <summary>
+            Gets or sets the name of road network data basic road name table.
+            Take 4D navigation electronic maps data exchange format as an example, corresponding to R_NAME table.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.ExportPath">
+      <summary>
+            Gets or sets the output folder of road network data compiling. The path should be the existing folder.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.DistrictName">
+      <summary>
+            Gets or sets the road network name in the current compiling.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.PackageTypes">
+      <summary>
+            Gets or sets compiling result data package type.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.SourceDataVersion">
+      <summary>
+            Gets or sets the the input road network data version.
+            </summary>
+      <value>Default value is NIG2013SumGreatChina.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameter.Language">
+      <summary>
+            Gets or sets the language type of the road name at the time of compiling the 4D navigation data. Refer to the four-dimensional navigation data description for details.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.CompilerParameterSSC">
+      <summary>
+            Constructs SSC file parameter class. Provides parameters for compiling the road route data to SSC shortcut file.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.CompilerParameterSSC.#ctor">
+      <summary>
+            Construct a new parameter object to generate the SCC file.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.CompilerParameterSSC.#ctor(SuperMap.Analyst.Navigation.CompilerParameterSSC)">
+      <summary>
+            Initializes a new instance according to the specified parameter object.
+            </summary>
+      <param name="parameter">Specified parameter object to generate the SCC file.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.NetworkDataset">
+      <summary>
+            Gets or sets the network dataset to generate the SCC file. Required.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.NodeIDField">
+      <summary>
+            Gets or sets the node ID field of the network dataset.
+            </summary>
+      <value>The default value is SmNodeID.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.EdgeIDField">
+      <summary>
+            Gets or sets the edge ID field of the network dataset.
+            </summary>
+      <value>The default value is SmEdgeID.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.FNodeIDField">
+      <summary>
+            Gets or sets the field identifying the from and to node ID of the edge.
+            </summary>
+      <value>The default value is SmFNode.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TNodeIDField">
+      <summary>
+            Gets or sets the field identifying the end node ID of the edge.
+            </summary>
+      <value>The default value is SmTNode.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.WeightField">
+      <summary>
+            Gets or sets the weight field of the edge.
+            </summary>
+      <value>The default value is "SmLength".</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.EdgeNameField">
+      <summary>
+            Gets or sets the name field of the edge.
+            </summary>
+      <value>The default value is SmEdgeID.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TurnDataset">
+      <summary>
+            Gets or sets the turn dataset.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TurnNodeIDField">
+      <summary>
+            Gets or sets the field of the turn node ID.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TurnFEdgeIDField">
+      <summary>
+            Gets or sets the field of the start turn edge ID.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TurnTEdgeIDField">
+      <summary>
+            Gets or sets the field of the end turn edge ID.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.RuleField">
+      <summary>
+            Gets or sets the transportation rule filed name.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.FTSingleWayRuleValues">
+      <summary>
+            Gets or sets an array of strings that are used to represent forward lines, that is, when the value of the RuleField field is one of the values of the array, it represents a forward line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TFSingleWayRuleValues">
+      <summary>
+            Gets or sets an array of strings that are used to represent backward lines, that is, when the value of the RuleField field is one of the values of the array, it represents a backward line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.ProhibitedWayRuleValues">
+      <summary>
+            Gets or sets an array of strings that are used to represent forbidden lines, that is, when the value of the RuleField field is one of the values of the array, it represents a forbidden line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.TwoWayRuleValues">
+      <summary>
+            Gets or sets an array of strings that are used to represent two-way lines, that is, when the value of the RuleField field is one of the values of the array, it represents a two-way line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.FilePath">
+      <summary>
+            Gets or sets the directory of the created SSC file.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.LevelField">
+      <summary>
+            Gets or sets the road level field. The value range is 1-3. The one road level is highest, and 3 road level is the lowest.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.CompilerParameterSSC.SpeedField">
+      <summary>
+            Gets or sets the road speed field. The value range is 1-7. The one road level is highest, and 7 road level is the lowest.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.DataCompiler">
+      <summary>
+            The road network data compile class. This class can compile the road network, which is used to analyze.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.#ctor">
+      <summary>
+            Construct the road network data compile class object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.Finalize">
+      <summary>
+            Releases unmanaged resources and performs other cleanup operations before the DataCompiler is reclaimed by garbage collection.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.Dispose">
+      <summary>
+            Releases the resources occupied by DataCompiler.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.CompileBaseRoad(SuperMap.Analyst.Navigation.CompilerParameter,System.Int32[])">
+      <summary>
+            Basic road data compiling.
+            </summary>
+      <param name="parameter">The specified road data compiling parameter class.</param>
+      <param name="mapIDs">The specified road network compiled mapsheet ID array. It can be get by calling <see cref="M:SuperMap.Analyst.Navigation.DataCompiler.CompileMapID(SuperMap.Analyst.Navigation.CompilerParameter,System.String)">CompileMapID</see>. Also can specify the available mapsheet ID.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.CompileGuideData(SuperMap.Analyst.Navigation.CompilerParameter,System.Int32[])">
+      <summary>
+            The guide data compile.
+            </summary>
+      <param name="parameter">The specified road data compiling parameter class.</param>
+      <param name="mapIDs">The specified road network compiled mapsheet ID array. It can be get by calling <see cref="M:SuperMap.Analyst.Navigation.DataCompiler.CompileMapID(SuperMap.Analyst.Navigation.CompilerParameter,System.String)">CompileMapID</see>. Also can specify the available mapsheet ID.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.CompileTopologyData(SuperMap.Analyst.Navigation.CompilerParameter,System.Int32[])">
+      <summary>
+            The topology data compile.
+            </summary>
+      <param name="parameter">The specified road data compiling parameter class.</param>
+      <param name="mapIDs">The specified road network compiled mapsheet ID array. It can be get by calling <see cref="M:SuperMap.Analyst.Navigation.DataCompiler.CompileMapID(SuperMap.Analyst.Navigation.CompilerParameter,System.String)">CompileMapID</see>. Also can specify the available mapsheet ID.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.PackageData(SuperMap.Analyst.Navigation.CompilerParameter,System.Int32[])">
+      <summary>
+            Data package.
+            </summary>
+      <param name="parameter">The specified road data compiling parameter class.</param>
+      <param name="mapIDs">The specified road network compiled mapsheet ID array. It can be get by calling <see cref="M:SuperMap.Analyst.Navigation.DataCompiler.CompileMapID(SuperMap.Analyst.Navigation.CompilerParameter,System.String)">CompileMapID</see>. Also can specify the available mapsheet ID.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.UpdatePathName(SuperMap.Analyst.Navigation.CompilerParameter)">
+      <summary>
+             Update road name field.
+            </summary>
+      <param name="parameter">The specified road data compiling parameter class.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.CompileMapID(SuperMap.Analyst.Navigation.CompilerParameter,System.String)">
+      <summary>
+            Gets the mapsheet ID array.
+            </summary>
+      <param name="parameter">The specified road data compiling parameter class.</param>
+      <param name="resultCoverageDatasetName">The specified map extent dataset name, which is used to create map extent dataset. This dataset contains the map extent of road network to be compiled.</param>
+      <returns>Gets the mapsheet ID array.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.ExtractAdminCode(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Extract the AdminCode dataset from Admin and FName of 4D navigation data.
+            </summary>
+      <param name="datasetAdmin">The dataset of Admin.</param>
+      <param name="datasetFName">The dataset of FName.</param>
+      <param name="datasource">The datasource of result administrative dataset.</param>
+      <param name="resultDatasetName">The name of result administrative dataset. It should be valid.</param>
+      <returns>Returns the result administrative dataset. Returns null if failed.</returns>
+    </member>
+    <!-- 对于成员“M:SuperMap.Analyst.Navigation.DataCompiler.ExtractAdminCode(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Int32)”忽略有格式错误的 XML 注释 -->
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.ExtractRoadDirection(SuperMap.Data.DatasetVector,System.Double,System.Double,System.String[],SuperMap.Data.Datasource,System.String)">
+      <summary>
+             Extract the road direction from 4D navigation road line dataset. Every road will create one or more direction segment along with the road direction.  The line direction is the road direction.
+             </summary>
+      <param name="datasetRoad">It needs to create the line dataset of road direction, corresponding to R table of 4D navigation dataset.</param>
+      <param name="segmentLength">The length of result direction segment. The unit is the same as road line dataset coordinate system.</param>
+      <param name="spacingLength">The interval of every result direction segment. The unit is the same as road line dataset coordinate system.</param>
+      <param name="roadKinds">The road lebel that needs to create road direction. In the 4D navigation data R table, road level is stored in the Kind field. For example, in 2013 summer data version, there are 0x00 highway, 0x01 urban highway, 0x02 national road, 0x03 provincial road, 0x04 country road, 0x06 country road, 0x08 other roads, 0x09 9 class road, 0x0a ferry, 0x0b pavement.</param>
+      <param name="outputDatasource">The datasource where the result dataset is included.</param>
+      <param name="resultDatasetName">The name of result dataset. It must be valid.</param>
+      <returns>Represents the line dataset representing the road direction. Returns null if failed.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.DataCompiler.CompileSSCData(SuperMap.Analyst.Navigation.CompilerParameterSSC)">
+      <summary>
+            Compile network data into SSC files containing shortcut information.
+            </summary>
+      <param name="parameter">Specify the SSC file to compile parameter classes.</param>
+      <returns>Return "true" once get success, otherwise return to "false". </returns>
+    </member>
+    <member name="E:SuperMap.Analyst.Navigation.DataCompiler.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.DataVersion">
+      <summary>
+                       This enumeration defines the version of source road network data. Each manufacturer or same manufacturer released different data versions. So when you compile basic road data, users need to specify the version of road network data.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.DataVersion.NIG2012WinGreatChina">
+      <summary>
+              The data before 4D 2012 winter navigation electronic map data exchange format.
+             </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.DataVersion.NIG2013SumGreatChina">
+      <summary>
+              Siwei 2013 summer navigation electronic map data interchange format.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.GPSData">
+      <summary>
+              GPS data classes.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.GPSData.#ctor">
+      <summary>
+              Construct a new object for a new GPS data class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.GPSData.#ctor(SuperMap.Analyst.Navigation.GPSData)">
+      <summary>
+              Construct a new object for a new GPS data class.
+            </summary>
+      <param name="data">Given GPS data.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.GPSData.Point">
+      <summary>
+             Gets or sets the coordinates of the GPS points.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.GPSData.TimeValue">
+      <summary>
+              Gets or sets the time value of the GPS point (in seconds).
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.MapMatchParameter">
+      <summary>
+            Parameter class for matching point pre-processing of map .
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.MapMatchParameter.#ctor">
+      <summary>
+              Construct a new map matching point pre-processing parameter object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.MapMatchParameter.#ctor(SuperMap.Analyst.Navigation.MapMatchParameter)">
+      <summary>
+             An identical object is constructed according to a given map matching point pre-processing parameter object.
+            </summary>
+      <param name="parameter">A pre-processing parameter object with given marching point.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.MapMatchParameter.DatasetVector">
+      <summary>
+              Gets or sets the map matching point dataset for the input.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.MapMatchParameter.Velocity">
+      <summary>
+              Gets or sets the speed field of the input map matching point data set.
+            </summary>
+      <value>The default value is String. Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.MapMatchParameter.Time">
+      <summary>
+              Gets or sets the time field of the input map matching point dataset, which is the integer field, the unit is seconds, and the field is set.
+            </summary>
+      <value>The default value is String. Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.MapMatchParameter.Angle">
+      <summary>
+              Gets or sets the Angle field of the input map matching point dataset.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.PackageType">
+      <summary>
+                       This enumeration defines the data package type in road data compiling.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.PackageType.PackageLine">
+      <summary>
+                       Package basic road data.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.PackageType.PackageTopo">
+      <summary>
+                       Package topology data.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.PackageType.PackageGuide">
+      <summary>
+                       Package guide data.
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.PathAnalyst">
+      <summary>
+            The navigation analysis class. This class is used to perform navigation analysis through the data after data compiled.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.#ctor">
+      <summary>
+            Constructs the object of navigation analysis class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.Dispose">
+      <summary>
+             Releases the object of navigation analysis class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.ConnectData(System.String)">
+      <summary>
+            Connects to the compiling result data.
+            </summary>
+      <param name="strPath">The detailed path of ompiled data.</param>
+      <returns>Returns true if connected successfully; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.Plan">
+      <summary>
+            Perform the path planning.
+            </summary>
+      <returns>Returns true if analyzed successfully; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetPathPoints">
+      <summary>
+            Returns the collection of the nodes passed by the analysis result path.
+            </summary>
+      <returns>The collection of the nodes passed by the analysis result path.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetPathLength">
+      <summary>
+            Returns the total length of analysis result.
+            </summary>
+      <returns>The total length of analysis result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetPathInfos">
+      <summary>
+            Returns the guide info set of analysis result.
+            </summary>
+      <returns>The guide info set of analysis result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetPathTime">
+      <summary>
+            Returns the driving time of the analysis result. The unit is in seconds.
+            </summary>
+      <returns>The driving time of the analysis result. </returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetAltPathPoints">
+      <summary>
+              Returns the path point collection of alternative analysis results.
+            </summary>
+      <returns>A collection of point coordinates for alternative analysis results.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetAltPathLength">
+      <summary>
+              Returns the total length of alternative analysis results.
+            </summary>
+      <returns>The total length of the alternative analysis results.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetAltPathInfos">
+      <summary>
+              Returns the boot information collection of the alternative analysis results.
+            </summary>
+      <returns>The boot information collection of alternative analysis results.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.GetAltPathTime">
+      <summary>
+              Returns the running time of the alternative analysis results in seconds.
+            </summary>
+      <returns>The driving time of the alternative analysis results.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.SetSSCEnvironment(SuperMap.Analyst.Navigation.SSCDataEnvironment)">
+      <summary>
+              Set up the SSC data analysis environment.
+            </summary>
+      <param name="environment">SSC data environment objects.</param>
+      <returns>Return to "ture" once get success. return to "false" once get false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.MapMatch(SuperMap.Analyst.Navigation.GPSData[],System.Int32)">
+      <summary>
+            API of map marching analysis
+            </summary>
+      <param name="datas">GPS data array.</param>
+      <param name="candidateCount">Candidate number.</param>
+      <returns>GPS matches the result point array.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.PathAnalyst.PrepareData(SuperMap.Analyst.Navigation.MapMatchParameter,System.String)">
+      <summary>
+            Map matching point preprocessing interface.
+            </summary>
+      <param name="param">Preprocessing parameters, mainly set the GPS point data set and the required field names.</param>
+      <param name="name">The GPS point dataset name returned after processing (if the name set is an existing dataset name, the dataset will be deleted and a new dataset will be generated).</param>
+      <returns>Successfully returns an array of processed GPS point datasets.</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathAnalyst.StartPoint">
+      <summary>
+            Set the start point of navigation.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathAnalyst.EndPoint">
+      <summary>
+            Set the end point of navigation.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathAnalyst.Points">
+      <summary>
+            Set the middle point of navigation.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathAnalyst.RouteMode">
+      <summary>
+            Set the mode of navigation.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathAnalyst.IsAlternative">
+      <summary>
+              Gets or sets whether to return an alternative.
+            </summary>
+      <value>Default is false</value>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.PathInfo">
+      <summary>
+            Navigation guide information class. Through this class, you can get road guide information after navigation analysis.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathInfo.Length">
+      <summary>
+            Gets the length of the current road.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathInfo.RouteName">
+      <summary>
+            Gets the name of the current road.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathInfo.Junction">
+      <summary>
+            Gets the crossing coordinates of next road.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.Navigation.PathInfo.DirToSwerve">
+      <summary>
+            Returns the direction of turning of next road.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.RouteType">
+      <summary>
+                       This class defines the analysis mode of navigation analysis.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.RouteType.Recommend">
+      <summary>
+                       Recommended mode.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.RouteType.MinLength">
+      <summary>
+                       The shortest distance.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.Navigation.RouteType.NoHighWay">
+      <summary>
+                       No express.
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.Navigation.SSCDataEnvironment">
+      <summary>
+            SSC data environment class. Provide the high performance analysis environment for the path planning. Multiple PathAnalyst objects can be shared the environment.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.SSCDataEnvironment.#ctor">
+      <summary>
+            Constructs a new SSC data environment object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.SSCDataEnvironment.Dispose">
+      <summary>
+            Disposes the SSC data environment object. After calling this method, this object will not be disable.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.Navigation.SSCDataEnvironment.ConnectData(System.String,SuperMap.Data.DatasetVector)">
+      <summary>
+            Connect the SSC compiling result data, and load the network dataset information.
+            </summary>
+      <param name="sscFilePath">SSC file path, including the file name.</param>
+      <param name="networkDataset">The network dataset related to the SSC file.</param>
+      <returns>Returns true if successfully; otherwise false.</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.Navigation.SSCDataEnvironment.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated.
+            </summary>
+    </member>
+  </members>
+</doc>

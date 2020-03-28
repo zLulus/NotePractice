@@ -1,0 +1,967 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.TrafficAnalyst</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo">
+      <summary>
+            This class is used for getting and setting the fields which contains the bus fare information. Using this class, you can get or set the field contains the type of the bus fare, the start fare, the range of the start fare and the step of the fare.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.#ctor">
+      <summary>
+            The default constructor, initializes a new instance of the FareFieldInfo class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.#ctor(SuperMap.Analyst.TrafficAnalyst.FareFieldInfo)">
+      <summary>
+            Initializes a new instance of the FareFieldInfo class which is a copy of the specified Feature3D object.
+            </summary>
+      <param name="fareFieldInfo">The specified  FareFieldInfos  object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.FareTypeField">
+      <summary>
+            Gets or sets the field used to represent the type of the bus fare. 0 indicates Single, 1 indicates Distance, and 2 indicates Stops.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.StartFareRangeField">
+      <summary>
+            Gets or sets the field used to represent the range of the start fare.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.StartFareField">
+      <summary>
+            Gets or sets the field used to represent the start fare.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.FareStepField">
+      <summary>
+            Gets or sets the FareStepField. FareStepField is the price to add for adding each <see cref="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.FareStepRangeField">FareStepRangeField</see>.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo.FareStepRangeField">
+      <summary>
+            Gets or sets the fare step range field.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.FareInfo">
+      <summary>
+            The FareInfo class. This class is used to get the relative information about the bus fare, including the type of the bus fare, the start fare, the range of the start fare, and the step of the fare.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareInfo.Type">
+      <summary>
+            Gets the type of the bus fare.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareInfo.StartFareRange">
+      <summary>
+            Gets the range of the start fare.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareInfo.StartFare">
+      <summary>
+            Gets the start fare.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareInfo.FareStep">
+      <summary>
+            Gets the step of the fare.The step of the fare is the fare added for every stop or a unit distance.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.FareInfo.FareStepRange">
+      <summary>
+            Gets the fare step range.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferLine">
+      <summary>
+            The transfer line class. This class is used to the get-on stop, get-down stop and the line name.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferLine.#ctor(System.Int64,System.Int32,System.Int32)">
+      <summary>
+            Initialize a new TransferLine object with the parameters specified.
+            </summary>
+      <param name="lineID">The line ID of the transfer line.</param>
+      <param name="startIndex">The get-on stop ID of the transfer line.</param>
+      <param name="endIndex">The get-off stop ID of the transfer line.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.OnName">
+      <summary>
+            Gets the get-on name of the transfer line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.DownName">
+      <summary>
+            Gets the get-off name of the transfer line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.LineName">
+      <summary>
+            Gets the line name of the transfer line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.LineID">
+      <summary>
+            Gets the line ID of the transfer line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.StartIndex">
+      <summary>
+            Gets the index of the get-off stop of the transfer line. The number counts from 0.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLine.EndIndex">
+      <summary>
+            Gets the index of the get-on stop of the transfer line. The number counts from 0.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferLines">
+      <summary>
+            The transfer lines class. This class is used to get the transfer line and the count.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferLines.GetEnumerator">
+      <summary>
+            Returns an enumerator that can iterate through the collection. 
+            </summary>
+      <returns>An IEnumerator object used to iterate through a collection.</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLines.Count">
+      <summary>
+            Gets number of the transfer lines.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferLines.Item(System.Int32)">
+      <summary>
+            Gets the transfer line of the specified index.
+            </summary>
+      <param name="index">The specified index, which begins with 0.</param>
+      <returns>Gets the transfer line of the specified index.</returns>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferPreference">
+      <summary>
+            This enumeration defines the transfer preference constants.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferPreference.None">
+      <summary>
+            None.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferPreference.Bus">
+      <summary>
+            Bus. If you set this, bus will be first considered during exchange. But the result way is composed by multiple parameters. So bus may not be contained.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferPreference.Subway">
+      <summary>
+            Subway. If you set this, subway will be first considered during exchange. But the result way is composed by multiple parameters. So subway may not be contained.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferPreference.NoSubway">
+      <summary>
+            No subway. If you set this, the subway won't be contained in the result.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferSearchMode">
+      <summary>
+            The enumeration defines the search mode constants during transfer.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferSearchMode.ID">
+      <summary>
+            ID mode. Use the start stop ID and the end stop ID as the start and the end of the interchange.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferSearchMode.Point">
+      <summary>
+            Point mode. Use any two points (<see cref="T:SuperMap.Data.Point2D">Point2D</see>) as the start and the end of the interchange.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst">
+      <summary>
+            This class is used to make interchange analysis, query bus line, query bus stop, etc.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.#ctor">
+      <summary>
+            Constructs a new TransferAnalyst object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.Load(SuperMap.Analyst.TrafficAnalyst.LineSetting,SuperMap.Analyst.TrafficAnalyst.StopSetting,SuperMap.Analyst.TrafficAnalyst.RelationSetting)">
+      <summary>
+            Loads the transfer data when making transfer analyst. Note that this method doesn't support multi-thread processing.
+            </summary>
+      <param name="lineSetting">The specified lineSetting object.</param>
+      <param name="stopSetting">The specified stopSetting object.</param>
+      <param name="relationSetting">The specified relationSetting object.</param>
+      <returns>Returns true if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.Check(SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting)">
+      <summary>
+            Check the trasfer data based on TransferAnalystSetting. The check result will be written to the attribute table of the source data. Note that this method doesn't support multi-threading.
+            </summary>
+      <param name="transferAnalystSetting">The specified TrafficTransferAnalystSetting object.</param>
+      <returns>A bool value that represents whether it has error. true, if there is no error; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.Load(SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting)">
+      <summary>
+             Loads the transfer data when making transfer analyst. Note that this method doesn't support multi-thread processing.
+             </summary>
+      <param name="transferAnalystSetting">The specified transferAnalystSetting object.</param>
+      <returns>Returns true if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.FindTransferLines(SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter)">
+      <summary>
+             The transfer lines. Return the transfer analyst result.
+             </summary>
+      <param name="parameter">The specified TrafficTransferAnalystParameter object.</param>
+      <returns>The TrafficTransferAnalystResult class.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.FindTransferSolutions(SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter)">
+      <summary>
+             Make transfer analsyst based on the specified parameters. Return the transfer solutions.
+             </summary>
+      <param name="parameter">The specified TrafficTransferAnalystParameter object.</param>
+      <returns>The transfer solutions.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.GetDetailInfo(System.Int64,System.Int64,SuperMap.Analyst.TrafficAnalyst.TransferLine[])">
+      <summary>
+            Gets the complete transfer guide based on the start stop ID, the end stop ID and the items. 
+            </summary>
+      <param name="startID">The start stop ID.</param>
+      <param name="endID">The end stop ID.</param>
+      <param name="transferLines">The transfer lines.</param>
+      <returns>The complete transfer guide.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.GetDetailInfo(SuperMap.Data.Point2D,SuperMap.Data.Point2D,SuperMap.Analyst.TrafficAnalyst.TransferLine[])">
+      <summary>
+            Gets the complete transfer guide based on the start, the end and the items. 
+            </summary>
+      <param name="startPoint">The specified start.</param>
+      <param name="endPoint">The specified end.</param>
+      <param name="transferLines">The transfer lines.</param>
+      <returns>The complete transfer guide.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.FindLinesByStop(System.Int64)">
+      <summary>
+             Finds the lines pass by the specified stop ID.
+             </summary>
+      <param name="stopID">The stop ID.</param>
+      <returns>The collection of bus lines that cross this stop.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.FindStopsByLine(System.Int64)">
+      <summary>
+             Finds the stops of the specified line ID.
+             </summary>
+      <param name="lineID">The line ID.</param>
+      <returns>The collection of bus lines that cross this stop.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalyst.Dispose">
+      <summary>
+            Releases the resources occupied by TransferAnalyst.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter">
+      <summary>
+            This class is used to set the transfer analyst parameters, including start stop, end stop, solution count, walking ratio, tactic, preference, evade, etc.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.#ctor">
+      <summary>
+            Initializes a new instance of the TrafficTransferAnalystParameter class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.#ctor(SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter)">
+      <summary>
+            Initializes a new instance of the TrafficTransferAnalystParameter class which is identical with the specified TrafficTransferAnalystParameter object.
+            </summary>
+      <param name="transferAnalystParameter">The specified TrafficTransferAnalystParameter object.</param>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.Dispose">
+      <summary>
+            Releases the resources occupied by TransferAnalystParameter.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.StartStopID">
+      <summary>
+            Gets or sets the ID of the start stop.
+            </summary>
+      <value>The default value is -1.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.EndStopID">
+      <summary>
+            Gets or sets the ID of the end stop.
+            </summary>
+      <value>The default value is -1.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.StartPosition">
+      <summary>
+            Gets or sets the start position.
+            </summary>
+      <value>The default is an empty <see cref="T:SuperMap.Data.Point2D">Point2D</see> object.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.EndPosition">
+      <summary>
+            Gets or sets the end position.
+            </summary>
+      <value>The default is an empty <see cref="T:SuperMap.Data.Point2D">Point2D</see> object.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.SolutionCount">
+      <summary>
+            Gets or sets the maximum count of solutions to return in the transfer analysis. The maximum value is 20.
+            </summary>
+      <value>The default value is 5.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.WalkingRatio">
+      <summary>
+            Gets or sets the ratio of walking to taking bus.
+            </summary>
+      <value>The default value is 10.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.Tactic">
+      <summary>
+            Gets or sets the transfer tactic type.
+            </summary>
+      <value>The default value is <b>TransferTactic.LessTransfer。</b>.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.Preference">
+      <summary>
+            Gets or sets transfer preference.
+            </summary>
+      <value>The default value is <b>TransferPreference.None</b>,there is no preference.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.SearchMode">
+      <summary>
+            Gets or sets the search mode of the transfer.
+            </summary>
+      <value>The default value is ID mode,there is <b>TransferSearchMode.ID</b>.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.EvadeLines">
+      <summary>
+            Gets or sets the line ID collection of the evade lines.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.EvadeStops">
+      <summary>
+            Gets or sets the evade stop ID collection.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.PriorLines">
+      <summary>
+            Gets or sets the prior line ID collection.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.PriorStops">
+      <summary>
+            Gets or sets the prior stop ID collection.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystParameter.TravelTime">
+      <summary>
+            Get or set travel time for bus transfer analysis.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferAnalystResult">
+      <summary>
+             The TransferAnalystResult class is used to get the TransferGuides.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystResult.Dispose">
+      <summary>
+             Releases the resources occupied by TransferAnalystResult.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystResult.TransferGuides">
+      <summary>
+            Gets the array of the TransferGuide object.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting">
+      <summary>
+            The settings for the parameter information in the traffic transfer analysis, including will determine the analysis result directly. It can set the information of the lines, the stops, the snapping tolerance, the merging tolerance and the walking tolerance.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.#ctor">
+      <summary>
+            Constructs a new TransferAnalystSetting object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.#ctor(SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting)">
+      <summary>
+            Initializes a new instance according to the specified TransferAnalystSetting object. 
+            </summary>
+      <param name="transferAnalystSetting">The specified TrafficTransferAnalystSetting object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.LineSetting">
+      <summary>
+            Gets or sets the LineSetting object.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.StopSetting">
+      <summary>
+            Gets or sets the StopSetting object.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.RelationSetting">
+      <summary>
+            Gets or sets the transfer relation setting.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.SnapTolerance">
+      <summary>
+            Gets or sets the snapping tolerance of the bus stops.
+            </summary>
+      <value>The default value is 0.1.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.MergeTolerance">
+      <summary>
+            Gets or sets the merging tolerance of the bus stops. Obsolete. From version 7.0.1, you don't need to set the merging tolerance of the bus stops.
+            </summary>
+      <value>The default value is 100.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.WalkingTolerance">
+      <summary>
+            Gets or sets walking threshold, that is the maxinum walking distance from the current stop to the transfer stop.
+            </summary>
+      <value>The default value is 1500.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferAnalystSetting.Unit">
+      <summary>
+            Gets or sets the unit of the snap tolerance, merge tolerance and walking tolerance.
+            </summary>
+      <value>The default value is Unit.Meter.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferGuide">
+      <summary>
+            With this class, you can get the guide items, interchange count, distance, cost, time, etc.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.Count">
+      <summary>
+            Gets the count of the TransferGuideItem objects in the TransferGuide.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.Item(System.Int32)">
+      <summary>
+            Gets the TransferGuideItem object according to the specified index.
+            </summary>
+      <param name="index">The specified index which start with 0.</param>
+      <returns>The TransferGuideItem object.</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.TotalDistance">
+      <summary>
+            Gets the total distance of transfer guide.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.TotalFare">
+      <summary>
+            Gets the total cost of transfer guide.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.TotalTime">
+      <summary>
+            Gets the total distance of transfer guide.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuide.TransferCount">
+      <summary>
+            Gets the count of transfer in the current scheme. One traffic transfer scheme may have the segment represented by the TransferGuideItem object which is passed by walk, so the TransferCount property of the TransferGuide object does not equal to the Count property of it.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem">
+      <summary>
+            This class is used to get the transfer guide items, including walking or by bus, the start and the end of walking, the start and the end of the bus line, index, distance, cost and time, etc.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.LineName">
+      <summary>
+            Gets a line name represented by the guide item. It is valid only when <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> is false.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.LineType">
+      <summary>
+            Gets a line type represented by the guide item. This can be obtained from the <see cref="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.LineTypeField">LineTypeField</see> property of <see cref="T:SuperMap.Analyst.TrafficAnalyst.LineSetting">LineSetting</see>. It is valid only when <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> is false.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.StartName">
+      <summary>
+            Gets the get-on stop name on a guide item represented by the guide item. It is valid only when <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> is false.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.EndName">
+      <summary>
+            Gets the get-off line name represented by the guide item. It is valid only when <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> is false.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.StartIndex">
+      <summary>
+            Gets the index of the end stop of the segment represented by the TransferGuideItem object in the whole traffic line which the segment belongs to. It is valid only when <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> is false.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.EndIndex">
+      <summary>
+            Gets the index of the start stop of the segment represented by the TransferGuideItem object in the whole traffic line which the segment belongs to. It is valid only when <see cref="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">IsWalking</see> is false.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.PassStopCount">
+      <summary>
+            Gets the number of the stops this segment represented by the TransferGuideItem object has.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.StartPosition">
+      <summary>
+            Gets the coordinates of the get-on/start stop of the segment represented by the TransferGuideItem object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.EndPosition">
+      <summary>
+            The coordinates of the get-off/end stop of the segment represented by the TransferGuideItem object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.Distance">
+      <summary>
+            Gets the distance of the segment represented by the TransferGuideItem object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.Fare">
+      <summary>
+            Gets the fare of the segment represented by the TransferGuideItem object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.Time">
+      <summary>
+            Gets the time of the segment represented by the TransferGuideItem object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.IsWalking">
+      <summary>
+            Gets whether the TransferGuideItem represents walk path.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.Route">
+      <summary>
+            Gets the distance of the segment represented by the TransferGuideItem object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.FirstTime">
+      <summary>
+            Gets the first bus departure time of the segment represented by the TransferGuideItem object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferGuideItem.LastTime">
+      <summary>
+            Gets the end bus departure time of the segment represented by the TransferGuideItem object.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.LineInfo">
+      <summary>
+            The TransferLineInfo object includes Dataset, ID, Name, FirstTime, LastTime, Interval, Speed, FareInfo, TotalDistance, TotalWeight and StopCount.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.ID">
+      <summary>
+            Gets the SMID of the line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.LineID">
+      <summary>
+            Gets the ID of the line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.Name">
+      <summary>
+            Gets the name of the line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.Alias">
+      <summary>
+            Gets the alias of the line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.StartTime">
+      <summary>
+            Gets the time of the first bus of the traffic line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.TerminalTime">
+      <summary>
+            Gets the time of the last bus of the line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.Interval">
+      <summary>
+            Gets the interval between every two buses of the line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.Speed">
+      <summary>
+            Gets the speed of the bus of the line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.FareInfo">
+      <summary>
+            Gets the bus fare information.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.TotalDistance">
+      <summary>
+            Gets the distance of the line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.TotalFare">
+      <summary>
+            Gets the total fare of the line.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.TotalTime">
+      <summary>
+            Gets the total time.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.StopCount">
+      <summary>
+            Gets the number of the stops the line has.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.LineType">
+      <summary>
+            Gets the line type.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineInfo.TotalLine">
+      <summary>
+            Gets the total line. It is a <see cref="T:SuperMap.Data.GeoLine">GeoLine</see> object.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.LineSetting">
+      <summary>
+            The TransferLineSetting class.This class is used for setting the traffic line.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.LineSetting.#ctor">
+      <summary>
+            Constructs a new LinkSettings  object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.LineSetting.#ctor(SuperMap.Analyst.TrafficAnalyst.LineSetting)">
+      <summary>
+            Initializes a new instance of the LineSetting class which is identical with the specified LineSetting.
+            </summary>
+      <param name="lineSetting">The TransferLineSetting object specified.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.Dataset">
+      <summary>
+            Gets or sets the bus line dataset. It must be a line dataset. If you set it to other type, an exception will be thrown.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.LineIDField">
+      <summary>
+            Gets or sets the bus line ID field. This field is required. It must be 32-bit or 64-bit. If it is other type, an exception will be thrown.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.NameField">
+      <summary>
+            Gets or sets the name field of the bus line. It is required. If this field doesn't exist in the line dataset, an exception will be thrown.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.LengthField">
+      <summary>
+            Gets or sets the length field of the transfer line. The unit is in meters.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.AliasField">
+      <summary>
+            Gets or sets the alias field of the transfer line.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.FirstTimeField">
+      <summary>
+            Gets or sets the time field of the first bus of the traffic line. Field type must be the time type of DateTime.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.LastTimeField">
+      <summary>
+            Gets or sets the time field of the end bus of the traffic line. Field type must be the time type of DateTime.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.IntervalField">
+      <summary>
+            Gets or sets the field of the interval between every two buses of the traffic line.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.SpeedField">
+      <summary>
+            Gets or sets the speed field of the bus of the line.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.FareFieldInfo">
+      <summary>
+            Gets or sets the fields about the fare of the traffic line.
+            </summary>
+      <value>The default is a null <see cref="T:SuperMap.Analyst.TrafficAnalyst.FareFieldInfo">FareFieldInfo</see> object.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.LineSetting.LineTypeField">
+      <summary>
+            Gets or sets the bus line type field.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.RelationSetting">
+      <summary>
+            The RelationSetting class. This class sets the stop&amp;line relation dataset, stop&amp;gateway relation dataset, and network dataset.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.RelationSetting.#ctor">
+      <summary>
+            Creates a new RelationSetting object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.RelationSetting.#ctor(SuperMap.Analyst.TrafficAnalyst.RelationSetting)">
+      <summary>
+            Initializes a new instance of the RelationSetting class which is a copy of the specified RelationSetting object.
+            </summary>
+      <param name="relationSetting">The RelationSetting object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.Dataset">
+      <summary>
+            Gets or set the stop&amp;line relation dataset. It must be a tabular dataset. If you set it to other type, an exception will be thrown.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.StopIDField">
+      <summary>
+            Gets or sets the stop ID field of the stop&amp;line relation dataset. This field is required. It must be 32-bit or 64-bit. If there is no this type or it is other type, an exception will be thrown.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.LineIDField">
+      <summary>
+            Gets or sets the line ID field of the stop&amp;line relation dataset. This field is required. It must be 32-bit or 64-bit. If there is no this type or it is other type, an exception will be thrown.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.SerialNumField">
+      <summary>
+            Gets or sets the serial number field of the stop&amp;line relation dataset.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.DatasetPath">
+      <summary>
+            Gets or sets the stop&amp;gateway dataset. It must be a line dataset. If you set it to other type, an exception will be thrown.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.ExitIDField">
+      <summary>
+            Gets or sets the gateway ID field of the stop&amp;gateway relation dataset. This field is required. It must be 32-bit or 64-bit. If there is no this type or it is other type, an exception will be thrown.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.StationIDField">
+      <summary>
+            Gets or sets the stop ID field of the stop&amp;gateway relation dataset. This field is required. It must be 32-bit or 64-bit. If there is no this type or it is other type, an exception will be thrown.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.ExitNameCField">
+      <summary>
+            Gets or sets the gateway name field for the stop&amp;gateway relation dataset.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.ExitNamePYField">
+      <summary>
+            Gets or sets the gateway pinyin field for the stop&amp;gateway relation dataset.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.DatasetNetwork">
+      <summary>
+            Gets or sets the network dataset. Get the real walking path according to the edge and node information.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.EdgeIDField">
+      <summary>
+            Gets or sets the edge ID field of the network dataset.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.NodeIDField">
+      <summary>
+            Gets or sets the node ID field of the network dataset.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.FNodeIDField">
+      <summary>
+            Gets or sets the field that identifies the ID of the start node in the network dataset.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.RelationSetting.TNodeIDField">
+      <summary>
+            Gets or sets the field that identifies the ID of the end node in the network dataset.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.StopInfo">
+      <summary>
+            This class is used for getting the information of transfer stop, including the dataset that the stop belongs to, ID, name, and alias of the stop.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopInfo.ID">
+      <summary>
+            Gets the SMID of the stop.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopInfo.StopID">
+      <summary>
+            Gets the ID of the stop.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopInfo.Name">
+      <summary>
+            Gets the name of the stop.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopInfo.Alias">
+      <summary>
+            Gets the alias of the stop.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopInfo.Position">
+      <summary>
+            Gets the position of the stop.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.StopSetting">
+      <summary>
+            The StopSetting class. This class is used for getting the settings of the transfer stop, including the dataset that the stop belongs to, the name field of the stop, and the alias field of the stop.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.StopSetting.#ctor">
+      <summary>
+            Constructs a new StopSetting  object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.StopSetting.#ctor(SuperMap.Analyst.TrafficAnalyst.StopSetting)">
+      <summary>
+            Initializes a new instance of the StopSetting class which is a copy of the specified StopSetting object.
+            </summary>
+      <param name="stopSetting">The specified TransferStopSetting object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopSetting.Dataset">
+      <summary>
+            Gets or sets the stop dataset. It must be a point dataset. If you set it to other type, an exception will be thrown.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopSetting.StopIDField">
+      <summary>
+            Gets or sets the bus stop ID field. This field is required. It must be 32-bit or 64-bit. If it is other type, an exception will be thrown.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopSetting.NameField">
+      <summary>
+            Gets or sets the name field of the bus stop. It is required. If this field doesn't exist in the stop dataset, an exception will be thrown.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.StopSetting.AliasField">
+      <summary>
+            Gets or sets the alias field of the transfer stop.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferSolution">
+      <summary>
+            The transfer solution class. This class is used to get the count of the interchange, and the transfer lines with the given index.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferSolution.GetEnumerator">
+      <summary>
+            Returns an enumerator that can iterate through the collection. 
+            </summary>
+      <returns>An IEnumerator object used to iterate through a collection.</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferSolution.TransferTime">
+      <summary>
+            Gets the count of the interchange.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferSolution.Item(System.Int32)">
+      <summary>
+            Gets the Items with the given index.
+            </summary>
+      <param name="index">The specified index, which begins with 0.</param>
+      <returns>The transfer lines with the given index.</returns>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferSolutions">
+      <summary>
+            The transfer solutions class. This class is used to get the transfer solution with the given index, and the count of the solutions.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TrafficAnalyst.TransferSolutions.GetEnumerator">
+      <summary>
+            Returns an enumerator that can iterate through the collection. 
+            </summary>
+      <returns>An IEnumerator object used to iterate through a collection.</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferSolutions.Item(System.Int32)">
+      <summary>
+            Gets the transfer solution with the given index.
+            </summary>
+      <param name="index">The specified index, which begins with 0.</param>
+      <returns>The transfer solution with the given index.</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.TrafficAnalyst.TransferSolutions.Count">
+      <summary>
+            Gets the count of the solutions.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TrafficAnalyst.TransferTactic">
+      <summary>
+            This enumeration defines the transfer tactic constants.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferTactic.LessTransfer">
+      <summary>
+            Less interchange. Find the less interchange count from the start to the end.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferTactic.MinDistance">
+      <summary>
+            Minimum distance. Find the shortest distance from the start to the end.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferTactic.LessWalk">
+      <summary>
+            Less walking. Find the less walking distance from the start to the end.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TrafficAnalyst.TransferTactic.LessTime">
+      <summary>
+            Less time. Find the least time cost from the start to the end.
+            </summary>
+    </member>
+  </members>
+</doc>

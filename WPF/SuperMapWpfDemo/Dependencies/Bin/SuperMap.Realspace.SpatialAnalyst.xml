@@ -1,0 +1,1357 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Realspace.SpatialAnalyst</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.AnalysisQuality">
+      <summary>
+            The enumeration defines the quality level of the spatial analysis results.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.AnalysisQuality.High">
+      <summary>
+            High.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.AnalysisQuality.Low">
+      <summary>
+            Low.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.AnalysisQuality.Medium">
+      <summary>
+            Medium.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.BarrierPoint3D">
+      <summary>
+        <para>The barrier point object class. It's obsolete.</para>
+        <para>Barrier points are the points obstruct the line of sight from the viewpoint to the target point.</para>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BarrierPoint3D.BarrierID">
+      <summary>
+            Gets the ID of the barrier model object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BarrierPoint3D.LayerName">
+      <summary>
+            Gets the name of the layer that the barrier point is.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BarrierPoint3D.IntersectionPoint">
+      <summary>
+            Gets the coordinates of a barrier point.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter">
+      <summary>
+            3D buffer analysis parameter class.It is used to provide the necessary parameter information for 3D geometric object buffer analysis.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter.#ctor">
+      <summary>
+            Initializes a new instance of the 3D BufferAnalystParameter class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter.#ctor(SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter)">
+      <summary>
+            Constructs a new object identical to the given BufferAnalyst3DParameter object.
+            </summary>
+      <param name="bufferAnalyst3DParameter">The given BufferAnalyst3DParameter object.</param>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter.EndType">
+      <summary>
+            Gets or sets the port type of the 3D buffer area. Two types are provided for the 3D line end points, they are Round and Flat.
+            </summary>
+      <value>The default value is <see cref="F:SuperMap.Realspace.SpatialAnalyst.BufferEndType.Round">BufferEndType.Round</see>.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter.BufferQuality">
+      <summary>
+            Gets or sets the count of segments of the semicircle line, that is, how many segments are used to simulate the semicircle line, the value must be greater than four, and less than 200.
+            </summary>
+      <value>The default value is 12.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter.BufferDistance">
+      <summary>
+            Gets or sets the distance of the 3D buffer area. The unit is meter.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.BufferEndType">
+      <summary>
+            Defines the shape of the 3D buffer at the line end points. Two types are provided for the 3D line end points, they are Round and Flat.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.BufferEndType.Round">
+      <summary>
+        <para>3D round end type. It is the generated hemisphere area, whose center is the endpoint of the line in the buffer.</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.BufferEndType.Flat">
+      <summary>
+        <para>3D flat end type. It is the generated circular area, whose center is the endpoint of the line in the buffer.</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.CollisionAnalysis">
+      <summary>
+            Collision detection analysis class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.CollisionAnalysis.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            Constructs a new CollisionAnalysis object based on the specified Scene object.
+            </summary>
+      <param name="scene">The object of the specified scene.</param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.CollisionAnalysis.Build">
+      <summary>
+            Perform collision detection analysis.
+            </summary>
+      <returns>Returns true if execution succeeds, false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.CollisionAnalysis.Clear">
+      <summary>
+            Clean analysis result.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.CollisionAnalysis.CollisionColor">
+      <summary>
+            Gets or sets the color of the collision detection area.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.CollisionAnalysis.CollisionModel">
+      <summary>
+            Gets or sets the 3D model object for collision detection.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.CollisionAnalysis.Opacity">
+      <summary>
+            Gets or sets the opacity of the model for collision detection. It is in the range 0 to 100, where 0 is completely transparent and 100 is completely opaque.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.CollisionAnalysis.Position">
+      <summary>
+            Gets or sets the spatial position of the model.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.CollisionAnalysis.Direction">
+      <summary>
+            Acquires or sets the forward direction angle of the collision detection, which is the angle between the horizontal direction and the north direction.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.CollisionAnalysis.Pitch">
+      <summary>
+            Gets or sets the angle of inclination, which is the angle with respect to the horizontal plane and takes the positive direction.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.ContourMap">
+      <summary>
+            Isoline function class. Setting the analysis area, color table and the related maximum and minimum elevation, interval, isoline display style to exact the isolines.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ContourMap.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            Constructs a new ContourMap object based on the specified Scene object.
+            </summary>
+      <param name="scene">
+      </param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ContourMap.Build">
+      <summary>
+            Perform isoline analysis.
+            </summary>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ContourMap.Clear">
+      <summary>
+            Clean analysis result.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.ContourMap.Dispose">
+      <summary>
+            Release the local resources occupied by the ContourMap object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.ColorDictTable">
+      <summary>
+            Gets or sets the color table.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.CoverageArea">
+      <summary>
+            Gets or sets the region to draw the isolines.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.CoverageRegion">
+      <summary>
+            Gets or sets the region to draw the isolines.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.DisplayStyle">
+      <summary>
+            Gets or sets the default displaying style.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.Interval">
+      <summary>
+            Gets or sets the contour Interval.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.LineColor">
+      <summary>
+            Gets or sets the color of the isolines.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.MaxVisibleAltitude">
+      <summary>
+            Gets or sets the maximum visible height.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.MinVisibleAltitude">
+      <summary>
+            Gets or sets the minimum visible height.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.Opacity">
+      <summary>
+            Gets or sets non-transparency degree. Range: 0-100.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.BorderVisible">
+      <summary>
+            Gets or sets whether the analysis area border is visible or not.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.ContourMap.BorderColor">
+      <summary>
+            Gets or sets the color of the analysis area border.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.ContourMap.DisplayMode">
+      <summary>
+            It defines the isoline display modes.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.ContourMap.DisplayMode.Face">
+      <summary>
+            Displayed with fill symbol.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.ContourMap.DisplayMode.Face_And_Line">
+      <summary>
+            Displayed with lines and fill symbol.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.ContourMap.DisplayMode.Line">
+      <summary>
+            Displayed with lines.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D">
+      <summary>
+            DissolveParameter3D parameter class. This class provides a set of parameters for the dissolving of 3D vector data, such as fusion field, fusion type, tolerance, and so on.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.#ctor">
+      <summary>
+            Create a new DissolveParameter3D object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.#ctor(SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D)">
+      <summary>
+            Constructs a new object identical to the given DissolveParameter3D object.
+            </summary>
+      <param name="parameter">The specified DissolveParameter3D object.</param>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.IsNullValue">
+      <summary>
+             A bool. Process the dissolve field with null if true; otherwise, false.
+             </summary>
+      <value>The default value is false, indicating that the objects whose dissolving field values are null are not processed.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.DissolveType">
+      <summary>
+            Gets or sets the dissolve type.
+            </summary>
+      <value>The default value is DissolveType.Single.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.Tolerance">
+      <summary>
+            Get or set the tolerance. Unit: meter.
+            </summary>
+      <value>The default value is the default tolerance set for the current dataset to be processed.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.FilterString">
+      <summary>
+            Gets or sets the filter expression for dissolving objects in a dataset. Only the objects meeting this condition are to be dissolved.
+            </summary>
+      <value>Default is null, means no filter condition.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.FieldNames">
+      <summary>
+            Gets or sets the set of names of the dissolving fields.
+            </summary>
+      <value>Default is null, means no dissolving field.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.StatisticsFieldNames">
+      <summary>
+            Gets or sets the set of names of the statistical fields.
+            </summary>
+      <value>The default is null, means no statistical field.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.StatisticsTypes">
+      <summary>
+            Gets or sets the statistical type set of the statistical field, which is corresponding to the statistical fields in <see cref="P:SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D.StatisticsFieldNames">StatisticsFieldNames</see> property.
+            </summary>
+      <value>The default is null, means no statistical field.</value>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.DissolveType3D">
+      <summary>
+            This enumeration defines the constants of the fusion type of the 3D vector dataset.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.DissolveType3D.OnlyMultiPart">
+      <summary>
+            Group. Groups objects with the same dissolving field values to form a compound object.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.DissolveType3D.Single">
+      <summary>
+            Dissolve. Merges objects that have the same dissolving field values and are topologically adjacent to form a simple object.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.DissolveType3D.MultiPart">
+      <summary>
+            Group after Dissolve. Merges objects that have the same dissolving field values and are topologically adjacent to form a simple object, and then groups objects that have the same dissolving field values but are not topologically adjacent to form a compound object.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Generalization3D">
+      <summary>
+            3D vector mapping comprehensive class. This class provides 3D vector data fusion, resampling and smooth functions. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Generalization3D.Dissolve(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Realspace.SpatialAnalyst.DissolveParameter3D)">
+      <summary>
+            3D vector data fusion operation. Supporting 3D line dataset.
+            </summary>
+      <param name="sourceDataset">Specified 3D vector dataset to be in the fusion operation. Supporting 3D line dataset.</param>
+      <param name="targetDatasource">Datasource for storing the output datasets.</param>
+      <param name="targetDatasetName">The specified name of the result dataset.</param>
+      <param name="dissolveParameter">The specified dissolving parameter setting.</param>
+      <returns>3D vector dataset after the fusion.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Generalization3D.Resample(SuperMap.Data.DatasetVector,System.Double)">
+      <summary>
+            Resample the 3D vector dataset, supports 3D line dataset and network dataset. 
+            </summary>
+      <param name="datasetVector">Specified 3D vector dataset to be resampled, supporting 3D line dataset and network dataset.</param>
+      <param name="tolerence">Specifies the resampling tolerance. The unit is Meter. Resampling distance can be set to a float value greater than 0. The greater the distance, the simpler the resampling result.</param>
+      <returns>true if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Generalization3D.Smooth(SuperMap.Data.DatasetVector,System.Int32)">
+      <summary>
+            Smooth the 3D vector dataset, supports 3D line dataset and network dataset. 
+            </summary>
+      <param name="datasetVector">Specified 3D vector dataset to be smoothed, supporting 3D line dataset and network dataset.</param>
+      <param name="smoothness">Smooth coefficient. The valid range is larger than or equal to 2, an exception will throw out if set as a value less than 2. The greater the smooth coefficient, the smoother the line. The recommended range is [2,10].</param>
+      <returns>true if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Generalization3D.InterpolateShape(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Double,System.Double,System.Boolean)">
+      <summary>
+            Based on raster data sets, two dimensional vector data sets are converted into interpolation methods of three-dimensional vector data sets.Support for 2-d data sets, two-dimensional data sets, and two-dimensional data sets.
+            </summary>
+      <param name="datasetGrid">Provides a z-value grid data set.</param>
+      <param name="datasetVector">A two-dimensional vector data set that is specified for interpolation.Support for 2-d data sets, two-dimensional linear data sets, two-dimensional data sets.</param>
+      <param name="targetDatasource">Specifies the data source for storing the result data set.</param>
+      <param name="targetDatasetName">The specified result data set name.</param>
+      <param name="sampleDistance">The specified sampling distance is the spacing of the interpolated z values.If this value is less than or equal to 0, the sampling distance is the pixel size of the grid data set by default;If the value is greater than 0, the sampling distance is the size of the value.This parameter is only valid for two dimensional data sets and two-dimensional surface data sets.</param>
+      <param name="zFactor">Specified Z factor.The Z value will multiply by the coefficients.</param>
+      <param name="isVerticesOnly">Do interpolation only at the fold point.True means that ignoring the sampling distance option only interpolate the existing points, and false means to interpolate points in the sampling distance and then interpolate.</param>
+      <returns> The three-dimensional vector data set after interpolation is a new data set.</returns>
+    </member>
+    <member name="E:SuperMap.Realspace.SpatialAnalyst.Generalization3D.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Geometrist3D">
+      <summary>
+            3D geometry basic operation class. Currently supporting 3D lines smooth and resampling processing.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.HasIntersection(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D)">
+      <summary>
+            Determine whether two 3D geometry objects intersecdt with each other or not.
+            </summary>
+      <param name="geometry3D">The 1st specified 3D geometry object.</param>
+      <param name="intersectGeometry3D">The 2nd specified 3D geometry object.</param>
+      <returns>A boolean value indicates whether two specified 3D geometry objects intersect with each other or not. If intersect, returns yes; otherwise, false.</returns>
+      <exception cref="T:System.ArgumentException">occurs while geometry3D or intersectGeometry3D is not closed while determining whether two 3D boxes intersect with each other or not.</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.Erase(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D)">
+      <summary>
+            The erase operation for 3D boxes.
+            </summary>
+      <param name="geometry3D">The specified operated object.</param>
+      <param name="eraseGeometry3D">The specified operating object.</param>
+      <returns>The 3D body object after erase operation.</returns>
+      <exception cref="T:System.ArgumentException">geometry3D or eraseGeometry3D is not closed.</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.Intersect(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D)">
+      <summary>
+            Intersect operation between 3D boxes.
+            </summary>
+      <param name="geometry3D">The 1st 3D box to participate in intersect operation.</param>
+      <param name="intersectGeometry3D">The 2nd 3D box to participate in intersect operation.</param>
+      <returns>The intersection of the two boxes.</returns>
+      <exception cref="T:System.ArgumentException">geometry3D or intersectGeometry3D is not closed.</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.Union(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D)">
+      <summary>
+            The union operation for 3D box.
+            </summary>
+      <param name="geometry3D">The 1st 3D box to participate in union operation.</param>
+      <param name="unionGeometry3D">The 2nd 3D box to participate in union operation.</param>
+      <returns>The 3D box after union.</returns>
+      <exception cref="T:System.ArgumentException">geometry3D or intersectGeometry3D is not closed.</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.XOR(SuperMap.Data.Geometry3D,SuperMap.Data.Geometry3D)">
+      <summary>
+            The XOR operation for 3D boxes.
+            </summary>
+      <param name="geometry3D">The 1st 3D box to participate in XOR operation.</param>
+      <param name="xorGeometry3D">The 2nd 3D box to participate in XOR operation.</param>
+      <returns>A 3D box deducts the shared volume from the union of two 3D boxes.</returns>
+      <exception cref="T:System.ArgumentException">geometry3D or intersectGeometry3D is not closed.</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.CreateBuffer(SuperMap.Data.Geometry3D,SuperMap.Realspace.SpatialAnalyst.BufferAnalyst3DParameter,SuperMap.Data.PrjCoordSys)">
+      <summary>
+             Creates buffer areas for 3D points and lines. It is allowed to specify source coordinate system.
+             </summary>
+      <param name="geometry">The specified 3D point or line object.</param>
+      <param name="bufferAnalyst3DParameter">The specified buffer parameter class.</param>
+      <param name="prjCoordSys">The specified source projected coordinate system. Planar and spherical scenes are both supported.</param>
+      <returns>The three-dimensional model.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.Smooth(SuperMap.Data.Point3Ds,System.Int32,SuperMap.Data.PrjCoordSys)">
+      <summary>
+            3D lines smooth. Source coordinate system can be specified.
+            </summary>
+      <param name="points">The specified ordered set of Point3D objects.</param>
+      <param name="smoothness">Smooth coefficient. The valid range is larger than or equal to 2, an exception will throw out if set as a value less than 2. The greater the smooth coefficient, the smoother the line. The recommended range is [2,10].</param>
+      <param name="prjCoordsys">Specified source coordinate system. When it's geographical coordinate system, it's needed to make coordinate system transformation firstly, and then execute smoothing.</param>
+      <returns>3D points set after the smooth.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Geometrist3D.Resample(SuperMap.Data.Geometry3D,System.Double,SuperMap.Data.PrjCoordSys)">
+      <summary>
+            Resample the 3D features. The source coordinate system can be specified. Only supporting 3D line features.
+            </summary>
+      <param name="geometry">The specified 3D feature. Only supporting 3D line features.</param>
+      <param name="tolerance">Specifies the resampling tolerance. The unit is Meter. Resampling distance can be set to a float value greater than 0. The greater the distance, the simpler the resampling result.</param>
+      <param name="prjCoordsys">Specified source coordinate system. When it's geographical coordinate system, it's needed to make coordinate system transformation firstly, and then execute smoothing.</param>
+      <returns>The 3D feature after the resampling.</returns>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.GridMatchAnalyst">
+      <summary>
+            The terrain model matching class. It is used to fit the DEM data and the 3D model.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.GridMatchAnalyst.GridMatch(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.String,System.Double,System.Double)">
+      <summary>
+            The terrain model match.  Modify the DEM terrain (cut and fill) according to the model elevation.
+            </summary>
+      <param name="sourceDatasetGrid">The specified terrain data matcedh with the three-dimensional model, ie DEM raster data.</param>
+      <param name="sourceDatasetVector">The specified model data. CAD datasets or region datasets.</param>
+      <param name="targetDatasource">Datasource for storing the output datasets.</param>
+      <param name="targetDatasetName">The specified name of the result dataset.</param>
+      <param name="altiFieldName">The specified elevation field of the model data. See the Remarks section.</param>
+      <param name="radius">The specified radius of the transition region, in units of meters. The the starting point of the radius corresponds to the edge of the terrain. The valid value is greater than or equal to 0. 0 is no smooth transition.</param>
+      <param name="exp">The specified power times. The value range is greater than or equal to 0. A negative number will throw an exception. 0 means buffer area will not be handled the around the smooth transition. The recommendation ranges (0,3].</param>
+      <returns>The DEM dataset after the match.</returns>
+    </member>
+    <member name="E:SuperMap.Realspace.SpatialAnalyst.GridMatchAnalyst.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.InterpolationAlgorithmType">
+      <summary>
+            This enumeration defines the type constants of the algorithm supported by the three-dimensional interpolation analysis.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.InterpolationAlgorithmType.IDW">
+      <summary>
+            Inverse Distance Weighted interpolation method.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.InterpolationAlgorithmType.SimpleKriging">
+      <summary>
+            Simple Kriging interpolation method.3d interpolation does not support this method.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.InterpolationAlgorithmType.Kriging">
+      <summary>
+            Ordinary Kriging interpolation.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.InterpolationAlgorithmType.UniversalKriging">
+      <summary>
+            Universal Kriging interpolation.3d interpolation does not support this method.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.InterpolationAlgorithmType.RBF">
+      <summary>
+            The Radial Basis Function (Radial Basis Function) interpolation method.3d interpolation does not support this method.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.InterpolationAlgorithmType.DENSITY">
+      <summary>
+            Point Density interpolation.3d interpolation does not support this method.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.SpatialAnalyst.InterpolationAlgorithmType.BarrierKriging">
+      <summary>
+            Obstacle, lv gold interpolation method.3d interpolation does not support this method.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.InterpolationIDWParameter3D">
+      <summary>
+            The Inverse Distance weighting parameter class，from <see cref="T:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D">InterpolationParameter3D</see> class This class can provide necessary parameter information for IDW interpolation algorithm, including power subtraction, search mode, interpolation operation, etc.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D">
+      <summary>
+           3d interpolation parameter class, which is the base class of the parameter class of various 3d interpolation methods, provides the necessary parameter information for the 3d interpolation algorithm.
+            Such as the scope of analysis, the set of elevation values of the profile, the resolution of the grid data, the search mode of the participating operation, the search radius of the point of the operation, and the number of points to be searched.
+            The InterpolationParameter3D class has two derived classes, the range of the inverse weight interpolation parameters（<see cref="T:SuperMap.Realspace.SpatialAnalyst.InterpolationIDWParameter3D">InterpolationIDWParameter3D</see>）Parameters of class and klykin interpolation （<see cref="T:SuperMap.Realspace.SpatialAnalyst.InterpolationIDWParameter3D">InterpolationKrigingParameter3D</see>）class.
+            ，It is used to provide the necessary parameter information for the corresponding 3d interpolation algorithm.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.ToString">
+      <summary>
+            Returns a string representing an interpolation analysis method parameter class instance. format {Bounds=,ExpectedCount=,Resolution=,SearchMode=,SearchRadius=,Type=}
+            </summary>
+      <returns>Represents the string of the parameter class instance of this interpolation analysis method.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.Dispose">
+      <summary>
+            Release the resources consumed by the object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.Resolution">
+      <summary>
+            Gets or sets the resolution of the raster data obtained by the 3d interpolation operation.This value cannot exceed the Bounds of the Bounds of the data set that is to be analyzed.
+            </summary>
+      <value>The default value is 0.0.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.SearchMode">
+      <summary>
+            Gets or sets the method to find the participating operation point in the three-dimensional interpolation operation.
+            </summary>
+      <value>The default value is <see cref="F:SuperMap.Realspace.SpatialAnalyst.SearchMode.KdTreeFixedCount">SearchMode.KdTreeFixedCount</see>。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.SearchRadius">
+      <summary>
+            Gets or sets up the lookup radius to participate in the operation.
+The unit is the same as the point data set that is used for interpolation (or the data set belonging to the recordset).
+Find a decided to participate in the operation point search radius, when the calculation somewhere unknown value, in this location as the center, radius is the value of the attribute set, fall within the scope of the sampling points will participate in the operation, that is, the location of the predicted value is determined by the sampling points within the range of values.
+            </summary>
+      <value>The default value is 0.0, which means that the diagonal length of the cube of the volume of the data cube is the maximum search radius, that is, the area range of the three-dimensional point data set.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.ExpectedCount">
+      <summary>
+            Gets or sets the number of points expected to participate in the interpolation operation.When the lookup method is a fixed-length lookup, it represents the minimum number of points expected to participate in the operation;When looking for a variable length lookup, the most varied number of points expected to participate in the operation is expressed.
+            </summary>
+      <value>The default value is 12.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.Bounds">
+      <summary>
+            Gets or sets the scope of the 3d interpolation analysis to determine the range of raster data sets obtained by running results.
+            </summary>
+      <value> default <see cref="P:SuperMap.Data.Rectangle2D.Empty">Rectangle2D.Empty</see>。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.MaxPointCountInNode">
+      <summary>
+            Gets or sets the maximum number of points in a single block when a block lookup is made.Note that the value must be greater than zero.
+            </summary>
+      <value>The default value is 50.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.MaxPointCountForInterpolation">
+      <summary>
+            Gets or sets the number of points to be inserted at most when a block lookup is made.Note that the value must be greater than zero.
+            </summary>
+      <value>The default value is 200.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.SliceAltitudes">
+      <summary>
+            Gets or sets a set of elevation values for each section of the body data set.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D.Type">
+      <summary>
+            Get the 3d interpolation algorithm type. please refer to <see cref="T:SuperMap.Realspace.SpatialAnalyst.InterpolationAlgorithmType">InterpolationAlgorithmType</see> class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.InterpolationIDWParameter3D.#ctor">
+      <summary>
+            To construct a new InterpolationIDWParameter3D object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.InterpolationIDWParameter3D.#ctor(System.Double,SuperMap.Realspace.SpatialAnalyst.SearchMode,System.Double,System.Int32)">
+      <summary>
+            Based on the specified parameters of constructing a new object InterpolationIDWParameter3D.
+            </summary>
+      <param name="resolution">Based on the specified parameters of constructing a new object InterpolationIDWParameter3D.</param>
+      <param name="mode">When you specify an interpolation operation, find the way to participate in the operation。</param>
+      <param name="searchRadius">Specify the scope of the lookup.</param>
+      <param name="expectedCount">Specifies the number of points to find.</param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.InterpolationIDWParameter3D.#ctor(System.Double,SuperMap.Realspace.SpatialAnalyst.SearchMode,System.Double,System.Int32,System.Int32)">
+      <summary>
+            Based on the specified parameters of constructing a new object InterpolationIDWParameter3D.
+            </summary>
+      <param name="resolution">Specifies the resolution used when the interpolation operation is specified.</param>
+      <param name="mode">When you specify an interpolation operation, find the way to participate in the operation.</param>
+      <param name="searchRadius">Specify the scope of the lookup.</param>
+      <param name="expectedCount">Specifies the number of points to find.</param>
+      <param name="power">The power of the specified distance weight calculation.</param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.InterpolationIDWParameter3D.ToString">
+      <summary>
+            Returns a said InterpolationIDWParameter3D string objects.
+            </summary>
+      <returns>Said InterpolationIDWParameter3D string objects.</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationIDWParameter3D.SearchMode">
+      <summary>
+            Set up the lookup mode.
+            </summary>
+      <value>Default value is SearchMode.None。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationIDWParameter3D.Power">
+      <summary>
+            Gets or sets the power to calculate the distance weights.
+            </summary>
+      <value>The default value is 1.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationIDWParameter3D.Type">
+      <summary>
+            Get the interpolation algorithm type.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.InterpolationKrigingParameter3D">
+      <summary>
+Luecking (Kriging interpolation parameter classes, inherit from SuperMap Realspace.SpatialAnalyst.InterpolationParameter3D"&gt; InterpolationParameter3D class.This class provides the necessary parameter information for Kriging interpolation algorithm, including semi-variable function type, self-correlation threshold, base value, block gold effect value, etc.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.InterpolationKrigingParameter3D.#ctor">
+      <summary>
+            To construct a new InterpolationKrigingParameter3D object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.InterpolationKrigingParameter3D.#ctor(System.Double,SuperMap.Realspace.SpatialAnalyst.SearchMode,System.Double,System.Int32,SuperMap.Realspace.SpatialAnalyst.VariogramMode)">
+      <summary>
+            According to the specified parameters to construct a new object InterpolationKrigingParameter3D.
+            </summary>
+      <param name="resolution">The resolution of the grid data set obtained by the specified interpolation operation.</param>
+      <param name="searchMode">The specified interpolation operation is used to find the way to find the participating operation points.</param>
+      <param name="searchRadius">Find the scope of the search parameter operation point when the specified interpolation operation.</param>
+      <param name="expectedCount">Specifies the number of points to participate in the interpolation operation.</param>
+      <param name="variogramMode">Specifies the type of a semi-variable function.</param>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.InterpolationKrigingParameter3D.ToString">
+      <summary>
+            Returns a said InterpolationKrigingParameter3D string objects.
+            </summary>
+      <returns>Said InterpolationKrigingParameter3D string objects.</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationKrigingParameter3D.VariogramMode">
+      <summary>
+            Gets or sets the semi-variable function type of Kriging interpolation.Currently, ball - type function, exponential function and gaussian type are supported. Please refer to the VariogramMode type for details.
+            </summary>
+      <value>The default value is variogrammode.spherical</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationKrigingParameter3D.Range">
+      <summary>
+            Gets or sets the autocorrelation threshold.Autocorrelation threshold refers to when a function and a half at the time of reaches a certain distance, the trend of the curve can increase again, which tends to level, so called autocorrelation curve the beginning level distance threshold.
+            </summary>
+      <value>The default value is 0.0.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationKrigingParameter3D.Sill">
+      <summary>
+            Gets or sets the base value.
+            </summary>
+      <value>The default value is 0.0.</value>
+      <value>The default is 0.0.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationKrigingParameter3D.Nugget">
+      <summary>
+            Gets or sets a gold effect value.
+            </summary>
+      <value>The default value is 0.0.</value>
+    </member>
+    <member name="P:SuperMap.Realspace.SpatialAnalyst.InterpolationKrigingParameter3D.Type">
+      <summary>
+            Get the interpolation algorithm type.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.SpatialAnalyst.Interpolator3D">
+      <summary>
+            3d interpolation analysis is used to provide a three-dimensional interpolation analysis function for interpolation of discrete three-dimensional point data to get a DatasetVolume composed of multiple grid sections.
+            <para>The three-dimensional interpolation analysis class (Interpolator3D) is similar to the interpolation analysis class (Interpolator) principle, except that the interpolation analysis class is used to interpolate two-dimensional points to obtain a raster data set, and the three-dimensional interpolation analysis class is used for Interpolation of three-dimensional points, the result is a volume data set composed of multiple grid cut surfaces;
+             The two-dimensional interpolation analysis class provides three interpolation methods: inverse distance weighting method (IDW), Kriging interpolation method (Rearning) and radial basis function interpolation (RBF). The three-dimensional interpolation analysis only provides distance inverse weighting method. (IDW), Kriging interpolation method (Kriging) two interpolation methods.</para></summary>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Interpolator3D.Interpolate(SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D,SuperMap.Data.DatasetVector,System.String,System.Double,SuperMap.Data.Datasource,System.String,SuperMap.Data.PixelFormat)">
+      <summary>
+            Three-dimensional interpolation analysis is performed on 3d point data sets and the analysis results are returned.
+            </summary>
+      <param name="parameter">Specify the parameter information required for the 3d interpolation method.</param>
+      <param name="interpolatedPoint">Three-dimensional point data sets that require 3d interpolation analysis.</param>
+      <param name="mValueFieldName">The field name for the value of the 3d interpolation analysis.</param>
+      <param name="mValueScale">The field name for the value of the 3d interpolation analysis.</param>
+      <param name="targetDatasource">A data source for storing the result data set.</param>
+      <param name="targetDatasetName">Specifies the name of the result data set.</param>
+      <param name="pixelFormat">Specifies the pixel format of the resulting grid dataset.</param>
+      <returns>3D interpolation analysis of body data sets.</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.SpatialAnalyst.Interpolator3D.Interpolate(SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D,SuperMap.Data.Recordset,System.String,System.Double,SuperMap.Data.Datasource,System.String,SuperMap.Data.PixelFormat)">
+      <summary>
+            3D interpolation analysis was performed on the three-dimensional point recordset and the analysis results were returned.
+            </summary>
+      <param name="parameter">Specify the parameter information required for the 3d interpolation method。</param>
+      <param name="interpolatedPointRecordset">A 3D set of points for 3d interpolation analysis is required.</param>
+      <param name="mValueFieldName">The field name for the value of the 3d interpolation analysis.</param>
+      <param name="mValueScale">The scaling ratio used for three-dimensional interpolation analysis.</param>
+      <param name="targetDatasource">A data source for storing the result data set.</param>
+      <param name="targetDatasetName">Specifies the name of the result data set。</param>
+      <param name="pixelFormat">Specifies the pixel format of the resulting grid dataset.</param>
+      <returns>3D interpolation analysis of body data sets.</returns>
+    </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.Interpolator3D.Interpolate(SuperMap.Realspace.SpatialAnalyst.InterpolationParameter3D,SuperMap.Data.GeoTIM,SuperMap.Data.Datasource,System.String,SuperMap.Data.PixelFormat)">
+            <summary>
+            Perform three-dimensional interpolation analysis on the irregular tetrahedral mesh and return the analysis results.
+            </summary>
+            <param name="parameter">Specifies the parameter information required for the 3D interpolation method. </param>
+            <param name="tim">irregular tetrahedral mesh</param>
+            <param name="targetDatasource">The data source used to hold the result dataset. </param>
+            <param name="targetDatasetName">Specify the name of the result dataset. </param>
+            <param name="pixelFormat">Specifies the pixel format in which the result raster dataset is stored. </param>
+            <returns> The volume data set obtained by 3D interpolation analysis. </returns>
+        </member>
+        <member name="E:SuperMap.Realspace.SpatialAnalyst.Interpolator3D.Stepped">
+            <summary>
+            Triggers the event when the progress bar is started.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.ModelValidatorParameter"><summary>
+            The parameter class of 3D model checking.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ModelValidatorParameter.#ctor"><summary>
+            Constructs a new ModelValidatorParameter object.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ModelValidatorParameter.IsolatedPointChecked"><summary>
+            Gets or sets whether to check the isolated point.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ModelValidatorParameter.ConnectivityProcessed"><summary>
+            Gets or sets whether to check the connectivity.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ModelValidatorParameter.NoncoplanarIntersectionChecked"><summary>
+            Gets or sets whether to check the regions intersecting.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ModelValidatorParameter.AmbiguousLineChecked"><summary>
+            Gets or sets whether to check the ambiguity edges.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ModelValidatorParameter.TriangleProcessed"><summary>
+            Gets or sets whether to check the decay triangle.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ModelValidatorParameter.BorderChecked"><summary>
+            Gets or sets whether to check the border line closed.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ModelValidatorParameter.Repair"><summary>
+            Gets or sets whether to repair.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.MultiViewShed3D"><summary>
+            For multiple visual field overlay analysis, you can set a number of observation points at the same time the target object analysis, overlapping areas as long as any vertebral body visible that is visible.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.MultiViewShed3D.#ctor(SuperMap.Realspace.Scene)"><summary>
+            Constructs a new MultiViewshed3D object based on the specified Scene object.
+            </summary><param name="scene"></param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.MultiViewShed3D.AddViewShed(SuperMap.Realspace.SpatialAnalyst.Viewshed3D)"><summary>
+            Add a visual field analysis.
+            </summary><param name="viewShed">The viewable object to be added.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.MultiViewShed3D.GetViewShed(System.Int32)"><summary>
+            Gets the viewable domain of the specified number.
+            </summary><param name="index">Specifies the number of the analysis object.</param><returns></returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.MultiViewShed3D.RemoveViewShed(System.Int32)"><summary>
+            Removes the viewable domain of the specified number.
+            </summary><param name="index">To be removed the number of the analysis object.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.MultiViewShed3D.Build"><summary>
+            Perform the analysis and get the analysis result.
+            </summary><returns>A Boolean value,returns true if execution succeeds, false otherwise.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.MultiViewShed3D.Clear"><summary>
+            Clean analysis result.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.MultiViewShed3D.ViewShedCount"><summary>
+            Gets the number of viewable domain views for the current scene.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.ObliquePhotogrammetry3DModel"><summary>
+            The output image of oblique photography model lass. This class provides the methods of oblique photography model generating DSM and DOM.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ObliquePhotogrammetry3DModel.#ctor(SuperMap.Realspace.Scene)"><summary>
+            Constructs a ObliquePhotogrammetry3DModel object according to the specified parameter.
+            </summary><param name="scene">The specified 3D planar scene.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ObliquePhotogrammetry3DModel.ModelToDSM(SuperMap.Data.Datasource,System.String,SuperMap.Data.Rectangle2D,System.Double,System.Double)"><summary>
+            The oblique photography model generates DSM. The DSM includes the surface elevation models of surface buildings, bridges, number and so on.
+            </summary><param name="targetDatasource">Datasource for storing the output DSM datasets.</param><param name="dtName">The specified result DSM dataset name.</param><param name="bounds">The specified DSM dataset range.</param><param name="dResolution">The specified DSM dataset resolution.</param><param name="camHeight">The specified camera height of output. The lower the camera height is, the more details the buildings are. Default is 50 meters.</param><returns>The saved dataset name. if it is null, it means failed to output the images.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ObliquePhotogrammetry3DModel.ModelToDOM(System.String,SuperMap.Data.Rectangle2D,System.Double,System.Double)"><summary>
+            The oblique photography model generates DSM (Digital Surface Model). The results are *.tiff image data.
+            </summary><param name="strPicPath">The specified path used to store the result image TIFF files.</param><param name="bounds">The specified range of output results.</param><param name="dResolution">The specified result image resolution.</param><param name="camHeight">The specified camera height of output. The lower the camera height is, the more details the buildings are. Default is 50 meters.</param><returns>Whether to save image file is successful. true means successful; otherwise, false.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ObliquePhotogrammetry3DModel.Output25DMap(System.String,System.Boolean,SuperMap.Data.Rectangle2D,System.Double,System.Double,System.Double,System.Double,System.Double)"><summary>
+            Create 2.5D map
+            </summary><param name="path">Path for storing map</param><param name="bGenerateVectorPlane">Whether create vector region at the same time</param><param name="bounds">Showing range</param><param name="resolution">Map resolution</param><param name="heading">Rotation Angle</param><param name="tilt">Oblique Angle</param><param name="minHeight">Base height of current scene</param><param name="maxHeight">Maximum height of current scene</param><returns>Whether or not finish map generation</returns></member><member name="E:SuperMap.Realspace.SpatialAnalyst.ObliquePhotogrammetry3DModel.Stepped"><summary>
+            The event is trigged when the process bar is activated.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.Profile"><summary>
+            Profile analysis. Choose start and end points in the scene to get the profile analysis result where it can calculate the 3D position of each pixel.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.#ctor(SuperMap.Realspace.Scene)"><summary>
+            Constructs a new Profile object based on the specified Scene object.
+            </summary><param name="scene"></param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.Build"><summary>
+            Perform profile analysis.
+            </summary><returns>True if successful; otherwise, false.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.Clear"><summary>
+            Clean analysis result.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.Dispose"><summary>
+            Release the local resources occupied by the Profile object.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.GetLeftTopPosition"><summary>
+            Return the 3D position of the upper left corner in the profile line texture.
+            </summary><returns>3D position.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.GetRightBottomPosition"><summary>
+            Return the 3D position of the bottom right corner in the profile line texture.
+            </summary><returns>3D position.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.MeasurePoint3D(System.Drawing.Point)"><summary>
+            Calculate the 3D position according to the pixel position.
+            </summary><param name="point2">Specified pixel point in the texture.</param><returns>3D position.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.OutputProfileToBitMap"><summary>
+            Return the bitmap diagram of the profile line texture.
+            </summary><returns>The Bitmap object.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.GetModelIDAndLayerIndex(System.Drawing.Point)"><summary>
+            Returns the model ID (Point.X) and layer Index (Point.Y) of mouse pickup point on the profile
+            </summary><param name="point">The specified mouse pickup point</param><returns>The model ID and layer index</returns></member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.GetObjsVisible(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.Int32}})">
+            <summary>
+            Get the ID of the object that intersects the hatch.
+            </summary>
+            <param name="value">The alias of the object intersecting the hatch and the collection object of the list of intersecting object IDs. The key indicates the object alias that intersects the hatch, and the value is the list of intersecting object IDs</param>
+        </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.Profile.GetPoint3Ds(SuperMap.Data.Datasource,System.String,System.String,System.String)">
+            <summary>
+            Get the set of hatch result points.
+            </summary>
+            <param name="targetDatasource">Specify the result data source</param>
+            <param name="dtName">Specify the result data set name</param>
+            <param name="filedLayerName">Result point set layer field name</param>
+            <param name="fieldIDName">Result Point Set Model ID Field Name</param>
+            <returns>true means that the result set of the hatching result is successful, and false means that the acquisition fails. </returns>
+        </member>
+        <member name="P:SuperMap.Realspace.SpatialAnalyst.Profile.EndPoint">
+            <summary>
+            Gets or sets the finish point of the profile analysis.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Profile.ExtendHeight"><summary>
+            Gets or sets the height of the profile analysis in the 3D space. Unit: meter.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Profile.StartPoint"><summary>
+            Gets or sets the start point of the profile analysis.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.ProfileAnalyst"><summary>
+            Profile analysis class. It's obsolete, replaced by Profile.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProfileAnalyst.CalculatePlumbProfile(SuperMap.Data.Point2D,SuperMap.Data.Point2D,SuperMap.Data.DatasetVector[],SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)"><summary>
+            Perform vertical profile analysis according to specified cut line and return profile line dataset.
+            </summary><param name="startPoint">Specified start point of the cut line.</param><param name="endPoint">Specified end point of the cut line.</param><param name="modelDatasets">Specified model dataset collection. Optional. But at least specifies a raster dataset or a model dataset.</param><param name="surfaceGrid">Specified raster dataset collection. Optional. But at least specifies a raster dataset or a model dataset.</param><param name="targetDatasource">Datasource for storing the output profile line datasets.</param><param name="targetDatasetName">The name of the result profile line dataset.</param><returns>The result profile line dataset.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProfileAnalyst.CalculatePlumbProfile(SuperMap.Data.Point2D,SuperMap.Data.Point2D,SuperMap.Data.DatasetVector[],SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String,SuperMap.Data.AltitudeMode)"><summary>
+            Perform vertical profile analysis according to specified cut line and return profile line dataset.
+            </summary><param name="startPoint">Specified start point of the cut line.</param><param name="endPoint">Specified end point of the cut line.</param><param name="modelDatasets">Specified model dataset collection. Optional. But at least specifies a raster dataset or a model dataset.</param><param name="surfaceGrid">Specified raster dataset collection. Optional. But at least specifies a raster dataset or a model dataset.</param><param name="targetDatasource">Datasource for storing the output profile line datasets.</param><param name="targetDatasetName">The name of the result profile line dataset.</param><param name="altitudeMode">Elevation mode. The model bottom elevation is affected by the elevation mode and the raster data elevation in specified position.</param><returns>The result profile line dataset.</returns></member><member name="T:SuperMap.Realspace.SpatialAnalyst.ProjectionImage"><summary>
+            The video image class. The video is on the 3D scene by loading the images.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.#ctor(SuperMap.Realspace.Scene)"><summary>
+            Constructs a new ProjectionImage object based on the specified Scene object.
+            </summary><param name="scene">The specified scene.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.#ctor(SuperMap.Realspace.Scene,System.Drawing.Bitmap)"><summary>
+            Constructs a new ProjectionImage object based on the specified Scene and Bitmap object.
+            </summary><param name="scene">The specified scene.</param><param name="pImage">The specified Bitmap.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.SetHomonymyPoints(System.Collections.Generic.Dictionary{SuperMap.Data.Point2D,SuperMap.Data.Point3D})"><summary>
+            Set the same name point for the location matching.
+            </summary><param name="value">The point of the same name is supported, the key value is the point in the image, and the value value is the corresponding three-dimensional point in the scene.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.SetDirectionByPoint(SuperMap.Data.Point3D)"><summary>
+            Updates the Heading and Pitch through the specified 3D points
+            </summary><param name="value">The specified 3D point.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.SetImage(System.Drawing.Bitmap)"><summary>
+            Sets map image object.
+            </summary><param name="pImage">The specified image.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.LocateToShootingPosition"><summary>
+            Locates to the shooting position.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.Build"><summary>
+            Perform the video to the 3D scene.
+            </summary><returns>A boolean, true if successful; Otherwise returns false.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.Clear"><summary>
+            Clears the results.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.IsHomonymyPoints"><summary>
+            Gets or sets whether video drop is matched by the same name.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.Position"><summary>
+            Gets or sets the video observation point.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.Heading"><summary>
+            Gets or sets the video observation direction angle.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.Pitch"><summary>
+            Gets or sets the video observation pitch angle.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.HorizontalFov"><summary>
+            Gets or sets the horizontal view range of video observation.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.VerticalFov"><summary>
+            Gets or sets the vertical view range of video observation.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.HintLineVisible"><summary>
+            Gets or sets the visibility of tip line.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.HintLineLength"><summary>
+            Gets or sets the line length.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ProjectionImage.IsVideo"><summary>
+            Gets or sets whether or not the video is cast in the scene. True means to cast the video, and false means to cast the still picture.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D"><summary>
+             3D proximity analysis class. This class is used for distance detection of the 3D pipeline data and distance query of the 3D model data.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D.#ctor"><summary>
+            Construct the road network data compile class object.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D.PipeLineDistanceCheck(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.String,System.Double)"><summary>
+            Distance detection of the 3D pipeline data.
+            </summary><param name="sourceDataset">The specified dataset to be detected.</param><param name="validatingDataset">The specified reference dataset. It will check the line data between the reference dataset and the dataset to be detected. If you don't specify this, it will just check the line data in the line dataset to be detected.</param><param name="targetDatasource">Datasource for storing the output datasets.</param><param name="targetDatasetName">The specified name of the result dataset.</param><param name="radiusFieldName">Pipeline radius field. The unit must be meter. After its setting, the line spacing is the surface distance between the pipelines. You can not specify the field, and the line spacing is calculated without considering the radius.</param><param name="distance">Detection distance. The unit must be meter.</param><returns>The result dataset.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D.ModelDistanceQuery(SuperMap.Data.DatasetVector,SuperMap.Data.Geometry,System.Double,System.String,SuperMap.Data.CursorType)"><summary>
+             3D model distance query.
+             </summary><param name="modelDataset">Specified model dataset.</param><param name="geometry">Query geometries, 3D points or lines.</param><param name="bufferDistance">Query distance, the unit should be meter.</param><param name="attributeFilter">Filter field in the queried model dataset.</param><param name="cursorType">Result recordset cursor type.</param><returns>Query result records.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D.ModelDistanceQuery(SuperMap.Data.Recordset,SuperMap.Data.Geometry,System.Double,SuperMap.Data.CursorType)"><summary>
+             3D model distance query.
+             </summary><param name="recordset">Specified model recordset.</param><param name="geometry">Query geometries, 3D points or lines.</param><param name="bufferDistance">Query distance, the unit should be meter.</param><param name="cursorType">Result recordset cursor type.</param><returns>Query result records.</returns></member><member name="E:SuperMap.Realspace.SpatialAnalyst.ProximityAnalyst3D.Stepped"><summary>
+            The event is trigged when the process bar is activated. 
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.SearchMode"><summary>
+            This enumeration defines the lookup method type constants for the sample points used in 3d interpolation.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.SearchMode.None"><summary>
+            Instead of searching, use all input points for interpolation.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.SearchMode.QuadTree"><summary>
+            Block lookup mode, which is to block the data set according to the maximum number of points within each block of the set, and interpolate operations using the points inside the block.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.SearchMode.KdTreeFixedRadius"><summary>
+            The fixed-length lookup method, that is, all sampling points within the specified radius are involved in the interpolation operation of the raster unit.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.SearchMode.KdTreeFixedCount"><summary>
+            The variable length lookup mode, which is the nearest specified number of sampling points from the grid unit, participates in the lookup operation.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery"><summary>
+            Shadow analysis class, specifying the scope of analysis, setting the shadow type and the analysis period to obtain the result. 
+            Notes: in the 3D spatial analysis, except the shadow analysis, other analysis can not enable the function of shadow. And it will be error after open.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.#ctor(SuperMap.Realspace.Scene)"><summary>
+            Constructs a new ShadowVisibilityQuery object based on the specified Scene object.
+            </summary><param name="scene">The specified scene.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.Build"><summary>
+            Perform shadow analysis.
+            </summary><returns>True if successful; otherwise, false.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.Clear"><summary>
+            Clean analysis result.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.Dispose"><summary>
+            Release local resources occupied by the ShadowVisibilityQuery object.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.GetShadowRatio(System.Drawing.Point)"><summary>
+            Returns the the shadow rate on specified screen position.
+            </summary><param name="point">Specified screen position.</param><returns>The shadow rate, -1 means it fails.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.GetShadowQueryResult(System.Drawing.Point)"><summary>
+            Gets the shadow analysis result of the specified screen position.
+            </summary><param name="point">Specified screen position.</param><returns></returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.BuildDatasetVolumn(SuperMap.Data.Datasource,System.String)"><summary>
+            The result of the shadow analysis is generated as a 3D volume dataset.
+            </summary><param name="targetDatasource">The target data source used to save the body dataset.</param><param name="dtName">The specified body data set name.</param><returns>A Boolean value that indicates whether the generated success, said true generate success, or false on failure.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.BuildDatasetPoint3Ds(SuperMap.Data.Datasource,System.String,System.String)"><summary>
+            The shadow rate analysis result is generated into a three-dimensional point data set.
+            </summary><param name="targetDatasource">The target data source used to save the body dataset.</param><param name="dtName">Export the point data set name.</param><param name="fieldName">The export point data set shadow rate field</param><returns>A Boolean value that indicates whether the generated success, said true generate success, or false on failure.</returns></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.BaseUtcOffset"><summary>
+            Gets or sets the time zone offset.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.ColorDictTable"><summary>
+            Gets or sets the color table.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.EndTime"><summary>
+            Gets or sets the finish time.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.StartTime"><summary>
+            Gets or sets the start time.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.QueryRegion"><summary>
+            Gets or sets the analysis region.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.Spacing"><summary>
+            Gets or sets the point spacing.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.TimeInterval"><summary>
+            Gets or sets the time interval.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.InViewport"><summary>
+            Gets or sets the shadow analysis is carried out in a specified viewport.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.ShadowRatioRange"><summary>
+            Gets or sets the result display range of shadow rate. x component means the upper limit, and y component means the lower limit.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.ShadowVisibilityQueryResult"><summary>
+            The shadow rate analysis result class.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.ShadowVisibilityQueryResult.#ctor(System.Double,SuperMap.Data.Point3D)"><summary>
+            Constructs a new ShadowVisibilityQueryResult object based on the specified Double and Point3D object.
+            </summary><param name="ratio">The specified shadow rate</param><param name="position">The specified 3D point spatial location</param></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.ShadowVisibilityQueryResult.Ratio"><summary>
+            Gets the shadow rate value
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.ShadowVisibilityQuery.ShadowVisibilityQueryResult.Position"><summary>
+            Gets the spatial location of the shadow rate point
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.Sightline"><summary>
+            Visibility analysis. Based on observer points and the target points, in the specified scene, to analyze the results.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.#ctor(SuperMap.Realspace.Scene)"><summary>
+            Constructs a new Sightline object based on the specified Scene object.
+             </summary><param name="scene">The specified Scene object.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.AddTargetPoint(SuperMap.Data.Point3D)"><summary>
+            Add a target point. The angle between the target point and the observation point can not exceed 120 degrees.
+            </summary><param name="value">The specified target point object.</param><returns>The specified target point object index.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.Build"><summary>
+            Perform visibility analysis.
+            </summary><returns>Return true if removed successfully; false otherwise.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.Clear"><summary>
+            Clean analysis result.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.Dispose"><summary>
+            Release the local resources occupied by the Sightline object.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.GetTargetPoint(System.Int32)"><summary>
+            Return the specified target point object according to the index.
+            </summary><param name="index">The specified index.</param><returns>The specified target point object.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.GetTargetPointCount"><summary>
+            Get the number of the target points.
+            </summary><returns>The number of the points.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.RemoveAllTargetPoints"><summary>
+            Remove all target points.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.RemoveTargetPoint(System.Int32)"><summary>
+            Removes the target point according to the index.
+            </summary><param name="index">The specified index.</param><returns>Return true if removed successfully; false otherwise.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.SetTargetPoint(System.Int32,SuperMap.Data.Point3D)"><summary>
+            Add a target point in the specified index position.
+            </summary><param name="index">The specified index.</param><param name="value">The specified target point object.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.GetSightlineResult(System.Int32)"><summary>
+            Return the analysis result according to the target point index.
+            </summary><param name="index">Specified target point index.</param><returns>Analysis result.</returns></member>
+         <member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.GetObjsVisible(System.Int32,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.Int32}})">
+             <summary>
+             Get the ID of the obstacle object.
+             </summary>
+             <param name="index">Specify the index number of the line of sight</param>
+             <param name="value">The ID of the obstacle object. The key is the name of the layer where the object is located, and the value is the id queue of the obstacle object. </param>
+         </member>
+         <member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.ViewerPosition">
+             <summary>
+            The position of the observe point.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.VisibleColor"><summary>
+            Gets or sets the visible color.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.HiddenColor"><summary>
+            Gets or sets the invisible color.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.BarrierPoint"><summary>
+            Gets the coordinates of a barrier point.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.TargetPoint"><summary>
+            Gets target point object.
+            </summary><param name="viewerPos">Specified viewpoint </param>
+             <param name="targetPoint">Specified target point </param>
+             <param name="bVisible"> Whether to view, if true, barrierPoint is the target point, otherwise it is the obstacle point. </param>
+             <param name="barrierPoint">The specified obstacle point. </param></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.ViewPosition"><summary>
+            Gets viewpoint object.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.Visible"><summary>
+            Gets whether it is visible.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Sightline.InViewport"><summary>
+            Gets or sets the visibility analysis is carried out in a specified viewport.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.Sightline.SightlineResult"><summary>
+            The VisibleResult class.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Sightline.SightlineResult.#ctor(SuperMap.Data.Point3D,SuperMap.Data.Point3D,System.Boolean,SuperMap.Data.Point3D)"><summary>
+            Construct a new SightlineResult object according to the observing point, the target point, whether to be visible, barrier point.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.Skyline"><summary>
+            Skyline analysis, set the position of the observer, direction, adding the region object in the height limitation to execute the skyline analysis, it will get the analysis results in the specified scene.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.#ctor(SuperMap.Realspace.Scene)"><summary>
+            Constructs a new Skyline object based on the specified Scene object.
+            </summary><param name="scene">The specified analysis scene.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.AddLimitBody(SuperMap.Data.GeoRegion3D)"><summary>
+            Adds the specified region object in the height limitation and returns the object index.
+            </summary><param name="pLimitBodyRegion3D">The specified region object in the height limitation</param><returns>Index of the specified region object in the height limitation</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.Build"><summary>
+            Execute the skyline analysis
+            </summary><returns>True, if successful; Otherwise false.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.Clear"><summary>
+            Clean analysis result.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.Dispose"><summary>
+            Release the local resources occupied by the SkyLine object.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetLimitRegion(System.Int32)"><summary>
+            Gets the corresponding region object in height limitation which is a flat area according to the specified index.
+            </summary><param name="index">The specified index.</param><returns>The specified region object in the height limitation</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetLimitBodyCount"><summary>
+            Gets the number of the region objects
+            </summary><returns>The number of the region objects</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetLimitModel(System.Int32)"><summary>
+            Gets the region object in the height limitation according to the location.
+            </summary><param name="index">The specified region index.</param><returns></returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.LocateToViewerPosition"><summary>
+            Camera positioning to the observer's position.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.RemoveAllLimitBodies"><summary>
+            Remove all region objects.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.RemoveLimitBody(System.Int32)"><summary>
+            Remove the region object in specified location.
+            </summary><param name="index">The specified region index.</param><returns>True if successful; otherwise, false.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.SetViewerVisible(System.Boolean)"><summary>
+            Set whether the observe point is visible.
+            </summary><param name="visible">True represents visible and false represents invisible.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.SetLimitBody(System.Int32,SuperMap.Data.GeoRegion3D)"><summary>
+            Set the object in height limitation.
+            </summary><param name="index">Index of the specified region object in the height limitation</param><param name="pLimitBodyRegion3D">The specified region object in the height limitation</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetSkyline"><summary>
+            Return the skyline object.
+            </summary><returns>Skyline objects.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetSkyline2D"><summary>
+            Returns the two dimensional line object of the skyline.
+            </summary><returns>Two dimensional objects of the skyline</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetSkylineSector"><summary>
+            To obtain the fan-shaped surface of the skyline and the observation points
+            </summary><returns>The fan surface</returns></member>
+         <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetSkylineSector(System.Double)">
+             <summary>
+             Get the scalloped surface of the skyline and the observation point.
+             </summary>
+             <param name="dSectorRadius">The distance between the skyline and the observation point. </param>
+             <returns>Specify the radius of the scallops</returns>
+         </member>
+         <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetSkylineSectorBody(System.Double)">
+             <summary>
+            To obtain the skyline with the fan surface tensile body composed of observation points
+            </summary><param name="dHeight">The physical appearance of a fan's skyline is made up of observation points</param><returns>Sector stretch object</returns></member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetSkylineSectorBody(System.Double,System.Double)">
+            <summary>
+            Get the scalloped stretch formed by the skyline and the observation point.
+            </summary>
+            <param name="dHeight">Elevation value of the fan-shaped stretch body</param>
+            <param name="dBodyRadius">The distance between the fan-shaped stretch and the observation point. </param>
+            <returns>Generate a scalloped stretch closure body of the specified radius. </returns>
+        </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.Skyline.GetObjsVisible(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.Int32}})">
+            <summary>
+            Get the ID of the building that affects the skyline.
+            </summary>
+            <param name="value">The ID of the building that affects the skyline. The key is the name of the layer where the object is located, and the value is the id queue of the building of the image skyline. </param>
+        </member>
+        <member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.Color">
+            <summary>
+            Gets or sets the color of the skyline.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.Direction"><summary>
+            Gets or sets the angle between the camera and the north direction. Unit: degree.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.Pitch"><summary>
+            Get or set the angle between the camera direction and the water surface direction, the unit: degree.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.Quality"><summary>
+            Get the skyline analysis quality.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.ViewerPosition"><summary>
+            Get or set the observer's position.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.DisplayStyle"><summary>
+            Display mode: DisplayMode.LINE means the line mode, and DisplayMode.FACE means region mode.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.InViewport"><summary>
+            Gets or sets the skyline analysis is carried out in a specified viewport.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.LookAround"><summary>
+            Gets or sets whether to generate a 360° skyline.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Skyline.Raduis"><summary>
+            Gets or sets the horizontal distance between the skyline and the viewpoint.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.Skyline.DisplayMode"><summary>
+            Display mode enum.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.Skyline.DisplayMode.FACE"><summary>
+            Skyline region mode.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.Skyline.DisplayMode.LINE"><summary>
+            Skyline line mode.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.SlopeMap"><summary>
+            Slope and aspect class. Analyze the slope and aspect in specified area.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.#ctor(SuperMap.Realspace.Scene)"><summary>
+            Constructs a new SlopMap object based on the specified Scene object.
+            </summary><param name="scene"></param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.Build"><summary>
+            Perform the slope and aspect analysis.
+            </summary><returns>True if successful; otherwise, false.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.Clear"><summary>
+            Clean analysis result.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.Dispose"><summary>
+            Release the local resources occupied by SlopeMap object.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.GetSlopeDirectionValue(SuperMap.Data.Point3D)"><summary>
+            Gets the aspect value in specified position, it is between 0 to 360. Unit: degree.
+            </summary><param name="point3d">Specified position.</param><returns>Aspect value.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.SlopeMap.GetSlopeValue(SuperMap.Data.Point3D)"><summary>
+            Gets the slope value in specified position, it is between 0 to 90. Unit: degree.
+            </summary><param name="point3d">Specified position.</param><returns>Slope value.</returns></member><member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.CoverageRegion"><summary>
+            Gets or sets the polygon area of slope and aspect analysis.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.ColorDictTable"><summary>
+            Gets or sets the color table.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.CoverageArea"><summary>
+            Gets or sets the analysis area.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.DisplayStyle"><summary>
+            Gets or sets the display mode in the slope analysis.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.MaxVisibleSlope"><summary>
+            Gets or sets the maximum visible slope. Unit: degree.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.MinVisibleSlope"><summary>
+            Gets or sets the minimum visible slope. Unit: degree.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.Opacity"><summary>
+            Gets or sets non-transparency degree. Range: 0-100.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.BorderVisible"><summary>
+            Gets or sets whether the analysis area border is visible or not.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.ArrowMove"><summary>
+            Gets or sets the slope direction arrow to support the movement.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.SlopeMap.BorderColor"><summary>
+            Gets or sets the color of the analysis area border.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.SlopeMap.DisplayMode"><summary>
+            It defines the display mode.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.SlopeMap.DisplayMode.Arrow"><summary>
+            Displayed with arrows.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.SlopeMap.DisplayMode.Face"><summary>
+            Displayed with fill symbol.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.SlopeMap.DisplayMode.Face_And_Arrow"><summary>
+            Displayed with arrows and fill symbol.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D"><summary>
+            This enumeration defines the constants of the field statistics type after the dataset is dissolved.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.Max"><summary>
+            The maximum of the statistics field. Only numeric type and date type are supported. 
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.Min"><summary>
+            The minimum of the statistics field. Only numeric type and the date type are supported. 
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.Sum"><summary>
+            The sum of the statistics field. Only numeric type is supported.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.Mean"><summary>
+            The mean of the statistics field. Only numeric type is supported. 
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.First"><summary>
+            Retains the field value of the first object. The types of numeric, date, boolean and text are supported.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.StatisticsType3D.Last"><summary>
+            Retains the field value of the last object. The types of numeric, date, boolean and text are supported. 
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.UVMappingType"><summary>
+            This class defines the map type constants used to model the texture.
+            </summary>
+        </member>
+        <member name="F:SuperMap.Realspace.SpatialAnalyst.VariogramMode.Exponential">
+            <summary>
+            <para>Exponential Variogram Mode. </para>
+            <para> This type is suitable for situations where the spatial autocorrelation relationship increases exponentially with distance. The figure below shows that the spatial autocorrelation disappears completely in infinity. </para>
+            <para>The exponential function is more common. </para>
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:SuperMap.Realspace.SpatialAnalyst.VariogramMode.Gaussian">
+            <summary>
+            <para>Gaussian Variogram Mode. </para>
+            <para></para>
+            </summary>
+        </member>
+        <member name="F:SuperMap.Realspace.SpatialAnalyst.VariogramMode.Spherical">
+            <summary>
+            <para>Spherical Variogram Mode. </para>
+            <para> This type shows a situation where the spatial autocorrelation relationship is gradually reduced (ie, the value of the semivariable function is gradually increased) until the spatial autocorrelation relationship is 0 beyond a certain distance. Spherical functions are more common. </para>
+            <para></para>
+            </summary>
+        </member>
+        <member name="T:SuperMap.Realspace.SpatialAnalyst.ViewDome">
+            <summary>
+            Plane map method.
+            </summary>
+         </member>
+         <member name="M:SuperMap.Realspace.SpatialAnalyst.ViewDome.#ctor(SuperMap.Realspace.Scene)">
+             <summary>
+             Constructs a new ViewDome object based on the current scene.
+             </summary>
+             <param name="scene"></param>
+         </member>
+         <member name="M:SuperMap.Realspace.SpatialAnalyst.ViewDome.Build">
+             <summary>
+            Cube (box) map mode.
+            </summary></member><member name="F:SuperMap.Realspace.SpatialAnalyst.UVMappingType.CYLINDRICAL"><summary>
+            Cylindrical map method.
+</summary>
+        </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.ViewDome.Dispose">
+            <summary>
+            Release the resources of the openness analysis.
+            </summary>
+        </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.ViewDome.GetViewDomeBody(SuperMap.Realspace.SpatialAnalyst.ViewDome.ViewDomeType)">
+            <summary>
+            Obtain the openness analysis closure.
+            </summary>
+            <param name="type">Opening analysis type, divided into visible and invisible parts. </param>
+            <returns>A successful closed 3D solid model is obtained. </returns>
+        </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.ViewDome.GetViewDomeRatio(SuperMap.Realspace.SpatialAnalyst.ViewDome.ViewDomeType)">
+            <summary>
+            Obtain the openness analysis ratio.
+            </summary>
+            <param name="type">Opening analysis type, divided into visible and invisible parts. </param>
+            <returns>After the analysis is successful, the openness analysis ratio is obtained. </returns>
+        </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.ViewDome.GetViewDomeShell(SuperMap.Realspace.SpatialAnalyst.ViewDome.ViewDomeType)">
+            <summary>
+            Get the openness analysis shell
+            </summary>
+            <param name="type">Opening analysis type, divided into visible and invisible parts. </param>
+            <returns>After the analysis is successful, the openness analysis shell is obtained. </returns>
+        </member>
+        <member name="P:SuperMap.Realspace.SpatialAnalyst.ViewDome.DisplayStyle">
+            <summary>
+            Gets or sets the openness display mode.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Realspace.SpatialAnalyst.ViewDome.Distance">
+            <summary>
+            Visible distance
+            </summary>
+        </member>
+        <member name="P:SuperMap.Realspace.SpatialAnalyst.ViewDome.DomeType">
+            <summary>
+            Cylindrical map, the way the top cover is private mapped.
+            </summary>
+        </member>
+        <member name="F:SuperMap.Realspace.SpatialAnalyst.UVMappingType.SPHERICAL">
+            <summary>
+            Spherical mapping.
+            </summary>
+        </member><member name="P:SuperMap.Realspace.SpatialAnalyst.ViewDome.ViewDomeColor">
+             <summary>
+             Gets or sets the open or invisible part of the color.
+             </summary>
+         </member>
+         <member name="P:SuperMap.Realspace.SpatialAnalyst.ViewDome.ViewDomeLineColor">
+             <summary>
+             Gets or sets the opening outline color.
+             </summary>
+         </member>
+         <member name="P:SuperMap.Realspace.SpatialAnalyst.ViewDome.ViewerPosition">
+             <summary>
+             Openness analysis, observer position.
+             </summary>
+         </member><member name="T:SuperMap.Realspace.SpatialAnalyst.Viewshed3D"><summary>
+            Viewshed analysis. Setting the observe point, target point, horizontal and vertical view angle to create the analysis area and display the analysis result. It is used in a 3D scene.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.#ctor(SuperMap.Realspace.Scene)"><summary>
+            Constructs a new Viewshed3D object based on the specified Scene object.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Dispose"><summary>
+            Show only fill
+            </summary>
+        </member>
+        <member name="F:SuperMap.Realspace.SpatialAnalyst.ViewDome.DisplayMode.FACELINE">
+            <summary>
+            Show fill and wireframe
+            </summary>
+        </member>
+        <member name="T:SuperMap.Realspace.SpatialAnalyst.ViewDome.ViewDomeType">
+            <summary>
+            This enumeration defines the opening analysis type enumeration constant.
+            </summary>
+        </member>
+        <member name="F:SuperMap.Realspace.SpatialAnalyst.ViewDome.ViewDomeType.VISIBLEDOME">
+            <summary>
+            Visible part opening
+            </summary>
+        </member>
+        <member name="F:SuperMap.Realspace.SpatialAnalyst.ViewDome.ViewDomeType.HIDDENDOME">
+            <summary>
+            Invisible partial opening
+            </summary>
+        </member>
+        <member name="T:SuperMap.Realspace.SpatialAnalyst.Viewshed3D">
+            <summary>
+            Visual field analysis, set the observation point, the position of the target, the horizontal and vertical viewing angle range, establish the visual area analysis and display the analysis result in the specified scene. This analysis is for 3D scene model analysis.
+            </summary>
+        </member><member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Build"><summary>
+            Perform the analysis to get the result.
+            </summary><returns>Return true if removed successfully; false otherwise.</returns></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.GetObjsVisible(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.Int32}})"><summary>
+            Used to obtain the visible object ID.
+            </summary><param name="value">You can see the object id, the key is the layer name, and the value is the visible object id queue of the corresponding layer.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Clear"><summary>
+            Clean analysis result.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Dispose"><summary>
+            Release the local resources occupied by Viewshed3D.
+            </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.SetDistDirByPoint(SuperMap.Data.Point3D)"><summary>
+            Calculates the distance and direction between the observe point position and target point.
+            </summary><param name="value">The specified target point position.</param></member><member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.GetObjsVisible(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.Int32}})"><summary>
+            Used to get the ID of visible objects.
+            </summary>
+            <param name="value"> Visible object id, the key is the layer name, and the value is the visible object id queue of the corresponding layer. </param>
+        </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.GetFrustumBody">
+            <summary>
+            Get the entire cone closure
+            </summary>
+            <returns>Successfully returns to the cone closure body</returns>
+        </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.GetHiddenBody">
+            <summary>
+            Get hidden area closure
+            </summary>
+            <returns>Successfully returns hidden area closed body</returns>
+        </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.GetVisibleBody">
+            <summary>
+            Get the visible area closure
+            </summary>
+            <returns>Successfully returns to the visible area closed body</returns>
+        </member>
+        <member name="M:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.GetVisibleInterface">
+            <summary>
+            Get the interface between the visible area and the hidden area
+            </summary>
+            <returns> Successfully returns the closed area of ​​the visible area and the hidden area</returns>
+        </member>
+        <member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Direction">
+            <summary>
+            Gets or sets the angle between the camera and the north direction. Unit: degree.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Distance"><summary>
+            Gets or sets the visible distance.  Unit: meter.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.HiddenAreaColor"><summary>
+            Gets or sets the color of the invisible area.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.HorizontalFov"><summary>
+            Gets or sets the horizontal view angle range. Unit: degree.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Pitch"><summary>
+            Gets or sets the camera pitching angle. Note: this angle is 0 degree when the camera direction is parallel with the horizontal surface. It's different from the camera parameter itself.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.Quality"><summary>
+            Gets or sets the analysis quality level.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.VerticalFov"><summary>
+            Gets or sets the vertical view angle range. Unit: degree.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.ViewerPosition"><summary>
+            Get or set the observer's position.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.VisibleAreaColor"><summary>
+            Gets or sets the color of the visible area.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.HintLineColor"><summary>
+            Gets or sets the notify line color.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.Viewshed3D.InViewport"><summary>
+            Gets or sets the viewshed analysis is carried out in a specified viewport.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.VisibilityAnalyst3D"><summary>
+             3D visibility analysis class. It is obsolete, replaced by Sightline.
+             </summary></member><member name="M:SuperMap.Realspace.SpatialAnalyst.VisibilityAnalyst3D.IsVisible(SuperMap.Data.Point3D,SuperMap.Data.Point3D)"><summary>
+             Perform visibility analysis with on the viewpoint and the target point specified.
+             </summary><param name="viewPoint">The viewpoint object specified.</param><param name="targetPoint">The specified target point object.</param><returns>Returns the visibility analysis result class object.</returns></member><member name="P:SuperMap.Realspace.SpatialAnalyst.VisibilityAnalyst3D.Scene"><summary>
+            Gets or sets the scene object for analysis.
+            </summary></member><member name="T:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D"><summary><para>Visibility analysis result class. OUt of date. It's the return type of the visibility analysis, including the point information, the visibility results and the visibility line object.</para></summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.PointView"><summary>
+            Gets viewpoint object.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.PointTarget"><summary>
+            Gets target point object.
+            </summary></member><member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.Visible"><summary>
+            Gets the visibility of the viewpoint and the target point.
+            </summary><returns>True means the two points are visible from each other, False means invisible.</returns></member><member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.LineVisible"><summary>
+            Gets LineVisible object.
+            </summary><return>The LineVisible object, it a GeoLine3D object.</return></member><member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.LineInvisible"><summary>
+            Gets LineInvisible object.
+            </summary><return>The LineInvisibleobject, it a GeoLine3D object.</return></member><member name="P:SuperMap.Realspace.SpatialAnalyst.VisibleResult3D.BarrierPoint3Ds"><summary>
+            Gets the BarrierPoint3Ds.
+            </summary></member></members>
+</doc>

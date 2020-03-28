@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldInfos>
+	<FieldInfo name="元数据文件名" des=""/>
+	<FieldInfo name="产品名称" des="中文名称，包括比例尺"/>
+	<FieldInfo name="图名" des="缺省 NULL"/>
+	<FieldInfo name="图号" des=""/>
+	<FieldInfo name="基本等高距" des="单位：米；如果为变距等高距，用“、”隔开；缺省 NULL"/>
+	<FieldInfo name="等深线" des="单位：米；如果为变距等深线，用“、”隔开；缺省 NULL"/>
+	<FieldInfo name="产品生产单位" des=""/>
+	<FieldInfo name="产品生产时间" des="格式YYMMDD；缺省 NULL"/>
+	<FieldInfo name="产品出版单位" des=""/>
+	<FieldInfo name="产品出版时间" des="格式YYMMDD；缺省 NULL"/>
+	<FieldInfo name="数据量" des="单位：兆字节（MB），可保留小数点后一位"/>
+	<FieldInfo name="数据格式" des="GeoPDF、栅格PDF"/>
+	<FieldInfo name="图廓角点经度范围" des="单位：度分秒-度分秒：如1163000-1163345"/>
+	<FieldInfo name="图廓角点维度范围" des="单位：度分秒-度分秒：如1163000-1163345"/>
+	<FieldInfo name="西南图廓角点X坐标" des="单位：米，加带号"/>
+	<FieldInfo name="西南图廓角点Y坐标" des="单位：米"/>
+	<FieldInfo name="西北图廓角点X坐标" des="单位：米，加带号"/>
+	<FieldInfo name="西北图廓角点Y坐标" des="单位：米"/>
+	<FieldInfo name="东北图廓角点X坐标" des="单位：米，加带号"/>
+	<FieldInfo name="东北图廓角点Y坐标" des="单位：米"/>
+	<FieldInfo name="东南图廓角点X坐标" des="单位：米，加带号"/>
+	<FieldInfo name="东南图廓角点Y坐标" des="单位：米"/>
+	<FieldInfo name="参照数据格式编号" des=""/>
+	<FieldInfo name="参照图式编号" des=""/>
+	<FieldInfo name="参照要素分类编码编号" des=""/>
+	<FieldInfo name="密级" des="绝密、机密、秘密、内部、公开"/>
+	<FieldInfo name="数据是否加密" des="是、否"/>
+	<FieldInfo name="参考椭球" des="CGCS2000椭球等"/>
+	<FieldInfo name="平面坐标系" des="2000中国大地坐标系、1954北京坐标系等"/>
+	<FieldInfo name="高程系统" des="正常高、大地高"/>
+	<FieldInfo name="高程基准" des="1956黄海高程高程系、1985国家高程基准、独立高程基准等；缺省 NULL"/>
+	<FieldInfo name="深度基准" des="理论最低潮面、略最低低潮面、设计水位、航行基准面、平均海面最低天文潮面等；缺省 NULL"/>
+	<FieldInfo name="地图投影" des="高斯-克吕格投影、等角圆锥投影、墨卡托投影、方位投影等"/>
+	<FieldInfo name="中央经线" des="单位：度"/>
+	<FieldInfo name="分带方式" des="3度带、6度带、不分带"/>
+	<FieldInfo name="投影带号" des=""/>
+	<FieldInfo name="磁偏角" des="小数点前为度，小数点后为分；缺省：-32767.0；缺省 NULL"/>
+	<FieldInfo name="磁坐偏角" des="小数点前为度，小数点后为分；缺省：-32767.0；缺省 NULL"/>
+	<FieldInfo name="坐标纵线偏角" des="小数点前为度，小数点后为分；缺省：-32767.0；缺省 NULL"/>
+	<FieldInfo name="东边接边情况" des="已接、未接、自由边"/>
+	<FieldInfo name="西边接边情况" des="已接、未接、自由边"/>
+	<FieldInfo name="南边接边情况" des="已接、未接、自由边"/>
+	<FieldInfo name="北边接边情况" des="已接、未接、自由边"/>
+	<FieldInfo name="平面位置中误差" des="由图幅检查点统计得出：单位，米；缺省 NULL"/>
+	<FieldInfo name="属性精度" des="符合要求、不符合要求"/>
+	<FieldInfo name="逻辑一致性" des="一致、不一致"/>
+	<FieldInfo name="图幅形式" des="满幅、不满幅、其他"/>
+	<FieldInfo name="接边质量评价" des="合格、不合格"/>
+	<FieldInfo name="质量评分" des="缺省 NULL"/>
+	<FieldInfo name="数据质量总评价" des="合格、不合格"/>
+	<FieldInfo name="数据验收单位" des=""/>
+	<FieldInfo name="数据验收时间" des="YYMMDD"/>
+	<FieldInfo name="主要数据源" des="原图、航片、卫星遥感影像等"/>
+	<FieldInfo name="数据采集设备及软件" des="扫描仪、数字摄影测量系统、野外测量等"/>
+	<FieldInfo name="总层数" des=""/>
+	<FieldInfo name="影像色彩" des="全色、彩色"/>
+	<FieldInfo name="影像分辨率" des="单位，米"/>
+	<FieldInfo name="分发介质" des="CD-ROM、硬盘、网络分发等"/>
+	<FieldInfo name="分发单位联系电话" des="缺省 NULL"/>
+	<FieldInfo name="分发单位通信地址" des="缺省 NULL"/>
+	<FieldInfo name="分发单位名称" des="缺省 NULL"/>
+	<FieldInfo name="分发日期" des="YYMMDD"/>
+</FieldInfos>

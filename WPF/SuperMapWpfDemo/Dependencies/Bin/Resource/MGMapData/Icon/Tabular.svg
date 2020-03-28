@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>Tabular</title>
+    <desc>Created with Sketch.</desc>
+    <g id="1-开始" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="开始" transform="translate(-200.000000, -240.000000)">
+            <g id="新建数据集" transform="translate(10.000000, 240.000000)">
+                <g id="二维">
+                    <g id="属性表" transform="translate(190.000000, 0.000000)">
+                        <g id="分组" transform="translate(3.000000, 3.000000)">
+                            <rect id="矩形" stroke="#5D6D7E" fill="#FFFFFF" x="0.5" y="0.5" width="25" height="25" rx="1"></rect>
+                            <path d="M7,22 L12,22 L12,18 L7,18 L7,22 Z M6,22 L6,18 L3,18 L3,17 L6,17 L6,13 L3,13 L3,12 L6,12 L6,8 L7,8 L7,12 L12,12 L12,8 L13,8 L13,12 L17,12 L17,9 L17,8 L18,8 L18,9 L18,12 L22,12 L22,8 L23,8 L23,23 L22,23 L3,23 L3,22 L6,22 Z M7,13 L7,17 L12,17 L12,13 L7,13 Z M13,22 L17,22 L17,18 L13,18 L13,22 Z M13,17 L17,17 L17,13 L13,13 L13,17 Z M18,13 L18,17 L22,17 L22,13 L18,13 Z M18,22 L22,22 L22,18 L18,18 L18,22 Z" id="合并形状" fill="#A9B4C0"></path>
+                            <rect id="矩形" fill="#27A2DF" x="0" y="0" width="26" height="6"></rect>
+                            <path d="M15,3 L20,3 L20,4 L15,4 L15,3 Z M21,3 L23,3 L23,4 L21,4 L21,3 Z" id="合并形状" fill="#FFFFFF"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,2298 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.NetworkAnalyst</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.AnalystType">
+      <summary>
+                       该枚举定义了用在物流分析中分析模式。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.AnalystType.LeastCost">
+      <summary>
+                       耗费最少模式。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.AnalystType.AverageCost">
+      <summary>
+                       平均耗费模式。
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.BurstAnalyseResult">
+      <summary>
+            爆管分析结果类。爆管分析结果返回关键设施点、普通设施点以及弧段。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.BurstAnalyseResult.CriticalNodes">
+      <summary>
+            获取爆管分析中影响爆管位置上下游的关键设施点。
+            <remark>
+            关键设施点包括两种设施点：
+            <para>1. 爆管位置上游中所有对爆管位置直接影响的设施点。</para><para>2. 下游中受爆管位置直接影响且有流出（即出度大于0）的设施点。</para></remark></summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.BurstAnalyseResult.NormalNodes">
+      <summary>
+            获取爆管分析中受爆管位置影响的普通设施点。
+            </summary>
+      <remark>普通设施点包括三种设施点：
+            <para>1. 受爆管位置直接影响且没有流出（出度为0）的设施点。</para><para>2. 每个上游关键设施点的流出弧段直接影响的所有设施点A（除去所有关键设施点），且设施点A需要满足，上游关键设施点到设施点A的影响弧段与上下游关键设施点的影响弧段有公共部分。</para><para>3. 爆管位置下游受爆管位置直接影响的设施点A（关键设施点2和普通设施点1），设施点A上游中直接影响设施点A的设施点B（除去所有关键设施点），且需要满足，设施点A到设施点B的影响弧段与上下游关键设施点的影响弧段有公共部分。</para></remark>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.BurstAnalyseResult.Edges">
+      <summary>
+            获取上下游影响爆管位置的弧段和受爆管位置影响的弧段。是从爆管位置进行双向搜索关键设施点和普通设施点遍历到的弧段。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.CenterPointInfo">
+      <summary>
+            中心点信息类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.CenterPointInfo.#ctor">
+      <summary>
+            构造一个新的中心点信息对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.CenterPointInfo.#ctor(SuperMap.Analyst.NetworkAnalyst.CenterPointInfo)">
+      <summary>
+            根据给定的中心点信息对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="info">指定的中心点信息对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.CenterPointInfo.CenterID">
+      <summary>
+            获取或设置中心点ID。
+            </summary>
+      <value>默认值为 -1.0 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.CenterPointInfo.CenterPoint">
+      <summary>
+            获取或设置中心点的坐标。
+            </summary>
+      <value>默认值为（0,0）点。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo">
+      <summary>
+            需求点信息类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.#ctor">
+      <summary>
+            构造一个新的需求点信息对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.#ctor(SuperMap.Analyst.NetworkAnalyst.DemandPointInfo)">
+      <summary>
+            根据给定的需求点信息对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="info">指定的需求点信息对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.DemandID">
+      <summary>
+            获取或设置需求点ID。
+            </summary>
+      <value>默认值为 -1.0 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.DemandPoint">
+      <summary>
+            获取或设置需求点的坐标。
+            </summary>
+      <value>默认值为（0,0）点。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.Demand">
+      <summary>
+            获取或设置需求点的需求量。
+            </summary>
+      <value>默认值为 -1.0。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.Demands">
+      <summary>
+            获取或设置需求点的需求量。需求量可以为多维，其维度必须和车辆负载维度和意义相同。若某目的地的需求量过大超过车辆最大负载，分析中会舍弃此点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.UnloadTime">
+      <summary>
+            获取或设置卸载货物时间，表示车辆在该点需要停留的时间。单位默认为分钟。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.StartTime">
+      <summary>
+            获取或设置到达最早时间，表示车辆到达该点的最早时间点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.EndTime">
+      <summary>
+            获取或设置达到最晚时间，表示车辆到达该点的最晚时间点。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.DemandResult">
+      <summary>
+            需求结果类。该类用于返回需求结果的相关信息，包括需求结点的 ID和资源供给中心 ID等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.DemandResult.Dispose">
+      <summary>
+            释放对象所占用的资源。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandResult.ID">
+      <summary>
+            当 IsEdge 属性为 true 时，属性获取的是弧段的 ID，当 IsEdge 属性为 false 时，该属性获取的是结点的 ID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandResult.SupplyCenterID">
+      <summary>
+            获取资源供给中心 ID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandResult.ActualResourceValue">
+      <summary>
+            获取实际被分配的资源量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandResult.IsEdge">
+      <summary>
+            获取需求结果是否是弧段。如果不是弧段，则需求结果是结点。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.DirectionType">
+      <summary>
+                       该枚举定义了方向类型常量。该枚举用在行驶导引子项类中。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.DirectionType.None">
+      <summary>
+                       无方向。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.DirectionType.East">
+      <summary>
+                       东。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.DirectionType.South">
+      <summary>
+                       南。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.DirectionType.West">
+      <summary>
+                       西。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.DirectionType.North">
+      <summary>
+                       北。
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst">
+      <summary>
+            设施网络分析类。它是网络分析功能类之一，主要用于进行各类连通性分析和追踪分析。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.#ctor">
+      <summary>
+            构造一个新的 FacilityAnalyst 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.Load">
+      <summary>
+            根据设施网络分析环境设置加载设施网络模型。
+            </summary>
+      <returns>一个布尔值，用于指示加载设施网络模型是否成功。如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindLoopsFromNodes(System.Int32[])">
+      <summary>
+            根据给定的结点 ID 数组查找与这些结点相连通的环路，返回构成环路的弧段 ID 数组。
+            </summary>
+      <param name="nodeIDs">指定的结点 ID 数组。</param>
+      <returns>与给定结点相连通的环路的弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindLoopsFromEdges(System.Int32[])">
+      <summary>
+             根据给定的弧段 ID 数组查找与这些弧段相连通的环路，返回构成环路的弧段 ID 数组。
+             </summary>
+      <param name="edgeIDs">指定的弧段 ID 数组。</param>
+      <returns>与给定弧段相连通的环路的弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindConnectedEdgesFromNodes(System.Int32[])">
+      <summary>
+             根据给定的结点 ID 数组，查找与这些结点相连通弧段，返回弧段 ID 数组。
+             </summary>
+      <param name="nodeIDs">指定的结点 ID 数组。</param>
+      <returns>弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindConnectedEdgesFromEdges(System.Int32[])">
+      <summary>
+            根据给定的弧段 ID 数组，查找与这些弧段相连通的弧段，返回弧段 ID 数组。
+            </summary>
+      <param name="edgeIDs">指定的弧段 ID 数组。</param>
+      <returns>弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindUnconnectedEdgesFromNodes(System.Int32[])">
+      <summary>
+            根据给定的结点 ID 数组，查找与这些结点不相连通的弧段，返回弧段 ID 数组。
+            </summary>
+      <param name="nodeIDs">指定的结点 ID 数组。</param>
+      <returns>弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindUnconnectedEdgesFromEdges(System.Int32[])">
+      <summary>
+            根据给定的弧段 ID 数组，查找与这些弧段不相连通的弧段，返回弧段 ID 数组。
+            </summary>
+      <param name="edgeIDs">指定的弧段 ID 数组。</param>
+      <returns>弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.CheckLoops">
+      <summary>
+             检查网络环路，返回构成环路的弧段 ID 数组。
+             </summary>
+      <returns>构成环路的弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathFromNodes(System.Int32,System.Int32,System.String,System.Boolean)">
+      <summary>
+             设施网络路径分析，即根据给定的起始和终止结点 ID，查找其间耗费最小的路径，返回该路径包含的弧段、结点及耗费。
+             </summary>
+      <param name="startNodeID">指定的起始结点 ID。</param>
+      <param name="endNodeID">指定的终止结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，遇到不确定流向时分析继续进行；指定为 false，表示不确定流向无效，遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathFromEdges(System.Int32,System.Int32,System.String,System.Boolean)">
+      <summary>
+            设施网络路径分析，即根据给定的起始和终止弧段 ID，查找其间耗费最小的路径，返回该路径包含的弧段、结点及耗费。
+            </summary>
+      <param name="startEdgeID">指定的起始弧段 ID。</param>
+      <param name="endEdgeID">指定的终止弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，遇到不确定流向时分析继续进行；指定为 false，表示不确定流向无效，遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathUpFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            设施网络上游路径分析，根据给定的结点 ID，查询该结点上游耗费最小的路径，返回该路径包含的弧段、结点及耗费。
+            </summary>
+      <param name="nodeID">指定的结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，遇到不确定流向时分析继续进行；指定为 false，表示不确定流向无效，遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。分析失败或没有找到路径则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathUpFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            设施网络上游路径分析，根据给定的弧段 ID，查询该弧段上游耗费最小的路径，返回该路径包含的弧段、结点及耗费。
+            </summary>
+      <param name="edgeID">指定的弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，遇到不确定流向时分析继续进行；指定为 false，表示不确定流向无效，遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。分析失败或没有找到路径则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathDownFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+             设施网络下游路径分析，根据给定的参与分析的结点 ID，查询该结点下游耗费最小的路径，返回该路径包含的弧段、结点及耗费。
+             </summary>
+      <param name="nodeID">指定的结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，遇到不确定流向时分析继续进行；指定为 false，表示不确定流向无效，遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathDownFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            设施网络下游路径分析，根据给定的参与分析的弧段 ID，查询该弧段下游耗费最小的路径，返回该路径包含的弧段、结点及耗费。
+            </summary>
+      <param name="edgeID">指定的弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，遇到不确定流向时分析继续进行；指定为 false，表示不确定流向无效，遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCommonAncestorsFromEdges(System.Int32[],System.Boolean)">
+      <summary>
+            根据给定的弧段 ID 数组，查找这些弧段的共同上游弧段，返回弧段 ID 数组。
+            </summary>
+      <param name="edgeIDs">指定的弧段 ID 数组。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，遇到不确定流向时分析继续进行；指定为 false，表示不确定流向无效，遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>给定弧段的共同上游的弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCommonAncestorsFromNodes(System.Int32[],System.Boolean)">
+      <summary>
+             根据给定的结点 ID 数组，查找这些结点的共同上游弧段，返回弧段 ID 数组。
+             </summary>
+      <param name="nodeIDs">指定的结点 ID 数组。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，遇到不确定流向时分析继续进行；指定为 false，表示不确定流向无效，遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>给定结点的共同上游的弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCommonCatchmentsFromEdges(System.Int32[],System.Boolean)">
+      <summary>
+            根据给定的弧段 ID 数组，查找这些弧段的共同下游弧段，返回弧段 ID 数组。
+            </summary>
+      <param name="edgeIDs">指定的弧段 ID 数组。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，遇到不确定流向时分析继续进行；指定为 false，表示不确定流向无效，遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>给定弧段的共同下游的弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCommonCatchmentsFromNodes(System.Int32[],System.Boolean)">
+      <summary>
+            根据给定的结点 ID 数组，查找这些结点的共同下游弧段，返回弧段 ID 数组。
+            </summary>
+      <param name="nodeIDs">指定的结点 ID 数组。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，遇到不确定流向时分析继续进行；指定为 false，表示不确定流向无效，遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>给定结点的共同下游的弧段 ID 数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindSourceFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+             根据给定的结点 ID 查找源，即从给定结点出发，根据流向查找流向该结点的网络源头，并返回该源到达给定结点的最小耗费路径所包含的弧段、结点及耗费。 
+             </summary>
+      <param name="nodeID">指定的结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindSourceFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的弧段 ID 查找源，即从给定弧段出发，根据流向查找流向该弧段的网络源头，并返回该源到达给定弧段的最小耗费路径所包含的弧段、结点及耗费。
+            </summary>
+      <param name="edgeID">指定的弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindSinkFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的弧段 ID 查找汇，即从给定弧段出发，根据流向查找流出该弧段的下游汇点，并返回给定弧段到达该汇的最小耗费路径所包含的弧段、结点及耗费。 
+            </summary>
+      <param name="edgeID">指定的弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindSinkFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的结点 ID 查找汇，即从给定结点出发，根据流向查找流出该结点的下游汇点，并返回给定结点到达该汇的最小耗费路径所包含的弧段、结点及耗费。 
+            </summary>
+      <param name="nodeID">指定的结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.TraceUpFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+             根据给定的结点 ID 进行上游追踪，即查找给定结点的上游，返回上游包含的弧段、结点及总耗费。
+             </summary>
+      <param name="nodeID">指定的结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.TraceUpFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的弧段 ID 进行上游追踪，即查找给定弧段的上游，返回上游包含的弧段、结点及总耗费。
+            </summary>
+      <param name="edgeID">指定的弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.TraceDownFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的结点 ID 进行下游追踪，即查找给定结点的下游，返回下游包含的弧段、结点及总耗费。
+            </summary>
+      <param name="nodeID">指定的结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.TraceDownFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的弧段 ID 进行下游追踪，即查找给定弧段的下游，返回下游包含的弧段、结点及总耗费。
+            </summary>
+      <param name="edgeID">指定的弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的名称（<see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.BurstAnalyseFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            双向爆管分析，通过指定爆管结点，查找爆管结点上下游中对爆管位置产生直接影响的结点以及受爆管位置直接影响的结点。
+            </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="nodeID">指定的分析结点 ID</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>爆管分析分析结果</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.BurstAnalyseFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            双向爆管分析，通过指定爆管弧段，查找爆管弧段上下游中对爆管位置产生直接影响的结点以及受爆管位置直接影响的结点。
+            </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="edgeID">指定的分析弧段 ID</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>爆管分析分析结果</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCriticalFacilitiesUpFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+             上游关键设施查找，即查找给定弧段的上游中的关键设施结点，返回关键结点 ID 数组及其影响到的下游弧段 ID 数组。
+             </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="edgeID">指定的分析弧段 ID。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。未查找到关键设施结点返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCriticalFacilitiesUpFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            上游关键设施查找，即查找给定结点的上游中的关键设施结点，返回关键结点 ID 数组及其影响到的下游弧段 ID 数组。
+            </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="nodeID">指定的分析结点 ID。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。未查找到关键设施结点返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCriticalFacilitiesDownFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            下游关键设施查找，即查找给定弧段的下游关键设施结点，返回关键设施结点 ID 数组及给定弧段影响到的下游弧段 ID 数组。
+            </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="edgeID">指定的分析弧段 ID。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。未查找到关键设施结点返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCriticalFacilitiesDownFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            下游关键设施查找，即查找给定结点的下游关键设施结点，返回关键结点 ID 数组及其给定结点影响到的下游弧段 ID 数组。
+            </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="nodeID">指定的分析结点 ID。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。未查找到关键设施结点返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.AnalystSetting">
+      <summary>
+            获取或设置设施网络分析的环境。
+            </summary>
+      <value>默认值为一个新构造的 <see cref="T:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting">FacilityAnalystSetting</see> 对象。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystResult">
+      <summary>
+            设施网络分析结果类。该类用于获取查找源和汇、上下游追踪以及查找路径等设施网络分析的结果，包括结果弧段 ID 数组、结果结点 ID 数组以及耗费。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystResult.Nodes">
+      <summary>
+            获取设施网络分析结果中的结点 ID 数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystResult.Edges">
+      <summary>
+            获取设施网络分析结果中的弧段 ID 数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystResult.Cost">
+      <summary>
+            获取设施网络分析结果中的耗费。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting">
+      <summary>
+            设施网络分析环境设置类。该类用于提供设施网络分析时所需要的所有参数信息。设施网络分析环境设置类的各个参数的设置直接影响分析的结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.#ctor">
+      <summary>
+            构造一个新的设施网络分析环境设置对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.#ctor(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting)">
+      <summary>
+            根据给定的设施网络分析环境设置对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="facilityAnalystSetting">给定的设施网络分析环境设置对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.NetworkDataset">
+      <summary>
+            获取或设置网络数据集。必设。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.NodeIDField">
+      <summary>
+            获取或设置网络数据集中标识结点 ID 的字段。必须正确设定标识网络结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmNodeID"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.EdgeIDField">
+      <summary>
+            获取或设置网络数据集中标识弧段 ID 的字段。必须正确设定标识网络弧段 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmID"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.FNodeIDField">
+      <summary>
+            获取或设置网络数据集中标识弧段起始结点 ID 的字段。必须正确设定标识弧段起始结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmFNode"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.TNodeIDField">
+      <summary>
+            获取或设置网络数据集中标识弧段终止结点 ID 的字段。必须正确设定标识弧段终止结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmTNode"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">
+      <summary>
+            获取或设置权值字段信息集合对象。
+            </summary>
+      <value>默认值为包含一个元素的 WeightFieldInfos 对象。该元素的 Name 为“Length”，FTWeightField 和 TFWeightField 都为“SmLength”。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.Tolerance">
+      <summary>
+            获取或设置点到弧段的距离容限。单位与 <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.NetworkDataset">NetworkDataset</see> 属性指定的网络数据集的单位一致。
+            </summary>
+      <value>默认值为 0。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.BarrierNodes">
+      <summary>
+            获取或设置障碍结点的 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.BarrierEdges">
+      <summary>
+            获取或设置障碍弧段的 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.DirectionField">
+      <summary>
+            获取或设置流向字段。如果不指定，在进行设施网络分析时，默认流向均为 0，即与数字化方向相同。在创建流向时，必须设置该属性。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter">
+      <summary>
+              分组分析参数设置类。
+             </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.#ctor">
+      <summary>
+            构造一个新的 GroupAnalystParameter 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.#ctor(SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter)">
+      <summary>
+            根据给定的 GroupAnalystParameter 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="analystParameter">指定的 GroupAnalystParameter 对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.Dispose">
+      <summary>
+            释放 GroupAnalystParameter 对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.BarrierEdges">
+      <summary>
+            获取或设置障碍弧段 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.BarrierPoints">
+      <summary>
+            获取或设置障碍结点的坐标列表。可选。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.BarrierNodes">
+      <summary>
+            获取或设置障碍结点 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.TurnWeightField">
+      <summary>
+            获取或设置转向权值字段。可选。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.WeightName">
+      <summary>
+            获取或设置权值字段信息的名称，即交通网络分析环境设置（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see>）中的权值字段信息集合（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see>）中的某一个权值字段信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> 属性的值。分析时，如果未设置，则默认使用权值字段信息集合中的第一个权值字段信息对象的名称。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.AnalystType">
+      <summary>
+            获取或设置分析模式。
+            </summary>
+      <value>默认值为 LeastCost。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.Points">
+      <summary>
+            获取或设置分析时备选中心点的集合，必设。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResult">
+      <summary>
+             分组分析结果类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResult.Dispose">
+      <summary>
+            释放对象所占用的资源。调用该方法之后，此对象不再可用。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResult.Errors">
+      <summary>
+            返回未分配到的分配点集合。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResult.GroupAnalystResultItems">
+      <summary>
+            返回分析结果项集合。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem">
+      <summary>
+            分组分析结果项类。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem.GroupCenter">
+      <summary>
+            获取分组结果的中心点索引。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem.GroupMember">
+      <summary>
+            获取分组结果的分配点索引集合。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem.Cost">
+      <summary>
+            获取分组结果的总耗费。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem.Lines">
+      <summary>
+            获取分组结果的各个分配点到中心点的线路集合。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem.LoadSum">
+      <summary>
+             获取分组结果的总负载量。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.GroupPointInfo">
+      <summary>
+            分组分析分配点信息类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupPointInfo.#ctor">
+      <summary>
+            构造一个新的 GroupPointInfo 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupPointInfo.#ctor(SuperMap.Analyst.NetworkAnalyst.GroupPointInfo)">
+      <summary>
+            根据给定的 GroupPointInfo 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="info">指定的 GroupPointInfo 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupPointInfo.Load">
+      <summary>
+            获取或设置当前分配点的负载量。
+            </summary>
+      <value>默认值为 -1 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupPointInfo.Point">
+      <summary>
+            获取或设置当前分配点的坐标。
+            </summary>
+      <value>默认值为（0,0）。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter">
+      <summary>
+            选址分区分析参数类。为选址分区分析提供必要的参数信息，包括是否从资源中心分配、资源供给中心集合、权值字段信息的名称、转向权值字段，以及期望的供给中心数量等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.#ctor">
+      <summary>
+            构造一个新的选址分区分析参数对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.#ctor(SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter)">
+      <summary>
+            根据给定的选址分区分析参数对象构造一个新的与其完全相同的选址分区分析参数对象。
+            </summary>
+      <param name="parameter">给定的选址分区分析参数对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.SupplyCenters">
+      <summary>
+            获取或设置资源供给中心集合。
+            </summary>
+      <value>默认值为一个新构造的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.SupplyCenters">SupplyCenters</see> 对象。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.ExpectedSupplyCenterCount">
+      <summary>
+            获取或设置期望用于最终设施选址的资源供给中心数量。当输入值为0时，最终设施选址的资源供给中心数量默认为覆盖分析区域内的所需最少的供给中心数。
+            </summary>
+      <value>默认值为 0 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.IsFromCenter">
+      <summary>
+            获取或设置是否从资源供给中心开始分配资源。
+            </summary>
+      <value>默认值为 false 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.WeightName">
+      <summary>
+            获取或设置权值字段信息的名称，即交通网络分析环境设置中指定的权值字段信息集合对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> 对象）中的某一个权值字段信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> 对象）的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> 属性值。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.TurnWeightField">
+      <summary>
+            获取或设置转向权值字段，该字段是交通网络分析环境设置中指定的转向权值字段集合中的一员。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystResult">
+      <summary>
+            选址分区分析结果类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.LocationAnalystResult.Dispose">
+      <summary>
+            释放对象所占用的资源。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystResult.SupplyResults">
+      <summary>
+            获取资源供给结果对象数组。有关资源供给结果的详细信息，请参见 SupplyResult 类。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystResult.DemandResults">
+      <summary>
+            获取需求结果对象数组。有关资源供给结果的详细信息，请参见 DemandResult 类。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder">
+      <summary>
+            网络建模类。该类是网络分析的建模工具，目前提供根据单个线数据集或多个线和点数据集构建网络数据集，根据设施网络分析的对象创建设施网络流向和创建设施网络等级，以及创建转向表等功能。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String)">
+      <summary>
+             根据指定的线数据集、数据源和数据集名称来构建网络模型数据集。已过时。使用 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector,System.String[],SuperMap.Data.Datasource,System.String)">BuildNetwork</see> 替代。
+             </summary>
+      <param name="lineDataset">指定的线数据集。</param>
+      <param name="outputDatasource">输出的数据源对象，构建好的网络模型数据集将存放于该数据源中。</param>
+      <param name="networkDatasetName">输出的网络模型数据集的名称。</param>
+      <returns>新构建的网络模型数据集，矢量数据集类型。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.CreateTurnTable(SuperMap.Data.DatasetVector,SuperMap.Data.QueryParameter,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            创建转向表数据集。
+            </summary>
+      <param name="networkDataset">指定的网络数据集。</param>
+      <param name="queryParameter">指定的查询参数。</param>
+      <param name="outputDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="outputDatasetName">指定的结果数据集的名称。</param>
+      <returns>返回转向表数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,System.String,System.String,System.String,System.String,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            根据点、线数据及其已有的表达弧段结点拓扑关系的字段，构建网络数据集。 
+            </summary>
+      <param name="lineDataset">指定的用于构建网络数据集的线数据集。</param>
+      <param name="pointDataset">指定的用于构建网络数据集的点数据集。</param>
+      <param name="edgeIDField">指定的线数据集中表示弧段 ID 的字段。如果指定为 null 或空字符串，或指定的字段不存在，则自动使用 SMID 作为弧段 ID。仅支持 16 位整型、32 位整型字段。</param>
+      <param name="fromNodeField">指定的线数据集中表示弧段的起始结点 ID 的字段。仅支持 16 位整型、32 位整型字段。</param>
+      <param name="toNodeField">指定的线数据集中表示弧段的终止结点 ID 的字段。仅支持 16 位整型、32 位整型字段。</param>
+      <param name="nodeIDField">指定的点数据集中表示结点 ID 的字段。仅支持 16 位整型、32 位整型字段。</param>
+      <param name="outputDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="networkDatasetName">指定的结果网络数据集的名称。</param>
+      <returns>构建的网络数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector,System.String[],SuperMap.Data.Datasource,System.String)">
+      <summary>
+            通过线数据集构建网络数据集，可以设置保存的非系统字段。
+            </summary>
+      <param name="lineDataset">指定的用于构建网络数据集的线数据集。</param>
+      <param name="lineFieldNames">指定的结果网络数据集中需要保存的线数据集非系统字段名称的数组。</param>
+      <param name="outputDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="networkDatasetName">指定的结果网络数据集的名称。</param>
+      <returns>构建的网络数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">
+      <summary>
+             根据指定网络数据集中源与汇的位置，为网络数据集创建流向。创建流向以后的网络数据集才可以进行各种设施网络分析。
+             </summary>
+      <param name="facilityAnalystSetting">指定的设施网络分析环境设置对象。注意：在构建设施网络流向或等级时，参数 facilityAnalystSetting 的障碍弧段（BarrierEdges）和障碍结点（BarrierNodes）属性的设置将会无效，因为障碍弧段和障碍结点只在进行设施网络相关分析操作时有效，与网络拓扑结构无关。</param>
+      <param name="sourceIDs">源对应的网络结点 ID 数组。源与汇都是用来建立网络数据集的流向的。网络数据集的流向与源和汇的位置决定。</param>
+      <param name="sinkIDs">汇对应的网络结点 ID 数组。源与汇都是用来建立网络数据集的流向的。网络数据集的流向与源和汇的位置决定。</param>
+      <param name="weightName">给定的权值字段信息对象的名称，即 WeightFieldInfo.Name。</param>
+      <param name="nodeTypeField">结点类型字段名称，结点类型分为源结点、交汇结点、普通结点。该字段是网络结点数据集中的字段，如果不存在则创建该字段。</param>
+      <returns>如果创建成功返回 true，否则 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkHierarchies(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String,System.Boolean)">
+      <summary>
+            为具有流向的网络数据集创建等级，并在指定的等级字段中写入网络数据集的等级信息。
+            </summary>
+      <param name="facilityAnalystSetting">设施网络分析环境设置对象。注意：在构建设施网络流向或等级时，参数 facilityAnalystSetting 的障碍弧段（BarrierEdges）和障碍结点（BarrierNodes）属性的设置将会无效，因为障碍弧段和障碍结点只在进行设施网络相关分析操作时有效，与网络拓扑结构无关。</param>
+      <param name="sourceIDs">源 ID 数组。</param>
+      <param name="sinkIDs">交汇 ID 数组。</param>
+      <param name="weightName">给定的权值字段信息对象的名称，即 WeightFieldInfo.Name。</param>
+      <param name="hierarchyField">给定的等级字段名称。</param>
+      <param name="isUncertainDirectionValid">指定环路是否有效。当该参数为 true 时，环路有效；而当参数为 false 时，环路无效。</param>
+      <returns>如果创建成功返回 true，否则 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector[],SuperMap.Data.DatasetVector[],SuperMap.Data.Datasource,System.String,SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode,System.Double)">
+      <summary>
+             通过线数据集数组和点数据集数组构建网络数据集。已过时。使用 <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector[],SuperMap.Data.DatasetVector[],System.String[],System.String[],SuperMap.Data.Datasource,System.String,SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode,System.Double)">BuildNetwork</see> 替代。
+             </summary>
+      <param name="lineDatasets">指定的线数据集数组。</param>
+      <param name="pointDatasets">指定的点数据集数组。</param>
+      <param name="outputDatasource">指定的输出数据源。</param>
+      <param name="networkDatasetName">指定输出的网络数据集的名称。</param>
+      <param name="networkSplitMode">指定的打断模式。详细信息请参见 NetworkSplitMode 类。</param>
+      <param name="tolerance">点数据集中的点是否可以处理为网络上的结点的容限值。</param>
+      <returns>新构建的网络数据集，矢量数据集类型。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector[],SuperMap.Data.DatasetVector[],System.String[],System.String[],SuperMap.Data.Datasource,System.String,SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode,System.Double)">
+      <summary>
+            通过线数据集数组和点数据集数组（可选）构建网络数据集，可以设置保存的非系统字段及打断模式。
+            </summary>
+      <param name="lineDatasets">指定的用于构建网络数据集的线数据集数组。</param>
+      <param name="pointDatasets">指定的用于构建网络数据集的点数据集数组。可选。</param>
+      <param name="lineFieldNames">指定的结果网络数据集中需要保存的线数据集数组中的非系统字段名称的数组。</param>
+      <param name="pointFieldNames">指定的结果网络数据集中需要保存的点数据集数组中的非系统字段名称的数组。</param>
+      <param name="outputDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="networkDatasetName">指定的结果网络数据集的名称。</param>
+      <param name="networkSplitMode">指定的打断模式。</param>
+      <param name="tolerance">指定的用于判定点是否为网络数据集上的节点的容限值（也可理解为打断容限）。当打断模式为拓扑处理方式（即 <see cref="F:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode.TopologyProcessing">NetworkSplitMode.TopologyProcessing</see>）时，该值即为进行拓扑处理操作所使用的容限值。单位与用于构建网络数据集的点、线数据集的单位相同。</param>
+      <returns>构建的网络数据集。</returns>
+      <exception cref="T:System.ArgumentNullException">lineDatasets 为 null。</exception>
+      <exception cref="T:System.ArgumentException">lineDatasets 长度为 0。</exception>
+      <exception cref="T:System.ArgumentException">tolerance 小于 0。</exception>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.AppendToNetwork(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector[])">
+      <summary>
+            向已有的网络数据集追加数据，可以追加点、线或网络。
+            </summary>
+      <param name="networkDataset">指定的被追加的网络数据集。</param>
+      <param name="datasets">指定的待追加的数据，可以是点、线或网络数据集。</param>
+      <returns>一个布尔值，指示是否追加成功。如果成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode">
+      <summary>
+            该枚举定义了打断模式类型常量。用来控制建立网络数据集时，处理线线打断或点线打断的模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode.None">
+      <summary>
+            不打断。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode.LineSplitByPoint">
+      <summary>
+            点打断线。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode.LineSplitByPointAndLine">
+      <summary>
+            线与线打断，同时点打断线。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode.TopologyProcessing">
+      <summary>
+            拓扑处理方式。使用该方式时，首先会对用于构建的线数据集进行去除重复线、长悬线延伸、弧段求交、去除短悬线、去除冗余点、邻近端点合并和去除假结点等拓扑处理操作，然后再构建网络数据集。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.PathGuide">
+      <summary>
+            行驶导引类。行驶导引记录了从起点到终点的行驶路线。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuide.Count">
+      <summary>
+            获取行使导引对象中子项的个数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuide.Item(System.Int32)">
+      <summary>
+            根据序号获取行驶导引中的导引子项对象。
+            </summary>
+      <param name="index">指定的序号，序号从0开始。</param>
+      <returns>行驶导引子项对象。</returns>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.PathGuideItem">
+      <summary>
+            行驶导引子项类。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Bounds">
+      <summary>
+            获取该行驶导引子项的范围。仅当行驶导引子项为线类型（即 <see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> 为 true）时，为线的最小外接矩形；为点类型（即 <see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> 为 false）时，则为点本身。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.DirectionType">
+      <summary>
+            获取该行驶导引子项的行驶方向，仅当行驶导引子项为线类型（即 <see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> 为 true）时有意义，可以为东、南、西、北。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Distance">
+      <summary>
+            获取站点到网络的距离，仅当行驶导引子项为站点时有效。单位为米。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.ID">
+      <summary>
+            获取该行驶导引子项的 ID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Index">
+      <summary>
+             获取该行驶导引子项的序号。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">
+      <summary>
+            获取该行驶导引子项是线还是点类型。若为 true，表示为线类型，如站点到网络的线段、路段；若为 false，表示为点类型，如站点、转向点或站点被归结到网络上的对应点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsStop">
+      <summary>
+            获取该行驶导引子项是否为站点，或站点被归结到网络上的对应点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Length">
+      <summary>
+            获取该行驶导引子项为线类型（即 <see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> 为 true）时，对应线段的长度。单位为米。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Name">
+      <summary>
+            获取该行驶导引对象子项的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.SideType">
+      <summary>
+            获取该行驶导引子项为站点时，站点在道路的左侧、右侧还是在路上。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.TurnAngle">
+      <summary>
+            获取该行驶导引子项为点类型（即 <see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> 为 false）时，该点处下一步行进的转弯角度。单位为度，精确到 0.1 度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.TurnType">
+      <summary>
+            获取该行驶导引子项为点类型（即 <see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> 为 false）时，该点处下一步行进的转弯方向。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Weight">
+      <summary>
+            获取该行驶导引对象子项的权值（花费）。单位与交通网络分析参数（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see>）对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）对象的权值字段的单位相同。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.GuideLine">
+      <summary>
+            获取该行驶导引子项为线类型（即 <see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> 为 true）时，对应的行驶导引线段。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult">
+      <summary>
+            服务区分析结果类。继承自<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult"> TransportationAnalystResult</see> 类。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">
+      <summary>
+            交通网络分析结果类。该类用于获取分析结果的路由集合、分析途经的结点集合以及弧段集合、行驶导引集合、站点集合和权值集合以及各站点的花费。通过该类的设置，可以灵活地得到最佳路径分析、旅行商分析、物流配送和最近设施查找等分析的结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Dispose">
+      <summary>
+            释放 TransportationAnalystResult 所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Edges">
+      <summary>
+             获取分析结果的途经弧段集合。注意，必须将 <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsEdgesReturn">IsEdgesReturn</see> 设置为 true，分析结果中才会包含途经弧段集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Nodes">
+      <summary>
+             获取分析结果的途经结点集合。注意，必须将 <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsNodesReturn">IsNodesReturn</see> 设置为 true，分析结果中才会包含途经结点集合，否则为一个空的数组。
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.PathGuides">
+      <summary>
+            获取行驶导引集合。注意，必须将 <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsPathGuidesReturn">IsPathGuidesReturn</see> 设置为 true，分析结果中才会包含行驶导引集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Routes">
+      <summary>
+             获取分析结果的路由对象集合（<see cref="T:SuperMap.Data.GeoLineM">GeoLineM</see> 的集合）。注意，必须将 <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsRoutesReturn">IsRoutesReturn</see> 设置为 true，分析结果中才会包含路由集合，否则为一个空的数组。
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.StopIndexes">
+      <summary>
+             获取站点索引的二维数组，该数组反映了站点在分析后的排列顺序。注意，必须将 <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsStopIndexesReturn">IsStopIndexesReturn</see> 设置为 true，分析结果中才会包含站点索引集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.StopWeights">
+      <summary>
+            获取根据站点索引对站点排序后，站点间的花费（权值）。单位与交通网络分析参数（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see>）对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）对象的权值字段的单位相同。
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Weights">
+      <summary>
+             获取代表花费的权值数组。单位与交通网络分析参数（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see>）对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）对象的权值字段的单位相同。
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.ServiceRegions">
+      <summary>
+              获取分析结果的服务区面对象集合。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.ServiceRouteCounts">
+      <summary>
+            获取服务区分析结果中的每个服务区的 Route 个数的一个数组。数组元素的顺序与中心点的指定顺序一致。
+                       </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.PathGuides">
+      <summary>
+            此类不支持该接口。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.StopIndexes">
+      <summary>
+            此类不支持该接口。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.StopWeights">
+      <summary>
+            此类不支持该接口。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.Weights">
+      <summary>
+            获取服务区分析结果中各服务区的耗费。单位与交通网络分析参数（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see>）对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）对象的权值字段的单位相同。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.ServiceType">
+      <summary>
+                       该枚举定义了服务区类型。用在服务区分析中。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.ServiceType.SimpleArea">
+      <summary>
+                       简单服务区。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.ServiceType.ComplexArea">
+      <summary>
+                       复杂服务区。
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.SideType">
+      <summary>
+                       该枚举定义了在路的左边、右边还是在路上的类型常量。用在行驶导引子项类中。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SideType.Left">
+      <summary>
+                       路的左侧。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SideType.Middle">
+      <summary>
+                       在路上（即路的中间）
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SideType.Right">
+      <summary>
+                       路的右侧。
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SideType.None">
+      <summary>
+                       无效值。
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.SupplyCenter">
+      <summary>
+            资源供给中心类，存储了选址分区分析（<see cref="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindLocation(SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter)">FindLocation</see> 方法）中资源供给中心的信息，包括资源供给中心的 ID、最大耗费和类型。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenter.#ctor">
+      <summary>
+            构造一个新的 SupplyCenter 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenter.#ctor(SuperMap.Analyst.NetworkAnalyst.SupplyCenter)">
+      <summary>
+            根据给定的 SupplyCenter 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="supplyCenter">指定的 SupplyCenter 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyCenter.Type">
+      <summary>
+            获取或设置网络分析中资源供给中心点的类型。有关资源供给中心点的类型，请参见 SupplyCenterType 枚举类。
+            </summary>
+      <value>默认值为 Null 类型。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyCenter.ID">
+      <summary>
+            获取或设置资源供给中心点的 ID。
+            </summary>
+      <value>默认值为 -1 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyCenter.MaxWeight">
+      <summary>
+            获取或设置资源供给中心的最大耗费（阻值）。单位与选址分区分析参数（<see cref="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter">LocationAnalystParameter</see>）对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）对象的权值字段的单位相同。中心点最大阻值设置越大，表示中心点所提供的资源可影响范围越大。
+            </summary>
+      <value>默认值为 0 。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.SupplyCenters">
+      <summary>
+            资源供给中心集合类。该类是资源供给中心对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.SupplyCenter">SupplyCenter</see>）的集合，用于对资源供给中心对象进行管理，如添加、删除资源供给中心，获取资源供给中心对象的个数，获取指定序号的资源供给中心对象，以及将资源供给中心集合对象转换为资源供给中心对象数组等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.#ctor">
+      <summary>
+            构造一个新的 SupplyCenters 对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.#ctor(SuperMap.Analyst.NetworkAnalyst.SupplyCenters)">
+      <summary>
+            根据给定的 SupplyCenters 对象构造一个与其完全相同的新对象。 
+            </summary>
+      <param name="supplyCenters">指定的 SupplyCenters 对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.Add(SuperMap.Analyst.NetworkAnalyst.SupplyCenter)">
+      <summary>
+            添加资源供给中心对象到此集合中，添加成功返回被添加对象的序号。
+            </summary>
+      <param name="supplyCenter">待添加的资源供给中心对象。</param>
+      <returns>被添加对象的序号。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.AddRange(SuperMap.Analyst.NetworkAnalyst.SupplyCenter[])">
+      <summary>
+            以数组形式向集合中添加资源供给中心对象，添加成功，返回添加的资源供给中心对象的个数。
+            </summary>
+      <param name="supplyCenters">待添加的资源供给中心对象。</param>
+      <returns>添加资源供给中心对象的个数。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.Remove(System.Int32)">
+      <summary>
+            在资源供给中心集合中删除指定序号的资源供给中心对象。
+            </summary>
+      <param name="index">指定的序号。</param>
+      <returns>删除成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.RemoveRange(System.Int32,System.Int32)">
+      <summary>
+            在资源供给中心集合中从指定序号开始，删除指定个数的资源供给中心对象。
+            </summary>
+      <param name="index">指定的序号。</param>
+      <param name="count">待删除的资源供给中心个数。</param>
+      <returns>被成功删除的对象的个数。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.Clear">
+      <summary>
+            清空集合中的资源供给中心对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.ToArray">
+      <summary>
+            将资源供给中心集合对象转换为资源供给中心对象数组。
+            </summary>
+      <returns>资源供给中心对象数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.GetEnumerator">
+      <summary>
+            返回一个循环访问集合的枚举数。 
+            </summary>
+      <returns>数据集集合中的枚举数。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.Count">
+      <summary>
+            获取资源供给中心点的个数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.Item(System.Int32)">
+      <summary>
+            获取或设置此资源供给中心集合对象中指定序号的资源供给中心对象。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.SupplyCenterType">
+      <summary>
+            该枚举定义了资源供给中心类型常量。网络分析中资源中心点的类型，主要用于选址分区。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SupplyCenterType.Null">
+      <summary>
+            非中心，点在选址分区时不予考虑。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SupplyCenterType.OptionalCenter">
+      <summary>
+            可选中心点，用于选址分区。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SupplyCenterType.FixedCenter">
+      <summary>
+            固定中心点，用于选址分区。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.SupplyResult">
+      <summary>
+            资源供给结果类。该类提供了资源供给的结果，包括资源供给中心的类型、ID、最大阻值、需求点的数量、平均耗费和总耗费等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyResult.Dispose">
+      <summary>
+            释放对象所占用的资源。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.Type">
+      <summary>
+            获取该资源供给中心的类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.ID">
+      <summary>
+            获取该资源供给中心的 ID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.MaxWeight">
+      <summary>
+            获取资源供给中心的最大耗费（阻值）。单位与选址分区分析参数（<see cref="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter">LocationAnalystParameter</see>）对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）对象的权值字段的单位相同。中心点最大阻值设置越大，表示中心点所提供的资源可影响范围越大。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.TotalWeights">
+      <summary>
+            获取总耗费。单位与选址分区分析参数（<see cref="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter">LocationAnalystParameter</see>）对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）对象的权值字段的单位相同。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.DemandCount">
+      <summary>
+            获取该资源供给中心所服务的需求结点的数量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.AverageWeight">
+      <summary>
+            获取平均耗费，即总耗费除以需求点数。单位与 <see cref="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter">LocationAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）对象的权值字段的单位相同。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst">
+      <summary>
+            交通网络分析类。该类用于提供路径分析、旅行商分析、服务区分析、多旅行商（物流配送）分析、最近设施查找和选址分区分析等交通网络分析的功能。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.#ctor">
+      <summary>
+            构造一个新的交通网络分析对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
+      <summary>
+            对网络数据集和转向表进行数据检查。已过时。使用<see cref="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check">Check</see>替代。
+            </summary>
+      <param name="networks">指定的用于存储对网络数据集检查出的错误结果。该集合的元素含义请参见备注部分。</param>
+      <param name="turns">指定的用于存储对转向表检查出的错误结果。该集合的元素含义请参见备注部分。</param>
+      <returns>一个布尔值，表示是否检查成功，如果为 true 表示检查成功，否则表示检查失败。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check">
+      <summary>
+            对交通网络数据集和转向表进行数据检查，返回交通网络分析数据检查结果对象。
+            </summary>
+      <returns>交通网络分析数据检查结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindClosestFacility(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,SuperMap.Data.Point2D,System.Int32,System.Boolean,System.Double)">
+      <summary>
+              根据给定的参数进行最近设施查找分析，事件点为坐标点。
+             </summary>
+      <param name="parameter">交通网络分析参数对象。</param>
+      <param name="eventPoint">事件点坐标。</param>
+      <param name="facilityCount">要查找的设施点数量。</param>
+      <param name="isFromEvent">是否从事件点到设施点进行查找</param>
+      <param name="maxWeight">查找半径。单位同网络分析环境中设置的阻力字段，如果要查找整个网络，该值设为0。</param>
+      <returns>分析结果对象。</returns>
+      <overloads>
+        <summary>
+             最近设施查找分析。 
+             </summary>
+      </overloads>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindClosestFacility(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,System.Int32,System.Int32,System.Boolean,System.Double)">
+      <summary>
+             根据指定的参数进行最近设施查找分析，事件点为结点 ID。
+             </summary>
+      <param name="parameter">交通网络分析参数对象。</param>
+      <param name="eventID">事件点 ID。</param>
+      <param name="facilityCount">要查找的设施点数量。</param>
+      <param name="isFromEvent">是否从事件点到设施点进行查找。</param>
+      <param name="maxWeight">查找半径。单位同网络分析环境中设置的阻力字段，如果要查找整个网络，该值设为0。</param>
+      <returns>分析结果对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindPath(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,System.Boolean)">
+      <summary>
+            最佳路径分析。
+            </summary>
+      <param name="parameter">交通网络分析参数对象。</param>
+      <param name="hasLeastEdgeCount">是否弧段数最少。true 代表按照弧段数最少进行查询，由于弧段数少不代表弧段长度短，所以此时查出的结果可能不是最短路径。如下图所示，如果连接 AB 的绿色路径的弧段数少于黄色路径，当本参数设置为 true 时，绿色路径就是查询得到的路径，当参数设置为 false 时，黄色路径就是查询得到的路径。</param>
+      <returns>分析结果对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindServiceArea(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,System.Double[],System.Boolean,System.Boolean)">
+      <summary>
+             根据指定的参数进行服务区分析。
+             </summary>
+      <param name="parameter">交通网络分析参数对象。</param>
+      <param name="weights">服务区半径数组。数组长度应与给定的服务中心点的数量一致，且数组元素按照顺序与中心点一一对应。服务区半径的单位与指定的权值信息中的正向、反向阻力字段的单位一致。</param>
+      <param name="isFromCenter">是否从中心点开始分析。</param>
+      <param name="isCenterMutuallyExclusive">是否进行服务区互斥处理。如果设置为 true，则进行互斥处理，设置为 false，则不进行互斥处理。</param>
+      <returns>服务区分析结果对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindTSPPath(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,System.Boolean)">
+      <summary>
+             旅行商分析。
+             </summary>
+      <param name="parameter">交通网络分析参数对象。</param>
+      <param name="isEndNodeAssigned">是否指定终点。指定为 true 表示指定终点，此时给定的经过点集合中最后一个点即为终点；否则不指定终点。</param>
+      <returns>分析结果对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Load">
+      <summary>
+            加载网络模型。
+            </summary>
+      <returns>成功返回 true，失败返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.UpdateEdgeWeight(System.Int32,System.Int32,System.Int32,System.String,System.Double)">
+      <summary>
+             该方法用来更新弧段的权值。
+             </summary>
+      <param name="edgeID">被更新的弧段的 ID。</param>
+      <param name="fromNodeID">被更新的弧段的起始结点 ID。</param>
+      <param name="toNodeID">被更新的弧段的终止结点 ID。</param>
+      <param name="weightName">被更新的权值字段所属的权值字段信息对象的名称，即在交通网络分析环境（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see>）中指定的 <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> 对象中相应的 <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> 属性的值。</param>
+      <param name="weight">权值，即用该值更新旧值。单位与 weightName 指定的权值信息字段对象中权值字段的单位相同。</param>
+      <returns>成功返回更新前的权值，失败返回 Double.MinValue。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.UpdateTurnNodeWeight(System.Int32,System.Int32,System.Int32,System.String,System.Double)">
+      <summary>
+            该方法用来更新转向结点的权值。
+            </summary>
+      <param name="nodeID">被更新的转向结点 ID。</param>
+      <param name="fromEdgeID">被更新的转向结点的起始弧段 ID。</param>
+      <param name="toEdgeID">被更新的转向结点的终止弧段 ID。</param>
+      <param name="turnWeightField">转向权值字段名称。</param>
+      <param name="weight">权值，即用该值更新旧值。单位与 turnWeightField 指定的转向权值字段的单位相同。</param>
+      <returns>成功返回更新前的权值，失败返回 Double.MinValue 。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindMTSPPath(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,System.Int32[],System.Boolean)">
+      <summary>
+            多旅行商（物流配送）分析，配送中心为结点 ID 数组。
+            </summary>
+      <param name="parameter">交通网络分析参数对象。</param>
+      <param name="centerNodes">配送中心结点 ID 数组。</param>
+      <param name="hasLeastTotalCost">配送模式是否为总花费最小方案。若为 true，则按照总花费最小的模式进行配送，此时可能会出现某些配送中心点配送的花费较多而其他的配送中心点的花费较少的情况。若为 false，则为局部最优，此方案会控制每个配送中心点的花费，使各个中心点花费相对平均，此时总花费不一定最小。</param>
+      <returns>分析结果对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindMTSPPath(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,SuperMap.Data.Point2Ds,System.Boolean)">
+      <summary>
+             多旅行商（物流配送）分析，配送中心为点坐标串。
+             </summary>
+      <param name="parameter">交通网络分析参数对象。</param>
+      <param name="centerPoints">配送中心点坐标串。</param>
+      <param name="hasLeastTotalCost">配送模式是否为总花费最小方案。若为 true，则按照总花费最小的模式进行配送，此时可能会出现某些配送中心点配送的花费较多而其他的配送中心点的花费较少的情况。若为 false，则为局部最优，此方案会控制每个配送中心点的花费，使各个中心点花费相对平均，此时总花费不一定最小。</param>
+      <returns>分析结果对象。</returns>
+      <overloads>
+        <summary>
+             多旅行商（物流配送）分析。
+             </summary>
+      </overloads>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindLocation(SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter)">
+      <summary>
+             根据给定的参数进行选址分区分析。
+             </summary>
+      <param name="parameter">指定的选址分区分析参数对象。</param>
+      <returns>选址分区分析结果对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.ComputeWeightMatrix(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter)">
+      <summary>
+             计算给定点的耗费矩阵。该矩阵是一个二维 double 数组，存储了任意两点间的最小耗费。
+             </summary>
+      <param name="parameter">指定的交通网络分析参数。</param>
+      <returns>一个存储任意两点间耗费的二维矩阵。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.LoadModel(System.String,SuperMap.Data.DatasetVector)">
+      <summary>
+            加载内存文件。
+            </summary>
+      <param name="fileName">内存文件所处的路径。</param>
+      <param name="datasetVector">所用到的网络数据集。</param>
+      <returns>一个布尔值指定是否加载网络模型。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.CreateModel(System.String)">
+      <summary>
+            创建内存文件。
+            </summary>
+      <param name="fileName">创建内存文件的路径。</param>
+      <returns>一个布尔值指定是内存文件是否生成成功。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindVRPPath(SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter,SuperMap.Analyst.NetworkAnalyst.VehicleInfo[],SuperMap.Analyst.NetworkAnalyst.CenterPointInfo[],SuperMap.Analyst.NetworkAnalyst.DemandPointInfo[])">
+      <summary>
+             物流配送分析。
+             </summary>
+      <param name="parameter">物流配送分析参数对象。</param>
+      <param name="vehicleInfos">车辆信息数组。</param>
+      <param name="centerInfos">中心点信息数组。</param>
+      <param name="demandInfos">需求点信息数组。</param>
+      <returns>物流配送分析结果对象。从9.0.1开始返回值变更为<see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult">VRPAnalystResult</see></returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindCriticalNodes(System.Int32,System.Int32)">
+      <summary>
+            关键结点查询。
+            </summary>
+      <param name="startPoint">分析起点。</param>
+      <param name="endPoint">分析终点。</param>
+      <returns>关键结点ID数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindCriticalEdges(System.Int32,System.Int32)">
+      <summary>
+            关键弧段查询。
+            </summary>
+      <param name="startPoint">分析起点。</param>
+      <param name="endPoint">分析终点。</param>
+      <returns>关键弧段ID数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Allocate(SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter)">
+      <summary>
+            资源分配分析。
+            </summary>
+      <param name="parameter">资源分配分析参数对象。</param>
+      <returns>资源分配分析结果对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindGroup(SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter,SuperMap.Analyst.NetworkAnalyst.GroupPointInfo[],System.Double,System.Double)">
+      <summary>
+            分组分析。
+            </summary>
+      <param name="parameter">分组分析参数对象。</param>
+      <param name="pointInfo">分组分析分配点信息集合。</param>
+      <param name="maxCost">最大耗费值。</param>
+      <param name="maxLoad">最大负载量。</param>
+      <returns>分组分析结果对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Dispose">
+      <summary>
+             释放 TransportationAnalyst 所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.AnalystSetting">
+      <summary>
+             获取或设置交通网络分析环境设置对象。
+             </summary>
+      <value>默认值是不为 null 的 TransportationAnalystSetting 对象。</value>
+    </member>
+    <member name="E:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystCheckResult">
+      <summary>
+            交通网络分析数据检查结果类。该类提供对用于交通网络分析的网络数据集和转向表的检查结果，包括网络数据集弧段错误信息、结点错误信息和转向表错误信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystCheckResult.NodeErrorInfos">
+      <summary>
+            获取结点错误信息。键为网络数据集中错误结点的 SMID，值为错误类型。错误类型的详细说明，请参阅 TransportationAnalyst 类的 <see cref="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check">Check</see> 方法。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystCheckResult.ArcErrorInfos">
+      <summary>
+            获取弧段错误信息。键为网络数据集中错误弧段的 SMID，值为错误类型。错误类型的详细说明，请参阅 TransportationAnalyst 类的 <see cref="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check">Check</see> 方法。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystCheckResult.TurnErrorInfos">
+      <summary>
+            获取弧段错误信息。键为转向表中错误转向的 SMID，值为错误类型。错误类型的详细说明，请参阅 TransportationAnalyst 类的 <see cref="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check">Check</see> 方法。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">
+      <summary>
+                        交通网络分析参数设置类。该类主要用来对交通网络分析的参数进行设置。
+                        </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.#ctor">
+      <summary>
+            构造一个新的交通网络分析参数设置对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.#ctor(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter)">
+      <summary>
+            根据给定的交通网络分析参数设置对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="transportationAnalystParameter">给定的交通网络分析参数设置对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Dispose">
+      <summary>
+            释放 TransportationAnalystParameter 对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.BarrierEdges">
+      <summary>
+            获取或设置障碍弧段 ID 列表。可选。此处指定的障碍弧段与交通网络分析环境（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see>）中指定的障碍弧段共同作用于交通网络分析。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.BarrierPoints">
+      <summary>
+            获取或设置障碍结点的坐标列表。可选。指定的障碍点可以不在网络上（既不在弧段上也不在结点上），分析时将根据距离容限（<see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.Tolerance">Tolerance</see>）把障碍点归结到最近的网络上。目前支持最佳路径分析、最近设施查找、旅行商分析和物流配送分析。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.BarrierNodes">
+      <summary>
+            获取或设置障碍结点 ID 列表。可选。此处指定的障碍结点与交通网络分析环境（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see>）中指定的障碍结点共同作用于交通网络分析。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsEdgesReturn">
+      <summary>
+            获取或设置分析结果中是否包含途经弧段集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Edges">Edges</see> 属性获取途经弧段数组；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsNodesReturn">
+      <summary>
+            获取或设置分析结果中是否包含分析途经的结点集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Nodes">Nodes</see> 属性获取途经结点集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsPathGuidesReturn">
+      <summary>
+             获取或设置分析结果中是否包含行驶导引集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.PathGuides">PathGuides</see> 属性获取行驶导引集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsRoutesReturn">
+      <summary>
+            获取或设置分析结果中是否包含路由对象的集合（即 GeoLineM 的集合）。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Routes">Routes</see> 属性获取路由集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsStopIndexesReturn">
+      <summary>
+            获取或设置分析结果中是否要包含站点索引的集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.StopIndexes">StopIndexes</see> 属性获取站点索引集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Nodes">
+      <summary>
+            获取或设置分析时途经结点 ID 的集合。必设，但与 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Points">Points</see> 属性互斥，如果同时设置，则只有分析前最后的设置有效。例如，先指定了结点集合，又指定了坐标点集合，然后分析，此时只对坐标点进行分析。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Points">
+      <summary>
+            获取或设置分析时途经点的集合。必设，但与 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Nodes">Nodes</see> 属性互斥，如果同时设置，则只有分析前最后的设置有效。例如，先指定了结点集合，又指定了坐标点集合，然后分析，此时只对坐标点进行分析。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.TurnWeightField">
+      <summary>
+            获取或设置转向权值字段。可选。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.WeightName">
+      <summary>
+            获取或设置权值字段信息的名称，即交通网络分析环境设置（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see>）中的权值字段信息集合（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see>）中的某一个权值字段信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> 属性的值。分析时，如果未设置，则默认使用权值字段信息集合中的第一个权值字段信息对象的名称。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.UCross">
+      <summary>
+            获取或设置U型道路禁行限制。该禁行限制针对相邻的3个弧段而设计的，表示在一次分析中，结果道路不能顺次的经过这3条弧段。该设置为二维数组，第一维表示有多少组禁行限制，第二维表示每一组禁行限制的弧段ID（注意每一组禁行限制弧段ID数必须等于3，不等于3的限制是不起作用的）。每一组的3个弧段ID必须是相邻的弧段。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.ServiceType">
+      <summary>
+            获取或设置服务区类型。该设置用在服务区分析时，根据服务区类型的不同构造出不同服务区面。默认值为ServiceType.SimpleArea。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">
+      <summary>
+             交通网络分析环境设置类。该类用于提供交通网络分析时所需要的所有参数信息。交通网络分析环境设置类的各个参数的设置直接影响分析的结果。
+             </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.#ctor">
+      <summary>
+            构造一个新的交通网络分析环境设置类的新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.#ctor(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting)">
+      <summary>
+            根据给定的交通网络分析环境设置对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="transportationAnalystSetting">给定的交通网络分析环境设置对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.BarrierEdges">
+      <summary>
+            获取或设置障碍弧段的 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.BarrierNodes">
+      <summary>
+            获取或设置障碍结点的 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.EdgeIDField">
+      <summary>
+            获取或设置网络数据集中标志弧段 ID 的字段。必须正确设定标识弧段 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmEdgeID"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.EdgeNameField">
+      <summary>
+            获取或设置存储弧段名称的字段。可选。注意，如果不设置，即使将 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsPathGuidesReturn">IsPathGuidesReturn</see> 属性设置为 true，分析结果中也不会返回行驶导引。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.FNodeIDField">
+      <summary>
+            获取或设置网络数据集中标识弧段起始结点 ID 的字段。必须正确设定标识弧段起始结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmFNode"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.NetworkDataset">
+      <summary>
+            获取或设置用于分析的网络数据集。必设。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.NodeIDField">
+      <summary>
+            获取或设置网络数据集中标志结点 ID 的字段。必须正确设定标识结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmNodeID"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.NodeNameField">
+      <summary>
+            获取或设置存储结点名称的字段的字段名。可选。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TNodeIDField">
+      <summary>
+            获取或设置网络数据集中标志弧段终止结点 ID 的字段。必须正确设定标识弧段终止结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmTNode"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.Tolerance">
+      <summary>
+            获取或设置点到弧段的距离容限。单位与 <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.NetworkDataset">NetworkDataset</see> 属性指定的网络数据集的单位相同。注意，当使用坐标点模式（<see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Points">Points</see>，即指定的分析点是坐标点而不是结点 ID），或指定了障碍坐标点（<see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.BarrierPoints">BarrierPoints</see>）进行分析时，需要设置合适的距离容限值，以避免选取的分析点或障碍点不能归结到网络上而导致分析结果不正确。
+            </summary>
+      <value>默认值为0。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TurnDataset">
+      <summary>
+            获取或设置转向表数据集。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TurnFEdgeIDField">
+      <summary>
+            获取或设置转向起始弧段 ID 的字段。仅支持 16 位整型、32 位整型字段。可选。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TurnNodeIDField">
+      <summary>
+            获取或设置转向结点 ID 的字段。仅支持 16 位整型、32 位整型字段。可选。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TurnTEdgeIDField">
+      <summary>
+            获取或设置转向终止弧段 ID 的字段。仅支持 16 位整型、32 位整型字段。可选。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TurnWeightFields">
+      <summary>
+            获取或设置转向权值字段集合。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.WeightFieldInfos">
+      <summary>
+             获取或设置权值字段信息集合对象。
+             </summary>
+      <value>默认值为包含一个元素的 WeightFieldInfos 对象。该元素的名称为 “Length”，正向阻力字段和反向阻力字段都为 “SmLength”。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.RuleField">
+      <summary>
+            获取或设置设置网络数据集中表示网络弧段的交通规则的字段。要求字段类型为文本型。可选。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.FTSingleWayRuleValues">
+      <summary>
+            获取或设置用于表示正向单行线的字符串的数组。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TFSingleWayRuleValues">
+      <summary>
+            获取或设置用于表示逆向单行线的字符串的数组。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.ProhibitedWayRuleValues">
+      <summary>
+            获取或设置用于表示禁行线的字符串的数组。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TwoWayRuleValues">
+      <summary>
+            获取或设置用于表示双向通行线的字符串的数组。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.EdgeFilter">
+      <summary>
+            获取或设置交通网络分析中弧段过滤表达式。可选。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.Bounds">
+      <summary>
+            获取或设置最佳路径分析的分析范围。可选。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TurnType">
+      <summary>
+            该枚举定义了转弯方向类型常量。用在行驶导引子项类中。
+             </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.None">
+      <summary>
+            无效值。
+             </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.End">
+      <summary>
+            终点，不转弯。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.Left">
+      <summary>
+            左转弯。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.Right">
+      <summary>
+             右转弯。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.Ahead">
+      <summary>
+            向前直行。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.Back">
+      <summary>
+            掉头。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.VehicleInfo">
+      <summary>
+            车辆信息类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.#ctor">
+      <summary>
+            构造一个新的车辆信息对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.#ctor(SuperMap.Analyst.NetworkAnalyst.VehicleInfo)">
+      <summary>
+            根据给定的车辆信息对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="info">指定的车辆信息对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.LoadWeight">
+      <summary>
+            获取或设置车辆的负载量。
+            </summary>
+      <value>默认值为 -1.0 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.LoadWeights">
+      <summary>
+            获取或设置车辆的负载量。负载量可以为多维，例如可以同时设置最大承载重量和最大承载体积。要求分析中每一条线路的运输车辆负载量都不超过此值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.Cost">
+      <summary>
+            获取或设置车辆的最大耗费值。单位与分析参数（<see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see>）对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.WeightName">WeightName</see> 属性所设置的单位一致。
+            </summary>
+      <value>默认值为 -1.0。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.StartTime">
+      <summary>
+            获取或设置车辆最早发车时间。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.EndTime">
+      <summary>
+            获取或设置车辆最晚返回时间。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.AreaRatio">
+      <summary>
+            获取或设置物流分析的区域系数。使用在（<see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see>）对象的<see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.AnalystType">AnalystType</see>属性的AREAANALYST方法中。该系数越大，最后结果中线路分配到的点越密集，建议取值范围0到1之间。系数数值根据最远点距离自动取值。
+            </summary>
+      <returns>该系数越大，最后结果中线路分配到的点越密集，建议取值范围0到1之间。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.SEID">
+      <summary>
+            获取或设置物流分析单向路线中的起止结点ID。
+            </summary>
+      <value>默认值为 -1.0 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.SEPoint">
+      <summary>
+            获取或设置物流分析单向路线中的起止点坐标。设置该方法时，（<see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see>）对象的路线类型属性 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.VRPDirectionType">VRPDirectionType</see> 必须为STARTBYCENTER或者ENDBYCENTER，该参数方起作用。
+            </summary>
+      <value>默认值为（0,0）点。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">
+      <summary>
+                        物流配送分析参数设置类。该类主要用来对物流配送分析的参数进行设置。
+                        </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.#ctor">
+      <summary>
+            构造一个新的物流配送分析参数设置对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.#ctor(SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter)">
+      <summary>
+            根据给定的物流配送分析参数设置对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="analystParameter">给定的物流配送分析参数设置对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.Dispose">
+      <summary>
+            释放 TransportationAnalystParameter 对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.BarrierEdges">
+      <summary>
+            获取或设置障碍弧段 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.BarrierPoints">
+      <summary>
+            获取或设置障碍结点的坐标列表。可选。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.BarrierNodes">
+      <summary>
+            获取或设置障碍结点 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsEdgesReturn">
+      <summary>
+            获取或设置分析结果中是否包含途经弧段集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult">VRPAnalystResult</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Edges">Edges</see> 属性获取途经弧段数组；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsNodesReturn">
+      <summary>
+            获取或设置分析结果中是否包含分析途经的结点集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult">VRPAnalystResult</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Nodes">Nodes</see> 属性获取途经结点集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsPathGuidesReturn">
+      <summary>
+             获取或设置分析结果中是否包含行驶导引集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult">VRPAnalystResult</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.PathGuides">PathGuides</see> 属性获取行驶导引集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsRoutesReturn">
+      <summary>
+            获取或设置分析结果中是否包含路由对象的集合（即 GeoLineM 的集合）。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult">VRPAnalystResult</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Routes">Routes</see> 属性获取路由集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsStopIndexesReturn">
+      <summary>
+            获取或设置分析结果中是否要包含站点索引的集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult">VRPAnalystResult</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.StopIndexes">StopIndexes</see> 属性获取站点索引集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.TurnWeightField">
+      <summary>
+            获取或设置转向权值字段。可选。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.WeightName">
+      <summary>
+            获取或设置权值字段信息的名称，即交通网络分析环境设置（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see>）中的权值字段信息集合（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see>）中的某一个权值字段信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> 属性的值。分析时，如果未设置，则默认使用权值字段信息集合中的第一个权值字段信息对象的名称。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.TimeWeight">
+      <summary>
+            获取或设置时间字段信息的名称，即交通网络分析环境设置（<see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see>）中的权值字段信息集合（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see>）中的某一个权值字段信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> 属性的值。分析时，如果未设置，则本次分析不使用时间耗费。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.AnalystType">
+      <summary>
+            获取或设置物流分析模式。包括LEASTCOST最小耗费模式（默认）、AVERAGECOST平均耗费模式、AREAANALYST区域分析模式。
+            </summary>
+      <value>默认值为 LeastCost。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.VRPDirectionType">
+      <summary>
+            获取或设置物流分析路线的类型，也可以称之为车辆的行驶模式。包括ROUNDROUTE从中心点出发并回到中心点（默认值）、STARTBYCENTER从中心点出发但不回到中心点、ENDBYCENTER不从中心点出发但回到中心点。。
+            </summary>
+      <value>默认值为 RoundRoute。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.RouteCount">
+      <summary>
+            获取或设置派出车辆数目。按要求设置，此分析中以车辆数为前提得到线路数，线路数与实际派出车辆数相同；若不设置此参数，默认派出车辆数不会超过可以提供的车辆总数N（vehicleInfo[N]）。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult">
+      <summary>
+            VRP分析结果类。该类用于获取分析结果的路由集合、分析途经的结点集合以及弧段集合、行驶导引集合、站点集合和权值集合以及各站点的花费。以及VRP线路的时间耗费与负载总耗费。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Dispose">
+      <summary>
+            释放 TransportationAnalystResult 所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Edges">
+      <summary>
+             获取分析结果的途经弧段集合。注意，必须将 <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsEdgesReturn">IsEdgesReturn</see> 设置为 true，分析结果中才会包含途经弧段集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Nodes">
+      <summary>
+            获取分析结果的途经结点集合。注意，必须将 <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsNodesReturn">IsNodesReturn</see> 设置为 true，分析结果中才会包含途经结点集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.PathGuides">
+      <summary>
+            获取行驶导引集合。注意，必须将 <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsPathGuidesReturn">IsPathGuidesReturn</see> 设置为 true，分析结果中才会包含行驶导引集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Routes">
+      <summary>
+            获取分析结果的路由对象集合（<see cref="T:SuperMap.Data.GeoLineM">GeoLineM</see> 的集合）。注意，必须将 <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsRoutesReturn">IsRoutesReturn</see> 设置为 true，分析结果中才会包含路由集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.StopIndexes">
+      <summary>
+             获取站点索引的二维数组，该数组反映了站点在分析后的排列顺序。注意，必须将 <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see> 对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsStopIndexesReturn">IsStopIndexesReturn</see> 设置为 true，分析结果中才会包含站点索引集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.StopWeights">
+      <summary>
+            获取根据站点索引对站点排序后，站点间的花费（权值）。单位与分析参数（<see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see>）对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）对象的权值字段的单位相同。
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Weights">
+      <summary>
+            获取代表花费的权值数组。单位与分析参数（<see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see>）对象的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）对象的权值字段的单位相同。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.VRPDemandValues">
+      <summary>
+             返回物流配送中每条线路的负载量。
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Times">
+      <summary>
+             返回物流配送中每条线路中到达每个配送点的时间（最后一个点除外，其表示到达的时间）。
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.VehicleIndexs">
+      <summary>
+             返回物流配送中每条线路的车辆索引。
+             </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.VRPDirectionType">
+      <summary>
+            该枚举定义了VRP分析路线的类型。
+             </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.VRPDirectionType.RoundRoute">
+      <summary>
+            从中心点出发并回到中心点。
+             </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.VRPDirectionType.StartByCenter">
+      <summary>
+            从中心点出发但不回到中心点。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.VRPDirectionType.EndByCenter">
+      <summary>
+            不从中心点出发但回到中心点。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">
+      <summary>
+                       权值字段信息类型，存储了网络分析中权值字段的相关信息，包括正向权值字段与反向权值字段。
+                       </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.#ctor">
+      <summary>
+                       构造一个新的权值字段信息类的新对象。
+                       </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.#ctor(SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo)">
+      <summary>
+                       根据给定的权值字段信息对象构造一个与其完全相同的新对象。
+                       </summary>
+      <param name="weightFieldInfo">指定的权值字段信息对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.FTWeightField">
+      <summary>
+                       获取或设置正向阻力字段或字段表达式。
+                       </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">
+      <summary>
+                       获取或设置权值字段信息的名称。
+                       </summary>
+      <value>默认值为 UntitledWeightFieldInfo。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.TFWeightField">
+      <summary>
+                       获取或设置反向阻力字段或字段表达式。
+                       </summary>
+      <value>默认值为 String.Empty。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">
+      <summary>
+            权值字段信息集合类。该类是权值字段信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>）的集合，用于对权值字段信息对象进行管理，如添加、删除、获取指定名称或索引的权值字段信息对象等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.#ctor">
+      <summary>
+            构造一个新的 WeightFieldInfos 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.#ctor(SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos)">
+      <summary>
+            根据给定的 WeightFieldInfos 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="weightFieldInfos">指定的 WeightFieldInfos 对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Add(SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo)">
+      <summary>
+                       用于在权值字段信息集合中加入一个元素。
+                       </summary>
+      <param name="weightFieldInfo">要加入的权值字段信息对象。</param>
+      <returns>新添元素的序号。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Clear">
+      <summary>
+                       用于从权值字段信息集合移除全部权值字段信息对象。执行清除操作后，所有被移除的对象都被释放。
+                       </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.GetEnumerator">
+      <summary>
+                       返回一个循环访问权值字段信息集合的枚举数。 
+                       </summary>
+      <returns>可用于循环访问集合的 IEnumerator 对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.IndexOf(System.String)">
+      <summary>
+                       根据指定的名称获得权值字段信息对象的序号。
+                       </summary>
+      <param name="name">要索引的 WeightFieldInfo 的名称。</param>
+      <returns>指定名称的权值字段信息对象在权值字段信息集合中的序号。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Remove(System.Int32)">
+      <summary>
+                       用于从权值字段信息集合移除指定序号的权值字段信息对象。被移除的项将被释放。
+                       </summary>
+      <param name="index">将要删除元素的序号。</param>
+      <returns>删除成功返回 true；否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Remove(System.String)">
+      <summary>
+                       从权值字段信息集合中移除指定名称的项。被移除的项将被释放。
+                       </summary>
+      <param name="name">将要删除权值字段信息对象的名称。</param>
+      <returns>删除成功返回 true；否则返回 false.</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Count">
+      <summary>
+                       获取给定的权值字段信息集合中元素的总数。
+                       </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Item(System.String)">
+      <summary>
+                       根据名称返回权值字段信息集合对象中的权值字段信息对象。
+                       </summary>
+      <param name="name">指定的名称，其值为 WeightFieldInfo.Name。用于检索权值字段信息对象。</param>
+      <returns>权值字段信息对象。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Item(System.Int32)">
+      <summary>
+                       根据 Index 获取权值字段信息集合对象中的权值字段信息对象。
+                       </summary>
+      <param name="index">指定的序号值，序号从0开始。</param>
+      <returns>权值字段信息对象。</returns>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.AllocationDemandType">
+      <summary>
+            该枚举定义了资源分配需求模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.AllocationDemandType.Node">
+      <summary>
+            结点需求模式。
+            <para>这种模式下，分析时只考虑结点对资源的需求量，将弧段的需求排除。例如在圣诞节，圣诞老人给儿童派送礼物，圣诞老人的位置为固定中心点、礼物数为资源量，儿童住址为需求结点、某个儿童对礼物数量的需求为该结点的结点需求字段值。很明显圣诞老人结儿童派送礼物时，我们只考虑礼物的分配则这就是一个结点需求事件。</para>&gt;
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.AllocationDemandType.Edge">
+      <summary>
+            弧段需求模式。
+            <para>这种模式下，分析时只考虑弧段对资源的需求量，将结点的需求排除。例如在圣诞节，圣诞老人给儿童派送礼物，圣诞老人的位置为固定中心点、圣诞老人汽车汽油存量为资源量，儿童住址为需求结点、从固定中心点至相邻儿童住址以及相邻儿童住址见的行驶油耗为弧段需求字段值。很明显圣诞老人结儿童派送礼物时，我们只考虑行驶油耗的分配则这就是一个弧段需求事件。</para></summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.AllocationDemandType.Both">
+      <summary>
+            结点和弧段需求模式。
+            <para>同时考虑结点的需求和弧段的需求。例如在圣诞节，圣诞老人给儿童派送礼物，即考虑礼物的分配又考虑行驶油耗则这就是一个结点和弧段需求事件。</para></summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult">
+      <summary>
+            资源分配分析结果类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult.Dispose">
+      <summary>
+            释放对象所占用的资源。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult.DemandResults">
+      <summary>
+            获取需求结果对象数组。有关资源供给结果的详细信息，请参见 DemandResult 类。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult.Routes">
+      <summary>
+            获取分配路径路由结果，数组长度为被分配的资源中心点的个数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult.Nodes">
+      <summary>
+            获取分析结果中经过的结点ID集合。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult.Edges">
+      <summary>
+            获取分析结果中经过的弧段ID集合。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter">
+      <summary>
+            选址分区分析参数类。为选址分区分析提供必要的参数信息，包括是否从资源中心分配、资源供给中心集合、权值字段信息的名称、转向权值字段，以及期望的供给中心数量等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.#ctor">
+      <summary>
+            构造一个新的资源分配分析参数对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.#ctor(SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter)">
+      <summary>
+            根据给定的资源分配分析参数对象构造一个新的与其完全相同的资源分配分析参数对象。
+            </summary>
+      <param name="parameter">给定的资源分配分析参数对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.SupplyCenters">
+      <summary>
+            获取或设置资源供给中心集合。
+            </summary>
+      <value>默认值为一个新构造的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.SupplyCenters">SupplyCenters</see> 对象。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.NodeDemandField">
+      <summary>
+            获取或设置结点需求量字段。该字段是网络数据集中，用于表示网络结点作为需求地的所需资源量的字段名称。
+            </summary>
+      <value>默认值为"NodeDemand"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.EdgeDemandField">
+      <summary>
+            获取或设置弧段需求量字段。该字段是网络数据集中，用于表示网络弧段作为需求地的所需资源量的字段名称。
+            </summary>
+      <value>默认值为"EdgeDemand"。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.IsFromCenter">
+      <summary>
+            获取或设置是否从资源供给中心开始分配资源。
+            </summary>
+      <value>默认值为 true。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.IsConnected">
+      <summary>
+            获取或设置分析过程中生成的路由是否必须连通。
+            </summary>
+      <value>默认值为 true。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.DemandType">
+      <summary>
+            获取或设置资源分配模式。
+            </summary>
+      <value>默认值为 AllocationDemandType.Both。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.WeightName">
+      <summary>
+            获取或设置权值字段信息的名称，即交通网络分析环境设置中指定的权值字段信息集合对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> 对象）中的某一个权值字段信息对象（<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> 对象）的 <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> 属性值。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.TurnWeightField">
+      <summary>
+            获取或设置转向权值字段，该字段是交通网络分析环境设置中指定的转向权值字段集合中的一员。
+            </summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+  </members>
+</doc>

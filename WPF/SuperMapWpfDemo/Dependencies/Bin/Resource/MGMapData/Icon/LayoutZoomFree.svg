@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>地图随图缩放</title>
+    <desc>Created with Sketch.</desc>
+    <g id="军需图标" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-314.000000, -278.000000)">
+            <g id="地图随图缩放" transform="translate(314.000000, 278.000000)">
+                <g transform="translate(3.000000, 3.000000)">
+                    <rect id="矩形" stroke="#5D6D7E" fill="#FFFFFF" x="0.5" y="0.5" width="25" height="25" rx="1"></rect>
+                    <rect id="矩形" fill="#D5D9DF" x="7" y="7" width="12" height="12"></rect>
+                    <g id="编组-29" transform="translate(3.000000, 3.000000)" stroke="#27A2DF" stroke-linecap="round">
+                        <path d="M0.502990723,19.4973145 L7.57405853,12.4262466" id="直线-28"></path>
+                        <polyline id="路径-30" points="0 14.0012054 2.12492043e-14 20.0015106 6.00163269 20.0015106"></polyline>
+                        <path d="M19.5029907,0.497314453 L12.4319229,7.56838226" id="直线-29"></path>
+                        <polyline id="路径-30" transform="translate(17.000519, 2.998810) scale(-1, -1) translate(-17.000519, -2.998810) " points="14.0099487 0 14.0099487 5.99761963 19.9910889 5.99761963"></polyline>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

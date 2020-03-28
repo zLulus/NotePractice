@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>移除方案</title>
+    <desc>Created with Sketch.</desc>
+    <g id="军需图标" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-524.000000, -278.000000)">
+            <g id="移除方案" transform="translate(524.000000, 278.000000)">
+                <g transform="translate(4.000000, 3.000000)">
+                    <path d="M23.5,5.3278702 L18.4144509,0.5 L6,0.5 C5.72385763,0.5 5.5,0.723857625 5.5,1 L5.5,20 C5.5,20.2761424 5.72385763,20.5 6,20.5 L23,20.5 C23.2761424,20.5 23.5,20.2761424 23.5,20 L23.5,5.3278702 Z" id="矩形" stroke="#808FA1" fill="#FFFFFF" fill-rule="nonzero"></path>
+                    <path d="M18.5,10.3278702 L13.4144509,5.5 L1,5.5 C0.723857625,5.5 0.5,5.72385763 0.5,6 L0.5,25 C0.5,25.2761424 0.723857625,25.5 1,25.5 L18,25.5 C18.2761424,25.5 18.5,25.2761424 18.5,25 L18.5,10.3278702 Z" id="矩形" stroke="#5D6D7E" fill="#FFFFFF" fill-rule="nonzero"></path>
+                    <g id="编组-26" transform="translate(3.000000, 10.000000)" stroke="#ACB4C0">
+                        <rect id="矩形" x="0.5" y="0.5" width="12" height="12"></rect>
+                        <path d="M9.5,9.5 L3.5,9.5 L3.5,3.5 L9.5,3.5 L9.5,9.5 Z M3.5,9.75 L3.5,9.5 L9.5,9.5 L9.5,9.75 L9.5,9.5 L9.75,9.5 L9.5,9.5 L9.5,3.5 L9.75,3.5 L9.5,3.5 L9.5,3.25 L9.5,3.5 L3.5,3.5 L3.5,2 L3.5,3.5 L2,3.5 L3.5,3.5 L3.5,9.5 L3.25,9.5 L3.5,9.5 L3.5,9.75 Z" id="形状结合"></path>
+                    </g>
+                    <rect id="矩形" fill="#FFFFFF" x="15" y="21" width="4" height="4"></rect>
+                    <rect id="矩形" fill="#C49F74" x="16" y="22" width="9" height="2"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

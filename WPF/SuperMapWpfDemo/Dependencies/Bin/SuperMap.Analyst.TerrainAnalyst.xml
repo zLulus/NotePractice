@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.TerrainAnalyst</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst">
+      <summary>
+            The hydrology analyst class, which is used to fill sink, flow direction, sink calculation, flow accumulation, basin, flow length, stream to line, and quad mesh.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.BuildQuadMesh(SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Processes the meshing for a simple region object.
+            </summary>
+      <param name="parameter">The parameter of meshing</param>
+      <param name="targetDatasource">The dataset to store the result after meshing</param>
+      <param name="targetDatasetName">The name of the dataset after meshing.</param>
+      <returns>The dataset after meshing. </returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.BuildQuadMesh(SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter)">
+      <summary>
+            Processes the meshing for the simple region object. And returns the array of simple region object 
+            </summary>
+      <param name="parameter">The parameter of meshing</param>
+      <returns>The simple region object array after meshing.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.Basin(SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Drainage basin is calculated according to the flow direction grid.
+            </summary>
+      <param name="directionGrid">The specified flow direction raster dataset.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where directionGrid is.</param>
+      <param name="resultGridName">The specified name of the result dataset.</param>
+      <returns>The drainage basin is grid dataset. If the build fails, it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FillSink(SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Fill sink for DEM grid data.
+            </summary>
+      <param name="surfaceGrid">The specified DEM data to fill sinks.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where surfaceGrid is.</param>
+      <param name="resultGridName">The specified name of the result dataset.</param>
+      <returns>Pseudo sinks DEM grid dataset. If failed, returns null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FillSink(SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String,SuperMap.Data.DatasetVector)">
+      <summary>
+            According to the given sinks data excluded (point or region datasets), fill sinks in DEM grid data, and the result of these sink area is assigned as no value.
+            </summary>
+      <param name="surfaceGrid">The specified DEM data to fill sinks.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where surfaceGrid is.</param>
+      <param name="resultGridName">The specified name of the result dataset.</param>
+      <param name="excludeArea">The sink point or region data used to indicate the known natural sinks or sinks excluded. If it is point dataset, one or more points area are sinks; if it is region dataset, each region object corresponds to a sink.</param>
+      <returns>Pseudo sinks DEM grid dataset. If failed, returns null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FlowDirection(SuperMap.Data.DatasetGrid,System.Boolean,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Calculate flow diretion. In order to guarantee the correctness of the flow, it is recommended to use the DEM grid data after filling.
+            </summary>
+      <param name="surfaceGrid">The specified DEM to calculate flow direction.</param>
+      <param name="forceFlowAtEdge">Specifies whether to force the boundary grid flow outward. If true, the DEM grid at the edge of the flow of all the cells are outward.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where surfaceGrid is.</param>
+      <param name="resultGridName">The specified name of the result dataset.</param>
+      <returns>The result flow grid dataset. If the build fails, it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FlowDirection(SuperMap.Data.DatasetGrid,System.Boolean,SuperMap.Data.Datasource,System.String,System.String)">
+      <summary>
+            Calculate flow direction, and create the elevation gradient gird. In order to guarantee the correctness of the flow, it is recommended to use the DEM grid data after filling.
+            </summary>
+      <param name="surfaceGrid">The specified DEM to calculate flow direction.</param>
+      <param name="forceFlowAtEdge">Specifies whether to force the boundary grid flow outward. If true, the DEM grid at the edge of the flow of all the cells are outward.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where surfaceGrid is.</param>
+      <param name="resultGridName">The specified name of the result dataset.</param>
+      <param name="dropGridName">The specified name of the elevation gradient dataset.</param>
+      <returns>The result flow grid dataset. If the build fails, it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FlowAccumulation(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            This function is used to create a network to show accumulated flow into each cell.
+            </summary>
+      <param name="directionGrid">The specified flow direction grid data.</param>
+      <param name="weightGrid">The weight grid data. If null, there is no weight.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where directionGrid is.</param>
+      <param name="resultGridName">The specified name of the result dataset.</param>
+      <returns>The result accumulative flow grid dataset. If the build fails, it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FlowLength(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,System.Boolean,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Every cell in a raster has a flow path which passes it.
+            </summary>
+      <param name="directionGrid">The specified flow direction grid data.</param>
+      <param name="weightGrid">The weight grid data. If null, there is no weight.</param>
+      <param name="upStream">Specify downstream direction or upstream direction. If true, it is upstream, otherwise, false. </param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where directionGrid is.</param>
+      <param name="resultGridName">The name of the result length dataset.</param>
+      <returns>The result flow length grid dataset. If the build fails, it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.PourPoints(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,System.Int32,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            The pour point grid is generated based on the flow grid and cumulative water grid.
+            </summary>
+      <param name="directionGrid">The specified flow direction grid data.</param>
+      <param name="accumulationGrid">The accumulation grid.</param>
+      <param name="areaLimit">The area limit.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where directionGrid is.</param>
+      <param name="resultGridName">The specified name for the result  grid dataset.</param>
+      <returns>The result pour point grid dataset. If the build fails, it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.StreamLink(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Stream linkage refers to assigning a unique value for each river according to the grid water system and the flow grid.
+            </summary>
+      <param name="streamGrid">The grid water system data.</param>
+      <param name="directionGrid">The specified flow direction grid data.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where directionGrid is.</param>
+      <param name="resultGridName">The specified name for the result  grid dataset.</param>
+      <returns>The grid water system after linking. It is a grid dataset. If failed, return null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.StreamOrder(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,SuperMap.Analyst.TerrainAnalyst.StreamOrderType,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Classify rivers and mark numbers.
+            </summary>
+      <param name="streamGrid">The grid water system data.</param>
+      <param name="directionGrid">The specified flow direction grid data.</param>
+      <param name="orderType">The order type.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where directionGrid is.</param>
+      <param name="resultGridName">The specified name for the result  grid dataset.</param>
+      <returns>After numbering, it is a grid dataset. If failed, return null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.StreamToLine(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.TerrainAnalyst.StreamOrderType)">
+      <summary>
+            Extract vector river system, that is convert raster river system to vector river system and store river levels to the attribute table of the result dataset.
+            </summary>
+      <param name="streamGrid">The grid water system data.</param>
+      <param name="directionGrid">The specified flow direction grid data.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where directionGrid is.</param>
+      <param name="resultGridName">The specified name for the result  grid dataset.</param>
+      <param name="orderType">The order type.</param>
+      <returns>Vector water dataset, as a vector line dataset. If the build fails, it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.Watershed(SuperMap.Data.DatasetGrid,SuperMap.Data.Point2Ds,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            A watershed is also called a contributing area, this function identifies every contributing area through a series of points.
+            </summary>
+      <param name="directionGrid">The specified flow direction grid data.</param>
+      <param name="pourPoints">The pour points, in geographic coordinate unit.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where directionGrid is.</param>
+      <param name="resultGridName">The specified name for the result  grid dataset.</param>
+      <returns>The drainage basin is grid dataset. If the build fails, it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.Watershed(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            A watershed is also called a contributing area, this function identifies every contributing area through a series of points.
+            </summary>
+      <param name="directionGrid">The specified flow direction grid data.</param>
+      <param name="pourPointsGrid">The pour point grid data.</param>
+      <param name="targetDatasource">The specified datasource used to store the result dataset. If set to null, the resulting dataset will be automatically stored in the datasource where directionGrid is.</param>
+      <param name="resultGridName">The specified name for the result  grid dataset.</param>
+      <returns>The drainage basin is grid dataset. If the build fails, it returns null.</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter">
+      <summary>
+            The QuadMeshParameter class. It usually contain the count of rows and columns as well as the coordinates of four tops. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.#ctor">
+      <summary>
+            Build a new object of the QuadMeshParameter class. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.#ctor(SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter)">
+      <summary>
+            Builds a same QuadMeshParameter object as the specified object  
+            </summary>
+      <param name="quadMeshParameter">The meshing parameter object </param>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.#ctor(SuperMap.Data.GeoRegion,System.Int32,System.Int32,SuperMap.Data.Point2D,SuperMap.Data.Point2D,SuperMap.Data.Point2D,SuperMap.Data.Point2D,System.String,System.String)">
+      <summary>
+            Builds a new object according to the parameter.
+            </summary>
+      <param name="quadMeshRegion">The region object for meshing.</param>
+      <param name="rowCount">The row count for meshing.</param>
+      <param name="colCount">The column count for meshing.</param>
+      <param name="leftBottomPoint">The coordinate of the lower left point.</param>
+      <param name="rightBottomPoint">The coordinate of the lower right point.</param>
+      <param name="rightTopPoint">The coordinate of the top right point.</param>
+      <param name="leftTopPoint">The coordinate of the top left point.</param>
+      <param name="colField">The name of the row field</param>
+      <param name="rowField">The name of the column field.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.QuadMeshRegion">
+      <summary>
+            Gets or sets the region object of the meshing.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.RowCount">
+      <summary>
+            Gets or sets the row count in the meshing. 
+            </summary>
+      <value>The default is 0, indicating that it is not processed. If this value is less than RowCount-1, the RowCount-1 will be the maximum tops of the polygon; If this value is greater than RowCount-1, this value will be the maximum tops of the polygon. </value>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.ColCount">
+      <summary>
+            Gets or sets the column count in the meshing. 
+            </summary>
+      <value>The default is 0, indicating that it is not processed. If this value is less than ColCount-1, the ColCount-1 will be the maximum tops of the polygon; If this value is greater than ColCount-1, this value will be the maximum tops of the polygon.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.LeftTopPoint">
+      <summary>
+            Sets the coordinate of top left point of the meshing. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.RightTopPoint">
+      <summary>
+            Sets the coordinate of top right point of the meshing. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.LeftBottomPoint">
+      <summary>
+            Sets  the coordinate of lower left point of the meshing. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.RightBottomPoint">
+      <summary>
+            Sets the  coordinate of lower right  of the meshing.  
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.RowField">
+      <summary>
+            Gets or sets the row field of the meshing result. This field holds the No. of rows.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.ColField">
+      <summary>
+            Gets or sets the column field of the meshing result. This field holds the No. of columns.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TerrainAnalyst.StreamOrderType">
+      <summary>
+            This enumeration defines the stream order type constants.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TerrainAnalyst.StreamOrderType.Strahler">
+      <summary>
+            Strahler river classification.
+            <para>Strahler: the river source is the first level; if the river formed by two same level, then level of the river plus one; if the river formed by two different levels, then the level of this river equals to the original river with higher level.</para><para></para></summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TerrainAnalyst.StreamOrderType.Shreve">
+      <summary>
+            Shreve river classification
+            <para>Shreve: the river source is the first level; if the river formed by two rivers, then the level of the river is the sum of the two. As shown below: the river source is the first level; if the river formed by two rivers, then the level of the river is the sum of the two.</para><para></para></summary>
+    </member>
+  </members>
+</doc>

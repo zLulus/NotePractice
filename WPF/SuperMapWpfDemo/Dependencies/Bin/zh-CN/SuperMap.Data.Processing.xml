@@ -1,0 +1,4266 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Data.Processing</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Data.Processing.CacheBuilderGridTerrain">
+      <summary>
+            地形缓存生成类，实现生成全球剖分方式的地形缓存。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.#ctor">
+      <summary>
+            默认构造一个新的CacheBuilderGridTerrain对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.#ctor(SuperMap.Data.DatasetGrid,System.String)">
+      <summary>
+            根据指定参数构造一个与类名相同的新对象。
+            </summary>
+      <param name="dataset">用于生成地形缓存的栅格数据集。</param>
+      <param name="outputFolder">地形缓存输出路径。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.#ctor(SuperMap.Data.DatasetGrid,System.String,System.String)">
+      <summary>
+            根据指定参数构造一个与类名相同的新对象。
+            </summary>
+      <param name="dataset">用于生成地形缓存的栅格数据集。</param>
+      <param name="outputFolder">地形缓存输出路径。</param>
+      <param name="cacheName">地形缓存名称。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.BuildWithoutConfigFile">
+      <summary>
+            执行生成地形缓存时，不输出配置文件。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.Build">
+      <summary>
+            执行生成地形缓存。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.ComputeLevel">
+      <summary>
+            计算设置数据集所正确的缓存级数，在非默认构造函数中会自动调用该方法，不过通过设置Dataset不会执行该方法。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.ComputeTerrainFileName">
+      <summary>
+            返回计算得到的各个层上的缓存图片名称列表。 
+            </summary>
+      <returns>计算得到的各个层上的缓存图片名称列表。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.ComputeTerrainFileName(System.Int32)">
+      <summary>
+            根据参数指定的缓存层数计算该层下的缓存图片名称列表。 
+            </summary>
+      <param name="specialLevel">指定的层数。</param>
+      <returns>计算出的缓存图片名称列表。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.FromConfigFile(System.String)">
+      <summary>
+            导入缓存文件，根据缓存数据的配置文件中的内容来指定相关属性的值。 
+            </summary>
+      <param name="fileName">&gt;缓存配置文件的全路径。</param>
+      <returns>一个布尔值，若导入缓存配置文件成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.ToConfigFile(System.String)">
+      <summary>
+            将对象的相关属性写到指定的文件中，文件的后缀名为.sct，即缓存数据的配置文件。 
+            </summary>
+      <param name="fileName">缓存配置文件的全路径。</param>
+      <returns>一个布尔值，若保存缓存配置文件成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderGridTerrain.Dispose">
+      <summary>
+            释放资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderGridTerrain.BeginLevel">
+      <summary>
+            获取或设置开始生成缓存的层数。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderGridTerrain.CacheName">
+      <summary>
+            获取或设置生成缓存的名称。该名称对应SCT缓存配置文件的名称，不含后缀名以及路径信息。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderGridTerrain.ClipRegion">
+      <summary>
+            获取或设置数据集的裁剪区域。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderGridTerrain.Dataset">
+      <summary>
+            获取或设置用于创建缓存的栅格数据集。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderGridTerrain.EncodeType">
+      <summary>
+            获取或设置地形缓存文件的编码类型。
+            </summary>
+      <value>默认值为 EncodeType.None，即不使用编码方式</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderGridTerrain.EndLevel">
+      <summary>
+            获取或设置结束生成缓存的层数。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderGridTerrain.OutputFolder">
+      <summary>
+            获取或设置输出的缓存文件的全路径。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderGridTerrain.Password">
+      <summary>
+            获取或设置用于为地图对象创建缓存时对数据进行加密的密码。在添加图层时，需要使用该密码才能成功添加。如果使用默认值，便可不指定密码便能打开。默认值为一个空的字符串。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderGridTerrain.SampleSize">
+      <summary>
+            获取缓存预处理后生成的每个缓存分块文件的采样尺寸，单位为像素。 
+            </summary>
+      <value>默认值为 129。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderGridTerrain.StorageType">
+      <summary>
+            获取或设置缓存的存储方式，默认为紧凑模式，即：StorageType.Compact。
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.CacheBuilderGridTerrain.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.CacheBuilderTIN">
+      <summary>
+            地形缓存生成类，该类主要用于为地形数据生成供三维场景发布使用的地形缓存，其配置文件为 *.sct格式。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.#ctor">
+      <summary>
+            构造一个新的CacheBuilderTin对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.BuildTIN">
+      <summary>
+            根据栅格数据集创建地形缓存。
+            </summary>
+      <returns>创建缓存成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.BuildOSGB">
+      <summary>
+            根据栅格数据集和影像数据集生成OSGB格式的地形缓存。
+            </summary>
+      <returns>创建缓存成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.CombineTerrainTIN(System.String,System.String,System.String,System.String)">
+      <summary>
+            将两个地形合并生成一个新的地形。
+            </summary>
+      <param name="strOut">合并后新地形的目录。</param>
+      <param name="strCacheName">指定新地形缓存的名称。</param>
+      <param name="strTinA">待合并的地形A，其中strTerrainA的优先级高于strTerrainB。</param>
+      <param name="strTinB">待合并的地形B。</param>
+      <returns>合并成功返回true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.ConvertTinToOsgb(System.String,System.String,System.String,System.Collections.Generic.List{SuperMap.Data.Dataset})">
+      <summary>
+            将地形缓存转换为OSGB格式缓存，可实现叠加多个影像。
+            </summary>
+      <param name="strOut">转换后新地形的目录</param>
+      <param name="strCacheName">指定转换后地形缓存的名称。</param>
+      <param name="strSct">待转换的地形缓存。</param>
+      <param name="arrImage">指定待叠加的影像列表。</param>
+      <returns>转换成功返回true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.BuildWaterMask(System.String,System.String,System.String,System.String)">
+      <summary>
+            生成海洋扩展。
+            用矢量面构建地图，黑色代表陆地，白色代表海洋，然后生成全球剖分的三维缓存。
+            三维缓存范围要和Tin地形的范围一致。
+            </summary>
+      <param name="sctFile">指定的TIN地形配置文件（*.sct）。</param>
+      <param name="sci3dFile">指定的影像缓存配置文件（*.sci3d）。</param>
+      <param name="sctOutFolder">指定新生成缓存的保存路径。</param>
+      <param name="sctOutCacheName">指定新生成缓存的名称。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.CompactCacheFiles(System.String,System.String,System.String)">
+      <summary>
+            TIN缓存转TIN混合大文件缓存，提升加载及浏览性能。
+            </summary>
+      <param name="strInCacheSCT">指定的TIN地形配置文件（*.sct）。</param>
+      <param name="strOutCachePath">指定生成TIN混合大文件缓存的保存路径。</param>
+      <param name="strCacheFileName">缓存文件名称</param>
+      <returns>生成成功返回true，失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.LimitTerrainTIN(System.String,System.String,System.Double,System.Double)">
+      <summary>
+            根据高度范围筛选TIN有效值，可实现修改高度范围内的地形。
+            </summary>
+      <param name="strOutConfigPathName">修改后，输出的TIN地形。</param>
+      <param name="strInConfigPathName">待筛选的TIN地形。</param>
+      <param name="dMinHigh">指定一个最小高度。</param>
+      <param name="dMaxHigh">指定一个最大高度</param>
+      <returns>成功后,在指定目录下生成修改后的TIN地形数据。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.BuildAvailableBoundsInfo(System.String)">
+      <summary>
+            创建有效区域信息。生成TIN地形缓存或合并TIN地形时，可以同时在sct配置文件里生成有效范围的信息。
+            </summary>
+      <param name="strInPathName">TIN地形缓存sct配置文件全路径。</param>
+      <returns>创建成功后，会在配置文件里写入有效区域的信息。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.BuildSpatialIndex(System.String)">
+      <summary>
+            创建地形索引，会对每个TIN缓存切片文件生成对应的ids索引文件。
+            </summary>
+      <param name="strInPathName">TIN地形缓存sct配置文件全路径。</param>
+      <returns>创建索引成功后，每个TIN缓存切片文件会生成对应的ids索引文件。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.CombineTerrainTINConfigFile(System.String,System.Collections.Generic.List{System.String},System.Boolean)">
+      <summary>
+            生成发布地形合并服务的配置文件，支持TIN发布配置文件时是否生成相交区域的预缓存。
+            </summary>
+      <param name="strOutConfigPathName">动态合并生成的配置文件全路径,包含配置文件。</param>
+      <param name="arrInPathNames">进行动态合并的TIN地形缓存集合，指定配置文件的全路径。根据Tin地形的精细程度，添加到列表时，更精细的先Add。</param>
+      <param name="HasCacheFile">是否生成相交区域的缓存。</param>
+      <returns>合并TIN配置文件成功后，如果“HasCacheFile”为true，则在目标文件下生成相交区域的缓存；如果“HasCacheFile”为false，则只生成合并后的配置文件。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.Dispose">
+      <summary>
+            释放对象所占用资源
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.Dataset">
+      <summary>
+            获取或设置用于创建地形缓存的栅格数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.DatasetImage">
+      <summary>
+            获取或设置用于创建地形缓存的影像数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.OutputFolder">
+      <summary>
+            获取或设置输出缓存文件的全路径。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.ClipRegion">
+      <summary>
+            获取或设置生成缓存设置范围
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.IsBuildNormalMap">
+      <summary>
+            获取或设置是否构建法线图
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.BeginLevel">
+      <summary>
+            获取或设置生成地形缓存的开始层数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.EndLevel">
+      <summary>
+            获取或设置生成地形缓存的结束层数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.IsEncodeDXT">
+      <summary>
+            获取或设置是否进行DXT纹理压缩。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.IsClearInvalidTriangle">
+      <summary>
+            获取或设置是否去除无效三角形。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.Bounds">
+      <summary>
+            获取或设置地形缓存的生成范围。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.CacheName">
+      <summary>
+            获取或设置输出缓存的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.Contrained">
+      <summary>
+            设置地形的约束边。
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.CacheBuilderTIN.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.NormalSize">
+      <summary>
+            法线图大小
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.DealtOfEndLevel">
+      <summary>
+            获取或设置精细层误差。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.ProcessThreadsCount">
+      <summary>
+            支持多线程，获取或设置线程数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.TilingScheme">
+      <summary>
+            切分方式，包含墨卡托切分和地理切分。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.IsCompressed">
+      <summary>
+            获取或设置是否生成压缩格式
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.StoreType">
+      <summary>
+            栅格数据生成TIN地形缓存时，获取或设置存储类型，常用的包含原始（Original）和紧凑（Compact）。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.CacheImageSize">
+      <summary>
+            该枚举定义了二三维地图缓存、影像缓存的切片（Tile）文件的大小类型常量，即配置文件为 *.sci、*.sci3d 的缓存对应的切片文件的大小。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageSize.Size64">
+      <summary>
+            64*64
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageSize.Size128">
+      <summary>
+            128*128
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageSize.Size256">
+      <summary>
+            256*256
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageSize.Size512">
+      <summary>
+            512*512
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageSize.Size1024">
+      <summary>
+            1024*1024
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageSize.Size2048">
+      <summary>
+            2048*2048
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.CacheImageType">
+      <summary>
+            该枚举定义了二三维地图缓存、影像缓存的切片（Tile）文件的格式类型常量，即配置文件为 *.sci、*.sci3d 的缓存对应的切片文件的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageType.PNG">
+      <summary>
+            PNG类型。PNG（Portable Network Graphics）的原名称为“可移植性网络图像”，是网上接受的最新图像文件格式。PNG 能够提供长度比 GIF 小 30% 的无损压缩图像文件。他同时提供 24 位和 48 位真彩色图像支持以及其他诸多技术性支持。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageType.GIF">
+      <summary>
+            GIF类型。GIF，Graphics Interchange Format 图像互转换格式。GIF 文件的数据是一种基于LZW算法的连续色调的无损压缩格式。其压缩率一般在 50% 左右。（该类型已经废弃）
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageType.JPG">
+      <summary>
+            JPG类型。JPG 全名 JPEG 图片以 24 位颜色存储单个光栅图像。JPEG 格式是与平台无关的格式，支持最高级别的压缩，不过，这种压缩是有损耗的。渐进式 JPEG 格式文件支持交错。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageType.JPG_PNG">
+      <summary>
+            JPG_PNG混合类型。若切片文件设置为 JPG_PNG 格式，则切片文件为 JPG 或者 PNG 格式，具体为哪种格式需根据该切片中是否包含无效数据像元来确定。对于包含无效数据像元的切片，其文件格式为 PNG，否则为 JPG 格式。采用混合类型，在数据边界处采用 PNG 格式，在不含无效数据的地方采用JPG格式，这将大大减少缓存数据的大小，从而优化数据下载时间。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageType.DXTZ">
+      <summary>
+        <para>DXTZ类型。该类型是针对DDS格式图片的压缩格式。</para>
+        <para>DDS图片格式是DirectDraw Surface格式的缩写，是DirectX纹理压缩格式。使用该类型的纹理压缩格式，能够大幅降低纹理内存的消耗。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageType.PVRZ">
+      <summary>
+        <para>PVRZ类型。该类型是针对PVR格式图片的压缩格式。</para>
+        <para>PVR格式是iOS系统显示芯片无需解析即可读取的图片格式，因此此类型的纹理压缩格式在iOS平台可以实现更快的渲染速度以及更低的内存占用。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheImageType.WEBP">
+      <summary>
+            一种缓存图片的数据格式。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.BuildResultInfo">
+      <summary>
+            缓存结果信息类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.BuildResultInfo.Dispose">
+      <summary>释放 BuildResultInfo对象所占有的本地资源。</summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.BuildResultInfo.TileCount">
+      <summary>
+            获取缓存生成的图片张数。
+            </summary>
+      <returns>缓存生成的图片张数。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.BuildResultInfo.BuildTime">
+      <summary>
+            获取缓存生成耗时，单位为秒。
+            </summary>
+      <returns>缓存生成耗时。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.BuildResultInfo.QueryTime">
+      <summary>
+            获取查询耗时，单位为秒。
+            </summary>
+      <returns>缓存查询耗时。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.BuildResultInfo.DrawTime">
+      <summary>
+            获取绘制耗时，单位为秒。
+            </summary>
+      <returns>绘制耗时。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.BuildResultInfo.IOTime">
+      <summary>
+            获取IO操作耗时，单位为秒。
+            </summary>
+      <returns>IO操作耗时。</returns>
+    </member>
+    <member name="T:SuperMap.Data.Processing.CacheLimitTextureSize">
+      <summary>
+            该枚举定义了用于生成模型缓存限制纹理尺寸大小的类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheLimitTextureSize.NoLimit">
+      <summary>
+            纹理大小不限制
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheLimitTextureSize.LimitSize_1024">
+      <summary>
+            纹理限制大小1024*1024
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheLimitTextureSize.LimitSize_2048">
+      <summary>
+            纹理限制大小2048*2048
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheLimitTextureSize.LimitSize_4096">
+      <summary>
+            纹理限制大小4096*4096
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.CacheTextureProcessing">
+      <summary>
+            该枚举类型定义了纹理处理方式类型常量。
+            支持生成三维瓦片时，纹理处理方式默认使用拼接且重映射；但对网格密集且有多重纹理的数据选择仅拼接处理，对单重纹理且纹理是倾斜摄影模型这种贴图纹理的选择仅重映射处理。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheTextureProcessing.Texture_Remapping">
+      <summary>
+            纹理处理方式：重映射
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheTextureProcessing.Texture_Sitching">
+      <summary>
+            纹理处理方式：拼接
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CacheTextureProcessing.Texture_SitchingAndRemapping">
+      <summary>
+            纹理处理方式：拼接且重映射
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.ClippingType">
+      <summary>
+            该枚举类型定义了倾斜摄影数据生成类裁剪类型常量。
+             </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ClippingType.KeepInside">
+      <summary>
+            内裁，保留裁剪区域内部数据。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ClippingType.KeepOutside">
+      <summary>
+            外裁，保留裁剪区域外部数据。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.CompactFile">
+      <summary>
+            提供对紧凑缓存文件(.cf)读写的操作类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CompactFile.#ctor">
+      <summary>
+            构造CompactFile类的一个新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CompactFile.Dispose">
+      <summary>
+            释放 CompactFile 对象占有的资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CompactFile.Creat(System.String,System.Int32,System.Int32,System.String)">
+      <summary>
+            创建新的紧凑文件。
+            </summary>
+      <param name="cfPath">紧凑文件路径名称。</param>
+      <param name="rowNum">紧凑文件中总的索引行数。</param>
+      <param name="colNum">紧凑文件中总的索引列数。</param>
+      <param name="pwd">紧凑文件密码。</param>
+      <returns>返回0则打开成功，否则失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CompactFile.Open(System.String,System.String)">
+      <summary>
+            打开已有的紧凑文件。
+            </summary>
+      <param name="cfPath">紧凑文件路径名称。</param>
+      <param name="pwd">紧凑文件密码。</param>
+      <returns>返回0则打开成功，否则失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CompactFile.Close">
+      <summary>
+            关闭已打开的紧凑文件。
+            </summary>
+      <returns>返回true则关闭成功，否则失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CompactFile.SetAt(System.Int32,System.Int32,System.Byte[])">
+      <summary>
+            向紧凑文件中写入数据。
+            </summary>
+      <param name="row">紧凑文件中对应的索引行(必须小于总行数)。</param>
+      <param name="col">紧凑文件中对应的索引列(必须小于总列数)。</param>
+      <param name="data">写入的数据。</param>
+      <returns>返回0则写入成功，否则失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CompactFile.GetAt(System.Int32,System.Int32)">
+      <summary>
+            从紧凑文件中读取数据。
+            </summary>
+      <param name="row">紧凑文件中对应的索引行(必须小于总行数)。</param>
+      <param name="col">紧凑文件中对应的索引列(必须小于总列数)。</param>
+      <returns>返回读取的数据，读取失败则为null。</returns>
+    </member>
+    <member name="T:SuperMap.Data.Processing.ConstraintType">
+      <summary>
+            该枚举定义了倾斜摄影数据生成类约束类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ConstraintType.SoftConstraint">
+      <summary>
+            软约束，按照原始数据计算。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ConstraintType.HardConstraint">
+      <summary>
+            硬约束，按照新数据计算。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.DataRGBMode">
+      <summary>
+            该枚举定义了点云数据颜色值表达范围类型常量，仅对txt、xyz格式点云数据起作用。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataRGBMode.RGB_0_1">
+      <summary>
+            颜色值范围为0-1。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataRGBMode.RGB_0_255">
+      <summary>
+            颜色值范围为0-255。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.DataSeparator">
+      <summary>
+            该枚举定义了点云数据各信息之间的分隔符类型常量，仅对txt、xyz格式的点云数据起作用。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataSeparator.SPACE">
+      <summary>
+            以空格“ ”作分隔符。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataSeparator.COMMA">
+      <summary>
+            以逗号“,”作分隔符。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataSeparator.COLON">
+      <summary>
+            以冒号“:”作分隔符。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.DatasetSetting">
+      <summary>
+            生成缓存数据集设置
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.DatasetSetting.#ctor">
+      <summary>
+            构造一个与类名相同的新对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.DatasetSetting.CategoryField">
+      <summary>
+            批量生成缓存时，获取或设置特征值的字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.DatasetSetting.Dataset">
+      <summary>
+            获取或设置模型数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.DatasetSetting.UserIDField">
+      <summary>
+            批量生成模型缓存时，获取或设置用户指定字段作为ID。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.DataUnit">
+      <summary>
+            该枚举定义了点云数据单位类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataUnit.Degree">
+      <summary>
+            度
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataUnit.Meter">
+      <summary>
+            米
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataUnit.Centimeter">
+      <summary>
+            厘米
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataUnit.Millimeter">
+      <summary>
+            毫米
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataUnit.Inch">
+      <summary>
+            英寸
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.DataUnit.Foot">
+      <summary>
+            英尺
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.ImageTilingMode">
+      <summary>
+            该枚举定义了影像缓存剖分方式常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ImageTilingMode.Global">
+      <summary>
+            全球剖分方式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ImageTilingMode.Local">
+      <summary>
+            区域剖分方式，用比例尺分层。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.IntensionType">
+      <summary>
+            字段类型枚举，设置字段为颜色信息或者强度信息。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.IntensionType.ColorInfo">
+      <summary>
+            当点云自身存储颜色，设置对应的字段类型为该类型时，可以生成点云本身自带颜色的缓存。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.IntensionType.IntensionInfo">
+      <summary>
+            自定义颜色范围，可以根据高程值或者强度值，自定义颜色对照表，生成自定义颜色的缓存。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.MapCacheFile">
+      <summary>地图缓存文件类，用来对地图缓存进行操作。</summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.#ctor">
+      <summary>
+            构造一个新的MapCacheFile 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Clear(System.Double,SuperMap.Data.Rectangle2D)">
+      <summary>
+            清除指定比例尺下指定范围覆盖到的所有瓦片。
+            </summary>
+      <param name="scale">指定的比例尺。</param>
+      <param name="bounds">指定的bounds。</param>
+      <returns>一个布尔值，用来指示是否清除指定比例尺下指定范围覆盖到的所有瓦片，true，表示清除成功；false，表示清除不成功。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Clear(System.Double[],SuperMap.Data.GeoRegion)">
+      <summary>
+            清除指定比例尺下指定区域内的所有瓦片。
+            </summary>
+      <param name="scales">指定的多个比例尺。</param>
+      <param name="region">指定的区域。</param>
+      <returns>一个布尔值，用来指示是否成功清除指定比例尺指定区域内的所有瓦片，true，表示清除成功；false，表示清除失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Clear(SuperMap.Data.GeoRegion)">
+      <summary>
+            清除指定区域内的所有瓦片。
+            </summary>
+      <param name="region">指定的区域。</param>
+      <returns>一个布尔值，用来指示是否成功清除指定区域内的所有瓦片，true，表示清除成功；false，表示清除失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.GetTiles(SuperMap.Data.Rectangle2D,System.Double)">
+      <summary>
+            获取指定比例尺下指定范围覆盖到的瓦片数组。
+            </summary>
+      <param name="bounds">指定的bounds。</param>
+      <param name="scale">指定的比例尺。</param>
+      <returns>指定比例尺下指定范围覆盖到的瓦片数组。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.HitTest(SuperMap.Data.Point2D,System.Double)">
+      <summary>
+            获取指定比例尺指定点是否存在瓦片。
+            </summary>
+      <param name="point">指定的点。</param>
+      <param name="scale">指定的比例尺。</param>
+      <returns>一个布尔值，用来指示指定比例尺指定点是否存在瓦片，true，表示存在；false，表示不存在。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.GetValidRegion(SuperMap.Data.Rectangle2D,System.Double)">
+      <summary>
+            获取指定比例尺指定区域所有有瓦片的区域。
+            </summary>
+      <param name="bounds">指定的区域。</param>
+      <param name="scale">指定的比例尺。</param>
+      <returns>指定比例尺指定区域所有有瓦片的区域。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.CheckTileBoundsValid(SuperMap.Data.Rectangle2D,System.Double)">
+      <summary>
+            判断指定的范围是否符合指定比例尺下瓦片的切片规则。
+            </summary>
+      <param name="bounds">指定的区域。</param>
+      <param name="scale">指定的比例尺。</param>
+      <returns>一个布尔值，用来指示的范围是否符合指定比例尺下瓦片的切片规则，true，表示符合；false，表示不符合。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Open(System.String)">
+      <summary>
+            打开缓存文件。
+            </summary>
+      <returns>一个布尔值，打开成功返回  true；否则，返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Open(System.String,System.String)">
+      <summary>
+            打开缓存文件。
+            </summary>
+      <param name="fileName">打开的缓存文件的全路径。</param>
+      <param name="password">缓存密码。</param>
+      <returns>一个布尔值，打开成功返回  true；否则，返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Merge(System.String)">
+      <summary>
+            缓存合并。
+            </summary>
+      <param name="fileName">要合并的缓存文件的路径。</param>
+      <returns>一个布尔值，用来指示缓存合并是否成功，true，表示合并成功；false，表示合并不成功。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Merge(System.String,System.String)">
+      <summary>
+            缓存合并。
+            </summary>
+      <param name="fileName">要合并的缓存文件的路径。</param>
+      <param name="password">要合并的缓存文件的缓存密码。</param>
+      <returns>一个布尔值，用来指示缓存合并是否成功，true，表示合并成功；false，表示合并不成功。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Reload">
+      <summary>
+            重新读取缓存的配置文件。
+            </summary>
+      <returns>一个布尔值，用来指示重新读取缓存的配置文件是否成功，true，表示读取成功；false，表示读取不成功。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Convert(SuperMap.Data.Processing.StorageType,System.String,System.String)">
+      <summary>
+            不同存储类型的缓存之间的转换。
+            </summary>
+      <param name="storage">目标缓存的存储方式。</param>
+      <param name="path">转换后的缓存存储路径。</param>
+      <param name="password">转换后的缓存文件的缓存密码（不需要密码时，可以将该字符串置为空）。</param>
+      <returns>一个布尔值，用来指示原始缓存与紧凑缓存之间的转换是否成功，true，表示转换成功；false，表示转换不成功。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Dispose">
+      <summary>释放MapCacheFile对象所占有的本地资源。</summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Extract(System.Double[],SuperMap.Data.GeoRegion,SuperMap.Data.Processing.StorageType,System.String)">
+      <summary>
+            将指定比例尺指定区域内的缓存瓦片提取为单独缓存。
+            </summary>
+      <param name="scales">指定的多个比例尺。</param>
+      <param name="region">指定的区域。</param>
+      <param name="type">提取后缓存的存储类型。</param>
+      <param name="path">提取后缓存的存储路径。</param>
+      <returns>一个布尔值，用来指示提取是否成功，true 表示成功；false 表示失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.Extract(SuperMap.Data.GeoRegion,System.String)">
+      <summary>
+            将指定区域内的缓存瓦片提取为单独缓存。
+            </summary>
+      <param name="region">指定的区域。</param>
+      <param name="path">提取后缓存的存储路径。</param>
+      <returns>一个布尔值，用来指示提取是否成功，true 表示成功；false 表示失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheFile.DeleteRevisionNumber(System.Int32)">
+      <summary>
+             删除指定的已生成的用户自定义版本。
+            </summary>
+      <param name="value">指定的用户自定义版本。</param>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.Version">
+      <summary>
+            获取缓存版本信息。 
+            </summary>
+      <returns>缓存版本信息。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.Bounds">
+      <summary>
+            获取缓存的Bounds。 
+            </summary>
+      <returns>缓存的Bounds。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.IndexBounds">
+      <summary>
+            获取缓存的IndexBounds。 
+            </summary>
+      <returns>缓存的IndexBounds。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.CacheName">
+      <summary>
+            获取缓存名称。 
+            </summary>
+      <returns>缓存名称。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.ClipRegion">
+      <summary>
+            获取裁剪区域。 
+            </summary>
+      <returns>裁剪区域。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.TileSize">
+      <summary>
+            获取缓存瓦片大小。 
+            </summary>
+      <returns>缓存瓦片大小。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.IsTransparent">
+      <summary>
+            获取缓存图片是否透明。 
+            </summary>
+      <returns>缓存图片是否透明。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.TileFormat">
+      <summary>
+            获取缓存图片的类型。 
+            </summary>
+      <returns>缓存图片的类型。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.StorageType">
+      <summary>
+            获取缓存图片存储的方式。 
+            </summary>
+      <returns>缓存图片存储的方式。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.TilingMode">
+      <summary>
+            获取缓存的剖分方式。 
+            </summary>
+      <returns>缓存的剖分方式。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.IsFillMargin">
+      <summary>
+            获取缓存是否完全填充缓存图片。 
+            </summary>
+      <returns>一个布尔值，用来指示是否完全填充缓存图片，true，表示完全填充；false，表示不完全填充 。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.OutputScaleCaptions">
+      <summary>
+            获取地图缓存比例尺的别名。 
+            </summary>
+      <returns>地图缓存比例尺的别名。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.DPI">
+      <summary>
+            获取生成缓存的DPI，代表每英寸有多少个像素，值域为(60，180)。 
+            </summary>
+      <returns>生成缓存的DPI。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.PrjCoordSys">
+      <summary>
+            获取投影方式。 
+            </summary>
+      <returns>投影方式。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheFile.OutputScales">
+      <summary>
+            取或设置需要导出的比例尺数组。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.MapTilingMode">
+      <summary>
+            该枚举定义了生成缓存时的剖分方式的常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.MapTilingMode.Global">
+      <summary>
+            全球剖分方式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.MapTilingMode.Local">
+      <summary>
+            区域剖分方式，用比例尺分层。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.ObjRotateOption">
+      <summary>
+            该枚举定义了模型对象旋转方式常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ObjRotateOption.NO_ROTATE">
+      <summary>
+            不旋转。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ObjRotateOption.ROTATE_YZ">
+      <summary>
+            右手系绕X轴旋转90度，即(x, -z, y)。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ObjRotateOption.ROTATE_ZY">
+      <summary>
+            右手系绕X轴旋转-90度，即(x, z, -y)。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool">
+      <summary>
+            倾斜摄影模型数据处理工具类。该类提供了压缩纹理、单体化处理、格式转换、文件合并的一系列倾斜摄影模型处理的方法，可满足在不同终端使用倾斜摄影模型。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.#ctor">
+      <summary>
+            构造一个新的ObliquePhotogrammetry3DModelTool对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.CompressTextures(System.String,System.String,SuperMap.Data.Processing.TextureCompressType)">
+      <summary>
+            压缩纹理处理。经压缩纹理处理，可满足不同终端使用倾斜摄影模型并获得流畅浏览体验的需求。
+            </summary>
+      <param name="scpFileName">指定倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="outputFolder">指定用于存储结果数据的目标路径。</param>
+      <param name="type">指定纹理压缩生成数据格式。</param>
+      <returns>纹理压缩是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.CompTextureAndDiscret(System.String,System.String,SuperMap.Data.Processing.TextureCompressType,SuperMap.Data.DatasetVector,System.String,SuperMap.Realspace.CacheFileType)">
+      <summary>
+            倾斜摄影模型纹理压缩并同步ID单体化。OSGB格式仅支持纹理压缩，S3M格式支持纹理压缩并同步ID单体化。
+            </summary>
+      <param name="scpFileName">倾斜摄影模型配置文件（scp文件）。</param>
+      <param name="outputFolder">纹理压缩并同步ID单体化后数据输出路径。</param>
+      <param name="type">压缩纹理处理生成的数据格式类型。</param>
+      <param name="pDatasetVector">ID单体化对应的矢量面数据集。</param>
+      <param name="strFieldName">ID单体化的目标字段名称。</param>
+      <param name="outputFileType">输出文件类型S3M、S3MB或OSGB。</param>
+      <returns>纹理压缩并同步ID单体化是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBTOS3M(System.String,System.String)">
+      <summary>
+            将OSGB格式的倾斜摄影模型数据转换为S3M格式，适用于WebGL客户端使用倾斜摄影模型。
+            </summary>
+      <param name="scpFileName">指定倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="outputFolder">指定用于存储结果数据的目标路径。</param>
+      <returns>格式转换是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBTOS3M(System.String,System.String,SuperMap.Data.Processing.TextureCompressType)">
+      <summary>
+            将OSGB格式的倾斜摄影模型数据转换为S3M格式，适用于WebGL客户端使用倾斜摄影模型，此转换方式支持选择纹理压缩方式。
+            </summary>
+      <param name="scpFileName">指定倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="outputFolder">指定用于存储结果数据的目标路径。</param>
+      <param name="type">指定压缩处理生成的数据格式。</param>
+      <returns>格式转换是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OBJQuarterTOS3MB(System.String,System.String)">
+      <summary>
+            将由Altizure 四分Lod导出的OBJ转换为S3MB格式。
+            </summary>
+      <param name="jsonFileName">该文件类存储了OBJ数据最精细层切片、插入点、矩阵及投影信息。</param>
+      <param name="outputFolder">输出的S3MB文件路径。</param>
+      <returns>格式转换是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OBJTOOSGB(System.String,System.String)">
+      <summary>
+            将由PhotoScan导出的OBJ格式的倾斜摄影模型数据转换为OSGB格式。
+            </summary>
+      <param name="xmlFileName">指定xml文件（PhotoScan配置文件）路径名称。</param>
+      <param name="outputFolder">指定用于存储结果数据的目标路径。</param>
+      <returns>格式转换是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OBJTOOSGB(System.String,System.String,SuperMap.Data.Point3D,SuperMap.Data.Point3D,SuperMap.Data.Processing.ObjRotateOption)">
+      <summary>
+            将由PhotoScan导出的OBJ格式的倾斜摄影模型数据转换为OSGB格式，此转换支持模型旋转。
+            </summary>
+      <param name="xmlFileName">指定xml文件（PhotoScan配置文件）路径名称。</param>
+      <param name="outputFolder">指定用于存储结果数据的目标路径。</param>
+      <param name="pointSrc">指定的OBJ格式模型原有中心点。</param>
+      <param name="pointDest">指定转换后模型新的中心点。</param>
+      <param name="option">指定模型对象旋转方式。</param>
+      <returns>格式转换是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.Discret(System.String,System.String,SuperMap.Data.DatasetVector,System.String)">
+      <summary>
+            倾斜摄影模型单体化处理。
+            </summary>
+      <param name="scpFileName">指定倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="outputFolder">指定用于存储结果数据的目标路径。</param>
+      <param name="pDatasetVector">指定用于单体化处理的矢量数据集。</param>
+      <param name="strFieldName">指定关联字段名称。关联字段为INT类型且可标识对象的字段，推荐使用系统字段SmID。</param>
+      <returns>单体化处理是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.CombineFile(System.String,System.Collections.Generic.List{System.String})">
+      <summary>
+            倾斜摄影模型文件合并处理。
+            </summary>
+      <param name="outFileName">指定用于存储合并后数据的路径名称。</param>
+      <param name="fileNames">指定一组需要合并处理的文件名称。</param>
+      <returns>合并处理是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.CombineFile(System.String,System.Collections.Generic.List{System.String},SuperMap.Data.Processing.TextureCompressType)">
+      <summary>
+            倾斜摄影模型文件合并处理。该方式经过压缩处理，可输出适用于不同终端的数据格式。
+            </summary>
+      <param name="outFileName">指定用于存储合并后数据的路径名称。</param>
+      <param name="fileNames">指定一组需要合并处理的文件名称。</param>
+      <param name="type">指定压缩处理生成的数据格式。</param>
+      <returns>合并处理是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.CombineFile(System.String,System.String,System.Int32,SuperMap.Data.Processing.TextureCompressType,System.UInt32)">
+      <summary>
+            倾斜摄影模型文件合并处理。该方式经过压缩处理，可输出适用于不同终端的数据格式，并可指定合并层级来减少根节点数量。
+            </summary>
+      <param name="inScpFileName">待合并的倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="outScpFileName">指定合并后输出的倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="combineLevel">指定合并层级。</param>
+      <param name="type">指定压缩处理生成的数据格式。</param>
+      <param name="processThreadsCount">支持多线程，设置线程数。</param>
+      <returns>合并处理是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.ModifyCenter(System.String,System.String,SuperMap.Data.Point3D)">
+      <summary>
+            修改倾斜摄影模型文件的中心点。
+            </summary>
+      <param name="scpFileName">待修改中心点的倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="outputFolder">指定用于存储修改中心点后数据的路径名称。</param>
+      <param name="pointNewCenter">指定新的中心点。</param>
+      <returns>修改中心点是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.GenerateProxyOSGBFiles(System.String,System.String,System.Int32)">
+      <summary>
+            倾斜摄影模型生成代理节点。该方法生成了不包含模型数据的新的索引文件，用于提升模型加载效率。
+            </summary>
+      <param name="inScpFileName">指定的倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="outScpFileName">输出的倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="level">指定合并层级。</param>
+      <returns>生成代理节点是否成功，true表示成功，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.SplitScpFile(System.String,System.Int32)">
+      <summary>
+            拆分倾斜摄影配置文件（*.scp）。
+            </summary>
+      <param name="scpFileName">待拆分的倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="count">指定拆分的个数。</param>
+      <returns>被拆分后的文件个数。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBToCompactFile(System.String,System.String)">
+      <summary>
+            将倾斜摄影模型数据写入大文件。
+            </summary>
+      <param name="scpFileName">指定的倾斜摄影配置文件（*.scp）路径名称。</param>
+      <param name="outputFolder">指定用于存储结果数据的目标路径。</param>
+      <returns>操作成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBCreateHistoryFiles(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.DateTime},System.String,System.String)">
+      <summary>
+            倾斜摄影模型数据生成历史记录。
+            </summary>
+      <param name="scpFileNames">待生成历史记录的倾斜摄影配置文件（*.scp）路径名称集合。</param>
+      <param name="dataTimes">指定的历史记录时间集合。</param>
+      <param name="scpCurrentFileName">输出的历史记录文件名称。</param>
+      <param name="outputFolder">输出的历史记录路径。</param>
+      <returns>生成历史记录是否成功，true表示成功，false表示失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBTODAE(System.String,System.String)">
+      <summary>
+            倾斜摄影模型数据及三维切片缓存数据转成DAE数据
+            支持线、面、精模、BIM模型、三维实体模型、点云、管点管线生成的三维切片缓存。
+            </summary>
+      <param name="scpFileName">指定的三维切片缓存配置文件（scp文件）。</param>
+      <param name="outputFolder">目标文件输出路径。</param>
+      <returns>转换成功后，在输出路径下生成DAE文件及对应的纹理贴图。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBTO3DTiles(System.String,System.String)">
+      <summary>
+            倾斜摄影模型数据及三维切片缓存数据转成3DTiles数据。
+            支持线、面、精模、BIM模型、三维实体模型、点云、管点管线生成的三维切片缓存。
+            </summary>
+      <param name="scpFileName">指定的三维切片缓存配置文件（scp文件）。</param>
+      <param name="outputFolder">目标文件输出路径。</param>
+      <returns>转换成功后，在输出路径下生成3DTiles数据。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.ENUTOProjection(System.String,System.String,SuperMap.Data.PrjCoordSys,SuperMap.Data.CoordSysTransParameter,SuperMap.Data.CoordSysTransMethod)">
+      <summary>
+            倾斜摄影模型数据ENU转投影
+            </summary>
+      <param name="scpFileName">带ENU信息的源scp文件。</param>
+      <param name="outputFileName">指定投影转换后的倾斜数据输出目录。</param>
+      <param name="desPrj">设置投影坐标系信息。</param>
+      <param name="transParam">投影转换参数设置。</param>
+      <param name="transMethod">设置投影转换方法。</param>
+      <returns>返回true，表示ENU转投影成功。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.SphereToEllipsoidalENU(System.String,System.String)">
+      <summary>
+            倾斜摄影模型数据和三维切片缓存数据圆球转椭球，目前暂时只支持S3M格式的数据。
+            </summary>
+      <param name="srcScpFile">圆球下，S3M格式的倾斜或三维切片缓存数据，配置文件（*.scp）全路径。</param>
+      <param name="outputScpFile">指定目标文件全路径，转换成功后实现数据位置圆球转椭球。</param>
+      <returns>一个bool值，该值为true表示圆球转椭球成功，在结果数据的配置文件（*.scp）里有会有ENU的标签信息；如果值为false表示转换失败。</returns>
+    </member>
+    <member name="E:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder">
+      <summary>
+            倾斜摄影数据生成类，可实现倾斜算子一体化处理，支持倾斜数据合并根节点、纹理压缩、修改中心点、单体化等操作，支持多线程。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.#ctor">
+      <summary>
+            构造一个新的ObliquePhotogrammetryBuilder对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.#ctor(System.String,System.String,System.UInt32)">
+      <summary>
+            根据指定参数构造一个ObliquePhotogrammetryBuilder对象。
+            </summary>
+      <param name="inScpFileName">源倾斜摄影模型数据。</param>
+      <param name="outScpFileName">实现倾斜算子一体化处理后的倾斜摄影模型数据。</param>
+      <param name="processThreadsCount">线程数</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.Build">
+      <summary>
+            执行倾斜算子一体化处理。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.SetClipRegionList(System.Collections.Generic.List{SuperMap.Data.Geometry})">
+      <summary>
+            设置裁剪区域，支持多区域裁剪。
+            </summary>
+      <param name="regionList">裁剪面集合，支持二、三维面对象。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.Dispose">
+      <summary>
+            释放资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.ClipConstraintType">
+      <summary>
+            获取或设置约束类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.ClipType">
+      <summary>
+            获取或设置裁剪类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.CombineLevel">
+      <summary>
+            获取或设置合并根节点的金字塔层级。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.FieldName">
+      <summary>
+            获取或设置单体化矢量面查询字段。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.InSCPFileName">
+      <summary>
+            获取或设置输入的SCP名字。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.OutSCPFileName">
+      <summary>
+            获取或设置输出的SCP名字。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.IsClip">
+      <summary>
+            获取或设置是否裁剪。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.IsCombine">
+      <summary>
+            获取或设置是否合并。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.IsCompressTexture">
+      <summary>
+            获取或设置是否纹理压缩。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.IsDiscret">
+      <summary>
+            获取或设置是否单体化。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.IsModifyCenter">
+      <summary>
+            获取或设置是否修改中心点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.PointCenter">
+      <summary>
+            获取或设置新的中心点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.RegionDataset">
+      <summary>
+             获取或设置单体化对应的矢量面数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.TexCompressType">
+      <summary>
+            纹理压缩类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.ThreadCount">
+      <summary>
+            日照时长对应的起始时间数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ObliquePhotogrammetryBuilder.OutFileType">
+      <summary>
+            获取或设置倾斜算子一体化后，输出的文件类型。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.OSGBCacheBuilder">
+      <summary>
+            OSGB缓存生成类，通过该类可将模型数据集或CAD数据集生成OSGB格式的缓存文件。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.#ctor">
+      <summary>
+            构造一个新的OSGBCacheBuilder对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.#ctor(SuperMap.Data.DatasetVector,System.String,System.String)">
+      <summary>
+            根据指定的DatasetVector对象、输出目录及缓存名称，构造一个新的OSGBCacheBuilder对象。
+            </summary>
+      <param name="dataset">指定的数据集对象。</param>
+      <param name="outputFolder">指定的输出路径。</param>
+      <param name="name">指定的缓存名称。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.OSGBFile2MongoDB(System.String,SuperMap.Data.TileStorage.TileStorageConnection,System.String)">
+      <summary>
+            OSGB缓存文件导入MongoDB数据库
+            </summary>
+      <param name="scpFileName">scp文件全路径名，该文件包含osgb缓存文件信息。</param>
+      <param name="mongoConn">mongodb的数据库连接信息，一个scp文件对应一个mongoConn的Database。</param>
+      <param name="scpMongoFile">新生成的scp文件全路径名，生成成功后通过该文件直接打开mongodb中的缓存。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.Build">
+      <summary>
+            缓存生成。
+            </summary>
+      <returns>false表示失败，true表示成功。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.BuildCacheWithoutConfigFile">
+      <summary>
+            创建缓存不生成配置文件和索引文件。
+            </summary>
+      <returns>false表示失败，true表示成功。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.ToConfigAndIndexFile(System.String)">
+      <summary>
+            根据已有的scp配置文件生成新的混合大文件。
+            </summary>
+      <param name="strSCPName">缓存切片文件路径。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.Dispose">
+      <summary>
+            销毁对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.GenerateConfigFile(System.String,SuperMap.Data.Point3D,SuperMap.Data.PrjCoordSys,System.Collections.Generic.List{System.String})">
+      <summary>
+            生成scp索引文件。
+            </summary>
+      <param name="configFileName">scp文件名。</param>
+      <param name="position">插入点。</param>
+      <param name="value">投影信息。</param>
+      <param name="fileNames">指定OSGB根节点路径。</param>
+      <returns>一个布尔值，生成成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.GenerateConfigFile(System.String,SuperMap.Data.Point3D,SuperMap.Data.PrjCoordSys,System.Boolean,System.Collections.Generic.List{System.String})">
+      <summary>
+            生成scp索引文件,此方式支持NEU（测站地方空间直角）坐标系。
+            </summary>
+      <param name="configFileName">指定的scp文件名。</param>
+      <param name="position">指定的插入点坐标。</param>
+      <param name="value">指定投影信息。</param>
+      <param name="bNEU">指定是否为地方空间直角系。</param>
+      <param name="fileNames">指定OSGB根节点路径。</param>
+      <returns>一个布尔值，生成成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.GenerateConfigFile(System.String,SuperMap.Data.Point3D,SuperMap.Data.PrjCoordSys,SuperMap.Data.PrjCoordSys,SuperMap.Data.CoordSysTransParameter,SuperMap.Data.CoordSysTransMethod,System.Collections.Generic.List{System.String})">
+      <summary>
+            生成scp索引文件,此方法支持依据转换参数进行坐标转换。
+            </summary>
+      <param name="configFileName">指定的scp文件名</param>
+      <param name="position">指定的插入点坐标</param>
+      <param name="value">数据原有坐标系信息</param>
+      <param name="valueDes">指定目标坐标系信息</param>
+      <param name="coordSysTransParam">指定投影转换参数</param>
+      <param name="coordSysTransMethod">指定投影转换方法</param>
+      <param name="fileNames">指定OSGB根节点路径</param>
+      <returns>成功后生成坐标转换后的scp文件。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.CombineOSGBFile(System.String,System.Collections.Generic.List{System.String},System.Double,System.Double,System.Single)">
+      <summary>
+            合并OSGB文件，在指定OSGB模型的基础上，合并一层粗糙层。
+            </summary>
+      <param name="outputFileName">合并后的OSGB文件名。</param>
+      <param name="fileNames">需要合并的OSGB文件名称列表。</param>
+      <param name="dPercent">指定的简化率，取值范围【0,1】，0表示所有的网格都不简化，1表示当模型网格的距离在指定的阈值内全部简化，0-1之间表示当模型网格的距离在指定的阈值内按照指定的百分比进行简化，
+            比如0.5表示，假如模型的网格距离在指定的阈值内的数量有100个，那么只简化50个。</param>
+      <param name="dDistance">指定的切换距离，合并后粗糙层和原始OSGB文件的相机切换距离。</param>
+      <param name="fErrorValue">指定的网格简化阈值。当模型网格距离小于指定的阈值，就会被简化。</param>
+      <returns>一个布尔值，合并成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.B3DMFile2MongoDB(System.String,SuperMap.Data.TileStorage.TileStorageConnection)">
+      <summary>
+            将3DTiles数据导入到MongoDB数据库。
+            </summary>
+      <param name="scpFileName">3DTiles数据,以json文件为索引加载。</param>
+      <param name="mongoConn">缓存连接管理,包含mogo服务器ip、数据库名等信息。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.BuildTile(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.Int32}},System.Boolean)">
+      <summary>
+            数据集指定SmID生成三维瓦片。
+            </summary>
+      <param name="geoModelIDs">待生成三维瓦片的对象id，键为数据集名称，值为指定对象id队列。</param>
+      <param name="bCombineModels">是否对指定对象进行合并。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.GetExtrudeRegionTexFromVoxelGrid(SuperMap.Data.Geometry,System.Double,SuperMap.Data.DatasetVolume,SuperMap.Data.ColorDictionary)">
+      <summary>
+            支持根据矢量面及拉伸高度从对应体元栅格中提取纹理，并支持设置颜色表。
+            </summary>
+      <param name="geometry">做为从体元栅格中提取纹理的参照面，二、三维面数据都可以。</param>
+      <param name="height">对矢量面设置拉伸的高度值。</param>
+      <param name="volume">对应的体元栅格数据。</param>
+      <param name="table">设置的颜色表，该表内颜色值范围对应体元栅格的极值范围。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.Bounds">
+      <summary>
+            获取或设置缓存地理范围。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.CacheName">
+      <summary>
+            获取或设置缓存名称，不包含路径及后缀。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.Dataset">
+      <summary>
+            获取或设置生成OSGB缓存的数据集对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.DynamicPrjCoordSysType">
+      <summary>
+            获取或设置动态投影信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.LODSize">
+      <summary>
+            获取或设置LOD层级数量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置输出路径。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.OutputScale">
+      <summary>
+            获取或设置缓存的比例尺大小。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.Recordset">
+      <summary>
+            获取或设置生成OSGB缓存的记录集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TileWidth">
+      <summary>
+            获取或设置OSGB缓存切片大小。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.DatasetArray">
+      <summary>
+            获取或设置多个数据集生成缓存。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TextureSharing">
+      <summary>
+            获取或设置纹理是否公用。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.ObjectFiltrateThreshold">
+      <summary>
+            获取或设置粗糙层对象过滤阀值，单位：像素。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TileBounds">
+      <summary>
+            获得每个生成缓存切片的Bounds。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.LODRange">
+      <summary>
+            获取或设置各个LOD层级的切换距离。键为LOD层级；值为距离值，单位为米。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.SimplifyPercent">
+      <summary>
+            获取或设置LOD层网格简化率。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.PyramidSplitCount">
+      <summary>
+            获取或设置金字塔剖分的数量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TilePyramidSplitType">
+      <summary>
+            获取或设置单个切片的金字塔剖分类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.IsInstance">
+      <summary>
+            获取或设置是否实例化。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.MipmapCount">
+      <summary>
+            获取或设置图像纹理的Mipmap层数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.IsCalNormal">
+      <summary>
+            获取或设置在生成缓存时是否重新计算法线。
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.OSGBCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.ConnectionInfo">
+      <summary>
+            设置生成时连接mongo数据库的信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.StorageType">
+      <summary>
+            获取或设置瓦片的存储类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.ProcessType">
+      <summary>
+            获取或设置生成缓存时的文件处理类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.FileType">
+      <summary>
+            获取或设置生成缓存时的数据格式。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.Position">
+      <summary>
+            生成平面场景的三维瓦片,用户可获取或设置三维瓦片的插入点位置。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.IsCombineRepeatTextures">
+      <summary>
+            获取或设置重复贴图纹理是否打组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.IsRemoveNormal">
+      <summary>
+            获取或设置是否移除原始数据法线。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TileInfosArray">
+      <summary>
+            获取每个三维瓦片的信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.ProcessThreadsCount">
+      <summary>
+            生成三维瓦片时支持多线程，获取或设置线程数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.CategoryField">
+      <summary>
+            模型数据集生成三维切片缓存时，获取或设置特征值的字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.DatasetSettingArray">
+      <summary>
+            获取或设置批量生成三维切片缓存，将多个模型数据集生成到一个缓存文件中。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.LimitTextureSize">
+      <summary>
+            获取或设置限制纹理尺寸大小。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.VertexOptimizationType">
+      <summary>
+            获取或设置生成三维切片缓存的顶点优化方式。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.CompressedTextureType">
+      <summary>
+            获取或设置纹理压缩格式。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.IsHasOutLine">
+      <summary>
+            获取或设置模型数据集生成缓存是否带边框。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TextureProcessing">
+      <summary>
+            支持生成三维瓦片时，纹理处理方式默认使用拼接且重映射；但对网格密集且有多重纹理的数据选择仅拼接处理,
+            对单重纹理且纹理是倾斜摄影模型这种纹理贴图的选择仅重映射处理。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.UserIDField">
+      <summary>
+            获取或设置用户指定字段作为ID
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.VertexWeightMode">
+      <summary>
+            获取或设置模型数据集生成缓存的顶点权重模式。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.OSGBVolumeCacheBuilder">
+      <summary>
+            体数据生成缓存(只能附加到选择的OSGB缓存)
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.#ctor">
+      <summary>
+            构造一个新的OSGBVolumeCacheBuilder对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.#ctor(SuperMap.Data.DatasetVolume,System.String)">
+      <summary>
+            构造一个新的OSGBVolumeCacheBuilder对象。
+            </summary>
+      <param name="dataset">体数据集</param>
+      <param name="osgbFile">倾斜摄影模型.scp索引文件</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.Build">
+      <summary>
+            生成缓存
+            </summary>
+      <returns>生成成功返回true，失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.BuildWithTextureRemapping">
+      <summary>
+            体元栅格数据集生成缓存时，对倾斜摄影模型数据进行体元纹理重映射。如果是三维切片缓存需要有对应的纹理坐标。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.ToNC(System.Collections.Generic.List{SuperMap.Data.DatasetVolume},System.String)">
+      <summary>
+            体栅格数据集写入NetCDF。
+            </summary>
+      <param name="datasetList">体元栅格数据集集合。</param>
+      <param name="ncFile">写入NC目标路径。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.DatasetVolume">
+      <summary>
+            获取或设置要生成缓存的体数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.OSGBFile">
+      <summary>
+            获取或设置SCP文件全路径。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.VolName">
+      <summary>
+            获取或设置体数据属性名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.InterpolationMethod">
+      <summary>
+            获取或设置插值方式。体元栅格叠加到倾斜摄影模型或三维切片缓存上时，有临近采样和双线性采样两种插值方式。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.IsUsePyramid">
+      <summary>
+            生成缓存是否使用金字塔。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.ProcessThreadsCount">
+      <summary>
+            获取或设置生成缓存的线程数。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder">
+      <summary>
+            点外挂模型生成缓存类，支持点数据集生成缓存外挂模型。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.#ctor">
+      <summary>
+            默认构造一个新的Point3DLinkModelCacheBuilder对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.#ctor(SuperMap.Data.DatasetVector,System.String,System.String)">
+      <summary>
+            根据指定参数构造一个与类名相同的新对象。
+            </summary>
+      <param name="dataset">外挂模型的点数据集。</param>
+      <param name="outputFolder">输出路径</param>
+      <param name="name">缓存名称</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.Build">
+      <summary>
+            执行生成点外挂模型缓存。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.Dispose">
+      <summary>
+            释放占用资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.Bounds">
+      <summary>
+            获取或设置生成缓存的数据范围。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.CacheName">
+      <summary>
+            缓存名称。会在输出路径下创建一个与缓存名称相同命名的文件夹，缓存数据会生成到该文件夹下。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.CategoryField">
+      <summary>
+            生成缓存时,获取或设置特征字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.Dataset">
+      <summary>
+            获取或设置需要生成缓存的点数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.DynamicPrjCoordSysType">
+      <summary>
+            获取或设置动态投影坐标系类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.FileType">
+      <summary>
+            获取或设置缓存文件类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.LODSize">
+      <summary>
+            获取或设置LOD层级数量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.MatrixField">
+      <summary>
+            生成缓存时，获取或设置矩阵变换字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.ModelFilePathField">
+      <summary>
+            获取或设置外挂模型字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.ObjectFiltrateThreshold">
+      <summary>
+            获取或设置对象像素过滤阈值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置缓存路径。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.OutputScale">
+      <summary>
+            获取或设置点外挂模型缓存的比例尺大小。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.Position">
+      <summary>
+            获取或设置插入点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.ProcessThreadsCount">
+      <summary>
+            获取或设置线程数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.ProcessType">
+      <summary>
+            获取或设置生成缓存的方式，包括替换和追加两种方式。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.Recordset">
+      <summary>
+            获取或设置需要生成缓存的记录集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.RotateXField">
+      <summary>
+            获取或设置沿X旋转的字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.RotateYField">
+      <summary>
+            获取或设置沿Y旋转的字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.RotateZField">
+      <summary>
+            获取或设置沿Z旋转的字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.ScaleXField">
+      <summary>
+            获取或设置沿X缩放的字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.ScaleYField">
+      <summary>
+            获取或设置沿Y缩放的字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.ScaleZField">
+      <summary>
+            获取或设置沿Z缩放的字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.SimplifyPercent">
+      <summary>
+            获取或设置LOD网格简化率。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.TileBounds">
+      <summary>
+            获得每个生成缓存切片的Bounds
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.TileInfosArray">
+      <summary>
+            获得每个生成缓存切片的信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.TileWidth">
+      <summary>
+            获取或设置点外挂模型缓存的切块大小。单位：米。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.UserIDField">
+      <summary>
+            生成缓存时，获取或设置用来作为ID的用户指定字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.DatasetSettingArray">
+      <summary>
+            获取或设置批量点数据集生成缓存外挂模型。
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.Point3DLinkModelCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.PointCloudCacheBuilder">
+      <summary>
+            点云缓存生成类。该类主要用于点云数据生成供三维场景发布使用的三维切片缓存，其配置文件为*.scp格式。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.#ctor">
+      <summary>
+            构造一个新的PointCloudCacheBuilder对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.#ctor(System.String,System.String,System.String)">
+      <summary>
+            根据指定参数构造一个PointCloudCacheBuilder的新对象。
+            </summary>
+      <param name="pointCloudName">指定点云的名称。</param>
+      <param name="outputFolder">指定点云缓存保存目录。</param>
+      <param name="cacheName">指定缓存名称。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.Build">
+      <summary>
+            创建点云缓存。
+            </summary>
+      <returns>创建成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.GeneratePointCloudList(System.String,System.Collections.Generic.List{System.String},SuperMap.Data.Point3D,SuperMap.Data.PrjCoordSys,SuperMap.Data.Processing.PointCloudInfoType,SuperMap.Data.Processing.DataSeparator,SuperMap.Data.Processing.DataRGBMode,SuperMap.Data.Processing.DataUnit)">
+      <summary>
+            生成点云数据列表，该方法主要用于读取点云数据。
+            </summary>
+      <param name="listFileName">指定存放列表文件的名称。</param>
+      <param name="fileNames">需要生成三维瓦片的点云文件名称数组。</param>
+      <param name="ptPos">指定点云数据的插入点。</param>
+      <param name="srcPrjCoordSys">指定点云数据原始坐标系类型。</param>
+      <param name="infoType">指定点云数据存储的信息格式类型。</param>
+      <param name="dataSeparator">指定点云数据中各信息值之间的分隔符类型。</param>
+      <param name="RGBMode">指定点云数据颜色值表示方式。</param>
+      <param name="dataUnit">指定点云数据单位。</param>
+      <returns>生成成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.GeneratePointCloudList(System.Collections.Generic.List{System.String},SuperMap.Data.Processing.PointCloudFileInfo)">
+      <summary>
+            生成点云数据列表，该方法主要用于读取点云数据，生成点云List文件。
+            </summary>
+      <param name="fileNames">需要生成三维瓦片的点云文件名称数组。</param>
+      <param name="pointCloudFileInfo">点云信息类。将插入点、坐标系、点云类别、数据分隔符、颜色表、数据单位等信息统一存到改类，减少参数传入方便维护及开发。</param>
+      <returns>生成成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.GetValidCategoryFields">
+      <summary>
+            设置生成点云缓存时获取有效特征值字段。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.SetGenerateNormal(System.Boolean)">
+      <summary>
+            设置生成缓存时是否同时为点云创建表面法线。
+            </summary>
+      <param name="bGenerate">指定是否创建法线。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.GetValidClassifyInfos(System.String)">
+      <summary>
+            获取点云有效分类类别信息。
+            如植被、道路、车辆、建筑、电线等类别信息。
+            </summary>
+      <param name="fileNames">点云文件集合</param>
+      <returns>类别信息集合。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.PointCloudCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.PointCloudListName">
+      <summary>
+            获取或设置用于生成点云缓存的点云列表文件名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.CacheName">
+      <summary>
+            获取或设置生成点云缓存的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置生成点云缓存的路径。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.TilePyramidSplitType">
+      <summary>
+            获取或设置单个Tile的金字塔剖分类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.CategoryField">
+      <summary>
+            获取或设置点云特征值字段。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.FileType">
+      <summary>
+            获取或设置三维瓦片文件类型。默认生成S3M格式。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.PointCloudInfos">
+      <summary>
+            获取或设置点云文件的配置信息，包括文件路径、坐标系、插入点等信息，用于在追加模式下生成点云缓存。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.ProcessType">
+      <summary>
+            获取或设置点云生成缓存的处理模式，包括替换和追加模式。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.SourceConfigFilePath">
+      <summary>
+            设置点云原配置文件名，支持追加生成点云缓存。
+            <remark>
+            追加生成点云缓存与生成追加模式的点云缓存是两个不同的概念，需要区分开。
+            </remark></summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.PointCloudTileSplitType">
+      <summary>
+            点云切片剖分类型,支持全球剖分和本地剖分。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.PointCloudCategoryField">
+      <summary>
+            该枚举定义了点云缓存特征值字段枚举常量。
+            点云生成缓存，可以设置其特征值；当分层设色时，可以根据特征值设置颜色分布。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudCategoryField.Intensity">
+      <summary>
+            强度。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudCategoryField.PosZ">
+      <summary>
+            高度。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudCategoryField.Classify">
+      <summary>
+            分类。比如一个园区的激光点云，有地板、植被、建筑等类别。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.PointCloudFileInfo">
+      <summary>
+            点云信息类。将点云信息结构化，便于点云生成三维瓦片时参数设置。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.PointCloudFileInfo.#ctor">
+      <summary>
+            默认构造函数，构造一个新的点云信息类对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.ClassifyArray">
+      <summary>
+            获取或设置点云分类数组。获取点云的分类信息，根据分类信息，指定分类类别生成点云缓存。
+            如果不设置点云分类类别，则点云数据全部生成缓存。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.CoordSystemTransMethod">
+      <summary>
+            获取或设置点云坐标系转换方法。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.CoordSystemTransParameter">
+      <summary>
+            获取或设置点云坐标系转换参数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.DesPrjCoordSys">
+      <summary>
+            获取或设置点云目标坐标系。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.GroupFileNames">
+      <summary>
+            分组点云文件名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.IsTransEnable">
+      <summary>
+            获取或设置点云坐标转换是否可用。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.ListFileName">
+      <summary>
+            获取或设置点云list文件。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.PointDataRGBMode">
+      <summary>
+            获取或设置颜色类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.PointDataSeparator">
+      <summary>
+            获取或设置点云数据分隔符。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.PointDataUnit">
+      <summary>
+            获取或设置点云单位。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.PointInfoType">
+      <summary>
+            获取或设置点云信息格式,支持TXT、XYZ等常规格式的点云数据。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.Position">
+      <summary>
+            获取或设置点云缓存插入点位置。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.SrcPrjCoordSys">
+      <summary>
+            获取或设置点云源坐标系。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.PointCloudFileNamesArray">
+      <summary>
+            获取或设置点云文件名集合。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.PointCloudInfoType">
+      <summary>
+            该枚举定义了TXT、XYZ格式的点云存储所采用的信息格式类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ">
+      <summary>
+            采用XYZ坐标的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Reflectance">
+      <summary>
+            采用XYZ坐标、反射强度的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Reflectance_RGB">
+      <summary>
+             采用XYZ坐标、反射强度、颜色信息的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Reflectance_Normal">
+      <summary>
+             采用XYZ坐标、反射强度、表面法向量的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Reflectance_RGB_Normal">
+      <summary>
+             采用XYZ坐标、反射强度、颜色信息、表面法向量的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Reflectance_Normal_RGB">
+      <summary>
+             采用XYZ坐标、反射强度、表面法向量、颜色信息的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_RGB">
+      <summary>
+             采用XYZ坐标、颜色信息的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_RGB_Reflectance">
+      <summary>
+            采用XYZ坐标、颜色信息、反射强度的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_RGB_Normal">
+      <summary>
+            采用XYZ坐标、颜色信息、表面法向量的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_RGB_Reflectance_Normal">
+      <summary>
+            采用XYZ坐标、颜色信息、反射强度、表面法向量的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_RGB_Normal_Reflectance">
+      <summary>
+            采用XYZ坐标、颜色信息、表面法向量、反射强度的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Normal">
+      <summary>
+            采用XYZ坐标、表面法向量的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Normal_RGB">
+      <summary>
+            采用XYZ坐标、表面法向量、颜色信息的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Normal_Reflectance">
+      <summary>
+            采用XYZ坐标、表面法向量、反射强度的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Normal_Reflectance_RGB">
+      <summary>
+            采用XYZ坐标、表面法向量、反射强度、颜色信息的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Normal_RGB_Reflectance">
+      <summary>
+            采用XYZ坐标、表面法向量、颜色信息、反射强度的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PointCloudInfoType.UnKnown">
+      <summary>
+            未知格式。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.ProcessFileType">
+      <summary>
+            该枚举定义了生成三维切片缓存（osgb）时的文件处理类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ProcessFileType.Normal">
+      <summary>
+            以常规方式生成。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.ProcessFileType.Add">
+      <summary>
+            以追加方式生成。追加支持具有金字塔结构的缓存数据。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.PyramidSplitType">
+      <summary>
+            该枚举类定义了金字塔剖分类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PyramidSplitType.QuadTree">
+      <summary>
+            四叉树剖分。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.PyramidSplitType.Octree">
+      <summary>
+            八叉树剖分。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.RasterizationInterpolationMethod">
+      <summary>
+            该枚举定义了体元栅格生成缓存时的插值方式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.RasterizationInterpolationMethod.Bilinear">
+      <summary>
+            双线性采样
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.RasterizationInterpolationMethod.Proximity">
+      <summary>
+            临近采样
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.TerrainCacheInfo">
+      <summary>
+            不规则三角网信息类。该类支持对栅格数据集生成地形缓存时信息管理，可以使
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheInfo.#ctor">
+      <summary>
+            默认构造一个新的TerrainCacheInfo对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheInfo.IsValid">
+      <summary>
+            判断是否有效
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheInfo.Load(System.String)">
+      <summary>
+            读取Sct文件
+            </summary>
+      <param name="filename">
+      </param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheInfo.Type">
+      <summary>
+            类型,指定生成地形缓存的格式类型。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.TerrainCacheType">
+      <summary>
+            该枚举定义了生成地形缓存的格式类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TerrainCacheType.DEM">
+      <summary>
+            生成栅格（DEM）地形缓存。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TerrainCacheType.TIN">
+      <summary>
+            生成TIN地形缓存。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.TextureCompressType">
+      <summary>
+            该枚举类定义了倾斜摄影模型数据经压缩纹理处理生成的数据格式类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_NONE">
+      <summary>
+            未知类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_DXT">
+      <summary>
+            适用于PC端的DXT数据格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_ETC">
+      <summary>
+            适用于Android设备的ETC数据格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_PVR">
+      <summary>
+            适用于iOS设备的PVR数据格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_JPG">
+      <summary>
+            JPG数据格式，适用于所有终端设备。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_PNG">
+      <summary>
+            PNG数据格式，适用于所有终端设备。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.Tile">
+      <summary>
+            缓存瓦片类，用来获取缓存瓦片的相关信息。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.Tile.Dispose">
+      <summary>释放Tile对象所占有的本地资源。</summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Tile.Row">
+      <summary>
+            获取瓦片的行号。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Tile.Column">
+      <summary>
+            获取瓦片的列号。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Tile.Bounds">
+      <summary>
+            获取瓦片的地理范围。
+            </summary>
+      <returns>瓦片的地理范围。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Tile.TileSize">
+      <summary>
+            获取瓦片的大小。
+            </summary>
+      <returns>瓦片的大小。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Tile.Scale">
+      <summary>
+            获取瓦片所属比例尺。
+            </summary>
+      <returns>瓦片所属比例尺。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Tile.Type">
+      <summary>
+            获取瓦片的数据格式。
+            </summary>
+      <returns>瓦片的数据格式。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.Tile.Data">
+      <summary>
+            获取瓦片数据。
+            </summary>
+      <returns>瓦片数据。</returns>
+    </member>
+    <member name="T:SuperMap.Data.Processing.TileFormat">
+      <summary>
+            该枚举定义了二三维地图缓存、影像缓存的切片（Tile）文件的格式类型常量，即配置文件为 *.sci、*.sci3d 的缓存对应的切片文件的格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileFormat.PNG">
+      <summary>
+            PNG类型。PNG（Portable Network Graphics）的原名称为“可移植性网络图像”，是网上接受的最新图像文件格式。PNG 能够提供长度比 GIF 小 30% 的无损压缩图像文件。他同时提供 24 位和 48 位真彩色图像支持以及其他诸多技术性支持。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileFormat.PNG8">
+      <summary>
+            PNG8类型。与PNG类型比较，PNG8类型占用的存储空间更小，仅是PNG的1/4左右。不过PNG8只能支持256色，同时不支持背景透明，在选择时需注意这两个限制。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileFormat.GIF">
+      <summary>
+            GIF类型。GIF，Graphics Interchange Format 图像互转换格式。GIF 文件的数据是一种基于LZW算法的连续色调的无损压缩格式。其压缩率一般在 50% 左右。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileFormat.JPG">
+      <summary>
+            JPG类型。JPG 全名 JPEG 图片以 24 位颜色存储单个光栅图像。JPEG 格式是与平台无关的格式，支持最高级别的压缩，不过，这种压缩是有损耗的。渐进式 JPEG 格式文件支持交错。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileFormat.JPG_PNG">
+      <summary>
+            JPG_PNG混合类型。若切片文件设置为 JPG_PNG 格式，则切片文件为 JPG 或者 PNG 格式，具体为哪种格式需根据该切片中是否包含无效数据像元来确定。对于包含无效数据像元的切片，其文件格式为 PNG，否则为 JPG 格式。采用混合类型，在数据边界处采用 PNG 格式，在不含无效数据的地方采用JPG格式，这将大大减少缓存数据的大小，从而优化数据下载时间。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileFormat.DXTZ">
+      <summary>
+            DXTZ类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileFormat.PBF">
+      <summary>
+            矢量瓦片类型。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.TileInfos">
+      <summary>
+            三维瓦片信息类。为生成三维瓦片时，提供以下信息。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TileInfos.#ctor">
+      <summary>
+            默认构造函数，构造一个新的三维瓦片信息类对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TileInfos.Bounds">
+      <summary>
+            获取或设置三维瓦片对应的bounds。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TileInfos.Name">
+      <summary>
+            获取或设置三维瓦片名称。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.TileSize">
+      <summary>
+            该枚举定义了二三维地图缓存、影像缓存的切片（Tile）文件的大小类型常量，即配置文件为 *.sci、*.sci3d 的缓存对应的切片文件的大小。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileSize.Size64">
+      <summary>
+            64*64
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileSize.Size128">
+      <summary>
+            128*128
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileSize.Size256">
+      <summary>
+            256*256
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileSize.Size512">
+      <summary>
+            512*512
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TileSize.Size1024">
+      <summary>
+            1024*1024
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.CompressType">
+      <summary>
+        <para>该类已经废弃。使用 <see cref="T:SuperMap.Data.EncodeType">EncodeType</see> 替代。<see cref="T:SuperMap.Data.EncodeType">EncodeType</see> 类定义了缓存文件的编码类型常量。</para>
+        <para>该枚举定义了缓存的压缩类型常量。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CompressType.NONE">
+      <summary>
+            不压缩。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.CompressType.ZIP">
+      <summary>
+            ZIP 压缩。  
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.ImageCacheBuilder">
+      <summary>影像缓存生成类，该类主要用于为影像数据生成供三维场景发布使用的影像缓存，其配置文件为 *.sci3d 格式。</summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.#ctor">
+      <summary>
+            构造一个新的缓存生成类对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.#ctor(SuperMap.Data.DatasetImage,System.String)">
+      <summary>
+            根据指定的影像数据集和输出缓存文件所在文件夹的全路径名，构造一个缓存生成类对象。
+            </summary>
+      <param name="dataset">指定的栅格数据集。</param>
+      <param name="outputFolder">输出缓存文件所在的文件的全路径名。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.#ctor(SuperMap.Data.DatasetImage,System.String,System.String)">
+      <summary>
+            根据指定的影像数据集、输出缓存文件所在文件夹的全路径名以及生成的缓存对象名称，构造一个缓存生成类对象。
+            </summary>
+      <param name="dataset">指定的栅格数据集。</param>
+      <param name="outputFolder">输出缓存文件所在的文件的全路径名。</param>
+      <param name="cacheName">生成的缓存对象名称。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.Build">
+      <summary>
+            创建影像缓存。
+            <para>如果没有对需要创建影像缓存的文件设置起始层和终止层，则在调用该方法创建缓存时，会自动调用 ComputeLevel() 方法。</para></summary>
+      <returns>创建缓存成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.ComputeLevel">
+      <summary>
+            计算并设置数据所适合的缓存级数，主要与用来创建缓存的文件（影像文件、影像数据集和栅格数据集）的范围相关。
+            </summary>
+      <returns>成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.ToConfigFile(System.String)">
+      <summary>
+            将SCI3D影像缓存生成类对象的相关属性写到指定的文件中，文件的后缀名为.sci3d，即缓存数据的配置文件。 
+            </summary>
+      <param name="fileName">缓存配置文件的全路径。</param>
+      <returns>一个布尔值，若保存缓存配置文件成功返回true，否则返回false。 </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.FromConfigFile(System.String)">
+      <summary>
+            导入缓存文件，根据缓存数据的配置文件中的内容来指定SCI3D影像缓存生成类对象相关属性的值。 
+            </summary>
+      <param name="fileName">缓存配置文件的全路径。</param>
+      <returns>一个布尔值，若导入缓存配置文件成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.ComputeImageFileName">
+      <summary>
+            获取将要生成的切片文件的名称列表。 
+            </summary>
+      <returns>计算出的切片文件的名称列表。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.ComputeImageFileName(System.Int32)">
+      <summary>
+            根据参数指定的缓存层数计算该层下的切片文件的名称列表。 
+            </summary>
+      <param name="specialLevel">指定的层数。</param>
+      <returns>计算出的切片文件的名称列表。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.BuildWithoutConfigFile">
+      <summary>
+            为影像数据创建sci3d影像缓存。使用该方法创建缓存不会生成影像缓存的配置文件。 
+            </summary>
+      <returns>一个布尔值，若创建缓存成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.ComputeOutputScales">
+      <summary>
+            计算生成影像缓存时的合适输出比例尺，即默认输出比例尺。该操作会修改 OutputScales 属性的值。
+            </summary>
+      <returns>计算成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.GetDefultOutputScales">
+      <summary>
+             返回推荐的默认比例尺。
+            </summary>
+      <returns>返回推荐的默认比例尺。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ImageCacheBuilder.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.Dataset">
+      <summary>
+            获取或设置用于创建缓存的影像数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置输出的缓存文件所在的目录的全路径名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.CacheName">
+      <summary>
+            获取或设置生成的缓存文件的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ClipRegion">
+      <summary>
+            获取或设置数据集的裁剪区域。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.BeginLevel">
+      <summary>
+            获取或设置开始生成缓存的层数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.EndLevel">
+      <summary>
+            获取或设置结束生成缓存的层数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.StorageType">
+      <summary>
+            获取或设置缓存存储方式。默认为原始模式，即：StorageType.Original。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ImageFileName">
+      <summary>
+            获取或设置用于生产缓存的影像文件名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DatasetGrid">
+      <summary>
+            用于创建缓存的Grid数据集，影像缓存中的颜色由数据集的颜色表来控制。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.SampleSize">
+      <summary>
+            获取缓存预处理后生成的每个缓存分块文件的采样尺寸，单位为像素。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ImageType">
+      <summary>
+            获取或设置缓存图片的类型。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.Password">
+      <summary>
+            获取或设置用于为地图对象创建缓存时对数据进行加密的密码。在添加图层时，需要使用该密码才能成功添加。如果使用默认值，便可不指定密码便能打开。默认值为一个空的字符串。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.SpecialValueColor">
+      <summary>
+        <para>获取或设置基于栅格数据集的所生成的影像缓存的指定栅格值对应的颜色。</para>
+        <para>可对将指定的栅格值的栅格颜色半透明显示，例如：ImageCacheBuilder.SpecialValueColor = Color.FromArgb(127, 255, 0, 0)，以红色半透明的颜色显示指定栅格值。半透显示的前提条件是设置IsSpecialValueTransparent属性值为false。</para>
+      </summary>
+      <value>默认值为 Color[A=0,R=0,G=0,B=0]，即透明的黑色。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.SpecialValue">
+      <summary>
+            获取或设置基于栅格数据集的所生成的影像缓存的指定栅格值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.IsSpecialValueTransparent">
+      <summary>
+            获取或设置基于栅格数据集的所生成的影像缓存的指定栅格值（SpecialValue）所处区域是否透明。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.OutputScaleCaptions">
+      <summary>
+            获取或设置影像缓存比例尺的别名。 
+            <para>一般设置为比例尺大小倒数的字符串，如1：10000为”10000”。</para><para>当设置的别名不唯一时，程序抛异常。</para></summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.OutputScales">
+      <summary>
+            获取或设置影像缓存的比例尺数组。        
+            <para>缓存比例尺数组中有一个非法（数值非法或出缓存时比例尺数组不是子集）时，缓存生成失败。</para></summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ColorTable">
+      <summary>获取或设置颜色表。 </summary>
+      <value>默认值为无一个颜色的颜色集合对象，即<see cref="P:SuperMap.Data.Colors.Count">Colors.Count</see>为0。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.GridValueTable">
+      <summary>
+            获取或设置栅格值表。
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.ImageCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DefaultBeginLevel">
+      <summary>
+             获取生成影像缓存的默认开始层数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DefaultEndLevel">
+      <summary>
+             获取生成影像缓存的默认结束层数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DynamicPrjCoordSysType">
+      <summary>
+             获取或设置生成平面还是球面缓存，目前只有PrjCoordSysType.NoneEarth、PrjCoordSysType.EarthLongitudeLatitude两种。
+            <para>当设置为PrjCoordSysType.NoneEarth，则生成平面缓存，当设置为PrjCoordSysType.EarthLongitudeLatitude则生成球面缓存。</para></summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.TilingMode">
+      <summary>
+            获取或设置影像缓存的剖分方式。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DatasetVolume">
+      <summary>
+            获取或设置栅格体数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ConnectionInfo">
+      <summary>
+            设置生成时连接mongo数据库的信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DatasetMosaic">
+      <summary>
+            镶嵌数据集生成Sci3d影像缓存。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ProcessThreadsCount">
+      <summary>
+            镶嵌数据集生成Sci3d影像缓存时，获取或设置线程数。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.MapCache3DBuilder">
+      <summary>三维地图缓存生成类，该类主要用于为地图生成供三维场景发布使用的三维地图缓存，其配置文件为 *.sci3d 格式。三维地图缓存的金字塔文件目录结构与影像缓存一致。</summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.#ctor">
+      <summary>
+            构造一个新的三维缓存生成类对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.#ctor(SuperMap.Mapping.Map,System.String)">
+      <summary>
+            根据给定的参数，构造一个新的三维缓存生成类对象。 
+            </summary>
+      <param name="map">指定的要生成缓存的地图。 </param>
+      <param name="outputFolder">指定的生成缓存的路径。 </param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.#ctor(SuperMap.Mapping.Map,System.String,System.String)">
+      <summary>
+            根据给定的参数，构造一个新的三维缓存生成类对象。 
+            </summary>
+      <param name="map">要生成缓存的地图。</param>
+      <param name="outputFolder">生成缓存的路径。</param>
+      <param name="name">生成缓存的名称。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.Build">
+      <summary>
+            创建三维地图缓存。 
+            </summary>
+      <returns>一个布尔值，创建缓存成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.ComputeLevel">
+      <summary>
+            计算生成缓存的数据集所适合的缓存层数。 
+            </summary>
+      <returns>一个布尔值，计算成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.ComputeImageFileName">
+      <summary>
+             返回计算得到的各个层上的缓存图片名称列表。
+            </summary>
+      <returns>计算得到的各个层上的缓存图片名称列表。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.ComputeImageFileName(System.Int32)">
+      <summary>
+            根据参数指定的缓存层数计算该层下的缓存图片名称列表。
+            </summary>
+      <param name="specialLevel">指定的层数。</param>
+      <returns>计算出的缓存图片名称列表。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.ToConfigFile(System.String)">
+      <summary>
+            将对象的相关属性信息写到指定的文件中，文件的后缀名为.sci3d，即缓存数据的配置文件。 
+            </summary>
+      <param name="fileName">指定的文件路径。</param>
+      <returns>一个布尔值，若保存缓存配置文件成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.FromConfigFile(System.String)">
+      <summary>
+            导入缓存文件，根据缓存数据的配置文件中的内容来指定相关属性的值。 
+            </summary>
+      <param name="fileName">缓存配置文件的路径。</param>
+      <returns>一个布尔值，若导入缓存配置文件成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.BuildWithoutConfigFile">
+      <summary>
+            为地图对象创建三维地图缓存。使用该方法创建缓存不会生成三维地图缓存的配置文件。
+            </summary>
+      <returns>一个布尔值，若创建缓存成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCache3DBuilder.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.Map">
+      <summary>
+            获取或设置用于创建缓存的地图。  
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.ClipRegion">
+      <summary>
+            获取或设置用于生成缓存的多边形区域。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.Bounds">
+      <summary>
+            获取或设置导出的地理范围。该属性为必须设置项。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.CacheName">
+      <summary>
+            获取或设置生成缓存配置文件的名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.ImageSize">
+      <summary>
+            获取或设置缓存图片的大小，默认为Size256。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.ImageCompress">
+      <summary>
+            获取或设置缓存图片的压缩率，默认为75。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.OutputFolder">
+      <summary>
+            获取或设置生成缓存的路径。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.IsTransparent">
+      <summary>
+            获取或设置缓存图片是否背景透明。默认为false。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.ImageType">
+      <summary>
+            获取或设置缓存图片的类型，默认为JPG。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.StorageType">
+      <summary>
+            获取或设置缓存的存储方式。默认为原始模式，即：StorageType.Original。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.BeginLevel">
+      <summary>
+            获取或设置开始生成缓存的层数。 
+            </summary>
+      <value>默认值为 0。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.EndLevel">
+      <summary>
+            获取或设置结束生成缓存的层数。 
+            </summary>
+      <value>默认值为 4。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.Password">
+      <summary>
+            获取或设置用于创建缓存时对数据进行加密的密码。在添加图层时，需要使用该密码才能成功添加。如果使用默认值，便可不指定密码便能打开。默认值为String.Empty。 
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.MapCache3DBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。  
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCache3DBuilder.IsFillMargin">
+      <summary>
+            获取或设置是否完全填充缓存图片。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.MapCacheBuilder">
+      <summary>二维地图缓存生成类，用于生成 sci 格式的地图缓存配置文件。二维地图缓存指的是将地图生成主要供二维窗口使用的缓存。</summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.#ctor">
+      <summary>
+            构造一个新的地图缓存生成类对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.#ctor(SuperMap.Mapping.Map,System.String,System.Double[])">
+      <summary>
+            根据给定的参数，构造一个新的地图缓存生成类对象。 
+            </summary>
+      <param name="map">要生成缓存的地图。</param>
+      <param name="outputFolder">生成缓存的路径。</param>
+      <param name="outputScales">需要导出的比例尺。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.GetImageBounds(System.String)">
+      <summary>
+            获取指定地图缓存图片的地理范围。 
+            </summary>
+      <param name="imageFile">指定图片的路径。</param>
+      <returns>地理范围。 </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.Build">
+      <summary>
+            生成地图缓存。 
+            </summary>
+      <returns>一个布尔值，若生成缓存成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.ToConfigFile(System.String)">
+      <summary>
+             将地图缓存的用户设置保存为指定的文件。文件的后缀名为 sci，即地图缓存配置文件。
+             </summary>
+      <param name="fileName">指定的文件路径。</param>
+      <returns>一个布尔值，若保存缓存配置文件成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.FromConfigFile(System.String)">
+      <summary>
+             导入地图缓存配置文件，即根据配置文件中的内容来设置该地图缓存对象。 
+             </summary>
+      <param name="fileName">指定地图缓存配置文件的路径。</param>
+      <returns>一个布尔值，若导入缓存配置文件成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.ComputeImageFileName(SuperMap.Data.Point2D,System.Double)">
+      <summary>
+             获取在指定比例尺下，根据给定中心点生成的地图缓存图片名称。 
+             </summary>
+      <param name="center">需要计算的中心点。 </param>
+      <param name="scale">计算时指定的比例尺。 </param>
+      <returns>计算得到的地图缓存图片名称。 </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.ComputeImageFileName(SuperMap.Data.Rectangle2D,System.Double)">
+      <summary>
+            获取在指定比例尺下，根据给定的地理范围生成的地图缓存图片名称。 
+            </summary>
+      <param name="imageBounds">需要计算的地理范围。</param>
+      <param name="scale">计算时指定的比例尺。</param>
+      <returns>计算出的地图缓存图片名称。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.ComputeOutputScales">
+      <summary>
+             计算生成地图缓存时的合适输出比例尺，即默认输出比例尺。该操作会修改 OutputScales 属性的值。
+             </summary>
+      <returns>计算成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.BuildWithoutConfigFile">
+      <summary>
+             生成地图缓存，但不会生成地图缓存配置文件。
+             </summary>
+      <returns>一个布尔值，若创建缓存成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.Dispose">
+      <summary>
+            释放对象所占用的资源。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.OriginalToCompact(System.String,System.String,System.String)">
+      <summary>
+            原始缓存转换为紧凑缓存，实现对原始缓存文件的压缩，节省磁盘空间，同时也易于拷贝。
+            </summary>
+      <param name="originalFileName">指定的原始缓存配置文件的全路径名。</param>
+      <param name="compactPath">指定的生成的紧凑文件输出路径。</param>
+      <param name="password">指定的所生成紧凑文件的密码。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.GlobalLevelToScale(System.Int32[])">
+      <summary>
+            根据给定的缓存层级数组，计算缓存层级对应的比例尺以及对应的别名称。
+            </summary>
+      <param name="levels">指定的缓存层级数组。</param>
+      <returns>返回由缓存层级对应的比例尺以及对应的别名称组成的字典，字典的关键字（key）为缓存层级对应的比例尺，关键字对应的值（value）为比例尺对应的别名称。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.GlobalLevelToScale(System.Int32[],SuperMap.Data.PrjCoordSys,SuperMap.Data.Processing.TileSize)">
+      <summary>
+            根据给定的缓存层级数组、投影信息以及瓦片大小，计算缓存层级对应的比例尺以及对应的别名称。
+            </summary>
+      <param name="levels">指定的缓存层级数组。</param>
+      <param name="prjCoordSys">指定的投影信息。</param>
+      <param name="tileSize">指定的瓦片大小，默认值为256。</param>
+      <returns>返回由缓存层级对应的比例尺以及对应的别名称组成的字典，字典的关键字（key）为缓存层级对应的比例尺，关键字对应的值（value）为比例尺对应的别名称。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.GetDefaultOutputScales">
+      <summary>
+            返回推荐的默认比例尺。
+            </summary>
+      <returns>返回推荐的默认比例尺。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.GetTiles(SuperMap.Data.Rectangle2D,System.Double)">
+      <summary>
+            根据比例、范围，获取对应的瓦片。
+            </summary>
+      <param name="bounds">指定范围。</param>
+      <param name="scale">指定比例尺。</param>
+      <returns>返回符合条件的瓦片。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.Build(System.Boolean,System.Boolean)">
+      <summary>
+            根据参数生成矢量瓦片或风格。
+            </summary>
+      <param name="buildVectorTile">是否生成矢量瓦片，true表示生成；false表示不生成。</param>
+      <param name="buildStyle">是否生成矢量瓦片风格，true表示生成；false表示不生成。</param>
+      <returns>一个布尔值，若创建缓存成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.BuildWithoutConfigFile(System.Boolean,System.Boolean)">
+      <summary>
+            根据参数生成矢量瓦片或风格，但不生成缓存配置文件。
+            </summary>
+      <param name="buildVectorTile">是否生成矢量瓦片，true表示生成；false表示不生成。</param>
+      <param name="buildStyle">是否生成矢量瓦片风格，true表示生成；false表示不生成。</param>
+      <returns>一个布尔值，若创建缓存成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.GetGlobalLevelScales">
+      <summary>
+            获取全球剖分所有层级比例尺。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.MapCacheBuilder.ExportGlyph(System.String,System.String,System.Int32,System.Int32)">
+      <summary>
+            导出指定字符编码范围的字体缓存文件（.pbf）。
+            </summary>
+      <param name="path">指定的导出文件的保存路径。</param>
+      <param name="name">指定字体名称。</param>
+      <param name="start">指定字符编码的起始值。</param>
+      <param name="end">指定字符编码的终止值。</param>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.Map">
+      <summary>
+            获取或设置用于创建缓存的地图。如果地图中包含有web类型引擎提供的数据图层，则缓存生成失败。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.ClipRegion">
+      <summary>
+             获取或设置生成的地图缓存的裁剪区域，用以设置不规则范围来生成缓存。 
+             </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.Bounds">
+      <summary>
+            获取或设置地图缓存的地理范围。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.CacheName">
+      <summary>
+            获取或设置生成的地图缓存配置文件的名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.OutputScaleCaptions">
+      <summary>
+            获取或设置地图缓存比例尺的别名。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.OutputScales">
+      <summary>
+            获取或设置地图缓存的比例尺数组。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.TileSize">
+      <summary>
+            获取或设置地图缓存图片的大小。 
+            </summary>
+      <returns>地图缓存图片的大小。</returns>
+      <value>默认值为Size256。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.ImageCompress">
+      <summary>
+             获取或设置地图缓存图片的压缩率。 
+             </summary>
+      <value>默认为75。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置生成地图缓存的路径。  
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsTransparent">
+      <summary>
+            获取或设置地图缓存图片是否背景透明。 
+            </summary>
+      <value>默认为 false。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.TileFormat">
+      <summary>
+            获取或设置地图缓存图片的类型。
+            </summary>
+      <returns>地图缓存图片的类型。</returns>
+      <value>默认值为 JPG。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.StorageType">
+      <summary>
+            获取或设置地图缓存存储方式。 
+            </summary>
+      <value>默认为原始模式，即：StorageType.Original。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.IndexBounds">
+      <summary>
+            获取或设置地图缓存的索引范围。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.Password">
+      <summary>
+            获取或设置地图缓存的密码。 
+            </summary>
+      <value>默认值为 String.Empty，即不对地图缓存进行密码设置。</value>
+    </member>
+    <member name="E:SuperMap.Data.Processing.MapCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.Version">
+      <summary>
+            获取或设置缓存的版本。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.HashCode">
+      <summary>
+            获取地图缓存的 Hash 值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.TilingMode">
+      <summary>
+             获取或设置地图缓存的剖分方式。
+             </summary>
+      <returns>
+             地图缓存的剖分方式。
+             </returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsFillMargin">
+      <summary>
+            获取或设置是否完全填充缓存图片。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.DPI">
+      <summary>
+            获取或设置生成缓存的DPI,代表每英寸有多少个像素。
+            </summary>
+      <value>默认值是0，若DPI为0，则根据当前地图的DPI出缓存。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsAppending">
+      <summary>
+            获取或设置是否追加生成缓存。
+            </summary>
+      <value>若追加生成缓存，重叠部分覆盖，非重叠区域不影响，返回 true，否则返回 false。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.BuildResult">
+      <summary>
+             获取返回生成缓存的结果信息，包括生成图片数，各种耗时等。
+             </summary>
+      <returns>生成缓存的结果信息。</returns>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsDeleteLogFile">
+      <summary>
+            获取或设置缓存生成完成是否删除日志文件。
+            </summary>
+      <value>默认值为false,缓存生成完成不删除日志文件。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsBlockOverRecord">
+      <summary>
+            获取或设置缓存日志文件里是否写入缓存生成的进度信息。即每个比例尺每块缓存生成结束时的结果信息，包括生成图片数，各种耗时等。
+            </summary>
+      <value>默认值为false,缓存日志文件里不写入进度信息。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsScaleOverRecord">
+      <summary>
+            获取或设置缓存日志文件里是否写入每个比例尺缓存生成结束时的信息，包括生成图片数，各种耗时等。
+            </summary>
+      <value>默认值为false,缓存日志文件里不写入每个比例尺缓存生成结束时的信息。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsTaskOverRecord">
+      <summary>
+            获取或设置缓存日志文件里是否写入缓存生成结束时的结果信息，包括生成图片数，各种耗时等。
+            </summary>
+      <value>默认值为false,缓存日志文件里不写入缓存生成结束时的结果信息。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsAppendHashCode">
+      <summary>
+             获取或设置生成时是否添加HashCode。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.ConnectionInfo">
+      <summary>
+            获取或设置生成时连接mongo数据库的信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.IgnoreInvalidDrawing">
+      <summary>
+            获取或设置在生成缓存时，是否忽略无有效数据绘制的出图区域；true，表示忽略，无有效数据绘制的出图区域将不生成瓦片。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.MapCacheBuilder.MVTStyleWithoutFont">
+      <summary>
+            获取或设置生成矢量瓦片风格时是否生成字体，true，表示不生成字体，false，表示生成字体。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.MapCacheVersion">
+      <summary>
+        <para>该枚举定义了缓存版本类型常量。</para>
+        <para>随着缓存技术的发展，SuperMap GIS 6R 系列产品对于缓存的生成也在不断地发展和完善，因此，产生的多种缓存生成策略，为了便于对不同版本产品缓存的使用和管理，提供了<c>MapCacheVersion</c>枚举，用来定义缓存版本类型常量。</para>
+        <para>从 SuperMap Objects .NET 6R(2012) Service Pack 2开始，MapCacheVersion 枚举的默认值为 Version_50，之前的版本默认值为 Version_40。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_UNKNOWN">
+      <summary>
+            未知版本。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_10">
+      <summary>
+            1.0版本缓存，用于三维场景。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_20">
+      <summary>
+            2.0版本缓存，适用于 IS.NET。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_21">
+      <summary>
+            2.1版本缓存，使用新的地图缓存生成方案的 IS.NET 缓存。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_30">
+      <summary>
+            3.0版本缓存，适用于iServer 2.0。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_31">
+      <summary>
+            3.1版本缓存，使用新的缓存图片生成方案的 iServer 2.0 缓存。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_40">
+      <summary>
+            4.0版本缓存，适用于iServer 6R。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_50">
+      <summary>
+            5.0版本缓存，适用于iServer6R(2012) Service Pack 1。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.ModelCacheBuilder">
+      <summary>
+        <para>该类已经废弃，使用<see cref="T:SuperMap.Data.Processing.VectorCacheBuilder">VectorCacheBuilder</see>替代，进行缓存的构建，详情请参见VectorCacheBuilder类的相关内容。VectorCacheBuilder是矢量模型缓存生成器类，主要用于为矢量模型数据生成供三维场景发布使用的矢量模型缓存，其配置文件为 *.scv 格式。 </para>
+        <para>生成 SCM 模型缓存类，负责生成 SCM 模型缓存。</para>
+      </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ModelCacheBuilder.#ctor">
+      <summary>
+            默认构造函数，构造一个生成SCM模型缓存类的新实例。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ModelCacheBuilder.#ctor(SuperMap.Data.DatasetVector,System.String,System.String,System.String)">
+      <summary>
+            根据指定的参数，构造一个生成SCM模型缓存类的新实例。
+            </summary>
+      <param name="dataset">指定的用于创建缓存的矢量数据集。</param>
+      <param name="latitudeField">在数据集中用于存储模型存放位置纬度值的字段的名称。</param>
+      <param name="longitudeField">在数据集中用于存储模型存放位置经度值的字段的名称。</param>
+      <param name="outputFolder">输出的缓存文件所在目录的全路径。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ModelCacheBuilder.Build">
+      <summary>
+            创建模型缓存。
+            </summary>
+      <returns>创建缓存成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ModelCacheBuilder.ToConfigFile(System.String)">
+      <summary>
+            将生成SCM模型缓存类对象的相关属性写到指定的文件中，文件的后缀名为.sci3d，即缓存数据的配置文件。 
+            </summary>
+      <param name="fileName">缓存配置文件的全路径。</param>
+      <returns>一个布尔值，若保存缓存配置文件成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ModelCacheBuilder.FromConfigFile(System.String)">
+      <summary>
+            导入缓存文件，根据缓存数据的配置文件中的内容来指定生成SCM模型缓存类对象相关属性的值。
+            </summary>
+      <param name="fileName">缓存配置文件的全路径。</param>
+      <returns>一个布尔值，若导入缓存配置文件成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.ModelCacheBuilder.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.Dataset">
+      <summary>
+            获取或设置用于创建缓存的矢量数据集，点、线、面等数据集类型均支持，生成缓存时主要使用数据集中的属性字段中的信息。
+            </summary>
+      <value>默认值为null。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置输出的缓存文件所在目录的全路径。
+            </summary>
+      <value>默认值为 String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.CacheName">
+      <summary>
+            获取或设置生成缓存的名称，该名称对应SCM缓存配置文件的名称，不含后缀名以及路径信息。
+            </summary>
+      <value>默认值为UntiledModelCache。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.Level">
+      <summary>
+            获取或设置缓存文件的层数，默认值为16。
+            </summary>
+      <value>默认值为16。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.ModelPathField">
+      <summary>
+            获取或设置sgm文件的全路径名。
+            </summary>
+      <value>默认值为String.Empty。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.UpdateSize">
+      <summary>
+            获取或设置一个值，表示在Scene场景渲染该缓存图层时，每次更新缓存块数的多少。具体值为该属性值的平方，即UpdateSize * UpdateSize的个数。
+            </summary>
+      <value>默认值为 8。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.LatitudeField">
+      <summary>
+            获取或设置在数据集中用于存储模型存放位置纬度值的字段的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.LongitudeField">
+      <summary>
+            获取或设置在数据集中用于存储模型存放位置经度值的字段的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.ScaleXField">
+      <summary>
+            获取或设置在Dataset中用于存储模型X方向缩放比值字段的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.ScaleYField">
+      <summary>
+            获取或设置在Dataset中用于存储模型Y方向缩放比值字段名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.ScaleZField">
+      <summary>
+            获取或设置在Dataset中用于存储模型Z方向缩放比值字段名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.RotateXField">
+      <summary>
+            获取或设置一个值，标示在Dataset中用于存储模型X方向旋转角度字段的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.RotateYField">
+      <summary>
+            获取或设置一个值，标示在Dataset中用于存储模型Y方向旋转角度字段的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.RotateZField">
+      <summary>
+            获取或设置一个值，标示在Dataset中用于存储模型Z方向旋转角度字段的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.Bounds">
+      <summary>
+            获取或设置缓存所覆盖的地理范围，单位为经纬度。
+            </summary>
+      <value>默认值为{-180,-90,180,90}。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.IsCompressModel">
+      <summary>
+            获取或设置是否在生成缓存时对模型的纹理图片进行压缩。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.ModelCacheBuilder.AltitudeField">
+      <summary>
+            获取或设置在Dataset中用于存储模型存放位置高度值字段的名称。
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.ModelCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.SceneCacheBuilder">
+      <summary>场景缓存生成类，负责将整个场景中的各个图层生成对应的缓存数据，并形成新的场景。</summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.SceneCacheBuilder.#ctor">
+      <summary>
+            构造一个场景相关缓存生成类的新实例。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.SceneCacheBuilder.#ctor(SuperMap.Realspace.Scene,System.String)">
+      <summary>
+            根据指定的参数构造一个场景相关缓存生成类的新实例。 
+            </summary>
+      <param name="scene">要生成缓存的场景。</param>
+      <param name="outputFolder">生成缓存的路径。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.SceneCacheBuilder.Build">
+      <summary>
+            创建场景缓存。 
+            </summary>
+      <returns>一个布尔值，若创建缓存成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.SceneCacheBuilder.BuildOfflinePackage(System.String,System.String)">
+      <summary>
+            根据给定的参数创建离线包。离线包是*.7z格式，它包括场景中所有数据集生成的缓存文件，和一个场景的配置文件（*.xml）。
+            <para>由于从7C版本开始，移动端改为通过图层进行下载，因此本接口废弃。</para></summary>
+      <param name="workspacePath">指定的场景缓存工作空间文件所在的路径。</param>
+      <param name="sceneName">场景缓存中场景的名称。</param>
+      <returns>若离线包生成成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.SceneCacheBuilder.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.Scene">
+      <summary>
+            获取或设置用于生成缓存的场景对象。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.IsBoundsCeiled">
+      <summary>
+            获取或设置在生成缓存时是否对场景图层中指定的生成缓存数据的范围（对应Bounds属性）进行规整处理。在手动生成局部缓存，然后结合iServer动态发布时，需要通过该属性设置为 true，来对手动生成的缓存范围进行规整，以避免根据Bounds 生成的缓存图片在边界上出现部分白图现象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.IsCalNormal">
+      <summary>
+            获取或设置生成缓存是否计算法线
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.StorageType">
+      <summary>
+            获取或设置缓存的存储方式。默认为原始模式，即：StorageType.Original。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.UpdateSize">
+      <summary>
+            获取或设置一个值，标示在Scene场景渲染该缓存图层时，每次更新缓存块数的多少，具体值为该属性值的平方，即UpdateSize * UpdateSize的个数。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.ImageSize">
+      <summary>
+            获取或设置缓存图片的大小，默认为 CacheImageSize.Size256（即：256*256）。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置生成缓存的路径。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.OutputWorkspaceConnectionInfo">
+      <summary>
+            获取或设置结果工作空间的链接信息。当使用默认的方式null时，将在OutputFolder目录下，生成一个smwu类型的的工作空间文件，文件名称与输入的Scene的名称相同。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.OutputSceneName">
+      <summary>
+            获取或设置结果场景的名称，该场景名称会保存在OutputWorkspaceConnectionInfo对应的工作空间中。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.Bounds">
+      <summary>
+            获取或设置场景图层中需要生成缓存数据的范围。 注意：在6R（2012） SP2 版本中，不推荐用户使用本属性。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.OutputLayerNames">
+      <summary>
+            获取或设置哪些普通图层对应的数据会生成缓存。不在该列表中的图层，会使用原场景中使用的数据，不会生成对应的缓存。当为null时，表示所有图层对应的数据均会生成新的缓存，或者引用原来的缓存数据。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.OutputTerrainLayerNames">
+      <summary>
+            获取或设置哪些地形图层对应的数据会生成缓存。不在该列表中的地形图层，会使用原场景中使用的数据，不会生成对应的缓存。当为null时，表示所有地形图层对应的数据均会生成新的缓存，或者引用原来的缓存数据。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.IsInstance">
+      <summary>
+            获取或设置是否实例化。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.Password">
+      <summary>
+            获取或设置对生成的各个图层的缓存数据进行加密的密码。在添加图层时，需要使用该密码才能成功添加。如果使用默认值，便可不指定密码便能打开。默认值为String.Empty。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.CompressedTextureType">
+      <summary>
+            获取或设置生成场景缓存时的压缩纹理的格式。对压缩纹理的格式的详细介绍请参见：<see cref="T:SuperMap.Data.CompressedTextureType">CompressedTextureType</see> 枚举类的说明。
+            </summary>
+      <value>默认值为 CompressedTextureType.DDS。</value>
+    </member>
+    <member name="E:SuperMap.Data.Processing.SceneCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.PreCacheLayerNames">
+      <summary>
+            获取或设置对场景中待生成预缓存的图层名称。出于性能的考虑，服务器端发布静态缓存，但同时为了实现对数据的更新，服务器端发布的工作空间需要关联数据集信息。预缓存就是为了同时兼顾性能和更新而设计。用户使用桌面(或组件)对于矢量数据预先生成部分或者全部的缓存放在工作空间的同级目录下，这样用户发布的工作空间中同时拥有数据集和缓存，当客户端请求数据时，缓存数据可以快速发布。同时用户使用其他方式改变了数据集时，服务器端会改变数据同时删除已改变的旧的缓存切片，并使用数据集出一块新的缓存，同时通知客户端更新相应的切片，这样就实现了客户端的局部更新功能。生成预缓存的工作空间在场景中还是保存了数据集信息，它只是为了减少服务器动态切缓存的时间。预缓存是为B/S局部更新数据而设计，如果不是为此目的，生成缓存是不建议勾选预缓存。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.TerrainCacheType">
+      <summary>
+            获取或设置生成地形缓存的类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.ProcessThreadsCount">
+      <summary>
+            生成场景缓存支持多线程，获取或设置线程数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.IsRemoveNormal">
+      <summary>
+            获取或设置是否移除原始数据法线。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.IsCombineRepeatTextures">
+      <summary>
+            获取或设置重复贴图纹理是否打组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.ObjectFiltrateThreshold">
+      <summary>
+            获取或设置生成场景缓存设置过滤阈值。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.StorageType">
+      <summary>
+            该枚举定义了缓存切片文件的存储类型常量。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.StorageType.Original">
+      <summary>
+        <para>原始型，即切片文件存储为原始图片格式，表现为多文件夹下的裸露图片。</para>
+        <para>当存储类型为 StorageType.Original 时，Password 属性是无效的。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.StorageType.Compact">
+      <summary>
+        <para>紧凑型，即大文件缓存格式。此时，原本裸露的切片文件将进行紧凑存储，表现为紧凑文件格式。</para>
+        <para>若使用该类型，可以为缓存设置密码，即各类型缓存生成类的 Password 属性可以起作用。当存储类型为 StorageType.Original 时，Password 属性是无效的。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.StorageType.Single">
+      <summary>
+        <para>单一文件型缓存格式。该存储类型将所有的切片文件存储在单一的文件中。</para>
+        <para>若使用该类型，可以为缓存设置密码，即各类型缓存生成类的 Password 属性可以起作用。当存储类型为 StorageType.Original 时，Password 属性是无效的。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.StorageType.GPKG">
+      <summary>
+            GPKG缓存格式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.StorageType.MongoDB">
+      <summary>
+            MongoDB缓存格式。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.TerrainCacheBuilder">
+      <summary>地形缓存生成类，该类主要用于为地形数据生成供三维场景发布使用的地形缓存，其配置文件为 *.sct 格式。</summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.#ctor">
+      <summary>
+            默认构造函数，构造一个生成SCT地形缓存类的新实例。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.#ctor(SuperMap.Data.DatasetGrid,System.String)">
+      <summary>
+            根据指定的Grid数据集和输出缓存文件所在文件夹的全路径名，构造一个缓存生成类对象。 
+            </summary>
+      <param name="dataset">指定的栅格数据集。</param>
+      <param name="outputFolder">输出缓存文件所在的文件的全路径名。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.#ctor(SuperMap.Data.DatasetGrid,System.String,System.String)">
+      <summary>
+            根据指定的栅格数据集、输出缓存文件所在文件夹的全路径名以及生成的缓存对象名称，构造一个缓存生成类对象。 
+            </summary>
+      <param name="dataset">指定的栅格数据集。</param>
+      <param name="outputFolder">输出缓存文件所在的文件的全路径名。</param>
+      <param name="cacheName">生成的缓存对象名称。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.Build">
+      <summary>
+            创建地形缓存。
+            </summary>
+      <returns>创建缓存成功返回 true，否则返回 false</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.ComputeTerrainFileName">
+      <summary>
+            返回计算得到的各个层上的缓存图片名称列表。 
+            </summary>
+      <returns>计算得到的各个层上的缓存图片名称列表。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.ComputeTerrainFileName(System.Int32)">
+      <summary>
+            根据参数指定的缓存层数计算该层下的缓存图片名称列表。 
+            </summary>
+      <param name="specialLevel">指定的层数。</param>
+      <returns>计算出的缓存图片名称列表。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.ToConfigFile(System.String)">
+      <summary>
+            将对象的相关属性写到指定的文件中，文件的后缀名为.sct，即缓存数据的配置文件。 
+            </summary>
+      <param name="fileName">缓存配置文件的全路径。</param>
+      <returns>一个布尔值，若保存缓存配置文件成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.FromConfigFile(System.String)">
+      <summary>
+            导入缓存文件，根据缓存数据的配置文件中的内容来指定相关属性的值。 
+            </summary>
+      <param name="fileName">&gt;缓存配置文件的全路径。</param>
+      <returns>一个布尔值，若导入缓存配置文件成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.ComputeLevel">
+      <summary>
+            计算设置数据集所适合的缓存级数，在非默认构造函数中会自动调用该方法，不过通过设置Dataset不会执行该方法。 
+            </summary>
+      <returns>计算完成返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.BuildWithoutConfigFile">
+      <summary>
+            为地形数据创建地形缓存。使用该方法创建缓存不会生成地形缓存的配置文件。 
+            </summary>
+      <returns>一个布尔值，若创建缓存成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.ComputeOutputScales">
+      <summary>
+            计算生成地形缓存时的合适输出比例尺，即默认输出比例尺。该操作会修改 OutputScales 属性的值。
+            </summary>
+      <returns>计算成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.GetDefaultOutputScales">
+      <summary>
+            返回推荐的默认比例尺。
+            </summary>
+      <returns>返回推荐的默认比例尺。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.GetTiles(SuperMap.Data.Rectangle2D,System.Double)">
+      <summary>
+            根据比例、范围，获取对应的瓦片。
+            </summary>
+      <param name="bounds">指定范围。</param>
+      <param name="scale">指定比例尺。</param>
+      <returns>返回符合条件的瓦片。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.Dataset">
+      <summary>
+            获取或设置用于创建缓存的Grid数据集。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置输出的缓存文件的全路径。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.CacheName">
+      <summary>
+            获取或设置生成缓存的名称。该名称对应SCT缓存配置文件的名称，不含后缀名以及路径信息。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.ClipRegion">
+      <summary>
+            获取或设置数据集的裁剪区域。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.BeginLevel">
+      <summary>
+            获取或设置开始生成缓存的层数。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.EndLevel">
+      <summary>
+            获取或设置结束生成缓存的层数。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.SampleSize">
+      <summary>
+            获取缓存预处理后生成的每个缓存分块文件的采样尺寸，单位为像素。 
+            </summary>
+      <value>默认值为 129。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.StorageType">
+      <summary>
+            获取或设置缓存的存储方式，默认为原始模式，即：StorageType.Original。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.Password">
+      <summary>
+            获取或设置用于为地图对象创建缓存时对数据进行加密的密码。在添加图层时，需要使用该密码才能成功添加。如果使用默认值，便可不指定密码便能打开。默认值为一个空的字符串。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.CompressType">
+      <summary>
+        <para>该属性已经过时，使用 <see cref="P:SuperMap.Data.Processing.TerrainCacheBuilder.EncodeType">EncodeType</see> 属性代替。</para>
+        <para>获取或设置缓存文件的压缩模式。</para>
+      </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.TerrainCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.EncodeType">
+      <summary>
+            获取或设置地形缓存文件的编码类型。
+            </summary>
+      <value>默认值为 EncodeType.None，即不使用编码方式</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.DefaultBeginLevel">
+      <summary>
+            获取生成地形缓存的默认开始层数。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.DefaultEndLevel">
+      <summary>
+            获取生成地形缓存的默认结束层数。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.OutputScaleCaptions">
+      <summary>
+            获取或设置地形缓存比例尺的别名。 
+            <para>一般设置为比例尺大小倒数的字符串，如1：10000为”10000”。</para><para>当设置的别名不唯一时，程序抛异常。</para></summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.OutputScales">
+      <summary>
+            获取或设置地形缓存的比例尺数组。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.DynamicPrjCoordSysType">
+      <summary>
+             获取或设置生成平面还是球面缓存，目前只有PrjCoordSysType.NoneEarth、PrjCoordSysType.EarthLongitudeLatitude两种。
+            <para>当设置为PrjCoordSysType.NoneEarth，则生成平面缓存，当设置为PrjCoordSysType.EarthLongitudeLatitude则生成球面缓存。</para></summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.ConnectionInfo">
+      <summary>
+            获取或设置生成时连接mongo数据库的信息。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.TilingSchemeOption">
+      <summary>
+            切分主题，用于生成TIN地形时的切分方式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TilingSchemeOption.MercatorTilingScheme">
+      <summary>
+             Mercator切分，1x1。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.TilingSchemeOption.GeographicTilingScheme">
+      <summary>
+            地理切分，1x2。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.VectorCacheBuilder">
+      <summary>矢量缓存生成类，该类主要用于为矢量数据生成供三维场景发布使用的矢量缓存，其配置文件为 *.scv 格式。 </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.#ctor">
+      <summary>
+            构造一个新的矢量缓存生成类对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.#ctor(SuperMap.Data.Recordset,System.String)">
+      <summary>
+            根据指定的参数，构造一个新的矢量缓存生成类对象。 
+            </summary>
+      <param name="recordset">用于生成缓存的记录集。</param>
+      <param name="outputFolder">生成缓存的路径。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.#ctor(SuperMap.Data.Recordset,System.String,System.String)">
+      <summary>
+            根据指定的参数，构造一个新的矢量缓存生成类对象。  
+            </summary>
+      <param name="recordset">用于生成缓存的记录集。</param>
+      <param name="outputFolder">生成缓存的路径。</param>
+      <param name="name">生成缓存配置文件的名称。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.#ctor(SuperMap.Data.DatasetVector,System.String,System.String)">
+      <summary>
+            根据指定的参数，构造一个新的矢量缓存生成类对象。  
+            </summary>
+      <param name="dataset">用于生成缓存的矢量数据集。</param>
+      <param name="outputFolder">生成缓存的路径。</param>
+      <param name="name">生成缓存配置文件的名称。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.Build">
+      <summary>
+            创建矢量缓存。 
+            </summary>
+      <returns>创建缓存成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.ComputeFileName">
+      <summary>
+            获取由该实例的Bounds，Level，OutputFolder所确定的缓存文件名称列表，文件名为绝对路径。 
+            </summary>
+      <returns>计算出的缓存图片名称。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.ComputeLevel">
+      <summary>
+            计算设置数据集所适合的缓存层数。
+            </summary>
+      <returns>计算成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.ToConfigFile(System.String)">
+      <summary>
+            将对象的相关属性写到指定的文件中，文件的后缀名为.scv，即缓存数据的配置文件。 
+            </summary>
+      <param name="fileName">指定的保存配置文件的路径。</param>
+      <returns>保存缓存配置文件成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.FromConfigFile(System.String)">
+      <summary>
+            导入缓存文件，根据缓存数据的配置文件中的内容来指定相关属性的值。 
+            </summary>
+      <param name="fileName">导入缓存配置文件成功返回 true，否则返回 false。</param>
+      <returns>指定的导入配置文件的路径。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.BuildWithoutConfigFile">
+      <summary>
+            为矢量数据创建矢量缓存。使用该方法创建缓存不会生成矢量缓存的配置文件。
+            </summary>
+      <returns>一个布尔值，若创建缓存成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.BuildTexture(System.String,System.Int32)">
+      <summary>
+            根据纹理图片的索引路径和层级创建纹理图片。
+            </summary>
+      <param name="path">指定的纹理图片的索引路径。</param>
+      <param name="level">指定的层级。</param>
+      <returns>创建成功返回true，失败返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.BuildToFile">
+      <summary>
+            将点云数据生成为OSGB格式。
+            </summary>
+      <returns>是否成功生成OSGB文件。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.SetIntensionFieldName(System.String,SuperMap.Data.Processing.IntensionType)">
+      <summary>
+            设置生成点云缓存的字段及字段类型。
+            </summary>
+      <param name="value">指定的字段名称。</param>
+      <param name="type">指定的字段类型。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.GetIntensionFieldName">
+      <summary>
+            获取生成缓存的字段名称。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorCacheBuilder.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Recordset">
+      <summary>
+            获取或设置用于创建缓存的记录集，支持的数据集类型为点数据集、线数据集、面数据集、文本数据集和复合数据集。  
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Dataset">
+      <summary>
+            获取或设置用于创建缓存的数据集，支持的数据集类型为点数据集、线数据集、面数据集、文本数据集和复合数据集。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.FieldNames">
+      <summary>
+            获取或设置生成的缓存数据包含的属性字段名称数组。  
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Bounds">
+      <summary>
+            获取或设置生成缓存的地理范围。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.CacheName">
+      <summary>
+            获取或设置生成缓存配置文件的名称。  
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置生成缓存的路径。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.StorageType">
+      <summary>
+            获取或设置缓存存储方式。默认为原始模式，即：StorageType.Original。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Level">
+      <summary>
+            获取或设置开始生成缓存的层数。 
+            </summary>
+      <value>默认值为16。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.UpdateSize">
+      <summary>
+            获取或设置在Scene场景渲染该缓存图层时，每次更新的缓存块数，具体值为该属性值的平方，即 UpdateSize * UpdateSize。 
+            </summary>
+      <value>默认值为16。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Password">
+      <summary>
+            获取或设置用于为地图对象创建缓存时对数据进行加密的密码。在添加图层时，需要使用该密码才能成功添加。如果使用默认值，便可不指定密码便能打开。默认值为一个空的字符串。 
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.VectorCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.EncodeType">
+      <summary>
+            获取或设置生成缓存文件的压缩类型。
+            </summary>
+      <value>默认值为ZIP压缩方式，即：EncodeType.LZW。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.CompressedTextureType">
+      <summary>
+            获取或设置生成模型缓存时的压缩纹理的格式。对压缩纹理的格式的详细介绍请参见：<see cref="T:SuperMap.Data.CompressedTextureType">CompressedTextureType</see> 枚举类的说明。
+            </summary>
+      <value>默认值为 CompressedTextureType.DDS。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.IsBuildLOD">
+      <summary>
+            获取或设置是否对模型建立多细节层级。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.SimplificationPercent">
+      <summary>
+            模型简化度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.OutputScale">
+      <summary>
+            获取或设置矢量缓存比例尺。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Origin">
+      <summary>
+            获取或设置原点，该原点是缓存瓦片行列号的原点，基于这个原点来计算缓存生成的瓦片的行列号。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.VectorCacheTileType">
+      <summary>
+            获取或设置矢量缓存切片文件的类型。
+            </summary>
+      <value>默认为同时生成几何和属性数据瓦片,即：VectorCacheTileType.GeometryAndAttribute。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.ColorTable">
+      <summary>
+            获取或设置点云数据的颜色对照表类。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.DynamicPrjCoordSysType">
+      <summary>
+            获取或设置生成平面还是球面缓存，目前只有PrjCoordSysType.NoneEarth、PrjCoordSysType.EarthLongitudeLatitude两种。
+            <para>当设置为PrjCoordSysType.NoneEarth，则生成平面缓存，当设置为PrjCoordSysType.EarthLongitudeLatitude则生成球面缓存。</para></summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.TileWidth">
+      <summary>
+            获取或设置缓存切片大小。单位与缓存范围的单位一致。同时适用于批量矢量数据生成缓存时，设置瓦片边长。
+            </summary>
+      <value>默认值为 0。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.FileType">
+      <summary>
+            矢量数据集批量生成缓存时，获取或设置文件类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.DatasetSettingArray">
+      <summary>
+            矢量数据集批量生成缓存时，可以设置多数据源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.UserDefStyle3D">
+      <summary>
+            获取或设置用户自定义风格(用于矢量数据集生成缓存)
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorCacheBuilder.TileBoundClip">
+      <summary>
+            矢量数据集批量生成缓存时，是否用TileBound做裁剪，进行切片切割。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.VectorCacheTileType">
+      <summary>
+            该枚举定义了矢量缓存切片文件的类型常量。 默认值为GeometryAndAttribute，即同时生成几何和属性数据瓦片。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.VectorCacheTileType.Geometry">
+      <summary>
+        <para>几何切片。只生成几何瓦片文件，即.scvb格式文件。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.VectorCacheTileType.Attribute">
+      <summary>
+        <para>属性切片。只生成属性瓦片文件，即.scvd格式文件。 </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.VectorCacheTileType.GeometryAndAttribute">
+      <summary>
+        <para>几何与属性切片。同时生成几何和属性瓦片，即包含.scvb和.scvd文件。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.VectorExtrudeCacheBuilder">
+      <summary>
+            矢量面拉伸生成缓存类，可实现拉伸矢量面得到三维模型对象，生成缓存；支持将体元栅格重映射到数据范围内的三维模型对象上。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.#ctor">
+      <summary>
+            默认构造一个新的VectorExtrudeCacheBuilder对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.#ctor(SuperMap.Data.DatasetVector,System.String,System.String)">
+      <summary>
+            根据指定参数构造一个与类名相同的新对象。
+            </summary>
+      <param name="dataset">进行拉伸矢量面，支持二、三维矢量面。</param>
+      <param name="outputFolder">缓存输出路径。</param>
+      <param name="name">缓存名称。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.Build">
+      <summary>
+            执行生成缓存。
+            </summary>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.Dispose">
+      <summary>
+            释放占用资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.CacheName">
+      <summary>
+            缓存名称，不包含SCP后缀名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.BottomAltitudeField">
+      <summary>
+            获取或设置底部高层字段名。作为拉伸成功后，对应模型对象的底部高层。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.Dataset">
+      <summary>
+            获取或设置用于拉伸的矢量面数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.DatasetVolume">
+      <summary>
+            获取或设置重映射到模型对象上的体元栅格数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.ExtendedHeightField">
+      <summary>
+            获取或设置拉伸高度字段名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.ExtrudeHeight">
+      <summary>
+            获取或设置拉伸高度。单位：米。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.FileType">
+      <summary>
+            获取或设置缓存文件类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.ObjectFiltrateThreshold">
+      <summary>
+            获取或设置对象像素过滤阈值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置生成缓存的路径。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.PixelPerMeter">
+      <summary>
+            获取或设置拉伸纹理分辨率。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.ProcessThreadsCount">
+      <summary>
+            获取或设置生成缓存的线程数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.TileWidth">
+      <summary>
+            获取或设置瓦片边长。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.VertexOptimizationType">
+      <summary>
+            获取或设置生成缓存的顶点优化方式。
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.VectorExtrudeCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.VectorModelCacheBuilder">
+      <summary>该类已经废弃，使用<see cref="T:SuperMap.Data.Processing.VectorCacheBuilder">VectorCacheBuilder</see>替代，进行缓存的构建，详情请参见VectorCacheBuilder类的相关内容。矢量模型缓存生成器类，该类主要用于为矢量模型数据生成供三维场景发布使用的矢量模型缓存，其配置文件为 *.scv 格式。 </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.#ctor">
+      <summary>
+            构造一个新的矢量模型缓存生成器类的新实例。  
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.#ctor(SuperMap.Data.DatasetVector,System.String,System.String,System.String)">
+      <summary>
+            根据指定的参数，构造一个新的矢量模型缓存生成器类新实例。 
+            </summary>
+      <param name="dataset">要生成缓存的数据集。</param>
+      <param name="latitudeField">指定的纬度字段名。</param>
+      <param name="longitudeField">指定的经度字段名。</param>
+      <param name="outputFolder">生成缓存的路径。</param>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.Build">
+      <summary>
+            创建矢量模型缓存。
+            </summary>
+      <returns>创建缓存成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.ToConfigFile(System.String)">
+      <summary>
+            将对象的相关属性写到指定的文件中，文件的后缀名为.scv，即缓存数据的配置文件。 
+            </summary>
+      <param name="fileName">指定文件的路径。</param>
+      <returns>保存缓存配置文件成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.FromConfigFile(System.String)">
+      <summary>
+            导入缓存文件，根据缓存数据的配置文件中的内容来指定相关属性的值，
+            </summary>
+      <param name="fileName">指定文件的路径。</param>
+      <returns>导入缓存配置文件成功返回true，否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.BuildWithoutConfigFile">
+      <summary>
+            为矢量模型创建缓存。使用该方法创建缓存不会生成矢量模型缓存的配置文件。 
+            </summary>
+      <returns>一个布尔值，若创建缓存成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.Dataset">
+      <summary>
+            获取或设置用于创建矢量模型缓存的矢量数据集，支持点、线、面、文本、CAD、属性表数据集。生成矢量模型缓存时，主要使用数据集中属性字段中的信息，因此，属性表应该配置合适的字段，其中LongitudeField、LatitudeField、ModelPathField为必须设置的字段。 
+             </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.Bounds">
+      <summary>
+            获取或设置生成缓存的地理范围。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.CacheName">
+      <summary>
+            获取或设置生成缓存的名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.OutputFolder">
+      <summary>
+            获取或设置生成缓存的路径。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.StorageType">
+      <summary>
+            获取或设置缓存存储方式，默认为原始模式，即：StorageType.Original。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.Level">
+      <summary>
+            获取或设置开始生成缓存的层数，默认值为16。  
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.UpdateSize">
+      <summary>
+            获取或设置在Scene场景渲染该缓存图层时，每次更新的缓存块数，具体值为该属性值的平方，即 UpdateSize * UpdateSize的个数。 
+            </summary>
+      <value>默认值为8。</value>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.ModelPathField">
+      <summary>
+            获取或设置模型路径字段名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.LatitudeField">
+      <summary>
+            获取或设置在Dataset中用于存储模型存放位置纬度值字段的名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.LongitudeField">
+      <summary>
+            获取或设置在Dataset中用于存储模型存放位置经度值字段的名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.AltitudeField">
+      <summary>
+            获取或设置在Dataset中用于存储模型存放位置高度值字段的名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.ScaleXField">
+      <summary>
+            获取或设置在Dataset中用于存储模型X方向缩放比值字段的名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.ScaleYField">
+      <summary>
+            获取或设置在Dataset中用于存储模型Y方向缩放比值字段名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.ScaleZField">
+      <summary>
+            获取或设置在Dataset中用于存储模型Z方向缩放比值字段名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.RotateXField">
+      <summary>
+            获取或设置在Dataset中用于存储模型X方向旋转角度字段的名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.RotateYField">
+      <summary>
+            获取或设置在Dataset中用于存储模型Y方向缩放旋转角度的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.RotateZField">
+      <summary>
+            获取或设置在Dataset中用于存储模型Z方向旋转角度字段的名称。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.Password">
+      <summary>
+            获取或设置用于为地图对象创建缓存时对数据进行加密的密码。在添加图层时，需要使用该密码才能成功添加。如果使用默认值，便可不指定密码便能打开。默认值为一个空的字符串。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.FieldNames">
+      <summary>
+            获取或设置生成的缓存数据包含的属性字段名称数组。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.TextureMaxLevel">
+      <summary>
+            获取或设置需要生成缓存中纹理的最粗糙层级数,默认为3,参数范围为3到10之间。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.CompressType">
+      <summary>
+            获取或设置生成缓存文件的压缩类型。 
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.VectorModelCacheBuilder.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.VertexOptimizationType">
+      <summary>
+            该枚举定义了生成三维切片缓存的顶点优化方式类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.VertexOptimizationType.None">
+      <summary>
+            不压缩
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.VertexOptimizationType.VertexCompress">
+      <summary>
+            顶点压缩
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.Processing.VertexWeightMode">
+      <summary>
+            该枚举定义了模型数据集生成缓存的顶点权重模式。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.VertexWeightMode.None">
+      <summary>
+            其他未知。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.VertexWeightMode.EdgeLengthMin">
+      <summary>
+            三角形最短边。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.Processing.VertexWeightMode.DatasetField">
+      <summary>
+            数据集字段。
+            </summary>
+    </member>
+  </members>
+</doc>

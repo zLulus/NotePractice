@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Conditions>
+<condition oldDatasetName="水域_陆地_海洋R" newDatasetName="水域_陆地_海洋R（融合）" fieldNames="名称" />
+<condition oldDatasetName="水域_陆地_湖泊R" newDatasetName="水域_陆地_湖泊R（融合）" fieldNames="名称" />
+<condition oldDatasetName="水域_陆地_1级常年河L" newDatasetName="水域_陆地_1级常年河L（融合）" fieldNames="名称" />
+<condition oldDatasetName="水域_陆地_2级常年河L" newDatasetName="水域_陆地_2级常年河L（融合）" fieldNames="名称" />
+<condition oldDatasetName="水域_陆地_3级常年河L" newDatasetName="水域_陆地_3级常年河L（融合）" fieldNames="名称" />
+<condition oldDatasetName="水域_陆地_4级常年河L" newDatasetName="水域_陆地_4级常年河L（融合）" fieldNames="名称" />
+<condition oldDatasetName="水域_陆地_5级常年河L" newDatasetName="水域_陆地_5级常年河L（融合）" fieldNames="名称" />
+<condition oldDatasetName="陆地交通L_使用中的高铁" newDatasetName="陆地交通L_使用中的高铁（融合）" fieldNames="名称" />
+<condition oldDatasetName="陆地交通L_140101_使用中的铁路" newDatasetName="陆地交通L_140101_使用中的铁路（融合）" fieldNames="名称" />
+<condition oldDatasetName="陆地交通L_140305_国道" newDatasetName="陆地交通L_140305_国道（融合）" fieldNames="名称" />
+<condition oldDatasetName="陆地交通L_140307_省道" newDatasetName="陆地交通L_140307_省道（融合）" fieldNames="名称" />
+<condition oldDatasetName="陆地交通L_140305_高速国道" newDatasetName="陆地交通L_140305_高速国道（融合）" fieldNames="名称" />
+<condition oldDatasetName="陆地交通L_140307_高速省道" newDatasetName="陆地交通L_140307_高速省道（融合）" fieldNames="名称" />
+<condition oldDatasetName="境界与政区R_210301_国家政区" newDatasetName="境界与政区R_210301_国家政区（融合）" fieldNames="名称" />
+<condition oldDatasetName="境界与政区R_210302_省级行政区" newDatasetName="境界与政区R_210302_省级行政区（融合）" fieldNames="名称" />
+<condition oldDatasetName="境界与政区R_210303_地级行政区" newDatasetName="境界与政区R_210303_地级行政区（融合）" fieldNames="名称" />
+<condition oldDatasetName="境界与政区R_210304_县级行政区" newDatasetName="境界与政区R_210304_县级行政区（融合）" fieldNames="名称" />
+<condition oldDatasetName="居民地及附属设施R_130204_首都" newDatasetName="居民地及附属设施R_130204_首都（融合）" fieldNames="名称" />
+<condition oldDatasetName="居民地及附属设施R_130204_省会" newDatasetName="居民地及附属设施R_130204_省会（融合）" fieldNames="名称" />
+<condition oldDatasetName="居民地及附属设施R_130204_地级市" newDatasetName="居民地及附属设施R_130204_地级市（融合）" fieldNames="名称" />
+<condition oldDatasetName="居民地及附属设施R_130204_县级市" newDatasetName="居民地及附属设施R_130204_县级市（融合）" fieldNames="名称" />
+</Conditions>

@@ -1,0 +1,795 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Realspace.NetworkAnalyst</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.BurstAnalyse3DResult">
+      <summary>
+            爆管分析结果类。爆管分析结果返回关键设施点、普通设施点以及弧段。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.BurstAnalyse3DResult.CriticalNodes">
+      <summary>
+            获取爆管分析中影响爆管位置上下游的关键设施点。
+            <remark>
+            关键设施点包括两种设施点：
+            <para>1. 爆管位置上游中所有对爆管位置直接影响的设施点。</para><para>2. 下游中受爆管位置直接影响且有流出（即出度大于0）的设施点。</para></remark></summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.BurstAnalyse3DResult.NormalNodes">
+      <summary>
+            获取爆管分析中受爆管位置影响的普通设施点。
+            </summary>
+      <remark>普通设施点包括三种：
+            <para>1. 受爆管位置直接影响且没有流出（出度为0）的设施点。</para><para>2. 每个上游关键设施点的流出弧段直接影响的所有设施点A（除去所有关键设施点），且设施点A需要满足，上游关键设施点到设施点A的影响弧段与上下游关键设施点的影响弧段有公共部分。</para><para>3. 爆管位置下游受爆管位置直接影响的设施点A（关键设施点2和普通设施点1），设施点A上游中直接影响设施点A的设施点B（除去所有关键设施点），且需要满足，设施点A到设施点B的影响弧段与上下游关键设施点的影响弧段有公共部分。</para></remark>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.BurstAnalyse3DResult.Edges">
+      <summary>
+            获取上下游影响爆管位置的弧段和受爆管位置影响的弧段。是从爆管位置进行双向搜索关键设施点和普通设施点遍历到的弧段。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D">
+      <summary>
+            三维设施网络分析类。该类提供数据检查功能，以及查找结点或弧段到源或汇之间的弧段、上游追踪、下游追踪和上游最近设施查找等分析功能。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.#ctor">
+      <summary>
+            构造一个新的 FacilityAnalyst3D 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.Load">
+      <summary>
+            根据三维设施网络分析环境设置对象中的环境参数，加载网络模型。
+            </summary>
+      <returns>一个布尔值，代表网络模型是否加载成功。如果成功，返回 true，否则返回 false。</returns>
+      <para>请参见 <see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSourceFromEdge(System.Int32,System.String,System.Boolean)">FindSourceFromEdge</see>、<see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceUpFromEdge(System.Int32,System.String,System.Boolean)">TraceUpFromEdge</see>、<see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesUpFromEdge(System.Int32[],System.Int32,System.Boolean)">FindCriticalFacilitiesUpFromEdge</see> 等方法的示例。</para>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.Check">
+      <summary>
+            对三维设施网络数据集进行数据检查，返回三维设施网络分析数据检查结果对象。
+            </summary>
+      <returns>三维设施网络分析数据检查结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSourceFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+             根据给定的弧段 ID 查找源，即从给定弧段出发，根据流向查找流向该弧段的网络源头，并返回该源到达给定弧段的最小耗费路径所包含的弧段、结点及耗费。
+             </summary>
+      <param name="edgeID">指定的弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）的名称（<see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSourceFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的结点 ID 查找源，即从给定结点出发，根据流向查找流向该结点的网络源头，并返回该源到达给定结点的最小耗费路径所包含的弧段、结点及耗费。 
+            </summary>
+      <param name="nodeID">指定的结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）的名称（<see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSinkFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的弧段 ID 查找汇，即从给定弧段出发，根据流向查找流出该弧段的下游汇点，并返回给定弧段到达该汇的最小耗费路径所包含的弧段、结点及耗费。 
+            </summary>
+      <param name="edgeID">指定的弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）的名称（<see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSinkFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的结点 ID 查找汇，即从给定结点出发，根据流向查找流出该结点的下游汇点，并返回给定结点到达该汇的最小耗费路径所包含的弧段、结点及耗费。
+            </summary>
+      <param name="nodeID">指定的结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）的名称（<see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceUpFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+             根据给定的弧段 ID 进行上游追踪，即查找给定弧段的上游，返回上游包含的弧段、结点及总耗费。
+             </summary>
+      <param name="edgeID">指定的弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）的名称（<see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceUpFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的结点 ID 进行上游追踪，即查找给定结点的上游，返回上游包含的弧段、结点及总耗费。
+            </summary>
+      <param name="nodeID">指定的结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）的名称（<see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceDownFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的弧段 ID 进行下游追踪，即查找给定弧段的下游，返回下游包含的弧段、结点及总耗费。
+            </summary>
+      <param name="edgeID">指定的弧段 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）的名称（<see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceDownFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            根据给定的结点 ID 进行下游追踪，即查找给定结点的下游，返回下游包含的弧段、结点及总耗费。
+            </summary>
+      <param name="nodeID">指定的结点 ID。</param>
+      <param name="weightName">指定的权值字段信息对象的名称，即设施网络分析环境中指定的权值字段信息集合（<see cref="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">WeightFieldInfos</see>）中某一个权值信息对象（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）的名称（<see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see>）。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesUpFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+             上游关键设施查找，即查找给定弧段的上游中的关键设施结点，返回关键结点 ID 数组及其影响到的下游弧段 ID 数组。
+             </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="edgeID">指定的分析弧段 ID。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。未查找到关键设施结点返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesUpFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            上游关键设施查找，即查找给定结点的上游中的关键设施结点，返回关键结点 ID 数组及其影响到的下游弧段 ID 数组。
+            </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="nodeID">指定的分析结点 ID。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。未查找到关键设施结点返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesDownFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            下游关键设施查找，即查找给定弧段的下游关键设施结点，返回关键设施结点 ID 数组及给定弧段影响到的下游弧段 ID 数组。
+            </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="edgeID">指定的分析弧段 ID。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。未查找到关键设施结点返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesDownFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            下游关键设施查找，即查找给定结点的下游关键设施结点，返回关键结点 ID 数组及其给定结点影响到的下游弧段 ID 数组。
+            </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="nodeID">指定的分析结点 ID。</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>设施网络分析结果。未查找到关键设施结点返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.BurstAnalyseFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            双向爆管分析，通过指定爆管结点，查找爆管结点上下游中对爆管位置产生直接影响的结点以及受爆管位置直接影响的结点。
+            </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="nodeID">指定的分析结点 ID</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="!:NetworkBuilder.BuildFacilityNetworkDirections">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>爆管分析分析结果</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.BurstAnalyseFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            双向爆管分析，通过指定爆管弧段，查找爆管弧段上下游中对爆管位置产生直接影响的结点以及受爆管位置直接影响的结点。
+            </summary>
+      <param name="sourceNodeIDs">指定的设施结点 ID 数组。不能为空。</param>
+      <param name="edgeID">指定的分析弧段 ID</param>
+      <param name="isUncertainDirectionValid">指定不确定流向是否有效。指定为 true，表示不确定流向有效，具有不确定流向的弧段仍然参与分析；指定为 false，分析时遇到不确定流向将停止在该方向上继续查找。流向字段的值为 2 时代表该弧段的流向为不确定流向。详细介绍请参阅 <see cref="!:NetworkBuilder.BuildFacilityNetworkDirections">BuildFacilityNetworkDirections</see> 方法的介绍。</param>
+      <returns>爆管分析分析结果</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.AnalystSetting">
+      <summary>
+            获取或设置三维设施网络分析环境。
+            </summary>
+      <value>默认值为一个初始化的 <see cref="T:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D">FacilityAnalystSetting3D</see> 对象。</value>
+      <para>请参见 <see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindSourceFromEdge(System.Int32,System.String,System.Boolean)">FindSourceFromEdge</see>、<see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.TraceUpFromEdge(System.Int32,System.String,System.Boolean)">TraceUpFromEdge</see>、<see cref="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalyst3D.FindCriticalFacilitiesUpFromEdge(System.Int32[],System.Int32,System.Boolean)">FindCriticalFacilitiesUpFromEdge</see> 等方法的示例。</para>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystCheckResult3D">
+      <summary>
+            三维设施网络分析数据检查结果类。该类提供对用于三维设施网络分析的网络数据集的检查结果，包括弧段错误信息和结点错误信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystCheckResult3D.NodeErrorInfos">
+      <summary>
+            获取结点错误信息。键为错误结点的 SMID，值为错误类型。错误类型的详细说明，请参阅 TransportationAnalyst3D 类的 <see cref="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Check">Check</see> 方法。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystCheckResult3D.ArcErrorInfos">
+      <summary>
+            获取弧段错误信息。键为错误弧段的 SMID，值为错误类型。错误类型的详细说明，请参阅 TransportationAnalyst3D 类的 <see cref="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Check">Check</see> 方法。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystResult3D">
+      <summary>
+            三维设施网络分析结果类。该类用于获取查找源和汇、上下游追踪以及上游关键设施结点查找等三维设施网络分析的结果，包括结果弧段 ID 数组、结果结点 ID 数组以及耗费。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystResult3D.Edges">
+      <summary>
+            获取设施网络分析结果中的弧段 ID 数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystResult3D.Nodes">
+      <summary>
+            获取设施网络分析结果中的结点 ID 数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystResult3D.Cost">
+      <summary>
+            获取设施网络分析结果中的耗费。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D">
+      <summary>
+            三维设施网络分析环境设置类。该类用于提供三维设施网络分析时所需的所有参数信息，包括三维网络数据集、流向字段、障碍弧段和障碍结点、权值信息等。这些参数的设置直接影响着三维设施网络分析的结果。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.#ctor">
+      <summary>
+            构造一个新的 FacilityAnalystSetting3D 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.#ctor(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D)">
+      <summary>
+            根据给定的 FacilityAnalystSetting3D 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="facilityAnalystSetting">指定的 FacilityAnalystSetting3D 对象。</param>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.NetworkDataset">
+      <summary>
+            获取或设置用于分析的三维网络数据集。必设。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.NodeIDField">
+      <summary>
+            获取或设置三维网络数据集中标识结点 ID 的字段。必须正确设定标识结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmNodeID"。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.EdgeIDField">
+      <summary>
+            获取或设置三维网络数据集中标识弧段 ID 的字段。必须正确设定标识弧段 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmID"。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.FNodeIDField">
+      <summary>
+            获取或设置三维网络数据集中标识弧段起始结点 ID 的字段。必须正确设定标识弧段起始结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmFNode"。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.TNodeIDField">
+      <summary>
+            获取或设置三维网络数据集中标识弧段终止结点 ID 的字段。必须正确设定标识弧段终止结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmTNode"。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.WeightFieldInfos">
+      <summary>
+            获取或设置权值字段信息集合对象。
+            </summary>
+      <value>默认值为包含一个元素的 WeightFieldInfos3D 对象。该元素的 Name 为“Length”，FTWeightField 和 TFWeightField 都为“SmLength”。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.Tolerance">
+      <summary>
+            获取或设置点到弧段的距离容限。单位为米。 
+            </summary>
+      <value>默认值为 0.0。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.BarrierNodes">
+      <summary>
+            获取或设置障碍结点的 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.BarrierEdges">
+      <summary>
+            获取或设置障碍弧段的 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D.DirectionField">
+      <summary>
+            获取或设置三维网络数据集的流向字段。如果不指定，在进行三维设施网络分析时，默认流向均为 0，即与数字化方向相同。在创建流向时，必须设置该属性。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D">
+      <summary>
+            三维网络建模类。该类提供三维网络数据集的构建，以及为三维网络数据集创建流向等功能。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildNetwork(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,System.String,System.String,System.String,System.String,SuperMap.Data.Datasource,System.String)">
+      <summary>
+             根据三维点、线数据及其已有的表达弧段结点拓扑关系的字段，构建三维网络数据集。
+             </summary>
+      <param name="line3D">指定的用于构建三维网络数据集的三维线数据集。可以是三维线数据集和山维线EPS数据集。</param>
+      <param name="point3D">指定的用于构建三维网络数据集的三维点数据集。可以是三维点数据集和山维点EPS数据集。</param>
+      <param name="edgeIDField">指定的线数据集中表示弧段 ID 的字段。如果指定为 null 或空字符串，或指定的字段不存在，则自动使用 SMID 作为弧段 ID。仅支持 16 位整型、32 位整型字段、64位整型字段、文本型字段、宽字符类型字段、字符型字段。</param>
+      <param name="fromNodeField">指定的线数据集中表示弧段的起始结点 ID 的字段。仅支持 16 位整型、32 位整型字段、64位整型字段、文本型字段、宽字符类型字段、字符型字段。</param>
+      <param name="toNodeField">指定的线数据集中表示弧段的终止结点 ID 的字段。仅支持 16 位整型、32 位整型字段、64位整型字段、文本型字段、宽字符类型字段、字符型字段。</param>
+      <param name="nodeIDField">指定的点数据集中表示结点 ID 的字段。仅支持 16 位整型、32 位整型字段、64位整型字段、文本型字段、宽字符类型字段、字符型字段。</param>
+      <param name="outputDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="networkDatasetName">指定的结果三维网络数据集的名称。</param>
+      <returns>构建的三维网络数据集。</returns>
+      <exception cref="T:System.ArgumentException">lineDataset 参数指定的数据集的类型不是 Line3D，或 pointDataset 参数指定的数据集的类型不是 Point3D。</exception>
+      <exception cref="T:System.ArgumentException">edgeIDField、nodeIDField、fromNodeField、toNodeField 参数指定的字段的类型不是 Int16 或 Int32。</exception>
+      <exception cref="T:System.ArgumentException">nodeIDField、fromNodeField、toNodeField 指定的字段不存在。</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildNetwork(SuperMap.Data.DatasetVector,System.String[],SuperMap.Data.Datasource,System.String,SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D,System.Double)">
+      <summary>
+             通过三维线数据构建三维网络数据集，可以设置保存的非系统字段及打断模式。
+             </summary>
+      <param name="line3D">指定的用于构建三维网络数据集的三维线数据集。</param>
+      <param name="lineFieldNames">指定的结果网络数据集中需要保存的线数据集非系统字段名称的数组。</param>
+      <param name="outputDatasource">指定的用于存储结果三维网络数据集的数据源。</param>
+      <param name="networkDatasetName">指定的结果三维网络数据集的名称。</param>
+      <param name="networkSplitMode">指定的打断模式。注意，此时不允许设置“点打断线”（<see cref="F:SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D.LineSplitByPoint">LineSplitByPoint</see>）模式。</param>
+      <param name="tolerance">指定的打断容限，用于判断两条线是否相交。单位为米。如果一条线的节点到线的距离小于容限，则该点作为网络数据集的一个结点。</param>
+      <returns>构建的三维网络数据集。</returns>
+      <exception cref="T:System.ArgumentException">lineDataset 参数指定的数据集的类型不是 Line3D。</exception>
+      <exception cref="T:System.ArgumentException">networkSplitMode 参数指定为 NetworkSplitMode3D.LineSplitByPoint。</exception>
+      <exception cref="T:System.ArgumentException">tolerance 小于 0。</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildNetwork(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,System.String[],System.String[],SuperMap.Data.Datasource,System.String,SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D,System.Double)">
+      <summary>
+             通过三维点（可选）、线数据构建三维网络数据集，可以设置保存的非系统字段及打断模式。
+             </summary>
+      <param name="line3D">指定的用于构建三维网络数据集的三维线数据集。</param>
+      <param name="point3D">指定的用于构建三维网络数据集的三维点数据集。可选。</param>
+      <param name="lineFieldNames">指定的结果网络数据集中需要保存的三维线数据集非系统字段名称的数组。</param>
+      <param name="pointFieldNames">指定的结果网络数据集中需要保存的三维点数据集非系统字段名称的数组。</param>
+      <param name="outputDatasource">指定的用于存储结果三维网络数据集的数据源。</param>
+      <param name="networkDatasetName">指定的结果三维网络数据集的名称。</param>
+      <param name="networkSplitMode">指定的打断模式。</param>
+      <param name="tolerance">指定的打断容限，用于判定点是否为网络数据集上的结点。单位为米。如果点到线的距离小于容限，则该点作为网络数据集的一个结点。</param>
+      <returns>构建的三维网络数据集。</returns>
+      <exception cref="T:System.ArgumentException">lineDataset 参数指定的数据集的类型不是 Line3D，或 pointDataset 参数指定的数据集的类型不是 Point3D。</exception>
+      <exception cref="T:System.ArgumentException">tolerance 小于 0。</exception>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.BuildFacilityNetworkDirections(SuperMap.Realspace.NetworkAnalyst.FacilityAnalystSetting3D,System.Int32[],System.Int32[],System.String)">
+      <summary>
+             根据指定的源和汇的位置，为三维网络数据集创建流向。创建流向以后的三维网络数据集才可以进行各种设施网络分析。
+             </summary>
+      <param name="facilityAnalystSetting">指定的三维设施网络分析环境设置对象。注意：在构建设施网络流向时，参数 facilityAnalystSetting 的障碍弧段（BarrierEdges）和障碍结点（BarrierNodes）属性的设置无效，因为障碍弧段和障碍结点只在进行设施网络相关分析时有效，与网络拓扑结构无关。</param>
+      <param name="sourceIDs">指定的源对应的网络结点 ID 数组。源结点数组与汇结点数组不能同时为空。</param>
+      <param name="sinkIDs">指定的汇对应的网络结点 ID 数组。源结点数组与汇结点数组不能同时为空。</param>
+      <param name="nodeTypeField">指定的结点类型字段名称。该字段是网络结点数据集中的字段，如果不存在则创建该字段。字段值及其含义见备注部分。</param>
+      <returns>一个布尔值，代表流向是否创建成功。如果成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="E:SuperMap.Realspace.NetworkAnalyst.NetworkBuilder3D.Stepped">
+      <summary>
+            启动进度条时触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D">
+      <summary>
+            该枚举定义了构建三维网络数据集时的打断模式类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D.None">
+      <summary>
+            不打断。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D.LineSplitByPoint">
+      <summary>
+            点打断线。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Realspace.NetworkAnalyst.NetworkSplitMode3D.LineSplitByPointAndLine">
+      <summary>
+            线与线打断，同时点打断线。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D">
+      <summary>
+            三维交通网络分析类。该类用于提供基于三维网络数据集的交通网络分析功能。目前只提供最佳路径分析。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.#ctor">
+      <summary>
+            构造一个新的 TransportationAnalyst3D 对象。
+            </summary>
+      <value>默认值为一个初始化的 <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D">TransportationAnalystSetting3D</see> 对象。</value>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Load">
+      <summary>
+            根据三维交通网络分析环境设置，加载网络模型。
+            </summary>
+      <returns>一个布尔值，代表是否加载网络模型成功。如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Check">
+      <summary>
+            对三维交通网络数据集进行数据检查，返回三维交通网络分析数据检查结果对象。
+            </summary>
+      <returns>三维交通网络分析数据检查结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.FindPath(SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D)">
+      <summary>
+             最佳路径分析。
+             </summary>
+      <param name="parameter">指定的三维交通网络分析环境设置。</param>
+      <returns>三维交通网络分析结果。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Dispose">
+      <summary>
+            释放 TransportationAnalyst 对象所占用的资源。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.AnalystSetting">
+      <summary>
+            获取或设置三维交通网络分析环境设置。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystCheckResult3D">
+      <summary>
+            三维交通网络分析数据检查结果类。该类提供对用于三维交通网络分析的网络数据集的检查结果，包括弧段错误信息和结点错误信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystCheckResult3D.NodeErrorInfos">
+      <summary>
+            获取结点错误信息。键为错误结点的 SMID，值为错误类型。错误类型的详细说明，请参阅 TransportationAnalyst3D 类的 <see cref="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Check">Check</see> 方法。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystCheckResult3D.ArcErrorInfos">
+      <summary>
+            获取弧段错误信息。键为错误弧段的 SMID，值为错误类型。错误类型的详细说明，请参阅 TransportationAnalyst3D 类的 <see cref="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalyst3D.Check">Check</see> 方法。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">
+      <summary>
+            三维交通网络分析参数类。该类用于设置三维交通网络分析所需的各种参数，如分析时途经的结点（或任意点）的集合、权值信息、障碍点和障碍弧段，以及分析结果中是否包含途经结点集合、经过弧段集合、路由对象等。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.#ctor">
+      <summary>
+            构造一个新的 TransportationAnalystParameter3D 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.#ctor(SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D)">
+      <summary>
+            根据给定的 TransportationAnalystParameter3D 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="transportationAnalystParameter">指定的 TransportationAnalystParameter3D 对象。</param>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Dispose">
+      <summary>
+            释放 TransportationAnalystParameter3D 所占用的资源。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.WeightName">
+      <summary>
+            获取或设置权值字段信息的名称，即三维交通网络分析环境设置（<see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D">TransportationAnalystSetting3D</see>）中的权值字段信息集合（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D">WeightFieldInfos3D</see>）中的某一个权值字段信息对象（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">Name</see> 属性的值。分析时，如果未设置，则默认使用权值字段信息集合中的第一个权值字段信息对象的名称。
+            </summary>
+      <value>默认值为一个空字符串。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Nodes">
+      <summary>
+            设置分析时途经结点 ID 的集合。必设，但与 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Points">Points</see> 属性互斥，如果同时设置，则只有分析前最后的设置有效。例如，先指定了结点集合，又指定了坐标点集合，然后分析，此时只对坐标点进行分析。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Points">
+      <summary>
+            获取或设置分析时途经点的集合。必设，但与 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Nodes">Nodes</see> 属性互斥，如果同时设置，则只有分析前最后的设置有效。例如，先指定了结点集合，又指定了坐标点集合，然后分析，此时只对坐标点进行分析。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.BarrierNodes">
+      <summary>
+            获取或设置障碍结点 ID 列表。可选。此处指定的障碍结点与三维交通网络分析环境（<see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D">TransportationAnalystSetting3D</see>）中指定的障碍结点共同作用于三维交通网络分析。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.BarrierEdges">
+      <summary>
+            获取或设置障碍弧段 ID 列表。可选。此处指定的障碍弧段与三维交通网络分析环境（<see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D">TransportationAnalystSetting3D</see>）中指定的障碍弧段共同作用于三维交通网络分析。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.BarrierPoints">
+      <summary>
+            获取或设置障碍点的坐标列表。可选。指定的障碍点可以不在网络上（既不在弧段上也不在结点上），分析时将根据距离容限（<see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.Tolerance">Tolerance</see>）把障碍点归结到最近的网络上。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsNodesReturn">
+      <summary>
+            获取或设置分析结果中是否包含途经的结点的集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D">TransportationAnalystResult3D</see> 对象的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Nodes">Nodes</see> 属性获取途经结点集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsEdgesReturn">
+      <summary>
+            获取或设置分析结果中是否包含途经弧段的集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D">TransportationAnalystResult3D</see> 对象的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Edges">Edges</see> 属性获取途经弧段集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsRoutesReturn">
+      <summary>
+            获取或设置设置分析结果中是否包含路由（<see cref="T:SuperMap.Data.GeoLineM">GeoLineM</see>）对象的集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D">TransportationAnalystResult3D</see> 对象的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Routes">Routes</see> 属性获取路由集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsStopIndexesReturn">
+      <summary>
+            获取或设置分析结果中是否要包含站点索引的集合。设置为 true，在分析成功后，可以从 <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D">TransportationAnalystResult3D</see> 对象的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.StopIndexes">StopIndexes</see> 属性获取站点索引集合；为 false 则获取到的是一个空的数组。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D">
+      <summary>
+            三维交通网络分析结果类。该类用于获取各种三维交通网络分析的结果，包括路由集合、分析途经的结点集合以及弧段集合、站点集合和权值集合以及各站点的花费等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Dispose">
+      <summary>
+            释放 TransportationAnalystResult3D 所占用的资源。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Routes">
+      <summary>
+            获取分析结果的路径，是三维线（<see cref="T:SuperMap.Data.GeoLine3D">GeoLine3D</see>）对象的集合。注意，必须将 <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see> 对象的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsRoutesReturn">IsRoutesReturn</see> 设置为 true，分析结果中才会包含路由集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Nodes">
+      <summary>
+            获取分析结果的途经结点集合。注意，必须将 <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see> 对象的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsNodesReturn">IsNodesReturn</see> 设置为 true，分析结果中才会包含途经结点集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Edges">
+      <summary>
+            获取分析结果的途经弧段集合。注意，必须将 <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see> 对象的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsEdgesReturn">IsEdgesReturn</see> 设置为 true，分析结果中才会包含途经弧段集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.StopIndexes">
+      <summary>
+            获取站点索引的二维数组，该数组反映了站点在分析后的排列顺序。注意，必须将 <see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see> 对象的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.IsStopIndexesReturn">IsStopIndexesReturn</see> 设置为 true，分析结果中才会包含站点索引集合，否则为一个空的数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.Weights">
+      <summary>
+            获取代表花费的权值数组。单位与三维交通网络分析参数（<see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see>）对象的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）对象的权值字段的单位相同。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystResult3D.StopWeights">
+      <summary>
+            获取分析经过站点的权值。单位与三维交通网络分析参数（<see cref="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D">TransportationAnalystParameter3D</see>）对象的 <see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.WeightName">WeightName</see> 属性所指定的权值字段信息（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）对象的权值字段的单位相同。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D">
+      <summary>
+            三维交通网络分析环境设置类。该类用于提供三维交通网络分析时所需的所有参数信息，包括三维网络数据集、障碍弧段和障碍结点、权值信息等。这些参数的设置直接影响着三维交通网络分析的结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.#ctor">
+      <summary>
+            构造一个新的 TransportationAnalystSetting3D 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.#ctor(SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D)">
+      <summary>
+            根据给定的 TransportationAnalystSetting3D 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="transportationAnalystSetting">指定的 TransportationAnalystSetting3D 对象。</param>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.NetworkDataset">
+      <summary>
+            获取或设置用于分析的三维网络数据集。必设。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.NodeIDField">
+      <summary>
+            获取或设置三维网络数据集中标识结点 ID 的字段。必须正确设定标识结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmNodeID"。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.EdgeIDField">
+      <summary>
+            获取或设置三维网络数据集中标识弧段 ID 的字段。必须正确设定标识弧段 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmEdgeID"。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.FNodeIDField">
+      <summary>
+            获取或设置三维网络数据集中标识弧段起始结点 ID 的字段。必须正确设定标识弧段起始结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmFNode"。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.TNodeIDField">
+      <summary>
+            获取或设置三维网络数据集中标识弧段终止结点 ID 的字段。必须正确设定标识弧段终止结点 ID 的字段。仅支持 16 位整型、32 位整型字段。
+            </summary>
+      <value>默认值为 "SmTNode"。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.WeightFieldInfos">
+      <summary>
+            获取或设置权值字段信息集合对象。
+            </summary>
+      <value>默认值为包含一个元素的 WeightFieldInfos3D 对象。该元素的名称为 “Length”，正向阻力字段和反向阻力字段都为 “SmLength”。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.Tolerance">
+      <summary>
+            获取或设置点到弧段的距离容限。单位为米。注意，当使用坐标点模式（<see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.Points">Points</see>，即指定的分析点是坐标点而不是结点 ID），或指定了障碍坐标点（<see cref="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystParameter3D.BarrierPoints">BarrierPoints</see>）进行分析时，需要设置合适的距离容限值，以避免选取的分析点或障碍点不能归结到网络上而导致分析结果不正确。
+            </summary>
+      <value>默认值为 0.0。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.BarrierNodes">
+      <summary>
+            获取或设置障碍结点的 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.BarrierEdges">
+      <summary>
+            获取或设置障碍弧段的 ID 列表。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.NodeNameField">
+      <summary>
+            获取或存储结点名称的字段。可选。
+            </summary>
+      <value>默认值为一个空字符串。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.EdgeNameField">
+      <summary>
+            获取或设置存储弧段名称的字段。可选。
+            </summary>
+      <value>默认值为一个空字符串。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.RuleField">
+      <summary>
+            获取或设置设置网络数据集中表示网络弧段的交通规则的字段。要求字段类型为文本型。可选。
+            </summary>
+      <value>默认值为一个空字符串。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.FTSingleWayRuleValues">
+      <summary>
+            获取或设置用于表示正向单行线的字符串数组。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.TFSingleWayRuleValues">
+      <summary>
+            获取或设置用于表示逆向单行线的字符串数组。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.ProhibitedWayRuleValues">
+      <summary>
+            获取或设置用于表示禁行线的字符串的数组。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.TwoWayRuleValues">
+      <summary>
+            获取或设置用于表示双向通行线的字符串数组。可选。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.TransportationAnalystSetting3D.EdgeFilter">
+      <summary>
+            获取或设置设置弧段过滤表达式。可选。
+            </summary>
+      <value>默认值为 String.Empty。</value>
+      <value>默认值为一个空字符串。</value>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">
+      <summary>
+            权值字段信息类。该类用于获取或设置三维网络分析中权值字段的相关信息，包括正向权值字段与反向权值字段。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.#ctor">
+      <summary>
+            构造一个新的 WeightFieldInfo3D 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.#ctor(SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D)">
+      <summary>
+            根据给定的 WeightFieldInfo3D 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="WeightFieldInfo">指定的 WeightFieldInfo3D 对象。</param>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.Name">
+      <summary>
+            获取或设置权值字段信息的名称。
+            </summary>
+      <value>默认值为 “UntitledWeightFieldInfo3D”。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.FTWeightField">
+      <summary>
+            获取或设置正向权值字段或字段表达式。 
+            </summary>
+      <value>默认值为一个空字符串。</value>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D.TFWeightField">
+      <summary>
+            获取或设置反向权值字段或字段表达式。 
+            </summary>
+      <value>默认值为一个空字符串。</value>
+    </member>
+    <member name="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D">
+      <summary>
+            权值字段信息集合类。该类是权值字段信息对象（<see cref="T:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D">WeightFieldInfo3D</see>）的集合，用于对权值字段信息对象进行管理，如添加、删除、获取指定名称或索引的权值字段信息对象等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.#ctor">
+      <summary>
+            构造一个新的 WeightFieldInfos3D 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.#ctor(SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D)">
+      <summary>
+            根据给定的 WeightFieldInfos3D 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="weightFieldInfos">指定的 WeightFieldInfos3D 对象。</param>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Add(SuperMap.Realspace.NetworkAnalyst.WeightFieldInfo3D)">
+      <summary>
+            向权值字段信息集合对象中添加指定的权值字段信息对象。
+            </summary>
+      <param name="weightFieldInfo">指定的权值字段信息对象。</param>
+      <returns>如果添加成功，返回被添加对象在权值字段信息集合对象中的索引。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.IndexOf(System.String)">
+      <summary>
+            获取权值字段信息集合对象中指定名称的权值字段信息对象的索引。
+            </summary>
+      <param name="name">指定的权值字段信息对象的名称。</param>
+      <returns>指定名称的权值字段信息对象在权值字段信息集合对象中的索引。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Remove(System.String)">
+      <summary>
+            在权值字段信息集合对象中删除指定名称的权值字段信息对象。
+            </summary>
+      <param name="name">指定的要删除的权值字段信息对象的名称。</param>
+      <returns>一个布尔值，代表是否删除成功。如果成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Remove(System.Int32)">
+      <summary>
+            在权值字段信息集合对象中删除指定索引处的权值字段信息对象。
+            </summary>
+      <param name="index">指定的要删除的权值字段信息对象的索引。</param>
+      <returns>一个布尔值，代表是否删除成功。如果成功，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Clear">
+      <summary>
+            清空权值字段信息集合对象中的权值字段信息对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.GetEnumerator">
+      <summary>
+            返回一个循环访问集合的枚举数。
+            </summary>
+      <returns>可用于循环访问集合的 IEnumerator 对象。</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Count">
+      <summary>
+            获取权值字段信息集合中元素的总数。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Item(System.Int32)">
+      <summary>
+            获取权值字段信息集合对象中指定索引处的权值字段信息对象。 
+            </summary>
+      <param name="index">指定的索引。索引值从0开始。</param>
+      <returns>指定索引处的权值字段信息对象。</returns>
+    </member>
+    <member name="P:SuperMap.Realspace.NetworkAnalyst.WeightFieldInfos3D.Item(System.String)">
+      <summary>
+            获取权值字段信息集合对象中指定名称的权值字段信息对象。 
+            </summary>
+      <param name="name">指定的权值字段信息的名称。</param>
+      <returns>指定名称的权值字段信息对象。</returns>
+    </member>
+  </members>
+</doc>

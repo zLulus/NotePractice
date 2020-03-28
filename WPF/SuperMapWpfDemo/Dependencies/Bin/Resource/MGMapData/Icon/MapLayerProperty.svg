@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>32-图层属性</title>
+    <desc>Created with Sketch.</desc>
+    <g id="10-地图" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="地图" transform="translate(-317.000000, -12.000000)" fill-rule="nonzero">
+            <g id="10-地图" transform="translate(13.000000, 12.000000)">
+                <g id="ribbon">
+                    <g id="32-图层属性" transform="translate(304.000000, 0.000000)">
+                        <g id="图层属性" transform="translate(3.000000, 3.000000)">
+                            <path d="M23.1111111,15 L26,17 L13,26 L0,17 L2.88888889,15 L0,13 L13,4 L26,13 L23.1111111,15 Z" id="形状结合" fill="#FFFFFF"></path>
+                            <path d="M3.1000767,12.0700537 L1.75682092,13 L13,20.7837394 L24.2431791,13 L22.8999233,12.0700537 L23.7734807,11.4585635 L26,13 L13,22 L8.52651283e-13,13 L2.22651934,11.4585635 L3.1000767,12.0700537 Z" id="合并形状" fill="#808FA1"></path>
+                            <path d="M2.38184466,16.5672913 L1.75682092,17 L13,24.7837394 L24.2431791,17 L23.6181553,16.5672913 L24.4917127,15.9558011 L26,17 L13,26 L8.52651283e-13,17 L1.50828729,15.9558011 L2.38184466,16.5672913 Z" id="合并形状" fill="#ACB4C0"></path>
+                            <path d="M13,0.608130319 L0.878410461,9 L13,17.3918697 L25.1215895,9 L13,0.608130319 Z" id="矩形" stroke="#5D6D7E" fill="#FFFFFF"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
