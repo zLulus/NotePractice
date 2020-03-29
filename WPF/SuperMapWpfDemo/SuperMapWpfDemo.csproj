@@ -75,14 +75,20 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SuperMap.Data">
-      <HintPath>Dependencies\Bin\SuperMap.Data.dll</HintPath>
+    <Reference Include="SuperMap.Data, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\Bin_x64\SuperMap.Data.dll</HintPath>
     </Reference>
-    <Reference Include="SuperMap.Data.Conversion">
-      <HintPath>Dependencies\Bin\SuperMap.Data.Conversion.dll</HintPath>
+    <Reference Include="SuperMap.Data.Conversion, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dependencies\Bin_x64\SuperMap.Data.Conversion.dll</HintPath>
+    </Reference>
+    <Reference Include="SuperMap.Mapping">
+      <HintPath>Dependencies\Bin_x64\SuperMap.Mapping.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -95,6 +101,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

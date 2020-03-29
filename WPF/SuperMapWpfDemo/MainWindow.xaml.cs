@@ -1,5 +1,7 @@
 ﻿using SuperMap.Data;
 using SuperMap.Data.Conversion;
+using SuperMap.Mapping;
+using SuperMap.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,8 +25,18 @@ namespace SuperMapWpfDemo
     /// </summary>
     public partial class MainWindow : Window
     {
-        private DataImport m_dataImport;
-        private Datasource m_desDatasource;
+        string baseFilePath = "";
+        List<string> fileList = new List<string>()
+        {
+            "",
+        };
+        
+        string targetTableName = "";
+        string server = "";
+        string database = "";
+        string userName = "";
+        string password = "";
+        string driver = "";
 
         public MainWindow()
         {
@@ -34,325 +46,322 @@ namespace SuperMapWpfDemo
 
         private void Initialize()
         {
-            m_dataImport = new DataImport();
-        }
-
-        private void ReadShpFile_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                //https://www.supermap.com/EN/online/Deskpro%206.0/SDMain/html/R_Dataset_Import.htm
-                //https://www.supermap.com/EN/online/Deskpro%206.0/SDTechTheme/ExpressHtml/ImEx_ArcGIS_Shape.htm
-                Workspace workspace =new Workspace();
-                DatasourceConnectionInfo info=new DatasourceConnectionInfo();
-                //https://blog.csdn.net/tane_e/article/details/89393493
-                String sourceFilePath = @".shp";
-                var targetTableName = "";
-                
-                Datasource datasource = GetDatasource(workspace, info);
-                if (datasource != null)
-                {
-                    //创建临时数据集
-                    Datasets datasets = datasource.Datasets;
-                    bool flag = datasets.Delete(targetTableName);
-                    String tableName = datasets.GetAvailableDatasetName(targetTableName);
-
-                    // 设置矢量数据集的信息
-                    DatasetVectorInfo datasetVectorInfo = GetDatasetVector(datasets, tableName);
-                    datasetVectorInfo.Dispose();// 释放资源
-
-                    //导入到指定数据源的数据集中
-                    //实际数据表名与取名不同，但使用超图sdk可以用“自己的命名”取出数据(smregister表查看数据集对应的实体表)
-                    ImportShapeDataToDb(sourceFilePath, datasource, tableName);
-
-                    //todo 查询临时表名
-                    String sql = $"select SMTABLENAME from SMREGISTER where SMDATASETNAME = '{targetTableName}'";
-                    String temp_name = "";
-                }
-
-                // 释放工作空间资源
-                info.Dispose();
-                workspace.Dispose();
-
-            }
-            catch (Exception ex)
-            {
-
-            }
             
         }
 
-
         /// <summary>
-        /// 导入shape数据
+        /// 录入shp数据到业务表
         /// </summary>
-        /// <param name="shapeFilePath">元数据shape文件位置</param>
-        /// <param name="datasource">目标数据源</param>
-        /// <param name="datasetName">目标数据dataSet名称</param>
-        private static void ImportShapeDataToTarget(string shapeFilePath, Datasource datasource, string datasetName)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveShpFile_Click(object sender, RoutedEventArgs e)
         {
-            ImportSettingSHP importSettingSHP = new ImportSettingSHP();
-            importSettingSHP.IsAttributeIgnored = false;
-            //设置当同名数据集存在时导入的模式,如果存在名字冲突，则覆盖(Overwrite)
-            importSettingSHP.ImportMode = ImportMode.Overwrite;
-            //设置需要导入的数据路径信息
-            importSettingSHP.SourceFilePath = shapeFilePath;
-            //设置需要导入的数据编码类型，因为有中文字段，所以用ASCII编码
-            importSettingSHP.SourceFileCharset = Charset.ANSI;
-            //设置要导入的目标数据源
-            importSettingSHP.TargetDatasource = datasource;
-            //设置目标数据集名称
-            importSettingSHP.TargetDatasetName = datasetName;
-            DataImport importer = new DataImport();
-            importer.ImportSettings.Add(importSettingSHP);
-            //数据导入mysql数据库
-            ImportResult result = importer.Run();
-            if (result.FailedSettings.Length == 0)
+            foreach(var file in fileList)
             {
-                Console.WriteLine("导入成功！");
+                try
+                {
+                    String sourceFilePath = $"{baseFilePath}\\{file}.shp";
+                    //CreateDb();
+                    //ImportShpDirectly(sourceFilePath);
+                    ImportShpByMemory(sourceFilePath);
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
-            else
-            {
-                Console.WriteLine("导入失败！");
-            }
-            importer.Dispose();
+            
+            
         }
 
-        /// <summary>
-        /// 新增/修改shape空间数据
-        /// </summary>
-        /// <param name="tableName">目标表名</param>
-        /// <param name="shapeFieldName">新的shape数据</param>
-        /// <param name="oidFieldName">不需要的字段</param>
-        /// <param name="oid">不需要的字段</param>
-        /// <param name="g">不需要的字段</param>
-        public void UpdateShape(string tableName, string shapeFieldName)
+        private void CreateDb()
         {
-            DataImport m_dataImport = new DataImport();
-            Datasource m_desDatasource;
-
-            //https://blog.csdn.net/tane_e/article/details/89393493
-            //https://www.supermap.com/EN/online/Deskpro%206.0/SDMain/html/R_Dataset_Import.htm
-            //https://www.supermap.com/EN/online/Deskpro%206.0/SDTechTheme/ExpressHtml/ImEx_ArcGIS_Shape.htm
             Workspace workspace = new Workspace();
             DatasourceConnectionInfo info = new DatasourceConnectionInfo();
 
-            Datasource datasource = GetDbDatasource(workspace, info);
+            //mysql数据源
+            //设置数据源连接的引擎类型
+            info.EngineType = EngineType.MySQL;
+            //设置数据库连接字符串
+            info.Server = server;
+            info.Database = database;
+            info.User = userName;
+            info.Password = password;
+            info.Driver = driver;
+            info.IsAutoConnect = true;
+            info.Alias = "MySQL";//不能为空
+                                 // 打开数据库数据源
+                                 //超图sdk不能直接连接空数据库，需要使用Create方法新建数据库，才有超图“系统表”
+            Datasource datasource = workspace.Datasources.Create(info);
+        }
+
+        private void ImportShpByMemory(string filePath)
+        {
+            //https://blog.csdn.net/tane_e/article/details/89393493
+
+
+            //https://www.supermap.com/EN/online/Deskpro%206.0/SDMain/html/R_Dataset_Import.htm
+            //https://www.supermap.com/EN/online/Deskpro%206.0/SDTechTheme/ExpressHtml/ImEx_ArcGIS_Shape.htm
+
+            Workspace workspace = new Workspace();
+            DatasourceConnectionInfo info = new DatasourceConnectionInfo();
+
+            //mysql数据源
+            //设置数据源连接的引擎类型
+            info.EngineType = EngineType.MySQL;
+            //设置数据库连接字符串
+            info.Server = server;
+            info.Database = database;
+            info.User = userName;
+            info.Password = password;
+            info.Driver = driver;
+            info.IsAutoConnect = true;
+            info.Alias = "MySQL";//不能为空
+                                 // 打开数据库数据源
+                                 //超图sdk不能直接连接空数据库，需要使用Create方法新建数据库，才有超图“系统表”
+            Datasource datasource = workspace.Datasources.Open(info);
+            ////udb数据源
+            //DatasourceConnectionInfo udbInfo = new DatasourceConnectionInfo();
+            ////设置数据源连接的引擎类型
+            //udbInfo.EngineType = EngineType.UDB;
+            ////设置文件位置
+            //udbInfo.Server = @"D:\MicroDesktop\Temp\test";
+            //// 创建/打开数据库数据源
+            //Datasource udbDatasource = workspace.Datasources.Create(udbInfo);
+            //Datasource udbDatasource = workspace.Datasources.Open(udbInfo);
+
+            //Memory数据源
+            DatasourceConnectionInfo memInfo = new DatasourceConnectionInfo();
+            //设置数据源连接的引擎类型
+            memInfo.EngineType = EngineType.Memory;
+            memInfo.Alias = "fdgdfgd";
+            memInfo.Server = "tyjyutjyu";
+            // 创建/打开数据库数据源
+            Datasource memDatasource = workspace.Datasources.Create(memInfo);
+
+            //svc-矢量数据
+            //DatasourceConnectionInfo scvInfo = new DatasourceConnectionInfo();
+            ////设置数据源连接的引擎类型
+            //scvInfo.EngineType = EngineType.VectorFile;
+            ////设置文件位置
+            //scvInfo.Server = @"D:\MicroDesktop\Temp\test2";
+            //// 创建/打开数据库数据源
+            //Datasource scvDatasource = workspace.Datasources.Create(scvInfo);
+
             if (datasource != null)
             {
-                var tempName = $"A{Guid.NewGuid().ToString()}";
-                var filePath = $"{AppDomain.CurrentDomain.BaseDirectory}\\tempFiles\\{tempName}";
-                DatasourceConnectionInfo fileConnectionInfo = new DatasourceConnectionInfo();
-                //创建本地数据集
-                var fileDatasource = GetFileDatasource(workspace, filePath);
-                if (fileDatasource != null)
+                ImportResult result = ImportShpToMemory(filePath, memDatasource);
+                if (result.FailedSettings.Length == 0)
                 {
-                    //导入shape数据
-                    ImportShapeDataToTarget(shapeFieldName, fileDatasource, tempName);
+                    Console.WriteLine($"导入{filePath}成功！");
+                    //for (int i = 0; i < memDatasource.Datasets.Count; i++)
+                    //{
+                    //    DatasetVector datasetVector = (DatasetVector)memDatasource.Datasets[i];
+                    //    Dataset newDataset = datasource.CopyDataset(datasetVector, datasetVector.Name, EncodeType.None);
+                    //}
+
+
+                    DatasetVector datasetVector = (DatasetVector)memDatasource.Datasets[0];
+                    //datasource.Datasets.CreateFromTemplate(datasetVector.Name, datasetVector);
+                    //var t1=datasource.Datasets.CreateFromTemplate(datasetVector.Name, memDatasource.Datasets[0]);
+                    //var t2= datasource.CopyDataset(datasetVector, datasetVector.Name, EncodeType.None);
+                    //datasource.Flush(datasetVector.Name);
+
+                    var re = datasetVector.GetRecordset(false, SuperMap.Data.CursorType.Dynamic);
+                    //re.AddNew(
+
+                    var v3 = datasource.Datasets.CreateAndAppendWithSmid(targetTableName, re);
+                    var v4 = datasource.Datasets.CreateFromTemplate(targetTableName, memDatasource.Datasets[0]);
+                    var v5 = datasource.CopyDataset(datasetVector, targetTableName, datasetVector.EncodeType);
+                    //datasource.Datasets.Create(datasetVector);
+                    var dataset = datasource.Datasets[targetTableName];
+                    var ve = dataset as DatasetVector;
+                    var record = ve?.GetRecordset(false, SuperMap.Data.CursorType.Dynamic);
+                    //record.AddNew(...);
+                    //var v2= datasource.RecordsetToDataset(re, targetTableName);
+
+                    datasource.Refresh();
+                    //String name = datasource.Datasets.GetAvailableDatasetName(targetTableName);
+                    // 设置矢量数据集的信息
+                    //DatasetVectorInfo datasetVectorInfo = new DatasetVectorInfo();
+                    //datasetVectorInfo.Type = DatasetType.Line;
+                    //datasetVectorInfo.IsFileCache = true;
+                    //datasetVectorInfo.Name = name;
+                    //datasetVectorInfo.Bounds = new Rectangle2D(new Point2D(0, 0), new Point2D(10, 10));
+                    //Console.WriteLine("矢量数据集的信息为：" + datasetVectorInfo.ToString());
+
+                    //// 创建矢量数据集
+                    //datasource.Datasets.Create(datasetVectorInfo);
+                    //datasource.Flush(name);
+
+                    //var d2= datasource.CopyDatasetWithSmID(udbDatasource.Datasets[0], targetTableName, EncodeType.None);
+                    //var d = datasource.CopyDataset(udbDatasource.Datasets[0], targetTableName, EncodeType.None);
                 }
-
-                //拷贝本地数据集到mysql目标数据表
-                datasource.CopyDataset(fileDatasource.Datasets[0], tempName, EncodeType.None);
-
-                if (File.Exists(filePath))
+                else
                 {
-                    File.Delete($"{filePath}.udb");
-                    File.Delete($"{filePath}.udd");
+                    Console.WriteLine($"导入{filePath}失败！");
                 }
-
-                //                    //导入到本地文件
-                //                    //实际数据表名与取名不同，但使用超图sdk可以用“自己的命名”取出数据(smregister表查看数据集对应的实体表)
-                //                    //符合超图规范
-                //                    var tempName =$"A{Guid.NewGuid().ToString()}";
-                //                tempName= tempName.Replace("-", "_");
-
-                //                ImportShapeDataToDb(shapeFieldName, datasource, tempName);
-
-                //                //读取本地文件的数据，手动存入指定表tableName
-                //                //todo
-                //                //fileDatasource.Datasets
-                //                //}
-                //                //读取本地数据库，手动存入指定表tableName
-                //                var r = QueryOne($"select SmTableName from smregister where SmDatasetName='{tempName}'");
-                //                var realTableName = "";
-                //                if (r != null)
-                //                {
-                //                    realTableName = r.ToString();
-                //                    //读取超图临时表数据
-                //                    var dt = GetDataTable(realTableName);
-                //                    //读取业务表表结构
-                //                    var targetDt = GetDataTable(tableName, true);
-                //                    //依次赋值
-                //                    foreach (DataRow row in dt.Rows)
-                //                    {
-                //                        targetDt.ImportRow(row);
-                //                    }
-                //                    //录入到指定业务表
-                ////                    INSERT INTO jcsj_lq(SmID, SmKey, SmSdriW, SmSdriN, SmSdriE, SmSdriS, SmGranule, SmGeometry, SmUserID, SmLibTileID, SmArea, SmPerimeter)
-                ////SELECT SmID, SmKey, SmSdriW, SmSdriN, SmSdriE, SmSdriS, SmGranule, SmGeometry, SmUserID, SmLibTileID, SmArea, SmPerimeter FROM smdtv_134
-
-                //                    //删表删记录
-                //                    //ExecuteNonQuery($"DROP TABLE {realTableName} ");
-                //                    //ExecuteNonQuery($"delete from smregister where SmDatasetName='{tempName}' ");
-                //                }
-
-
-
-                //                //删去本地文件
-                //                //File.Delete(filePath);
-
             }
+
 
             // 释放工作空间资源
             info.Dispose();
             workspace.Dispose();
         }
 
-        /// <summary>
-        /// 获得文件型数据源
-        /// </summary>
-        /// <param name="workspace"></param>
-        /// <param name="info"></param>
-        /// <param name="path"></param>
-        /// <param name="isOpenOrCreate"></param>
-        /// <returns></returns>
-        private Datasource GetFileDatasource(Workspace workspace, string path)
-        {
-            DatasourceConnectionInfo info = new DatasourceConnectionInfo();
-            //设置数据源连接的引擎类型
-            info.EngineType = EngineType.UDB;
-            //设置文件位置
-            info.Server = path;
-            // 创建/打开数据库数据源
-            Datasource datasource;
-            //if (operationType == DatasourceOperationTypeEnum.Create)
-            //{
-                datasource = workspace.Datasources.Create(info);
-            //}
-            //else
-            //{
-                datasource = workspace.Datasources.Open(info);
-            //}
-            if (datasource == null)
-            {
-                Console.WriteLine("打开数据源失败");
-                return null;
-            }
-            else
-            {
-                Console.WriteLine("数据源打开成功！");
-                return datasource;
-            }
-        }
-
-
-        /// <summary>
-        /// 连接数据库
-        /// </summary>
-        /// <returns></returns>
-        private Datasource GetDbDatasource(Workspace workspace, DatasourceConnectionInfo info)
-        {
-            //设置数据源连接的引擎类型
-            info.EngineType = EngineType.MySQL;
-            //设置数据库连接字符串
-            info.Server = "";
-            info.Database = "";
-            //todo
-            info.User = "";
-            info.Password = "";
-            info.Alias = "Test";//不能为空
-            // 创建/打开数据库数据源
-            Datasource datasource;
-            //if (operationType == DatasourceOperationTypeEnum.Create)
-            //{
-            //    datasource = workspace.Datasources.Create(info);
-            //}
-            //else
-            //{
-            datasource = workspace.Datasources.Open(info);
-            //}
-            if (datasource == null)
-            {
-                Console.WriteLine("打开数据源失败");
-                return null;
-            }
-            else
-            {
-                Console.WriteLine("数据源打开成功！");
-                return datasource;
-            }
-        }
-
-
-        /// <summary>
-        /// 连接数据库
-        /// </summary>
-        /// <returns></returns>
-        private static Datasource GetDatasource(Workspace workspace, DatasourceConnectionInfo info)
-        {
-            //设置数据源连接的引擎类型
-            info.EngineType = EngineType.MySQL;
-            //设置数据库连接字符串
-            info.Server = "";
-            info.Database = "";
-            info.User = "";
-            info.Password = "";
-            info.Alias = "Test";//不能为空
-                                // 打开数据库数据源
-            Datasource datasource = workspace.Datasources.Open(info);
-            if (datasource == null)
-            {
-                Console.WriteLine("打开数据源失败");
-                return null;
-            }
-            else
-            {
-                Console.WriteLine("数据源打开成功！");
-                return datasource;
-            }
-        }
-
-        private static void ImportShapeDataToDb(string path, Datasource datasource, string name)
+        private ImportResult ImportShpToMemory(string filePath, Datasource memDatasource)
         {
             ImportSettingSHP importSettingSHP = new ImportSettingSHP();
             importSettingSHP.IsAttributeIgnored = false;
+            importSettingSHP.IsImportAs3D = false;
             //设置当同名数据集存在时导入的模式,如果存在名字冲突，则覆盖(Overwrite)
             importSettingSHP.ImportMode = ImportMode.Overwrite;
             //设置需要导入的数据路径信息
-            importSettingSHP.SourceFilePath = path;
+            importSettingSHP.SourceFilePath = filePath;
             //设置需要导入的数据编码类型，因为有中文字段，所以用ASCII编码
             importSettingSHP.SourceFileCharset = Charset.ANSI;
             //设置要导入的目标数据源
-            importSettingSHP.TargetDatasource = datasource;
+            //importSettingSHP.TargetDatasource = udbDatasource;
+            //importSettingSHP.TargetDatasource = memDatasource;
+            importSettingSHP.TargetDatasource = memDatasource;
+            //importSettingSHP.TargetDatasource = scvDatasource;
+            //importSettingSHP.TargetDatasourceConnectionInfo = info;
             //设置目标数据集名称
-            importSettingSHP.TargetDatasetName = name;
+            importSettingSHP.TargetDatasetName = targetTableName;
+            importSettingSHP.TargetEncodeType = EncodeType.None;
             DataImport importer = new DataImport();
             importer.ImportSettings.Add(importSettingSHP);
             //数据导入mysql数据库
             ImportResult result = importer.Run();
-            if (result.FailedSettings.Length == 0)
-            {
-                Console.WriteLine("导入成功！");
-            }
-            else
-            {
-                Console.WriteLine("导入失败！");
-            }
-            importer.Dispose();
+            return result;
         }
 
-        private static DatasetVectorInfo GetDatasetVector(Datasets datasets, string name)
+        private void ImportShpDirectly(string filePath)
         {
-            DatasetVectorInfo datasetVectorInfo = new DatasetVectorInfo();
-            datasetVectorInfo.Type = DatasetType.Region;
-            datasetVectorInfo.EncodeType = EncodeType.None;
-            datasetVectorInfo.IsFileCache = true;
-            datasetVectorInfo.Name = name;
-            Console.WriteLine("临时数据集的信息为：" + datasetVectorInfo.ToString());
-            DatasetVector dv_temp = datasets.Create(datasetVectorInfo);
-            //业务逻辑
-            dv_temp.Close();
-            return datasetVectorInfo;
+            Workspace workspace = new Workspace();
+            DatasourceConnectionInfo info = new DatasourceConnectionInfo();
+
+            //mysql数据源
+            //设置数据源连接的引擎类型
+            info.EngineType = EngineType.MySQL;
+            //设置数据库连接字符串
+            info.Server = server;
+            info.Database = database;
+            info.User = userName;
+            info.Password = password;
+            info.Driver = driver;
+            info.IsAutoConnect = true;
+            info.Alias = "MySQL";//不能为空
+                                 // 打开数据库数据源
+                                 //超图sdk不能直接连接空数据库，需要使用Create方法新建数据库，才有超图“系统表”
+            Datasource datasource = workspace.Datasources.Open(info);
+            
+            if (datasource != null)
+            {
+                ImportSettingSHP importSettingSHP = new ImportSettingSHP();
+                importSettingSHP.IsAttributeIgnored = false;
+                importSettingSHP.IsImportAs3D = false;
+                //设置当同名数据集存在时导入的模式,如果存在名字冲突，则覆盖(Overwrite)
+                importSettingSHP.ImportMode = ImportMode.Overwrite;
+                //设置需要导入的数据路径信息
+                importSettingSHP.SourceFilePath = filePath;
+                //设置需要导入的数据编码类型，因为有中文字段，所以用ASCII编码
+                importSettingSHP.SourceFileCharset = Charset.ANSI;
+                //设置要导入的目标数据源
+                importSettingSHP.TargetDatasource = datasource;
+                //设置目标数据集名称
+                importSettingSHP.TargetDatasetName = targetTableName;
+                importSettingSHP.TargetEncodeType = EncodeType.None;
+                DataImport importer = new DataImport();
+                importer.ImportSettings.Add(importSettingSHP);
+                //数据导入mysql数据库
+                ImportResult result = importer.Run();
+                if (result.FailedSettings.Length == 0)
+                {
+                    Console.WriteLine($"导入{filePath}成功！");
+                }
+                else
+                {
+                    Console.WriteLine($"导入{filePath}失败！");
+                }
+            }
+
+
+            // 释放工作空间资源
+            info.Dispose();
+            workspace.Dispose();
+        }
+
+        private void UpdateShpFile_Click(object sender, RoutedEventArgs e)
+        {
+            string tableName = "pointtesttable";
+            Dictionary<string, string> updateData = new Dictionary<string, string>();
+            updateData.Add("numberPro", "123.32");
+            updateData.Add("stringPro", "vervre");
+            int smId = 1;
+
+            UpdateTable(tableName, updateData, smId);
+        }
+
+        private void UpdateTable(string tableName, Dictionary<string, string> updateData, int smId)
+        {
+            foreach (var dic in updateData)
+            {
+                var setSql = "";
+                setSql += $"{dic.Key}='{dic.Value}' ";
+                //这里最好使用sqlparameter拼接sql
+                string sql = $"update {tableName} set {setSql} where SMID={smId}";
+
+                //执行sql
+            }
+        }
+
+        private Workspace showMapWorkspace;
+        private MapControl showMapControl;
+
+        private void ReadShpFileAndShow_Click(object sender, RoutedEventArgs e)
+        {
+            LoadMapFromDatasource();
+            //LoadMapFromWorkspace();
+        }
+        private void LoadMapFromDatasource()
+        {
+            showMapWorkspace = new Workspace();
+
+            //Memory数据源
+            DatasourceConnectionInfo memInfo = new DatasourceConnectionInfo();
+            //设置数据源连接的引擎类型
+            memInfo.EngineType = EngineType.Memory;
+            memInfo.Alias = "fdgdfgd";
+            memInfo.Server = "tyjyutjyu";
+            Datasource memDatasource = showMapWorkspace.Datasources.Create(memInfo);
+
+            String sourceFilePath = $"{baseFilePath}\\{fileList[0]}.shp";
+            var r= ImportShpToMemory(sourceFilePath, memDatasource);
+            //todo
+            //showMapWorkspace.Maps.Add()
+            showMapControl = new MapControl();
+            showMapControl.Action = SuperMap.UI.Action.Pan;
+            //必须设置
+            showMapControl.Map.Workspace = showMapWorkspace;
+            showMapControl.Map.Open(showMapWorkspace.Maps[0]);
+
+            hostMapControl.Child = showMapControl;
+        }
+
+        private void LoadMapFromWorkspace()
+        {
+            showMapWorkspace = new Workspace();
+            showMapWorkspace.Open(new WorkspaceConnectionInfo(@"...\\.smwu"));
+
+            showMapControl = new MapControl();
+
+            showMapControl.Action = SuperMap.UI.Action.Pan;
+            //必须设置
+            showMapControl.Map.Workspace = showMapWorkspace;
+            showMapControl.Map.Open(showMapWorkspace.Maps[0]);
+
+            hostMapControl.Child = showMapControl;
         }
     }
 }
