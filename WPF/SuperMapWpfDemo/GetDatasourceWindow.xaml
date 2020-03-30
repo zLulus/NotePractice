@@ -1,0 +1,19 @@
+﻿<Window x:Class="SuperMapWpfDemo.GetDatasourceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SuperMapWpfDemo"
+        mc:Ignorable="d"
+        Title="GetDatasourceWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Content="获得srid" Click="GetSrid_Click"></Button>
+        <Button Grid.Row="1" Content="获得字段信息(打断点查看)" Click="GetFieldInfo_Click"></Button>
+        <Button Grid.Row="2" Content="获得数据集类型信息(打断点查看)" Click="GetType_Click"></Button>
+    </Grid>
+</Window>

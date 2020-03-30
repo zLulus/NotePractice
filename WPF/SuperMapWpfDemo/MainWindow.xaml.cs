@@ -30,7 +30,7 @@ namespace SuperMapWpfDemo
         {
             "",
         };
-
+        
         string targetTableName = "";
         string server = "";
         string database = "";
@@ -62,10 +62,8 @@ namespace SuperMapWpfDemo
                 {
                     String sourceFilePath = $"{baseFilePath}\\{file}.shp";
                     //CreateDb();
-                    //ok的
                     //ImportShpDirectly(sourceFilePath);
                     ImportShpByMemory(sourceFilePath);
-                    //ImportShpToFile(sourceFilePath);
                 }
                 catch (Exception ex)
                 {
@@ -95,66 +93,6 @@ namespace SuperMapWpfDemo
                                  // 打开数据库数据源
                                  //超图sdk不能直接连接空数据库，需要使用Create方法新建数据库，才有超图“系统表”
             Datasource datasource = workspace.Datasources.Create(info);
-        }
-
-        private void ImportShpToFile(string filePath)
-        {
-            //https://blog.csdn.net/tane_e/article/details/89393493
-
-
-            //https://www.supermap.com/EN/online/Deskpro%206.0/SDMain/html/R_Dataset_Import.htm
-            //https://www.supermap.com/EN/online/Deskpro%206.0/SDTechTheme/ExpressHtml/ImEx_ArcGIS_Shape.htm
-
-            Workspace workspace = new Workspace();
-            ////udb数据源
-            //DatasourceConnectionInfo udbInfo = new DatasourceConnectionInfo();
-            ////设置数据源连接的引擎类型
-            //udbInfo.EngineType = EngineType.UDB;
-            ////设置文件位置
-            //udbInfo.Server = @"D:\MicroDesktop\Temp\test";
-            //// 创建/打开数据库数据源
-            //Datasource udbDatasource = workspace.Datasources.Create(udbInfo);
-            //Datasource udbDatasource = workspace.Datasources.Open(udbInfo);
-
-            //Memory数据源
-            //DatasourceConnectionInfo memInfo = new DatasourceConnectionInfo();
-            ////设置数据源连接的引擎类型
-            //memInfo.EngineType = EngineType.Memory;
-            //memInfo.Alias = "fdgdfgd";
-            //memInfo.Server = "tyjyutjyu";
-            //// 创建/打开数据库数据源
-            //Datasource memDatasource = workspace.Datasources.Create(memInfo);
-
-            //svc - 矢量数据
-            DatasourceConnectionInfo scvInfo = new DatasourceConnectionInfo();
-            //设置数据源连接的引擎类型
-            scvInfo.EngineType = EngineType.VectorFile;
-            //设置文件位置
-            scvInfo.Server = @"F:\Project\Test\ttt";
-            // 创建/打开数据库数据源
-            Datasource scvDatasource = workspace.Datasources.Create(scvInfo);
-
-            if (scvDatasource != null)
-            {
-                ImportResult result = ImportShpToMemory(filePath, scvDatasource);
-                if (result.FailedSettings.Length == 0)
-                {
-                    Console.WriteLine($"导入{filePath}成功！");
-
-
-                    DatasetVector datasetVector = (DatasetVector)scvDatasource.Datasets[0];
-
-                    var re = datasetVector.GetRecordset(false, SuperMap.Data.CursorType.Dynamic);
-                }
-                else
-                {
-                    Console.WriteLine($"导入{filePath}失败！");
-                }
-            }
-
-
-            // 释放工作空间资源
-            workspace.Dispose();
         }
 
         private void ImportShpByMemory(string filePath)
@@ -224,46 +162,25 @@ namespace SuperMapWpfDemo
 
 
                     DatasetVector datasetVector = (DatasetVector)memDatasource.Datasets[0];
+                    //datasource.Datasets.CreateFromTemplate(datasetVector.Name, datasetVector);
+                    //var t1=datasource.Datasets.CreateFromTemplate(datasetVector.Name, memDatasource.Datasets[0]);
+                    //var t2= datasource.CopyDataset(datasetVector, datasetVector.Name, EncodeType.None);
+                    //datasource.Flush(datasetVector.Name);
 
-                    ////遍历记录集
-                    var fieldInfos = datasetVector.FieldInfos;
-                    //FieldInfo delField = new FieldInfo("", FieldType.Double);
-                    //delField.IsRequired = false;
-                    //delField.DefaultValue = "100.0";
-                    //delField.Caption = m_newFieldName;
-                    //fieldInfos.Add(delField);
-                    var recordset = datasetVector.GetRecordset(false, SuperMap.Data.CursorType.Dynamic);
-                    Int32 count = recordset.RecordCount;
-                    recordset.MoveFirst();
-                    //取不出SmKey
-                    for (Int32 i = 0; i < recordset.RecordCount; i++)
-                    {
-                        foreach (FieldInfo fieldInfo in fieldInfos)
-                        {
-                            Object valueID = recordset.GetFieldValue(fieldInfo.Name);
-                        }
-                        //recordset.SetFieldValue
-                        //Object SmUserID = recordset.GetFieldValue("SmUserID");
-                        //Object SmSdriW = recordset.GetFieldValue("SmSdriW");
-                        //Object SmSdriN = recordset.GetFieldValue("SmSdriN");
-                        //Object SmGeometry = recordset.GetFieldValue("SmGeometry");
-                        //GeoRegion geoPoint = (GeoRegion)recordset.GetGeometry();
+                    var re = datasetVector.GetRecordset(false, SuperMap.Data.CursorType.Dynamic);
+                    //re.AddNew(
 
-                        recordset.MoveNext();
-                    }
-                    ////re.AddNew(
-
-                    //var v3 = datasource.Datasets.CreateAndAppendWithSmid(targetTableName, recordset);
-                    //var v4 = datasource.Datasets.CreateFromTemplate(targetTableName, memDatasource.Datasets[0]);
+                    var v3 = datasource.Datasets.CreateAndAppendWithSmid(targetTableName, re);
+                    var v4 = datasource.Datasets.CreateFromTemplate(targetTableName, memDatasource.Datasets[0]);
                     var v5 = datasource.CopyDataset(datasetVector, targetTableName, datasetVector.EncodeType);
-                    ////datasource.Datasets.Create(datasetVector);
-                    //var dataset = datasource.Datasets[targetTableName];
-                    //var ve = dataset as DatasetVector;
-                    //var record = ve?.GetRecordset(false, SuperMap.Data.CursorType.Dynamic);
-                    ////record.AddNew(...);
-                    ////var v2= datasource.RecordsetToDataset(re, targetTableName);
+                    //datasource.Datasets.Create(datasetVector);
+                    var dataset = datasource.Datasets[targetTableName];
+                    var ve = dataset as DatasetVector;
+                    var record = ve?.GetRecordset(false, SuperMap.Data.CursorType.Dynamic);
+                    //record.AddNew(...);
+                    //var v2= datasource.RecordsetToDataset(re, targetTableName);
 
-                    //datasource.Refresh();
+                    datasource.Refresh();
                     //String name = datasource.Datasets.GetAvailableDatasetName(targetTableName);
                     // 设置矢量数据集的信息
                     //DatasetVectorInfo datasetVectorInfo = new DatasetVectorInfo();
@@ -345,7 +262,7 @@ namespace SuperMapWpfDemo
                 importSettingSHP.IsAttributeIgnored = false;
                 importSettingSHP.IsImportAs3D = false;
                 //设置当同名数据集存在时导入的模式,如果存在名字冲突，则覆盖(Overwrite)
-                importSettingSHP.ImportMode = ImportMode.Append;
+                importSettingSHP.ImportMode = ImportMode.Overwrite;
                 //设置需要导入的数据路径信息
                 importSettingSHP.SourceFilePath = filePath;
                 //设置需要导入的数据编码类型，因为有中文字段，所以用ASCII编码
