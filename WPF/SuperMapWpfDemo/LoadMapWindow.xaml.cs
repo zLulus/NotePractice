@@ -32,6 +32,7 @@ namespace SuperMapWpfDemo
         private void LoadMap_Click(object sender, RoutedEventArgs e)
         {
             showMapWorkspace = new Workspace();
+			//SampleData文件夹的内容即超图SampleData文件夹中的内容，在此不上传到仓库，需要自己下载
             showMapWorkspace.Open(new WorkspaceConnectionInfo(@"..\..\..\SampleData\World\World.smwu"));
 
             showMapControl = new MapControl();
