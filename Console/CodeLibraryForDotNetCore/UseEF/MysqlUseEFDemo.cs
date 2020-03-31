@@ -31,6 +31,8 @@ namespace CodeLibraryForDotNetCore.UseEF
             InsertDataTable(tableName, dt);
             //录入数据方法2
             SqlBulkCopyByDatatable(tableName, dt);
+            //录入数据方法3
+            MySqlExcuteBatch("", tableName);
 
             connection.Close();
         }
@@ -155,6 +157,26 @@ namespace CodeLibraryForDotNetCore.UseEF
                 
             }
             return n;
+        }
+
+        /// <summary>
+        /// 通过csv文件导入数据
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="tableName"></param>
+        public static void MySqlExcuteBatch( string filePath, string tableName)
+        {
+            MySqlBulkLoader bulk = new MySqlBulkLoader(connection)
+            {
+                FieldTerminator = ",",//这个地方字段间的间隔方式，为逗号
+                FieldQuotationCharacter = '"',
+                EscapeCharacter = '"',
+                LineTerminator = "\r\n",//每行
+                FileName = filePath,//文件地址
+                NumberOfLinesToSkip = 0,
+                TableName = tableName,
+            };
+            bulk.Load();
         }
     }
 }
