@@ -25,7 +25,7 @@ namespace SuperMapWpfDemo
     /// </summary>
     public partial class MainWindow : Window
     {
-        string baseFilePath = "";
+        string baseFilePath = @"";
         List<string> fileList = new List<string>()
         {
             "",
@@ -338,13 +338,12 @@ namespace SuperMapWpfDemo
 
             String sourceFilePath = $"{baseFilePath}\\{fileList[0]}.shp";
             var r= ImportShpToMemory(sourceFilePath, memDatasource);
-            //todo
-            //showMapWorkspace.Maps.Add()
             showMapControl = new MapControl();
             showMapControl.Action = SuperMap.UI.Action.Pan;
             //必须设置
             showMapControl.Map.Workspace = showMapWorkspace;
-            showMapControl.Map.Open(showMapWorkspace.Maps[0]);
+            //添加数据集到地图控件
+            showMapControl.Map.Layers.Add(memDatasource.Datasets[0], true);
 
             hostMapControl.Child = showMapControl;
         }
