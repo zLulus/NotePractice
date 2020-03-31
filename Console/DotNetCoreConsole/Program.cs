@@ -37,6 +37,7 @@ using CodeLibraryForDotNetCore.TypeConversion;
 using CodeLibraryForDotNetCore.Attributes;
 using CodeLibraryForDotNetCore.DelegateAndEvent.AnonymousMethods;
 using CodeLibraryForDotNetCore.Reflections;
+using CodeLibraryForDotNetCore.UseEF;
 
 namespace DotNetCoreConsole
 {
@@ -167,6 +168,11 @@ namespace DotNetCoreConsole
 
             //Attribute
             //AttributeDemo.Run();
+
+            //ef 录入datatable
+            //mysql
+            MysqlUseEFDemo.Run();
+            //SqlServerUseEFDemo.Run();
 
             //反射
             ReflectionDemo.Run();
