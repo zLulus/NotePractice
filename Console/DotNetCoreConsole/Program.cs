@@ -171,8 +171,8 @@ namespace DotNetCoreConsole
 
             //ef 录入datatable
             //mysql
-            MysqlUseEFDemo.Run();
-            //SqlServerUseEFDemo.Run();
+            //MysqlUseEFDemo.Run();
+            SqlServerUseEFDemo.Run();
 
             //反射
             ReflectionDemo.Run();

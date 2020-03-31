@@ -11,8 +11,15 @@ namespace CodeLibraryForDotNetCore.UseEF
         private static string connectionString = "";
         public static void Run()
         {
-            string tableName = "";
+            string tableName = "tableName";
+            //创建数据
             DataTable dt = new DataTable();
+            string ID = "ID";
+            dt.Columns.Add(ID);
+            DataRow dr = dt.NewRow();
+            dr[ID] = Guid.NewGuid().ToString();
+            dt.Rows.Add(dr);
+
             SqlBulkCopyByDatatable(tableName, dt);
         }
 
@@ -39,6 +46,7 @@ namespace CodeLibraryForDotNetCore.UseEF
                         for (int i = 0; i < dt.Columns.Count; i++)
                         {
                             //列名映射：源列名-目标列名
+                            //这里的写法需要保持DataTable和数据库表的列名一致
                             sqlbulkcopy.ColumnMappings.Add(dt.Columns[i].ColumnName, dt.Columns[i].ColumnName);
                         }
                         //数据写入目标表
