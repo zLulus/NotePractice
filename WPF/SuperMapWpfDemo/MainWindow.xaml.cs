@@ -4,6 +4,7 @@ using SuperMap.Mapping;
 using SuperMap.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -209,6 +210,7 @@ namespace SuperMapWpfDemo
             workspace.Dispose();
         }
 
+        
         private ImportResult ImportShpToMemory(string filePath, Datasource memDatasource)
         {
             ImportSettingSHP importSettingSHP = new ImportSettingSHP();
@@ -361,6 +363,327 @@ namespace SuperMapWpfDemo
             showMapControl.Map.Open(showMapWorkspace.Maps[0]);
 
             hostMapControl.Child = showMapControl;
+        }
+
+
+
+        private void InsertShpFile_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var file in fileList)
+            {
+                try
+                {
+                    String sourceFilePath = $"{baseFilePath}\\{file}.shp";
+                    InsertRecordSetToDb(sourceFilePath, targetTableName);
+                    //CreatePointDataset(targetTableName)
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
+            
+        }
+
+        //private void CreatePointDataset(string tableName)
+        //{
+        //    Workspace workspace = new Workspace();
+        //    DatasourceConnectionInfo info = new DatasourceConnectionInfo();
+        //    Datasource datasource = GetDbDatasource(workspace, info);
+        //    var datasetVector = (DatasetVector)datasource.Datasets[tableName];
+        //    if (datasetVector == null)
+        //    {
+        //        CreateDataset(datasource, DatasetType.Point, tableName);
+        //    }
+        //    //只取了数据结构，没有取数据
+        //    var recordset = datasetVector.GetRecordset(true, SuperMap.Data.CursorType.Dynamic);
+        //    recordset.Edit();
+        //    recordset.fi
+        //}
+
+        private void InsertRecordSetToDb(string shapeFieldName,string tableName)
+        {
+            Workspace workspace = new Workspace();
+            DatasourceConnectionInfo info = new DatasourceConnectionInfo();
+            var filePath = $"{Directory.GetCurrentDirectory()}\\{Guid.NewGuid().ToString()}";
+            var files = new List<string> { $"{filePath}.udb", $"{filePath}.udd" };
+
+            Datasource datasource = GetDbDatasource(workspace, info);
+            if (datasource != null)
+            {
+                //临时数据源
+                DatasourceConnectionInfo tempInfo = new DatasourceConnectionInfo();
+                //设置数据源连接的引擎类型
+                tempInfo.EngineType = EngineType.UDB;
+                tempInfo.Alias = tableName;
+
+                tempInfo.Server = filePath;
+                // 创建/打开数据库数据源
+                Datasource tempDatasource = workspace.Datasources.Create(tempInfo);
+                Recordset recordset = null, tempRecordset = null;
+                if (tempDatasource != null)
+                {
+                    ImportResult result = ImportShpToTemp(shapeFieldName, tempDatasource, tableName);
+                    if (result.FailedSettings.Length == 0)
+                    {
+                        Console.WriteLine($"导入{shapeFieldName}成功！");
+                        try
+                        {
+                            for (int index = 0; index < tempDatasource.Datasets.Count; index++)
+                            {
+                                DatasetVector tempDatasetVector = (DatasetVector)tempDatasource.Datasets[index];
+                                tempRecordset = tempDatasetVector.GetRecordset(false, SuperMap.Data.CursorType.Dynamic);
+                                //没有数据
+                                if (tempRecordset.RecordCount == 0)
+                                {
+                                    continue;
+                                }
+                                var tempFieldInfos = tempDatasetVector.FieldInfos;
+                                //注意：数据集是手工录入的，不是超图sdk生成的，所以不能删除数据集
+                                //如果更新数据集中的记录，则应该操纵记录集(删除、修改、新增)
+                                var datasetVector = (DatasetVector)datasource.Datasets[tableName];
+                                if (datasetVector == null)
+                                {
+                                    CreateDataset(datasource, DatasetType.Point, tableName);
+                                    //throw new Exception($"不存在数据集名称为{tableName}的数据集！");
+                                }
+                                //删去之前的所有记录
+                                //datasetVector.GetRecordset(false, SuperMap.Data.CursorType.Dynamic).DeleteAll();
+                                //只取了数据结构，没有取数据
+                                recordset = datasetVector.GetRecordset(true, SuperMap.Data.CursorType.Dynamic);
+                                //设置批量提交
+                                // 设置批量更新的限度为5000，注意一定要在开始批量更新前设置MaxRecordCount!
+                                recordset.Batch.MaxRecordCount = 500;
+                                // 开始批量更新，当添加到设置的MaxRecordCount的下一条记录时，将会将MaxRecordCount条记录自动提交到数据库中。
+                                recordset.Batch.Begin();
+
+                                tempRecordset.MoveFirst();
+                                //遍历临时记录集
+                                for (Int32 i = 0; i < tempRecordset.RecordCount; i++)
+                                {
+                                    //往mysql新增记录
+                                    SuperMap.Data.Geometry geoPoint = tempRecordset.GetGeometry();
+                                    recordset.AddNew(geoPoint);
+                                    //SeekID:在记录中搜索指定 ID 号的记录，并定位该记录为当前记录。 
+                                    recordset.MoveLast();
+                                    foreach (SuperMap.Data.FieldInfo fileInfo in tempFieldInfos)
+                                    {
+                                        if (!fileInfo.IsSystemField && IsHaveField(datasetVector.FieldInfos, fileInfo.Name))
+                                        {
+                                            recordset.Edit();
+                                            recordset.SetFieldValue(fileInfo.Name, tempRecordset.GetFieldValue(fileInfo.Name));
+                                            Object valueID = recordset.GetFieldValue(fileInfo.Name);
+                                        }
+                                    }
+
+                                    //处理业务数据
+
+                                    tempRecordset.MoveNext();
+
+                                    //recordset.Update();
+                                }
+
+                                // 使用批量更新的Update，提交没有自动提交的记录
+                                recordset.Batch.Update();
+                            }
+
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                        finally
+                        {
+                            //示例程序BatchAdd说明要释放记录集
+                            if (recordset != null)
+                            {
+                                recordset.Dispose();
+                            }
+                            if (tempRecordset != null)
+                            {
+                                tempRecordset.Dispose();
+                            }
+                        }
+
+
+                    }
+                    else
+                    {
+                        throw new Exception($"导入{shapeFieldName}失败！");
+                    }
+                }
+                else
+                {
+                    throw new Exception($"创建临时数据源{filePath}失败！");
+                }
+
+
+            }
+
+            // 释放工作空间资源
+            info.Dispose();
+            workspace.Dispose();
+
+
+            foreach (var file in files)
+            {
+                if (File.Exists(file))
+                {
+                    File.Delete(file);
+                }
+            }
+
+            MessageBox.Show("成功!");
+        }
+
+        /// <summary>
+        /// 创建数据集
+		/// Create the dataset
+        /// </summary>
+        public Boolean CreateDataset(Datasource datasource, DatasetType datasetType, String datasetName)
+        {
+            Boolean result = false;
+            if (datasource == null)
+            {
+                return result;
+            }
+
+            // 首先要判断输入的名字是否可用
+            // Judge that whether the input name is usable or not
+            if (!datasource.Datasets.IsAvailableDatasetName(datasetName))
+            {
+                MessageBox.Show($"名称为{datasetName}的数据集已存在");
+                return result;
+            }
+
+            Datasets datasets = datasource.Datasets;
+            DatasetVectorInfo vectorInfo = new DatasetVectorInfo();
+            vectorInfo.Name = datasetName;
+
+            try
+            {
+                // Point等为Vector类型，类型是一样的，可以统一处理
+                // Data such as Point,Line,etc can be operated as the same method as they are all vector type
+                switch (datasetType)
+                {
+                    case DatasetType.Point:
+                    case DatasetType.Line:
+                    case DatasetType.CAD:
+                    case DatasetType.Region:
+                    case DatasetType.Text:
+                    case DatasetType.Tabular:
+                        {
+                            vectorInfo.Type = datasetType;
+                            if (datasets.Create(vectorInfo) != null)
+                                result = true;
+                        }
+                        break;
+                    case DatasetType.Grid:
+                        {
+                            DatasetGridInfo datasetGridInfo = new DatasetGridInfo();
+                            datasetGridInfo.Name = datasetName;
+                            datasetGridInfo.Height = 200;
+                            datasetGridInfo.Width = 200;
+                            datasetGridInfo.NoValue = 1.0;
+                            datasetGridInfo.PixelFormat = SuperMap.Data.PixelFormat.Single;
+                            datasetGridInfo.EncodeType = EncodeType.LZW;
+
+                            if (datasets.Create(datasetGridInfo) != null)
+                                result = true;
+                        }
+                        break;
+                    case DatasetType.Image:
+                        {
+                            DatasetImageInfo datasetImageInfo = new DatasetImageInfo();
+                            datasetImageInfo.Name = datasetName;
+                            datasetImageInfo.BlockSizeOption = BlockSizeOption.BS_128;
+                            datasetImageInfo.Height = 200;
+                            datasetImageInfo.Width = 200;
+                            //datasetImageInfo.Palette = Colors.MakeRandom(10);
+                            datasetImageInfo.EncodeType = EncodeType.None;
+
+                            if (datasets.Create(datasetImageInfo) != null)
+                                result = true;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex.Message);
+            }
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// 连接数据库
+        /// </summary>
+        /// <returns></returns>
+        public Datasource GetDbDatasource(Workspace workspace, DatasourceConnectionInfo info)
+        {
+            //设置数据源连接的引擎类型
+            info.EngineType = EngineType.MySQL;
+            //设置数据库连接字符串
+            info.Server = server;
+            info.Database = database;
+            info.User = userName;
+            info.Password = password;
+            info.Alias = "Test";//不能为空
+            // 创建/打开数据库数据源
+            Datasource datasource = workspace.Datasources.Open(info);
+            if (datasource == null)
+            {
+                Console.WriteLine("打开数据源失败");
+                return null;
+            }
+            else
+            {
+                Console.WriteLine("数据源打开成功！");
+                return datasource;
+            }
+        }
+
+
+        private ImportResult ImportShpToTemp(string filePath, Datasource tempDatasource, string targetTableName)
+        {
+            ImportSettingSHP importSettingSHP = new ImportSettingSHP();
+            importSettingSHP.IsImportEmptyDataset = true;//空数据集的数据源是否导入
+            importSettingSHP.IsAttributeIgnored = false;
+            importSettingSHP.IsImportAs3D = false;
+            //设置当同名数据集存在时导入的模式,如果存在名字冲突，则覆盖(Overwrite)
+            importSettingSHP.ImportMode = ImportMode.Overwrite;
+            //设置需要导入的数据路径信息
+            importSettingSHP.SourceFilePath = filePath;
+            //设置需要导入的数据编码类型，因为有中文字段，所以用ASCII编码
+            importSettingSHP.SourceFileCharset = Charset.ANSI;
+            //设置要导入的目标数据源
+            importSettingSHP.TargetDatasource = tempDatasource;
+            //设置目标数据集名称
+            importSettingSHP.TargetDatasetName = targetTableName;
+            importSettingSHP.TargetEncodeType = EncodeType.None;
+            DataImport importer = new DataImport();
+            importer.ImportSettings.Add(importSettingSHP);
+            //数据导入mysql数据库
+            ImportResult result = importer.Run();
+            return result;
+        }
+
+        private bool IsHaveField(FieldInfos fieldInfos, string fieldName)
+        {
+            foreach (SuperMap.Data.FieldInfo fileInfo in fieldInfos)
+            {
+                if (fileInfo.Name == fieldName)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
