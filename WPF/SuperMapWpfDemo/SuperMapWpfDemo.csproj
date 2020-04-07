@@ -125,6 +125,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\SuperMapSdkHelper.cs" />
+    <Compile Include="Dtos\CreateFieldInfo.cs" />
     <Compile Include="GetDatasourceWindow.xaml.cs">
       <DependentUpon>GetDatasourceWindow.xaml</DependentUpon>
     </Compile>

@@ -2,6 +2,7 @@
 using SuperMap.Data.Conversion;
 using SuperMap.Mapping;
 using SuperMap.UI;
+using SuperMapWpfDemo.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -684,6 +685,116 @@ namespace SuperMapWpfDemo
                 }
             }
             return false;
+        }
+
+        private void CreateDataset_Click(object sender, RoutedEventArgs e)
+        {
+            Workspace workspace = null;
+            DatasourceConnectionInfo info = null;
+            try
+            {
+                Toolkit.SetDtNameAsTableName(true);
+
+                var datasetName = "test222";
+
+                workspace = new Workspace();
+                info = new DatasourceConnectionInfo();
+                Datasource datasource = GetDbDatasource(workspace, info);
+                Datasets datasets = datasource.Datasets;
+                if (!datasets.IsAvailableDatasetName(datasetName))
+                {
+                    datasets.Delete(datasetName);
+                }
+                DatasetVectorInfo vectorInfo = new DatasetVectorInfo();
+                vectorInfo.Name = datasetName;
+                vectorInfo.Type = DatasetType.Point;
+                var result = datasets.Create(vectorInfo);
+                if (result != null)
+                {
+                    MessageBox.Show("添加数据集成功");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (info != null)
+                {
+                    info.Dispose();
+                }
+                if (workspace != null)
+                {
+                    workspace.Dispose();
+                }
+            }
+        }
+
+        private void SetFieldInfo_Click(object sender, RoutedEventArgs e)
+        {
+            Workspace workspace = null;
+            DatasourceConnectionInfo info = null;
+            try
+            {
+                Toolkit.SetDtNameAsTableName(true);
+
+                var datasetName = "";
+                var newFieldList = new List<CreateFieldInfo>();
+                newFieldList.Add(new CreateFieldInfo { Type = "int", Name = "test1Pro" });
+                newFieldList.Add(new CreateFieldInfo { Type = "string", Name = "test2Pro" });
+
+                workspace = new Workspace();
+                info = new DatasourceConnectionInfo();
+                Datasource datasource = GetDbDatasource(workspace, info);
+                var dataset = datasource.Datasets[datasetName];
+                if (dataset == null)
+                {
+                    throw new Exception($"没有名称为{datasetName}的数据集");
+                }
+                var datasetVector = dataset as DatasetVector;
+                var fields = datasetVector.FieldInfos;
+                //删除所有非sm系统字段
+                foreach (FieldInfo field in fields)
+                {
+                    if (!field.IsSystemField)
+                    {
+                        fields.Remove(field.Name);
+                    }
+                }
+
+                //新增字段
+                foreach(var newField in newFieldList)
+                {
+                    switch (newField.Type)
+                    {
+                        case "int":
+                            fields.Add(new FieldInfo(newField.Name, FieldType.Int32));
+                            break;
+                        case "string":
+                            fields.Add(new FieldInfo(newField.Name, FieldType.Char));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (info != null)
+                {
+                    info.Dispose();
+                }
+                if (workspace != null)
+                {
+                    workspace.Dispose();
+                }
+            }
+
         }
     }
 }
