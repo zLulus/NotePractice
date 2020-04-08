@@ -19,13 +19,13 @@ namespace CodeLibraryForDotNetCore.UseEF
             string tableName = "tableName";
             //创建数据
             DataTable dt = new DataTable();
-            string ID = "ID";
+            string ID = "id";
             string col2 = "col2";
             dt.Columns.Add(ID);
             dt.Columns.Add(col2);
             DataRow dr = dt.NewRow();
             dr[ID] = Guid.NewGuid().ToString();
-            dr[col2] = "123";
+            dr[col2] = DBNull.Value;
             dt.Rows.Add(dr);
             //录入数据方法1
             InsertDataTable(tableName, dt);
@@ -60,7 +60,15 @@ namespace CodeLibraryForDotNetCore.UseEF
                 string val = "";
                 foreach (var columnName in col)
                 {
-                    val += $"\"{dr[columnName]}\",";
+                    if (dr[columnName] != DBNull.Value)
+                    {
+                        val += $"\"{dr[columnName]}\",";
+                    }
+                    //如果是DBNull.Value，填写null
+                    else
+                    {
+                        val += $"null,";
+                    }
                 }
                 val = val.TrimEnd(',');
                 //这里可以使用MySqlParameter
@@ -102,7 +110,15 @@ namespace CodeLibraryForDotNetCore.UseEF
                     string val = "";
                     foreach (var columnName in col)
                     {
-                        val += $"\"{dr[columnName]}\",";
+                        if (dr[columnName] != DBNull.Value)
+                        {
+                            val += $"\"{dr[columnName]}\",";
+                        }
+                        //如果是DBNull.Value，填写null
+                        else
+                        {
+                            val += $"null,";
+                        }
                     }
                     val = val.TrimEnd(',');
                     //https://blog.csdn.net/atgc/article/details/2039672
