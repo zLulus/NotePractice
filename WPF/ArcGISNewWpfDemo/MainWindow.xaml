@@ -1,0 +1,16 @@
+﻿<Window x:Class="ArcGISNewWpfDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+        xmlns:local="clr-namespace:ArcGISNewWpfDemo"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="525" Width="790">
+    <Window.Resources>
+        <local:MapViewModel x:Key="MapViewModel" />
+    </Window.Resources>
+    <Grid>
+        <esri:MapView Map="{Binding Map, Source={StaticResource MapViewModel}}" />
+    </Grid>
+</Window>
