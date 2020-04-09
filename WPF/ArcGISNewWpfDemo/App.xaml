@@ -3,8 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ArcGISNewWpfDemo"
              Startup="Application_Startup"
-             StartupUri="MainWindow.xaml">
+             StartupUri="\Data\AddFeatures.xaml">
 	<Application.Resources>
-         
-	</Application.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="BorderStyle" TargetType="Border">
+                <Setter Property="HorizontalAlignment" Value="Right" />
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Margin" Value="30" />
+                <Setter Property="Padding" Value="20" />
+                <Setter Property="BorderBrush" Value="Black" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Width" Value="375" />
+            </Style>
+
+            <Style x:Key="HeaderTextBlock" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+            <Style x:Key="PrimaryTextBlock" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
+            </Style>
+            <Style x:Key="SecondaryTextBlock" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource PrimaryTextColor}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
 </Application>
