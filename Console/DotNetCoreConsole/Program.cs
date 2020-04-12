@@ -38,6 +38,7 @@ using CodeLibraryForDotNetCore.Attributes;
 using CodeLibraryForDotNetCore.DelegateAndEvent.AnonymousMethods;
 using CodeLibraryForDotNetCore.Reflections;
 using CodeLibraryForDotNetCore.UseEF;
+using CodeLibraryForDotNetCore.QueryTree;
 
 namespace DotNetCoreConsole
 {
@@ -171,8 +172,9 @@ namespace DotNetCoreConsole
 
             //ef 录入datatable
             //mysql
-            MysqlUseEFDemo.Run();
+            //MysqlUseEFDemo.Run();
             //SqlServerUseEFDemo.Run();
+            QueryTreeDemo.Run();
 
             //反射
             //ReflectionDemo.Run();
