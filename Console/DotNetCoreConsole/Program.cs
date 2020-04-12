@@ -174,7 +174,10 @@ namespace DotNetCoreConsole
             //mysql
             //MysqlUseEFDemo.Run();
             //SqlServerUseEFDemo.Run();
-            QueryTreeDemo.Run();
+            QueryTreeDemo queryTreeDemo = new QueryTreeDemo();
+            //queryTreeDemo.SqliteQuery();
+            //树状结构查询
+            queryTreeDemo.TreeQuery();
 
             //反射
             //ReflectionDemo.Run();

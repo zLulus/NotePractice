@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLibraryForDotNetCore.QueryTree.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -27,5 +28,9 @@ namespace CodeLibraryForDotNetCore.QueryTree.Models
         /// 行政区名称
         /// </summary>
         public string Name {get; set; }
+        /// <summary>
+        /// 政区级别
+        /// </summary>
+        public AdministrativeLevelEnum AdministrativeLevel { get; set; }
     }
 }
