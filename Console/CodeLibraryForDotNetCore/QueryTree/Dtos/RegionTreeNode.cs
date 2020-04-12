@@ -12,18 +12,14 @@ namespace CodeLibraryForDotNetCore.QueryTree.Dtos
         /// </summary>
         public long Id { get; set; }
         /// <summary>
-        /// 用于业务查询的id
-        /// </summary>
-        public string RegionId { get; set; }
-        /// <summary>
-        /// 父级id(记录的是父级记录的RegionId)
-        /// </summary>
-        public string RegionParentId { get; set; }
-        /// <summary>
         /// 自身的编码，不同层级依次添加编码
         /// eg.湖北省为42,武汉市为4201，汉阳区为420105
         /// </summary>
-        public string Code { get; set; }
+        public string RegionCode { get; set; }
+        /// <summary>
+        /// 父级行政区编码(记录的是父级记录的RegionId)
+        /// </summary>
+        public string RegionParentCode { get; set; }
         /// <summary>
         /// 行政区名称
         /// </summary>

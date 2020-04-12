@@ -34,7 +34,7 @@ namespace CodeLibraryForDotNetCore.QueryTree
             var queryRegionIds = new List<string> { "130923", "210803", "130972", "1", "210802", "2109" };
 
             var resultTree = new List<RegionTreeNode>();
-            var list = db.Regions.Where(x => queryRegionIds.Contains(x.Code)).ToList();
+            var list = db.Regions.Where(x => queryRegionIds.Contains(x.RegionCode)).ToList();
 
             //向上查询
             foreach (var d in list)
@@ -77,7 +77,7 @@ namespace CodeLibraryForDotNetCore.QueryTree
                 RegionTreeNode tree = new RegionTreeNode();
                 List<RegionTree> list = new List<RegionTree>();
                 //向上查询树
-                var parent = await db.Regions.FirstOrDefaultAsync(x => x.Code == d.RegionParentId);
+                var parent = await db.Regions.FirstOrDefaultAsync(x => x.RegionCode == d.RegionParentCode);
                 list.Add(d);
                 if (parent != null)
                 {
@@ -86,7 +86,7 @@ namespace CodeLibraryForDotNetCore.QueryTree
                 int count = 0; //防止死循环
                 while (parent != null && count < 5)
                 {
-                    parent = await db.Regions.FirstOrDefaultAsync(x => x.Code == parent.RegionParentId);
+                    parent = await db.Regions.FirstOrDefaultAsync(x => x.RegionCode == parent.RegionParentCode);
                     if (parent != null)
                     {
                         list.Add(parent);
@@ -113,9 +113,8 @@ namespace CodeLibraryForDotNetCore.QueryTree
             return new RegionTreeNode()
             {
                 Id = regionTree.Id,
-                Code = regionTree.Code,
-                RegionId = regionTree.RegionId,
-                RegionParentId = regionTree.RegionParentId,
+                RegionCode = regionTree.RegionCode,
+                RegionParentCode = regionTree.RegionParentCode,
                 AdministrativeLevel = regionTree.AdministrativeLevel,
                 Name = regionTree.Name,
                 Children=new List<RegionTreeNode>()
@@ -131,10 +130,10 @@ namespace CodeLibraryForDotNetCore.QueryTree
         private long GetIntersection(RegionTreeNode tree, RegionTreeNode isExistTree)
         {
             var treeCodeList = new List<RegionTreeNode>();
-            treeCodeList.Add(new RegionTreeNode() { Id = tree.Id, Code = tree.Code });
+            treeCodeList.Add(new RegionTreeNode() { Id = tree.Id, RegionCode = tree.RegionCode });
             GetCodeList(tree, treeCodeList);
             var isExistTreeCodeList = new List<RegionTreeNode>();
-            isExistTreeCodeList.Add(new RegionTreeNode() { Id = isExistTree.Id, Code = isExistTree.Code });
+            isExistTreeCodeList.Add(new RegionTreeNode() { Id = isExistTree.Id, RegionCode = isExistTree.RegionCode });
             GetCodeList(isExistTree, isExistTreeCodeList);
 
             //查询重复的，最大的code
@@ -142,10 +141,13 @@ namespace CodeLibraryForDotNetCore.QueryTree
                                      from i in isExistTreeCodeList
                                      where t.Id == i.Id
                                      select t).ToList();
-            var target = new RegionTreeNode() { Code = "" };
+            var target = new RegionTreeNode() { RegionCode = "" };
             foreach (var code in intersectCodeList)
             {
-                if (target.Code.Length < code.Code.Length)
+                //不同层级依次添加编码
+                //eg.湖北省为42,武汉市为4201，汉阳区为420105
+                //这里寻找子节点
+                if (target.RegionCode.Length < code.RegionCode.Length)
                 {
                     target = code;
                 }
@@ -157,7 +159,7 @@ namespace CodeLibraryForDotNetCore.QueryTree
         {
             foreach (var node in tree.Children)
             {
-                codeList.Add(new RegionTreeNode() { Id = node.Id, Code = node.Code });
+                codeList.Add(new RegionTreeNode() { Id = node.Id, RegionCode = node.RegionCode });
                 GetCodeList(node, codeList);
             }
         }
