@@ -1,0 +1,18 @@
+﻿<Window x:Class="ArcGISNewWpfDemo.Data.AddFeatures"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArcGISNewWpfDemo.Data"
+        mc:Ignorable="d"
+        Title="AddFeatures" Height="450" Width="800"
+        xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013">
+    <Grid>
+        <esri:MapView x:Name="MyMapView"/>
+        <Border Style="{StaticResource BorderStyle}">
+            <Label Content="Tap to add features."
+                   FontWeight="SemiBold"
+                   HorizontalContentAlignment="Center" />
+        </Border>
+    </Grid>
+</Window>
