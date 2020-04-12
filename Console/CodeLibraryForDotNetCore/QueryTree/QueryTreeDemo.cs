@@ -5,6 +5,7 @@ using CodeLibraryForDotNetCore.QueryTree.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace CodeLibraryForDotNetCore.QueryTree
 {
     public class QueryTreeDemo
     {
-        private static string connectionString = @"Data Source=D:\MicroDesktop\NotePractice\Console\CodeLibraryForDotNetCore\QueryTree\Db\regionTreeDb.db";
+        private static string connectionString = $"Data Source={Directory.GetCurrentDirectory()}\\QueryTree\\Db\\regionTreeDb.db";
         private RegionTreeDbContext db;
         public QueryTreeDemo()
         {
