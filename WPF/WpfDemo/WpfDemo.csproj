@@ -112,6 +112,10 @@
     <Compile Include="Modules\UserControls\TopToolBar.xaml.cs">
       <DependentUpon>TopToolBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MoveAndResizeControl\MoveAndResizeControlWindow2.xaml.cs">
+      <DependentUpon>MoveAndResizeControlWindow2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MoveAndResizeControl\Tools\Element.cs" />
     <Compile Include="NoneBorder\NoneBorderDemo.xaml.cs">
       <DependentUpon>NoneBorderDemo.xaml</DependentUpon>
     </Compile>
@@ -358,6 +362,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modules\UserControls\TopToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MoveAndResizeControl\MoveAndResizeControlWindow2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
