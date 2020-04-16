@@ -85,6 +85,9 @@
     <Compile Include="Command\Commands\RelayCommand.cs" />
     <Compile Include="Command\ViewModels\CommandDemoWithBindParametersViewModel.cs" />
     <Compile Include="Command\ViewModels\CommandDemoWithParametersViewModel.cs" />
+    <Compile Include="ContextMenus\CreateContextMenuWindow.xaml.cs">
+      <DependentUpon>CreateContextMenuWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converts\ConvertDemo.xaml.cs">
       <DependentUpon>ConvertDemo.xaml</DependentUpon>
     </Compile>
@@ -253,6 +256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Command\CommandDemoWithParameters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContextMenus\CreateContextMenuWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
