@@ -112,6 +112,9 @@
     <Compile Include="Modules\UserControls\TopToolBar.xaml.cs">
       <DependentUpon>TopToolBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MoveAndResizeControl\MoveAndResizeControlWindow.xaml.cs">
+      <DependentUpon>MoveAndResizeControlWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MoveAndResizeControl\MoveAndResizeControlWindow2.xaml.cs">
       <DependentUpon>MoveAndResizeControlWindow2.xaml</DependentUpon>
     </Compile>
@@ -365,6 +368,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MoveAndResizeControl\MoveAndResizeControlWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MoveAndResizeControl\MoveAndResizeControlWindow2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -566,7 +573,9 @@
   <ItemGroup>
     <Resource Include="Template\ControlTemplate\Images\cat.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="MoveAndResizeControl\Resources\Images\1.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="WindowIconAndBackground\Images\background.jpg" />
     <Resource Include="WindowIconAndBackground\Images\icon.jpg" />
