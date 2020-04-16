@@ -26,10 +26,6 @@ namespace WpfDemo.MoveAndResizeControl
         public MoveAndResizeControlWindow()
         {
             InitializeComponent();
-            //var appName = Assembly.GetCallingAssembly().GetName().Name;
-            //var path = string.Format(@"pack://application:,,,/{0};component/{1}", appName, "1.jpg");
-            //image.Source = new BitmapImage(new Uri(path, UriKind.Absolute));
-            //image.Source = new BitmapImage(new Uri("/MoveAndResizeControl/Resources/Images/1.jpg", UriKind.Relative));
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
