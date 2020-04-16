@@ -110,5 +110,46 @@
             
             
         </Border>
+        <!--边框不显示-->
+        <Border Name="border4" Canvas.Left="200" Canvas.Top="135"
+                CornerRadius="5" Padding="5"
+                Height="100" Width="150" MinHeight="10" MinWidth="10"
+                MouseLeftButtonDown="border_MouseLeftButtonDown"
+                MouseLeave="border_MouseLeave"
+                MouseEnter="border_MouseEnter">
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="DarkKhaki"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Resources>
+            <!--菜单栏-->
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="修改文字内容" Click="ModifyTextClick"></MenuItem>
+                    <MenuItem Header="删除" Click="DeleteClick"></MenuItem>
+                </ContextMenu>
+            </Border.ContextMenu>
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <!--需要Label/textblock的文字大小随resize改变，则使用Viewbox，否则，去掉Viewbox-->
+            <!--https://stackoverflow.com/questions/1464185/how-to-set-textblock-or-label-with-resizable-font-size-in-wpf-->
+            <Viewbox Stretch="Uniform">
+                <TextBlock Name="myTextBlock2" Text="边框不显示"></TextBlock>
+            </Viewbox>
+
+        </Border>
     </Canvas>
 </Window>
