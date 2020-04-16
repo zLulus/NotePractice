@@ -112,6 +112,9 @@
     <Compile Include="Modules\UserControls\TopToolBar.xaml.cs">
       <DependentUpon>TopToolBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MoveAndResizeControl\Dialogs\ModifyTextDialog.xaml.cs">
+      <DependentUpon>ModifyTextDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MoveAndResizeControl\MoveAndResizeControlWindow.xaml.cs">
       <DependentUpon>MoveAndResizeControlWindow.xaml</DependentUpon>
     </Compile>
@@ -368,6 +371,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MoveAndResizeControl\Dialogs\ModifyTextDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MoveAndResizeControl\MoveAndResizeControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -580,5 +587,6 @@
     <Resource Include="WindowIconAndBackground\Images\background.jpg" />
     <Resource Include="WindowIconAndBackground\Images\icon.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

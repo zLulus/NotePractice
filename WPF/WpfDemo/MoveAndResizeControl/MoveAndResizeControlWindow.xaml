@@ -21,9 +21,13 @@
                 MouseLeftButtonDown="border_MouseLeftButtonDown"
                 MouseLeave="border_MouseLeave"
                 MouseEnter="border_MouseEnter">
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="删除" Click="DeleteClick"></MenuItem>
+                </ContextMenu>
+            </Border.ContextMenu>
             <Border.BitmapEffect>
                 <DropShadowBitmapEffect Color="DarkGray"/>
-
             </Border.BitmapEffect>
             <Border.RenderTransform>
                 <TransformGroup>
@@ -36,13 +40,19 @@
         <!--文本框-->
         <Border Name="border2" Canvas.Left="500" Canvas.Top="35"
                 BorderBrush="DarkKhaki" BorderThickness="1"  CornerRadius="5" Padding="5"
-                Height="68" Width="68" MinHeight="10" MinWidth="10"
+                Height="30" Width="200" MinHeight="10" MinWidth="10"
                 MouseLeftButtonDown="border_MouseLeftButtonDown"
                 MouseLeave="border_MouseLeave"
                 MouseEnter="border_MouseEnter">
+            <!--菜单栏-->
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="修改文字内容" Click="ModifyTextClick"></MenuItem>
+                    <MenuItem Header="删除" Click="DeleteClick"></MenuItem>
+                </ContextMenu>
+            </Border.ContextMenu>
             <Border.BitmapEffect>
                 <DropShadowBitmapEffect Color="DarkGray"/>
-
             </Border.BitmapEffect>
             <Border.RenderTransform>
                 <TransformGroup>
@@ -53,7 +63,7 @@
             <!--需要Label/textblock的文字大小随resize改变，则使用Viewbox，否则，去掉Viewbox-->
             <!--https://stackoverflow.com/questions/1464185/how-to-set-textblock-or-label-with-resizable-font-size-in-wpf-->
             <Viewbox Stretch="Uniform">
-                <TextBlock Text="move and rezise TextBlock"></TextBlock>
+                <TextBlock Name="myTextBlock" Text="move and rezise TextBlock"></TextBlock>
             </Viewbox>
             
         </Border>
@@ -64,9 +74,13 @@
                 MouseLeftButtonDown="border_MouseLeftButtonDown"
                 MouseLeave="border_MouseLeave"
                 MouseEnter="border_MouseEnter">
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="删除" Click="DeleteClick"></MenuItem>
+                </ContextMenu>
+            </Border.ContextMenu>
             <Border.BitmapEffect>
                 <DropShadowBitmapEffect Color="DarkGray"/>
-
             </Border.BitmapEffect>
             <Border.RenderTransform>
                 <TransformGroup>

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfDemo.MoveAndResizeControl.Dialogs;
 using WpfDemo.MoveAndResizeControl.Tools;
 
 namespace WpfDemo.MoveAndResizeControl
@@ -209,6 +210,23 @@ namespace WpfDemo.MoveAndResizeControl
             // update current coordinates with the latest postion of the mouse
             this.current.X = mousePosX;
             this.current.Y = mousePosY;
+        }
+
+        private void ModifyTextClick(object sender, RoutedEventArgs e)
+        {
+            ModifyTextDialog dialog = new ModifyTextDialog(myTextBlock.Text);
+            var r= dialog.ShowDialog();
+            if (r.HasValue && r.Value==true)
+            {
+                myTextBlock.Text = dialog.myTextBox.Text;
+            }
+        }
+
+        private void DeleteClick(object sender, RoutedEventArgs e)
+        {
+            MenuItem mnu = sender as MenuItem;
+            var border = ((ContextMenu)mnu.Parent).PlacementTarget as Border;
+            canvas.Children.Remove(border);
         }
     }
 }
