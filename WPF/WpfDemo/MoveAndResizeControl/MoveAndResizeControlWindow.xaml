@@ -14,8 +14,22 @@
         </Style>
     </Window.Resources>
     <Canvas x:Name="canvas" MouseMove="Canvas_MouseMove">
+        <!--查看拖拽移动、缩放大小的计算-->
+        <StackPanel>
+            <TextBlock Text="查看拖拽移动、缩放大小的计算:"></TextBlock>
+            <TextBlock Name="actualWidthTextBlock"></TextBlock>
+            <TextBlock Name="actualHeightTextBlock"></TextBlock>
+            <TextBlock Name="paddingRightTextBlock"></TextBlock>
+            <TextBlock Name="paddingBottomTextBlock"></TextBlock>
+            <TextBlock Name="xTextBlock"></TextBlock>
+            <TextBlock Name="yTextBlock"></TextBlock>
+            <TextBlock Name="rightLimitBlock"></TextBlock>
+            <TextBlock Name="bottomLimitBlock"></TextBlock>
+            <TextBlock Name="stretchRightBlock"></TextBlock>
+            <TextBlock Name="stretchBottomBlock"></TextBlock>
+        </StackPanel>
         <!--图片-->
-        <Border Name="border1" Canvas.Left="123" Canvas.Top="35"
+        <Border Name="border1" Canvas.Left="300" Canvas.Top="35"
                 BorderBrush="DarkKhaki" BorderThickness="1"  CornerRadius="5" Padding="5"
                 Height="68" Width="68" MinHeight="10" MinWidth="10"
                 MouseLeftButtonDown="border_MouseLeftButtonDown"

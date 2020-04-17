@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfDemo.MoveAndResizeControl.Dialogs;
 using WpfDemo.MoveAndResizeControl.Tools;
 
@@ -57,11 +49,14 @@ namespace WpfDemo.MoveAndResizeControl
             {
                 //increment z-Order and pass it to the current element, 
                 //so that it stays on top of all other elements
+                //递增z-Order并将其传递给当前元素，以使其停留在所有其他元素的顶部
                 ((Border)this.current.InputElement).SetValue(Canvas.ZIndexProperty, this.current.ZIndex++);
 
+                //判断操作类型为拖拽移动
                 if (this.current.IsDragging)
                     Drag(sender);
 
+                //缩放大小
                 if (this.current.IsStretching)
                     Stretch(sender);
             }
@@ -70,56 +65,168 @@ namespace WpfDemo.MoveAndResizeControl
         private void border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             //capture the last highest z index before pointing to new current element
+            //在指向新的当前元素之前捕获最后的最高z索引
             int newZIndex = (int)((Border)sender).GetValue(Canvas.ZIndexProperty);
             this.current.ZIndex = newZIndex > this.current.ZIndex ? newZIndex : this.current.ZIndex;
 
             //capture the new current element
+            //捕获新的当前元素
             this.current.InputElement = (IInputElement)sender;
         }
+
         private void border_MouseLeave(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 return;
 
             // get coordinates
+            //获得坐标
+            //计算Border
             Border border = (Border)sender;
             var rightLimit = border.ActualWidth - border.Padding.Right;
             var bottomLimit = border.ActualHeight - border.Padding.Bottom;
+            //获得鼠标点击(与特定元素的相对位置)
             var x = Mouse.GetPosition((IInputElement)sender).X;
             var y = Mouse.GetPosition((IInputElement)sender).Y;
 
             // figure out stretching directions - only to Right, Bottom 
+            //找出缩放的方向-仅向右方、底部
             bool stretchRight = (x >= rightLimit && x < border.ActualWidth) ? true : false;
             bool stretchBottom = (y >= bottomLimit && y < border.ActualHeight) ? true : false;
 
             // update current element
+            //更新当前元素
             this.current.InputElement = (IInputElement)sender;
             this.current.X = x;
             this.current.Y = y;
+            //默认为“缩放”操作
             this.current.IsStretching = true;
 
             //set cursor to show stretch direction 
+            //设置光标显示
+            //右&底部，光标显示右下箭头
             if (stretchRight && stretchBottom)
             {
                 this.Cursor = Cursors.SizeNWSE;
                 return;
             }
+            //右
             else if (stretchRight && !stretchBottom)
             {
                 this.Cursor = Cursors.SizeWE;
                 return;
             }
+            //底部
             else if (stretchBottom && !stretchRight)
             {
                 this.Cursor = Cursors.SizeNS;
                 return;
             }
+            //非缩放操作，显示箭头光标，设置IsStretching=false
             else //no stretch
             {
                 this.Cursor = Cursors.Arrow;
                 this.current.IsStretching = false;
             }
+
+            SetLabels(border,x,y);
         }
+
+        /// <summary>
+        /// 修复无边框Border缩放大小的问题
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void border_MouseLeave_WithoutBorder(object sender, MouseEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                return;
+
+            if (this.current.InputElement != null && this.current.InputElement is Border)
+            {
+                // get coordinates
+                //获得坐标
+                //计算Border
+                Border border = (Border)this.current.InputElement;
+                var rightLimit = border.ActualWidth - border.Padding.Right;
+                var bottomLimit = border.ActualHeight - border.Padding.Bottom;
+                //获得鼠标点击
+
+                var x = Mouse.GetPosition((IInputElement)border).X;
+                var y = Mouse.GetPosition((IInputElement)border).Y;
+                //获取控件在Window中的坐标
+                //Window window = Window.GetWindow(border);
+                //Point point = border.TransformToAncestor(window).Transform(new Point(0, 0));
+                //var x = point.X;
+                //var y = point.Y;
+
+                // figure out stretching directions - only to Right, Bottom 
+                //找出缩放的方向-仅向右方、底部
+                bool stretchRight = (x >= rightLimit && x < border.ActualWidth) ? true : false;
+                bool stretchBottom = (y >= bottomLimit && y < border.ActualHeight) ? true : false;
+
+                // update current element
+                //更新当前元素
+                this.current.InputElement = (IInputElement)sender;
+                this.current.X = x;
+                this.current.Y = y;
+                //默认为“缩放”操作
+                this.current.IsStretching = true;
+
+                //set cursor to show stretch direction 
+                //设置光标显示
+                //右&底部，光标显示右下箭头
+                if (stretchRight && stretchBottom)
+                {
+                    this.Cursor = Cursors.SizeNWSE;
+                    return;
+                }
+                //右
+                else if (stretchRight && !stretchBottom)
+                {
+                    this.Cursor = Cursors.SizeWE;
+                    return;
+                }
+                //底部
+                else if (stretchBottom && !stretchRight)
+                {
+                    this.Cursor = Cursors.SizeNS;
+                    return;
+                }
+                //非缩放操作，显示箭头光标，设置IsStretching=false
+                else //no stretch
+                {
+                    this.Cursor = Cursors.Arrow;
+                    this.current.IsStretching = false;
+                }
+
+                SetLabels(border, x, y);
+            }
+            
+        }
+
+        /// <summary>
+        /// 显示拖拽移动、缩放大小的计算
+        /// </summary>
+        /// <param name="border"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        private void SetLabels(Border border,double x,double y)
+        {
+            actualWidthTextBlock.Text = $"ActualWidth:{border.ActualWidth}";
+            actualHeightTextBlock.Text = $"ActualHeight:{border.ActualHeight}";
+            paddingRightTextBlock.Text= $"Padding.Right:{border.Padding.Right}";
+            paddingBottomTextBlock.Text = $"Padding.Bottom:{border.Padding.Bottom}";
+            xTextBlock.Text = $"x:{x}";
+            yTextBlock.Text = $"y:{y}";
+            var rightLimit = border.ActualWidth - border.Padding.Right;
+            rightLimitBlock.Text = $"rightLimit:{rightLimit}";
+            var bottomLimit = border.ActualHeight - border.Padding.Bottom;
+            bottomLimitBlock.Text = $"bottomLimit:{bottomLimit}";
+            stretchRightBlock.Text = $"stretchRight    x >= rightLimit:{x >= rightLimit},x < border.ActualWidth:{x < border.ActualWidth}";
+            stretchBottomBlock.Text = $"stretchBottom    y >= bottomLimit:{y >= bottomLimit},y < border.ActualHeight:{y < border.ActualHeight}";
+        }
+
         private void border_MouseEnter(object sender, MouseEventArgs e)
         {
             Border border = (Border)sender;
@@ -132,8 +239,14 @@ namespace WpfDemo.MoveAndResizeControl
 
             if (x < rightLimit && y < bottomLimit)
                 this.Cursor = Cursors.Arrow;
+
+            SetLabels(border, x, y);
         }
 
+        /// <summary>
+        /// 拖拽移动
+        /// </summary>
+        /// <param name="sender"></param>
         private void Drag(object sender)
         {
             this.Cursor = Cursors.Hand;
@@ -161,6 +274,11 @@ namespace WpfDemo.MoveAndResizeControl
             current.X = newX;
             current.Y = newY;
         }
+
+        /// <summary>
+        /// 缩放大小
+        /// </summary>
+        /// <param name="sender"></param>
         private void Stretch(object sender)
         {
 
@@ -208,6 +326,11 @@ namespace WpfDemo.MoveAndResizeControl
             this.current.Y = mousePosY;
         }
 
+        /// <summary>
+        /// 打开弹窗
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ModifyTextClick(object sender, RoutedEventArgs e)
         {
             ModifyTextDialog dialog = new ModifyTextDialog(myTextBlock.Text);
@@ -218,6 +341,11 @@ namespace WpfDemo.MoveAndResizeControl
             }
         }
 
+        /// <summary>
+        /// 删除控件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
             MenuItem mnu = sender as MenuItem;

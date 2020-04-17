@@ -27,6 +27,7 @@ namespace WpfDemo.MoveAndResizeControl.Dialogs
 
         private void OkClick(object sender, RoutedEventArgs e)
         {
+            //设置结果
             this.DialogResult = true;
             this.Close();
         }

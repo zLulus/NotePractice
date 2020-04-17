@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.MoveAndResizeControl.Dialogs"
         mc:Ignorable="d"
-        Title="ModifyTextDialog" Height="300" Width="800">
+        Title="ModifyTextDialog" Height="200" Width="500">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="10"></Setter>
@@ -27,9 +27,9 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="文字:"></Label>
+        <Label Grid.Row="0" Grid.Column="0" Content="文字:" FontSize="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
         <TextBox Grid.Row="0" Grid.Column="1" Name="myTextBox" ></TextBox>
         <Button Grid.Row="1" Grid.Column="0" Content="确定" Click="OkClick"></Button>
-        <Button Grid.Row="1" Grid.Column="1" Content="确定" Click="CancleClick"></Button>
+        <Button Grid.Row="1" Grid.Column="1" Content="取消" Click="CancleClick"></Button>
     </Grid>
 </Window>
