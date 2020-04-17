@@ -133,7 +133,7 @@ namespace WpfDemo.MoveAndResizeControl
         }
 
         /// <summary>
-        /// 修复无边框Border缩放大小的问题
+        /// 修复无边框Border缩放大小的问题(在全范围内检查x,y的变化)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -141,9 +141,10 @@ namespace WpfDemo.MoveAndResizeControl
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 return;
-
+            Console.WriteLine("border_MouseLeave_WithoutBorder");
             if (this.current.InputElement != null && this.current.InputElement is Border)
             {
+                Console.WriteLine("border_MouseLeave_WithoutBorder Enter");
                 // get coordinates
                 //获得坐标
                 //计算Border
@@ -167,9 +168,9 @@ namespace WpfDemo.MoveAndResizeControl
 
                 // update current element
                 //更新当前元素
-                this.current.InputElement = (IInputElement)sender;
-                this.current.X = x;
-                this.current.Y = y;
+                //this.current.InputElement = (IInputElement)sender;
+                //this.current.X = x;
+                //this.current.Y = y;
                 //默认为“缩放”操作
                 this.current.IsStretching = true;
 
