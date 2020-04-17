@@ -40,6 +40,7 @@ using CodeLibraryForDotNetCore.Reflections;
 using CodeLibraryForDotNetCore.UseEF;
 using CodeLibraryForDotNetCore.QueryTree;
 using CodeLibraryForDotNetCore.InterfacesAndAbstractClasses;
+using CodeLibraryForDotNetCore.OverrideNewAndVirtual;
 
 namespace DotNetCoreConsole
 {
@@ -184,7 +185,10 @@ namespace DotNetCoreConsole
             //ReflectionDemo.Run();
 
             //接口和抽象类
-            InterfacesAndAbstractClassesDemo.Run();
+            //InterfacesAndAbstractClassesDemo.Run();
+
+            //重写override、重载和隐藏virtual、new
+            OverrideNewAndVirtualDemo.Run();
 
             Console.ReadLine();
         }
