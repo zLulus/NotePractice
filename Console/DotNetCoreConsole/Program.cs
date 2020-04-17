@@ -39,6 +39,7 @@ using CodeLibraryForDotNetCore.DelegateAndEvent.AnonymousMethods;
 using CodeLibraryForDotNetCore.Reflections;
 using CodeLibraryForDotNetCore.UseEF;
 using CodeLibraryForDotNetCore.QueryTree;
+using CodeLibraryForDotNetCore.InterfacesAndAbstractClasses;
 
 namespace DotNetCoreConsole
 {
@@ -174,13 +175,16 @@ namespace DotNetCoreConsole
             //mysql
             //MysqlUseEFDemo.Run();
             //SqlServerUseEFDemo.Run();
-            QueryTreeDemo queryTreeDemo = new QueryTreeDemo();
+            //QueryTreeDemo queryTreeDemo = new QueryTreeDemo();
             //queryTreeDemo.SqliteQuery();
             //树状结构查询
-            queryTreeDemo.TreeQuery();
+            //queryTreeDemo.TreeQuery();
 
             //反射
             //ReflectionDemo.Run();
+
+            //接口和抽象类
+            InterfacesAndAbstractClassesDemo.Run();
 
             Console.ReadLine();
         }

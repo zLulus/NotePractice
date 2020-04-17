@@ -125,7 +125,7 @@
             
         </Border>
         <!--边框不显示-->
-        <Border Name="border4" Canvas.Left="200" Canvas.Top="135"
+        <Border Name="border4" Canvas.Left="300" Canvas.Top="135"
                 CornerRadius="5" Padding="5"
                 Height="100" Width="150" MinHeight="10" MinWidth="10"
                 MouseLeftButtonDown="border_MouseLeftButtonDown"

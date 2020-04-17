@@ -152,14 +152,8 @@ namespace WpfDemo.MoveAndResizeControl
                 var rightLimit = border.ActualWidth - border.Padding.Right;
                 var bottomLimit = border.ActualHeight - border.Padding.Bottom;
                 //获得鼠标点击
-
                 var x = Mouse.GetPosition((IInputElement)border).X;
                 var y = Mouse.GetPosition((IInputElement)border).Y;
-                //获取控件在Window中的坐标
-                //Window window = Window.GetWindow(border);
-                //Point point = border.TransformToAncestor(window).Transform(new Point(0, 0));
-                //var x = point.X;
-                //var y = point.Y;
 
                 // figure out stretching directions - only to Right, Bottom 
                 //找出缩放的方向-仅向右方、底部
