@@ -187,10 +187,10 @@ namespace DotNetCoreConsole
             //ReflectionDemo.UseCallerMemberNameAttribute();
 
             //接口和抽象类
-            InterfacesAndAbstractClassesDemo.Run();
+            //InterfacesAndAbstractClassesDemo.Run();
 
             //重写override、重载和隐藏virtual、new
-            //OverrideNewAndVirtualDemo.Run();
+            OverrideNewAndVirtualDemo.Run();
 
             //
 

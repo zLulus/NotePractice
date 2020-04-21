@@ -12,6 +12,11 @@ namespace CodeLibraryForDotNetCore.OverrideNewAndVirtual
             Child child = new Child();
             child.NewMethod();
             child.VirtualMethod();
+
+            child.OverloadMethod();
+            child.OverloadMethod(1);
+            child.OverloadMethod(true);
+            child.OverloadMethod("string");
         }
     }
 }
