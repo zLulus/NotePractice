@@ -184,13 +184,13 @@ namespace DotNetCoreConsole
             //反射
             //ReflectionDemo.Run();
             //获得方法相关信息
-            ReflectionDemo.UseCallerMemberNameAttribute();
+            //ReflectionDemo.UseCallerMemberNameAttribute();
 
             //接口和抽象类
-            //InterfacesAndAbstractClassesDemo.Run();
+            InterfacesAndAbstractClassesDemo.Run();
 
             //重写override、重载和隐藏virtual、new
-            OverrideNewAndVirtualDemo.Run();
+            //OverrideNewAndVirtualDemo.Run();
 
             //
 
