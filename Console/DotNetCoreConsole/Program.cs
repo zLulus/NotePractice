@@ -41,6 +41,7 @@ using CodeLibraryForDotNetCore.UseEF;
 using CodeLibraryForDotNetCore.QueryTree;
 using CodeLibraryForDotNetCore.InterfacesAndAbstractClasses;
 using CodeLibraryForDotNetCore.OverrideNewAndVirtual;
+using CodeLibraryForDotNetCore.IndexerAndCollection;
 
 namespace DotNetCoreConsole
 {
@@ -190,9 +191,10 @@ namespace DotNetCoreConsole
             //InterfacesAndAbstractClassesDemo.Run();
 
             //重写override、重载和隐藏virtual、new
-            OverrideNewAndVirtualDemo.Run();
+            //OverrideNewAndVirtualDemo.Run();
 
-            //
+            //索引器
+            IndexerAndCollectionDemo.Run();
 
             Console.ReadLine();
         }
