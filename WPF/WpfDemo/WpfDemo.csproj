@@ -61,6 +61,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Animations\RectangleAnimationWindow.xaml.cs">
+      <DependentUpon>RectangleAnimationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Animations\RectangleAnimationWindow2.xaml.cs">
+      <DependentUpon>RectangleAnimationWindow2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Bind\DataGridBackgroundBind.xaml.cs">
       <DependentUpon>DataGridBackgroundBind.xaml</DependentUpon>
     </Compile>
@@ -226,6 +232,14 @@
     <Compile Include="WindowIconAndBackground\WindowIconAndBackgroundDemo.xaml.cs">
       <DependentUpon>WindowIconAndBackgroundDemo.xaml</DependentUpon>
     </Compile>
+    <Page Include="Animations\RectangleAnimationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Animations\RectangleAnimationWindow2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ArrayExtension\ArrayExtensionDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
