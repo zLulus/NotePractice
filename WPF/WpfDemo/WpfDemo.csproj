@@ -132,6 +132,9 @@
     <Compile Include="OpenFiles\OpenTxtFileWindow.xaml.cs">
       <DependentUpon>OpenTxtFileWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrintImage\PrintImageWindow.xaml.cs">
+      <DependentUpon>PrintImageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PropertyChanged\ChangeStudentInfo.xaml.cs">
       <DependentUpon>ChangeStudentInfo.xaml</DependentUpon>
@@ -414,6 +417,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PrintImage\PrintImageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PropertyChanged\ChangeStudentInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -594,6 +601,8 @@
     <Resource Include="WindowIconAndBackground\Images\background.jpg" />
     <Resource Include="WindowIconAndBackground\Images\icon.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="PrintImage\Resources\Images\1.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
