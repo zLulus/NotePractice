@@ -37,8 +37,11 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MicrosoftExpressionInteractions.3.0.40218.0\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
@@ -141,6 +144,17 @@
     <Compile Include="PrintImage\PrintImageWindow.xaml.cs">
       <DependentUpon>PrintImageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrintTable\Dtos\OrderDetail.cs" />
+    <Compile Include="PrintTable\Dtos\OrderMaster.cs" />
+    <Compile Include="PrintTable\Dtos\TestData.cs" />
+    <Compile Include="PrintTable\PrintPreviewWindow.xaml.cs">
+      <DependentUpon>PrintPreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintTable\Templates\IDocumentRenderer.cs" />
+    <Compile Include="PrintTable\PrintTableWindow.xaml.cs">
+      <DependentUpon>PrintTableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintTable\Templates\OrderDocumentRenderer.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PropertyChanged\ChangeStudentInfo.xaml.cs">
       <DependentUpon>ChangeStudentInfo.xaml</DependentUpon>
@@ -435,6 +449,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PrintTable\PrintPreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintTable\PrintTableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintTable\Templates\OrderDocument.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Page>
     <Page Include="PropertyChanged\ChangeStudentInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -583,6 +608,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="PrintTable\README.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

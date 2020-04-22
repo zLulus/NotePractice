@@ -1,0 +1,13 @@
+﻿<Window x:Class="WpfDemo.PrintTable.PrintPreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.PrintTable"
+        mc:Ignorable="d"
+        Title="打印预览窗口" Height="736" Width="882"
+        TextOptions.TextFormattingMode="Display">
+    <Grid>
+        <DocumentViewer Name="docViewer"></DocumentViewer>
+    </Grid>
+</Window>
