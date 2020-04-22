@@ -1,0 +1,26 @@
+﻿<Window x:Class="ArcGISNewWpfDemo.ConvertDataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArcGISNewWpfDemo"
+        mc:Ignorable="d"
+        Title="geoJSON/wkt/wkb格式转Geometry(GeoAPI.Geometries and NetTopologySuite)" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Name="filePathTextBlock" IsEnabled="False"></TextBlock>
+        <!--可以改为数据库连接，连接超图数据库-->
+        <Button Grid.Row="1" Content="打开txt文件" Click="OpenTxtFile_Click"></Button>
+        <Button Grid.Row="2" Content="GeoJSON->Geometry" Click="ConvertGeoJSONToGeometry_Click"></Button>
+        <Button Grid.Row="3" Content="WKB->Geometry" Click="ConvertWKBToGeometry_Click"></Button>
+        <Button Grid.Row="4" Content="WKT->Geometry" Click="ConvertWKTToGeometry_Click"></Button>
+        <Button Grid.Row="5" Content="WKT->WKB" Click="ConvertWKTToWKB_Click"></Button>
+    </Grid>
+</Window>
