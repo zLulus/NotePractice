@@ -82,9 +82,9 @@ namespace ArcGISNewWpfDemo
         private void ConvertWKBToGeometry_Click(object sender, RoutedEventArgs e)
         {
             //这里需要读取wkb
-            byte[] bytes = new byte[1024];
+            byte[] wkbBytes = new byte[1024];
             WKBReader reader = new WKBReader();
-            NetTopologySuite.Geometries.Geometry geom = reader.Read(bytes);
+            NetTopologySuite.Geometries.Geometry geom = reader.Read(wkbBytes);
         }
 
 
