@@ -1,0 +1,25 @@
+﻿<Window x:Class="SuperMapWpfDemo.ConvertDataWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SuperMapWpfDemo"
+        mc:Ignorable="d"
+        Title="将超图数据转换为通用数据" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Name="filePathTextBlock" IsEnabled="False"></TextBlock>
+        <!--可以改为数据库连接，连接超图数据库-->
+        <Button Grid.Row="1" Content="打开shp文件" Click="OpenShapeFile_Click"></Button>
+        <Button Grid.Row="2" Content="转换为GeoJSON" Click="ConvertToGeoJSON_Click"></Button>
+        <Button Grid.Row="3" Content="转换为WKB(不会输出文件)" Click="ConvertToWKB_Click"></Button>
+        <Button Grid.Row="4" Content="转换为WKT" Click="ConvertToWKT_Click"></Button>
+    </Grid>
+</Window>

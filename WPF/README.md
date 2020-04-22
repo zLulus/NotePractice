@@ -2,6 +2,7 @@
 ArcGISWpfDemo：Demo based on ArcGIS for Wpf     
 CefSharpWpfDemo： Demo based on CefSharp for Wpf   
 WpfDemo：Demo based on WPF basic knowledge.Divide folders according to function points, change the startup page by modifying the StartupUri of App.xaml.     
+SuperMapWpfDemo：Demo based on SuperMap iObjects .NET for Wpf
 
 中文如下:
 ## 项目说明

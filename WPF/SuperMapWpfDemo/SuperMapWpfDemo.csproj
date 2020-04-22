@@ -16,7 +16,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -75,15 +75,16 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SuperMap.Data, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=x86">
+    <Reference Include="SuperMap.Data, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dependencies\Bin_x64\SuperMap.Data.dll</HintPath>
     </Reference>
-    <Reference Include="SuperMap.Data.Conversion, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=x86">
+    <Reference Include="SuperMap.Data.Conversion, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dependencies\Bin_x64\SuperMap.Data.Conversion.dll</HintPath>
     </Reference>
-    <Reference Include="SuperMap.Mapping">
+    <Reference Include="SuperMap.Mapping, Version=7.0.0.0, Culture=neutral, PublicKeyToken=0635c574ea890381, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Dependencies\Bin_x64\SuperMap.Mapping.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -108,6 +109,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ConvertDataWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GetDatasourceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -125,7 +130,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\SuperMapSdkHelper.cs" />
+    <Compile Include="ConvertDataWindow.xaml.cs">
+      <DependentUpon>ConvertDataWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dtos\CreateFieldInfo.cs" />
+    <Compile Include="Enums\ConvertDataEnum.cs" />
     <Compile Include="GetDatasourceWindow.xaml.cs">
       <DependentUpon>GetDatasourceWindow.xaml</DependentUpon>
     </Compile>
