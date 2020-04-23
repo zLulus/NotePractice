@@ -42,4 +42,10 @@
     </Reference>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ReadAndWriteXml\test.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

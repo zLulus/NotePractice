@@ -43,6 +43,7 @@ using CodeLibraryForDotNetCore.InterfacesAndAbstractClasses;
 using CodeLibraryForDotNetCore.OverrideNewAndVirtual;
 using CodeLibraryForDotNetCore.IndexerAndCollection;
 using CodeLibraryForDotNetCore.Pattern.SingletonPattern;
+using CodeLibraryForDotNetCore.ReadAndWriteXml;
 
 namespace DotNetCoreConsole
 {
@@ -199,7 +200,10 @@ namespace DotNetCoreConsole
 
             //设计模式
             //单例模式
-            SingletonPatternDemo.Run();
+            //SingletonPatternDemo.Run();
+
+            //读写xml文件
+            ReadAndWriteXmlDemo.Run();
 
             Console.ReadLine();
         }
