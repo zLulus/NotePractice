@@ -42,6 +42,7 @@ using CodeLibraryForDotNetCore.QueryTree;
 using CodeLibraryForDotNetCore.InterfacesAndAbstractClasses;
 using CodeLibraryForDotNetCore.OverrideNewAndVirtual;
 using CodeLibraryForDotNetCore.IndexerAndCollection;
+using CodeLibraryForDotNetCore.Pattern.SingletonPattern;
 
 namespace DotNetCoreConsole
 {
@@ -194,7 +195,11 @@ namespace DotNetCoreConsole
             //OverrideNewAndVirtualDemo.Run();
 
             //索引器
-            IndexerAndCollectionDemo.Run();
+            //IndexerAndCollectionDemo.Run();
+
+            //设计模式
+            //单例模式
+            SingletonPatternDemo.Run();
 
             Console.ReadLine();
         }
