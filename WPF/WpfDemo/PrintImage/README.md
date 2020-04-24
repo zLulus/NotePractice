@@ -1,0 +1,3 @@
+﻿PrintImageWindow:打印图片，直接打印、缩放图片后打印
+PrintImageWithPageSettingWindow：提供A3、A4横向纵向纸张显示与打印功能
+PrintImageWithPageSettingWindow2：提供A3、A4横向纵向纸张缩放显示与打印功能，打印会反向缩放显示器显示的情况（即纸张缩小显示在显示器上，打印的时候会等比放大回原纸张大小再打印）

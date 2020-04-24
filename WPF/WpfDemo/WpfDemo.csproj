@@ -148,6 +148,9 @@
     <Compile Include="PrintImage\PrintImageWithPageSettingWindow.xaml.cs">
       <DependentUpon>PrintImageWithPageSettingWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrintImage\PrintImageWithPageSettingWindow2.xaml.cs">
+      <DependentUpon>PrintImageWithPageSettingWindow2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrintTable\Dtos\OrderDetail.cs" />
     <Compile Include="PrintTable\Dtos\OrderMaster.cs" />
     <Compile Include="PrintTable\Dtos\TestData.cs" />
@@ -457,6 +460,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PrintImage\PrintImageWithPageSettingWindow2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrintTable\PrintPreviewWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -616,6 +623,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="PrintImage\README.md" />
     <None Include="PrintTable\README.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

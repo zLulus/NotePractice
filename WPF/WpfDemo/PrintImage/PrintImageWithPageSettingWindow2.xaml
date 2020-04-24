@@ -1,11 +1,11 @@
-﻿<Window x:Class="WpfDemo.PrintImage.PrintImageWithPageSettingWindow"
+﻿<Window x:Class="WpfDemo.PrintImage.PrintImageWithPageSettingWindow2"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.PrintImage"
         mc:Ignorable="d" Loaded="Window_Load"
-        Title="PrintImageWithPageSettingWindow" Height="1500" Width="1500">
+        Title="PrintImageWithPageSettingWindow2" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
@@ -18,6 +18,11 @@
             <Button Content="A3+纵向" Click="A3WithVerticalClick"></Button>
             <Button Content="打印图片" Click="PrintImage"></Button>
         </StackPanel>
-        <Border Grid.Row="1" Name="imageBorder" Height="29.7cm" Width="21cm" Background="BlueViolet"></Border>
+        <Grid Grid.Row="1" Name="myGrid">
+            <Border Name="imageBorder" Height="29.7cm" Width="21cm" Background="BlueViolet" >
+                <Image Source="/PrintImage/Resources/Images/1.jpg"></Image>
+            </Border>
+        </Grid>
+        
     </Grid>
 </Window>

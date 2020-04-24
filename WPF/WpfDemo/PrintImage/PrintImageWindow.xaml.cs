@@ -141,7 +141,7 @@ namespace WpfDemo.PrintImage
         //https://stackoverflow.com/questions/2319983/resizing-an-image-in-asp-net-without-losing-the-image-quality
         private System.Drawing.Image RezizeImage(System.Drawing.Image img, int maxWidth, int maxHeight)
         {
-            if (img.Height < maxHeight && img.Width < maxWidth) return img;
+            //if (img.Height < maxHeight && img.Width < maxWidth) return img;
             using (img)
             {
                 Double xRatio = (double)img.Width / maxWidth;

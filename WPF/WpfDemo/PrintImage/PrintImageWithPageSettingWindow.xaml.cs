@@ -174,5 +174,13 @@ namespace WpfDemo.PrintImage
             imageBorder.Height = (double)new LengthConverter().ConvertFrom($"{A3WithVerticalHeight}cm");
             imageBorder.Width = (double)new LengthConverter().ConvertFrom($"{A3WithVerticalWidth}cm");
         }
+
+        private void Window_Load(object sender, RoutedEventArgs e)
+        {
+            this.Left = 0.0;
+            this.Top = 0.0;
+            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
+            this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+        }
     }
 }
