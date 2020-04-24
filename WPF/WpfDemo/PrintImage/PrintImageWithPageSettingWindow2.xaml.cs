@@ -47,7 +47,6 @@ namespace WpfDemo.PrintImage
         public PrintImageWithPageSettingWindow2()
         {
             InitializeComponent();
-            A4WithVerticalClick(null, null);
         }
 
         private void PrintImage(object sender, RoutedEventArgs e)
@@ -234,6 +233,7 @@ namespace WpfDemo.PrintImage
             this.Top = 0.0;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
+            A4WithVerticalClick(null, null);
         }
     }
 }

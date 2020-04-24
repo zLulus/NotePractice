@@ -12,14 +12,14 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
-            <Button Content="A4+横向" Click="A4WithHorizontalClick"></Button>
-            <Button Content="A4+纵向" Click="A4WithVerticalClick"></Button>
-            <Button Content="A3+横向" Click="A3WithHorizontalClick"></Button>
-            <Button Content="A3+纵向" Click="A3WithVerticalClick"></Button>
-            <Button Content="打印图片" Click="PrintImage"></Button>
+            <Button Content="A4+横向" Click="A4WithHorizontalClick" Margin="5"></Button>
+            <Button Content="A4+纵向" Click="A4WithVerticalClick" Margin="5"></Button>
+            <Button Content="A3+横向" Click="A3WithHorizontalClick" Margin="5"></Button>
+            <Button Content="A3+纵向" Click="A3WithVerticalClick" Margin="5"></Button>
+            <Button Content="打印图片" Click="PrintImage" Margin="5"></Button>
         </StackPanel>
         <Grid Grid.Row="1" Name="myGrid">
-            <Border Name="imageBorder" Height="29.7cm" Width="21cm" Background="BlueViolet" >
+            <Border Name="imageBorder" Height="29.7cm" Width="21cm" Background="LightPink" >
                 <Image Source="/PrintImage/Resources/Images/1.jpg"></Image>
             </Border>
         </Grid>
