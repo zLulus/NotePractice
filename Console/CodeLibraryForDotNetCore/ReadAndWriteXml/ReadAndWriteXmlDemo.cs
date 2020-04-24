@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLibraryForDotNetCore.ReadAndWriteXml.Dtos;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -11,34 +12,40 @@ namespace CodeLibraryForDotNetCore.ReadAndWriteXml
         static string filePath = $"{Directory.GetCurrentDirectory()}\\ReadAndWriteXml\\test.xml";
         static string Column = "Column";
         static string Root = "Root";
-        static string Name = "Name";
-        static string AliasName = "AliasName";
-        static string IsCanNotModify = "IsCanNotModify";
 
         public static void Run()
         {
-            WriteXml();
-            LoadXml();
+            List<ColumnDto> columns = CreateGBZ_JCSJ_GBZNTGDXml();
+            WriteXml(columns);
+            var cols= LoadXml();
         }
 
-        private static void WriteXml()
+        private static List<ColumnDto> CreateGBZ_JCSJ_GBZNTGDXml()
+        {
+            List<ColumnDto> columns = new List<ColumnDto>();
+            columns.Add(new ColumnDto() { Name = "Time", AliasName = "时间", IsCanNotModify = false });
+            return columns;
+        }
+
+        private static void WriteXml(List<ColumnDto> columns)
         {
             //获取根节点对象
             XDocument document = new XDocument();
             XElement root = new XElement(Root);
-            for(int i = 0; i < 10; i++)
+            foreach(var columnDto in columns)
             {
                 XElement column = new XElement(Column);
-                column.SetElementValue("Name", $"列名{i}");
-                column.SetElementValue("AliasName", $"AliasName{i}");
-                column.SetElementValue("IsCanNotModify", $"{i%2==0}");
+                column.SetElementValue(nameof(columnDto.Name), columnDto.Name);
+                column.SetElementValue(nameof(columnDto.AliasName), columnDto.AliasName);
+                column.SetElementValue(nameof(columnDto.IsCanNotModify), columnDto.IsCanNotModify);
                 root.Add(column);
             }
             root.Save(filePath);
         }
 
-        private static void LoadXml()
+        private static List<ColumnDto> LoadXml()
         {
+            List<ColumnDto> columns = new List<ColumnDto>();
             //将XML文件加载进来
             XDocument document = XDocument.Load(filePath);
             //获取到XML的根元素进行操作
@@ -47,12 +54,27 @@ namespace CodeLibraryForDotNetCore.ReadAndWriteXml
             IEnumerable<XElement> enumerable = root.Elements();
             foreach (XElement column in enumerable)
             {
+                ColumnDto columnDto = new ColumnDto();
                 foreach (XElement property in column.Elements())
                 {
-                    Console.WriteLine($"{property.Name}:{property.Value}");   
+                    if (property.Name == nameof(columnDto.Name))
+                    {
+                        columnDto.Name = property.Value;
+                    }
+                    else if(property.Name == nameof(columnDto.AliasName))
+                    {
+                        columnDto.AliasName = property.Value;
+                    }
+                    else if (property.Name == nameof(columnDto.IsCanNotModify))
+                    {
+                        columnDto.IsCanNotModify = bool.Parse(property.Value);
+                    }
+                    //Console.WriteLine($"{property.Name}:{property.Value}");   
                 }
+                columns.Add(columnDto);
                 //Console.WriteLine(column.Attribute("id").Value);
             }
+            return columns;
         }
     }
 }
