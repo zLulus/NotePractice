@@ -12,9 +12,5 @@ namespace CodeLibraryForDotNetCore.ReadAndWriteXml.Dtos
         /// 修改数据时，是否可以被修改
         /// </summary>
         public bool IsCanNotModify { get; set; }
-        /// <summary>
-        /// 是否被展示
-        /// </summary>
-        //public bool IsShow { get; set; }
     }
 }

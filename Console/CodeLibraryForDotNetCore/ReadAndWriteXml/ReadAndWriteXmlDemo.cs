@@ -15,12 +15,12 @@ namespace CodeLibraryForDotNetCore.ReadAndWriteXml
 
         public static void Run()
         {
-            List<ColumnDto> columns = CreateGBZ_JCSJ_GBZNTGDXml();
+            List<ColumnDto> columns = CreateXml();
             WriteXml(columns);
             var cols= LoadXml();
         }
 
-        private static List<ColumnDto> CreateGBZ_JCSJ_GBZNTGDXml()
+        private static List<ColumnDto> CreateXml()
         {
             List<ColumnDto> columns = new List<ColumnDto>();
             columns.Add(new ColumnDto() { Name = "Time", AliasName = "时间", IsCanNotModify = false });
