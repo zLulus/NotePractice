@@ -103,6 +103,9 @@
     </Compile>
     <Compile Include="Converts\Converts\ColorConvert.cs" />
     <Compile Include="Converts\Models\Student.cs" />
+    <Compile Include="InputOnlyNumber\InputOnlyNumberWindow.xaml.cs">
+      <DependentUpon>InputOnlyNumberWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoadingDataAsync\LoadingDataAsyncWindow.xaml.cs">
       <DependentUpon>LoadingDataAsyncWindow.xaml</DependentUpon>
     </Compile>
@@ -322,6 +325,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GetStaticFromBackgroundCode\GetStaticFromBackgroundCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputOnlyNumber\InputOnlyNumberWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
