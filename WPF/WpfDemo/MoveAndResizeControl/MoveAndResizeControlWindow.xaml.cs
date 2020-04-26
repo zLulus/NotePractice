@@ -97,6 +97,7 @@ namespace WpfDemo.MoveAndResizeControl
             // update current element
             //更新当前元素
             this.current.InputElement = (IInputElement)sender;
+            //记录鼠标当前位置
             this.current.X = x;
             this.current.Y = y;
             //默认为“缩放”操作
@@ -266,6 +267,7 @@ namespace WpfDemo.MoveAndResizeControl
             }
 
             // Update the beginning position of the mouse
+            //更新鼠标的位置
             current.X = newX;
             current.Y = newY;
         }
