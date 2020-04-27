@@ -21,16 +21,34 @@ namespace CodeLibraryForDotNetCore.Reflections
             //获取程序集的 Assembly 对象和模块所必需的语法
             // Gets the mscorlib assembly in which the object is defined.
             Assembly a = typeof(object).Module.Assembly;
+            Console.WriteLine(a);
 
             //从已加载的程序集获取 Type 对象
             // Loads an assembly using its file name.
             Assembly a2 = Assembly.LoadFrom("DotNetCoreConsole.dll");
             // Gets the type names from the assembly.
             Type[] types2 = a2.GetTypes();
-            foreach (Type t in types2)
+            foreach (Type t2 in types2)
             {
-                Console.WriteLine(t.FullName);
+                Console.WriteLine(t2.FullName);
             }
+
+            //列出类的构造函数
+            Type t = typeof(System.String);
+            Console.WriteLine("Listing all the public constructors of the {0} type", t);
+            // Constructors.
+            ConstructorInfo[] ci = t.GetConstructors(BindingFlags.Public | BindingFlags.Instance);
+            Console.WriteLine("//Constructors");
+            PrintMembers(ci);
+        }
+
+        private static void PrintMembers(MemberInfo[] ms)
+        {
+            foreach (MemberInfo m in ms)
+            {
+                Console.WriteLine("{0}{1}", "     ", m);
+            }
+            Console.WriteLine();
         }
 
         public static void UseCallerMemberNameAttribute()

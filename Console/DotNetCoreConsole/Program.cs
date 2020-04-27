@@ -185,7 +185,7 @@ namespace DotNetCoreConsole
             //queryTreeDemo.TreeQuery();
 
             //反射
-            //ReflectionDemo.Run();
+            ReflectionDemo.Run();
             //获得方法相关信息
             //ReflectionDemo.UseCallerMemberNameAttribute();
 
@@ -203,7 +203,7 @@ namespace DotNetCoreConsole
             //SingletonPatternDemo.Run();
 
             //读写xml文件
-            ReadAndWriteXmlDemo.Run();
+            //ReadAndWriteXmlDemo.Run();
 
             Console.ReadLine();
         }
