@@ -16,12 +16,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ArcGISNewWpfDemo.Data
+namespace ArcGISWpfDemo.Datas
 {
     /// <summary>
-    /// AddFeatures.xaml 的交互逻辑
+    /// AddFeaturesWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class AddFeatures : Window
+    public partial class AddFeaturesWindow : Window
     {
         // URL to the feature service.
         private const string FeatureServiceUrl = "https://sampleserver6.arcgisonline.com/arcgis/rest/services/DamageAssessment/FeatureServer/0";
@@ -29,7 +29,7 @@ namespace ArcGISNewWpfDemo.Data
         // Hold a reference to the feature table.
         private ServiceFeatureTable _damageFeatureTable;
 
-        public AddFeatures()
+        public AddFeaturesWindow()
         {
             InitializeComponent();
             Initialize();

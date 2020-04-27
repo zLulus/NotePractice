@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISWpfDemo", "ArcGISWpfD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperMapWpfDemo", "SuperMapWpfDemo\SuperMapWpfDemo.csproj", "{69E95BB1-BF23-4F5C-9D0A-338E507E94C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISNewWpfDemo", "ArcGISNewWpfDemo\ArcGISNewWpfDemo.csproj", "{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6E690334-DA11-49EE-9999-61A87641AB85}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
@@ -75,18 +73,6 @@ Global
 		{69E95BB1-BF23-4F5C-9D0A-338E507E94C7}.Release|x64.Build.0 = Release|x64
 		{69E95BB1-BF23-4F5C-9D0A-338E507E94C7}.Release|x86.ActiveCfg = Release|x86
 		{69E95BB1-BF23-4F5C-9D0A-338E507E94C7}.Release|x86.Build.0 = Release|x86
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Debug|x64.Build.0 = Debug|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Debug|x86.Build.0 = Debug|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Release|x64.ActiveCfg = Release|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Release|x64.Build.0 = Release|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Release|x86.ActiveCfg = Release|Any CPU
-		{BD4B63F9-C308-47F4-AB0A-77CD341FA5EC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
