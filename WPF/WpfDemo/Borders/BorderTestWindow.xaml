@@ -6,9 +6,15 @@
         xmlns:local="clr-namespace:WpfDemo.Borders"
         mc:Ignorable="d"
         Title="BorderTestWindow" Height="450" Width="800">
-    <Grid>
-        <Border Height="100" Width="100" Background="White" BorderBrush="Green" BorderThickness="2,2,2,2" Margin="499,179,193,140" MouseDown="borderWithBackground_MouseDown" MouseLeftButtonDown="borderWithBackground_MouseDown"></Border>
-        <Border Height="100" Width="100" BorderBrush="BlueViolet" BorderThickness="2,2,2,2" Margin="103,115,589,204" MouseDown="borderWithoutBackground_MouseDown" MouseLeftButtonDown="borderWithoutBackground_MouseDown"></Border>
-    </Grid>
+    <Canvas>
+        <!--设置Background：方框范围内均可响应事件-->
+        <Border Height="100" Width="100" Background="White" BorderBrush="Green" 
+                BorderThickness="2,2,2,2" Margin="499,179,193,140" MouseDown="borderWithBackground_MouseDown" 
+                MouseLeftButtonDown="borderWithBackground_MouseDown"></Border>
+        <!--不设置Background：仅边框响应事件-->
+        <Border Height="100" Width="100" BorderBrush="BlueViolet" BorderThickness="2,2,2,2" 
+                Margin="103,115,589,204" MouseDown="borderWithoutBackground_MouseDown" 
+                MouseLeftButtonDown="borderWithoutBackground_MouseDown"></Border>
+    </Canvas>
     
 </Window>
