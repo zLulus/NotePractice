@@ -81,6 +81,9 @@
     <Compile Include="Bind\Models\ReportDetail.cs" />
     <Compile Include="Bind\Models\Teacher.cs" />
     <Compile Include="Bind\Models\TeacherDetailInfo.cs" />
+    <Compile Include="Borders\BorderTestWindow.xaml.cs">
+      <DependentUpon>BorderTestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CheckBox\CheckBoxDemo.xaml.cs">
       <DependentUpon>CheckBoxDemo.xaml</DependentUpon>
     </Compile>
@@ -281,6 +284,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Bind\DataGridBindMultiData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Borders\BorderTestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -629,6 +636,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Borders\READEME.md" />
     <None Include="packages.config" />
     <None Include="PrintImage\README.md" />
     <None Include="PrintTable\README.md" />
