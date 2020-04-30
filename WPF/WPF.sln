@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GIS", "GIS", "{0F2632BB-37BD-43FF-9EBE-FFEDCF4D6B40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{C286108A-47CD-48E5-8065-54CB207DDF4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +80,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9B3FD686-10BA-4927-AA39-C0E537FB326F} = {C286108A-47CD-48E5-8065-54CB207DDF4D}
+		{8D39F3B2-AA84-42D8-A4C2-C8E2D2F8A417} = {0F2632BB-37BD-43FF-9EBE-FFEDCF4D6B40}
+		{69E95BB1-BF23-4F5C-9D0A-338E507E94C7} = {0F2632BB-37BD-43FF-9EBE-FFEDCF4D6B40}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA23C470-BBA2-4CD7-A48D-02B503C14B4A}
