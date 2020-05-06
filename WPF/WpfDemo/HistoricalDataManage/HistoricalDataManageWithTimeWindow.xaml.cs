@@ -47,7 +47,7 @@ namespace WpfDemo.HistoricalDataManage
             sqliteTool.CreateNewDatabase(filePath, dbName);
             sqliteTool.ConnectToDatabase(filePath, dbName);
             //按天分表
-            var suffix = insertDataTime.ToString("MMdd");
+            var suffix = GetSuffix(insertDataTime);
             CreateTable(suffix);
             InsertData(insertDataCount, suffix, insertDataTime);
         }
@@ -89,7 +89,7 @@ namespace WpfDemo.HistoricalDataManage
             var queryDate = new DateTime(queryDataStartTime.Year, queryDataStartTime.Month, queryDataStartTime.Day);
             while(queryDate<= queryDataEndTime)
             {
-                var suffix = queryDate.ToString("MMdd");
+                var suffix = GetSuffix(queryDate);
                 var tempTableName = $"{tableName}_{suffix}";
                 sqliteTool = new SqliteTool();
                 var dbName = $"HistoricalDataManageDb_{queryDate.ToString("yyyy")}";
@@ -112,6 +112,9 @@ namespace WpfDemo.HistoricalDataManage
 
         #endregion
 
-
+        private string GetSuffix(DateTime time)
+        {
+            return time.ToString("MMdd");
+        }
     }
 }
