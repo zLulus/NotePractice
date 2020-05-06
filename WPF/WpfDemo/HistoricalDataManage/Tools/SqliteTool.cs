@@ -36,12 +36,22 @@ namespace WpfDemo.HistoricalDataManage.Tools
             m_dbConnection.Open();
         }
 
+        /// <summary>
+        /// 执行，返回影响行数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public int ExecuteNonQuery(string sql)
         {
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);
             return command.ExecuteNonQuery();
         }
 
+        /// <summary>
+        /// 查询记录条数
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public int ExecuteQueryCount(string sql)
         {
             SQLiteCommand command = new SQLiteCommand(sql, m_dbConnection);

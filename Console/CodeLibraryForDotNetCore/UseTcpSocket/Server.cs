@@ -34,6 +34,8 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
             IPEndPoint ipe2 = new IPEndPoint(IPAddress.Any, port);
 
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            //解决粘包问题
+            socket.NoDelay = true;
             socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
             //https://www.codeproject.com/Articles/117557/Set-Keep-Alive-Values
             //http://blog.stephencleary.com/2009/05/detection-of-half-open-dropped.html
@@ -189,5 +191,28 @@ namespace CodeLibraryForDotNetCore.UseTcpSocket
             }
         }
 
+        internal async Task AsyncSend(Socket socket, byte[] data)
+        {
+            //开始发送消息
+            //解决粘包的问题
+            byte[] newData = new byte[1024];
+            for (int i = 0; i < data.Length; i++)
+            {
+                newData[i] = data[i];
+            }
+            socket.BeginSend(data, 0, data.Length, SocketFlags.None, asyncResult =>
+            {
+                try
+                {
+                    //完成消息发送
+                    int length = socket.EndSend(asyncResult);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }, null);
+
+        }
     }
 }
