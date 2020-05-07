@@ -15,6 +15,8 @@ namespace WpfDemo.MoveAndResizeControl
     public partial class MoveAndResizeControlWindow : Window
     {
         private Element current = new Element();
+        DateTime? lastPressTime = null;
+
         public MoveAndResizeControlWindow()
         {
             InitializeComponent();
@@ -41,7 +43,7 @@ namespace WpfDemo.MoveAndResizeControl
 
             this.Cursor = Cursors.Arrow;
         }
-
+        
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed &&
@@ -52,13 +54,19 @@ namespace WpfDemo.MoveAndResizeControl
                 //递增z-Order并将其传递给当前元素，以使其停留在所有其他元素的顶部
                 ((Border)this.current.InputElement).SetValue(Canvas.ZIndexProperty, this.current.ZIndex++);
 
-                //判断操作类型为拖拽移动
-                if (this.current.IsDragging)
-                    Drag(sender);
+                //区分长按拖动和仅仅点击控件，1秒的时间几乎不会影响交互
+                if (lastPressTime != null && lastPressTime.Value.AddSeconds(1) >= DateTime.Now)
+                {
+                    //判断操作类型为拖拽移动
+                    if (this.current.IsDragging)
+                        Drag(sender);
 
-                //缩放大小
-                if (this.current.IsStretching)
-                    Stretch(sender);
+                    //缩放大小
+                    if (this.current.IsStretching)
+                        Stretch(sender);
+                }
+                lastPressTime = DateTime.Now;
+               
             }
         }
 
