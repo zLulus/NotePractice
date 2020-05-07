@@ -137,6 +137,8 @@
       <DependentUpon>LoadingDataAsyncWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoadingDataAsync\Models\Doctor.cs" />
+    <Compile Include="LogicalTreeAndVisualTree\Tools\LogicalTreeTool.cs" />
+    <Compile Include="LogicalTreeAndVisualTree\Tools\VisualTreeTool.cs" />
     <Compile Include="MarginAndPadding\MarginAndPaddingDemo.xaml.cs">
       <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
     </Compile>
@@ -666,6 +668,7 @@
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
     <None Include="HistoricalDataManage\README.md" />
+    <None Include="LogicalTreeAndVisualTree\README.md" />
     <None Include="packages.config" />
     <None Include="PrintImage\README.md" />
     <None Include="PrintTable\README.md" />

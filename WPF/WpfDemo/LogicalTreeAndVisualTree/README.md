@@ -1,0 +1,2 @@
+﻿[c# - through - wpf usercontrol get child controls](https://code-examples.net/en/q/edf06)    
+[Finding Elements in the WPF Tree – Both Ways](http://www.hardcodet.net/2009/06/finding-elements-in-wpf-tree-both-ways)     
