@@ -91,7 +91,7 @@ namespace WpfDemo.LogicalTreeAndVisualTree.Tools
         /// </summary>
         /// <param name="parent">The item to be processed.</param>
         /// <returns>The submitted item's child elements, if available.</returns>
-        public static IEnumerable<DependencyObject> GetChildObjects(
+        private static IEnumerable<DependencyObject> GetChildObjects(
                                                     this DependencyObject parent)
         {
             if (parent == null) yield break;

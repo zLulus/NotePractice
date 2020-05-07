@@ -142,6 +142,9 @@
     </Compile>
     <Compile Include="LogicalTreeAndVisualTree\Tools\LogicalTreeTool.cs" />
     <Compile Include="LogicalTreeAndVisualTree\Tools\VisualTreeTool.cs" />
+    <Compile Include="LogicalTreeAndVisualTree\UserControls\TestTreeUserControl.xaml.cs">
+      <DependentUpon>TestTreeUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MarginAndPadding\MarginAndPaddingDemo.xaml.cs">
       <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
     </Compile>
@@ -385,6 +388,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LogicalTreeAndVisualTree\LogicalTreeAndVisualTreeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogicalTreeAndVisualTree\UserControls\TestTreeUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

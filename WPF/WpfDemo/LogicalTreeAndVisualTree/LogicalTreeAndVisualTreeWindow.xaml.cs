@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfDemo.LogicalTreeAndVisualTree.Tools;
 
 namespace WpfDemo.LogicalTreeAndVisualTree
 {
@@ -24,6 +25,20 @@ namespace WpfDemo.LogicalTreeAndVisualTree
             InitializeComponent();
         }
 
-        //调用查询方法
+        private void GetLogicalTree_Click(object sender, RoutedEventArgs e)
+        {
+            var l1 = LogicalTreeTool.FindChildren<DependencyObject>(this).ToList();
+            var l2 = LogicalTreeTool.FindLogicalChildren<DependencyObject>(this).ToList();
+            var l3 = LogicalTreeTool.FindLogicalChildren2<DependencyObject>(this).ToList();
+        }
+
+        private void GetVisualTree_Click(object sender, RoutedEventArgs e)
+        {
+            var p = VisualTreeTool.FindParent<DependencyObject>(this,typeof(DependencyObject));
+            var v1 = VisualTreeTool.FindInVisualTreeDown(this, typeof(DependencyObject));
+            var v2 = VisualTreeTool.FindInVisualTreeDown2(this, typeof(DependencyObject)).ToList();
+            var v3 = VisualTreeTool.FindVisualChildren<DependencyObject>(this).ToList();
+            var v4 = VisualTreeTool.FindVisualChildren2<DependencyObject>(this).ToList();
+        }
     }
 }
