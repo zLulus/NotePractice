@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,7 @@ namespace WpfDemo.Bind
     /// </summary>
     public partial class DataGridBindMultiData : Window
     {
-        List<Teacher> teachers;
+        ObservableCollection<Teacher> teachers;
         public DataGridBindMultiData()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace WpfDemo.Bind
 
         private void SetData()
         {
-            teachers = new List<Teacher>();
+            teachers = new ObservableCollection<Teacher>();
             teachers.Add(new Teacher()
             {
                 SchoolNumber = "001",
@@ -65,6 +66,16 @@ namespace WpfDemo.Bind
                     Address = "地址3",
                 }
             });
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            var num = (sender as Button).Tag.ToString();
+            var item= teachers.FirstOrDefault(x => x.SchoolNumber == num);
+            if (item != null)
+            {
+                teachers.Remove(item);
+            }
         }
     }
 }

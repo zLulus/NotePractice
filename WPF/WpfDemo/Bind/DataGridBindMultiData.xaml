@@ -9,14 +9,23 @@
     <Grid>
         <DataGrid ItemsSource="{Binding }" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="编号" Binding="{Binding SchoolNumber}"/>
-                <DataGridTextColumn Header="姓名" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="性别" Binding="{Binding Sex}"/>
+                <DataGridTextColumn Header="编号" Binding="{Binding SchoolNumber}" Width="*"/>
+                <DataGridTextColumn Header="姓名" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="性别" Binding="{Binding Sex}" Width="*"/>
                 <!--格式化日期-->
-                <DataGridTextColumn Header="入职时间" Binding="{Binding Path=TeacherDetailInfo.EntryTime, StringFormat=\{0:yyyy年MM月dd日\}}"/>
+                <DataGridTextColumn Header="入职时间" Binding="{Binding Path=TeacherDetailInfo.EntryTime, StringFormat=\{0:yyyy年MM月dd日\}}" Width="*"/>
                 <!--如果这里是双向绑定，则是下面的写法，Mode是双向(TwoWay)，触发器是变化即触发-->
                 <!--<DataGridTextColumn Header="入职时间" Binding="{Binding Path=TeacherDetailInfo.EntryTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
-                <DataGridTextColumn Header="住址" Binding="{Binding Path=TeacherDetailInfo.Address}"/>
+                <DataGridTextColumn Header="住址" Binding="{Binding Path=TeacherDetailInfo.Address}" Width="2*"/>
+                <DataGridTemplateColumn Header="操作" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Button Content="删除" Tag="{Binding SchoolNumber}" Click="Delete_Click" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
