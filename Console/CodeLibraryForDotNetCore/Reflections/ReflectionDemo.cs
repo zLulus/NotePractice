@@ -46,10 +46,10 @@ namespace CodeLibraryForDotNetCore.Reflections
             //循环所有属性，并赋值
             Fish fish = new Fish() { Name = "ccc", Weight = (decimal)9.7 };
             Fish copyFish = new Fish();
-            CopyValueToTarget(fish, copyFish);
+            CopyValueToTarget<Fish>(fish, copyFish);
         }
 
-        private static void CopyValueToTarget(Fish source, Fish target)
+        private static void CopyValueToTarget<T>(T source, T target) where T:class
         {
             Type type = source.GetType();
             var fields= type.GetRuntimeFields().ToList();
