@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CodeLibraryForDotNetCore.Reflections.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -40,6 +42,27 @@ namespace CodeLibraryForDotNetCore.Reflections
             ConstructorInfo[] ci = t.GetConstructors(BindingFlags.Public | BindingFlags.Instance);
             Console.WriteLine("//Constructors");
             PrintMembers(ci);
+
+            //循环所有属性，并赋值
+            Fish fish = new Fish() { Name = "ccc", Weight = (decimal)9.7 };
+            Fish copyFish = new Fish();
+            CopyValueToTarget(fish, copyFish);
+        }
+
+        private static void CopyValueToTarget(Fish source, Fish target)
+        {
+            Type type = source.GetType();
+            var fields= type.GetRuntimeFields().ToList();
+            foreach(var field in fields)
+            {
+                field.SetValue(target, field.GetValue(source));
+            }
+            
+            var properties = type.GetRuntimeProperties().ToList();
+            foreach (var property in properties)
+            {
+                property.SetValue(target, property.GetValue(source));
+            }
         }
 
         private static void PrintMembers(MemberInfo[] ms)
