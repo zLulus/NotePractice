@@ -312,7 +312,7 @@ namespace WpfDemo.FTP
         /// 删除目录
         /// </summary>
         /// <param name="path"></param>
-        public void RemoveDirectory(string path)
+        public void DeleteDirectory(string path)
         {
             try
             {
@@ -433,7 +433,7 @@ namespace WpfDemo.FTP
                 List<RemoteEntity> a = DirectoryListDetailed(p);
                 p += "/" + name;
                 //if (a.Find(t => t.RelativePath == sa[i]) == null)
-                if (a.Find(t => isEqualIgnorCase(t.Name, name)) == null)
+                if (a.Find(t => IsEqualIgnorCase(t.Name, name)) == null)
                 {
                     return false;
                 }
@@ -505,16 +505,16 @@ namespace WpfDemo.FTP
 
             processstr = (processstr.Substring(11)).Trim();
 
-            _cutSubstringFromStringWithTrim(ref processstr, ' ', 0);   //skip one part
+            CutSubstringFromStringWithTrim(ref processstr, ' ', 0);   //skip one part
 
-            string owner = _cutSubstringFromStringWithTrim(ref processstr, ' ', 0);
-            string group = _cutSubstringFromStringWithTrim(ref processstr, ' ', 0);
+            string owner = CutSubstringFromStringWithTrim(ref processstr, ' ', 0);
+            string group = CutSubstringFromStringWithTrim(ref processstr, ' ', 0);
 
-            _cutSubstringFromStringWithTrim(ref processstr, ' ', 0);   //skip one part
+            CutSubstringFromStringWithTrim(ref processstr, ' ', 0);   //skip one part
 
             DateTime createTime = DateTime.Now;
 
-            var dateString = _cutSubstringFromStringWithTrim(ref processstr, ' ', 8);
+            var dateString = CutSubstringFromStringWithTrim(ref processstr, ' ', 8);
             DateTime.TryParse(dateString, out createTime);
 
             f.CreateDate = createTime.ToString();
@@ -522,7 +522,7 @@ namespace WpfDemo.FTP
             return f;
         }
 
-        private string _cutSubstringFromStringWithTrim(ref string s, char c, int startIndex)
+        private string CutSubstringFromStringWithTrim(ref string s, char c, int startIndex)
         {
             int pos1 = s.IndexOf(c, startIndex);
             string retString = s.Substring(0, pos1);
@@ -532,7 +532,7 @@ namespace WpfDemo.FTP
             return retString;
         }
 
-        private static bool isEqualIgnorCase(String a, String b)
+        private static bool IsEqualIgnorCase(String a, String b)
         {
             if (a == null && b == null)
                 return true;

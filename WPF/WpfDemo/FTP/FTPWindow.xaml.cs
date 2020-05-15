@@ -33,7 +33,9 @@ namespace WpfDemo.FTP
         public const int OF_SHARE_DENY_NONE = 0x40;
         public readonly IntPtr HFILE_ERROR = new IntPtr(-1);
         #endregion
-        string ftpServer = "ftp://172.17.181.161/";
+        string host { get { return FTPHostTextBox.Text.Trim(); } }
+        string userName { get { return UserNameTextBox.Text.Trim(); } }
+        string password { get { return PasswordTextBox.Text.Trim(); } }
 
         public FTPWindow()
         {
@@ -84,7 +86,7 @@ namespace WpfDemo.FTP
 
         private void StartUpload_Click(object sender, RoutedEventArgs e)
         {
-            FTPTool tool = new FTPTool(ftpServer);
+            FTPTool tool = new FTPTool(host,userName,password);
             tool.Upload(UploadFileNameTextBox.Text, SelectUploadFileTextBox.Text);
         }
 
@@ -102,8 +104,26 @@ namespace WpfDemo.FTP
 
         private void StartDownload_Click(object sender, RoutedEventArgs e)
         {
-            FTPTool tool = new FTPTool(ftpServer);
+            FTPTool tool = new FTPTool(host, userName, password);
             tool.Download(DownloadFTPFileNameTextBox.Text, $"{SelectDownloadFilePathTextBox.Text}//{DownloadFileNameTextBox.Text}");
+        }
+
+        private void DeleteFTPFile_Click(object sender, RoutedEventArgs e)
+        {
+            FTPTool tool = new FTPTool(host, userName, password);
+            tool.Delete(DeleteFTPFilePathTextBox.Text);
+        }
+
+        private void CreateDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            FTPTool tool = new FTPTool(host, userName, password);
+            tool.CreateDirectory(CreateDirectoryNameTextBox.Text);
+        }
+
+        private void DeleteDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            FTPTool tool = new FTPTool(host, userName, password);
+            tool.DeleteDirectory(DeleteDirectoryNameTextBox.Text);
         }
     }
 }

@@ -704,6 +704,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
+    <None Include="FTP\README.md" />
     <None Include="HistoricalDataManage\README.md" />
     <None Include="LogicalTreeAndVisualTree\README.md" />
     <None Include="packages.config" />
