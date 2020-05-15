@@ -131,6 +131,11 @@
     <Compile Include="CustomButton\XButton.xaml.cs">
       <DependentUpon>XButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FTP\Dtos\RemoteDto.cs" />
+    <Compile Include="FTP\FTPTool.cs" />
+    <Compile Include="FTP\FTPWindow.xaml.cs">
+      <DependentUpon>FTPWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HistoricalDataManage\HistoricalDataManageWithTimeWindow.xaml.cs">
       <DependentUpon>HistoricalDataManageWithTimeWindow.xaml</DependentUpon>
     </Compile>
@@ -374,6 +379,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Expander\ExpanderDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FTP\FTPWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
