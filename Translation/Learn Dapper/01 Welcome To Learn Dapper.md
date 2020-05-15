@@ -26,3 +26,51 @@ Dapper对您的数据库架构没有真正的期望。它不以与Entity Framewo
 Dapper与ADO.NET `IDbConnection`对象一起使用，这意味着它将与任何具有ADO.NET提供程序的数据库系统一起使用。    
 没有理由不能在同一项目中同时使用ORM和微型ORM。    
 # Dapper实际可以做什么？
+这是一些标准的ADO.NET代码，用于从数据库中检索数据并将其具体化为`Product`对象的集合：
+```C#
+var sql = "select * from products";
+var products = new List<Product>();
+using (var connection = new SqlConnection(connString))
+{
+    connection.Open();
+    /*****假装这是高亮****/
+    using (var command = new SqlCommand(sql, connection))
+    {
+        using (var reader = command.ExecuteReader())
+        {
+            var product = new Product
+            {
+                ProductId = reader.GetInt32(reader.GetOrdinal("ProductId")),
+                ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
+                SupplierId = reader.GetInt32(reader.GetOrdinal("SupplierId")),
+                CategoryId = reader.GetInt32(reader.GetOrdinal("CategoryId")),
+                QuantityPerUnit = reader.GetString(reader.GetOrdinal("QuantityPerUnit")),
+                UnitPrice = reader.GetDecimal(reader.GetOrdinal("UnitPrice")),
+                UnitsInStock = reader.GetInt16(reader.GetOrdinal("UnitsInStock")),
+                UnitsOnOrder = reader.GetInt16(reader.GetOrdinal("UnitsOnOrder")),
+                ReorderLevel = reader.GetInt16(reader.GetOrdinal("ReorderLevel")),
+                Discontinued = reader.GetBoolean(reader.GetOrdinal("Discontinued")),
+                DiscontinuedDate = reader.GetDateTime(reader.GetOrdinal("DiscontinuedDate"))
+            };
+            products.Add(product);
+        }
+    }
+    /*****高亮结束****/
+}
+```
+在最基本的层次上，Dapper用以下代码替换了上面示例中高亮显示的代码块：
+```C#
+products = connection.Query<Product>(sql);
+```
+Dapper还负责创建命令并在需要时打开连接。 如果您使用Dapper来管理这样的基本任务，那么它将节省您的时间。 实际上，Dapper的功能还有很多。    
+# 在哪里获得Dapper？
+Dapper可以从Nuget中获得。 它符合.NET Standard 2.0，这意味着它可以在面向整个框架和.NET Core的.NET应用程序中使用。 您可以通过.NET CLI，使用以下命令来安装Dapper的最新版本：
+```cmd
+dotnet add package Dapper
+```
+或在Visual Studio的程序包管理器控制台中执行以下命令：
+```cmd
+install-package Dapper
+```
+Dapper的源代码可在[GitHub](https://github.com/StackExchange/Dapper)上获得。
+
