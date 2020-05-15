@@ -125,6 +125,12 @@
     </Compile>
     <Compile Include="Converts\Converts\ColorConvert.cs" />
     <Compile Include="Converts\Models\Student.cs" />
+    <Compile Include="CustomButton\TestCustomButtonWindow.xaml.cs">
+      <DependentUpon>TestCustomButtonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomButton\XButton.xaml.cs">
+      <DependentUpon>XButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HistoricalDataManage\HistoricalDataManageWithTimeWindow.xaml.cs">
       <DependentUpon>HistoricalDataManageWithTimeWindow.xaml</DependentUpon>
     </Compile>
@@ -344,6 +350,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Converts\ConvertDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomButton\TestCustomButtonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomButton\XButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
