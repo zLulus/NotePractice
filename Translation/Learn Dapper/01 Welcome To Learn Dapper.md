@@ -14,6 +14,15 @@ Dapper属于一系列称为微型ORM的工具。 这些工具仅执行成熟的�
 | 协会管理 | x | √ |
 | 延迟加载 | x | √ |
 | 工作单位支持 | x | √ |
-| 数据库迁移 | x | √ |
-Dapper专注于ORM的O和M-对象映射。
-[1]已将一些扩展添加到Dapper，这些扩展提供了最小的变更跟踪功能。[2] Dapper实际上确实生成SQL，但是方式有限。
+| 数据库迁移 | x | √ |     
+
+Dapper专注于ORM的O和M-对象映射。    
+[1]已将一些扩展添加到Dapper，这些扩展提供了最小的变更跟踪功能。[2] Dapper实际上确实生成SQL，但是方式有限。  
+# 什么时候应该使用Dapper？
+在决定是否使用Dapper时，应牢记其存在的主要原因-性能。 Dapper的原始开发人员使用的是Entity Framework Core的前身-寿命短的[Linq to SQL](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql/linq/)。他们发现查询性能不足以解决站点（Stackoverflow）遇到的日益增长的流量问题，因此他们[编写了自己的微型ORM](https://samsaffron.com/archive/2011/03/30/How+I+learned+to+stop+worrying+and+write+my+own+ORM)。    
+因此，在只读数据经常更改且经常被请求的情况下，Dapper是一个不错的选择。在无状态的情况下（例如网络），Dapper特别好，因为在这种情况下，无需将复杂的对象图持久保存在内存中。    
+Dapper不会像使用完整的ORM一样将.NET语言编写的查询转换为SQL。因此，您需要习惯用SQL编写查询，或者让别人为您编写查询。    
+Dapper对您的数据库架构没有真正的期望。它不以与Entity Framework Core相同的方式依赖于约定，因此在数据库结构没有特别规范化的情况下，Dapper也是一个不错的选择。   
+Dapper与ADO.NET `IDbConnection`对象一起使用，这意味着它将与任何具有ADO.NET提供程序的数据库系统一起使用。    
+没有理由不能在同一项目中同时使用ORM和微型ORM。    
+# Dapper实际可以做什么？
