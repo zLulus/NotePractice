@@ -10,3 +10,6 @@ Dapper提供了多种查询单行数据的方法，具体的选择取决于您�
 | QueryFirst<T> | 返回一个或多个行中的第一行作为指定类型`T`类型的实例 | `InvalidOperationException`，当查询返回零个元素时 |
 | QueryFirstOrDefault | 以`动态(dynamic )`类型返回一个或多个行的第一行，如果没有返回结果，则返回`null` |  |
 | QueryFirstOrDefault<T> | 返回一个或多个行的第一行作为指定类型`T`类型的实例；如果不返回任何结果，则返回`null` |  | 
+# QuerySingle 方法
+## QuerySingle 和 QuerySingle<T> 
+
