@@ -41,7 +41,7 @@ namespace CodeLibraryForDotNetCore.UseEF
                     {
                         //超时
                         sqlbulkcopy.BulkCopyTimeout = 600;
-                        //数据库目标表名
+                        //数据库目标表名（如果有架构名，需要表示为 '架构名.表名'）
                         sqlbulkcopy.DestinationTableName = tableName;
                         for (int i = 0; i < dt.Columns.Count; i++)
                         {
