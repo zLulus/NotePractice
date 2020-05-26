@@ -23,6 +23,11 @@ namespace WpfDemo.PauseAndResumeTask
 
         public PauseToken Token { get { return new PauseToken(this); } }
 
+        /// <summary>
+        /// 是否停止
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public async Task<bool> IsPaused(CancellationToken token = default(CancellationToken))
         {
             await _stateAsyncLock.WaitAsync(token);
@@ -73,7 +78,7 @@ namespace WpfDemo.PauseAndResumeTask
         }
 
         /// <summary>
-        /// 暂停
+        /// 请求暂停
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
@@ -129,6 +134,11 @@ namespace WpfDemo.PauseAndResumeTask
             }
         }
 
+        /// <summary>
+        /// 如果请求暂停，则停止
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         internal async Task PauseIfRequestedAsync(CancellationToken token = default(CancellationToken))
         {
             Task resumeRequestTask = null;

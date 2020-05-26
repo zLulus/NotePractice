@@ -17,8 +17,11 @@
             <Button Content="暂停" Click="Pause_Click"></Button>
             <Button Content="继续" Click="Resume_Click"></Button>
         </StackPanel>
-        <Grid Grid.Row="1">
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <Label Content="开始后开始更新时间"></Label>
             <Label Name="timeLabel"></Label>
-        </Grid>
+            <Label Content="计数"></Label>
+            <Label Name="numberLabel" Content="0"></Label>
+        </StackPanel>
     </Grid>
 </Window>

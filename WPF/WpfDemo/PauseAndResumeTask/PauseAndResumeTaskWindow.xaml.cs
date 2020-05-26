@@ -61,8 +61,13 @@ namespace WpfDemo.PauseAndResumeTask
                 while (true)
                 {
                     token.ThrowIfCancellationRequested();
+
+                    //完成的工作内容
                     timeLabel.Content = DateTime.Now.ToString();
+                    numberLabel.Content = int.Parse(numberLabel.Content.ToString()) + 1;
+
                     Console.WriteLine("Before await pause.PauseIfRequestedAsync()");
+                    //通过这个方法，循环确定是否已经停止工作，如果停止工作，则不调用DoWorkAsync方法
                     await pause.PauseIfRequestedAsync();
                     Console.WriteLine("After await pause.PauseIfRequestedAsync()");
 
