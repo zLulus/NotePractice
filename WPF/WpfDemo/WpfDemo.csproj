@@ -197,6 +197,9 @@
     </Compile>
     <Compile Include="PauseAndResumeTask\PauseToken.cs" />
     <Compile Include="PauseAndResumeTask\PauseTokenSource.cs" />
+    <Compile Include="PauseAndResumeThread\PauseAndResumeThreadWindow.xaml.cs">
+      <DependentUpon>PauseAndResumeThreadWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PrintImage\PrintImageWindow.xaml.cs">
       <DependentUpon>PrintImageWindow.xaml</DependentUpon>
     </Compile>
@@ -540,6 +543,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PauseAndResumeTask\PauseAndResumeTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PauseAndResumeThread\PauseAndResumeThreadWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
