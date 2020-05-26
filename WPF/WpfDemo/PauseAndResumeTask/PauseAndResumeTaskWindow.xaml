@@ -1,0 +1,24 @@
+﻿<Window x:Class="WpfDemo.PauseAndResumeTask.PauseAndResumeTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.PauseAndResumeTask"
+        mc:Ignorable="d"
+        Title="PauseAndResumeTaskWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button Content="测试" Click="Test_Click"></Button>
+            <Button Content="开始" Click="Start_Click"></Button>
+            <Button Content="暂停" Click="Pause_Click"></Button>
+            <Button Content="继续" Click="Resume_Click"></Button>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Label Name="timeLabel"></Label>
+        </Grid>
+    </Grid>
+</Window>

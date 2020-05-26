@@ -9,13 +9,14 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>WpfDemo</RootNamespace>
     <AssemblyName>WpfDemo</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -191,6 +192,11 @@
     <Compile Include="OpenFiles\OpenTxtFileWindow.xaml.cs">
       <DependentUpon>OpenTxtFileWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PauseAndResumeTask\PauseAndResumeTaskWindow.xaml.cs">
+      <DependentUpon>PauseAndResumeTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PauseAndResumeTask\PauseToken.cs" />
+    <Compile Include="PauseAndResumeTask\PauseTokenSource.cs" />
     <Compile Include="PrintImage\PrintImageWindow.xaml.cs">
       <DependentUpon>PrintImageWindow.xaml</DependentUpon>
     </Compile>
@@ -533,6 +539,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PauseAndResumeTask\PauseAndResumeTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrintImage\PrintImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -708,6 +718,7 @@
     <None Include="HistoricalDataManage\README.md" />
     <None Include="LogicalTreeAndVisualTree\README.md" />
     <None Include="packages.config" />
+    <None Include="PauseAndResumeTask\README.md" />
     <None Include="PrintImage\README.md" />
     <None Include="PrintTable\README.md" />
     <None Include="Properties\Settings.settings">
