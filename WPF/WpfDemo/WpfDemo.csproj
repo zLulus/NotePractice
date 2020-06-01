@@ -236,6 +236,16 @@
     <Compile Include="RadioButton\RadioButtonDemo.xaml.cs">
       <DependentUpon>RadioButtonDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SingleSelectors\SingleSelector.xaml.cs">
+      <DependentUpon>SingleSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSelectors\SingleSelectorWindow.xaml.cs">
+      <DependentUpon>SingleSelectorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSelectors\SingleSelectorWindow2.xaml.cs">
+      <DependentUpon>SingleSelectorWindow2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSelectors\ViewModels\SingleSelectorViewModel.cs" />
     <Compile Include="StartWindowAndDialog\Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
@@ -596,6 +606,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SingleSelectors\SingleSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleSelectors\SingleSelectorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleSelectors\SingleSelectorWindow2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StartWindowAndDialog\Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -748,6 +770,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SingleSelectors\README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
