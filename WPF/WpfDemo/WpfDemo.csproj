@@ -185,6 +185,13 @@
       <DependentUpon>MoveAndResizeControlWindow2.xaml</DependentUpon>
     </Compile>
     <Compile Include="MoveAndResizeControl\Tools\Element.cs" />
+    <Compile Include="MultiSelectors\MultiSelector.xaml.cs">
+      <DependentUpon>MultiSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiSelectors\MultiSelectorWindow.xaml.cs">
+      <DependentUpon>MultiSelectorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiSelectors\ViewModels\MultiSelectorViewModel.cs" />
     <Compile Include="NoneBorder\NoneBorderDemo.xaml.cs">
       <DependentUpon>NoneBorderDemo.xaml</DependentUpon>
     </Compile>
@@ -522,6 +529,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MultiSelectors\MultiSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MultiSelectors\MultiSelectorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Navigation\PopChangeUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -724,6 +739,7 @@
     <None Include="FTP\README.md" />
     <None Include="HistoricalDataManage\README.md" />
     <None Include="LogicalTreeAndVisualTree\README.md" />
+    <None Include="MultiSelectors\README.md" />
     <None Include="packages.config" />
     <None Include="PauseAndResumeTask\README.md" />
     <None Include="PrintImage\README.md" />
@@ -765,6 +781,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HistoricalDataManage\Databases\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MultiSelectors\Images\delete.png" />
+    <Resource Include="MultiSelectors\Images\emoticon_smile.png" />
+    <Resource Include="MultiSelectors\Images\folder_close_arrow.png" />
+    <Resource Include="MultiSelectors\Images\folder_go.png" />
+    <Resource Include="MultiSelectors\Images\folder_open_arrow.png" />
+    <Resource Include="MultiSelectors\Images\tick.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
