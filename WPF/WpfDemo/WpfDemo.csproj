@@ -227,6 +227,9 @@
       <DependentUpon>PrintTableWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrintTable\Templates\OrderDocumentRenderer.cs" />
+    <Compile Include="ProcessBars\ProcessBarWithTextWindow.xaml.cs">
+      <DependentUpon>ProcessBarWithTextWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PropertyChanged\ChangeStudentInfo.xaml.cs">
       <DependentUpon>ChangeStudentInfo.xaml</DependentUpon>
@@ -597,6 +600,10 @@
     </Page>
     <Page Include="PrintTable\Templates\OrderDocument.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Page>
+    <Page Include="ProcessBars\ProcessBarWithTextWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PropertyChanged\ChangeStudentInfo.xaml">
       <SubType>Designer</SubType>
