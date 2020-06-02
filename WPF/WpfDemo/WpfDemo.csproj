@@ -107,6 +107,10 @@
     <Compile Include="CheckBox\CheckBoxDemo.xaml.cs">
       <DependentUpon>CheckBoxDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CheckBox\SelectAllAndCancleCheckBoxWindow.xaml.cs">
+      <DependentUpon>SelectAllAndCancleCheckBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckBox\ViewModels\SelectAllAndCancleCheckBoxViewModel.cs" />
     <Compile Include="Command\CommandDemoWithBindParameters.xaml.cs">
       <DependentUpon>CommandDemoWithBindParameters.xaml</DependentUpon>
     </Compile>
@@ -368,6 +372,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CheckBox\CheckBoxDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CheckBox\SelectAllAndCancleCheckBoxWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

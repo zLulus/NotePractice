@@ -1,0 +1,29 @@
+﻿<Window x:Class="WpfDemo.CheckBox.SelectAllAndCancleCheckBoxWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.CheckBox"
+        mc:Ignorable="d"
+        Title="SelectAllAndCancleCheckBoxWindow" Height="450" Width="800">
+    <Grid>
+        <!--DataGrid checkbox 全选/取消全选的写法-->
+        <!--https://stackoverflow.com/questions/25043010/how-to-select-all-check-box-together-in-wpf-datagrid/25043588#25043588-->
+        <DataGrid Name="dataGrid" Grid.Row="0" ItemsSource="{Binding }" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox Content="全选" Name="headerCheckBox" />
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding ElementName=headerCheckBox,Path=IsChecked, 
+                                          Mode=OneWay}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding Name}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
