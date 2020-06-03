@@ -16,9 +16,13 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Samples
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var data = value as FakeDatabase;
-            if (data.Id % 2 == 0)
+            //翻页的时候data为空
+            if (data != null)
             {
-                return Visibility.Collapsed;
+                if (data.Id % 2 == 0)
+                {
+                    return Visibility.Collapsed;
+                }
             }
             return Visibility.Visible;
         }
