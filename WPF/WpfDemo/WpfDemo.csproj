@@ -125,6 +125,12 @@
     <Compile Include="ContextMenus\CreateContextMenuWindow.xaml.cs">
       <DependentUpon>CreateContextMenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DataGridWindow.xaml.cs">
+      <DependentUpon>DataGridWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\DeleteVisibilityConverter.cs" />
+    <Compile Include="Converters\FakeDatabase.cs" />
+    <Compile Include="Converters\ModifyVisibilityConverter.cs" />
     <Compile Include="Converts\ConvertDemo.xaml.cs">
       <DependentUpon>ConvertDemo.xaml</DependentUpon>
     </Compile>
@@ -388,6 +394,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ContextMenus\CreateContextMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Converters\DataGridWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -773,6 +783,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
+    <None Include="Converters\README.md" />
     <None Include="FTP\README.md" />
     <None Include="HistoricalDataManage\README.md" />
     <None Include="LogicalTreeAndVisualTree\README.md" />
