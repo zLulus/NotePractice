@@ -142,6 +142,25 @@
     <Compile Include="CustomButton\XButton.xaml.cs">
       <DependentUpon>XButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\DataGridWithPageBaseViewModel.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\DelegateCommand.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\Extension.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\OperationInfo.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\Pager.xaml.cs">
+      <DependentUpon>Pager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\PageSettingViewModel.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\SetDataColumnsItem.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\DataGridWithPage.xaml.cs">
+      <DependentUpon>DataGridWithPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicallyGeneratedDataGrid\DemoWindow.xaml.cs">
+      <DependentUpon>DemoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\Converters\DeleteVisibilityConverter.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\Converters\ModifyVisibilityConverter.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\ViewModels\DemoViewModel.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\ViewModels\FakeDatabase.cs" />
     <Compile Include="FTP\Dtos\RemoteDto.cs" />
     <Compile Include="FTP\FTPTool.cs" />
     <Compile Include="FTP\FTPWindow.xaml.cs">
@@ -422,6 +441,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DependencyProperties\TestCustomBorder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DynamicallyGeneratedDataGrid\Bases\Pager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DynamicallyGeneratedDataGrid\DataGridWithPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DynamicallyGeneratedDataGrid\DemoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -784,6 +815,7 @@
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
     <None Include="Converters\README.md" />
+    <None Include="DynamicallyGeneratedDataGrid\README.md" />
     <None Include="FTP\README.md" />
     <None Include="HistoricalDataManage\README.md" />
     <None Include="LogicalTreeAndVisualTree\README.md" />
