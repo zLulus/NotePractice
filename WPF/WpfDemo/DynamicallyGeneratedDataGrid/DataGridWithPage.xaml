@@ -25,16 +25,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
-        <!--标题栏样式-->
-        <!--<Style  TargetType="DataGridColumnHeader" >  
-        <Setter Property="Width" Value="50"/>  
-        <Setter Property="Height" Value="30"/>  
-        <Setter Property="FontSize" Value="14" />  
-        <Setter Property="Background" Value="White" />  
-        <Setter  Property="FontWeight"  Value="Bold"/>  
-    </Style>-->
-
+        
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="MinWidth" Value="0" />
@@ -56,8 +47,6 @@
                                 <Path x:Name="SortArrow" Visibility="Collapsed" Data="M0,0 L1,0 0.5,1 z" Stretch="Fill"  Grid.Column="2" Width="8" Height="6" Fill="White" Margin="0,0,50,0"  
                             VerticalAlignment="Center" RenderTransformOrigin="1,1" />
                                 <Rectangle Width="1" Fill="#d6c79b" HorizontalAlignment="Right" Grid.ColumnSpan="1" />
-                                <!--<TextBlock  Background="Red">  
-                            <ContentPresenter></ContentPresenter></TextBlock>-->
                             </Grid>
                         </Border>
                     </ControlTemplate>
@@ -82,7 +71,6 @@
 
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="LightGray"/>
-                    <!--<Setter Property="Foreground" Value="White"/>-->
                 </Trigger>
 
                 <Trigger Property="IsSelected" Value="True">
@@ -104,8 +92,6 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
-                    <!--<Setter Property="Background" Value="White"/>  
-                <Setter Property="BorderThickness" Value="0"/>-->
                     <Setter Property="Foreground" Value="Black"/>
                 </Trigger>
             </Style.Triggers>
