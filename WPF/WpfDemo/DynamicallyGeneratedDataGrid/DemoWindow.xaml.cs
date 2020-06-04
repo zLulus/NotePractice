@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfDemo.DynamicallyGeneratedDataGrid.Samples;
 using WpfDemo.DynamicallyGeneratedDataGrid.Bases;
+using Newtonsoft.Json;
 
 namespace WpfDemo.DynamicallyGeneratedDataGrid
 {
@@ -63,6 +64,7 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
         private void GetSelectList_Click(object sender, RoutedEventArgs e)
         {
             var o = table.GetCheckedDataList();
+            MessageBox.Show(JsonConvert.SerializeObject(o));
         }
     }
 }
