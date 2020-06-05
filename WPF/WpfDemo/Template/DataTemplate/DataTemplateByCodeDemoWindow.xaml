@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.Template"
         mc:Ignorable="d"
-        Title="DataTemplateByCodeDemoWindow" Height="450" Width="800">
+        Title="DataTemplateByCodeDemoWindow" Height="700" Width="800">
     <StackPanel Orientation="Vertical">
         <Label Content="通过FrameworkElementFactory动态生成控件"></Label>
         <DataGrid Name="dataGrid1" ItemsSource="{Binding }">

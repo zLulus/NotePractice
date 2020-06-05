@@ -29,7 +29,11 @@ namespace WpfDemo.Template.DataTemplate
 
             //设置一些数据
             var data = new List<Person>();
-            data.Add(new Person() { Name = "haha", Hometown = "HangZhou", Age = 21 });
+            for(int i = 0; i < 10; i++)
+            {
+                data.Add(new Person() { Name = $"haha{i}", Hometown = "HangZhou", Age = 21+i });
+            }
+            
             dataGrid1.DataContext = data;
             dataGrid2.DataContext = data;
         }
@@ -43,12 +47,15 @@ namespace WpfDemo.Template.DataTemplate
             DataGridTemplateColumn dataGridTemplateColumn = new DataGridTemplateColumn();
             dataGridTemplateColumn.Header = "操作";
             dataGridTemplateColumn.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            //样式
+            //dataGridTemplateColumn.CellStyle=new System.Windows.Style()
+            //dataGridTemplateColumn.HeaderStyle=
 
             //Grid分列
             FrameworkElementFactory gridFactory = new FrameworkElementFactory(typeof(Grid));
             FrameworkElementFactory col1 = new FrameworkElementFactory(typeof(ColumnDefinition));
             FrameworkElementFactory col2 = new FrameworkElementFactory(typeof(ColumnDefinition));
-
+            
             col1.SetValue(ColumnDefinition.WidthProperty, new GridLength(1, GridUnitType.Star));
             col2.SetValue(ColumnDefinition.WidthProperty, new GridLength(1, GridUnitType.Star));
             gridFactory.AppendChild(col1);
@@ -64,7 +71,7 @@ namespace WpfDemo.Template.DataTemplate
             btn2Factory.SetValue(Button.ContentProperty, "删除");
             btn2Factory.AddHandler(Button.ClickEvent, new RoutedEventHandler(DeleteData_Click));
             btn2Factory.SetValue(Grid.ColumnProperty, 1);
-            
+
             gridFactory.AppendChild(btn1Factory);
             gridFactory.AppendChild(btn2Factory);
             //关键代码
