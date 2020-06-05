@@ -98,7 +98,7 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Bases
         public abstract void PreviousPageAction();
         public abstract void NextPageAction();
         public abstract void LastPageAction();
-
+        public abstract void Refresh();
         public DataGridWithPageBaseViewModel(int pageSize, int currentPage)
             : base(pageSize, currentPage)
         {

@@ -38,11 +38,7 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Samples
         {
             CurrentPage = 1;
 
-            var result = GetSource(PageSize, CurrentPage);
-
-            FakeSource.Clear();
-
-            FakeSource.AddRange(result);
+            Refresh();
         }
 
         public override void PreviousPageAction()
@@ -55,11 +51,7 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Samples
             List<FakeDatabase> result = new List<FakeDatabase>();
 
             CurrentPage--;
-            result = GetSource(PageSize, CurrentPage);
-
-            FakeSource.Clear();
-
-            FakeSource.AddRange(result);
+            Refresh();
 
         }
 
@@ -73,18 +65,18 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Samples
             List<FakeDatabase> result = new List<FakeDatabase>();
 
             CurrentPage++;
-            result = GetSource(PageSize, CurrentPage);
-            
-            FakeSource.Clear();
-
-            FakeSource.AddRange(result);
-
+            Refresh();
         }
 
         public override void LastPageAction()
         {
             CurrentPage = TotalPage;
 
+            Refresh();
+        }
+
+        public override void Refresh()
+        {
             var result = GetSource(PageSize, CurrentPage);
 
             FakeSource.Clear();
