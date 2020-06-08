@@ -113,14 +113,18 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
                 FrameworkElementFactory btn1Factory = new FrameworkElementFactory(typeof(Button));
                 btn1Factory.SetValue(Button.ContentProperty, oper.Content);
                 btn1Factory.AddHandler(Button.ClickEvent, oper.ExecuteEvent);
-                //绑定数据源
-                var bind = new Binding("DataContext");
-                //绑定每一行的数据
-                //https://stackoverflow.com/questions/39873228/how-to-bind-to-wpf-datagrid-row-class-instance-and-not-its-property
-                bind.RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor) { AncestorType = typeof(DataGridRow) };
-                //设置成自定义Converter
-                bind.Converter = oper.CanExecuteEvent;
-                btn1Factory.SetBinding(Button.VisibilityProperty, bind);
+                if (oper.CanExecuteEvent != null)
+                {
+                    //绑定数据源
+                    var bind = new Binding("DataContext");
+                    //绑定每一行的数据
+                    //https://stackoverflow.com/questions/39873228/how-to-bind-to-wpf-datagrid-row-class-instance-and-not-its-property
+                    bind.RelativeSource = new RelativeSource(RelativeSourceMode.FindAncestor) { AncestorType = typeof(DataGridRow) };
+                    //设置成自定义Converter
+                    bind.Converter = oper.CanExecuteEvent;
+                    btn1Factory.SetBinding(Button.VisibilityProperty, bind);
+                }
+               
 
                 btn1Factory.SetValue(Grid.ColumnProperty, i);
                 gridFactory.AppendChild(btn1Factory);
