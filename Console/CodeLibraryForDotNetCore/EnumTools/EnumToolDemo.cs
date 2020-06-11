@@ -20,6 +20,9 @@ namespace CodeLibraryForDotNetCore.EnumTools
                 result.Add(info);
                 Console.WriteLine($"Name:{info.Name},Value:{info.Value},Description:{info.Description}");
             }
+
+            //使用泛型
+            List<EnumInfo> result2 = EnumTool.GetEnumList<SexEnum>();
         }
     }
 }
