@@ -35,7 +35,12 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
         {
             var textCol1 = new DataGridTextColumn() { Header = columnsItem.Header };
             textCol1.Width = new DataGridLength(columnsItem.DataGridLengthValue, columnsItem.DataGridLengthUnitType);
-            textCol1.Binding = new Binding(columnsItem.BindPath);
+            var bind = new Binding(columnsItem.BindPath);
+            if (columnsItem.DisplayEvent != null)
+            {
+                bind.Converter = columnsItem.DisplayEvent;
+            }
+            textCol1.Binding = bind;
             dataGrid.Columns.Add(textCol1);
         }
 

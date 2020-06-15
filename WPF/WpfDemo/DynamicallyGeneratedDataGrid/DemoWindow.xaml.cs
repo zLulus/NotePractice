@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using WpfDemo.DynamicallyGeneratedDataGrid.Samples;
 using WpfDemo.DynamicallyGeneratedDataGrid.Bases;
 using Newtonsoft.Json;
+using WpfDemo.DynamicallyGeneratedDataGrid.Samples.Converters;
 
 namespace WpfDemo.DynamicallyGeneratedDataGrid
 {
@@ -39,6 +40,7 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
             //设置数据列
             List<SetDataColumnsItem> columnsItems = new List<SetDataColumnsItem>();
             columnsItems.Add(new SetDataColumnsItem() { Header = "Id", BindPath = "Id", DataGridLengthValue = 1, DataGridLengthUnitType = DataGridLengthUnitType.Star, Order = 1 });
+            columnsItems.Add(new SetDataColumnsItem() { Header = "Id转换列", BindPath = "Id", DataGridLengthValue = 1, DataGridLengthUnitType = DataGridLengthUnitType.Star, Order = 1, DisplayEvent = new DisplayIdConverter() });
             columnsItems.Add(new SetDataColumnsItem() { Header = "ItemName", BindPath = "ItemName", DataGridLengthValue = 3, DataGridLengthUnitType = DataGridLengthUnitType.Star, Order = 2 });
             //设置操作列
             List<OperationInfo> operationInfos = new List<OperationInfo>();

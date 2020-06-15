@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace WpfDemo.DynamicallyGeneratedDataGrid.Bases
 {
@@ -29,5 +30,9 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Bases
         /// 列宽方式
         /// </summary>
         public DataGridLengthUnitType DataGridLengthUnitType { get; set; }
+        /// <summary>
+        /// 值显示转换
+        /// </summary>
+        public IValueConverter DisplayEvent { get; set; }
     }
 }
