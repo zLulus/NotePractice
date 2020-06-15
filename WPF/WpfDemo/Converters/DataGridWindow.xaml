@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:WpfDemo.Converters"
         mc:Ignorable="d"
         Title="DataGridWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:CellTextConverter x:Key="CellTextConverter"></local:CellTextConverter>
+    </Window.Resources>
     <Grid>
         <DataGrid Name="dataGrid" AlternationCount="2" Grid.Row="0" ItemsSource="{Binding }" AutoGenerateColumns="False" CanUserAddRows="False" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
             <!--单双行颜色-->
@@ -24,7 +27,7 @@
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Id}" Width="*"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Id,Converter={StaticResource CellTextConverter}}" Width="*"></DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding ItemName}" Width="*"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>

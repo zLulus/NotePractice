@@ -128,6 +128,7 @@
     <Compile Include="ContextMenus\CreateContextMenuWindow.xaml.cs">
       <DependentUpon>CreateContextMenuWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\CellTextConverter.cs" />
     <Compile Include="Converters\DataGridWindow.xaml.cs">
       <DependentUpon>DataGridWindow.xaml</DependentUpon>
     </Compile>
