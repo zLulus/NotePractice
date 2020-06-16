@@ -34,16 +34,21 @@ namespace WpfDemo.SingleSelectors
         public SingleSelector(List<SingleSelectorViewModel> data)
         {
             InitializeComponent();
+            SetTree(data);
+        }
+
+        public void SetTree(List<SingleSelectorViewModel> data)
+        {
             tree.Items.Clear();
             //后端加载数据
             foreach (var item in data)
             {
                 //非子节点
-                if (item.Chidlren != null && item.Chidlren.Count != 0)
+                if (item.Children != null && item.Children.Count != 0)
                 {
                     TreeViewItem child = new TreeViewItem() { Header = item.Name, Tag = item };
                     tree.Items.Add(child);
-                    SetTreeView(child, item.Chidlren);
+                    SetTreeView(child, item.Children);
                 }
                 //子节点
                 else
@@ -57,11 +62,11 @@ namespace WpfDemo.SingleSelectors
         {
             foreach (var item in chidlren)
             {
-                if (item.Chidlren != null && item.Chidlren.Count != 0)
+                if (item.Children != null && item.Children.Count != 0)
                 {
                     TreeViewItem child = new TreeViewItem() { Header = item.Name, Tag = item };
                     treeView.Items.Add(child);
-                    SetTreeView(child, item.Chidlren);
+                    SetTreeView(child, item.Children);
                 }
                 else
                 {

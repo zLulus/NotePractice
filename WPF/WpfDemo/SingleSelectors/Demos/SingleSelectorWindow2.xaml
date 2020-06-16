@@ -7,15 +7,12 @@
         mc:Ignorable="d"
         Title="SingleSelectorWindow2" Height="450" Width="800">
     <Grid>
-        <DockPanel>
-            <Border DockPanel.Dock="Right">
-                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
-                    <Button Name="btnSelectId" Content="获得选中项" Click="btnSelectId_Click"></Button>
-                </StackPanel>
-            </Border>
+        <StackPanel Orientation="Vertical">
+            <Button Name="btnSelectId" Content="获得选中项" Click="btnSelectId_Click"></Button>
             <Border Name="border">
 
             </Border>
-        </DockPanel>
+            <local:SingleSelector x:Name="singleSelector2"></local:SingleSelector>
+        </StackPanel>
     </Grid>
 </Window>

@@ -11,6 +11,6 @@ namespace WpfDemo.SingleSelectors.ViewModels
         public long Id { get; set; }
         public long ParendId { get; set; }
         public string Name { get; set; }
-        public List<SingleSelectorViewModel> Chidlren { get; set; }
+        public List<SingleSelectorViewModel> Children { get; set; }
     }
 }
