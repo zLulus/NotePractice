@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WpfDemo"
-             StartupUri="/DynamicallyGeneratedDataGrid/DemoWindow.xaml">
+             StartupUri="/SingleSelectors/Demos/SingleSelectorWindow3.xaml">
     <Application.Resources>
         <!--<ResourceDictionary x:Key="ResourceDictionary1">
             <ResourceDictionary.MergedDictionaries>

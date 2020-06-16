@@ -287,16 +287,23 @@
     <Compile Include="RadioButton\RadioButtonDemo.xaml.cs">
       <DependentUpon>RadioButtonDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SingleSelectors\Demos\SingleSelectorWindow3.xaml.cs">
+      <DependentUpon>SingleSelectorWindow3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SingleSelectors\SingleSelector.xaml.cs">
       <DependentUpon>SingleSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SingleSelectors\SingleSelectorWindow.xaml.cs">
+    <Compile Include="SingleSelectors\Demos\SingleSelectorWindow.xaml.cs">
       <DependentUpon>SingleSelectorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SingleSelectors\SingleSelectorWindow2.xaml.cs">
+    <Compile Include="SingleSelectors\Demos\SingleSelectorWindow2.xaml.cs">
       <DependentUpon>SingleSelectorWindow2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SingleSelectors\SingleSelector2.xaml.cs">
+      <DependentUpon>SingleSelector2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SingleSelectors\ViewModels\SingleSelectorViewModel.cs" />
+    <Compile Include="SingleSelectors\ViewModels\SingleSelector2ViewModel.cs" />
     <Compile Include="StartWindowAndDialog\Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
@@ -700,15 +707,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SingleSelectors\Demos\SingleSelectorWindow3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SingleSelectors\SingleSelector.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SingleSelectors\SingleSelectorWindow.xaml">
+    <Page Include="SingleSelectors\Demos\SingleSelectorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="SingleSelectors\SingleSelectorWindow2.xaml">
+    <Page Include="SingleSelectors\Demos\SingleSelectorWindow2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleSelectors\SingleSelector2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
