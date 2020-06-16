@@ -13,6 +13,7 @@
         </Grid.RowDefinitions>
         <Button Grid.Column="0" Click="GenerateData_Click">新增数据</Button>
         <DataGrid Grid.Row="1" 
+                  Name="loadingDataDataGrid"
                   ScrollViewer.CanContentScroll="True" 
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto" 

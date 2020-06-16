@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -73,6 +74,7 @@ namespace WpfDemo.LoadingDataAsync
         private void GenerateData_Click(object sender, RoutedEventArgs e)
         {
             GenerateData();
+            //ChangeCellColor();
         }
 
         private void DataGrid_ScrollChanged(object sender, ScrollChangedEventArgs e)
@@ -82,6 +84,40 @@ namespace WpfDemo.LoadingDataAsync
             {
                 GenerateData();
             }
+        }
+
+        private void ChangeCellColor()
+        {
+            DataGridCell cell = GetCell(1, 1, loadingDataDataGrid);
+            cell.Background = new SolidColorBrush(Colors.Red);
+        }
+
+        public DataGridCell GetCell(int rowIndex, int columnIndex, DataGrid dg)
+        {
+            DataGridRow row = dg.ItemContainerGenerator.ContainerFromIndex(rowIndex) as DataGridRow;
+            DataGridCellsPresenter p = GetVisualChild<DataGridCellsPresenter>(row);
+            DataGridCell cell = p.ItemContainerGenerator.ContainerFromIndex(columnIndex) as DataGridCell;
+            return cell;
+        }
+
+        static T GetVisualChild<T>(Visual parent) where T : Visual
+        {
+            T child = default(T);
+            int numVisuals = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < numVisuals; i++)
+            {
+                Visual v = (Visual)VisualTreeHelper.GetChild(parent, i);
+                child = v as T;
+                if (child == null)
+                {
+                    child = GetVisualChild<T>(v);
+                }
+                if (child != null)
+                {
+                    break;
+                }
+            }
+            return child;
         }
     }
 }
