@@ -91,9 +91,13 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Bases
                     _totalCount = value;
                     NotifyPropertyChanged(nameof(TotalCount));
                     //修改总页数
-                    _totalPage = _totalCount / _pageSize;
-                    if (_totalPage == 0)
-                        _totalPage = 1;
+                    TotalPage = _totalCount / PageSize;
+                    if (_totalCount % PageSize != 0)
+                    {
+                        TotalPage = TotalPage + 1;
+                    }
+                    if (TotalPage == 0)
+                        TotalPage = 1;
                 }
             }
         }
