@@ -27,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +37,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -128,13 +130,22 @@
     <Compile Include="ContextMenus\CreateContextMenuWindow.xaml.cs">
       <DependentUpon>CreateContextMenuWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\CellTextConverter.cs" />
-    <Compile Include="Converters\DataGridWindow.xaml.cs">
+    <Compile Include="Converters\ForDataGrid\CellTextConverter.cs" />
+    <Compile Include="Converters\ForDataGrid\DataGridWindow.xaml.cs">
       <DependentUpon>DataGridWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\DeleteVisibilityConverter.cs" />
-    <Compile Include="Converters\FakeDatabase.cs" />
-    <Compile Include="Converters\ModifyVisibilityConverter.cs" />
+    <Compile Include="Converters\ForDataGrid\DeleteVisibilityConverter.cs" />
+    <Compile Include="Converters\ForDataGrid\FakeDatabase.cs" />
+    <Compile Include="Converters\ForDataGrid\ModifyVisibilityConverter.cs" />
+    <Compile Include="Converters\ForForm\ViewModels\EditFieldMetaViewModel.cs" />
+    <Compile Include="Converters\ForForm\Converter\EditFieldVisibilityConverter.cs" />
+    <Compile Include="Converters\ForForm\Enum\EnumExtensions.cs" />
+    <Compile Include="Converters\ForForm\Enum\EnumInfo.cs" />
+    <Compile Include="Converters\ForForm\Enum\EnumTool.cs" />
+    <Compile Include="Converters\ForForm\Enum\FieldTypeEnum.cs" />
+    <Compile Include="Converters\ForForm\FormWindow.xaml.cs">
+      <DependentUpon>FormWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converts\ConvertDemo.xaml.cs">
       <DependentUpon>ConvertDemo.xaml</DependentUpon>
     </Compile>
@@ -445,7 +456,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Converters\DataGridWindow.xaml">
+    <Page Include="Converters\ForDataGrid\DataGridWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Converters\ForForm\FormWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -871,7 +886,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
-    <None Include="Converters\README.md" />
+    <None Include="Converters\ForDataGrid\README.md" />
+    <None Include="Converters\ForForm\README.md" />
     <None Include="DynamicallyGeneratedDataGrid\README.md" />
     <None Include="FTP\README.md" />
     <None Include="HistoricalDataManage\README.md" />
