@@ -15,6 +15,7 @@ using WpfDemo.DynamicallyGeneratedDataGrid.Samples;
 using WpfDemo.DynamicallyGeneratedDataGrid.Bases;
 using Newtonsoft.Json;
 using WpfDemo.DynamicallyGeneratedDataGrid.Samples.Converters;
+using WpfDemo.DynamicallyGeneratedDataGrid.Samples.ViewModels;
 
 namespace WpfDemo.DynamicallyGeneratedDataGrid
 {
@@ -42,6 +43,23 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
             columnsItems.Add(new SetDataColumnsItem() { Header = "Id", BindPath = "Id", DataGridLengthValue = 1, DataGridLengthUnitType = DataGridLengthUnitType.Star, Order = 1 });
             columnsItems.Add(new SetDataColumnsItem() { Header = "Id转换列", BindPath = "Id", DataGridLengthValue = 1, DataGridLengthUnitType = DataGridLengthUnitType.Star, Order = 1, DisplayEvent = new DisplayIdConverter() });
             columnsItems.Add(new SetDataColumnsItem() { Header = "ItemName", BindPath = "ItemName", DataGridLengthValue = 3, DataGridLengthUnitType = DataGridLengthUnitType.Star, Order = 2 });
+            //输入框
+            columnsItems.Add(new SetDataColumnsItem() { Header = "输入ItemName", BindPath = "ItemName", ColumnType = ColumnTypeEnum.TextBox, DataGridLengthValue = 3, DataGridLengthUnitType = DataGridLengthUnitType.Star, Order = 3 });
+            //下拉框
+            List<ComboBoxFakeDatabase> list = new List<ComboBoxFakeDatabase>();
+            list.Add(new ComboBoxFakeDatabase() { Id = 1, Name = "11" });
+            list.Add(new ComboBoxFakeDatabase() { Id = 2, Name = "22" });
+            columnsItems.Add(new SetDataColumnsItem()
+            {
+                Header = "下拉框",
+                BindPath = "SelectItem",
+                ColumnType = ColumnTypeEnum.ComboBox,
+                ComboBoxDataContext = list,
+                ComboBoxDisplayMemberPath = "Name",
+                DataGridLengthValue = 3,
+                DataGridLengthUnitType = DataGridLengthUnitType.Star,
+                Order = 4
+            });
             //设置操作列
             List<OperationInfo> operationInfos = new List<OperationInfo>();
             operationInfos.Add(new OperationInfo() { Content = "修改", ExecuteEvent = Modify_Click, CanExecuteEvent = new ModifyVisibilityConverter(), Order = 1 });

@@ -33,6 +33,71 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
 
         private void SetOneDataColumn(SetDataColumnsItem columnsItem)
         {
+            switch (columnsItem.ColumnType)
+            {
+                case ColumnTypeEnum.Label:
+                    SetOneLabelColumn(columnsItem);
+                    break;
+                case ColumnTypeEnum.TextBox:
+                    SetOneTextBoxColumn(columnsItem);
+                    break;
+                case ColumnTypeEnum.ComboBox:
+                    SetOneComboBoxColumn(columnsItem);
+                    break;
+                default:
+                    throw new Exception($"无法识别的列类型:{columnsItem.ColumnType}");
+            }
+        }
+
+        private void SetOneComboBoxColumn(SetDataColumnsItem columnsItem)
+        {
+            if (columnsItem.ComboBoxDataContext == null || string.IsNullOrEmpty(columnsItem.ComboBoxDisplayMemberPath)
+               || string.IsNullOrEmpty(columnsItem.BindPath))
+            {
+                throw new Exception($"列类型为ComboBox的对象，需要填写{nameof(SetDataColumnsItem.ComboBoxDataContext)},{nameof(SetDataColumnsItem.ComboBoxDisplayMemberPath)},{nameof(SetDataColumnsItem.BindPath)}");
+            }
+            DataGridTemplateColumn dataGridTemplateColumn = new DataGridTemplateColumn();
+            dataGridTemplateColumn.Width = new DataGridLength(columnsItem.DataGridLengthValue, columnsItem.DataGridLengthUnitType);
+            dataGridTemplateColumn.Header = columnsItem.Header;
+
+            FrameworkElementFactory comboBoxFactory = new FrameworkElementFactory(typeof(ComboBox));
+            var bind = new Binding(columnsItem.BindPath);
+            bind.Mode = BindingMode.TwoWay;
+            bind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            comboBoxFactory.SetBinding(ComboBox.SelectedItemProperty, bind);
+            comboBoxFactory.SetValue(ComboBox.DisplayMemberPathProperty, columnsItem.ComboBoxDisplayMemberPath);
+            //comboBoxFactory.SetValue(ComboBox.DataContextProperty, columnsItem.ComboBoxDataContext);
+            comboBoxFactory.SetValue(ComboBox.ItemsSourceProperty, columnsItem.ComboBoxDataContext);
+
+            DataTemplate cellTemplate1 = new DataTemplate();
+            cellTemplate1.VisualTree = comboBoxFactory;
+            dataGridTemplateColumn.CellTemplate = cellTemplate1;
+            dataGrid.Columns.Add(dataGridTemplateColumn);
+        }
+
+        private void SetOneTextBoxColumn(SetDataColumnsItem columnsItem)
+        {
+            DataGridTemplateColumn dataGridTemplateColumn = new DataGridTemplateColumn();
+            dataGridTemplateColumn.Width = new DataGridLength(columnsItem.DataGridLengthValue, columnsItem.DataGridLengthUnitType);
+            dataGridTemplateColumn.Header = columnsItem.Header;
+
+            FrameworkElementFactory gridFactory = new FrameworkElementFactory(typeof(Grid));
+            FrameworkElementFactory textBoxFactory = new FrameworkElementFactory(typeof(TextBox));
+            var bind = new Binding(columnsItem.BindPath);
+            bind.Mode = BindingMode.TwoWay;
+            bind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            textBoxFactory.SetBinding(TextBox.TextProperty, bind);
+            //textBoxFactory.SetValue(TextBox.HorizontalAlignmentProperty, HorizontalAlignment.Stretch);
+            gridFactory.AppendChild(textBoxFactory);
+
+            DataTemplate cellTemplate1 = new DataTemplate();
+            cellTemplate1.VisualTree = gridFactory;
+            dataGridTemplateColumn.CellTemplate = cellTemplate1;
+            dataGrid.Columns.Add(dataGridTemplateColumn);
+        }
+
+        private void SetOneLabelColumn(SetDataColumnsItem columnsItem)
+        {
             var textCol1 = new DataGridTextColumn() { Header = columnsItem.Header };
             textCol1.Width = new DataGridLength(columnsItem.DataGridLengthValue, columnsItem.DataGridLengthUnitType);
             var bind = new Binding(columnsItem.BindPath);
@@ -56,11 +121,10 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
             List<OperationInfo> input2 = null, 
             bool isShowCheckBox = false)
         {
-            //dataGrid.Columns.Clear();
             this.isShowCheckBox = isShowCheckBox;
             if (!this.isShowCheckBox)
             {
-                checkBoxColumn.Visibility = Visibility.Collapsed;
+                dataGrid.Columns.Clear();
             }
 
             //checkbox的后台绑定写法

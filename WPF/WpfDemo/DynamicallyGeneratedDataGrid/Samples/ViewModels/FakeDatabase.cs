@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using WpfDemo.DynamicallyGeneratedDataGrid.Samples.ViewModels;
 
 namespace WpfDemo.DynamicallyGeneratedDataGrid.Samples
 {
@@ -56,6 +57,19 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Samples
             }
         }
 
+        public ComboBoxFakeDatabase selectItem;
+        public ComboBoxFakeDatabase SelectItem
+        {
+            get
+            {
+                return selectItem;
+            }
+            set
+            {
+                selectItem = value;
+                NotifyPropertyChanged(nameof(SelectItem));
+            }
+        }
 
         public FakeDatabase()
         {

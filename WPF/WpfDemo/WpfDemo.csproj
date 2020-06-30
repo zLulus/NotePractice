@@ -157,6 +157,7 @@
     <Compile Include="CustomButton\XButton.xaml.cs">
       <DependentUpon>XButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\ColumnTypeEnum.cs" />
     <Compile Include="DynamicallyGeneratedDataGrid\Bases\DataGridWithPageBaseViewModel.cs" />
     <Compile Include="DynamicallyGeneratedDataGrid\Bases\DelegateCommand.cs" />
     <Compile Include="DynamicallyGeneratedDataGrid\Bases\Extension.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="DynamicallyGeneratedDataGrid\Samples\Converters\DeleteVisibilityConverter.cs" />
     <Compile Include="DynamicallyGeneratedDataGrid\Samples\Converters\DisplayIdConverter.cs" />
     <Compile Include="DynamicallyGeneratedDataGrid\Samples\Converters\ModifyVisibilityConverter.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\ViewModels\ComboBoxFakeDatabase.cs" />
     <Compile Include="DynamicallyGeneratedDataGrid\Samples\ViewModels\DemoViewModel.cs" />
     <Compile Include="DynamicallyGeneratedDataGrid\Samples\ViewModels\FakeDatabase.cs" />
     <Compile Include="FTP\Dtos\RemoteDto.cs" />

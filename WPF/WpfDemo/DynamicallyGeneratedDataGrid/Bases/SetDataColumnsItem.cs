@@ -10,6 +10,10 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Bases
 {
     public class SetDataColumnsItem
     {
+        public SetDataColumnsItem()
+        {
+            ColumnType = ColumnTypeEnum.Label;
+        }
         /// <summary>
         /// 列名
         /// </summary>
@@ -26,6 +30,7 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Bases
         /// 列宽占比
         /// </summary>
         public double DataGridLengthValue { get; set; }
+        public ColumnTypeEnum ColumnType { get; set; }
         /// <summary>
         /// 列宽方式
         /// </summary>
@@ -34,5 +39,19 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid.Bases
         /// 值显示转换
         /// </summary>
         public IValueConverter DisplayEvent { get; set; }
+        #region ComboBox
+        /// <summary>
+        /// ComboBox显示字段
+        /// </summary>
+        public string ComboBoxDisplayMemberPath { get; set; }
+        /// <summary>
+        /// 数据源
+        /// </summary>
+        public object ComboBoxDataContext { get; set; }
+        /// <summary>
+        /// 选中项绑定路径
+        /// </summary>
+        public string ComboBoxSelectedItemBindPath { get; set; }
+        #endregion
     }
 }
