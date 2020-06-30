@@ -51,28 +51,43 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
         /// <param name="isShowOperationColumn">是否显示操作列</param>
         /// <param name="input2">操作列</param>
         /// <param name="isShowCheckBox">是否显示checkbox</param>
-        public void SetDataGrid(List<SetDataColumnsItem> input, bool isShowOperationColumn = false, List<OperationInfo> input2 = null, bool isShowCheckBox = false)
+        public void SetDataGrid(List<SetDataColumnsItem> input, 
+            bool isShowOperationColumn = false, 
+            List<OperationInfo> input2 = null, 
+            bool isShowCheckBox = false,
+            string checkBoxBindPath = null)
         {
-            dataGrid.Columns.Clear();
+            //dataGrid.Columns.Clear();
             this.isShowCheckBox = isShowCheckBox;
-            if (isShowCheckBox)
+            if (!this.isShowCheckBox)
             {
-                DataGridTemplateColumn dataGridCheckBoxColumn = new DataGridTemplateColumn();
-                dataGridCheckBoxColumn.Header = "选择";
-                dataGridCheckBoxColumn.Width = new DataGridLength(0.5, DataGridLengthUnitType.Star);
-                FrameworkElementFactory checkBoxFactory = new FrameworkElementFactory(typeof(System.Windows.Controls.CheckBox));
-                checkBoxFactory.SetValue(System.Windows.Controls.CheckBox.ContentProperty, "全选");
-                checkBoxFactory.AddHandler(System.Windows.Controls.CheckBox.ClickEvent, new RoutedEventHandler(CheckBox_Checked));
-                DataTemplate dataTemplate = new DataTemplate();
-                dataTemplate.VisualTree = checkBoxFactory;
-                dataGridCheckBoxColumn.HeaderTemplate = dataTemplate;
-
-                FrameworkElementFactory checkBoxFactory2 = new FrameworkElementFactory(typeof(System.Windows.Controls.CheckBox));
-                DataTemplate dataTemplate2 = new DataTemplate();
-                dataTemplate2.VisualTree = checkBoxFactory2;
-                dataGridCheckBoxColumn.CellTemplate = dataTemplate2;
-                dataGrid.Columns.Add(dataGridCheckBoxColumn);
+                checkBoxColumn.Visibility = Visibility.Collapsed;
             }
+            //if (isShowCheckBox)
+            //{
+            //    DataGridTemplateColumn dataGridCheckBoxColumn = new DataGridTemplateColumn();
+            //    dataGridCheckBoxColumn.Header = "选择";
+            //    dataGridCheckBoxColumn.Width = new DataGridLength(0.5, DataGridLengthUnitType.Star);
+            //    FrameworkElementFactory checkBoxFactory = new FrameworkElementFactory(typeof(System.Windows.Controls.CheckBox));
+            //    checkBoxFactory.SetValue(System.Windows.Controls.CheckBox.ContentProperty, "全选");
+            //    checkBoxFactory.AddHandler(System.Windows.Controls.CheckBox.ClickEvent, new RoutedEventHandler(CheckBox_Checked));
+            //    if (!string.IsNullOrEmpty(checkBoxBindPath))
+            //    {
+            //        var bind = new Binding(checkBoxBindPath);
+            //        bind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            //        bind.Mode = BindingMode.TwoWay;
+            //        checkBoxFactory.SetBinding(System.Windows.Controls.CheckBox.IsCheckedProperty, bind);
+            //    }
+            //    DataTemplate dataTemplate = new DataTemplate();
+            //    dataTemplate.VisualTree = checkBoxFactory;
+            //    dataGridCheckBoxColumn.HeaderTemplate = dataTemplate;
+
+            //    FrameworkElementFactory checkBoxFactory2 = new FrameworkElementFactory(typeof(System.Windows.Controls.CheckBox));
+            //    DataTemplate dataTemplate2 = new DataTemplate();
+            //    dataTemplate2.VisualTree = checkBoxFactory2;
+            //    dataGridCheckBoxColumn.CellTemplate = dataTemplate2;
+            //    dataGrid.Columns.Add(dataGridCheckBoxColumn);
+            //}
             SetDataColumns(input);
             if (isShowOperationColumn && input2 != null)
             {

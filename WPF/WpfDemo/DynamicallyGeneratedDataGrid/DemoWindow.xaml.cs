@@ -47,7 +47,7 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
             operationInfos.Add(new OperationInfo() { Content = "修改", ExecuteEvent = Modify_Click, CanExecuteEvent = new ModifyVisibilityConverter(), Order = 1 });
             operationInfos.Add(new OperationInfo() { Content = "删除", ExecuteEvent = Delete_Click, CanExecuteEvent = new DeleteVisibilityConverter(), Order = 2 });
 
-            table.SetDataGrid(columnsItems, true, operationInfos, true);
+            table.SetDataGrid(columnsItems, true, operationInfos, true, "IsChecked");
 
         }
 

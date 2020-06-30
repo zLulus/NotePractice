@@ -12,71 +12,51 @@
         <Style TargetType="DataGrid">
             <!--网格线颜色-->
             <Setter Property="CanUserResizeColumns" Value="True"/>
-            <Setter Property="Background" Value="#fff5ee" />
-            <Setter Property="BorderBrush" Value="#d6c79b" />
+            <Setter Property="Background" Value="#ffffff" />
+            <Setter Property="BorderBrush" Value="#e9e9ea" />
             <Setter Property="HorizontalGridLinesBrush">
                 <Setter.Value>
-                    <SolidColorBrush Color="#d6c79b"/>
+                    <SolidColorBrush Color="#e9e9ea"/>
                 </Setter.Value>
             </Setter>
             <Setter Property="VerticalGridLinesBrush">
                 <Setter.Value>
-                    <SolidColorBrush Color="#d6c79b"/>
+                    <SolidColorBrush Color="#e9e9ea"/>
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
+        <!--标题栏样式-->
         <Style TargetType="DataGridColumnHeader">
             <Setter Property="SnapsToDevicePixels" Value="True" />
             <Setter Property="MinWidth" Value="0" />
-            <Setter Property="MinHeight" Value="28" />
-            <Setter Property="Foreground" Value="#323433" />
+            <Setter Property="Foreground" Value="#000000" />
+            <Setter Property="Background" Value="#bbc3de" />
             <Setter Property="FontSize" Value="14" />
+            <Setter  Property="FontWeight"  Value="Bold"/>
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="DataGridColumnHeader">
-                        <Border x:Name="BackgroundBorder" BorderThickness="0,1,0,1"  
-                             BorderBrush="#e6dbba"  
+                        <Border x:Name="BackgroundBorder" BorderThickness="0,0,2,0"  
+                             BorderBrush="#e9e9ea"
                               Width="Auto">
-                            <Grid >
+                            <Grid Background="#bbc3de">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <ContentPresenter  Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                <Path x:Name="SortArrow" Visibility="Collapsed" Data="M0,0 L1,0 0.5,1 z" Stretch="Fill"  Grid.Column="2" Width="8" Height="6" Fill="White" Margin="0,0,50,0"  
+                                <Path x:Name="SortArrow" Visibility="Collapsed" Data="M0,0 L1,0 0.5,1 z" Stretch="Fill"  Grid.Column="2" Width="8" Height="6" Fill="#bbc3de" Margin="0,0,50,0"  
                             VerticalAlignment="Center" RenderTransformOrigin="1,1" />
-                                <Rectangle Width="1" Fill="#d6c79b" HorizontalAlignment="Right" Grid.ColumnSpan="1" />
+                                <Rectangle Width="1" Fill="#bbc3de" HorizontalAlignment="Right" Grid.ColumnSpan="1" />
+                                <!--<TextBlock  Background="Red">  
+                            <ContentPresenter></ContentPresenter></TextBlock>-->
                             </Grid>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="Height" Value="25"/>
-        </Style>
-        <!--行样式触发-->
-        <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
-        <Style  TargetType="DataGridRow">
-            <Setter Property="Background" Value="#F2F2F2" />
-            <Setter Property="Height" Value="25"/>
-            <Setter Property="Foreground" Value="Black" />
-            <Style.Triggers>
-                <!--隔行换色-->
-                <Trigger Property="AlternationIndex" Value="0" >
-                    <Setter Property="Background" Value="#e7e7e7" />
-                </Trigger>
-                <Trigger Property="AlternationIndex" Value="1" >
-                    <Setter Property="Background" Value="#f2f2f2" />
-                </Trigger>
-
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightGray"/>
-                </Trigger>
-
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Foreground" Value="Black"/>
-                </Trigger>
-            </Style.Triggers>
+            <Setter Property="Height" Value="40"/>
         </Style>
 
         <!--单元格样式触发-->
@@ -90,11 +70,13 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
+            <!--<Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="Background" Value="#629be4"/>  
+                <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Foreground" Value="#629be4"/>
                 </Trigger>
-            </Style.Triggers>
+            </Style.Triggers>-->
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -104,30 +86,38 @@
         </Grid.RowDefinitions>
 
         <DataGrid Name="dataGrid" AlternationCount="2" Grid.Row="0" ItemsSource="{Binding FakeSource}" AutoGenerateColumns="False" CanUserAddRows="False" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
-            <!--单双行颜色-->
+            <!--行样式-->
+            <!--背景色改变必须先设置cellStyle 因为cellStyle会覆盖rowStyle样式-->
             <DataGrid.RowStyle>
                 <Style TargetType="{x:Type DataGridRow}">
                     <Style.Triggers>
+                        <!--单双行颜色-->
                         <Trigger Property="ItemsControl.AlternationIndex"
                          Value="0">
-                            <Setter Property="Background" Value="#FFE4DDB3" />
+                            <Setter Property="Background" Value="#f6f9fe" />
                         </Trigger>
                         <Trigger Property="ItemsControl.AlternationIndex"
                          Value="1">
-                            <Setter Property="Background" Value="#FFF2F2F2" />
+                            <Setter Property="Background" Value="#ffffff" />
+                        </Trigger>
+                        <!--划过高亮显示，必须放到单双行后面才触发-->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#629be4"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>
             </DataGrid.RowStyle>
             <DataGrid.Columns>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="checkBoxColumn">
                     <DataGridTemplateColumn.Header>
-                        <CheckBox Content="全选" Name="headerCheckBox" />
+                        <CheckBox Name="headerCheckBox" />
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox IsChecked="{Binding ElementName=headerCheckBox,Path=IsChecked, 
-                                          Mode=OneWay}" />
+                            <CheckBox IsChecked="{Binding IsChecked, 
+                                          Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                            <!--<CheckBox IsChecked="{Binding ElementName=headerCheckBox,Path=IsChecked, 
+                                          Mode=OneWay}" />-->
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -136,7 +126,8 @@
 
         <local1:Pager TotalPage="{Binding TotalPage}"
                      CurrentPage="{Binding CurrentPage, Mode=TwoWay}" 
-                     HorizontalAlignment="Center"
+                     HorizontalAlignment="Stretch"
+                      Background="#ffffff"
                      Grid.Row="1">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="FirstPage">

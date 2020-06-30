@@ -8,11 +8,13 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="22"/>
-            <Setter Property="Height" Value="22"/>
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="#f6f9fe"></Setter>
+            <Setter Property="BorderBrush" Value="#e9e9ea"/>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid HorizontalAlignment="Center" MinHeight="35">
         <StackPanel Orientation="Horizontal">
             <Button x:Name="FirstPageButton" Margin="5,0" Click="FirstPageButton_Click">
                 <Path Width="7" Height="10" Data="M0,0L0,10 M0,5L6,2 6,8 0,5" Stroke="Black" StrokeThickness="1" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" />
