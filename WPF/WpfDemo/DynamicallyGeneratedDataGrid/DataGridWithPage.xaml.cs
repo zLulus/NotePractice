@@ -54,8 +54,7 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
         public void SetDataGrid(List<SetDataColumnsItem> input, 
             bool isShowOperationColumn = false, 
             List<OperationInfo> input2 = null, 
-            bool isShowCheckBox = false,
-            string checkBoxBindPath = null)
+            bool isShowCheckBox = false)
         {
             //dataGrid.Columns.Clear();
             this.isShowCheckBox = isShowCheckBox;
@@ -63,6 +62,15 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
             {
                 checkBoxColumn.Visibility = Visibility.Collapsed;
             }
+
+            //checkbox的后台绑定写法
+            DataGridCheckBoxColumn dataGridCheckBoxColumn = new DataGridCheckBoxColumn();
+            var bind = new Binding("IsChecked");
+            bind.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            bind.Mode = BindingMode.TwoWay;
+            dataGridCheckBoxColumn.Binding = bind;
+            dataGrid.Columns.Add(dataGridCheckBoxColumn);
+
             //if (isShowCheckBox)
             //{
             //    DataGridTemplateColumn dataGridCheckBoxColumn = new DataGridTemplateColumn();
