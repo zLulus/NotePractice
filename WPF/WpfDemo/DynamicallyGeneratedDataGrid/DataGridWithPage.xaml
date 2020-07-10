@@ -64,19 +64,18 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="DataGridCell">
-                        <TextBlock TextAlignment="Center" VerticalAlignment="Center"  >  
+                        <TextBlock TextAlignment="Center" VerticalAlignment="Center" Margin="0,2,0,2"  >  
                            <ContentPresenter />
                         </TextBlock>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <!--<Style.Triggers>
+            <EventSetter Event="MouseLeftButtonDown" Handler="DataGridCell_MouseLeftButtonDown"></EventSetter>
+            <Style.Triggers>
                 <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="#629be4"/>  
-                <Setter Property="BorderThickness" Value="0"/>
-                    <Setter Property="Foreground" Value="#629be4"/>
+                    <Setter Property="Foreground" Value="Black"/>
                 </Trigger>
-            </Style.Triggers>-->
+            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -103,6 +102,7 @@
                         <!--划过高亮显示，必须放到单双行后面才触发-->
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="#629be4"/>
+                            <Setter Property="Foreground" Value="#ffffff"/>
                         </Trigger>
                     </Style.Triggers>
                 </Style>

@@ -22,6 +22,10 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
     public partial class DataGridWithPage : UserControl
     {
         private bool isShowCheckBox;
+        /// <summary>
+        /// 行点击相应事件
+        /// </summary>
+        public event Action RowClickAction = null;
         public DataGrid MyDataGrid
         {
             get { return dataGrid; }
@@ -99,6 +103,7 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
         private void SetOneLabelColumn(SetDataColumnsItem columnsItem)
         {
             var textCol1 = new DataGridTextColumn() { Header = columnsItem.Header };
+            textCol1.IsReadOnly = true;
             textCol1.Width = new DataGridLength(columnsItem.DataGridLengthValue, columnsItem.DataGridLengthUnitType);
             var bind = new Binding(columnsItem.BindPath);
             if (columnsItem.DisplayEvent != null)
@@ -281,6 +286,18 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
                 }
             }
             return result;
+        }
+
+        /// <summary>
+        /// 点击行事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridCell_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //https://stackoverflow.com/questions/3426765/single-click-edit-in-wpf-datagrid#3472693
+            //var s = dataGrid.SelectedItem;
+            RowClickAction?.Invoke();
         }
     }
 }
