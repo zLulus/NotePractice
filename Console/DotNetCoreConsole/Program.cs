@@ -44,6 +44,7 @@ using CodeLibraryForDotNetCore.OverrideNewAndVirtual;
 using CodeLibraryForDotNetCore.IndexerAndCollection;
 using CodeLibraryForDotNetCore.Pattern.SingletonPattern;
 using CodeLibraryForDotNetCore.ReadAndWriteXml;
+using CodeLibraryForDotNetCore.UseTimestamp;
 
 namespace DotNetCoreConsole
 {
@@ -185,7 +186,7 @@ namespace DotNetCoreConsole
             //queryTreeDemo.TreeQuery();
 
             //反射
-            ReflectionDemo.Run();
+            //ReflectionDemo.Run();
             //获得方法相关信息
             //ReflectionDemo.UseCallerMemberNameAttribute();
 
@@ -204,6 +205,9 @@ namespace DotNetCoreConsole
 
             //读写xml文件
             //ReadAndWriteXmlDemo.Run();
+
+            //时间戳
+            UseTimeStampDemo.Run();
 
             Console.ReadLine();
         }
