@@ -225,6 +225,7 @@
     <Compile Include="MarginAndPadding\MarginAndPaddingDemo.xaml.cs">
       <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MenuConfigs\CustomMenuItem.cs" />
     <Compile Include="Modules\ModuleMainWindow.xaml.cs">
       <DependentUpon>ModuleMainWindow.xaml</DependentUpon>
     </Compile>
@@ -335,6 +336,9 @@
     </Compile>
     <Compile Include="SingleSelectors\ViewModels\SingleSelectorViewModel.cs" />
     <Compile Include="SingleSelectors\ViewModels\SingleSelector2ViewModel.cs" />
+    <Compile Include="StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StartWindowAndDialog\Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
     </Compile>
@@ -778,6 +782,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="StartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StartWindowAndDialog\Dialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -923,6 +931,7 @@
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
     <None Include="ClosableTabs\README.md" />
+    <None Include="MenuConfigs\MenuConfig.json" />
     <None Include="Converters\ForDataGrid\README.md" />
     <None Include="Converters\ForForm\README.md" />
     <None Include="DynamicallyGeneratedDataGrid\README.md" />

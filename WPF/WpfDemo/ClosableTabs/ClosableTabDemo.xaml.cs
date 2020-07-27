@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -44,8 +46,12 @@ namespace WpfDemo.ClosableTabs
 
         private void button3_Click(object sender, RoutedEventArgs e)
         {
+            Assembly assem;
+            assem = Assembly.LoadFile($"{Directory.GetCurrentDirectory()}\\WpfDemo.exe");
+            var onePage = assem.CreateInstance("WpfDemo.SingleSelectors.SingleSelector");
+
             ClosableTab theTabItem = new ClosableTab();
-            theTabItem.Content = new SingleSelector();
+            theTabItem.Content = onePage;
             theTabItem.Title = "Single Selector";
             tabControl1.Items.Add(theTabItem);
             theTabItem.Focus();
