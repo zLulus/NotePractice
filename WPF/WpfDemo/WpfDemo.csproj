@@ -226,6 +226,9 @@
       <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="MenuConfigs\CustomMenuItem.cs" />
+    <Compile Include="MenuConfigs\PromptTab.xaml.cs">
+      <DependentUpon>PromptTab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ModuleMainWindow.xaml.cs">
       <DependentUpon>ModuleMainWindow.xaml</DependentUpon>
     </Compile>
@@ -639,6 +642,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MenuConfigs\PromptTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modules\ModuleMainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -931,7 +938,9 @@
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
     <None Include="ClosableTabs\README.md" />
-    <None Include="MenuConfigs\MenuConfig.json" />
+    <None Include="MenuConfigs\MenuConfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Converters\ForDataGrid\README.md" />
     <None Include="Converters\ForForm\README.md" />
     <None Include="DynamicallyGeneratedDataGrid\README.md" />

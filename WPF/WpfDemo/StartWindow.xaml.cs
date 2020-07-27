@@ -27,50 +27,59 @@ namespace WpfDemo
         public StartWindow()
         {
             InitializeComponent();
+            
+            //读取自定义菜单json
+            string str = File.ReadAllText($"{Directory.GetCurrentDirectory()}\\MenuConfigs\\MenuConfig.json");
+            List<CustomMenuItem> menu = JsonConvert.DeserializeObject<List<CustomMenuItem>>(str);
 
-            //TODO 读取json
-            List<CustomMenuItem> menu = new List<CustomMenuItem>();
-            var fMenu = new CustomMenuItem()
-            {
-                Title = "Single Selector",
-                DllName = "WpfDemo.exe",
-                ClassName = "WpfDemo.SingleSelectors.SingleSelector",
-                Children = new List<CustomMenuItem>()
-            };
-            menu.Add(fMenu);
-            var s = JsonConvert.SerializeObject(menu);
-
+            //递归生成菜单栏
             foreach(var item in menu)
             {
                 var it = new MenuItem() { Header = item.Title, Tag = item };
-                it.Click += It_Click;
+                it.Click += MenuItem_Click;
                 myMenu.Items.Add(it);
-
-                //todo 递归
+                GenerateMenus(item, it);
             }
 
-           
+            //默认打开tab
+            OpenOneTab(new CustomMenuItem() { Title = "Prompt(提示)", DllName = "WpfDemo.exe", ClassName = "WpfDemo.MenuConfigs.PromptTab" });
         }
 
-        private void It_Click(object sender, RoutedEventArgs e)
+        private void GenerateMenus(CustomMenuItem item, MenuItem it)
+        {
+            if (item.Children != null)
+            {
+                foreach (var child in item.Children)
+                {
+                    var c = new MenuItem() { Header = child.Title, Tag = child };
+                    c.Click += MenuItem_Click;
+                    it.Items.Add(c);
+                    GenerateMenus(child, c);
+                }
+            }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             MenuItem menuItem = sender as MenuItem;
             var data = menuItem.Tag as CustomMenuItem;
             if(!string.IsNullOrEmpty(data.DllName) && !string.IsNullOrEmpty(data.ClassName))
             {
-                //这里可以动态加载其他dll文件中的组件
-                Assembly assem;
-                assem = Assembly.LoadFile($"{Directory.GetCurrentDirectory()}\\{data.DllName}");
-                var onePage = assem.CreateInstance(data.ClassName);
-
-                ClosableTab theTabItem = new ClosableTab();
-                theTabItem.Content = onePage;
-                theTabItem.Title = data.Title;
-                myTabControl.Items.Add(theTabItem);
-                theTabItem.Focus();
+                OpenOneTab(data);
             }
+        }
 
-           
+        private void OpenOneTab(CustomMenuItem data)
+        {
+            //这里可以动态加载其他dll文件中的组件
+            Assembly assem = Assembly.LoadFile($"{Directory.GetCurrentDirectory()}\\{data.DllName}");
+            var onePage = assem.CreateInstance(data.ClassName);
+
+            ClosableTab theTabItem = new ClosableTab();
+            theTabItem.Content = onePage;
+            theTabItem.Title = data.Title;
+            myTabControl.Items.Add(theTabItem);
+            theTabItem.Focus();
         }
     }
 }

@@ -1,8 +1,25 @@
 ﻿[
   {
-    "Title": "测试",
-    "DllName": "WpfDemo.exe",
-    "ClassName": "WpfDemo.SingleSelectors.SingleSelector",
-    "Children": []
+    "Title": "菜单",
+    "DllName": "",
+    "ClassName": "",
+    "Children": [
+      {
+        "Title": "自定义组件",
+        "DllName": "",
+        "ClassName": "",
+        "Children": [
+          {
+            "Title": "Single Selector",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.SingleSelectors.SingleSelector",
+            "Children": [
+            ]
+          }
+
+        ]
+      },
+
+    ]
   }
 ]
