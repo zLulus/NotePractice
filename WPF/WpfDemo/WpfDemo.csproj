@@ -192,6 +192,17 @@
     <Compile Include="InputOnlyNumber\InputOnlyNumberWindow.xaml.cs">
       <DependentUpon>InputOnlyNumberWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ItemsControls\ItemsControlDemo.xaml.cs">
+      <DependentUpon>ItemsControlDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsControls\ItemsControlWindow.xaml.cs">
+      <DependentUpon>ItemsControlWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsControls\ViewModels\EditDataModelEditionViewModel.cs" />
+    <Compile Include="ItemsControls\ViewModels\EditDataModelItemViewModel.cs" />
+    <Compile Include="ItemsControls\ViewModels\EditDataModelOneTableViewModel.cs" />
+    <Compile Include="ItemsControls\ViewModels\BaseNotifyPropertyChanged.cs" />
+    <Compile Include="ItemsControls\ViewModels\EnumInfo.cs" />
     <Compile Include="LoadingDataAsync\LoadingDataAsyncWindow.xaml.cs">
       <DependentUpon>LoadingDataAsyncWindow.xaml</DependentUpon>
     </Compile>
@@ -519,6 +530,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="InputOnlyNumber\InputOnlyNumberWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemsControls\ItemsControlDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemsControls\ItemsControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

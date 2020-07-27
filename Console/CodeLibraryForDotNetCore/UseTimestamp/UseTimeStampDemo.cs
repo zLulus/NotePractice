@@ -8,7 +8,7 @@ namespace CodeLibraryForDotNetCore.UseTimestamp
     {
         public static void Run()
         {
-            TimeStampConvertEnum timeStampConvert = TimeStampConvertEnum.MilliSecond;
+            TimeStampConvertEnum timeStampConvert = TimeStampConvertEnum.Second;
             var timeStamp = GetTimestamp(timeStampConvert);
             var t = GetTime(timeStamp, timeStampConvert);
         }
