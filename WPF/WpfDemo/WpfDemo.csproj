@@ -116,6 +116,13 @@
       <DependentUpon>SelectAllAndCancleCheckBoxWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="CheckBox\ViewModels\SelectAllAndCancleCheckBoxViewModel.cs" />
+    <Compile Include="ClosableTabs\ClosableTab.cs" />
+    <Compile Include="ClosableTabs\ClosableTabDemo.xaml.cs">
+      <DependentUpon>ClosableTabDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClosableTabs\CloseableHeader.xaml.cs">
+      <DependentUpon>CloseableHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Command\CommandDemoWithBindParameters.xaml.cs">
       <DependentUpon>CommandDemoWithBindParameters.xaml</DependentUpon>
     </Compile>
@@ -454,6 +461,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CheckBox\SelectAllAndCancleCheckBoxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClosableTabs\ClosableTabDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClosableTabs\CloseableHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -907,6 +922,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
+    <None Include="ClosableTabs\README.md" />
     <None Include="Converters\ForDataGrid\README.md" />
     <None Include="Converters\ForForm\README.md" />
     <None Include="DynamicallyGeneratedDataGrid\README.md" />
