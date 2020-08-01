@@ -5,14 +5,113 @@
     "ClassName": "",
     "Children": [
       {
-        "Title": "自定义组件",
+        "Title": "组件",
         "DllName": "",
         "ClassName": "",
         "Children": [
           {
-            "Title": "Single Selector",
+            "Title": "自定义组件",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "自定义组件Single Selector",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.SingleSelectors.SingleSelector",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "自定义组件  动态生成DataGrid",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.DynamicallyGeneratedDataGrid.DemoWindow",
+                "Children": [
+                ]
+              }
+            ]
+          },
+          {
+            "Title": "CheckBox",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+
+              {
+                "Title": "CheckBox基础使用",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.CheckBox.CheckBoxDemo",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "CheckBox和DataGrid",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.CheckBox.SelectAllAndCancleCheckBoxWindow",
+                "Children": [
+                ]
+              }
+            ]
+          },
+          {
+            "Title": "带关闭按钮的Tab",
             "DllName": "WpfDemo.exe",
-            "ClassName": "WpfDemo.SingleSelectors.SingleSelector",
+            "ClassName": "WpfDemo.ClosableTabs.ClosableTabDemo",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "菜单栏",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.ContextMenus.CreateContextMenuWindow",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "按钮",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "自定义按钮Button1",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.CustomButton.TestCustomButtonWindow",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "自定义按钮Button2",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.CustomerWindow.ButtonShowToolTip",
+                "Children": [
+                ]
+              }
+            ]
+          },
+          {
+            "Title": "Border",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "神奇的Border响应问题",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Borders.BorderTestWindow",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "自定义Border",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.DependencyProperties.TestCustomTextBlock",
+                "Children": [
+                ]
+              }
+            ]
+          },
+          {
+            "Title": "Expander基本使用",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Expander.ExpanderDemo",
             "Children": [
             ]
           }
@@ -35,6 +134,27 @@
             "Title": "绑定控件",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Bind.BindDemoForView",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "DataGrid后台绑定",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Bind.DataGridBackgroundBind",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "DataGrid前端复杂绑定",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Bind.DataGridBindMultiData",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "DataGrid DataContext And ItemSource",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.DataContextAndItemSource.DataContextAndItemSource",
             "Children": [
             ]
           }
@@ -71,6 +191,76 @@
             "Title": "前端生成动画",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Animations.RectangleAnimationWindow2",
+            "Children": [
+            ]
+          }
+        ]
+      },
+      {
+        "Title": "其他",
+        "DllName": "",
+        "ClassName": "",
+        "Children": [
+          {
+            "Title": "Dispatcher修改UI",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.ChangeUI.ChangeUIDemo",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "Command",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "Command1",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Command.CommandDemoWithBindParameters",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "Command1",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Command.CommandDemoWithParameters",
+                "Children": [
+                ]
+              }
+            ]
+          },
+          {
+            "Title": "Converter",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "Converter基本使用",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Converters.ForForm.FormWindow",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "Converter和DataGrid",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Converters.DataGridWindow",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "ColorConvert",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Converts.ConvertDemo",
+                "Children": [
+                ]
+              }
+            ]
+          },
+          {
+            "Title": "FTP",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.FTP.FTPWindow",
             "Children": [
             ]
           }

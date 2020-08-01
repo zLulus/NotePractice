@@ -18,7 +18,7 @@ namespace WpfDemo.ChangeUI
     /// <summary>
     /// ChangeUIDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class ChangeUIDemo : Window
+    public partial class ChangeUIDemo : UserControl
     {
         public ChangeUIDemo()
         {

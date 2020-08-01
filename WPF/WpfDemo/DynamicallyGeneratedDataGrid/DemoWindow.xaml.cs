@@ -22,7 +22,7 @@ namespace WpfDemo.DynamicallyGeneratedDataGrid
     /// <summary>
     /// DemoWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class DemoWindow : Window
+    public partial class DemoWindow : UserControl
     {
         DemoViewModel demoViewModel;
         public DemoWindow()

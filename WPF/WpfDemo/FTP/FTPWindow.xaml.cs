@@ -21,7 +21,7 @@ namespace WpfDemo.FTP
     /// <summary>
     /// FTPWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class FTPWindow : Window
+    public partial class FTPWindow : System.Windows.Controls.UserControl
     {
         #region 文件占用
         [DllImport("kernel32.dll")]

@@ -17,7 +17,7 @@ namespace WpfDemo.ContextMenus
     /// <summary>
     /// CreateContextMenuWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class CreateContextMenuWindow : Window
+    public partial class CreateContextMenuWindow : UserControl
     {
         public CreateContextMenuWindow()
         {

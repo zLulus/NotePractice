@@ -19,7 +19,7 @@ namespace WpfDemo.Command
     /// <summary>
     /// Interaction logic for CommandDemoWithParameters.xaml
     /// </summary>
-    public partial class CommandDemoWithParameters : Window
+    public partial class CommandDemoWithParameters : UserControl
     {
         CommandDemoWithParametersViewModel vm = new CommandDemoWithParametersViewModel();
         public CommandDemoWithParameters()

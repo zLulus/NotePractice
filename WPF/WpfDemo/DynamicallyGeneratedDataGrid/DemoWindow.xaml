@@ -1,11 +1,10 @@
-﻿<Window x:Class="WpfDemo.DynamicallyGeneratedDataGrid.DemoWindow"
+﻿<UserControl x:Class="WpfDemo.DynamicallyGeneratedDataGrid.DemoWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.DynamicallyGeneratedDataGrid"
-        mc:Ignorable="d"
-        Title="DemoWindow" Height="450" Width="800">
+        mc:Ignorable="d" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -16,4 +15,4 @@
             <Button Content="获得所有选择项" Click="GetSelectList_Click"></Button>
         </StackPanel>
     </Grid>
-</Window>
+</UserControl>

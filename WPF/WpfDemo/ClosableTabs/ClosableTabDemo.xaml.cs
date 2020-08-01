@@ -20,7 +20,7 @@ namespace WpfDemo.ClosableTabs
     /// <summary>
     /// ClosableTabDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class ClosableTabDemo : Window
+    public partial class ClosableTabDemo : UserControl
     {
         public ClosableTabDemo()
         {

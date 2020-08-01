@@ -17,7 +17,7 @@ namespace WpfDemo.CustomButton
     /// <summary>
     /// TestCustomButtonWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class TestCustomButtonWindow : Window
+    public partial class TestCustomButtonWindow : UserControl
     {
         public TestCustomButtonWindow()
         {

@@ -22,7 +22,7 @@ namespace WpfDemo.Bind
     /// <summary>
     /// Interaction logic for DataGridBackgroundBind.xaml
     /// </summary>
-    public partial class DataGridBackgroundBind : Window, INotifyPropertyChanged
+    public partial class DataGridBackgroundBind : UserControl, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private DataTable _dt;

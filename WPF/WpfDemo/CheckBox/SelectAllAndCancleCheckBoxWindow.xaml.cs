@@ -18,7 +18,7 @@ namespace WpfDemo.CheckBox
     /// <summary>
     /// SelectAllAndCancleCheckBoxWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class SelectAllAndCancleCheckBoxWindow : Window
+    public partial class SelectAllAndCancleCheckBoxWindow : UserControl
     {
         public SelectAllAndCancleCheckBoxWindow()
         {

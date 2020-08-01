@@ -17,7 +17,7 @@ namespace WpfDemo.CustomerWindow
     /// <summary>
     /// ButtonShowToolTip.xaml 的交互逻辑
     /// </summary>
-    public partial class ButtonShowToolTip : Window
+    public partial class ButtonShowToolTip : UserControl
     {
         public ButtonShowToolTip()
         {

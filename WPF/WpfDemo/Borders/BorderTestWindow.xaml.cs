@@ -17,7 +17,7 @@ namespace WpfDemo.Borders
     /// <summary>
     /// BorderTestWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class BorderTestWindow : Window
+    public partial class BorderTestWindow : UserControl
     {
         public BorderTestWindow()
         {

@@ -19,7 +19,7 @@ namespace WpfDemo.Bind
     /// <summary>
     /// Interaction logic for DataGridBindMultiData.xaml
     /// </summary>
-    public partial class DataGridBindMultiData : Window
+    public partial class DataGridBindMultiData : UserControl
     {
         ObservableCollection<Teacher> teachers;
         public DataGridBindMultiData()

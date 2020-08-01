@@ -18,7 +18,7 @@ namespace WpfDemo.Converters
     /// <summary>
     /// DataGridWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class DataGridWindow : Window
+    public partial class DataGridWindow : UserControl
     {
         public DataGridWindow()
         {

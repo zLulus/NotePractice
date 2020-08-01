@@ -18,7 +18,7 @@ namespace WpfDemo.Converters.ForForm
     /// <summary>
     /// FormWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class FormWindow : Window
+    public partial class FormWindow : UserControl
     {
         EditFieldMetaViewModel vm;
         public FormWindow()

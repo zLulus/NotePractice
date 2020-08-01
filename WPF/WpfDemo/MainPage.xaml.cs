@@ -45,8 +45,8 @@ namespace WpfDemo
 
         private void ButtonShowToolTip(object sender, RoutedEventArgs e)
         {
-            ButtonShowToolTip window = new ButtonShowToolTip();
-            window.Show();
+            //ButtonShowToolTip window = new ButtonShowToolTip();
+            //window.Show();
         }
     }
 }

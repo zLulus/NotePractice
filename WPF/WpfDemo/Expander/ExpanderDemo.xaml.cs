@@ -17,7 +17,7 @@ namespace WpfDemo.Expander
     /// <summary>
     /// ExpanderDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class ExpanderDemo : Window
+    public partial class ExpanderDemo : UserControl
     {
         public ExpanderDemo()
         {
