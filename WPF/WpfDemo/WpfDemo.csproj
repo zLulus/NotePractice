@@ -1011,4 +1011,9 @@
   </Target>
   <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties MenuConfigs_4MenuConfig_1json__JSONSchema="http://json.schemastore.org/jovo-language-model" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

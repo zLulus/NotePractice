@@ -18,7 +18,7 @@ namespace WpfDemo.Animations
     /// <summary>
     /// RectangleAnimationWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class RectangleAnimationWindow : Window
+    public partial class RectangleAnimationWindow : UserControl
     {
         //https://docs.microsoft.com/zh-cn/dotnet/framework/wpf/graphics-multimedia/animation-overview?WT.mc_id=DT-MVP-5003010&WT.mc_id=DT-MVP-5003010
         //后端实现方法

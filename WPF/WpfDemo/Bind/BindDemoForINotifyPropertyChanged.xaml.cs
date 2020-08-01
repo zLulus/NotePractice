@@ -18,7 +18,7 @@ namespace WpfDemo.Bind
     /// <summary>
     /// BindDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class BindDemoForINotifyPropertyChanged : Window
+    public partial class BindDemoForINotifyPropertyChanged : UserControl
     {
         public BindDemoForINotifyPropertyChanged()
         {

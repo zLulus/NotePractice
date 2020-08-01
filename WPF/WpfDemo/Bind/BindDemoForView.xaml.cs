@@ -17,7 +17,7 @@ namespace WpfDemo.Bind
     /// <summary>
     /// BindDemoForView.xaml 的交互逻辑
     /// </summary>
-    public partial class BindDemoForView : Window
+    public partial class BindDemoForView : UserControl
     {
         public BindDemoForView()
         {

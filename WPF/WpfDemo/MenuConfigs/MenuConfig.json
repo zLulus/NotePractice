@@ -19,7 +19,63 @@
 
         ]
       },
+      {
+        "Title": "绑定",
+        "DllName": "",
+        "ClassName": "",
+        "Children": [
+          {
+            "Title": "简单绑定",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Bind.BindDemoForINotifyPropertyChanged",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "绑定控件",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Bind.BindDemoForView",
+            "Children": [
+            ]
+          }
+        ]
+      },
+      {
+        "Title": "使用资源",
+        "DllName": "",
+        "ClassName": "",
+        "Children": [
+          {
+            "Title": "资源数组",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.ArrayExtension.ArrayExtensionDemo",
+            "Children": [
+            ]
+          }
 
+        ]
+      },
+      {
+        "Title": "动画",
+        "DllName": "",
+        "ClassName": "",
+        "Children": [
+          {
+            "Title": "后端生成动画",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Animations.RectangleAnimationWindow",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "前端生成动画",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Animations.RectangleAnimationWindow2",
+            "Children": [
+            ]
+          }
+        ]
+      }
     ]
   }
 ]
