@@ -17,7 +17,7 @@ namespace WpfDemo.MultiBinding
     /// <summary>
     /// MultiBindingDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class MultiBindingDemo : Window
+    public partial class MultiBindingDemo : UserControl
     {
         public MultiBindingDemo()
         {

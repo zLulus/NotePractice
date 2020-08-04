@@ -29,8 +29,8 @@ namespace WpfDemo
 
         private void ShowKeyboard(object sender, RoutedEventArgs e)
         {
-            InputNumberWindow window = new InputNumberWindow();
-            window.Show();
+            //InputNumberWindow window = new InputNumberWindow();
+            //window.Show();
         }
 
         private void PagePop(object sender, RoutedEventArgs e)

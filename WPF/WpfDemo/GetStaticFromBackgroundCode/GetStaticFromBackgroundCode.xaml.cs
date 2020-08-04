@@ -17,7 +17,7 @@ namespace WpfDemo.GetStaticFromBackgroundCode
     /// <summary>
     /// GetStaticFromBackgroundCode.xaml 的交互逻辑
     /// </summary>
-    public partial class GetStaticFromBackgroundCode : Window
+    public partial class GetStaticFromBackgroundCode : UserControl
     {
         public static string Name = "这是来自后台的静态变量";
         public GetStaticFromBackgroundCode()

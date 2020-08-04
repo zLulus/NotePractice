@@ -20,7 +20,7 @@ namespace WpfDemo.HistoricalDataManage
     /// <summary>
     /// HistoricalDataManageWithTimeWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class HistoricalDataManageWithTimeWindow : Window
+    public partial class HistoricalDataManageWithTimeWindow : UserControl
     {
         SqliteTool sqliteTool;
         string tableName = "StudentScore";

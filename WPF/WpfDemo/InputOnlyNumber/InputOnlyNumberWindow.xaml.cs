@@ -18,7 +18,7 @@ namespace WpfDemo.InputOnlyNumber
     /// <summary>
     /// InputOnlyNumberWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class InputOnlyNumberWindow : Window
+    public partial class InputOnlyNumberWindow : UserControl
     {
         public InputOnlyNumberWindow()
         {

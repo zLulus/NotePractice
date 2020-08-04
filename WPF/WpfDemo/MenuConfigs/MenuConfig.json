@@ -22,10 +22,45 @@
                 ]
               },
               {
-                "Title": "自定义组件  动态生成DataGrid",
+                "Title": "自定义组件 动态生成DataGrid",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.DynamicallyGeneratedDataGrid.DemoWindow",
                 "Children": [
+                ]
+              },
+              {
+                "Title": "自定义组件 只允许输入数字",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.InputOnlyNumber.InputOnlyNumberWindow",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "自定义组件 9格数字键盘",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.InputNumberWindow",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "自定义组件 可拖拽缩放控件",
+                "DllName": "",
+                "ClassName": "",
+                "Children": [
+                  {
+                    "Title": "控件1",
+                    "DllName": "WpfDemo.exe",
+                    "ClassName": "WpfDemo.MoveAndResizeControl.MoveAndResizeControlWindow",
+                    "Children": [
+                    ]
+                  },
+                  {
+                    "Title": "控件2",
+                    "DllName": "WpfDemo.exe",
+                    "ClassName": "WpfDemo.MoveAndResizeControl.MoveAndResizeControlWindow2",
+                    "Children": [
+                    ]
+                  }
                 ]
               }
             ]
@@ -114,8 +149,28 @@
             "ClassName": "WpfDemo.Expander.ExpanderDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "ItemsControl基本使用",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.ItemsControls.ItemsControlDemo",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "DataGrid",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "DataGrid 异步加载数据",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.LoadingDataAsync.LoadingDataAsyncWindow",
+                "Children": [
+                ]
+              }
+            ]
           }
-
         ]
       },
       {
@@ -157,6 +212,13 @@
             "ClassName": "WpfDemo.DataContextAndItemSource.DataContextAndItemSource",
             "Children": [
             ]
+          },
+          {
+            "Title": "MultiBinding",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.MultiBinding.MultiBindingDemo",
+            "Children": [
+            ]
           }
         ]
       },
@@ -171,8 +233,14 @@
             "ClassName": "WpfDemo.ArrayExtension.ArrayExtensionDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "后台静态资源",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.GetStaticFromBackgroundCode.GetStaticFromBackgroundCode",
+            "Children": [
+            ]
           }
-
         ]
       },
       {
@@ -194,6 +262,27 @@
             "Children": [
             ]
           }
+        ]
+      },
+      {
+        "Title": "逻辑树和视觉树",
+        "DllName": "WpfDemo.exe",
+        "ClassName": "WpfDemo.LogicalTreeAndVisualTree.LogicalTreeAndVisualTreeWindow",
+        "Children": [
+        ]
+      },
+      {
+        "Title": "布局",
+        "DllName": "WpfDemo.exe",
+        "ClassName": "WpfDemo.Modules.ModuleMainWindow",
+        "Children": [
+        ]
+      },
+      {
+        "Title": "Margin 和 Padding",
+        "DllName": "WpfDemo.exe",
+        "ClassName": "WpfDemo.MarginAndPadding.MarginAndPaddingDemo",
+        "Children": [
         ]
       },
       {
@@ -261,6 +350,13 @@
             "Title": "FTP",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.FTP.FTPWindow",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "历史数据处理(水平分库分表)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.HistoricalDataManage.HistoricalDataManageWithTimeWindow",
             "Children": [
             ]
           }

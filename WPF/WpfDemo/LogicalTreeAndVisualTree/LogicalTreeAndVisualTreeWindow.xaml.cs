@@ -18,7 +18,7 @@ namespace WpfDemo.LogicalTreeAndVisualTree
     /// <summary>
     /// LogicalTreeAndVisualTreeWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class LogicalTreeAndVisualTreeWindow : Window
+    public partial class LogicalTreeAndVisualTreeWindow : UserControl
     {
         public LogicalTreeAndVisualTreeWindow()
         {

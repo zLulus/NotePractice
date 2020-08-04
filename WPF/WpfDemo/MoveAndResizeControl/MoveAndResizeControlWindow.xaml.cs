@@ -12,7 +12,7 @@ namespace WpfDemo.MoveAndResizeControl
     /// <summary>
     /// MoveAndResizeControlWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MoveAndResizeControlWindow : Window
+    public partial class MoveAndResizeControlWindow : UserControl
     {
         private Element current = new Element();
         DateTime? lastPressTime = null;

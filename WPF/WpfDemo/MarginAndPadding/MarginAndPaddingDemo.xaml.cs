@@ -17,7 +17,7 @@ namespace WpfDemo.MarginAndPadding
     /// <summary>
     /// MarginAndPaddingDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class MarginAndPaddingDemo : Window
+    public partial class MarginAndPaddingDemo : UserControl
     {
         public MarginAndPaddingDemo()
         {

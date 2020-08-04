@@ -20,7 +20,7 @@ namespace WpfDemo.LoadingDataAsync
     /// <summary>
     /// Interaction logic for LoadingDataAsyncWindow.xaml
     /// </summary>
-    public partial class LoadingDataAsyncWindow : Window
+    public partial class LoadingDataAsyncWindow : UserControl
     {
         ObservableCollection<Doctor> students;
         Random random;

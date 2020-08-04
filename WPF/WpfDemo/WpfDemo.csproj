@@ -938,6 +938,7 @@
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
     <None Include="ClosableTabs\README.md" />
+    <None Include="ItemsControls\README.md" />
     <None Include="MenuConfigs\MenuConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -1013,7 +1014,7 @@
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets')" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MenuConfigs_4MenuConfig_1json__JSONSchema="http://json.schemastore.org/jovo-language-model" />
+      <UserProperties MenuConfigs_4MenuConfig_1json__JSONSchema="https://raw.githubusercontent.com/ray-project/ray/master/python/ray/autoscaler/ray-schema.json" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -17,7 +17,7 @@ namespace WpfDemo.Modules
     /// <summary>
     /// Interaction logic for ModuleMainWindow.xaml
     /// </summary>
-    public partial class ModuleMainWindow : Window
+    public partial class ModuleMainWindow : UserControl
     {
         public ModuleMainWindow()
         {
