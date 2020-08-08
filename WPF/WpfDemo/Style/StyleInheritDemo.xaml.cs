@@ -17,7 +17,7 @@ namespace WpfDemo.Style
     /// <summary>
     /// StyleInheritDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class StyleInheritDemo : Window
+    public partial class StyleInheritDemo : UserControl
     {
         public StyleInheritDemo()
         {

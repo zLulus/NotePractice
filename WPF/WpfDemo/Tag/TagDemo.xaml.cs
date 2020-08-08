@@ -17,7 +17,7 @@ namespace WpfDemo.Tag
     /// <summary>
     /// TagDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class TagDemo : Window
+    public partial class TagDemo : UserControl
     {
         public TagDemo()
         {

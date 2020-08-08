@@ -17,7 +17,7 @@ namespace WpfDemo.TabSetting
     /// <summary>
     /// TabSettingDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class TabSettingDemo : Window
+    public partial class TabSettingDemo : UserControl
     {
         public TabSettingDemo()
         {

@@ -234,6 +234,27 @@
             "ClassName": "WpfDemo.RadioButton.RadioButtonDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "Dialog",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.StartWindowAndDialog.StartWindow",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "TabIndex",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.TabSetting.TabSettingDemo",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "Tag",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Tag.TagDemo",
+            "Children": [
+            ]
           }
         ]
       },
@@ -309,6 +330,48 @@
             "Title": "后台静态资源",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.GetStaticFromBackgroundCode.GetStaticFromBackgroundCode",
+            "Children": [
+            ]
+          }
+        ]
+      },
+      {
+        "Title": "样式",
+        "DllName": "",
+        "ClassName": "",
+        "Children": [
+          {
+            "Title": "在文件中设置样式1",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Style.StyleDemo",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "使用静态资源设置样式",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Style.StyleDemo2",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "使用静态资源设置样式2",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Style.StyleInheritDemo",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "样式继承",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Style.StyleInheritDemo2",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "引用样式文件",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Style.UseResourceDictionaryDemo",
             "Children": [
             ]
           }

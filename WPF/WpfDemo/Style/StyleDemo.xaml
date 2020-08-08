@@ -1,11 +1,10 @@
-﻿<Window x:Class="WpfDemo.Style.StyleDemo"
+﻿<UserControl x:Class="WpfDemo.Style.StyleDemo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.Style"
-        mc:Ignorable="d"
-        Title="StyleDemo" Height="300" Width="300" Background="Black">
+        mc:Ignorable="d" Background="Black">
     <Grid>
         <Grid.Resources>
             <!--外部-->
@@ -23,4 +22,4 @@
             </Button.Resources>
         </Button>
     </Grid>
-</Window>
+</UserControl>
