@@ -12,16 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace WpfDemo.Trigger
+namespace WpfDemo.WindowIconAndBackground
 {
     /// <summary>
-    /// TriggerDemo.xaml 的交互逻辑
+    /// WindowIconAndBackgroundStartPage.xaml 的交互逻辑
     /// </summary>
-    public partial class TriggerDemo : UserControl
+    public partial class WindowIconAndBackgroundStartPage : UserControl
     {
-        public TriggerDemo()
+        public WindowIconAndBackgroundStartPage()
         {
             InitializeComponent();
+        }
+
+        private void OpenWindow_Click(object sender, RoutedEventArgs e)
+        {
+            WindowIconAndBackgroundDemo window = new WindowIconAndBackgroundDemo();
+            window.Show();
         }
     }
 }

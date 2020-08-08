@@ -19,7 +19,7 @@ namespace WpfDemo.Trigger
     /// <summary>
     /// DataTriggerDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class DataTriggerDemo : Window
+    public partial class DataTriggerDemo : UserControl
     {
         public DataTriggerDemo()
         {

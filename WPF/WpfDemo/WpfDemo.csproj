@@ -433,6 +433,9 @@
     <Compile Include="WindowIconAndBackground\WindowIconAndBackgroundDemo.xaml.cs">
       <DependentUpon>WindowIconAndBackgroundDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowIconAndBackground\WindowIconAndBackgroundStartPage.xaml.cs">
+      <DependentUpon>WindowIconAndBackgroundStartPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="Animations\RectangleAnimationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -919,6 +922,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowIconAndBackground\WindowIconAndBackgroundStartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MultiBinding\MultiBindingDemo.xaml.cs">
@@ -973,6 +980,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="SingleSelectors\README.md" />
+    <None Include="UserControlDemo\README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

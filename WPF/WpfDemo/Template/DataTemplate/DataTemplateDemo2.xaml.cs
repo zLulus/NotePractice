@@ -19,7 +19,7 @@ namespace WpfDemo.Template.DataTemplate
     /// <summary>
     /// DataTemplateDemo2.xaml 的交互逻辑
     /// </summary>
-    public partial class DataTemplateDemo2 : Window
+    public partial class DataTemplateDemo2 : UserControl
     {
         public DataTemplateDemo2()
         {

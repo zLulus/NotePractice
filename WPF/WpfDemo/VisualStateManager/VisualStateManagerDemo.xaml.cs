@@ -17,7 +17,7 @@ namespace WpfDemo.VisualStateManager
     /// <summary>
     /// VisualStateManagerDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class VisualStateManagerDemo : Window
+    public partial class VisualStateManagerDemo : UserControl
     {
         public VisualStateManagerDemo()
         {

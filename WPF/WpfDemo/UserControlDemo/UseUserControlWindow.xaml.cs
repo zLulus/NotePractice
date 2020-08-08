@@ -17,7 +17,7 @@ namespace WpfDemo.UserControlDemo
     /// <summary>
     /// UseUserControlWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class UseUserControlWindow : Window
+    public partial class UseUserControlWindow : UserControl
     {
         public UseUserControlWindow()
         {

@@ -1,11 +1,10 @@
-﻿<Window x:Class="WpfDemo.Template.DataTemplate.DataTemplateByCodeDemoWindow"
+﻿<UserControl x:Class="WpfDemo.Template.DataTemplate.DataTemplateByCodeDemoWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.Template"
-        mc:Ignorable="d"
-        Title="DataTemplateByCodeDemoWindow" Height="700" Width="800">
+        mc:Ignorable="d">
     <StackPanel Orientation="Vertical">
         <Label Content="通过FrameworkElementFactory动态生成控件"></Label>
         <DataGrid Name="dataGrid1" ItemsSource="{Binding }">
@@ -27,4 +26,4 @@
         </DataGrid>
         <Button Content="动态生成" Click="GenerateByXmlReader_Click"></Button>
     </StackPanel>
-</Window>
+</UserControl>

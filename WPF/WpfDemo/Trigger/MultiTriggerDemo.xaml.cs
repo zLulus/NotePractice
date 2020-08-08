@@ -17,7 +17,7 @@ namespace WpfDemo.Trigger
     /// <summary>
     /// Interaction logic for MultiTriggerDemo.xaml
     /// </summary>
-    public partial class MultiTriggerDemo : Window
+    public partial class MultiTriggerDemo : UserControl
     {
         public MultiTriggerDemo()
         {

@@ -15,6 +15,34 @@
             "ClassName": "",
             "Children": [
               {
+                "Title": "UserControl 用户控件的创建与使用",
+                "DllName": "",
+                "ClassName": "",
+                "Children": [
+                  {
+                    "Title": "用户控件1",
+                    "DllName": "WpfDemo.exe",
+                    "ClassName": "WpfDemo.UserControlDemo.OwnUserControl",
+                    "Children": [
+                    ]
+                  },
+                  {
+                    "Title": "嵌套用户控件1",
+                    "DllName": "WpfDemo.exe",
+                    "ClassName": "WpfDemo.UserControlDemo.UseUserControlUserControl",
+                    "Children": [
+                    ]
+                  },
+                  {
+                    "Title": "嵌套两个用户控件",
+                    "DllName": "WpfDemo.exe",
+                    "ClassName": "WpfDemo.UserControlDemo.UseUserControlWindow",
+                    "Children": [
+                    ]
+                  }
+                ]
+              },
+              {
                 "Title": "自定义组件Single Selector",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.SingleSelectors.SingleSelector",
@@ -255,6 +283,13 @@
             "ClassName": "WpfDemo.Tag.TagDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "TextBlock Run",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.TextBlockRun.TextBlockRunDemo",
+            "Children": [
+            ]
           }
         ]
       },
@@ -311,6 +346,13 @@
             "ClassName": "WpfDemo.PropertyChanged.ChangeStudentInfo",
             "Children": [
             ]
+          },
+          {
+            "Title": "ListView绑定",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Template.DataTemplate.DataTemplateDemo2",
+            "Children": [
+            ]
           }
         ]
       },
@@ -330,6 +372,13 @@
             "Title": "后台静态资源",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.GetStaticFromBackgroundCode.GetStaticFromBackgroundCode",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "设置图片背景",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.WindowIconAndBackground.WindowIconAndBackgroundStartPage",
             "Children": [
             ]
           }
@@ -372,6 +421,104 @@
             "Title": "引用样式文件",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Style.UseResourceDictionaryDemo",
+            "Children": [
+            ]
+          }
+        ]
+      },
+      {
+        "Title": "Template",
+        "DllName": "",
+        "ClassName": "",
+        "Children": [
+          {
+            "Title": "ControlTemplate",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "ControlTemplate1",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Template.ControlTemplate.ControlTemplateDemo",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "ControlTemplate2",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Template.ControlTemplate.ControlTemplateDemo2",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "ControlTemplate3",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Template.ControlTemplate.ControlTemplateDemo3",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "VisualStateManager",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.VisualStateManager.VisualStateManagerDemo",
+                "Children": [
+                ]
+              }
+            ]
+          },
+          {
+            "Title": "DataTemplate",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "DataTemplate后端",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Template.DataTemplate.DataTemplateByCodeDemoWindow",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "DataTemplate前端",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Template.DataTemplate.DataTemplateDemo",
+                "Children": [
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Title": "Trigger 触发器",
+        "DllName": "",
+        "ClassName": "",
+        "Children": [
+          {
+            "Title": "Trigger",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Trigger.TriggerDemo",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "EventTrigger",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Trigger.EventTriggerDemo",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "MultiTrigger",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Trigger.MultiTriggerDemo",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "DataTrigger",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Trigger.DataTriggerDemo",
             "Children": [
             ]
           }
