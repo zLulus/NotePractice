@@ -1,12 +1,11 @@
-﻿<Window x:Class="WpfDemo.MultiSelectors.MultiSelectorWindow"
+﻿<UserControl x:Class="WpfDemo.MultiSelectors.MultiSelectorWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.MultiSelectors"
         mc:Ignorable="d"
-        xmlns:ui="clr-namespace:WpfDemo.MultiSelectors"
-        Title="MultiSelectorWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        xmlns:ui="clr-namespace:WpfDemo.MultiSelectors" Loaded="Window_Loaded">
     <Grid>
         <DockPanel>
             <Border DockPanel.Dock="Right">
@@ -28,4 +27,4 @@
         </DockPanel>
 
     </Grid>
-</Window>
+</UserControl>

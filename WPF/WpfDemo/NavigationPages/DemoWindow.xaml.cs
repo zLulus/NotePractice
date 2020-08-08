@@ -17,7 +17,7 @@ namespace WpfDemo.NavigationPages
     /// <summary>
     /// DemoWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class DemoWindow : Window
+    public partial class DemoWindow : UserControl
     {
         public DemoWindow()
         {

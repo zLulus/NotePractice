@@ -21,7 +21,7 @@ namespace WpfDemo.PrintImage
     /// <summary>
     /// PrintImageWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class PrintImageWindow : Window
+    public partial class PrintImageWindow : UserControl
     {
         private string outputDic { get { return $"{AppDomain.CurrentDomain.BaseDirectory}\\Temp\\"; } }
         public PrintImageWindow()

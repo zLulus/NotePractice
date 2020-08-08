@@ -17,7 +17,7 @@ namespace WpfDemo.SingleSelectors
     /// <summary>
     /// SingleSelectorWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class SingleSelectorWindow : Window
+    public partial class SingleSelectorWindow : UserControl
     {
         public SingleSelectorWindow()
         {

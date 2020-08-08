@@ -18,7 +18,7 @@ namespace WpfDemo.PauseAndResumeTask
     /// <summary>
     /// PauseAndResumeTaskWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class PauseAndResumeTaskWindow : Window
+    public partial class PauseAndResumeTaskWindow : UserControl
     {
         PauseTokenSource pts;
         Task task;

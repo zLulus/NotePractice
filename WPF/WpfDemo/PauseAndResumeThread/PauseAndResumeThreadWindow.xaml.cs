@@ -19,7 +19,7 @@ namespace WpfDemo.PauseAndResumeThread
     /// <summary>
     /// PauseAndResumeThreadWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class PauseAndResumeThreadWindow : Window
+    public partial class PauseAndResumeThreadWindow : UserControl
     {
         //https://docs.microsoft.com/zh-cn/dotnet/api/system.threading.thread?view=netcore-3.1
         //https://docs.microsoft.com/zh-cn/dotnet/standard/threading/pausing-and-resuming-threads

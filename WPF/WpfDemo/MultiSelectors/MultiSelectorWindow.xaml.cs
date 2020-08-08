@@ -17,7 +17,7 @@ namespace WpfDemo.MultiSelectors
     /// <summary>
     /// MultiSelectorWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MultiSelectorWindow : Window
+    public partial class MultiSelectorWindow : UserControl
     {
         public MultiSelectorWindow()
         {

@@ -17,7 +17,7 @@ namespace WpfDemo.RadioButton
     /// <summary>
     /// RadioButtonDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class RadioButtonDemo : Window
+    public partial class RadioButtonDemo : UserControl
     {
         public RadioButtonDemo()
         {

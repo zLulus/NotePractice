@@ -278,6 +278,9 @@
     <Compile Include="NoneBorder\NoneBorderDemo.xaml.cs">
       <DependentUpon>NoneBorderDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NoneBorder\NoneBorderStartPage.xaml.cs">
+      <DependentUpon>NoneBorderStartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OpenFiles\Commands\OpenFileCommand.cs" />
     <Compile Include="OpenFiles\OpenTxtFileWindow.xaml.cs">
       <DependentUpon>OpenTxtFileWindow.xaml</DependentUpon>
@@ -304,6 +307,9 @@
     <Compile Include="PrintTable\Dtos\TestData.cs" />
     <Compile Include="PrintTable\PrintPreviewWindow.xaml.cs">
       <DependentUpon>PrintPreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintTable\PrintTableStartPage.xaml.cs">
+      <DependentUpon>PrintTableStartPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="PrintTable\Templates\IDocumentRenderer.cs" />
     <Compile Include="PrintTable\PrintTableWindow.xaml.cs">
@@ -722,6 +728,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NoneBorder\NoneBorderStartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OpenFiles\OpenTxtFileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -747,6 +757,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PrintTable\PrintPreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintTable\PrintTableStartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1014,7 +1028,7 @@
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets')" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties MenuConfigs_4MenuConfig_1json__JSONSchema="https://raw.githubusercontent.com/ray-project/ray/master/python/ray/autoscaler/ray-schema.json" />
+      <UserProperties MenuConfigs_4MenuConfig_1json__JSONSchema="https://raw.githubusercontent.com/stryker-mutator/stryker/master/packages/api/schema/stryker-core.json" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

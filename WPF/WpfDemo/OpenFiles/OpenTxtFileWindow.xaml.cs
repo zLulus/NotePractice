@@ -20,7 +20,7 @@ namespace WpfDemo.OpenFiles
     /// <summary>
     /// Interaction logic for OpenTxtFileWindow.xaml
     /// </summary>
-    public partial class OpenTxtFileWindow : Window
+    public partial class OpenTxtFileWindow : UserControl
     {
         private OpenFileCommand openFileCommand;
         #region 文件占用

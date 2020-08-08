@@ -18,7 +18,7 @@ namespace WpfDemo.PrintImage
     /// <summary>
     /// PrintImageWithPageSettingWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class PrintImageWithPageSettingWindow : Window
+    public partial class PrintImageWithPageSettingWindow : UserControl
     {
         private string outputDic { get { return $"{AppDomain.CurrentDomain.BaseDirectory}\\Temp\\"; } }
         /// <summary>
@@ -177,8 +177,8 @@ namespace WpfDemo.PrintImage
 
         private void Window_Load(object sender, RoutedEventArgs e)
         {
-            this.Left = 0.0;
-            this.Top = 0.0;
+            //this.Left = 0.0;
+            //this.Top = 0.0;
             this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
             this.Height = System.Windows.SystemParameters.PrimaryScreenHeight;
         }

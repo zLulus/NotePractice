@@ -10,18 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfDemo.ProcessBars
+namespace WpfDemo.NoneBorder
 {
     /// <summary>
-    /// ProcessBarWithTextWindow.xaml 的交互逻辑
+    /// NoneBorderStartPage.xaml 的交互逻辑
     /// </summary>
-    public partial class ProcessBarWithTextWindow : UserControl
+    public partial class NoneBorderStartPage : UserControl
     {
-        public ProcessBarWithTextWindow()
+        public NoneBorderStartPage()
         {
             InitializeComponent();
+        }
+
+        private void OpenWindow_Click(object sender, RoutedEventArgs e)
+        {
+            NoneBorderDemo window = new NoneBorderDemo();
+            window.Show();
         }
     }
 }

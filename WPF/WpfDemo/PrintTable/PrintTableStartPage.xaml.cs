@@ -10,18 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfDemo.ProcessBars
+namespace WpfDemo.PrintTable
 {
     /// <summary>
-    /// ProcessBarWithTextWindow.xaml 的交互逻辑
+    /// PrintTableStartPage.xaml 的交互逻辑
     /// </summary>
-    public partial class ProcessBarWithTextWindow : UserControl
+    public partial class PrintTableStartPage : UserControl
     {
-        public ProcessBarWithTextWindow()
+        public PrintTableStartPage()
         {
             InitializeComponent();
+        }
+
+        private void OpenWindow_Click(object sender, RoutedEventArgs e)
+        {
+            PrintTableWindow window = new PrintTableWindow();
+            window.Show();
         }
     }
 }
