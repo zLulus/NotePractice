@@ -237,8 +237,9 @@
           {
             "Title": "Navigation page(导航页)",
             "DllName": "WpfDemo.exe",
-            "ClassName": "WpfDemo.Navigation.PopChangeUserControl",
+            "ClassName": "WpfDemo.Navigation.NavigationStartPage",
             "Children": [
+
             ]
           },
           {

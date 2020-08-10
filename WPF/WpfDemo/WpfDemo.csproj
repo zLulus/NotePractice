@@ -275,6 +275,9 @@
     </Compile>
     <Compile Include="NavigationPages\NavigationPageContentInfo.cs" />
     <Compile Include="NavigationPages\Samples\TotalViewModel.cs" />
+    <Compile Include="Navigation\NavigationStartPage.xaml.cs">
+      <DependentUpon>NavigationStartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NoneBorder\NoneBorderDemo.xaml.cs">
       <DependentUpon>NoneBorderDemo.xaml</DependentUpon>
     </Compile>
@@ -345,8 +348,8 @@
     </Compile>
     <Compile Include="SingleSelectors\ViewModels\SingleSelectorViewModel.cs" />
     <Compile Include="SingleSelectors\ViewModels\SingleSelector2ViewModel.cs" />
-    <Compile Include="StartWindow.xaml.cs">
-      <DependentUpon>StartWindow.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="StartWindowAndDialog\Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
@@ -592,11 +595,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="Navigation\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Navigation\StartWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -640,11 +643,11 @@
     <Compile Include="Keyboard\Keyboard.xaml.cs">
       <DependentUpon>Keyboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Navigation\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Navigation\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MarginAndPadding\MarginAndPaddingDemo.xaml">
@@ -712,6 +715,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NavigationPages\NavigationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Navigation\NavigationStartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -806,7 +813,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StartWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
