@@ -1,12 +1,11 @@
-﻿<Window x:Class="WpfDemo.StyleUseTemplate.StyleUseTemplateDemo"
+﻿<UserControl x:Class="WpfDemo.StyleUseTemplate.StyleUseTemplateDemo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.StyleUseTemplate"
-        mc:Ignorable="d"
-        Title="StyleUseTemplateDemo" Height="300" Width="300">
-    <Window.Resources>
+        mc:Ignorable="d">
+    <UserControl.Resources>
         <Style TargetType="CheckBox" x:Key="CheckBoxStyle">
             <Setter Property="Template">
                 <Setter.Value>
@@ -33,8 +32,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </Window.Resources>
+    </UserControl.Resources>
     <Grid>
         <CheckBox Style="{StaticResource CheckBoxStyle}"></CheckBox>
     </Grid>
-</Window>
+</UserControl>

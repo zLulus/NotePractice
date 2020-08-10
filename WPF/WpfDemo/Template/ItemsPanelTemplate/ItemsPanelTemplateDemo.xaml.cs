@@ -19,7 +19,7 @@ namespace WpfDemo.Template.ItemsPanelTemplate
     /// <summary>
     /// ItemsPanelTemplateDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class ItemsPanelTemplateDemo : Window
+    public partial class ItemsPanelTemplateDemo : UserControl
     {
         public ItemsPanelTemplateDemo()
         {

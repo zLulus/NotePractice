@@ -486,6 +486,22 @@
                 ]
               }
             ]
+          },
+          {
+            "Title": "ItemsPanelTemplate & DataTemplate",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Template.ItemsPanelTemplate.ItemsPanelTemplateDemo",
+            "Children": [
+
+            ]
+          },
+          {
+            "Title": "在Style中使用Template",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.StyleUseTemplate.StyleUseTemplateDemo",
+            "Children": [
+
+            ]
           }
         ]
       },

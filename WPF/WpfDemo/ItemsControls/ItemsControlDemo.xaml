@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfDemo.ItemsControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Width="1450" Height="800">
+             mc:Ignorable="d">
     <Grid>
         <ListView Name="listView" HorizontalAlignment="Center" ItemsSource="{Binding }">
             <ListView.ItemTemplate>

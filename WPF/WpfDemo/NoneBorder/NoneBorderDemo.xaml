@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.NoneBorder" MouseLeftButtonDown="Window_MouseLeftButtonDown"
         mc:Ignorable="d" WindowStartupLocation="Manual"  WindowStyle="None"  AllowsTransparency="True" Background="Transparent" WindowState="Normal"
-        Title="NoneBorderDemo" Height="300" Width="300">
+        Title="NoneBorderDemo">
     <Grid>
         <Label Content="点我拖动" FontSize="70" Foreground="White"></Label>
     </Grid>

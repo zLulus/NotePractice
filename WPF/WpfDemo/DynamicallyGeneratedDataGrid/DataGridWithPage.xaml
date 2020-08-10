@@ -6,8 +6,7 @@
              xmlns:local="clr-namespace:WpfDemo.DynamicallyGeneratedDataGrid"
              xmlns:local1="clr-namespace:WpfDemo.DynamicallyGeneratedDataGrid.Bases"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" >
     <UserControl.Resources>
         <Style TargetType="DataGrid">
             <!--网格线颜色-->

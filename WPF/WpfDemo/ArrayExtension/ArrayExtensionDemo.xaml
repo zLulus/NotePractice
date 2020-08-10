@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.ArrayExtension"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        mc:Ignorable="d" Height="300" Width="300">
+        mc:Ignorable="d">
     <UserControl.Resources>
         <x:ArrayExtension x:Key="array" Type="{x:Type sys:Int32}">
             <sys:Int32>20</sys:Int32>

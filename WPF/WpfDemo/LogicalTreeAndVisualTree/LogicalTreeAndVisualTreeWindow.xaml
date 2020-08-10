@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.LogicalTreeAndVisualTree"
         xmlns:usercontrols="clr-namespace:WpfDemo.LogicalTreeAndVisualTree.UserControls"
-        mc:Ignorable="d" Height="450" Width="800">
+        mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>

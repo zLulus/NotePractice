@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.CheckBox"
-        mc:Ignorable="d" Height="450" Width="800">
+        mc:Ignorable="d">
     <Grid>
         <!--DataGrid checkbox 全选/取消全选的写法-->
         <!--https://stackoverflow.com/questions/25043010/how-to-select-all-check-box-together-in-wpf-datagrid/25043588#25043588-->

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.MarginAndPadding"
-        mc:Ignorable="d" Height="300" Width="300">
+        mc:Ignorable="d">
     <Grid Background="AntiqueWhite">
         <Border Margin="10" Padding="20" Background="CadetBlue">
             <Button Background="BurlyWood"></Button>

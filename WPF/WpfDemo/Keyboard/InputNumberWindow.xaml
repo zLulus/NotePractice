@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo"
-        mc:Ignorable="d" Width="1024" Height="768">
+        mc:Ignorable="d">
     <Grid Opacity="1" Name="TotalGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="2.7*"></RowDefinition>

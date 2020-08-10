@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.Converts"
         xmlns:converts="clr-namespace:WpfDemo.Converts.Converts"
-        mc:Ignorable="d" Height="300" Width="300">
+        mc:Ignorable="d">
     <UserControl.Resources>
         <!--在这里引入ColorConvert.cs 并给它一个前端的名称myConvert-->
         <converts:ColorConvert x:Key="MyConvert"></converts:ColorConvert>

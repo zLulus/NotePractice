@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.ItemsControls"
         mc:Ignorable="d"
-        Title="ItemsControlWindow" Height="800" Width="1450">
+        Title="ItemsControlWindow">
     <Grid>
         <local:ItemsControlDemo></local:ItemsControlDemo>
     </Grid>

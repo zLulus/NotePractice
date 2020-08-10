@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfDemo.Navigation"
-             mc:Ignorable="d" 
-             Height="350" Width="525">
+             mc:Ignorable="d" >
     <Grid>
         <!--注意设置ZIndex，ZIndex越大越在上层。保证文字在暗牧上方。-->
         <Grid Panel.ZIndex="2" Margin="120,100,120,150" Background="White">
