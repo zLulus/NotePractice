@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Button Content="点我打开" Click="OpenWindow_Click"></Button>
+        <Button Content="Click me to open(点我打开)" Height="100" Width="200" Click="OpenWindow_Click"></Button>
     </Grid>
 </UserControl>

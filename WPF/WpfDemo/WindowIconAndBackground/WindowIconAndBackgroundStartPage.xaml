@@ -6,6 +6,6 @@
         xmlns:local="clr-namespace:WpfDemo.WindowIconAndBackground"
         mc:Ignorable="d">
     <Grid>
-        <Button Content="点我打开" Click="OpenWindow_Click"></Button>
+        <Button Content="Click me to open(点我打开)" Height="100" Width="200" Click="OpenWindow_Click"></Button>
     </Grid>
 </UserControl>

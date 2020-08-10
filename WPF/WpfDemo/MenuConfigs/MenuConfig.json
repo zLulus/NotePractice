@@ -1,40 +1,40 @@
 ﻿[
   {
-    "Title": "菜单",
+    "Title": "Menu(菜单)",
     "DllName": "",
     "ClassName": "",
     "Children": [
       {
-        "Title": "组件",
+        "Title": "Control(控件)",
         "DllName": "",
         "ClassName": "",
         "Children": [
           {
-            "Title": "自定义组件",
+            "Title": "UserControl(自定义控件)",
             "DllName": "",
             "ClassName": "",
             "Children": [
               {
-                "Title": "UserControl 用户控件的创建与使用",
+                "Title": "Creation and use of UserControl(用户控件的创建与使用)",
                 "DllName": "",
                 "ClassName": "",
                 "Children": [
                   {
-                    "Title": "用户控件1",
+                    "Title": "UserControl1(用户控件1)",
                     "DllName": "WpfDemo.exe",
                     "ClassName": "WpfDemo.UserControlDemo.OwnUserControl",
                     "Children": [
                     ]
                   },
                   {
-                    "Title": "嵌套用户控件1",
+                    "Title": "Use UserControl1 in UserControl2(嵌套用户控件1)",
                     "DllName": "WpfDemo.exe",
                     "ClassName": "WpfDemo.UserControlDemo.UseUserControlUserControl",
                     "Children": [
                     ]
                   },
                   {
-                    "Title": "嵌套两个用户控件",
+                    "Title": "Use UserControl1 and UserControl2(嵌套两个用户控件)",
                     "DllName": "WpfDemo.exe",
                     "ClassName": "WpfDemo.UserControlDemo.UseUserControlWindow",
                     "Children": [
@@ -43,47 +43,40 @@
                 ]
               },
               {
-                "Title": "自定义组件Single Selector",
-                "DllName": "WpfDemo.exe",
-                "ClassName": "WpfDemo.SingleSelectors.SingleSelector",
-                "Children": [
-                ]
-              },
-              {
-                "Title": "自定义组件 动态生成DataGrid",
+                "Title": "Dynamically generate DataGrid(动态生成DataGrid)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.DynamicallyGeneratedDataGrid.DemoWindow",
                 "Children": [
                 ]
               },
               {
-                "Title": "自定义组件 只允许输入数字",
+                "Title": "Input that Only Allows Numbers(只允许输入数字的输入框)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.InputOnlyNumber.InputOnlyNumberWindow",
                 "Children": [
                 ]
               },
               {
-                "Title": "自定义组件 9格数字键盘",
+                "Title": "Numeric Keypad(9格数字键盘)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.InputNumberWindow",
                 "Children": [
                 ]
               },
               {
-                "Title": "自定义组件 可拖拽缩放控件",
+                "Title": "UserControl that can be dragged and zoomed(可拖拽缩放控件)",
                 "DllName": "",
                 "ClassName": "",
                 "Children": [
                   {
-                    "Title": "控件1",
+                    "Title": "UserControl1",
                     "DllName": "WpfDemo.exe",
                     "ClassName": "WpfDemo.MoveAndResizeControl.MoveAndResizeControlWindow",
                     "Children": [
                     ]
                   },
                   {
-                    "Title": "控件2",
+                    "Title": "UserControl2",
                     "DllName": "WpfDemo.exe",
                     "ClassName": "WpfDemo.MoveAndResizeControl.MoveAndResizeControlWindow2",
                     "Children": [
@@ -92,62 +85,68 @@
                 ]
               },
               {
-                "Title": "自定义组件 多选TreeView",
+                "Title": "TreeView that allows multiple selection(多选TreeView)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.MultiSelectors.MultiSelectorWindow",
                 "Children": [
                 ]
               },
               {
-                "Title": "自定义组件 进度条",
+                "Title": "Customized UserControl ProcessBar(自定义进度条)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.ProcessBars.ProcessBarWithTextWindow",
                 "Children": [
                 ]
               },
               {
-                "Title": "自定义Border",
+                "Title": "Customized Border(自定义Border)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.DependencyProperties.TestCustomTextBlock",
                 "Children": [
                 ]
               },
-
               {
-                "Title": "自定义按钮Button1",
-                "DllName": "WpfDemo.exe",
-                "ClassName": "WpfDemo.CustomButton.TestCustomButtonWindow",
-                "Children": [
-                ]
-              },
-              {
-                "Title": "自定义按钮Button2",
-                "DllName": "WpfDemo.exe",
-                "ClassName": "WpfDemo.CustomerWindow.ButtonShowToolTip",
-                "Children": [
-                ]
-              },
-              {
-                "Title": "单选TreeView",
+                "Title": "Customized Button(自定义按钮)",
                 "DllName": "",
                 "ClassName": "",
                 "Children": [
                   {
-                    "Title": "SingleSelector前端生成",
+                    "Title": "Customized Button1",
+                    "DllName": "WpfDemo.exe",
+                    "ClassName": "WpfDemo.CustomButton.TestCustomButtonWindow",
+                    "Children": [
+                    ]
+                  },
+                  {
+                    "Title": "Customized Button2",
+                    "DllName": "WpfDemo.exe",
+                    "ClassName": "WpfDemo.CustomerWindow.ButtonShowToolTip",
+                    "Children": [
+                    ]
+                  }
+                ]
+              },
+              {
+                "Title": "Single choice TreeView(单选TreeView)",
+                "DllName": "",
+                "ClassName": "",
+                "Children": [
+                  {
+                    "Title": "Custom UserControl SingleSelector Front-end Generation(SingleSelector前端生成)",
                     "DllName": "WpfDemo.exe",
                     "ClassName": "WpfDemo.SingleSelectors.SingleSelectorWindow",
                     "Children": [
                     ]
                   },
                   {
-                    "Title": "SingleSelector后端生成",
+                    "Title": "Custom UserControl SingleSelector Back-end Generation(SingleSelector后端生成)",
                     "DllName": "WpfDemo.exe",
                     "ClassName": "WpfDemo.SingleSelectors.SingleSelectorWindow2",
                     "Children": [
                     ]
                   },
                   {
-                    "Title": "SingleSelector2后端生成",
+                    "Title": "Custom UserControl SingleSelector2 Front-end Generation(SingleSelector2后端生成)",
                     "DllName": "WpfDemo.exe",
                     "ClassName": "WpfDemo.SingleSelectors.SingleSelectorWindow3",
                     "Children": [
@@ -164,14 +163,14 @@
             "Children": [
 
               {
-                "Title": "CheckBox基础使用",
+                "Title": "Basic use of CheckBox(CheckBox基础使用)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.CheckBox.CheckBoxDemo",
                 "Children": [
                 ]
               },
               {
-                "Title": "CheckBox和DataGrid",
+                "Title": "CheckBox and DataGrid(CheckBox和DataGrid)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.CheckBox.SelectAllAndCancleCheckBoxWindow",
                 "Children": [
@@ -180,14 +179,14 @@
             ]
           },
           {
-            "Title": "带关闭按钮的Tab",
+            "Title": "Tab with close button(带关闭按钮的Tab)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.ClosableTabs.ClosableTabDemo",
             "Children": [
             ]
           },
           {
-            "Title": "菜单栏",
+            "Title": "Generate menu(菜单栏)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.ContextMenus.CreateContextMenuWindow",
             "Children": [
@@ -199,7 +198,7 @@
             "ClassName": "",
             "Children": [
               {
-                "Title": "神奇的Border响应问题",
+                "Title": "The magical Border response problem(神奇的Border响应问题)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.Borders.BorderTestWindow",
                 "Children": [
@@ -208,14 +207,14 @@
             ]
           },
           {
-            "Title": "Expander基本使用",
+            "Title": "Basic use of Expander(Expander基本使用)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Expander.ExpanderDemo",
             "Children": [
             ]
           },
           {
-            "Title": "ItemsControl基本使用",
+            "Title": "Basic use of ItemsControl(ItemsControl基本使用)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.ItemsControls.ItemsControlDemo",
             "Children": [
@@ -227,7 +226,7 @@
             "ClassName": "",
             "Children": [
               {
-                "Title": "DataGrid 异步加载数据",
+                "Title": "DataGrid loads data asynchronously(DataGrid 异步加载数据)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.LoadingDataAsync.LoadingDataAsyncWindow",
                 "Children": [
@@ -236,56 +235,56 @@
             ]
           },
           {
-            "Title": "导航页",
+            "Title": "Navigation page(导航页)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Navigation.PopChangeUserControl",
             "Children": [
             ]
           },
           {
-            "Title": "多用户控件切换",
+            "Title": "Multiple UserControls switching(多用户控件切换)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.NavigationPages.DemoWindow",
             "Children": [
             ]
           },
           {
-            "Title": "无边框窗口",
+            "Title": "Borderless Window(无边框窗口)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.NoneBorder.NoneBorderStartPage",
             "Children": [
             ]
           },
           {
-            "Title": "RadioButton基本使用",
+            "Title": "Basic use of RadioButton(RadioButton基本使用)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.RadioButton.RadioButtonDemo",
             "Children": [
             ]
           },
           {
-            "Title": "Dialog",
+            "Title": "Dialog(对话框)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.StartWindowAndDialog.StartWindow",
             "Children": [
             ]
           },
           {
-            "Title": "TabIndex",
+            "Title": "TabIndex(TabIndex属性的使用)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.TabSetting.TabSettingDemo",
             "Children": [
             ]
           },
           {
-            "Title": "Tag",
+            "Title": "Tag(Tag使用)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Tag.TagDemo",
             "Children": [
             ]
           },
           {
-            "Title": "TextBlock Run",
+            "Title": "TextBlock Run Property(TextBlock Run属性使用)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.TextBlockRun.TextBlockRunDemo",
             "Children": [
@@ -294,33 +293,33 @@
         ]
       },
       {
-        "Title": "绑定",
+        "Title": "Binding(绑定)",
         "DllName": "",
         "ClassName": "",
         "Children": [
           {
-            "Title": "简单绑定",
+            "Title": "Simple Binding(简单绑定)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Bind.BindDemoForINotifyPropertyChanged",
             "Children": [
             ]
           },
           {
-            "Title": "绑定控件",
+            "Title": "Binding in WPF Controls(控件绑定)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Bind.BindDemoForView",
             "Children": [
             ]
           },
           {
-            "Title": "DataGrid后台绑定",
+            "Title": "DataGrid Binding in Code(DataGrid后台绑定)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Bind.DataGridBackgroundBind",
             "Children": [
             ]
           },
           {
-            "Title": "DataGrid前端复杂绑定",
+            "Title": "Complex Binding of DataGrid(DataGrid前端复杂绑定)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Bind.DataGridBindMultiData",
             "Children": [
@@ -341,14 +340,14 @@
             ]
           },
           {
-            "Title": "修改数据源",
+            "Title": "Update Datasource(修改数据源)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.PropertyChanged.ChangeStudentInfo",
             "Children": [
             ]
           },
           {
-            "Title": "ListView绑定",
+            "Title": "Binding of ListView(ListView绑定)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Template.DataTemplate.DataTemplateDemo2",
             "Children": [
@@ -357,26 +356,26 @@
         ]
       },
       {
-        "Title": "使用资源",
+        "Title": "Resources(使用资源)",
         "DllName": "",
         "ClassName": "",
         "Children": [
           {
-            "Title": "资源数组",
+            "Title": "Array Resources(资源数组)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.ArrayExtension.ArrayExtensionDemo",
             "Children": [
             ]
           },
           {
-            "Title": "后台静态资源",
+            "Title": "StaticResource in code(后台静态资源)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.GetStaticFromBackgroundCode.GetStaticFromBackgroundCode",
             "Children": [
             ]
           },
           {
-            "Title": "设置图片背景",
+            "Title": "Background Image(设置图片背景)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.WindowIconAndBackground.WindowIconAndBackgroundStartPage",
             "Children": [
@@ -385,40 +384,40 @@
         ]
       },
       {
-        "Title": "样式",
+        "Title": "Style(样式)",
         "DllName": "",
         "ClassName": "",
         "Children": [
           {
-            "Title": "在文件中设置样式1",
+            "Title": "Style1(在文件中设置样式1)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Style.StyleDemo",
             "Children": [
             ]
           },
           {
-            "Title": "使用静态资源设置样式",
+            "Title": "Use StaticResource to Style(使用静态资源设置样式)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Style.StyleDemo2",
             "Children": [
             ]
           },
           {
-            "Title": "使用静态资源设置样式2",
+            "Title": "Use StaticResource to Style2(使用静态资源设置样式2)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Style.StyleInheritDemo",
             "Children": [
             ]
           },
           {
-            "Title": "样式继承",
+            "Title": "Style Inheritance(样式继承)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Style.StyleInheritDemo2",
             "Children": [
             ]
           },
           {
-            "Title": "引用样式文件",
+            "Title": "Reference Style File(引用样式文件)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Style.UseResourceDictionaryDemo",
             "Children": [
@@ -472,14 +471,14 @@
             "ClassName": "",
             "Children": [
               {
-                "Title": "DataTemplate后端",
+                "Title": "DataTemplate in Code(DataTemplate后端)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.Template.DataTemplate.DataTemplateByCodeDemoWindow",
                 "Children": [
                 ]
               },
               {
-                "Title": "DataTemplate前端",
+                "Title": "DataTemplate in Xml(DataTemplate前端)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.Template.DataTemplate.DataTemplateDemo",
                 "Children": [
@@ -496,7 +495,7 @@
             ]
           },
           {
-            "Title": "在Style中使用Template",
+            "Title": "Use Template in Style(在Style中使用Template)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.StyleUseTemplate.StyleUseTemplateDemo",
             "Children": [
@@ -506,7 +505,7 @@
         ]
       },
       {
-        "Title": "Trigger 触发器",
+        "Title": "Trigger(触发器)",
         "DllName": "",
         "ClassName": "",
         "Children": [
@@ -541,19 +540,19 @@
         ]
       },
       {
-        "Title": "动画",
+        "Title": "Animation(动画)",
         "DllName": "",
         "ClassName": "",
         "Children": [
           {
-            "Title": "后端生成动画",
+            "Title": "Animation in Code(后端生成动画)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Animations.RectangleAnimationWindow",
             "Children": [
             ]
           },
           {
-            "Title": "前端生成动画",
+            "Title": "Animation in Xml(前端生成动画)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Animations.RectangleAnimationWindow2",
             "Children": [
@@ -562,85 +561,85 @@
         ]
       },
       {
-        "Title": "逻辑树和视觉树",
+        "Title": "Logical and Visual Trees(逻辑树和视觉树)",
         "DllName": "WpfDemo.exe",
         "ClassName": "WpfDemo.LogicalTreeAndVisualTree.LogicalTreeAndVisualTreeWindow",
         "Children": [
         ]
       },
       {
-        "Title": "布局",
+        "Title": "Layout(布局)",
         "DllName": "WpfDemo.exe",
         "ClassName": "WpfDemo.Modules.ModuleMainWindow",
         "Children": [
         ]
       },
       {
-        "Title": "Margin 和 Padding",
+        "Title": "Margin and Padding(Margin 和 Padding)",
         "DllName": "WpfDemo.exe",
         "ClassName": "WpfDemo.MarginAndPadding.MarginAndPaddingDemo",
         "Children": [
         ]
       },
       {
-        "Title": "其他",
+        "Title": "Command",
         "DllName": "",
         "ClassName": "",
         "Children": [
           {
-            "Title": "Dispatcher修改UI",
+            "Title": "Command1",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Command.CommandDemoWithBindParameters",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "Command1",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Command.CommandDemoWithParameters",
+            "Children": [
+            ]
+          }
+        ]
+      },
+      {
+        "Title": "Converter",
+        "DllName": "",
+        "ClassName": "",
+        "Children": [
+          {
+            "Title": "Basic use of Converter(Converter基本使用)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Converters.ForForm.FormWindow",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "Converter and DataGrid(Converter 和 DataGrid)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Converters.DataGridWindow",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "ColorConvert",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Converts.ConvertDemo",
+            "Children": [
+            ]
+          }
+        ]
+      },
+      {
+        "Title": "Other(其他)",
+        "DllName": "",
+        "ClassName": "",
+        "Children": [
+          {
+            "Title": "Use Dispatcher to modify the UI(使用Dispatcher修改UI)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.ChangeUI.ChangeUIDemo",
             "Children": [
-            ]
-          },
-          {
-            "Title": "Command",
-            "DllName": "",
-            "ClassName": "",
-            "Children": [
-              {
-                "Title": "Command1",
-                "DllName": "WpfDemo.exe",
-                "ClassName": "WpfDemo.Command.CommandDemoWithBindParameters",
-                "Children": [
-                ]
-              },
-              {
-                "Title": "Command1",
-                "DllName": "WpfDemo.exe",
-                "ClassName": "WpfDemo.Command.CommandDemoWithParameters",
-                "Children": [
-                ]
-              }
-            ]
-          },
-          {
-            "Title": "Converter",
-            "DllName": "",
-            "ClassName": "",
-            "Children": [
-              {
-                "Title": "Converter基本使用",
-                "DllName": "WpfDemo.exe",
-                "ClassName": "WpfDemo.Converters.ForForm.FormWindow",
-                "Children": [
-                ]
-              },
-              {
-                "Title": "Converter和DataGrid",
-                "DllName": "WpfDemo.exe",
-                "ClassName": "WpfDemo.Converters.DataGridWindow",
-                "Children": [
-                ]
-              },
-              {
-                "Title": "ColorConvert",
-                "DllName": "WpfDemo.exe",
-                "ClassName": "WpfDemo.Converts.ConvertDemo",
-                "Children": [
-                ]
-              }
             ]
           },
           {
@@ -651,33 +650,33 @@
             ]
           },
           {
-            "Title": "历史数据处理(水平分库分表)",
+            "Title": "Historical data processing (horizontal sub-database sub-table) 历史数据处理(水平分库分表)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.HistoricalDataManage.HistoricalDataManageWithTimeWindow",
             "Children": [
             ]
           },
           {
-            "Title": "打开文件",
+            "Title": "Open Files(打开文件)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.OpenFiles.OpenTxtFileWindow",
             "Children": [
             ]
           },
           {
-            "Title": "任务管理",
+            "Title": "Task Management(任务管理)",
             "DllName": "",
             "ClassName": "",
             "Children": [
               {
-                "Title": "任务管理 By Task",
+                "Title": "Task Management By Task(任务管理-Task)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.PauseAndResumeTask.PauseAndResumeTaskWindow",
                 "Children": [
                 ]
               },
               {
-                "Title": "任务管理 By Thread",
+                "Title": "Task Management By Thread(任务管理-Thread)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.PauseAndResumeThread.PauseAndResumeThreadWindow",
                 "Children": [
@@ -686,26 +685,26 @@
             ]
           },
           {
-            "Title": "打印图片",
+            "Title": "Print Picture(打印图片)",
             "DllName": "",
             "ClassName": "",
             "Children": [
               {
-                "Title": "打印图片1",
+                "Title": "Print Picture1(打印图片1)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.PrintImage.PrintImageWindow",
                 "Children": [
                 ]
               },
               {
-                "Title": "打印图片2 提供打印选项",
+                "Title": "Print Picture2 - Provide printing options(打印图片2 提供打印选项)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.PrintImage.PrintImageWithPageSettingWindow",
                 "Children": [
                 ]
               },
               {
-                "Title": "打印图片3 提供打印选项+缩放",
+                "Title": "Print Picture3 - Provide printing options and zoom function(打印图片3 提供打印选项+缩放功能)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.PrintImage.PrintImageWithPageSettingWindow2",
                 "Children": [
@@ -714,7 +713,7 @@
             ]
           },
           {
-            "Title": "打开表单",
+            "Title": "Print Form(打开表单)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.PrintTable.PrintTableStartPage",
             "Children": [
