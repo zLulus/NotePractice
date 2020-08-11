@@ -558,6 +558,13 @@
             "ClassName": "WpfDemo.Animations.RectangleAnimationWindow2",
             "Children": [
             ]
+          },
+          {
+            "Title": "Loading Mark(加载动画)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.LoadingMarks.Demo",
+            "Children": [
+            ]
           }
         ]
       },

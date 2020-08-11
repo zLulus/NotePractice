@@ -214,6 +214,13 @@
       <DependentUpon>LoadingDataAsyncWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LoadingDataAsync\Models\Doctor.cs" />
+    <Compile Include="LoadingMarks\Demo.xaml.cs">
+      <DependentUpon>Demo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingMarks\LoadingMark.xaml.cs">
+      <DependentUpon>LoadingMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingMarks\ViewModels\LoadingMarkViewModel.cs" />
     <Compile Include="LogicalTreeAndVisualTree\LogicalTreeAndVisualTreeWindow.xaml.cs">
       <DependentUpon>LogicalTreeAndVisualTreeWindow.xaml</DependentUpon>
     </Compile>
@@ -584,6 +591,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoadingDataAsync\LoadingDataAsyncWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadingMarks\Demo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadingMarks\LoadingMark.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
