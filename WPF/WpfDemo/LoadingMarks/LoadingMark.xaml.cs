@@ -30,6 +30,7 @@ namespace WpfDemo.LoadingMarks
             animationTimer = new DispatcherTimer(
                 DispatcherPriority.ContextIdle, Dispatcher);
             animationTimer.Interval = new TimeSpan(0, 0, 0, 0, 75);
+            Start();
         }
 
         #region Private Methods

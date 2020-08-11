@@ -12,7 +12,11 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <TextBlock Text="some text" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <TextBox Text="some text2" FontSize="30" Width="200" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left"></TextBox>
+            <TextBox Text="some text" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBox>
+            <TextBox Text="some text3" FontSize="30" Width="200" Height="50" VerticalAlignment="Top" HorizontalAlignment="Right"></TextBox>
+            <TextBox Text="some text4" FontSize="30" Width="200" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBox>
+            <TextBox Text="some text5" FontSize="30" Width="200" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Left"></TextBox>
             <Viewbox
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch">
