@@ -37,10 +37,12 @@ namespace WpfDemo.LoadingMarks
             if (vm.Loading == Visibility.Visible)
             {
                 vm.Loading = Visibility.Hidden;
+                Mouse.OverrideCursor = Cursors.Arrow;
             }
             else
             {
                 vm.Loading = Visibility.Visible;
+                Mouse.OverrideCursor = Cursors.Wait;
             }
         }
     }
