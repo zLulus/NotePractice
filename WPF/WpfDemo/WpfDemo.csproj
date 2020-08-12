@@ -338,6 +338,9 @@
     <Compile Include="RadioButton\RadioButtonDemo.xaml.cs">
       <DependentUpon>RadioButtonDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ScrollViewers\MoveScrollViewerByCode.xaml.cs">
+      <DependentUpon>MoveScrollViewerByCode.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SingleSelectors\Demos\SingleSelectorWindow3.xaml.cs">
       <DependentUpon>SingleSelectorWindow3.xaml</DependentUpon>
     </Compile>
@@ -805,6 +808,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RadioButton\RadioButtonDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScrollViewers\MoveScrollViewerByCode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -290,6 +290,13 @@
             "ClassName": "WpfDemo.TextBlockRun.TextBlockRunDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "ScrollViewer",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.ScrollViewers.MoveScrollViewerByCode",
+            "Children": [
+            ]
           }
         ]
       },
