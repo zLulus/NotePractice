@@ -22,6 +22,11 @@
         </ControlTemplate>
     </UserControl.Resources>
     <Grid>
-        <CheckBox Template="{StaticResource CheckBoxControlTemplate}" x:Name="checkBox1" Content="这是CheckBox，点击我修改IsChecked" HorizontalAlignment="Left" Margin="137,59,0,0" VerticalAlignment="Top"></CheckBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <CheckBox Grid.Row="0" Template="{StaticResource CheckBoxControlTemplate}" x:Name="checkBox1" Content="这是CheckBox，点击我修改IsChecked" HorizontalAlignment="Left" Margin="137,59,0,0" VerticalAlignment="Top"></CheckBox>
+        <Button Grid.Row="1" Click="ModifyTextBlockInTemplate_Click" Content="修改模板中的TextBlock"></Button>
     </Grid>
 </UserControl>
