@@ -544,6 +544,13 @@
             "ClassName": "WpfDemo.Trigger.DataTriggerDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "DataTrigger2",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Trigger.DataTriggerDemo2",
+            "Children": [
+            ]
           }
         ]
       },

@@ -419,6 +419,9 @@
     <Compile Include="Trigger\DataTriggerDemo.xaml.cs">
       <DependentUpon>DataTriggerDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Trigger\DataTriggerDemo2.xaml.cs">
+      <DependentUpon>DataTriggerDemo2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Trigger\EventTriggerDemo.xaml.cs">
       <DependentUpon>EventTriggerDemo.xaml</DependentUpon>
     </Compile>
@@ -916,6 +919,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Trigger\DataTriggerDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Trigger\DataTriggerDemo2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
