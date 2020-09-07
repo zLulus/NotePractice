@@ -6,6 +6,13 @@
              xmlns:local="clr-namespace:WpfDemo.Trigger"
              mc:Ignorable="d" Width="250" Height="300"
              d:DesignHeight="250" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" x:Key="BaseTextBlockStyle">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -15,11 +22,11 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="是否展示下面的文字"></TextBlock>
-        <CheckBox Grid.Row="0" Grid.Column="1" Name="isShowCheckBox" IsChecked="True"></CheckBox>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="是否展示下面的文字" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+        <CheckBox Grid.Row="0" Grid.Column="1" Name="isShowCheckBox" IsChecked="True" VerticalAlignment="Center" HorizontalAlignment="Center"></CheckBox>
         <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="我是展示的文字">
             <TextBlock.Style>
-                <Style TargetType="TextBlock">
+                <Style TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=isShowCheckBox,Path=IsChecked}" Value="True">
                             <Setter Property="Visibility" Value="Visible"></Setter>

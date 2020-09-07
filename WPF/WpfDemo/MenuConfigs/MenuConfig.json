@@ -342,9 +342,25 @@
           },
           {
             "Title": "MultiBinding",
-            "DllName": "WpfDemo.exe",
-            "ClassName": "WpfDemo.MultiBinding.MultiBindingDemo",
+            "DllName": "",
+            "ClassName": "",
             "Children": [
+              {
+                "Title": "MultiBinding",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.MultiBinding.MultiBindingDemo",
+                "Children": [
+
+                ]
+              },
+              {
+                "Title": "MultiBinding with Converter",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.MultiBinding.MultiBinding2.MultiBinding2",
+                "Children": [
+
+                ]
+              }
             ]
           },
           {

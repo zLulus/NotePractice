@@ -261,6 +261,10 @@
       <DependentUpon>MoveAndResizeControlWindow2.xaml</DependentUpon>
     </Compile>
     <Compile Include="MoveAndResizeControl\Tools\Element.cs" />
+    <Compile Include="MultiBinding\MultiBinding2\MultiBinding2.xaml.cs">
+      <DependentUpon>MultiBinding2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiBinding\MultiBinding2\MultiBinding2Converter.cs" />
     <Compile Include="MultiSelectors\MultiSelector.xaml.cs">
       <DependentUpon>MultiSelector.xaml</DependentUpon>
     </Compile>
@@ -613,6 +617,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LogicalTreeAndVisualTree\UserControls\TestTreeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MultiBinding\MultiBinding2\MultiBinding2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1006,6 +1014,7 @@
     <None Include="FTP\README.md" />
     <None Include="HistoricalDataManage\README.md" />
     <None Include="LogicalTreeAndVisualTree\README.md" />
+    <None Include="MultiBinding\MultiBinding2\README.md" />
     <None Include="MultiSelectors\README.md" />
     <None Include="NavigationPages\README.md" />
     <None Include="packages.config" />
