@@ -295,6 +295,12 @@
     <Compile Include="NoneBorder\NoneBorderStartPage.xaml.cs">
       <DependentUpon>NoneBorderStartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NotShowInTaskbarWindows\NotShowInTaskbarTab.xaml.cs">
+      <DependentUpon>NotShowInTaskbarTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotShowInTaskbarWindows\NotShowInTaskbarWindow.xaml.cs">
+      <DependentUpon>NotShowInTaskbarWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OpenFiles\Commands\OpenFileCommand.cs" />
     <Compile Include="OpenFiles\OpenTxtFileWindow.xaml.cs">
       <DependentUpon>OpenTxtFileWindow.xaml</DependentUpon>
@@ -771,6 +777,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NotShowInTaskbarWindows\NotShowInTaskbarTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NotShowInTaskbarWindows\NotShowInTaskbarWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="OpenFiles\OpenTxtFileWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1017,6 +1031,7 @@
     <None Include="MultiBinding\MultiBinding2\README.md" />
     <None Include="MultiSelectors\README.md" />
     <None Include="NavigationPages\README.md" />
+    <None Include="NotShowInTaskbarWindows\README.md" />
     <None Include="packages.config" />
     <None Include="PauseAndResumeTask\README.md" />
     <None Include="PrintImage\README.md" />

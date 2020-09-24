@@ -756,6 +756,13 @@
             "ClassName": "WpfDemo.PrintTable.PrintTableStartPage",
             "Children": [
             ]
+          },
+          {
+            "Title": "ShowInTaskbar=false Window(ShowInTaskbar=false的窗口)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.NotShowInTaskbarWindows.NotShowInTaskbarTab",
+            "Children": [
+            ]
           }
         ]
       }

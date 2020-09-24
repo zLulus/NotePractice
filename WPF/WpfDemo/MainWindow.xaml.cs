@@ -24,10 +24,12 @@ namespace WpfDemo
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow Instance { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            
+            Instance = this;
+
             //读取自定义菜单json
             string str = File.ReadAllText($"{Directory.GetCurrentDirectory()}\\MenuConfigs\\MenuConfig.json");
             List<CustomMenuItem> menu = JsonConvert.DeserializeObject<List<CustomMenuItem>>(str);

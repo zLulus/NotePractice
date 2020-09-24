@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="WpfDemo.NotShowInTaskbarWindows.NotShowInTaskbarTab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfDemo.NotShowInTaskbarWindows"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Orientation="Vertical">
+        <Button Height="50" HorizontalAlignment="Stretch" Content="Open a ShowInTaskbar=false window-Not set Owner(打开一个不显示在任务栏的窗口-不设置Owner)" Click="OpenNotShowInTaskbarWindow_Click"></Button>
+        <Button Height="50" HorizontalAlignment="Stretch" Content="Open a ShowInTaskbar=false window-Set Owner1(打开一个不显示在任务栏的窗口-设置Owner1)" Click="OpenNotShowInTaskbarWindowWithOwner1_Click"></Button>
+        <Button Height="50" HorizontalAlignment="Stretch" Content="Open a ShowInTaskbar=false window-Set Owner2(打开一个不显示在任务栏的窗口-设置Owner2)" Click="OpenNotShowInTaskbarWindowWithOwner2_Click"></Button>
+    </StackPanel>
+</UserControl>
