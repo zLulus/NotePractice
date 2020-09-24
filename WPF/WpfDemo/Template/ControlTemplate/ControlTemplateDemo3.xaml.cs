@@ -17,7 +17,7 @@ namespace WpfDemo.Template.ControlTemplate
     /// <summary>
     /// ControlTemplateDemo3.xaml 的交互逻辑
     /// </summary>
-    public partial class ControlTemplateDemo3 : Window
+    public partial class ControlTemplateDemo3 : UserControl
     {
         public ControlTemplateDemo3()
         {

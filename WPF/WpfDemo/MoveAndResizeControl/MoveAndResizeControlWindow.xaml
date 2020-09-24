@@ -1,0 +1,168 @@
+﻿<UserControl x:Class="WpfDemo.MoveAndResizeControl.MoveAndResizeControlWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.MoveAndResizeControl"
+        mc:Ignorable="d" MouseMove="border_MouseLeave_WithoutBorder">
+    <UserControl.Resources>
+        <Style TargetType="Rectangle">
+            <Setter Property="Height" Value="20"></Setter>
+            <Setter Property="Width" Value="40"></Setter>
+            <Setter Property="Margin" Value="20,0,0,10"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Canvas x:Name="canvas" MouseMove="Canvas_MouseMove">
+        <!--查看拖拽移动、缩放大小的计算-->
+        <StackPanel>
+            <TextBlock Text="查看拖拽移动、缩放大小的计算:"></TextBlock>
+            <TextBlock Name="actualWidthTextBlock"></TextBlock>
+            <TextBlock Name="actualHeightTextBlock"></TextBlock>
+            <TextBlock Name="paddingRightTextBlock"></TextBlock>
+            <TextBlock Name="paddingBottomTextBlock"></TextBlock>
+            <TextBlock Name="xTextBlock"></TextBlock>
+            <TextBlock Name="yTextBlock"></TextBlock>
+            <TextBlock Name="rightLimitBlock"></TextBlock>
+            <TextBlock Name="bottomLimitBlock"></TextBlock>
+            <TextBlock Name="stretchRightBlock"></TextBlock>
+            <TextBlock Name="stretchBottomBlock"></TextBlock>
+        </StackPanel>
+        <!--图片-->
+        <Border Name="border1" Canvas.Left="300" Canvas.Top="35"
+                BorderBrush="DarkKhaki" BorderThickness="1"  CornerRadius="5" Padding="5"
+                Height="68" Width="68" MinHeight="10" MinWidth="10"
+                MouseLeftButtonDown="border_MouseLeftButtonDown"
+                MouseLeave="border_MouseLeave"
+                MouseEnter="border_MouseEnter">
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="删除" Click="DeleteClick"></MenuItem>
+                </ContextMenu>
+            </Border.ContextMenu>
+            <Border.BitmapEffect>
+                <DropShadowBitmapEffect Color="DarkGray"/>
+            </Border.BitmapEffect>
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Image Name="image" Source="/MoveAndResizeControl/Resources/Images/1.jpg"></Image>
+        </Border>
+        <!--文本框-->
+        <Border Name="border2" Canvas.Left="500" Canvas.Top="35"
+                BorderBrush="DarkKhaki" BorderThickness="1"  CornerRadius="5" Padding="5"
+                Height="30" Width="200" MinHeight="10" MinWidth="10"
+                MouseLeftButtonDown="border_MouseLeftButtonDown"
+                MouseLeave="border_MouseLeave"
+                MouseEnter="border_MouseEnter">
+            <!--菜单栏-->
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="修改文字内容" Click="ModifyTextClick"></MenuItem>
+                    <MenuItem Header="删除" Click="DeleteClick"></MenuItem>
+                </ContextMenu>
+            </Border.ContextMenu>
+            <Border.BitmapEffect>
+                <DropShadowBitmapEffect Color="DarkGray"/>
+            </Border.BitmapEffect>
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <!--需要Label/textblock的文字大小随resize改变，则使用Viewbox，否则，去掉Viewbox-->
+            <!--https://stackoverflow.com/questions/1464185/how-to-set-textblock-or-label-with-resizable-font-size-in-wpf-->
+            <Viewbox Stretch="Uniform">
+                <TextBlock Name="myTextBlock" Text="move and rezise TextBlock"></TextBlock>
+            </Viewbox>
+            
+        </Border>
+        <!--复杂内容-->
+        <Border Name="border3" Canvas.Left="500" Canvas.Top="150"
+                BorderBrush="DarkKhaki" BorderThickness="1"  CornerRadius="5" Padding="5"
+                Height="220" Width="200" MinHeight="10" MinWidth="10"
+                MouseLeftButtonDown="border_MouseLeftButtonDown"
+                MouseLeave="border_MouseLeave"
+                MouseEnter="border_MouseEnter">
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="删除" Click="DeleteClick"></MenuItem>
+                </ContextMenu>
+            </Border.ContextMenu>
+            <Border.BitmapEffect>
+                <DropShadowBitmapEffect Color="DarkGray"/>
+            </Border.BitmapEffect>
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Viewbox>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="小麦" Grid.Row="0" Grid.Column="0"></TextBlock>
+                    <Rectangle Grid.Row="0" Grid.Column="1" Fill="DarkKhaki" RadiusX="5" RadiusY="5"/>
+                    <TextBlock Text="大豆" Grid.Row="1" Grid.Column="0"></TextBlock>
+                    <Rectangle Grid.Row="1" Grid.Column="1" Fill="RoyalBlue" RadiusX="5" RadiusY="5" />
+                    <TextBlock Text="玉米" Grid.Row="2" Grid.Column="0"></TextBlock>
+                    <Rectangle Grid.Row="3" Grid.Column="1" Fill="Yellow" RadiusX="5" RadiusY="5" />
+                </Grid>
+            </Viewbox>
+            
+            
+        </Border>
+        <!--边框不显示-->
+        <Border Name="border4" Canvas.Left="300" Canvas.Top="135"
+                CornerRadius="5" Padding="5"
+                Height="100" Width="150" MinHeight="10" MinWidth="10"
+                MouseLeftButtonDown="border_MouseLeftButtonDown"
+                MouseLeave="border_MouseLeave"
+                MouseEnter="border_MouseEnter">
+            <Border.Resources>
+                <Style TargetType="Border">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="DarkKhaki"/>
+                            <Setter Property="BorderThickness" Value="2"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter Property="BorderBrush" Value="White"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Resources>
+            <!--菜单栏-->
+            <Border.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="修改文字内容" Click="ModifyTextClick"></MenuItem>
+                    <MenuItem Header="删除" Click="DeleteClick"></MenuItem>
+                </ContextMenu>
+            </Border.ContextMenu>
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <!--需要Label/textblock的文字大小随resize改变，则使用Viewbox，否则，去掉Viewbox-->
+            <!--https://stackoverflow.com/questions/1464185/how-to-set-textblock-or-label-with-resizable-font-size-in-wpf-->
+            <Viewbox Stretch="Uniform">
+                <TextBlock Name="myTextBlock2" Text="边框不显示"></TextBlock>
+            </Viewbox>
+
+        </Border>
+    </Canvas>
+</UserControl>

@@ -17,7 +17,7 @@ namespace WpfDemo.StyleUseTemplate
     /// <summary>
     /// StyleUseTemplateDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class StyleUseTemplateDemo : Window
+    public partial class StyleUseTemplateDemo : UserControl
     {
         public StyleUseTemplateDemo()
         {

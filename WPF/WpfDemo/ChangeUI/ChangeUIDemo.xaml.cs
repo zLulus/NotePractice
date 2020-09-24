@@ -18,7 +18,7 @@ namespace WpfDemo.ChangeUI
     /// <summary>
     /// ChangeUIDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class ChangeUIDemo : Window
+    public partial class ChangeUIDemo : UserControl
     {
         public ChangeUIDemo()
         {
@@ -29,12 +29,23 @@ namespace WpfDemo.ChangeUI
             Task t = new Task(() =>
             {
                 //wrong
-                NameLabel.Content = "我用非UI线程修改NameLabel的文字，失败了";
+                //NameLabel.Content = "我用非UI线程修改NameLabel的文字，失败了";
 
                 NameLabel.Dispatcher.Invoke(new Action(delegate
                 {
                     NameLabel.Content = "我用UI线程修改了NameLabel的文字";
                 }));
+                Thread.Sleep(5000);
+                this.Dispatcher.Invoke(new Action(() =>
+                {
+                    NameLabel.Content = "我用UI线程修改了NameLabel的文字-2";
+                }));
+                Thread.Sleep(5000);
+                this.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    NameLabel.Content = "我用UI线程修改了NameLabel的文字-3";
+                }));
+
             });
             t.Start();
         }

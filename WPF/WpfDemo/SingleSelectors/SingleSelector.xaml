@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="WpfDemo.SingleSelectors.SingleSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfDemo.SingleSelectors"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <TreeView Name="tree" Margin="5"  Background="LightYellow" >
+            <TreeViewItem Header="Maryland">
+                <RadioButton GroupName="MyGroup" Tag="1">Annapolis</RadioButton>
+                <RadioButton GroupName="MyGroup" Tag="2">Baltimore</RadioButton>
+            </TreeViewItem>
+            <TreeViewItem Header="California">
+                <TreeViewItem Header="California.Child">
+                    <RadioButton GroupName="MyGroup" Tag="3">Los Angeles</RadioButton>
+                    <RadioButton GroupName="MyGroup" Tag="4">San Francisco</RadioButton>
+                </TreeViewItem>
+                <RadioButton GroupName="MyGroup" Tag="5">Los Angeles</RadioButton>
+                <RadioButton GroupName="MyGroup" Tag="6">San Francisco</RadioButton>
+                <RadioButton GroupName="MyGroup" Tag="7">San Diego</RadioButton>
+                <RadioButton GroupName="MyGroup" Tag="8">Sacramento</RadioButton>
+            </TreeViewItem>
+            <TreeViewItem Header="Washington">
+                <TreeViewItem Header="XXX">
+                    <RadioButton GroupName="MyGroup" Tag="9">Olympia</RadioButton>
+                    <RadioButton GroupName="MyGroup" Tag="10">Seattle</RadioButton>
+                </TreeViewItem>
+                <RadioButton GroupName="MyGroup" Tag="11">Olympia</RadioButton>
+                <RadioButton GroupName="MyGroup" Tag="12">Seattle</RadioButton>
+            </TreeViewItem>
+        </TreeView>
+    </Grid>
+</UserControl>

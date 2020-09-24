@@ -1,0 +1,534 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Data.TileStorage</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Data.TileStorage.TileContent">
+      <summary>
+            Tile内容管理类，这里的Data，实质就是每一个Tile对应的二进制内容。
+            例如：Jpg格式的缓存，即是一张Jpg图片文件的内容。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileContent.#ctor">
+      <summary>
+            默认构造函数，构造一个新的 TileContent 对象。
+             </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileContent.#ctor(System.Byte[])">
+      <summary>
+            根据指定的参数构造 TileContent 类的新实例。
+             </summary>
+      <param name="data">指定的瓦片的内容。</param>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileContent.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContent.Key">
+      <summary>
+            获取或设置瓦片的标识。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContent.Data">
+      <summary>
+            获取或设置瓦片的内容。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileDataType">
+      <summary>
+            该枚举定义了缓存瓦片的数据类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.NONE">
+      <summary>
+            未知格式
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.DDS">
+      <summary>
+            DDS格式
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.JPG">
+      <summary>
+            JPG
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.PNG">
+      <summary>
+            portal network graphic(PNG)
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.GIF">
+      <summary>
+            GIF格式
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.DXTZ">
+      <summary>
+            DXTZ格式
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.ImageSizeOption">
+      <summary>
+            该枚举定义了缓存瓦片的像素大小。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.ImageSizeOption.IBS_256">
+      <summary>
+            256*256
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.ImageSizeOption.IBS_512">
+      <summary>
+            512*512
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileContentInfo">
+      <summary>
+      </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileContentInfo.#ctor">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContentInfo.Level">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContentInfo.Row">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContentInfo.Column">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContentInfo.TilesetName">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageConnection">
+      <summary>
+            缓存连接管理类， 类似数据源连接管理类，这里存储服务名，数据库，缓存名，以及用户和密码。
+            如果是文件型的，考虑用服务名存储文件路径。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageConnection.#ctor">
+      <summary>
+            默认构造函数，构造一个新的 TileStorageConnection 对象。
+             </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageConnection.FromXML(System.String)">
+      <summary>
+            从指定XML格式字符串读取服务名，数据库，缓存名，以及用户和密码。
+            </summary>
+      <param name="xml">指定的XML格式字符串。</param>
+      <returns>读取是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageConnection.ToXML">
+      <summary>
+            将服务名，数据库，缓存名，以及用户和密码保存为XML格式字符串。
+            </summary>
+      <returns>XML格式字符串。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageConnection.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.StorageType">
+      <summary>
+            获取或设置缓存的存储类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.Server">
+      <summary>
+            获取或设置服务名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.Database">
+      <summary>
+            获取或设置数据库名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.Name">
+      <summary>
+            获取或设置缓存名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.User">
+      <summary>
+            获取或设置用户名。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.Password">
+      <summary>
+            获取或设置密码。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageExtendInfo">
+      <summary>
+            用户自定义元数据存储管理结构。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageExtendInfo.#ctor">
+      <summary>
+            默认构造函数，构造一个新的 TileStorageExtendInfo 对象。
+             </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageExtendInfo.Name">
+      <summary>
+            获取或设置扩展属性的名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageExtendInfo.Value">
+      <summary>
+            获取或设置扩展属性的值。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageInfo">
+      <summary>
+            缓存信息管理类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.#ctor">
+      <summary>
+            默认构造函数，构造一个新的 TileStorageInfo 对象。
+             </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.GetResolutions">
+      <summary>
+            得到缓存所有的比例尺。
+            </summary>
+      <returns>存放所有比例尺的数组。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.AddResolution(System.Double)">
+      <summary>
+            增加缓存的一个比例尺。
+            </summary>
+      <param name="resolution">比例尺。</param>
+      <returns>添加是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.DeleteResolution(System.Double)">
+      <summary>
+            删除缓存的一个比例尺。
+            </summary>
+      <param name="resolution">比例尺。</param>
+      <returns>删除是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.AddExtendInfo(System.String,System.String)">
+      <summary>
+            添加用户自定义元数据存储管理结构。
+            </summary>
+      <param name="name">扩展属性的名称。</param>
+      <param name="value">扩展属性的值。</param>
+      <returns>添加是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.DeleteExtendInfo(System.String,System.String)">
+      <summary>
+            删除指定用户自定义元数据存储管理结构。
+            </summary>
+      <param name="name">扩展属性的名称。</param>
+      <param name="value">扩展属性的值。</param>
+      <returns>删除是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.FromXML(System.String)">
+      <summary>
+            从指定XML格式字符串读取服务名，数据库，缓存名，以及用户和密码。
+            </summary>
+      <param name="xml">指定的XML格式字符串。</param>
+      <returns>读取是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.ToXML">
+      <summary>
+            将服务名，数据库，缓存名，以及用户和密码保存为XML格式字符串。
+            </summary>
+      <returns>XML格式字符串。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.StorageType">
+      <summary>
+            获取缓存的存储类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.Name">
+      <summary>
+            获取缓存的名称，同TileStorageConnection里的Name一致。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.Bounds">
+      <summary>
+            获取或设置缓存的范围。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.PrjCoordSys">
+      <summary>
+            获取或设置缓存的投影坐标系。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.DataType">
+      <summary>
+            获取或设置缓存瓦片的数据类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.TileStorageSize">
+      <summary>
+            获取或设置缓存瓦片的像素大小。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.Origin">
+      <summary>
+            获取或设置缓存图片的起算点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.ExtendInfos">
+      <summary>
+            获取用户自定义元数据存储管理结构。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.Description">
+      <summary>
+            获取或设置缓存描述信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.Version">
+      <summary>
+            获取或设置缓存版本。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageLevelInfo">
+      <summary>
+            缓存层信息管理类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageLevelInfo.#ctor">
+      <summary>
+            默认构造函数，构造一个新的 TileStorageLevelInfo 对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageLevelInfo.level">
+      <summary>
+            获取或设置缓存该层的层号。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageLevelInfo.Width">
+      <summary>
+            获取或设置缓存该层的宽度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageLevelInfo.Height">
+      <summary>
+            获取或设置缓存该层的高度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageLevelInfo.Resolution">
+      <summary>
+            获取或设置缓存该层的分辨率。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageManager">
+      <summary>
+            缓存操作类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.#ctor">
+      <summary>
+            默认构造函数，构造一个新的 TileStorageManager 对象。
+             </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.GetTileStorageNames(SuperMap.Data.TileStorage.TileStorageConnection)">
+      <summary>
+            根据缓存连接信息得到存储库里的所有缓存名称。
+            </summary>
+      <param name="connectInfo">指定的缓存连接信息。</param>
+      <returns>缓存瓦片的名称数组。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.Create(SuperMap.Data.TileStorage.TileStorageConnection)">
+      <summary>
+            根据缓存连接信息创建缓存库。
+            </summary>
+      <param name="connectInfo">指定的缓存连接信息。</param>
+      <returns>创建是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.Open(SuperMap.Data.TileStorage.TileStorageConnection)">
+      <summary>
+            根据缓存连接信息打开缓存库。
+            </summary>
+      <param name="connectInfo">指定的缓存连接信息。</param>
+      <returns>打开是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.IsOpen">
+      <summary>
+            获取缓存库是否打开。
+            </summary>
+      <returns>true 打开，false 没有打开。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.Close">
+      <summary>
+            关闭缓存库。
+            </summary>
+      <returns>true 关闭成功，false 关闭失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.SaveTile(System.Int32,System.Int32,System.Int32,SuperMap.Data.TileStorage.TileContent)">
+      <summary>
+            保存瓦片数据。
+            </summary>
+      <param name="level">瓦片所属层。</param>
+      <param name="row">瓦片所属行。</param>
+      <param name="column">瓦片所属列。</param>
+      <param name="tileContent">瓦片内容。</param>
+      <returns>保存是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.LoadData(System.String)">
+      <summary>
+            根据所给的标识加载缓存数据。
+            </summary>
+      <param name="key">缓存标识。</param>
+      <returns>缓存数据内容</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.SaveData(System.String,SuperMap.Data.TileStorage.TileContent)">
+      <summary>
+            MongoOSG缓存专用，根据Key存储数据。
+            </summary>
+      <param name="key">MongoOSG的标识</param>
+      <param name="tileContent">标识对应的缓存数据</param>
+      <returns>保存是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.LoadTile(System.Int32,System.Int32,System.Int32)">
+      <summary>
+            加载瓦片数据。
+            </summary>
+      <param name="level">瓦片所属层。</param>
+      <param name="row">瓦片所属行。</param>
+      <param name="column">瓦片所属列。</param>
+      <returns>瓦片内容。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.GetInfo">
+      <summary>
+            获取缓存信息。
+            </summary>
+      <returns>缓存信息。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.UpdateInfo(SuperMap.Data.TileStorage.TileStorageInfo)">
+      <summary>
+            更新缓存信息。
+            </summary>
+      <param name="storageInfo">缓存信息。</param>
+      <returns>更新是否成功，true 成功，false 失败。</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageManager.ConnectInfo">
+      <summary>
+            获取连接信息。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageType">
+      <summary>
+            该枚举定义了缓存存储标准的类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.UNKOWN">
+      <summary>
+            未知
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.Mongo">
+      <summary>
+            以Mongo数据库存储
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.MongoV2">
+      <summary>
+            以Mongo数据库存储2.0版本
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.MongoOSG">
+      <summary>
+            以MongoOSG存储
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.GPKG">
+      <summary>
+            以GeoPackage存储
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.SeaweedFS">
+      <summary>
+            SeeWEEDFS缓存
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.MVT">
+      <summary>
+            MVT矢量缓存
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.Mongo3DTiles">
+      <summary>
+            以Mongo数据库存储3DTiles数据
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileVersion">
+      <summary>
+      </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileVersion.#ctor">
+      <summary>
+      </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileVersion.#ctor(System.String,System.String,System.String,System.DateTime,System.Double[],SuperMap.Data.Rectangle2D)">
+      <summary>
+      </summary>
+      <param name="name">
+      </param>
+      <param name="desc">
+      </param>
+      <param name="parent">
+      </param>
+      <param name="timetense">
+      </param>
+      <param name="resolutions">
+      </param>
+      <param name="bounds">
+      </param>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileVersion.Name">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileVersion.Desc">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileVersion.Parent">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileVersion.Timetense">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileVersion.Resolutions">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileVersion.Bounds">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileVersion.Scales">
+      <summary>
+      </summary>
+    </member>
+  </members>
+</doc>

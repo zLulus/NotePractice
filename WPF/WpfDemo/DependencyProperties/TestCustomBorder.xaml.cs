@@ -17,7 +17,7 @@ namespace WpfDemo.DependencyProperties
     /// <summary>
     /// TestCustomTextBlock.xaml 的交互逻辑
     /// </summary>
-    public partial class TestCustomTextBlock : Window
+    public partial class TestCustomTextBlock : UserControl
     {
         public TestCustomTextBlock()
         {

@@ -1,11 +1,10 @@
-﻿<Window x:Class="WpfDemo.Trigger.EventTriggerDemo"
+﻿<UserControl x:Class="WpfDemo.Trigger.EventTriggerDemo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.Trigger"
-        mc:Ignorable="d"
-        Title="EventTriggerDemo" Height="300" Width="300">
+        mc:Ignorable="d">
     <Grid>
         <CheckBox Content="随着鼠标划入划出，长度改变" HorizontalAlignment="Left" Width="70">
             <CheckBox.Resources>
@@ -42,4 +41,4 @@
             </CheckBox.Resources>
         </CheckBox>
     </Grid>
-</Window>
+</UserControl>

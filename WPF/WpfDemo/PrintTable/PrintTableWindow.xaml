@@ -1,0 +1,26 @@
+﻿<Window x:Class="WpfDemo.PrintTable.PrintTableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.PrintTable"
+        mc:Ignorable="d"
+        Title="PrintTableWindow" Height="350" Width="525"
+        TextOptions.TextFormattingMode="Display">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="打印预览" Height="23" HorizontalAlignment="Left" Margin="10" Name="btnPrintPreview" VerticalAlignment="Top" Width="75" Click="btnPrintPreview_Click" />
+                <TextBlock VerticalAlignment="Center">将FlowDocument打印至XPS实现打印预览</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="打印对话框" Height="23" HorizontalAlignment="Left" Margin="10" Name="btnPrintDlg" VerticalAlignment="Top" Width="75" Click="btnPrintDlg_Click" />
+                <TextBlock VerticalAlignment="Center">显示打印对话框让用户选择打印机</TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="直接打印" Height="23" HorizontalAlignment="Left" Margin="10" Name="btnPrintDirect" VerticalAlignment="Top" Width="75" Click="btnPrintDirect_Click" />
+                <TextBlock VerticalAlignment="Center">直接使用默认打印机打印</TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

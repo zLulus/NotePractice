@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>环境设计</title>
+    <desc>Created with Sketch.</desc>
+    <g id="6-视图" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="在线" transform="translate(-390.000000, -12.000000)">
+            <g id="环境设计" transform="translate(390.000000, 12.000000)">
+                <g id="浏览" transform="translate(3.000000, 3.000000)">
+                    <rect id="矩形" fill="#FFFFFF" x="1" y="1" width="24" height="19"></rect>
+                    <rect id="Rectangle" stroke="#5D6D7E" fill-rule="nonzero" x="0.5" y="0.5" width="25" height="20" rx="1"></rect>
+                    <path d="M13,7.5 L22,7.5 L21.5,7 L21.5,8 L22,7.5 L13,7.5 L13.5,8 L13.5,7 L13,7.5 Z M13,10.5 L19,10.5 L18.5,10 L18.5,11 L19,10.5 L13,10.5 L13.5,11 L13.5,10 L13,10.5 Z M13,13.5 L19,13.5 L18.5,13 L18.5,14 L19,13.5 L13,13.5 L13.5,14 L13.5,13 L13,13.5 Z M13,16.5 L22,16.5 L21.5,16 L21.5,17 L22,16.5 L13,16.5 L13.5,17 L13.5,16 L13,16.5 Z M13,4.5 L22,4.5 L21.5,4 L21.5,5 L22,4.5 L13,4.5 L13.5,5 L13.5,4 L13,4.5 Z" id="Combined-Shape" stroke="#ACB4C0" fill-rule="nonzero"></path>
+                    <path d="M14,25 L22,25 L22,26 L4,26 L4,25 L12,25 L12,21 L14,21 L14,25 Z" id="Combined-Shape" fill="#5D6D7E" fill-rule="nonzero"></path>
+                    <rect id="矩形" fill="#C49F74" x="3" y="3" width="8" height="15"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

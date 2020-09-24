@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>32-融合</title>
+    <desc>Created with Sketch.</desc>
+    <g id="2-数据" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="数据" transform="translate(-390.000000, -12.000000)">
+            <g id="2-数据" transform="translate(10.000000, 12.000000)">
+                <g id="gallery" transform="translate(304.000000, 0.000000)">
+                    <g id="32-融合" transform="translate(76.000000, 0.000000)">
+                        <g id="分组-74" transform="translate(3.000000, 3.000000)">
+                            <path d="M12.5,22.5 L12.5,20.5 L25.5,20.5 L25.5,3.5 L21.5309858,3.5 L21.4695934,3.07079879 C21.2597429,1.60371045 19.9971872,0.5 18.5,0.5 C17.0028128,0.5 15.7402571,1.60371045 15.5304066,3.07079879 L15.4690142,3.5 L12.5,3.5 L12.5,5.5 L0.5,5.5 L0.5,22.5 L3.46901416,22.5 L3.53040658,22.9292012 C3.74025713,24.3962896 5.00281279,25.5 6.5,25.5 C7.99718721,25.5 9.25974287,24.3962896 9.46959342,22.9292012 L9.53098584,22.5 L12.5,22.5 Z" id="合并形状" stroke="#5D6D7E" fill="#FFFFFF"></path>
+                            <path d="M12,15 L13,15 C14.1045695,15 15,14.1045695 15,13 C15,11.8954305 14.1045695,11 13,11 L12,11 L12,6 L13,6 L13,10 C14.6568542,10 16,11.3431458 16,13 C16,14.6568542 14.6568542,16 13,16 L13,20 L12,20 L12,15 Z" id="合并形状" fill="#30AD98" fill-rule="nonzero" opacity="0.5"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

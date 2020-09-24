@@ -1,0 +1,494 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.SpatialStatistics</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.AggregationMethod">
+      <summary>This enumeration defines the aggregation method constants used to analyze the creation of data sets through event points.</summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.AggregationMethod.NetWorkPolygons">
+      <summary>
+        <para>Calculate the appropriate grid size, create the grid surface data set, generate the grid surface data set with the point count of the surface grid unit and perform the hotspot analysis as the analysis field.</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.AggregationMethod.AggregationPolygons">
+      <summary>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.AggregationMethod.SnapNearbyPoints">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns">
+      <summary>
+            The analysis mode class. This class can evaluate whether a set of data is the discrete spatial pattern, clustering spatial pattern or random spatial pattern.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.AutoCorrelation(SuperMap.Data.DatasetVector,SuperMap.Analyst.SpatialStatistics.PatternsParameter)">
+      <summary>
+            The spatial autocorrelation.
+            </summary>
+      <param name="sourceDataset">The specified datasets to be calculated which can be point, line and region datasets.</param>
+      <param name="patternsParameter">Parameter settings for the specified analysis mode.</param>
+      <returns>The spatial autocorrelation.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.HighOrLowClustering(SuperMap.Data.DatasetVector,SuperMap.Analyst.SpatialStatistics.PatternsParameter)">
+      <summary>
+            High and low value cluster.
+            </summary>
+      <param name="sourceDataset">The specified datasets to be calculated which can be point, line and region datasets.</param>
+      <param name="patternsParameter">Parameter settings for the specified analysis mode.</param>
+      <returns>High and low value cluster results.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.IncrementalAutoCorrelation(SuperMap.Data.DatasetVector,SuperMap.Analyst.SpatialStatistics.IncrementalParameter)">
+      <summary>
+            An incremental spatial autocorrelation analysis of vector data sets and an array of incremental spatial autocorrelation analysis results are returned.
+            </summary>
+      <param name="sourceDataset">Specifies the data set to be computed.Can be point, line, face data set.</param>
+      <param name="incrementalParameter">Specify the incremental space autocorrelation parameter Settings.</param>
+      <returns>Incremental space autocorrelation.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.AverageNearestNeighbor(SuperMap.Data.DatasetVector,System.Double,SuperMap.Analyst.SpatialStatistics.DistanceMethod)">
+      <summary>
+            The average nearest neighbor analysis of vector data sets and the average nearest neighbor analysis result array are returned.
+            </summary>
+      <param name="sourceDataset">Specifies the data set to be computed.Can be point, line, face data set.</param>
+      <param name="studyArea">The area of the designated study area.</param>
+      <param name="distanceMethod">The specified distance calculation method.</param>
+      <returns>Average nearest neighbor results.</returns>
+      <param name="distanceMethod">The specified distance calculation method.</param>
+      <returns>Average nearest neighbor result.</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult">
+      <summary>
+            The analysis mode result class. This class is used to get the calculation results of the analysis mode, including the index, expectation. variance, Z score and P value.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult.Index">
+      <summary>
+            Gets the Moran and GeneralG index in the analysis mode.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult.Expectation">
+      <summary>
+            Gets the expectation value in the analysis mode result.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult.Variance">
+      <summary>
+            Gets the variance in the analysis mode result.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult.ZScore">
+      <summary>
+            Gets the Z score in the analysis mode result.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult.PValue">
+      <summary>
+            Gets the P value in the analysis mode result.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.BandWidthType">
+      <summary>This enumeration defines the geographically weighted regression analysis bandwidth constants. Please refer to the <see cref="T:SuperMap.Analyst.SpatialStatistics.GWRParameter">GWRParameter</see>.</summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.BandWidthType.AICc">
+      <summary>
+        <para>Uses the "Akaike (AICc)" to determine the width range.</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.BandWidthType.CV">
+      <summary>
+        <para>Uses the "Cross Verify" to determine the width ranges.</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.BandWidthType.BandWidth">
+      <summary>
+        <para>Determines the width range according to the given fixed distance or fixed consecutive numbers.</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions">
+      <summary>
+            The clustering distribution class. This class can identify a set of data statistically with hot and cold spots or spatial outliers.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.HotSpotAnalyst(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.PatternsParameter)">
+      <summary>
+            The heat point analysis returns the vector dataset.
+            </summary>
+      <param name="sourceDataset">The specified datasets to be calculated which can be point, line and region datasets.</param>
+      <param name="targetDatasource">Datasource for storing the output datasets.</param>
+      <param name="targetDatasetName">The specified name of the result dataset.</param>
+      <param name="patternsParameter">The specified clustering distribution parameter settings.</param>
+      <returns>The result vector dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.ClusterOutlierAnalyst(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.PatternsParameter)">
+      <summary>
+            The cluster and outliers analysis. Returns the vector dataset.
+            </summary>
+      <param name="sourceDataset">The specified datasets to be calculated which can be point, line and region datasets.</param>
+      <param name="targetDatasource">Datasource for storing the output datasets.</param>
+      <param name="targetDatasetName">The specified name of the result dataset.</param>
+      <param name="patternsParameter">The specified clustering distribution parameter settings.</param>
+      <returns>The result vector dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.OptimizedHotSpotAnalyst(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.OptimizedParameter)">
+      <summary>
+            Optimized hot spot analysis to return the result vector data set.
+            </summary>
+      <param name="sourceDataset">Specifies the data set to be computed.Can be point, line, face data set.</param>
+      <param name="targetDatasource">Specifies the data source for storing the result data set.</param>
+      <param name="targetDatasetName">The specified result data set name.</param>
+      <param name="OptimizedParameter">指定的优化的热点分析参数设置。</param>
+      <returns>The resulting vector dataset.</returns>
+        </member>
+        <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.DensityBasedClustering(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Int32,System.Double,SuperMap.Data.Unit)">
+            <summary>
+            Density clustering.
+            </summary>
+            <param name="sourceDataset">Specified point data set. </param>
+            <param name="outputDatasource">Specified data source for storing the result dataset. </param>
+            <param name="outputDatasetName">The specified result data set name. </param>
+            <param name="minPilePointCount">The number of points in the cluster. </param>
+            <param name="searchDistance">Cluster radius. </param>
+            <param name="unit">The unit of the cluster radius. </param>
+            <returns> result vector dataset. </returns>
+            
+        </member>
+        <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.HierarchicalDensityBasedClustering(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Int32)">
+            <summary>
+            Hierarchical density clustering.
+            </summary>
+            <param name="sourceDataset">Specified point data set. </param>
+            <param name="outputDatasource">Specified data source for storing the result dataset. </param>
+            <param name="outputDatasetName">The specified result data set name. </param>
+            <param name="minPilePointCount">The number of points in the cluster. </param>
+            <returns> result vector dataset. </returns>
+            
+        </member>
+        <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.OrderingDensityBasedClustering(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Int32,System.Double,SuperMap.Data.Unit,System.Int32 )">
+            <summary>
+            Sequential density clustering.
+            </summary>
+            <param name="sourceDataset">Specified point data set. </param>
+            <param name="outputDatasource">Specified data source for storing the result dataset. </param>
+            <param name="outputDatasetName">The specified result data set name. </param>
+            <param name="minPilePointCount">The number of points in the cluster. </param>
+            <param name="searchDistance">Cluster radius. </param>
+            <param name="unit">The unit of the cluster radius. </param>
+            <param name="clusterSensitivity">The tightness of the cluster, between 0 and 100. The larger the value, the denser the points within the resulting cluster; the smaller the value, the sparse the points within the resulting cluster. </param>
+            <returns> result vector dataset. </returns>
+            
+        </member>
+        <member name="E:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.Stepped">
+            <summary>
+            The event is trigged when the process bar is activated.
+            </summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel"><summary>This enumeration defines the mode constants of spatial relations conceptualization. Also see <see cref="T:SuperMap.Analyst.SpatialStatistics.PatternsParameter">PatternsParameter</see>.</summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.InverseDistance"><summary><para>The inverse distance model.</para><para>Any feature will influence the target feature. But the influence will decrease with the increase of distance. The feature weight is the one of the distance.</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.InverseDistanceSquared"><summary><para>The inverse distance square model.</para><para>Similar to "inverse distance model", with the increase of distance, the influence is falling faster. The features weight are the one of  the square distance.</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.FixedDistanceBand"><summary><para>The fixed distance model.</para><para>The features in the specified fixed distance range have the same weights (it is 1). Others will not influence the calculation (the weight is 0).</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.ZoneOfIndifference"><summary><para>The indiscriminate zone model.</para><para>This model is the combination of the inverse distance model and fixed distance model. The elements in the fixed distance range have the same weight (1); Beyond the specified fixed distance range, the elements influence will decrease with the increase of distance</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.ContiguityEdgesOnly"><summary><para>The region adjacency model.</para><para>Only the regions have contacts, it will influence the target elements (the weight is 1); otherwise, it will exclude to the target elements (the weight is 0).</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.ContiguityEdgesNode"><summary><para>The region adjacency model.</para><para>Only the regions have the contacts, it will influence the target elements (the weight is 1); otherwise, it will exclude to the target elements (the weight is 0).</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.KNearestNeighbors"><summary><para>K neighboring model.</para><para>The K elements near to the target element are contained in the calculation (the weight is 1). Others are excluded to the target element calculation (the weight is 0).</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.SpatialWeightMatrixFile"><summary><para>Provides the spatial weight matrix file.</para></summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.DistanceMethod"><summary>This enumeration defines the distance calculation method constant. Also see <see cref="T:SuperMap.Analyst.SpatialStatistics.MeasureParameter">MeasureParameter</see>.</summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.DistanceMethod.Euclidean"><summary><para>Euclidean Distance. It calculates the straight-line distances.</para><para></para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.DistanceMethod.Manhattan"><summary><para>The Manhattan distance. Calculate the sum of absolute values of two points x and y coordinates differences.</para><para></para></summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.EllipseSize"><summary>The enumeration defines constant of the direction distribution output ellipse. See <see cref="T:SuperMap.Analyst.SpatialStatistics.MeasureParameter">MeasureParameter</see>.</summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.EllipseSize.Single"><summary><para>A standard deviation. The outputted elliptical semi-major axis and semi-minor axis is a times the corresponding standard deviation.</para><para>When the geometry objects have the space of normal distribution, that is, these geometry objects focus on the center and less toward the periphery; then the ellipses created by the EllipseSize.Single will contain 68% geometry objects.</para><para></para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.EllipseSize.Twice"><summary><para>Two standard deviations. The outputted elliptical semi-major axis and semi-minor axis is a times the corresponding standard deviation.</para><para>When the geometry objects have the space of normal distribution, that is, these geometry objects focus on the center and less toward the periphery; then the ellipses created by the EllipseSize.Twice will contain 95% geometry objects.</para><para></para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.EllipseSize.Triple"><summary><para>Three standard deviations. The outputted elliptical semi-major axis and semi-minor axis is a times the corresponding standard deviation.</para><para>When the geometry objects have the space of normal distribution, that is, these geometry objects focus on the center and less toward the periphery; then the ellipses created by the EllipseSize.Triple will contain 99% geometry objects.</para><para></para></summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.GWRAnalystResult"><summary>
+            The geographically weighted regression analysis result information class. This class is used to get the geographically weighted regression analysis result for the dataset. For example, the total of geographically weighted regression analysis results (see the <see cref="T:SuperMap.Analyst.SpatialStatistics.GWRSummary">GWRSummary</see> class), result datasets and so on.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRAnalystResult.GWRSummary"><summary>Gets the total results of the geographically weighted regression.</summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRAnalystResult.ResultDataset"><summary>Gets the datasets of the geographically weighted regression.</summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.GWRParameter"><summary>The geographically weighted regression analysis parameter class. This class is used to set the parameters.</summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.GWRParameter.#ctor"><summary>The default constructor for constructing a new GWRParameter object.</summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.GWRParameter.#ctor(SuperMap.Analyst.SpatialStatistics.GWRParameter)"><summary>Initializes a new instance of the GWRParameter class which is identical with the specified GWRParameter object.</summary><param name="gwrParameter">The specified GWRParameter object.</param></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.ModelFeild"><summary>Gets or sets the name of the modeling field.</summary></member>
+         <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.ModelField">
+             <summary>gets or sets the name of the modeling field. </summary>
+             
+         </member>
+         <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.ExplanatoryFeilds">
+             <summary> Gets or sets the collection of the names of the interpreted fields. </summary>
+             
+         </member>
+         <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.ExplanatoryFields">
+             <summary> Gets or sets the collection of the names of the interpreted fields. </summary>
+             
+         </member>
+         <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.KernelType"><summary>Gets or sets the bandwidth type.</summary><value>The default value is <see cref="F:SuperMap.Analyst.SpatialStatistics.KernelType.Fixed">KernelType.Fixed</see>.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.BandWidthType"><summary>Gets or sets the bandwidth determining mode.</summary><value>The default value is <see cref="F:SuperMap.Analyst.SpatialStatistics.BandWidthType.AICc">BandWidthType.AICc</see>.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.KernelFunction"><summary>Gets or sets this function type.</summary><value>The default value is <see cref="F:SuperMap.Analyst.SpatialStatistics.KernelFunction.Gaussian">KernelFunction.Gaussian</see>.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.DistanceTolerance"><summary>Gets or sets the bandwidth range.</summary><value>The default value is 0.0.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.Neighbors"><summary>Gets or sets the adjacent number.</summary><value>The default value is 1.</value></member><member name="T:SuperMap.Analyst.SpatialStatistics.GWRSummary"><summary>
+            The total results of the geographically weighted regression.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.Neighbors"><summary>
+            Gets the total results adjacent number of the geographically weighted regression.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.Bandwidth"><summary>
+            Gets the total results bandwidth range of the geographically weighted regression.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.ResidualSquares"><summary>
+            Gets residual sum of squares of the geographically weighted regression results.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.Edf"><summary>
+            Gets effective freedom of the geographically weighted regression results.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.EffectiveNumber"><summary>
+            Gets parameter number of the geographically weighted regression results.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.Sigma"><summary>
+            Gets residuals estimate standard deviation of the geographically weighted regression results.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.AIC"><summary>
+            Gets the AIC of the geographically weighted regression results.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.AICc"><summary>
+            Gets the AICc of the geographically weighted regression results.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.R2"><summary>
+            Gets the total results coefficient of determination of the geographically weighted regression (R2).
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.R2Adjusted"><summary>
+            Gets the total results corrected coefficient of determination of the geographically weighted regression.
+            </summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.IncrementalParameter"><summary>Incremental space autocorrelation parameter class.This class is mainly used to set the parameters of the incremental space autocorrelation calculation.</summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.#ctor"><summary>The default constructor, which constructs a new IncrementalParameter object.</summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.#ctor(SuperMap.Analyst.SpatialStatistics.IncrementalParameter)"><summary>Copy the constructor and construct a new object that is exactly the same as the given incrementalParameter object.</summary><param name="incrementalParameter">The specified incrementalParameter object.</param></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.AssessmentFieldName"><summary>Gets or sets the name of the evaluation field.</summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.IncrementalNumber"><summary>Gets or sets the number of incremental distances.</summary><value>The default value is 10.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.BeginDistance"><summary>Gets or sets the start distance.</summary><value>The default value is 0.0.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.IncrementalDistance"><summary>Gets or sets the distance increment.</summary><value>默认值为 0.0。</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.IsStandardization"><summary>Gets or sets whether to standardize the spatial weight matrix.</summary><value>The default value is false, which is not standardized.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.DistanceMethod"><summary>Gets or sets the distance calculation method type.</summary><value>默认值为 <see cref="F:SuperMap.Analyst.SpatialStatistics.DistanceMethod.Euclidean">DistanceMethod.Euclidean</see>，即欧式距离。</value></member><member name="T:SuperMap.Analyst.SpatialStatistics.IncrementalResult"><summary>
+            Incremental space autocorrelation result class.
+This class is used to obtain the results of the incremental space autocorrelation calculation, including the increment distance of the results, the moran index, expectation, variance, z-score and P value.
+            </summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.IncrementalResult.#ctor"><summary>
+            Constructor.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.Distance"><summary>
+            Gets the incremental distance from the related results of the incremental space.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.Index"><summary>
+            Obtain the moran index of the incremental space autocorrelation.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.Expectation"><summary>
+            Gets the expected value of the incremental space from the relevant results.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.Variance"><summary>
+            Gets the variance value of the incremental space autocorrelation.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.ZScore"><summary>
+            Gets the z-score of the incremental space autocorrelation result.
+            </summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.PValue"><summary>
+            Gets the P value in the incremental space autocorrelation.
+            </summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.KernelFunction"><summary>This enumeration defines the geographically weighted regression analysis kernel function type constants. Please refer to the <see cref="T:SuperMap.Analyst.SpatialStatistics.GWRParameter">GWRParameter</see>.</summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.KernelFunction.Gaussian"><summary><para>The Gaussian kernel function.</para><para>The calculation formula of the Gaussian kernel function:</para><para> W_ij=e^(-((d_ij/b)^2)/2).</para><para> The W_ij is the weight between the point i and j. d_ij is the distance between the point i and j. b is the bandwidth range.</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.KernelFunction.Bisquare"><summary><para>The quadratic function.</para><para>The calculation formula of the quadratic function:</para><para>If d_ij≤b, W_ij=(1-(d_ij/b)^2))^2; otherwise, W_ij=0.</para><para> The W_ij is the weight between the point i and j. d_ij is the distance between the point i and j. b is the bandwidth range.</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.KernelFunction.Boxcar"><summary><para>The box kernel function.</para><para>The calculation formula of the box kernel function:</para><para>If d_ij≤b, W_ij=1; otherwise, W_ij=0.</para><para> The W_ij is the weight between the point i and j. d_ij is the distance between the point i and j. b is the bandwidth range.</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.KernelFunction.Tricube"><summary><para>The cube kernel function. </para><para>The calculation formula of the cube kernel function:</para><para>If d_ij≤b, W_ij=(1-(d_ij/b)^3))^3; otherwise, W_ij=0.</para><para> The W_ij is the weight between the point i and j. d_ij is the distance between the point i and j. b is the bandwidth range.</para></summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.KernelType"><summary>This enumeration defines the geographically weighted regression analysis bandwidth type constants. Please refer to the <see cref="T:SuperMap.Analyst.SpatialStatistics.GWRParameter">GWRParameter</see>.</summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.KernelType.Fixed"><summary><para>The fixed bandwidth. For each regression analysis points, use a fixed value as the bandwidth range.</para></summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.KernelType.Adaptive"><summary><para>Flexible bandwidth. For each regression analysis point, use the distance between the regression point and the K nearest point as the bandwidth. K is the adjacent number. </para></summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.MeasureParameter"><summary>The spatial measure parameter class. This class is used to set the spatial measure geo-distribution calculation parameter.</summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.MeasureParameter.#ctor"><summary>The default constructor for constructing a new MeasureParameter object.</summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.MeasureParameter.#ctor(SuperMap.Analyst.SpatialStatistics.MeasureParameter)"><summary>Initializes a new instance of the MeasureParameter class which is identical with the specified MeasureParameter object.</summary><param name="measureParameter">The specified MeasureParameter object.</param></member><member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.WeightField"><summary>Gets or sets the name of the weight field.</summary><value>The default value is String.Empty, i.e., there are no weight fields.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.SelfWeightField"><summary>Gets or sets the name of the weight field.</summary><value>The default value is String.Empty, i.e., there are no self weight fields.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.EllipseSize"><summary>Gets or sets the size type of the output ellipse.</summary><value>The default value is EllipseSize.Single, namely a standard deviation.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.GroupField"><summary>Gets or sets the name of the group field.</summary><value>The default value is String.Empty, i.e., there are no group fields.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.StatisticsFieldNames"><summary>Gets or sets the set of names of the statistical fields.</summary><value>The default value is String.Empty, i.e., there are no statistical fields.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.StatisticsTypes"><summary>Gets or sets the collection of the statistics field types. It corresponds to <see cref="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.StatisticsFieldNames">StatisticsFieldNames</see>.</summary><value>The default value is String.Empty, i.e., there are no statistical fields.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.DistanceMethod"><summary>Gets or sets distance measure method type.</summary><value>The default is DistanceMethod.Euclidean, namely, the euclidean distance.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.IsOrientation"><summary>Gets or sets whether to ignore the starting point and the destination.</summary><value>The default value is false.</value></member>
+        <member name="T:SuperMap.Analyst.SpatialStatistics.OLSAnalystResult">
+            <summary>
+            Ordinary least squares result information class. This class is used to obtain the results of ordinary least squares calculations on the data set, such as the general least squares result summary (see <see cref="T:SuperMap.Analyst.SpatialStatistics.OLSSummary">OLSSummary</see> class) , result data sets, etc.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSAnalystResult.OLSSummary">
+            <summary>gets a summary of common least squares results. </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSAnalystResult.ResultDataset">
+            <summary>gets the normal least squares result data set. </summary>
+        </member>
+        <member name="T:SuperMap.Analyst.SpatialStatistics.OLSParameter">
+            <summary>Ordinary least squares analysis of parameter classes. This class is mainly used to set the parameters of ordinary least squares analysis. </summary>
+            
+        </member>
+        <member name="M:SuperMap.Analyst.SpatialStatistics.OLSParameter.#ctor">
+            <summary>The default constructor constructs a new OLSParameter object. </summary>
+        </member>
+        <member name="M:SuperMap.Analyst.SpatialStatistics.OLSParameter.#ctor(SuperMap.Analyst.SpatialStatistics.OLSParameter)">
+            The <summary> copy constructor constructs a new object identical to the given OLSParameter object. </summary>
+            <param name="olsParameter">The specified OLSParameter object. </param>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSParameter.ModelField">
+            <summary>gets or sets the name of the modeling field. </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSParameter.ExplanatoryFields">
+            <summary> Gets or sets the collection of the names of the interpreted fields. </summary>
+            
+        </member>
+        <member name="T:SuperMap.Analyst.SpatialStatistics.OLSSummary">
+            <summary>
+            General least squares result summary class.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.AIC">
+            <summary>
+            Get the AIC in the summary of the ordinary least squares results.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.AICc">
+            <summary>
+            Get the AICc in the summary of the ordinary least squares results.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.R2">
+            <summary>
+            Obtain the decision coefficient (R2) in the summary of the ordinary least squares results.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.R2Adjusted">
+            <summary>
+            Obtain the corrected decision coefficients in the summary of the ordinary least squares results.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Sigma2">
+            <summary>
+            Get the residual variance in the summary of the ordinary least squares results.
+            </summary>
+            </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.FStatistic">
+            <summary>
+            Get the union F statistic in the summary of the ordinary least squares results.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.WaldStatistic">
+            <summary>
+            Get the joint chi-square statistic in the summary of ordinary least squares results.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.KBPStatistic">
+            <summary>
+            Get the Koenker (Breusch-Pagan) statistic in the summary of common least squares results.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.JBStatistic">
+            <summary>
+            Get the Jarque-Bera statistic in the general least squares result summary.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.FProbability">
+            <summary>
+            Get the probability of the joint F statistic in the general least squares result summary.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.WaldProbability">
+            <summary>
+            Get the probability of the union chi-square statistic in the summary of ordinary least squares results.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.KBPProbability">
+            <summary>
+            Get the probability of the Koenker (Breusch-Pagan) statistic in the general least squares result summary.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.JBProbability">
+            <summary>
+            Get the probability of the Jarque-Bera statistic in the general least squares result summary.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.FDof">
+            <summary>
+            Get the joint F statistic degrees of freedom in the general least squares result summary.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.WaldDof">
+            <summary>
+            Get the joint card statistic degrees of freedom in the general least squares result summary.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.KBPDof">
+            <summary>
+            Obtain the Koenker (Breusch-Pagan) statistic degrees of freedom in the summary of ordinary least squares results.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.JBDof">
+            <summary>
+            Get the Jarque-Bera statistic degrees of freedom in the general least squares result summary.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Variable">
+            <summary>
+            Get the array of variables in the summary of the ordinary least squares results.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Coefficient">
+            <summary>
+            Get the coefficients in the summary of the ordinary least squares results.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.StdError">
+            <summary>
+            Get the standard error in the summary of common least squares results.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.t_Statistic">
+            <summary>
+            Get the t-distribution statistic in the summary of ordinary least squares results.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Probability">
+            <summary>
+            Obtain the t-distribution statistic probability in the summary of ordinary least squares results.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Robust_SE">
+            <summary>
+            Obtain the standard deviation of the robust coefficients in the summary of the ordinary least squares results.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Robust_t">
+            <summary>
+            Obtain the robust coefficient t distribution statistic in the summary of ordinary least squares results.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Robust_Pr">
+            <summary>
+            Get the probability of the robust coefficient in the summary of the ordinary least squares results.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.VIF">
+            <summary>
+            Obtain the variance expansion factor in the summary of ordinary least squares results.
+            </summary>
+            
+        </member>
+        <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.CoefficientStd">
+            <summary>
+            Obtain the coefficient standard deviation in the summary of the ordinary least squares results.
+            </summary>
+        </member>
+        <member name="T:SuperMap.Analyst.SpatialStatistics.OptimizedParameter"><summary>Optimized hot spot analysis parameter class.
+This class is used to set the parameters of the optimized hot spot analysis.</summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.#ctor"><summary>The default constructor is to construct a new OptimizedParameter object.</summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.#ctor(SuperMap.Analyst.SpatialStatistics.OptimizedParameter)"><summary>Copy the constructor and construct a new object that is exactly the same as the given optimizedParameter object.</summary><param name="optimizedParameter">Specify the optimizedParameter object.</param></member><member name="P:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.AssessmentFieldName"><summary>Gets or sets the name of the evaluation field.</summary><value>The default value is String. Empty.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.AggregationMethod"><summary>Gets or sets the aggregation method.</summary><value>The default value is AggregationMethod.Net WorkPolygons.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.BoundingPolygons"><summary>Gets or sets the bounding surface data set of the event point occurrence region.</summary><value>The default value is null.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.AggregatingPolygons"><summary>Gets or sets the aggregation event point to obtain the surface data set of the event count.</summary><value>The default value is null.</value></member><member name="T:SuperMap.Analyst.SpatialStatistics.PatternsParameter"><summary>The analysis mode parameter. This class is used to set the analysis mode calculation parameter.</summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.PatternsParameter.#ctor"><summary>The default constructor for constructing a new PatternsParameter object.</summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.PatternsParameter.#ctor(SuperMap.Analyst.SpatialStatistics.PatternsParameter)"><summary>Initializes a new instance of the patternsParameter class which is identical with the specified patternsParameter object.</summary><param name="patternsParameter">The specified patternsParameter object.</param></member><member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.AssessmentFieldName"><summary>Gets or sets the name of the evaluation field.</summary></member><member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.ConceptModel"><summary>Gets or sets the spatial relations conceptual model.</summary><value>The default value is <see cref="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.InverseDistance">ConceptualizationModel.InverseDistance</see>.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.DistanceTolerance"><summary>Gets or sets the break distance tolerance.</summary><value>The default value is -1.0.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.Exponent"><summary>Gets or sets the inverse distance power exponent.</summary><value>The default value is 1.0.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.Neighbors"><summary>Gets or sets the adjacent number.</summary><value>The default value is 1.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.IsStandardization"><summary>Gets or sets whether to standardize the spatial weight matrix.</summary><value>The default value is false.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.SelfWeightField"><summary>Gets or sets the name of the weight field.</summary><value>The default value is String.Empty, i.e., there are no self weight fields.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.IsFDRAdjusted"><summary>Gets or sets whether to conduct the FDR correction.</summary><value>The default value is false. That is, do not conduct the FDR correction.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.FilePath"><summary>Gets or sets the spatial weight matrix file path.</summary><value>The default value is String.Empty, that is, no spatial weight matrix file.</value></member><member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.DistanceMethod"><summary>Gets or sets distance measure method type.</summary><value>The default is DistanceMethod.Euclidean, namely, the euclidean distance.</value></member><member name="T:SuperMap.Analyst.SpatialStatistics.SpatialMeasure"><summary>
+            The spatial measurement class. This class can calculate the values that represents the distribution through measuring a group of data, such as the data center, direction and so on.
+            </summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureMeanCenter(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)"><summary>
+             Calculates the average center of the vector data, and returns the result vector dataset.
+             </summary><param name="sourceDataset">The specified datasets to be calculated which can be point, line and region datasets.</param><param name="targetDatasource">Datasource for storing the output datasets.</param><param name="targetDatasetName">The specified name of the result dataset.</param><param name="measureParameter">The specified spatial measure parameter settings.</param><returns>The result vector dataset.</returns></member><member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureMedianCenter(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)"><summary>
+             Calculates the median center of the vector data, and returns the result vector dataset.
+             </summary><param name="sourceDataset">The specified datasets to be calculated which can be point, line and region datasets.</param><param name="targetDatasource">Datasource for storing the output datasets.</param><param name="targetDatasetName">The specified name of the result dataset.</param><param name="measureParameter">The specified spatial measure parameter settings.</param><returns>The result vector dataset.</returns></member><member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureCentralElement(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)"><summary>
+             Calculates the center feature of the vector data, and return the result vector dataset.
+             </summary><param name="sourceDataset">The specified datasets to be calculated which can be point, line and region datasets.</param><param name="targetDatasource">Datasource for storing the output datasets.</param><param name="targetDatasetName">The specified name of the result dataset.</param><param name="measureParameter">The specified spatial measure parameter settings.</param><returns>The result vector dataset.</returns></member><member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureDirection(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)"><summary>
+             Calculates the direction distribution of the vector data, and return the result vector dataset.
+             </summary><param name="sourceDataset">The specified datasets to be calculated which can be point, line and region datasets.</param><param name="targetDatasource">Datasource for storing the output datasets.</param><param name="targetDatasetName">The specified name of the result dataset.</param><param name="measureParameter">The specified spatial measure parameter settings.</param><returns>The result vector dataset.</returns></member><member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureStandardDistance(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)"><summary>
+            Calculate the standard distance of vector data and return the result vector data set.
+            </summary><param name="sourceDataset">Specifies the data set to be computed.Can be point, line, face data set.</param><param name="targetDatasource">Specifies the data source for storing the result data set.</param><param name="targetDatasetName">The name of the result dataset specified.</param><param name="measureParameter">The specified spatial metric parameter settings.</param><returns>The resulting vector dataset.</returns></member><member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureLinearDirectionalMean(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)"><summary>
+            Calculate the direction average of the line data set and return the result vector data set.
+            </summary><param name="sourceDataset">Specifies the data set to be computed.Is a line data set.</param><param name="targetDatasource">Specifies the data source for storing the result data set.</param><param name="targetDatasetName">The name of the result dataset specified.</param><param name="measureParameter">The specified spatial metric parameter settings.</param><returns>The resulting vector dataset.</returns></member><member name="E:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.Stepped"><summary>
+            The event is trigged when the process bar is activated.
+            </summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.SpatialRelModeling"><summary>
+            The spatial relation modeling class. This class can establish the spatial relation model by using the regression analysis.
+            </summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.SpatialRelModeling.GeographicWeightedRegression(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.GWRParameter)"><summary>
+            The geographically weighted regression analysis.
+            </summary><param name="sourceDataset">The specified datasets to be calculated which can be point, line and region datasets.</param><param name="targetDatasource">Datasource for storing the output datasets.</param><param name="targetDatasetName">The specified name of the result dataset.</param><param name="gwrParameter">The specified geographically weight regression analysis parameter settings.</param><returns>The result info of the geographically weighted regression analysis.</returns>
+        </member>
+        <member name="M:SuperMap.Analyst.SpatialStatistics.SpatialRelModeling.OrdinaryLeastSquares(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.OLSParameter)">
+            <summary>
+            Ordinary least squares method.
+            </summary>
+            <param name="sourceDataset">Specified data set to be calculated. Can be point, line, and polygon datasets. </param>
+            <param name="targetDatasource">Specified data source for storing the result dataset. </param>
+            <param name="targetDatasetName">The specified result data set name. </param>
+            <param name="gwrParameter">Specified normal least squares parameter setting. </param>
+            <returns> ordinary least squares result information. </returns>
+            
+        </member>
+        <member name="E:SuperMap.Analyst.SpatialStatistics.SpatialRelModeling.Stepped">
+            <summary>
+            The event is trigged when the process bar is activated.
+            </summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.StatisticsType"><summary>
+            This enumeration defines the constants of the field statistics type after the dataset is spatial measured.
+            </summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Max"><summary>
+            The maximum of the statistics field. Only numeric type is supported. 
+            </summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Min"><summary>
+            The minimum of the statistics field. Only numeric type is supported. 
+            </summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Sum"><summary>
+            The sum of the statistics field. Only numeric type is supported.
+            </summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Mean"><summary>
+            The mean of the statistics field. Only numeric type is supported. 
+            </summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.First"><summary>
+            Retains the field value of the first object. The types of numeric, date, boolean and text are supported.
+            </summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Last"><summary>
+            Retains the field value of the last object. The types of numeric, date, boolean and text are supported. 
+            </summary></member><member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Median"><summary>
+            The median of the statistics fields.Only valid for numeric fields.
+            </summary></member><member name="T:SuperMap.Analyst.SpatialStatistics.StatisticsUtilities"><summary>
+            Spatial statistical analysis tool class.This class can be used for simple processing of data.
+            </summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.StatisticsUtilities.CollectEvents(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String)"><summary>
+            Collect events to convert event data into weighted data.
+            </summary><param name="sourceDataset">The specified collection of data to be collected.Can be point, line, face data set。</param><param name="targetDatasource">Specifies the data source for storing the result point data set.</param><param name="targetDatasetName">The specified result point data set name.</param><returns>Result point data set.</returns></member><member name="T:SuperMap.Analyst.SpatialStatistics.WeightsUtilities"><summary>
+            The spatial weight matrix tool class. This class is used to construct the spatial weight matrix.
+            </summary></member><member name="M:SuperMap.Analyst.SpatialStatistics.WeightsUtilities.BuildWeightMatrix(SuperMap.Data.DatasetVector,System.String,System.String,SuperMap.Analyst.SpatialStatistics.PatternsParameter)"><summary>
+            Constructs  the spatial weight matrix.
+            </summary><param name="sourceDataset">Specifies source dataset.</param><param name="uniqueIDFieldName">The specified unique ID field name.</param><param name="filePath">The save path of the specified spatial weight matrix file.</param><param name="patternsParameter">Parameter settings for the specified analysis mode.</param><returns>A boolean represents whether to construct the spatial weight matrix. Returns true if successful, otherwise false.</returns></member><member name="M:SuperMap.Analyst.SpatialStatistics.WeightsUtilities.ConverToTableDataset(System.String,SuperMap.Data.Datasource,System.String)"><summary>
+            Converts the spatial weight matrix files to the attribute tables.
+            </summary><param name="filePath">The specified path of the spatial weight matrix file.</param><param name="targetDatasource">Datasource for storing the output attribute table.</param><param name="targetDatasetName">The name of the specified result tabular name.</param><returns>Result Tabular.</returns></member><member name="E:SuperMap.Analyst.SpatialStatistics.WeightsUtilities.Stepped"><summary>
+            The event is trigged when the process bar is activated.
+            </summary></member></members>
+</doc>

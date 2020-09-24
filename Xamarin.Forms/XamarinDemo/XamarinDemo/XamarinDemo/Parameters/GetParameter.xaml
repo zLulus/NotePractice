@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinDemo.Parameters.GetParameter">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label BackgroundColor="Blue" Grid.Row="0" Text="Get Data1:" />
+                <Label BackgroundColor="Green" Grid.Row="2" Text="{Binding Data1, Mode=TwoWay}" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

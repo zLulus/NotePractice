@@ -19,7 +19,7 @@ namespace WpfDemo.PropertyChanged
     /// <summary>
     /// ChangeStudentInfo.xaml 的交互逻辑
     /// </summary>
-    public partial class ChangeStudentInfo : Window
+    public partial class ChangeStudentInfo : UserControl
     {
         ChangeStudentInfoViewModel vm = new ChangeStudentInfoViewModel();
         public ChangeStudentInfo()

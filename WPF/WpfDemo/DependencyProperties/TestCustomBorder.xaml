@@ -1,13 +1,12 @@
-﻿<Window x:Class="WpfDemo.DependencyProperties.TestCustomTextBlock"
+﻿<UserControl x:Class="WpfDemo.DependencyProperties.TestCustomTextBlock"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.DependencyProperties"
-        mc:Ignorable="d"
-        Title="TestCustomTextBlock" Height="300" Width="300">
+        mc:Ignorable="d">
     <Grid>
         <local:CustomBorder x:Name="bord" Transparency="{Binding ElementName=slider1, Path=Value}"></local:CustomBorder>
         <Slider Grid.Row="1" HorizontalAlignment="Left" Name="slider1" Width="130" Value="0" Minimum="0" Maximum="255" />
     </Grid>
-</Window>
+</UserControl>

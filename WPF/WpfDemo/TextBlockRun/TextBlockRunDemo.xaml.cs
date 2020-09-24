@@ -17,7 +17,7 @@ namespace WpfDemo.TextBlockRun
     /// <summary>
     /// TextBlockRunDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class TextBlockRunDemo : Window
+    public partial class TextBlockRunDemo : UserControl
     {
         public TextBlockRunDemo()
         {

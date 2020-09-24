@@ -17,7 +17,7 @@ namespace WpfDemo.CheckBox
     /// <summary>
     /// CheckBoxDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class CheckBoxDemo : Window
+    public partial class CheckBoxDemo : UserControl
     {
         public CheckBoxDemo()
         {

@@ -1,0 +1,2277 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.NetworkAnalyst</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.AnalystType">
+      <summary>
+                       This enumeration defines the analysis mode in the logical analysis.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.AnalystType.LeastCost">
+      <summary>
+                       Least cost mode.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.AnalystType.AverageCost">
+      <summary>
+                       Average cost mode.
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.BurstAnalyseResult">
+      <summary>
+            The pipe-broken analysis result class. The result of pipe-broken returns the crucial facility nodes, common facility nodes and arcs.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.BurstAnalyseResult.CriticalNodes">
+      <summary>
+            Gets the critical facility points.
+            <remark>
+            It contains two types:
+            <para>1. The facility points which affect the burst position on the upper stream.</para><para>2. The facility points which are directly affected by the burst position and have outflow (that is, the outflow is greater than 0) on the downstream.</para></remark></summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.BurstAnalyseResult.NormalNodes">
+      <summary>
+            Gets the common facility nodes that are affected by the pipe-broken position.
+            </summary>
+      <remark>There are three types of common facility points:
+            <para>1. The ones which are directly affected by the burst position and don't have outflow.</para><para>2. All facility points A (except all critical facility points) which are directly affected by outflow arcs of each upper stream critical facility point, and A must meet the condition that there are common parts between the affected arcs from the upper stream critical facility point to A and the affected arcs of all the critical facility points. </para><para>3. The facility point A on the downstream which is directly affected by the burst position(critical facility point 2 and common facility point 1), the facility point B on upper stream of A which directly affects A (except all critical facility points), B must meet the condition that there are common parts between the affected arcs from A to B and the affected arcs of all the critical facility points.  </para></remark>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.BurstAnalyseResult.Edges">
+      <summary>
+            Gets the edges that affect the pipe-broken position and the are affected by the pipe-broken.  The edges that two-way search the crucial facility point and common facility points from the pipe-broken position.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.CenterPointInfo">
+      <summary>
+            Center point information class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.CenterPointInfo.#ctor">
+      <summary>
+            Initializes a new instance of the CenterPointInfo class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.CenterPointInfo.#ctor(SuperMap.Analyst.NetworkAnalyst.CenterPointInfo)">
+      <summary>
+            Initializes a new instance of the CenterPointInfo class which is identical with the specified CenterPointInfo.
+            </summary>
+      <param name="info">The specified CenterPointInfo object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.CenterPointInfo.CenterID">
+      <summary>
+            Gets or sets the center point ID.
+            </summary>
+      <value>The default value is -1.0.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.CenterPointInfo.CenterPoint">
+      <summary>
+            Gets or sets the center point coordinates.
+            </summary>
+      <value>The default value is (0.0).</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo">
+      <summary>
+            Demand point information class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.#ctor">
+      <summary>
+            Initializes a new instance of the DemandPointInfo class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.#ctor(SuperMap.Analyst.NetworkAnalyst.DemandPointInfo)">
+      <summary>
+            Initializes a new instance of the DemandPointInfo class which is identical with the specified DemandPointInfo.
+            </summary>
+      <param name="info">The specified DemandPointInfo object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.DemandID">
+      <summary>
+            Gets or sets the demand point ID.
+            </summary>
+      <value>The default value is -1.0.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.DemandPoint">
+      <summary>
+            Gets or sets the demand point coordinates.
+            </summary>
+      <value>The default value is (0.0).</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.Demand">
+      <summary>
+            Gets or sets the demand amount of the demand point.
+            </summary>
+      <value>The default value is -1.0.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.Demands">
+      <summary>
+            Get or set the demand for the demand point. The demand can be multidimensional, and its dimensions must be the same as the vehicle load dimension and meaning.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.UnloadTime">
+      <summary>
+            Gets or sets the time to unload the goods, indicating the time that the vehicle needs to stay at that point.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.StartTime">
+      <summary>
+            Gets or sets the earliest time to get to the point.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandPointInfo.EndTime">
+      <summary>
+            Gets or sets the latest time to get to the point.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.DemandResult">
+      <summary>
+            The DemandResult class. This class is used to return the related information of the demand result, including the ID of the demand node, and the ID of the supply center.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.DemandResult.Dispose">
+      <summary>
+            Releases all resources that the object occupies. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandResult.ID">
+      <summary>
+            When IsEdge is true, it is the edge ID; when IsEdge is fales, it is the node ID.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandResult.SupplyCenterID">
+      <summary>
+            Gets the ID of the supply center.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandResult.ActualResourceValue">
+      <summary>
+            Gets the actual allocated resource value.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.DemandResult.IsEdge">
+      <summary>
+            Gets whether the demand result is edge. If not, the demand result is node.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.DirectionType">
+      <summary>
+                       The enum defines the direction type constant, and the enum is used in the TransferGuideItem class.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.DirectionType.None">
+      <summary>
+                       No direction.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.DirectionType.East">
+      <summary>
+                       The east.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.DirectionType.South">
+      <summary>
+                       The south.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.DirectionType.West">
+      <summary>
+                       The west.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.DirectionType.North">
+      <summary>
+                       The north.
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst">
+      <summary>
+            The FacilityAnalyst class is used for the facility analysis. It is a kind of network analyst. It mainly processes the connectivity analysis and the tracing analysis.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.#ctor">
+      <summary>
+            Creates a new FacilityAnalyst object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.Load">
+      <summary>
+            Loads the facility network model according to the FacilityAnalystSetting settings.
+            </summary>
+      <returns>A boolean value denotes whether the facility network model loads successfully or not. True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindLoopsFromNodes(System.Int32[])">
+      <summary>
+            Finds all the loops joined with the specified nodes according to the given array of the node IDs. The result is the array of the edge IDs that form the loops.
+            </summary>
+      <param name="nodeIDs">The specified array of the node IDs.</param>
+      <returns>The edge ID array of loops connected with the specified nodes.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindLoopsFromEdges(System.Int32[])">
+      <summary>
+             Finds all the loops connected with the specified edges according to the given array of the edge IDs. The result is the array of edge IDs that form the loops.
+             </summary>
+      <param name="edgeIDs">The specified array of the edge IDs.</param>
+      <returns>The edge ID array of loops connected with the specified edges.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindConnectedEdgesFromNodes(System.Int32[])">
+      <summary>
+             Finds all the edges connected with the specified nodes according to the given array of the node IDs. The result is the array of edge IDs.
+             </summary>
+      <param name="nodeIDs">The specified array of the node IDs.</param>
+      <returns>The array of the edge IDs.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindConnectedEdgesFromEdges(System.Int32[])">
+      <summary>
+            Finds all the edges connected with the specified edges according to the given array of the edge IDs. The result is the array of the edge IDs.
+            </summary>
+      <param name="edgeIDs">The specified array of the edge IDs.</param>
+      <returns>The array of the edge IDs.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindUnconnectedEdgesFromNodes(System.Int32[])">
+      <summary>
+            Finds all the edges unconnected with the specified nodes according to the given array of the node IDs. The result is the array of edge IDs.
+            </summary>
+      <param name="nodeIDs">The specified array of the node IDs.</param>
+      <returns>The array of the edge IDs.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindUnconnectedEdgesFromEdges(System.Int32[])">
+      <summary>
+            Finds all the edges not connected with the specified edges according to the given array of the edge IDs. The result is the array of the edge IDs.
+            </summary>
+      <param name="edgeIDs">The specified array of the edge IDs.</param>
+      <returns>The array of the edge IDs.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.CheckLoops">
+      <summary>
+             Checks the loops of the network and returns the array of the edge IDs that form the loops.
+             </summary>
+      <returns>Returns the array of the edge IDs that form the loops.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathFromNodes(System.Int32,System.Int32,System.String,System.Boolean)">
+      <summary>
+             The find path analysis. Find the path which has the least edges between the specified start node and the end node. The loops are invalid in this analysis. Returns edges, nodes and cost of this path.
+             </summary>
+      <param name="startNodeID">The specified start Node ID.</param>
+      <param name="endNodeID">The specified end Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathFromEdges(System.Int32,System.Int32,System.String,System.Boolean)">
+      <summary>
+            The find path analysis. Find the path which has the least edges between the specified start node and the end node. The loops are invalid in this analysis. Returns edges, nodes and cost of this path.
+            </summary>
+      <param name="startEdgeID">The specified start edge ID.</param>
+      <param name="endEdgeID">The specified end edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathUpFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            FindPathUpFromEdge. Finds the least cost upstream path of the specified node and returns edges, nodes and cost o the path.
+            </summary>
+      <param name="nodeID">The specified Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The results of transportation analysis. Returns null if the analysis is failed or no path is found.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathUpFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            FindPathUpFromEdge. Finds the least cost upstream path of the specified edge and returns edges, nodes and cost of the path.
+            </summary>
+      <param name="edgeID">The specified edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The results of transportation analysis. Returns null if the analysis is failed or no path is found.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathDownFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+             FindPathUpFromEdge. Finds the least cost downstream path of the specified node and returns edges, nodes and cost o the path.
+             </summary>
+      <param name="nodeID">The specified Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindPathDownFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            The find downstream path analysis. Find the path which has the least cost by tracing the downstream of the specified node. The loops are invalid in this analysis.
+            </summary>
+      <param name="edgeID">The specified edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCommonAncestorsFromEdges(System.Int32[],System.Boolean)">
+      <summary>
+            Finds the common upstream edges of those edges according to the given array of the edge IDs. The result is the array of the edge IDs.
+            </summary>
+      <param name="edgeIDs">The specified array of the edge IDs.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The common upstream edges ID array of the given edge.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCommonAncestorsFromNodes(System.Int32[],System.Boolean)">
+      <summary>
+             Finds the common upstream edges of those nodes according to the given array of the node IDs. The result is the array of edge IDs.
+             </summary>
+      <param name="nodeIDs">The specified array of the node IDs.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The common upstream edges ID array of the given node.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCommonCatchmentsFromEdges(System.Int32[],System.Boolean)">
+      <summary>
+            Finds the common downstream edges of those edges according to the given array of the edge IDs. The result is the array of the edge IDs.
+            </summary>
+      <param name="edgeIDs">The specified array of the edge IDs.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The common downstream edges ID array of the given edge.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCommonCatchmentsFromNodes(System.Int32[],System.Boolean)">
+      <summary>
+            Finds the common downstream edges of those nodes according to the given array of the node IDs. The result is the array of edge IDs.
+            </summary>
+      <param name="nodeIDs">The specified array of the node IDs.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The common downstream edges ID array of the given node.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindSourceFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+             Finds the source according to the given node ID. i.e., from the given node, finding the network source that flows to this node according to the flow, and returning the edges, nodes and cost in least path cost. 
+             </summary>
+      <param name="nodeID">The specified Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindSourceFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            Finds the source according to the given edge ID. i.e., from the given edge, finding the network source that flows to this edge according to the flow, and returning the edges, nodes and cost in least path cost.
+            </summary>
+      <param name="edgeID">The specified edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindSinkFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            Finds the sink according to the given edge ID. i.e., from the given edge, finding the downstream sink that flows out this edge according to the flow, and returning the edges, nodes and cost in least path cost from gien edge to this sink. 
+            </summary>
+      <param name="edgeID">The specified edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindSinkFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            Finds the sink according to the given node ID. i.e., from the given node, finding the downstream sink that flows out this node according to the flow, and returning the edges, nodes and cost in least path cost from given node to this sink. 
+            </summary>
+      <param name="nodeID">The specified Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.TraceUpFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+             According to the given node ID, perform the tracing upstream. Namely, finding the arcs, nodes and cost of the upstream.
+             </summary>
+      <param name="nodeID">The specified Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.TraceUpFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            According to the given arc ID, perform the tracing upstream. Namely, finding the arcs, nodes and cost of the upstream.
+            </summary>
+      <param name="edgeID">The specified edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.TraceDownFromNode(System.Int32,System.String,System.Boolean)">
+      <summary>
+            According to the given node ID, perform the tracing downstream. Namely, finding the arcs, nodes and cost of the downstream.
+            </summary>
+      <param name="nodeID">The specified Node ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.TraceDownFromEdge(System.Int32,System.String,System.Boolean)">
+      <summary>
+            According to the given arc ID, perform the tracing downstream. Namely, finding the arcs, nodes and cost of the downstream.
+            </summary>
+      <param name="edgeID">The specified edge ID.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object. i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>Facility Analysis Result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.BurstAnalyseFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            Two-way pipeline burst analysis. After specifying the burst point, search the nodes upstream and downstream which directly affect the burst point or are affected by the burst point.
+            </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="nodeID">The specified analysis node ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The pipe-broken analysis result</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.BurstAnalyseFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            Two-way tube-broken analysis. Through specifying the pipe-broken edge, search the nodes that affect the pipe-broken position and are affected by the pipe-broken position in the pipe-broken edge upstream and downstream.
+            </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="edgeID">The specified analysis arc ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The pipe-broken analysis result</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCriticalFacilitiesUpFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+             Crucial facility analysis in upstream, i.e., finding the crucial facility nodes in the upstream of the given edge, and returning the crucial node ID array and it edge Id array of downstream.
+             </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="edgeID">The specified analysis arc ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The facility analysis result. Returns null if it doesn't search the crucial facility node.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCriticalFacilitiesUpFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            Crucial facility analysis in upstream, i.e., finding the crucial facility nodes in the upstream of the given node, and returning the crucial node ID array and it edge Id array of downstream.
+            </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="nodeID">The specified analysis node ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The facility analysis result. Returns null if it doesn't search the crucial facility node.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCriticalFacilitiesDownFromEdge(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            Crucial facility analysis in upstream, i.e., finding the crucial facility nodes in the upstream of the given edge, and returning the crucial node ID array and it edge Id array of downstream.
+            </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="edgeID">The specified analysis arc ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The facility analysis result. Returns null if it doesn't search the crucial facility node.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.FindCriticalFacilitiesDownFromNode(System.Int32[],System.Int32,System.Boolean)">
+      <summary>
+            Crucial facility analysis in downstream, i.e., finding the crucial facility nodes in the downstream of the given node, and returning the crucial node ID array and it edge Id array of downstream.
+            </summary>
+      <param name="sourceNodeIDs">The specified facility node ID array which can not be null.</param>
+      <param name="nodeID">The specified analysis node ID.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the uncertain flow is valid. True represents it is valid. The edged that have the uncertain flow still in the analysis. If it is false, it will stop searching when meeting the uncertain flow. When the flow field is 2, it is an uncertain flow. Please refer to <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">BuildFacilityNetworkDirections</see> for more information.</param>
+      <returns>The facility analysis result. Returns null if it doesn't search the crucial facility node.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.Dispose">
+      <summary>
+            Releases all resources that the object occupies.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalyst.AnalystSetting">
+      <summary>
+            Gets or sets the environment settings of the facility analysis.
+            </summary>
+      <value>The default value is a new established <see cref="T:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting">FacilityAnalystSetting</see> object.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystResult">
+      <summary>
+            The FacilityAnalystResult class. This class is used to get the analysis results of finding source and sink, tracing upstream and downstream, and path query including edge ID array, result node ID array and the cost.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystResult.Nodes">
+      <summary>
+            Gets the node ID array in the facility network analysis results.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystResult.Edges">
+      <summary>
+            Gets the edge ID array in the facility network analysis results.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystResult.Cost">
+      <summary>
+            Gets the cost in the facility network analysis results.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting">
+      <summary>
+            This class provides all the parameter information in facility analysis. The settings of the parameters will affect the analysis result.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.#ctor">
+      <summary>
+            Initializes a new instance of the FacilityAnalystSetting class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.#ctor(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting)">
+      <summary>
+            Initializes a new instance of the FacilityAnalystSetting class which is identical with the specified FacilityAnalystSetting object.
+            </summary>
+      <param name="facilityAnalystSetting">The specified FacilityAnalystSetting object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.NetworkDataset">
+      <summary>
+            Gets or sets the network dataset, required.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.NodeIDField">
+      <summary>
+            Gets or sets the field that identifies the node ID in the network dataset. The ID field identify the network node must be set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmNodeID.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.EdgeIDField">
+      <summary>
+            Gets or sets the field that identifies the arc ID in the network dataset. The ID field identify the network arc must be set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmID.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.FNodeIDField">
+      <summary>
+            Gets or sets the field that identifies the start node ID in the network dataset. The ID field identifying the start node must be correctly set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmFNode.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.TNodeIDField">
+      <summary>
+            Gets or sets the field that identifies the end node ID in the network dataset. The ID field identifying the end node must be correctly set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmTNode.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.WeightFieldInfos">
+      <summary>
+            Gets or sets the WeightFieldInfos object.
+            </summary>
+      <value>The default value contains the WeightFieldInfos object of an element. The element Name is Length. The FTWeightField and TFWeightField are SmLength.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.Tolerance">
+      <summary>
+            Gets and sets the distance tolerance from a node to an edge. The unit is the same as network dataset specified by the <see cref="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.NetworkDataset">NetworkDataset</see> property.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.BarrierNodes">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.BarrierEdges">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting.DirectionField">
+      <summary>
+            Gets or sets the direction field. If it is not specified, the default direction value is 0 which is in the same direction with the digitization. You must set the property when creating the direction.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter">
+      <summary>
+              The group analysis parameters setting class.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.#ctor">
+      <summary>
+            Constructs a new GroupAnalystParameter object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.#ctor(SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter)">
+      <summary>
+            Initializes a new instance of the GroupAnalystParameter class which is identical with the specified GroupAnalystParameter.
+            </summary>
+      <param name="analystParameter">The given GroupAnalystParameter object.</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.Dispose">
+      <summary>
+            Releases the GroupAnalystParameter resources.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.BarrierEdges">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.BarrierPoints">
+      <summary>
+            Gets or sets the coordinates list of the barrier nodes, and it is optional.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.BarrierNodes">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.TurnWeightField">
+      <summary>
+            Gets or sets the turn weight field, and it is optional.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.WeightName">
+      <summary>
+            Gets or sets the name of the Weight field information. It is the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> object in the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see> class. The default value is the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of the first <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> in the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> if you don't set it in the analysis.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.AnalystType">
+      <summary>
+            Gets or sets the analysis mode.
+            </summary>
+      <value>The default value is LeastCost.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter.Points">
+      <summary>
+            Gets or sets the optional centers collection, required.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResult">
+      <summary>
+             The result class of group analysis.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResult.Dispose">
+      <summary>
+            Disposes the resources occupied by the object. After calling this method, this object will not be usable.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResult.Errors">
+      <summary>
+            Returns unallocated allocation points collection.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResult.GroupAnalystResultItems">
+      <summary>
+            Returns the analysis result item collection.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem">
+      <summary>
+            The result item class of group analysis.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem.GroupCenter">
+      <summary>
+            Gets the center point index of the group result.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem.GroupMember">
+      <summary>
+            Gets the allocation points index collection of the group result.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem.Cost">
+      <summary>
+            Gets the total cost of the group result.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem.Lines">
+      <summary>
+            Gets the route collection between allocation point to the center of the group result.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupAnalystResultItem.LoadSum">
+      <summary>
+             Gets the total load amount of the group result. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.GroupPointInfo">
+      <summary>
+            Allocation points information class in group analysis.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupPointInfo.#ctor">
+      <summary>
+            Constructs a new GroupPointInfo object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.GroupPointInfo.#ctor(SuperMap.Analyst.NetworkAnalyst.GroupPointInfo)">
+      <summary>
+            Initializes a new instance of the TGroupPointInfo class which is a copy of the specified GroupPointInfo object.
+            </summary>
+      <param name="info">Specific GroupPointInfo object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupPointInfo.Load">
+      <summary>
+            Gets or sets the load amount of current allocation point.
+            </summary>
+      <value>The default value is -1.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.GroupPointInfo.Point">
+      <summary>
+            Gets or sets the coordinates of current allocation point.
+            </summary>
+      <value>The default value is (0.0).</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter">
+      <summary>
+            The LocationAnalystParameter class provides the required parameters for the location-allocation analysis including whether to allocate resources from the supply center, supply centers,  the weight field name, the turn weight field, the expected number of supply centers, etc.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.#ctor">
+      <summary>
+            Initializes a new instance of the LocationAnalystParameter class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.#ctor(SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter)">
+      <summary>
+            Initializes a new instance of the LocationAnalystParameter class which is identical with the specified LocationAnalystParameter.
+            </summary>
+      <param name="parameter">Specified LocationAnalystParameter.</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.Dispose">
+      <summary>
+            Releases all resources that the object occupies.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.SupplyCenters">
+      <summary>
+            Gets or sets the collection of SupplyCenter.
+            </summary>
+      <value>The default value is a new <see cref="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.SupplyCenters">SuppplyCenters</see> object.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.ExpectedSupplyCenterCount">
+      <summary>
+            Gets or sets the number of the supply centers which will be used to build some establishments. If the parameter is set to zero, the minimal number of required supply centers will be computed to cover the whole analysis area.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.IsFromCenter">
+      <summary>
+            Whether to analyze from the supply centers or not.
+            </summary>
+      <value>The default is False.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.WeightName">
+      <summary>
+            Gets or sets the name of the weight field information, i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.TurnWeightField">
+      <summary>
+            Gets or sets the turn cost field and this field must be in the collection of turn cost fields which is defined in the transportation network analysis environment settings.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystResult">
+      <summary>
+            The LocationAnalystResult class, which is used for the result of the location-allocation.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.LocationAnalystResult.Dispose">
+      <summary>
+            Releases all resources that the object occupies. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystResult.SupplyResults">
+      <summary>
+            Gets the array of the SupplyResult objects. For more information, please refer to the SupplyResult class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystResult.DemandResults">
+      <summary>
+            Gets the array of the DemandResult objects. For more information, please refer to the DemandResult class.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder">
+      <summary>
+            The NetworkBuilder class. This class provides the flowing functions: building the network dataset with a line dataset or multiple line and point datasets, building facility network direction and hierarchy with the objects of the facility network analysis, etc.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String)">
+      <summary>
+             Builds the dataset which represents the network model with the specified line dataset, output datasource and name of new dataset. It is outdated. Now we use <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector,System.String[],SuperMap.Data.Datasource,System.String)">BuildNetwork</see>.
+             </summary>
+      <param name="lineDataset">The specified line dataset.</param>
+      <param name="outputDatasource">The output datasource object which stores the new network model dataset.</param>
+      <param name="networkDatasetName">The name of the new vector dataset which represents the network model.</param>
+      <returns>The vector dataset which represents the new network model dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.CreateTurnTable(SuperMap.Data.DatasetVector,SuperMap.Data.QueryParameter,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Builds the turn dataset.
+            </summary>
+      <param name="networkDataset">The specified network dataset.</param>
+      <param name="queryParameter">The specified query parameters.</param>
+      <param name="outputDatasource">Datasource for storing the output datasets.</param>
+      <param name="outputDatasetName">The specified name of the result dataset.</param>
+      <returns>Gets the turn table dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector,System.String,System.String,System.String,System.String,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            Builds the network dataset according to the point/line data and the existing field that represents the topological relationship between the edges and nodes. 
+            </summary>
+      <param name="lineDataset">The specified line dataset to build the network dataset.</param>
+      <param name="pointDataset">The specified point dataset to build the network dataset.</param>
+      <param name="edgeIDField">The field that denotes the edge ID in the specified line dataset. If it is null or null string, or the specified field doesn't exist, then it will automatically use SMID as the edge ID. It supports 16-bit integer and 32-bit integer.</param>
+      <param name="fromNodeField">The field that denotes the start node ID in the specified line dataset. It supports 16-bit integer and 32-bit integer.</param>
+      <param name="toNodeField">The field that denotes the end node ID in the specified line dataset. It supports 16-bit integer and 32-bit integer.</param>
+      <param name="nodeIDField">The field that denotes the node ID in the specified point dataset. It supports 16-bit integer and 32-bit integer.</param>
+      <param name="outputDatasource">Datasource for storing the output datasets.</param>
+      <param name="networkDatasetName">The name of the result network dataset.</param>
+      <returns>The built network dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector,System.String[],SuperMap.Data.Datasource,System.String)">
+      <summary>
+            builds network dataset based on line dataset. It can saves non-system string.
+            </summary>
+      <param name="lineDataset">The specified line dataset to build the network dataset.</param>
+      <param name="lineFieldNames">The specified array to store the non-system field name of the line dataset in the output network dataset.</param>
+      <param name="outputDatasource">Datasource for storing the output datasets.</param>
+      <param name="networkDatasetName">The name of the result network dataset.</param>
+      <returns>The built network dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkDirections(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String)">
+      <summary>
+             Builds direction for facility network dataset and writes values into the direction field. The direction field is the property set by FacilityAnalystSetting.DirectionField.
+             </summary>
+      <param name="facilityAnalystSetting">The specified FacilityAnalystSetting object. Note that when building the direction or hierarchies for facility network, the setting of the BarrierEdges or BarrierNodes properties of the facilityAnalystSetting parameter will be invalid. The setting of the BarrierEdges or BarrierNodes is only valid in the facility analysis, and irrespective of the topological structure.</param>
+      <param name="sourceIDs">The source ID array.</param>
+      <param name="sinkIDs">The sink ID array.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object.</param>
+      <param name="nodeTypeField">The field of node type which is source node, sink node general node, and the field is the field of node dataset in network. The field will be created automatically if it does not exist.</param>
+      <returns>True, if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildFacilityNetworkHierarchies(SuperMap.Analyst.NetworkAnalyst.FacilityAnalystSetting,System.Int32[],System.Int32[],System.String,System.String,System.Boolean)">
+      <summary>
+            Builds hierarchy for facility network dataset and writes values into the hierarchy field. The field will be created automatically if it does not exist.
+            </summary>
+      <param name="facilityAnalystSetting">The FacilityAnalystSetting object. Note that when building the direction or hierarchies for facility network, the setting of the BarrierEdges or BarrierNodes properties of the facilityAnalystSetting parameter will be invalid. The setting of the BarrierEdges or BarrierNodes is only valid in the facility analysis, and irrespective of the topological structure.</param>
+      <param name="sourceIDs">The source ID array.</param>
+      <param name="sinkIDs">The sink ID array.</param>
+      <param name="weightName">The name of the specified WeightFieldInfo object.</param>
+      <param name="hierarchyField">The specified name of hierarchy field.</param>
+      <param name="isUncertainDirectionValid">Specifies whether the loop is valid. Returns true, if the loop is valid; false, otherwise.</param>
+      <returns>True, if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector[],SuperMap.Data.DatasetVector[],SuperMap.Data.Datasource,System.String,SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode,System.Double)">
+      <summary>
+             Builds the dataset which represents the network model with the specified array of the line dataset and the array of the point dataset. It is outdated, now we use <see cref="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector[],SuperMap.Data.DatasetVector[],System.String[],System.String[],SuperMap.Data.Datasource,System.String,SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode,System.Double)">BuildNetwork</see>.
+             </summary>
+      <param name="lineDatasets">The specified array of the line dataset.</param>
+      <param name="pointDatasets">The specified array of the point dataset.</param>
+      <param name="outputDatasource">The specified output datasource.</param>
+      <param name="networkDatasetName">The specified output datasource.</param>
+      <param name="networkSplitMode">The specified split mode. For more information, please refer to the NetworkSplitMode class.</param>
+      <param name="tolerance">The specified tolerance between the point and its nearest line.</param>
+      <returns>Returns the vector dataset which represents the new network model dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.BuildNetwork(SuperMap.Data.DatasetVector[],SuperMap.Data.DatasetVector[],System.String[],System.String[],SuperMap.Data.Datasource,System.String,SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode,System.Double)">
+      <summary>
+            Builds network dataset based on line dataset and point dataset (option). It can save non-system string and the aplit mode.
+            </summary>
+      <param name="lineDatasets">The specified line dataset array to build the network dataset.</param>
+      <param name="pointDatasets">The specified point dataset array to build the network dataset, optional.</param>
+      <param name="lineFieldNames">The specified array to store the non-system field name of the line dataset in the output network dataset.</param>
+      <param name="pointFieldNames">The specified array to store the non-system field name of the point dataset in the output network dataset.</param>
+      <param name="outputDatasource">Datasource for storing the output datasets.</param>
+      <param name="networkDatasetName">The name of the result network dataset.</param>
+      <param name="networkSplitMode">The specified split mode.</param>
+      <param name="tolerance">Determines whether the point is the tolerance (i.e., the split tolerance). If the split mode is topology (i.e., <see cref="F:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode.TopologyProcessing">NetworkSplitMode.TopologyProcessing</see>), the value is the tolerance in the topology operations. It has the same unit with point or line datasets used to build the network dataset.</param>
+      <returns>The built network dataset.</returns>
+      <exception cref="T:System.ArgumentNullException">lineDatasets is null.</exception>
+      <exception cref="T:System.ArgumentException">The length of lineDatasets is 0.</exception>
+      <exception cref="T:System.ArgumentException">The tolerance is less than 0.</exception>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.AppendToNetwork(SuperMap.Data.DatasetVector,SuperMap.Data.DatasetVector[])">
+      <summary>
+            Appends data to the existing network dataset, which can be points, lines or network.
+            </summary>
+      <param name="networkDataset">The specified network dataset to be appended.</param>
+      <param name="datasets">The specified data to append, which can be points, lines or network. The specified appended network dataset.</param>
+      <returns>The boolean value denotes whether the appending is successful. True if successful; otherwise, false.</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.NetworkAnalyst.NetworkBuilder.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode">
+      <summary>
+            The enum defines the split modes type constant, which is used for line-line split or point-line split.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode.None">
+      <summary>
+            Do not split lines.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode.LineSplitByPoint">
+      <summary>
+            Splits the lines at the intersection of points and lines.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode.LineSplitByPointAndLine">
+      <summary>
+            Splits the lines at the intersection of lines and splits the lines at the intersection of points and lines.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.NetworkSplitMode.TopologyProcessing">
+      <summary>
+            The topology method will firstly perform topology operations for line dataset including Clean Duplicated Lines, Extend Undershoots, Intersect Arcs, Clean Short Overshoots, Clean Redundant Vertices, Merge Adjacent Endpoints, Clean Fake Nodes, etc., and then build the network dataset.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.PathGuide">
+      <summary>
+            The PathGuide class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuide.Count">
+      <summary>
+            Gets the count of the PathGuideItem objects in the PathGuide.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuide.Item(System.Int32)">
+      <summary>
+            Gets the PathGuideItem object according to the specified index.
+            </summary>
+      <param name="index">The specified index which starts with 0.</param>
+      <returns>The path guide item object.</returns>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.PathGuideItem">
+      <summary>
+            The path guide item class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Bounds">
+      <summary>
+            Gets the range of this path guide item. If this item is line (<see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> is true), it is the enclosing rectangle. If this item is point (<see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> is false), it is the point itself.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.DirectionType">
+      <summary>
+            Gets the direction of the path guide item. It is valid only when the path guide item is line (<see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> is true). They can be east, south, west, north.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Distance">
+      <summary>
+            Gets the distance from a stop to the network, and it is supported only when the path table item is the stop. The unit is in meters.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.ID">
+      <summary>
+            Gets the ID of the path guide item.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Index">
+      <summary>
+             Gets the number of the path guide item. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">
+      <summary>
+            Gets whether the path guide item is a line or point. If it is true, representing the line, such as the road segment, line and so on.  If it is false, representing the point.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsStop">
+      <summary>
+            Gets whether the path guide item is a stop, or the corresponding point added to the network.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Length">
+      <summary>
+            Gets the corresponding path guide line segment length when the item is line (<see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> is true). The unit is in meters.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Name">
+      <summary>
+            Gets the name of the path guide item.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.SideType">
+      <summary>
+            Get whether the stop is left side, right side or on the road when this path guide item is stop.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.TurnAngle">
+      <summary>
+            When the path guide item is the point (<see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> is false), get the nest turning angle of the point. The unit is in degrees and accurate to 0.1 degree.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.TurnType">
+      <summary>
+            When the path guide item is the point (<see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> is false), get the nest turning direction of the point.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.Weight">
+      <summary>
+            Gets the weight of the path guide item. The unit is the same as that of weight field information (<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>), which is specified by the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.WeightName">WeightName</see> attribute of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.GuideLine">
+      <summary>
+            Gets the corresponding path guide line segment when the item is line (<see cref="P:SuperMap.Analyst.NetworkAnalyst.PathGuideItem.IsEdge">IsEdge</see> is true).
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult">
+      <summary>
+            The ServiceAreaResult class. It is Inherited from the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> class.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">
+      <summary>
+            The TransportationAnalystResult class. Through this class you can get the Route set, node ID set, edge set, path table set, stop ID set, weight set or cost of each stop. Using these settings, you can get the analysis result of the optimal path, traveling salesmen, logistics and closest facility.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Dispose">
+      <summary>
+            Releases the resources.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Edges">
+      <summary>
+             Gets the edges dataset of the analysis result. Note: The <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsEdgesReturn">IsEdgesReturn</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter3D</see> object must be set as true so that the analysis results can contain the edges dataset; otherwise, it is a null array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Nodes">
+      <summary>
+             Gets the nodes dataset of the analysis result. Note: The <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsNodesReturn">IsNodesReturn</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter3D</see> object must be set as true so that the analysis results can contain the nodes dataset; otherwise, it is a null array.
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.PathGuides">
+      <summary>
+            Gets the path guides. Note: The <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsPathGuidesReturn">IsPathGuidesReturn</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> object must be set as true so that the analysis results can contain the path guides; otherwise, it is a null array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Routes">
+      <summary>
+             Gets the routes dataset of the analysis result that is the dataset of the <see cref="T:SuperMap.Data.GeoLineM">GeoLineM</see> object. Note: The <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsRoutesReturn"> IsRoutesReturn</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> class must be set as true so that the analysis results can contain the routes dataset; otherwise, it is a null array.
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.StopIndexes">
+      <summary>
+             Gets the 2D array of the stop indexes which reflects the order of the stops after analysis. Note: The <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsStopIndexesReturn">IsStopIndexesReturn</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> object must be set as true so that the analysis results can contain the stop-index dataset; otherwise, it is a null array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.StopWeights">
+      <summary>
+            Gets the cost (weight) between the stops after sorting the stops according to the index. It has the same unit with the weight field of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object specified the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.WeightName">WeightName</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> object.
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Weights">
+      <summary>
+             Gets the weight array represented the cost. It has the same unit with the weight field of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object specified the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.WeightName">WeightName</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> object.
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.ServiceRegions">
+      <summary>
+              Gets the set of the service region objects.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.ServiceRouteCounts">
+      <summary>
+            Gets the route count array of each service region in the ServiceAreaResult class. The order of the array element is identical to the specified order of the center points.
+                       </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.PathGuides">
+      <summary>
+            It is not supported in this class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.StopIndexes">
+      <summary>
+            It is not supported in this class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.StopWeights">
+      <summary>
+            It is not supported in this class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.ServiceAreaResult.Weights">
+      <summary>
+            Gets the cost of each service region from the service area analysis result. It has the same unit with the weight field of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object that is specified by the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.WeightName">WeightName</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">TransportationAnalystParameter</see> object.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.ServiceType">
+      <summary>
+                       This enumeration defines the service area type in service area analysis.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.ServiceType.SimpleArea">
+      <summary>
+                       Simple service area.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.ServiceType.ComplexArea">
+      <summary>
+                       Complex service area.
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.SideType">
+      <summary>
+                       The SideType class. Specifies a constant that defines the road side. Three types are provided, they are on the middle of the road, on the left side of the road, on the right side of the road.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SideType.Left">
+      <summary>
+                       On the left side of the road.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SideType.Middle">
+      <summary>
+                       On the road.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SideType.Right">
+      <summary>
+                       The right of the road.
+                       </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SideType.None">
+      <summary>
+                       The invalid value.
+                       </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.SupplyCenter">
+      <summary>
+            The SupplyCenter class stores the supply center information in the location-allocation analysis (<see cref="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindLocation(SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter)">FindLocation</see>) including Supply Center ID, MaxWeight and Type.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenter.#ctor">
+      <summary>
+            Creates a new instance of the SupplyCenter.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenter.#ctor(SuperMap.Analyst.NetworkAnalyst.SupplyCenter)">
+      <summary>
+            Initializes a new instance according to the specified SupplyCenter object.
+            </summary>
+      <param name="supplyCenter">The specified SupplyCenter objects.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyCenter.Type">
+      <summary>
+            Gets or sets the type of SupplyCenter.See the type of SupplyCenter in SupplyCenterType class.
+            </summary>
+      <value>The default value is Null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyCenter.ID">
+      <summary>
+            Gets or sets the ID of SupplyCenter.
+            </summary>
+      <value>The default value is -1.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyCenter.MaxWeight">
+      <summary>
+            Gets or sets the maximum cost (impedance) of the supply center. It has the same unit with the weight field of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object that is specified by the <see cref="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.WeightName">WeightName</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter">LocationAnalystParameter</see> object.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.SupplyCenters">
+      <summary>
+            The resource supply center collection class. This class is the collection of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.SupplyCenter">SupplyCenter</see>. This class provides the methods of adding and removing the SupplyCenter objects, and also provides the method of converting the SupplyCenters object to a SupplyCenter array. You can get the count of the SupplyCenter objects, and get or set the SupplyCenter object with the specified index through this class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.#ctor">
+      <summary>
+            Creates a new instance of the SupplyCenters. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.#ctor(SuperMap.Analyst.NetworkAnalyst.SupplyCenters)">
+      <summary>
+            Initializes a new instance according to the specified SupplyCenters object. 
+            </summary>
+      <param name="supplyCenters">The specified SupplyCenters objects.</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.Add(SuperMap.Analyst.NetworkAnalyst.SupplyCenter)">
+      <summary>
+            Adds the SupplyCenter object to this SupplyCenters object. Return the index of the newly added object if added successfully.
+            </summary>
+      <param name="supplyCenter">The SupplyCenter object to be added.</param>
+      <returns>The index of the object to be added.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.AddRange(SuperMap.Analyst.NetworkAnalyst.SupplyCenter[])">
+      <summary>
+            Adds the SupplyCenter objects to the SupplyCenters in the form of an array. Return the count of the newly added SupplyCenter objects if added successfully.
+            </summary>
+      <param name="supplyCenters">The SupplyCenter objects to be added.</param>
+      <returns>The count of the added SupplyCenter objects.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.Remove(System.Int32)">
+      <summary>
+            Removes the SupplyCenter object with the specified index.
+            </summary>
+      <param name="index">The specified index.</param>
+      <returns>true if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.RemoveRange(System.Int32,System.Int32)">
+      <summary>
+            Removes the specified count of the SupplyCenter objects starting from the specified index.
+            </summary>
+      <param name="index">The specified index.</param>
+      <param name="count">The count of the SupplyCenter objects to be removed.</param>
+      <returns>The count of the object deleted successfully.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.Clear">
+      <summary>
+            Clears all the objects in the SupplyCenters.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.ToArray">
+      <summary>
+            Converts the current SupplyCenters object to a SupplyCenter array.
+            </summary>
+      <returns>The array of the SupplyCenter objects.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.GetEnumerator">
+      <summary>
+            Returns an enumerator that can iterate through the collection. 
+            </summary>
+      <returns>Returns an enumerator that iterates through a collection.</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.Count">
+      <summary>
+            Gets the count of the SupplyCenters object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyCenters.Item(System.Int32)">
+      <summary>
+            Gets or sets the specified index of the SupplyCenter object from the SupplyCenters.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.SupplyCenterType">
+      <summary>
+            Defines the types of supply centers,which are used in locations analysis.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SupplyCenterType.Null">
+      <summary>
+            Non Center, doesn't take into consideration in location analysis.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SupplyCenterType.OptionalCenter">
+      <summary>
+            OPTIONALCENTER, which is used for location analysis.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.SupplyCenterType.FixedCenter">
+      <summary>
+            FIXEDCENTER, which is used for location analysis.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.SupplyResult">
+      <summary>
+            Gets the result of resource supply,including type,ID,maximum impedance and so on.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.SupplyResult.Dispose">
+      <summary>
+            Releases all resources that the object occupies. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.Type">
+      <summary>
+            Gets the type of the supply center.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.ID">
+      <summary>
+            Gets the ID of the supply center.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.MaxWeight">
+      <summary>
+            Gets the maximum cost (impedance) of the supply center. It has the same unit with the weight field of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object that is specified by the <see cref="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.WeightName">WeightName</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter">LocationAnalystParameter</see> object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.TotalWeights">
+      <summary>
+            Gets the total cost. It has the same unit with the weight field of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object that is specified by the <see cref="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.WeightName">WeightName</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter">LocationAnalystParameter</see> object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.DemandCount">
+      <summary>
+            Gets the count of demand points that the supply center serves for.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.SupplyResult.AverageWeight">
+      <summary>
+            Gets the average cost, i.e., the total cost is divided by the number of the demand nodes. It has the same unit with the weight field of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object that is specified by the <see cref="P:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter.WeightName">WeightName</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter">LocationAnalystParameter</see> object.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst">
+      <summary>
+            The transportation analyst class. This class is used to provide the path analysis, traveling salesmen analysis, service area analysis, logistics analysis, closest facility and location-allocation analysis, etc.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.#ctor">
+      <summary>
+            Initializes a new instance of the TransportationAnalyst class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
+      <summary>
+            Checks the network dataset and turn table, which is out of date. You can replace it by <see cref="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check">Check</see>.
+            </summary>
+      <param name="networks">Stores errors of the network dataset.</param>
+      <param name="turns">Stores errors of the turn table dataset.</param>
+      <returns>True, if successful; false, otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check">
+      <summary>
+            Checks the transportation network dataset and the turn table, and return the result object.
+            </summary>
+      <returns>The result.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindClosestFacility(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,SuperMap.Data.Point2D,System.Int32,System.Boolean,System.Double)">
+      <summary>
+              Conducts the closest facility analysis according to the given parameters, and the event point is the coordinate point.
+             </summary>
+      <param name="parameter">The TransportationAnalystParameter object.</param>
+      <param name="eventPoint">The coordinate of the event.</param>
+      <param name="facilityCount">The count of the facilities.</param>
+      <param name="isFromEvent">Whether to search from the events to the facilities.</param>
+      <param name="maxWeight">Searching radius. The unit is the same as the weight filed set in the NetworkAnalystSetting class. If searching the whole network, this value is set 0.</param>
+      <returns>The TransportationAnalystResult object.</returns>
+      <overloads>
+        <summary>
+             Closest Facility Analysis 
+             </summary>
+      </overloads>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindClosestFacility(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,System.Int32,System.Int32,System.Boolean,System.Double)">
+      <summary>
+             Conducts the closest facility analysis according to the given parameters, and the event point is the node ID.
+             </summary>
+      <param name="parameter">The TransportationAnalystParameter object.</param>
+      <param name="eventID">The ID of the event.</param>
+      <param name="facilityCount">The count of the facilities.</param>
+      <param name="isFromEvent">Whether to search from the events to the facilities.</param>
+      <param name="maxWeight">Searching radius. The unit is the same as the weight filed set in the NetworkAnalystSetting class. If searching the whole network, this value is set 0.</param>
+      <returns>The TransportationAnalystResult object.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindPath(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,System.Boolean)">
+      <summary>
+            Optimal path analysis.
+            </summary>
+      <param name="parameter">The TransportationAnalystParameter object.</param>
+      <param name="hasLeastEdgeCount">Whether have the least edges or not. True indicates the result path has the least edges. In this case, the result path may not be the shortest path as the number of the edges is not equal to the length of the edge. Takes the following illustration as an example, there are two paths connected AB and the number of edges in the green path is less than the yellow one. If this parameter is set to true, the result path is the green one; and the result path is the yellow one if this parameter is set to false.</param>
+      <returns>The TransportationAnalystResult object.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindServiceArea(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,System.Double[],System.Boolean,System.Boolean)">
+      <summary>
+             Analyzes the Service area with specified parameters.
+             </summary>
+      <param name="parameter">The TransportationAnalystParameter object.</param>
+      <param name="weights">The radius array of the service area. The length of the array should be consistent with the number of the specified service center points. The radius has the same unit with the from-to weight field and the to-from weight field of the specified weight information.</param>
+      <param name="isFromCenter">Whether analyzing from the centers.</param>
+      <param name="isCenterMutuallyExclusive">Whether to perform the mutually exclusive process. Yes if True; no if false.</param>
+      <returns>The ServiceAreaResult object.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindTSPPath(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,System.Boolean)">
+      <summary>
+             The travelling salesmen analysis.
+             </summary>
+      <param name="parameter">The TransportationAnalystParameter object.</param>
+      <param name="isEndNodeAssigned">Whether to specify the end node. Yes if true when the last node in the nodes set is the end node; no if false.</param>
+      <returns>The TransportationAnalystResult object.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Load">
+      <summary>
+            Loads the network model.
+            </summary>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.UpdateEdgeWeight(System.Int32,System.Int32,System.Int32,System.String,System.Double)">
+      <summary>
+             This method is used to update the edge weight filed with specified parameters.
+             </summary>
+      <param name="edgeID">The ID of the edge to be updated.</param>
+      <param name="fromNodeID">The start node ID of the refreshed edge.</param>
+      <param name="toNodeID">The end node ID of the refreshed edge.</param>
+      <param name="weightName">The name of the updated weight field. It is the value of the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> object in the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see> class.</param>
+      <param name="weight">The weight is used to update the old value. It has the same unit with the weight field specified by the weightName property.</param>
+      <returns>Returns the weight value before updating if successful; otherwise returns Double.MinValue.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.UpdateTurnNodeWeight(System.Int32,System.Int32,System.Int32,System.String,System.Double)">
+      <summary>
+            This method is used to update the weight value of turn node with specified paramters.
+            </summary>
+      <param name="nodeID">The ID of the turn node to be updated.</param>
+      <param name="fromEdgeID">The start node ID of the refreshed edge.</param>
+      <param name="toEdgeID">The end node ID of the refreshed edge.</param>
+      <param name="turnWeightField">The name of the turn weight filed.</param>
+      <param name="weight">The weight is used to update the old value. It has the same unit with the turn weight field specified by the  turnWeightField property.</param>
+      <returns>Returns the weight value before updating if successful; otherwise returns the minimum value of the Double datatype.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindMTSPPath(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,System.Int32[],System.Boolean)">
+      <summary>
+            The method is used for the MTSP (logistics) which the delivery centers are the node ID array.
+            </summary>
+      <param name="parameter">The TransportationAnalystParameter object.</param>
+      <param name="centerNodes">The ID array of delivery center nodes in network.</param>
+      <param name="hasLeastTotalCost">Whether to use the minimal total cost schema. There are two schemas can be selected in performing Logistics. One is the minimal total cost, in this case, it is possible that some delivery centers may cost more and others cost less. Another is the optimal in each delivery center, but the total cost may not be the minimum.</param>
+      <returns>The TransportationAnalystResult object.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindMTSPPath(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter,SuperMap.Data.Point2Ds,System.Boolean)">
+      <summary>
+             The method is used to analyze Multiple TSP which the delivery center points are a series of coordinates.
+             </summary>
+      <param name="parameter">The TransportationAnalystParameter object.</param>
+      <param name="centerPoints">A series of coordinates of delivery center points, which type is Point2Ds.</param>
+      <param name="hasLeastTotalCost">Whether to use the minimal total cost schema. There are two schemas can be selected in performing Logistics. One is the minimal total cost, in this case, it is possible that some delivery centers may cost more and others cost less. Another is the optimal in each delivery center, but the total cost may not be the minimum.</param>
+      <returns>The TransportationAnalystResult object.</returns>
+      <overloads>
+        <summary>
+             The Multiple TSP analysis.
+             </summary>
+      </overloads>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindLocation(SuperMap.Analyst.NetworkAnalyst.LocationAnalystParameter)">
+      <summary>
+             Analyzes the location with the specified LocationAnalystParameter object.
+             </summary>
+      <param name="parameter">The specified location-allocation parameter object.</param>
+      <returns>The LocationResult object.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.ComputeWeightMatrix(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter)">
+      <summary>
+             Calculates the cost matrix of the specified point. The matrix is a 2D double array used to store the least cost between any two points.
+             </summary>
+      <param name="parameter">The specified TransportationAnalystParameter object.</param>
+      <returns>Returns a matrix which contains the weight information between every two points or nodes.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.LoadModel(System.String,SuperMap.Data.DatasetVector)">
+      <summary>
+            Loads the memory file.
+            </summary>
+      <param name="fileName">The memory file path.</param>
+      <param name="datasetVector">The network dataset to use.</param>
+      <returns>A bool value, whether to load network model.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.CreateModel(System.String)">
+      <summary>
+            Creates the memory file.
+            </summary>
+      <param name="fileName">Creates the path of the memory file.</param>
+      <returns>A boolean, indicates whether the memory file is generated successfully.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindVRPPath(SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter,SuperMap.Analyst.NetworkAnalyst.VehicleInfo[],SuperMap.Analyst.NetworkAnalyst.CenterPointInfo[],SuperMap.Analyst.NetworkAnalyst.DemandPointInfo[])">
+      <summary>
+             Logistics analysis.
+             </summary>
+      <param name="parameter">Logistics analysis parameter object.</param>
+      <param name="vehicleInfos">The array of the vehicle information.</param>
+      <param name="centerInfos">The array of center point information.</param>
+      <param name="demandInfos">The array of demand point information.</param>
+      <returns>the Path object.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindCriticalNodes(System.Int32,System.Int32)">
+      <summary>
+            Key node query
+            </summary>
+      <param name="startPoint">Analysis start point.</param>
+      <param name="endPoint">Analyze end point.</param>
+      <returns>Crucial node ID array.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindCriticalEdges(System.Int32,System.Int32)">
+      <summary>
+            Critical edge query.
+            </summary>
+      <param name="startPoint">Analysis start point.</param>
+      <param name="endPoint">Analyze end point.</param>
+      <returns>Critical edge ID array.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Allocate(SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter)">
+      <summary>
+            Resource allocation analysis.
+            </summary>
+      <param name="parameter">The LocationAnalystParameter object.</param>
+      <returns>The resource allocation analysis result object.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.FindGroup(SuperMap.Analyst.NetworkAnalyst.GroupAnalystParameter,SuperMap.Analyst.NetworkAnalyst.GroupPointInfo[],System.Double,System.Double)">
+      <summary>
+            Group analysis.
+            </summary>
+      <param name="parameter">the group analysis parameter object.</param>
+      <param name="pointInfo">Allocation points information collection in group analysis.</param>
+      <param name="maxCost">Maximum cost.</param>
+      <param name="maxLoad">Maximum load amount.</param>
+      <returns>The result object of group analysis.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Dispose">
+      <summary>
+             Releases the resources.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.AnalystSetting">
+      <summary>
+             Gets or sets the TransportationAnalystSetting object.
+             </summary>
+      <value>The default value is a non-null TransportationAnalystSetting object</value>
+    </member>
+    <member name="E:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystCheckResult">
+      <summary>
+            The TransportationAnalystCheckResult class provides the check result of the network dataset and turn table of the transportation analysis, including the arc error information, node error information and turn table error information.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystCheckResult.NodeErrorInfos">
+      <summary>
+            Gets the node error information. The key is the SMID of the error node, and the value is the error type. For more information about the error type, see the <see cref="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check">Check</see> method of the TransportationAnalyst class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystCheckResult.ArcErrorInfos">
+      <summary>
+            Gets the edge error information. The key is the SMID of the error edge, and the value is the error type. For more information about the error type, see the <see cref="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check">Check</see> method of the TransportationAnalyst class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystCheckResult.TurnErrorInfos">
+      <summary>
+            Gets the edge error information. The key is the SMID of the error turn, and the value is the error type. For more information about the error type, see the <see cref="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalyst.Check">Check</see> method of the TransportationAnalyst class.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter">
+      <summary>
+                        Gets the array of the edge IDs passed by the result path of the facility path analysis.
+                        </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.#ctor">
+      <summary>
+            Initializes a new instance of the TransportationAnalystParameter class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.#ctor(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter)">
+      <summary>
+            Initializes a new instance of the TransportationAnalystParameter class which is identical with the specified TransportationAnalystParameter.
+            </summary>
+      <param name="transportationAnalystParameter">The specified TransportationAnalystParameter object.</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Dispose">
+      <summary>
+            Releases the resources.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.BarrierEdges">
+      <summary>
+            Gets or sets the ID list of the obstacle edges. It is optional. The specified obstacle edges here and the obstacle edges specified by <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see> will be used together in the transportation network analysis.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.BarrierPoints">
+      <summary>
+            Gets or sets the coordinate list of the barrier nodes. It is optional. The specified obstacle point may not be on the network (neither on the edge nor on the node), then the obstacle point will be classified to the closest network according to the distance tolerance (<see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.Tolerance">Tolerance</see>). Currently it supports Optimal Path Analysis, Find Closest Facility, TSP and MTSP.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.BarrierNodes">
+      <summary>
+            Gets or sets the ID list of the obstacle nodes. It is optional. The specified obstacle nodes here and the obstacle nodes specified by <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see> will be used together in the transportation network analysis.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsEdgesReturn">
+      <summary>
+            Gets or sets whether to keep the passed edges in the analysis result. If true, after the analysis is successful, you will get a array of the passed edges from the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Edges">Edges</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsNodesReturn">
+      <summary>
+            Gets or sets whether to keep the passed nodes in the analysis result. If true, after the analysis is successful, you will get the passed nodes from the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Nodes">Nodes</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsPathGuidesReturn">
+      <summary>
+             Gets or sets whether to keep the path guides in the analysis results. If true, after the analysis is successful, you will get the path guides from the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.PathGuides">PathGuides</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsRoutesReturn">
+      <summary>
+            Gets or sets whether to keep the route objects (GeoLineM) in the analysis result. If true, after the analysis is successful, you will get the route dataset from the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Routes">Routes</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsStopIndexesReturn">
+      <summary>
+            Gets or sets whether to keep the stop-index dataset in the analysis result. If true, after the analysis is successful, you will get the stop-index dataset from the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.StopIndexes">StopIndexes</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Nodes">
+      <summary>
+            Gets or sets the node ID dataset passed by the analysis. It is required, but it is exclusive with the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Points">Points</see> property. If you set them at the same time, only the last set before the analysis is valid. For example, firstly you specify the nodes data and then the coordinates dataset, then it will only analyze the coordinate points.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Points">
+      <summary>
+            Gets or sets the points dataset passed by the analysis. It is required, but it is exclusive with the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Nodes">Points</see> property. If you set them at the same time, only the last set before the analysis is valid. For example, firstly you specify the nodes data and then the coordinates dataset, then it will only analyze the coordinate points.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.TurnWeightField">
+      <summary>
+            Gets or sets the turn weight field, and it is optional.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.WeightName">
+      <summary>
+            Gets or sets the name of the Weight field information. It is the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> object in the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see> class. The default value is the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of the first <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> in the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> if you don't set it in the analysis.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.UCross">
+      <summary>
+            Gets or sets the forbidden condition of the U type road. It's designed for the neighboring three arcs. It means that the result route cannot pass the three arcs in order. It is a two dimensional array, where the first dimension means how many groups of limitations it has, the second dimension means the forbidden arc ID of each group(Note: The forbidden arc ID amount of each group must be 3, otherwise it is invalid). IDs of the three arcs should be adjacent.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.ServiceType">
+      <summary>
+            Gets or sets the service area type.
+This setting is used in service area analysis, according to different types of service area to construct different service area.
+The default value is ServiceType. SimpleArea.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">
+      <summary>
+Traffic network analysis environment setting class.
+This class is used to provide all the parameter information required for traffic network analysis.
+The traffic network analysis environment sets the parameters of the various parameters of the set of the direct impact analysis results.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.#ctor">
+      <summary>
+            Initializes a new instance of the TransportationAnalystSetting class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.#ctor(SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting)">
+      <summary>
+            Initializes a new instance of the TransportationAnalystSetting class which is identical with the specified TransportationAnalystSetting object.
+            </summary>
+      <param name="transportationAnalystSetting">The specified TransportationAnalystSetting object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.BarrierEdges">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.BarrierNodes">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.EdgeIDField">
+      <summary>
+            Gets or sets the field that identifies the edge ID in the network dataset. The ID field identify the network edge must be set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmEdgeID.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.EdgeNameField">
+      <summary>
+            Gets or sets the field of the edge name. It is optional. Note, if not set it, even you set the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.IsPathGuidesReturn">IsPathGuidesReturn</see> property as true, the analysis result will not return the path guide.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.FNodeIDField">
+      <summary>
+            Gets or sets the field that identifies the start node ID in the network dataset. The ID field identifying the start node must be correctly set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmFNode.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.NetworkDataset">
+      <summary>
+            Gets or sets the network dataset, required.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.NodeIDField">
+      <summary>
+            Gets or sets the field that identifies the node ID in the network dataset. The ID field identifying the network node must be set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmNodeID.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.NodeNameField">
+      <summary>
+            Gets or sets the name of the field which stores the node names, optional.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TNodeIDField">
+      <summary>
+            Gets or sets the field that identifies the end node ID in the network dataset. The ID field identifying the end node must be correctly set, and it supports 16-bit integer and 32-bit integer.
+            </summary>
+      <value>The default value is SmTNode.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.Tolerance">
+      <summary>
+            Gets or sets the distance tolerance from the point to the edge. It is obsolete. The unit is meter. It has the same unit with the dataset specified by the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.NetworkDataset">NetworkDataset</see> property. Note: When using the coordinate point mode (<see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.Points">Points</see>, i.e., the specified analysis point is the coordinate point ID, not the node ID) or the specified barrier coordinate point (<see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystParameter.BarrierPoints">BarrierPoints</see>) in the analysis, you need to set an appropriate distance tolerance to avoid the incorrect analysis result due to that the selected analysis points or barrier points can not be adjusted into the network.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TurnDataset">
+      <summary>
+            Gets or sets the turn dataset, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TurnFEdgeIDField">
+      <summary>
+            Gets or sets the field of the start turn edge ID. It supports 16-bit integer and 32-bit integer, and it is optional.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TurnNodeIDField">
+      <summary>
+            Gets or sets the field of the turn node ID. It supports 16-bit integer and 32-bit integer, and it is optional.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TurnTEdgeIDField">
+      <summary>
+            Gets or sets the field of the end turn edge ID. It supports 16-bit integer and 32-bit integer, and it is optional.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TurnWeightFields">
+      <summary>
+            Gets or sets the turn weight fields collection, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.WeightFieldInfos">
+      <summary>
+             Gets or sets the WeightFieldInfos object.
+             </summary>
+      <value>The default value contains the WeightFieldInfos object of an element. The element Name is Length. The FTWeightField and TFWeightField are SmLength.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.RuleField">
+      <summary>
+            Gets or sets the traffic rule field of the network edge in the network dataset. The field type must be text. It is optional.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.FTSingleWayRuleValues">
+      <summary>
+            Gets or sets the string array which represents the from-to oneway line. It is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TFSingleWayRuleValues">
+      <summary>
+            Gets or sets the string array which represents the to-from oneway line. It is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.ProhibitedWayRuleValues">
+      <summary>
+            Gets or sets the string array which represents the forbidden line. It is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.TwoWayRuleValues">
+      <summary>
+            Gets or sets the string array which represents the two-way traffic line. It is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.EdgeFilter">
+      <summary>
+            Gets or sets the edge filter expression in the transportation analysis, optional.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting.Bounds">
+      <summary>
+            Gets or sets the analysis scope of the path finding analysis. Optional.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.TurnType">
+      <summary>
+            The TurnType type constant. It is used in PathGuideItem.
+             </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.None">
+      <summary>
+            The invalid value.
+             </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.End">
+      <summary>
+            The end, no turn.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.Left">
+      <summary>
+            Turns left.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.Right">
+      <summary>
+             Turns right.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.Ahead">
+      <summary>
+            Moves straight ahead.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.TurnType.Back">
+      <summary>
+            Turns back.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.VehicleInfo">
+      <summary>
+            The class of the vehicle information.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.#ctor">
+      <summary>
+            Initializes a new instance of the vehicle information class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.#ctor(SuperMap.Analyst.NetworkAnalyst.VehicleInfo)">
+      <summary>
+            Initializes a new instance which is identical with the specified vehicle information class.
+            </summary>
+      <param name="info">Specific vehicle information object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.LoadWeight">
+      <summary>
+            Gets or sets the load amount of the vehicle.
+            </summary>
+      <value>The default value is -1.0.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.LoadWeights">
+      <summary>
+            Get or set the load of the vehicle. The load can be multi-dimensional, for example, the maximum load weight and the maximum load capacity can be set simultaneously.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.Cost">
+      <summary>
+            Gets or sets the maximum cost of the vehicle.
+            </summary>
+      <value>The default value is -1.0.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.StartTime">
+      <summary>
+            Gets or sets the earliest departure time of the vehicle.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VehicleInfo.EndTime">
+      <summary>
+            Gets or sets the latest return time of the vehicle.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">
+      <summary>
+                        Logistics analysis parameter setting class, mainly used to set related parameters.
+                        </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.#ctor">
+      <summary>
+            Initializes a new instance of the logistics analysis parameter setting class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.#ctor(SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter)">
+      <summary>
+            Initializes a new instance of the logistics analysis parameter setting class which is identical with the specified logistics analysis parameter setting.
+            </summary>
+      <param name="analystParameter">Specific logistics analysis parameter setting class.</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.Dispose">
+      <summary>
+            Releases the resources.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.BarrierEdges">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.BarrierPoints">
+      <summary>
+            Gets or sets the coordinates list of the barrier nodes, and it is optional.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.BarrierNodes">
+      <summary>
+            Gets or sets the ID list of the barrier nodes, and it is optional.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsEdgesReturn">
+      <summary>
+            Gets or sets whether to keep the passed edges in the analysis result. If true, after the analysis is successful, you will get a array of the passed edges from the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Edges">Edges</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsNodesReturn">
+      <summary>
+            Gets or sets whether to keep the passed nodes in the analysis result. If true, after the analysis is successful, you will get the passed nodes from the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Nodes">Nodes</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsPathGuidesReturn">
+      <summary>
+             Gets or sets whether to keep the path guides in the analysis results. If true, after the analysis is successful, you will get the path guides from the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.PathGuides">PathGuides</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsRoutesReturn">
+      <summary>
+            Gets or sets whether to keep the route objects (GeoLineM) in the analysis result. If true, after the analysis is successful, you will get the route dataset from the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.Routes">Routes</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsStopIndexesReturn">
+      <summary>
+            Gets or sets whether to keep the stop-index dataset in the analysis result. If true, after the analysis is successful, you will get the stop-index dataset from the <see cref="P:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult.StopIndexes">StopIndexes</see> property of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystResult">TransportationAnalystResult</see> object; and if false, you will get a null array.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.TurnWeightField">
+      <summary>
+            Gets or sets the turn weight field, and it is optional.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.WeightName">
+      <summary>
+            Gets or sets the name of the Weight field information. It is the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> object in the <see cref="T:SuperMap.Analyst.NetworkAnalyst.TransportationAnalystSetting">TransportationAnalystSetting</see> class. The default value is the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of the first <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> in the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> if you don't set it in the analysis.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.TimeWeight">
+      <summary>
+            Gets or sets the name of the time field info.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.AnalystType">
+      <summary>
+            Gets or sets the logistics analysis mode.
+            </summary>
+      <value>The default value is LeastCost.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.VRPDirectionType">
+      <summary>
+            Get or set the type of logistics analysis route.
+            </summary>
+      <value>默认值为 RoundRoute。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult">
+      <summary>
+            VRP analysis result class. This class is used to obtain the set of routes for the analysis results, the set of nodes through which the analysis passes, the set of arcs, the set of travel guides, the set of sites and the set of weights, and the cost of each site. And the time and cost of the VRP line.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Dispose">
+      <summary>
+            Release the resources used by the TransportationAnalystResult.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Edges">
+      <summary>
+             Get the set of paths through which the analysis results are obtained. Note that the <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsEdgesReturn">IsEdgesReturn</see> of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see> object must be Set to true to include the set of path segments in the analysis result, otherwise an empty array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Nodes">
+      <summary>
+            Get the set of waypoints for the analysis results. Note that the <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsNodesReturn">IsNodesReturn</see> of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see> object must be Set to true to include the set of path nodes in the analysis result, otherwise an empty array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.PathGuides">
+      <summary>
+            Get the travel guide collection. Note that <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsPathGuidesReturn">IsPathGuidesReturn</see> of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see> object must be Set to true to include the travel guide collection in the analysis results, otherwise an empty array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Routes">
+      <summary>
+            A collection of route objects that get the result of the analysis (a collection of <see cref="T:SuperMap.Data.GeoLineM">GeoLineM</see>). Note that the <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VR's VRPAnalystParameter</see>. Set to true to include the route collection in the analysis result, otherwise an empty array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.StopIndexes">
+      <summary>
+             Gets a two-dimensional array of site indexes that reflect the order in which the sites are sorted after analysis. Note that the <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.IsStopIndexesReturn">IsStopIndexesReturn</see> of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see> object must be Set to true to include the site index collection in the analysis results, otherwise an empty array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.StopWeights">
+      <summary>
+            Get the cost (weight) between sites after sorting the sites based on the site index. <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.WeightName">WeightName</see> of the unit and analysis parameters (<see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see>) object See&gt; The weight field information specified by the attribute (<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>) has the same weight field.
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Weights">
+      <summary>
+            Get an array of weights that represent the cost. <see cref="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter.WeightName">WeightName</see> of the unit and analysis parameters (<see cref="T:SuperMap.Analyst.NetworkAnalyst.VRPAnalystParameter">VRPAnalystParameter</see>) object See&gt; The weight field information specified by the attribute (<see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see>) has the same weight field.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.VRPDemandValues">
+      <summary>
+             Returns the load of each line in the logistics distribution.
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.Times">
+      <summary>
+             Returns the time of arrival in each distribution point in each route in the logistics distribution.
+             </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.VRPAnalystResult.VehicleIndexs">
+      <summary>
+             Returns the vehicle index for each line in the logistics distribution.
+             </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.VRPDirectionType">
+      <summary>
+            This enumeration defines the type of VRP analysis route.
+             </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.VRPDirectionType.RoundRoute">
+      <summary>
+            Start at the center and return to the center.
+             </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.VRPDirectionType.StartByCenter">
+      <summary>
+            Start at the center but don't return to the center.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.VRPDirectionType.EndByCenter">
+      <summary>
+            Do not start from the center but return to the center.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">
+      <summary>
+                       The TransferWeightFieldInfo class. This class contains the information of TransferWeightFieldInfo object and the weight field of the transfer analysis.
+                       </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.#ctor">
+      <summary>
+                       Initializes a new instance of the WeightFieldInfo class.
+                       </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.#ctor(SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo)">
+      <summary>
+                       Initializes a new instance of the WeightFieldInfo class which is identical with the specified WeightFieldInfo.
+                       </summary>
+      <param name="weightFieldInfo">The specified WeightFieldInfo object.</param>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.FTWeightField">
+      <summary>
+                       Gets or sets the from-to weight field or field expressions.
+                       </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">
+      <summary>
+                       Gets or sets the name of the WeightFieldInfo object.
+                       </summary>
+      <value>The default value is UntitledWeightFieldInfo.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.TFWeightField">
+      <summary>
+                       Gets or sets the to-from weight field or field expressions.
+                       </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">
+      <summary>
+            The <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> class is the collection of the weight field information objects, which is used to manage the weight field information such as Add, Delete, getting the weight filed information of the specified name and index.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.#ctor">
+      <summary>
+            Initializes a new instance of WeightFieldInfos.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.#ctor(SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos)">
+      <summary>
+            Constructs a new object identical to the given WeightFieldInfos object.
+            </summary>
+      <param name="weightFieldInfos">The specified WeightFieldInfos object.</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Add(SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo)">
+      <summary>
+                       Adds a new WeightFieldInfo object in the WeightFieldInfos.
+                       </summary>
+      <param name="weightFieldInfo">The WeightFieldInfo object to be added.</param>
+      <returns>The index of the new WeightFieldInfo object.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Clear">
+      <summary>
+                       Clears all the WeightFieldInfo objects in the WeightFieldInfos. The cleared WeightFieldInfo objects are disposed.
+                       </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.GetEnumerator">
+      <summary>
+                       Returns an enumerator for iterating through the WeightFieldInfos. 
+                       </summary>
+      <returns>An IEnumerator object used to iterate through a collection.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.IndexOf(System.String)">
+      <summary>
+                       Gets the index of the WeightFieldInfo according to the given name.
+                       </summary>
+      <param name="name">The name of the WeightFieldInfo to index.</param>
+      <returns>Returns the index of the WeightFieldInfo in the WeightFieldInfos.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Remove(System.Int32)">
+      <summary>
+                       Removes the WeightFieldInfo object from the WeightFieldInfos according to the specified index. The removed WeightFieldInfo object is disposed.
+                       </summary>
+      <param name="index">The index of the element to remove.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Remove(System.String)">
+      <summary>
+                       Removes the WeightFieldInfo object from the WeightFieldInfos according to the specified name. The removed WeightFieldInfo object is disposed.
+                       </summary>
+      <param name="name">The specified name of the WeightFieldInfo to be removed.</param>
+      <returns>Returns true if it is removed successfully, otherwise returns false.</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Count">
+      <summary>
+                       Gets the count of the WeightFieldInfo in the given WeightFieldInfos.
+                       </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Item(System.String)">
+      <summary>
+                       Gets the WeightFieldInfo in the WeightFieldInfos according to the specified name.
+                       </summary>
+      <param name="name">The specified name. The value is WeightFieldInfo.Name. It is used to search the WeightFieldInfo object.</param>
+      <returns>The WeightFieldInfo object.</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos.Item(System.Int32)">
+      <summary>
+                       Gets the WeightFieldInfo object in the WeightFieldInfos object according to the specified index.
+                       </summary>
+      <param name="index">The specified index which starts with 0.</param>
+      <returns>The WeightFieldInfo object.</returns>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.AllocationDemandType">
+      <summary>
+            The enumeration defines the resource allocation demand types.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.AllocationDemandType.Node">
+      <summary>
+            Node demand type. In this mode, the analysis only considers the resource demand of the nodes, not considering the demand of the edges. E.g., on Christmas Day, Santa send gifts to the children, where the location of Santa is the fixed center, the gift number is the resource number, the house addresses of children are demand nodes, the needed gift number of each child is the demand field value of the node. This condition is a node demand type.&lt;/p&gt;
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.AllocationDemandType.Edge">
+      <summary>
+            edge demand type. In this mode, the analysis only considers the resource demand of the edges, not considering the demand of the nodes. E.g., on Christmas Day,  Santa send gifts to the children, where the location of Santa is the fixed center, the oil stock of the car Santa drives is the resource number, the house addresses of children are demand nodes, the needed oil cost to the home of each child is the demand field value of the edge. This condition is an edge demand type.&lt;/p&gt;
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.NetworkAnalyst.AllocationDemandType.Both">
+      <summary>
+            Node and edge demand type. Consider both the demand of nodes and edges. E.g., on Christmas Day,  Santa send gifts to the children, when considering the gifts number and the oil cost, it is a node and edge demand type.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult">
+      <summary>
+            Resource allocation analysis result class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult.Dispose">
+      <summary>
+            Releases all resources that the object occupies. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult.DemandResults">
+      <summary>
+            Gets the array of the DemandResult objects. For more information, please refer to the DemandResult class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult.Routes">
+      <summary>
+            Gets the allocation route result of the resource allocation analysis. The array length is the number of the resource centers.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult.Nodes">
+      <summary>
+            Gets the ID set of nodes passed by the analysis result.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystResult.Edges">
+      <summary>
+            Gets the ID set of edges passed by the analysis result.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter">
+      <summary>
+            The LocationAnalystParameter class provides the required parameters for the location-allocation analysis including whether to allocate resources from the supply center, supply centers,  the weight field name, the turn weight field, the expected number of supply centers, etc.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.#ctor">
+      <summary>
+            Construct a new Resoure allocation analysis parameter class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.#ctor(SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter)">
+      <summary>
+            Initializes a new instance of the AllocationAnalystParameter class which is identical with the specified AllocationAnalystParameter.
+            </summary>
+      <param name="parameter">Specified AllocationAnalystParameter object.</param>
+    </member>
+    <member name="M:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.Dispose">
+      <summary>
+            Releases all resources that the object occupies.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.SupplyCenters">
+      <summary>
+            Gets or sets the collection of SupplyCenter.
+            </summary>
+      <value>The default value is a new <see cref="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.SupplyCenters">SuppplyCenters</see> object.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.NodeDemandField">
+      <summary>
+            Gets or sets the field representing the demand of the nodes which are regarded as the demand centers in the network dataset.
+            </summary>
+      <value>The default value is NodeDemand.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.EdgeDemandField">
+      <summary>
+            Gets or sets the field representing the demand of the edge which are regarded as the demand centers in the network dataset.
+            </summary>
+      <value>The default value is EdgeDemand.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.IsFromCenter">
+      <summary>
+            Whether to analyze from the supply centers or not.
+            </summary>
+      <value>The default value is true.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.IsConnected">
+      <summary>
+            Gets or sets whether the route generated in the analysis must be connected.
+            </summary>
+      <value>The default value is true.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.DemandType">
+      <summary>
+            Gets or sets resource allocation mode.
+            </summary>
+      <value>The default is AllocationDemandType.Both.</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.WeightName">
+      <summary>
+            Gets or sets the name of the weight field information, i.e., the <see cref="P:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo.Name">Name</see> value of a certain <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfo">WeightFieldInfo</see> object of the <see cref="T:SuperMap.Analyst.NetworkAnalyst.WeightFieldInfos">WeightFieldInfos</see> object specified by the TransportationAnalystSetting class.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+    <member name="P:SuperMap.Analyst.NetworkAnalyst.AllocationAnalystParameter.TurnWeightField">
+      <summary>
+            Gets or sets the turn cost field and this field must be in the collection of turn cost fields which is defined in the transportation network analysis environment settings.
+            </summary>
+      <value>The default value is String.Empty .</value>
+    </member>
+  </members>
+</doc>

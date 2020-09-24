@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Model</RootNamespace>
     <AssemblyName>Model</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +49,8 @@
     <Compile Include="AngularjsStudy\FirstSort.cs" />
     <Compile Include="AngularjsStudy\TaskModel.cs" />
     <Compile Include="Js\DictionaryModel.cs" />
+    <Compile Include="ODataStudy\Product.cs" />
+    <Compile Include="ODataStudy\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TokenDemo\GetUserInfoRequest.cs" />
     <Compile Include="TokenDemo\LogInRequest.cs" />

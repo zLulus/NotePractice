@@ -1,0 +1,2165 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.UI.Controls</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.UI.AfterFileOpenEventArgs">
+      <summary>
+            The event parameter class after open the file, providing data for event (<see cref="E:SuperMap.UI.WorkspaceTree.AfterFileOpen">WorkspaceTree.BeforeFileOpen</see>) after open the file.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.AfterFileOpenEventArgs.#ctor(System.String)">
+      <summary>
+            Creates a new AfterFileOpenEventArgs object according to the specified arguments.  
+            </summary>
+      <param name="filePath">Specifies the full path of the opened file.</param>
+    </member>
+    <member name="P:SuperMap.UI.AfterFileOpenEventArgs.FilePath">
+      <summary>
+            Gets the full path of the opened file. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.AfterFileOpenEventHandler">
+      <summary>
+            Represents the method that handles a <see cref="E:SuperMap.UI.WorkspaceTree.AfterFileOpen">WorkspaceTree.AfterFileOpen</see>. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The <see cref="T:SuperMap.UI.AfterFileOpenEventArgs">AfterFileOpenEventArgs</see> object including the event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.AfterIconClickEventArgs">
+      <summary>
+            The event parameter class after click the icon on the layer tree node, providing data for the event (<see cref="E:SuperMap.UI.LayersTree.AfterTreeIconClick">LayersTree.BeforeTreeIconClick</see> and <see cref="E:SuperMap.UI.Layer3DsTree.AfterTreeIconClick">Layer3DsTree.BeforeTreeIconClick</see>) after click the icon on the layer tree node.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.AfterIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,SuperMap.UI.TreeIconTypes)">
+      <summary>
+            Creates a new AfterIconClickEventArgs object according to the specified arguments. 
+            </summary>
+      <param name="node">The specified tree nodes.</param>
+      <param name="iconType">Specifies the type of picture of layer tree node.</param>
+    </member>
+    <member name="P:SuperMap.UI.AfterIconClickEventArgs.IconType">
+      <summary>
+            Gets the type of icon of layer tree node.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.AfterIconClickEventArgs.Node">
+      <summary>
+            Gets the layer tree node that trigger the event.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.AfterTreeIconClickEventHandler">
+      <summary>
+            The method class for the <see cref="E:SuperMap.UI.LayersTree.AfterTreeIconClick">LayersTree.AfterTreeIconClick</see> event and the <see cref="E:SuperMap.UI.Layer3DsTree.AfterTreeIconClick">Layer3DsTree.AfterTreeIconClick</see> event.
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The <see cref="T:SuperMap.UI.AfterIconClickEventArgs">AfterIconClickEventArgs</see> object after clicked the icon including the event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeFileOpenEventArgs">
+      <summary>
+            The event parameter class before open the file, providing data for event (<see cref="E:SuperMap.UI.WorkspaceTree.BeforeFileOpen">WorkspaceTree.BeforeFileOpen</see>) before open the file.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.BeforeFileOpenEventArgs.#ctor(System.String,System.Boolean)">
+      <summary>
+            Creates a new BeforeFileOpenEventArgs object according to the specified arguments. 
+            </summary>
+      <param name="filePath">Specifies the full path of the opened file.</param>
+      <param name="cancel">Whether to cancel the operation corresponding to the event with an object of this parameter type as a parameter.</param>
+    </member>
+    <member name="P:SuperMap.UI.BeforeFileOpenEventArgs.FilePath">
+      <summary>
+            Gets or sets the full path of the file that will be opened. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.BeforeFileOpenEventArgs.Cancel">
+      <summary>
+            Gets or sets a value indicating whether the event should be canceled.  
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.BeforeFileOpenEventHandler">
+      <summary>
+            Represents the method class that handles a <see cref="E:SuperMap.UI.WorkspaceTree.BeforeFileOpen">WorkspaceTree.BeforeFileOpen</see>. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The <see cref="T:SuperMap.UI.BeforeFileOpenEventArgs">BeforeFileOpenEventArgs</see> object including the event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeIconClickEventArgs">
+      <summary>
+            The event parameter class before click the icon on the layer tree node, providing data for the event (<see cref="E:SuperMap.UI.LayersTree.BeforeTreeIconClick">LayersTree.BeforeTreeIconClick</see> and <see cref="E:SuperMap.UI.Layer3DsTree.BeforeTreeIconClick">Layer3DsTree.BeforeTreeIconClick</see>) before click the icon on the layer tree node. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.BeforeIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,System.Boolean)">
+      <summary>
+            Constructs a new  BeforeIconClickEventArgs object according to the specified parameter. It has been out of date. You can use <see cref="M:SuperMap.UI.BeforeIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,SuperMap.UI.TreeIconTypes,System.Boolean)">BeforeIconClickEventArgs</see> replace.
+            </summary>
+      <param name="node">The specified tree nodes.</param>
+      <param name="cancel">Whether to cancel the operation corresponding to the event with an object of this parameter type as a parameter.</param>
+    </member>
+    <member name="M:SuperMap.UI.BeforeIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,SuperMap.UI.TreeIconTypes,System.Boolean)">
+      <summary>
+            Creates a new BeforeIconClickEventArgs object according to the specified arguments. 
+            </summary>
+      <param name="node">The specified tree nodes.</param>
+      <param name="iconType">Specifies the type of picture of layer tree node.</param>
+      <param name="cancel">Whether to cancel the operation corresponding to the event with an object of this parameter type as a parameter.</param>
+    </member>
+    <member name="P:SuperMap.UI.BeforeIconClickEventArgs.Node">
+      <summary>
+            Gets the layer tree node that trigger the event. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.BeforeIconClickEventArgs.Cancel">
+      <summary>
+            Gets or sets whether to cancel the value of the event. true if the event should be canceled; otherwise, false.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.BeforeIconClickEventArgs.IconType">
+      <summary>
+            Gets the icon of layer tree node.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.BeforeLayer3DsTreeIconClickEventArgs">
+      <summary>
+            It's obsolete, replaced with <see cref="T:SuperMap.UI.BeforeIconClickEventArgs">BeforeIconClickEventArgs</see> which is the clicking 3D layers tree node event parameter class. It provides data for the event(<see cref="E:SuperMap.UI.Layer3DsTree.BeforeIconClick">Layer3DsTree.BeforeIconClick</see>). 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.BeforeLayer3DsTreeIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,SuperMap.UI.TreeIconTypes)">
+      <summary>
+            Creates a new BeforeLayer3DsTreeIconClickEventArgs object according to the specified arguments. 
+            </summary>
+      <param name="node">The specified tree nodes.</param>
+      <param name="iconType">Specifies the type of the icon which occurs the event.</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeLayer3DsTreeIconClickEventHandler">
+      <summary>
+            Obsolete. Use the <see cref="T:SuperMap.UI.BeforeTreeIconClickEventHandler">BeforeTreeIconClickEventHandler</see> to replace. The method class for the <see cref="E:SuperMap.UI.Layer3DsTree.BeforeIconClick">Layer3DsTree.BeforeIconClick</see> event. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The (<see cref="T:SuperMap.UI.BeforeLayer3DsTreeIconClickEventArgs">BeforeLayer3DsTreeIconClickEventArgs</see>) object that contains the event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeLayersTreeIconClickEventArgs">
+      <summary>
+            It's obsolete, replaced with <see cref="T:SuperMap.UI.BeforeIconClickEventArgs">BeforeIconClickEventArgs</see> which is the clicking 2D layers tree node event parameter class. It provides data for the event(<see cref="E:SuperMap.UI.LayersTree.BeforeIconClick">LayersTree.BeforeIconClick</see>). 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.BeforeLayersTreeIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,SuperMap.UI.TreeIconTypes)">
+      <summary>
+            Creates a new BeforeLayersTreeIconClickEventArgs object according to the specified arguments. 
+            </summary>
+      <param name="node">The specified tree nodes.</param>
+      <param name="iconType">Specifies the type of the icon which occurs the event.</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeLayersTreeIconClickEventHandler">
+      <summary>
+            Obsolete. Use the <see cref="T:SuperMap.UI.BeforeTreeIconClickEventHandler">BeforeTreeIconClickEventHandler</see> to replace. The method class for the <see cref="E:SuperMap.UI.LayersTree.BeforeIconClick">LayersTree.BeforeIconClick</see> event. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The (<see cref="T:SuperMap.UI.BeforeLayersTreeIconClickEventArgs">BeforeLayersTreeIconClickEventArgs</see>) object that contains the event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeNodeContextMenuStripShowEventArgs">
+      <summary>
+            The event parameter class before the right-click menu is popped up 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.BeforeNodeContextMenuStripShowEventArgs.#ctor(SuperMap.UI.TreeNodeBase,System.Windows.Forms.ContextMenuStrip)">
+      <summary>
+            Creates a new BeforeNodeContextMenuStripShowEventArgs object according to the specified arguments. 
+            </summary>
+      <param name="node">The specified tree nodes.</param>
+      <param name="contextMenuStrip">The context menu specified to popup.</param>
+    </member>
+    <member name="P:SuperMap.UI.BeforeNodeContextMenuStripShowEventArgs.Node">
+      <summary>
+            The node that triggers this event. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.BeforeNodeContextMenuStripShowEventArgs.ContextMenuStrip">
+      <summary>
+            Gets or sets the popped up right-click menu. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.BeforeNodeContextMenuStripShowEventHandler">
+      <summary>
+        <see cref="E:SuperMap.UI.Layer3DsTree.BeforeNodeContextMenuStripShow">Layer3DsTree.BeforeNodeContextMenuStripShow</see> and <see cref="E:SuperMap.UI.LayersTree.BeforeNodeContextMenuStripShow">LayersTree.BeforeNodeContextMenuStripShow</see>. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The <see cref="T:SuperMap.UI.BeforeNodeContextMenuStripShowEventArgs">BeforeNodeContextMenuStripShowEventArgs</see> object including the event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeTreeIconClickEventHandler">
+      <summary>
+            The method class for the <see cref="E:SuperMap.UI.LayersTree.BeforeTreeIconClick">LayersTree.BeforeTreeIconClick</see> event and the <see cref="E:SuperMap.UI.Layer3DsTree.BeforeTreeIconClick">Layer3DsTree.BeforeTreeIconClick</see>event.
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The event parameter class object (<see cref="T:SuperMap.UI.BeforeIconClickEventArgs">BeforeIconClickEventArgs</see>) that contains the event data before click the icon of the layer tree node.</param>
+    </member>
+    <member name="T:SuperMap.UI.ColorButton">
+      <summary>
+            The color button. Click this button, and the color selector will pop up. The color selector provides the functions for selecting colors and customizing colors. You can open the color management to manage the colors by the color selector.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorButton.#ctor">
+      <summary>
+            Constructs a new object of the ColorButton class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorButton.Color">
+      <summary>
+            Gets or sets the colors selected in the color selector.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorButton.ColorLibrary">
+      <summary>
+            When opening the color management from the selector, you can get the color library.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorButton.XmlFilePath">
+      <summary>
+            Gets or sets the external file full path corresponding to the loaded color library in the color manager.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorButton.AlphaEnabled">
+      <summary>
+             Gets or sets whether the transparency is enable. True represents enable; otherwise false. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorButton.ShowOtherColor">
+      <summary>
+            Gets or sets whether the "Others" area expands in the color selector. True means expanding; otherwise, false.
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.ColorButton.ColorChangeContinuing">
+      <summary>
+            This event will be triggered when the color in color selector changes.
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.ColorButton.ColorChanged">
+      <summary>
+            This event will be triggered when the color selector is closed and the selected color changes.
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.ColorButton.ColorDropDownClosed">
+      <summary>
+            The event is triggered when the color table is closed.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.ColorCell">
+      <summary>
+            The ColorCell class. A ColorCell object corresponds to a color cell in the palette.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorCell.#ctor">
+      <summary>
+            Constructs a new object of the ColorCell class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorCell.#ctor(System.Drawing.Color)">
+      <summary>
+            Constructs a new object of the ColorCell class according to the given color value.
+            </summary>
+      <param name="color">The specified color.</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorCell.#ctor(System.Drawing.Color,System.String)">
+      <summary>
+            Constructs a new object of the ColorCell class according to the given color value and Tag.
+            </summary>
+      <param name="color">The specified color value.</param>
+      <param name="tag">The specified Tag.</param>
+    </member>
+    <member name="P:SuperMap.UI.ColorCell.Color">
+      <summary>
+            Gets or sets the color value of the ColorCell object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorCell.Tags">
+      <summary>
+            Gets or sets the Tag of the ColorCell object.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.ColorLibrary">
+      <summary>
+            The ColorLibrary class. A ColorLibrary object corresponds to a color library, and the color library contains several palettes (the ColorSwatch objects). The color palette contains several color cells (the ColorCell). The palette classify the colors.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.#ctor">
+      <summary>
+            Constructs a new object of the ColorLibrary class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.Add(SuperMap.UI.ColorSwatch)">
+      <summary>
+            Adds a color palette to the color library.
+            </summary>
+      <param name="colorSwatch">The specified palette, namely the ColorSwatch object.</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.FromFile(System.String)">
+      <summary>
+            Loads the color library from the color library files (*.xml). The color library file stores the color palette, order, name and color cells in the format of XML.
+            </summary>
+      <param name="fileName">The full path of the specified color library file (*.xml). You can store the color library as the file through the ColorLibrary.ToFile() method.</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.IndexOf(SuperMap.UI.ColorSwatch)">
+      <summary>
+            Returns the index of the specified color palette in the color library.
+            </summary>
+      <param name="item">The palette in the specified color library.</param>
+      <returns>Returns the index of the specified color palette in the color library.</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.LoadXml(System.String)">
+      <summary>
+            Loads the color library from the XML string.
+            </summary>
+      <param name="xml">The specified XML string describing the color library.</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.Remove(SuperMap.UI.ColorSwatch)">
+      <summary>
+            Removes the specified color palette from the color library.
+            </summary>
+      <param name="colorSwatch">The specified color palette to be removed.</param>
+      <returns>True, if successful; Otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.RemoveAt(System.Int32)">
+      <summary>
+            Removes the specified color palette at the given index from the color library.
+            </summary>
+      <param name="index">The index of the specified color palette that is to be removed in the color library.</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.SaveXml">
+      <summary>
+            Stores the color library in the XML string.
+            </summary>
+      <returns>Returns the XML string describing the color library.</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.ToFile(System.String)">
+      <summary>
+            Stores the color library as the XML file. The color library file stores the color palette, order, name and color cells in the format of XML.
+            </summary>
+      <param name="fileName">The full path of the specified color library (*.xml).</param>
+    </member>
+    <member name="P:SuperMap.UI.ColorLibrary.Count">
+      <summary>
+            Gets the palette count in the color library.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorLibrary.Item(System.String)">
+      <summary>
+            Gets the palette with the specified name.
+            </summary>
+      <param name="name">The name of the specified color palette.</param>
+      <returns>The palette with the specified name.</returns>
+    </member>
+    <member name="P:SuperMap.UI.ColorLibrary.Item(System.Int32)">
+      <summary>
+            Gets the color palette at the given index in the color library.
+            </summary>
+      <param name="index">The index of the specified color palette in the color library.</param>
+      <returns>The color palette at the given index in the color library.</returns>
+    </member>
+    <member name="T:SuperMap.UI.ColorLibraryDialog">
+      <summary>
+            The color management is used to manage the colors in the management.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.DialogBase">
+      <summary>
+            The base class of the dialog box.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.DialogBase.Icon">
+      <summary>
+            Gets or sets the icon on the title bar of the dialog box.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.DialogBase.Location">
+      <summary>
+            Gets or sets the coordinates of the upper-left corner of the dialog box.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.DialogBase.ShowIcon">
+      <summary>
+            Gets or sets a Boolean value that indicates whether the icon is displayed in the title bar of the form. The true indicates to display the icon, false indicates not to display.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.DialogBase.StartPosition">
+      <summary>
+            Gets or sets the start position when the dialog box is running.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.DialogBase.Title">
+      <summary>
+            Gets or sets the text that display on the title bar of the dialog box.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibraryDialog.#ctor">
+      <summary>
+            Constructs a new object of the ColorLibraryDialog class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibraryDialog.ShowDialog">
+      <summary>
+            Shows the color management.
+            </summary>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the color management.</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibraryDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            Displays the color manager as a modal dialog box which has the specified owner.
+            </summary>
+      <param name="owner">Any objects that implemented IWin32Window.</param>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the color management.</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibraryDialog.ShowDialog(SuperMap.UI.ColorLibrary)">
+      <summary>
+            Shows the color management.
+            </summary>
+      <param name="library">The current color library managed by the specified color manager.</param>
+    </member>
+    <member name="P:SuperMap.UI.ColorLibraryDialog.Library">
+      <summary>
+            Gets or sets the current color library managed by the specified color manager.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.ColorSwatch">
+      <summary>
+            The ColorSwatch class. A ColorSwatch object corresponds to a color palette.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.#ctor">
+      <summary>
+            Constructs a new object of the ColorSwatch class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.Add(SuperMap.UI.ColorCell)">
+      <summary>
+            Adds a color cell to the palette.
+            </summary>
+      <param name="colorCell">The specified ColorCell object, namely the color cell to add into the palette.</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.FromFile(System.String)">
+      <summary>
+            Reads and loads the color palette from the XML palette. This XML file stores the palettes according to a certain structure, including the color value, Tag (label), sort order of color cells and so on.
+            </summary>
+      <param name="fileName">The full path of the specified palette file (*.xml). The XML palette file stores the palettes according to a certain structure, including the color values, Tag (label), sort order of color cells and so on. Users can save the palette as the palette file (*.xml) through the ColorSwatchFile() method.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.LoadXml(System.String)">
+      <summary>
+            Loads the palette through the XML string. The XML string stores the palettes according to a certain structure, including the color values, Tag (label), sort order of color cells and so on.
+            </summary>
+      <param name="xml">The XML string describing palettes. The XML string stores the palettes according to a certain structure, including the color values, Tag (label), sort order of color cells and so on.</param>
+      <returns>Returns true if successful; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.Remove(SuperMap.UI.ColorCell)">
+      <summary>
+            Removes the specified color cell from the palette.
+            </summary>
+      <param name="cell">The color cell in the specified palette to remove.</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.RemoveAt(System.Int32)">
+      <summary>
+            Removes the color cell with the specified index in the palette.
+            </summary>
+      <param name="index">The index of the specified color cell that is to be removed in the color palette.</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.SaveXml">
+      <summary>
+            Stores the palettes in the XML string. The XML string stores the color values, Tag (label), sort order of color cells and so on.
+            </summary>
+      <returns>Returns the XML string describing the palette.</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.ToFile(System.String)">
+      <summary>
+            Stores the color palette into the XML file. This XML file stores the palettes according to a certain structure, including the color value, Tag (label), palette sort order and so on.
+            </summary>
+      <param name="fileName">The full path of the specified XML file.</param>
+    </member>
+    <member name="P:SuperMap.UI.ColorSwatch.ColorCells">
+      <summary>
+            Gets or sets the color cell collection in the color palette. The color palette contains several color cells. A color cell is a ColorCell object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorSwatch.Count">
+      <summary>
+            Gets the color cell count from the color palette.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorSwatch.Item(System.Int32)">
+      <summary>
+            Gets the color cell at the specified index in the palette.
+            </summary>
+      <param name="index">The index of the specified color cell.</param>
+      <returns>The color block at the given index.</returns>
+    </member>
+    <member name="P:SuperMap.UI.ColorSwatch.Name">
+      <summary>
+            Gets or sets the name of the palette.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.DoubleClickAction">
+      <summary>
+            Defines the the double-click action type constant. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.DoubleClickAction.None">
+      <summary>
+            no action 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.DoubleClickAction.OK">
+      <summary>
+            process the same progress as clicking "OK" 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.DoubleClickAction.EditSymbol">
+      <summary>
+            Edit the current selected symbol. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.GeoStyle3DChangedEventArgs">
+      <summary>
+            Provides data for the <see cref="E:SuperMap.UI.SymbolDialog.GeoStyle3DChanged">SymbolDialog.GeoStyle3DChanged</see> event. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.GeoStyle3DChangedEventArgs.#ctor(SuperMap.Data.GeoStyle3D)">
+      <summary>
+            Creates a new GeoStyle3DChangedEventArgs object according to the specified arguments. 
+            </summary>
+      <param name="geoStyle3D">The changed 3D style.</param>
+    </member>
+    <member name="P:SuperMap.UI.GeoStyle3DChangedEventArgs.GeoStyle3D">
+      <summary>
+            Gets the changed 3D style. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.GeoStyle3DChangedEventHandler">
+      <summary>
+            A method class for <see cref="E:SuperMap.UI.SymbolDialog.GeoStyle3DChanged">SymbolDialog.GeoStyle3DChanged</see>. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The <see cref="T:SuperMap.UI.GeoStyle3DChangedEventArgs">GeoStyle3DChangedEventArgs</see> object containing event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.GeoStyleChangedEventArgs">
+      <summary>
+            Provides data for the <see cref="E:SuperMap.UI.SymbolDialog.GeoStyleChanged">SymbolDialog.GeoStyleChanged</see> event. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.GeoStyleChangedEventArgs.#ctor(SuperMap.Data.GeoStyle)">
+      <summary>
+            Creates a new GeoStyleChangedEventArgs object according to the specified arguments. 
+            </summary>
+      <param name="geoStyle">The changed style.</param>
+    </member>
+    <member name="P:SuperMap.UI.GeoStyleChangedEventArgs.GeoStyle">
+      <summary>
+            Gets the changed style. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.GeoStyleChangedEventHandler">
+      <summary>
+            A method class for <see cref="E:SuperMap.UI.SymbolDialog.GeoStyleChanged">SymbolDialog.GeoStyleChanged</see>. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The <see cref="T:SuperMap.UI.GeoStyleChangedEventArgs">GeoStyleChangedEventArgs</see> object containing event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.InteractionType">
+      <summary>Defines custom operation types.</summary>
+    </member>
+    <member name="F:SuperMap.UI.InteractionType.KeyDelete">
+      <summary>The Delete key.</summary>
+    </member>
+    <member name="F:SuperMap.UI.InteractionType.KeyF2">
+      <summary>The F2 key operation.</summary>
+    </member>
+    <member name="F:SuperMap.UI.InteractionType.FileDrop">
+      <summary>Dragging file.</summary>
+    </member>
+    <member name="F:SuperMap.UI.InteractionType.NodeDrop">
+      <summary>Dragging tree node. Now only support dragging dataset to the datasource.</summary>
+    </member>
+    <member name="T:SuperMap.UI.LayoutSettingDialog">
+      <summary>
+             Provides a method to set the layout in a interactive way on the interface. It can be used to set the layout environment, paper, and optimize the layout like the background color of the layout, the foreground color of the paper, the display of scale the and number of pages, the margin and the grid settings.
+             </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.#ctor">
+      <summary>
+            Creates a new LayoutSettingDialog object. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.#ctor(SuperMap.Layout.MapLayout)">
+      <summary>
+            Creates a new LayoutSettingDialog object according to the specified arguments.
+            </summary>
+      <param name="maplayout">The MapLayout object specified.</param>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.ShowDialog(SuperMap.Layout.MapLayout)">
+      <summary>
+            Display the LayoutSettingDialog and specify the layout to set.
+            </summary>
+      <param name="maplayout">The specified object of the layout.</param>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.ShowDialog(SuperMap.Layout.MapLayout,System.String)">
+      <summary>
+            Display the LayoutSettingDialog and specify the layout to set and the title of the LayoutSettingDialog.
+            </summary>
+      <param name="maplayout">The specified object of the layout.</param>
+      <param name="title">Specify the text that display on the title bar of the LayoutSettingDialog box.</param>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.ShowDialog">
+      <summary>
+            Display the LayoutSettingDialog box.
+            </summary>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the LayoutSettingDialog box.</returns>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            Displays the LayoutSettingDialog box as a modal dialog box which has the specified owner.
+            </summary>
+      <param name="owner">Any objects that implemented IWin32Window.</param>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the LayoutSettingDialog box.</returns>
+    </member>
+    <member name="P:SuperMap.UI.LayoutSettingDialog.Maplayout">
+      <summary>
+            Gets or sets a <see cref="T:SuperMap.Layout.MapLayout">MapLayout</see> object.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.MapNavigationControl">
+      <summary>
+            The map navigation control.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.MapNavigationControl.#ctor">
+      <summary>
+            Constructs a new MapNavigationControl object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.MapNavigationControl.#ctor(SuperMap.UI.MapControl)">
+      <summary>
+            Creates a new MapNavigationControl object according to given parameters.
+            </summary>
+      <param name="mapControl">The MapControl object related to the specified map navigation control.</param>
+    </member>
+    <member name="M:SuperMap.UI.MapNavigationControl.#ctor(System.ComponentModel.IContainer)">
+      <summary>
+            Creates a new MapNavigationControl object according to given parameters.
+            </summary>
+      <param name="container">The System.ComponentModel.IContainer that contains the new map navigation control.</param>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.MapControl">
+      <summary>
+            Gets or sets the MapControl object related to the map navigation control.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.Anchor">
+      <summary>
+            Gets or sets how the map navigation anchors to the edge of the related MapControl.
+            </summary>
+      <value>The default value is: AnchorStyles.Top | AnchorStyles.Left, namely the bitwise combinations of the Top and Left members in AnchorStyles.</value>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.Location">
+      <summary>
+            Gets or sets the coordinate that the map navigation control Top-Left of bounding box is related to that of MapControl control.
+            </summary>
+      <value>The default value is Point(20,20).</value>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.MaxScale">
+      <summary>
+            Gets or sets the maximum scale that the map navigation control scales.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.MinScale">
+      <summary>
+            Gets or sets the minimum scale that the map navigation control scales. It is supported only when the MaxZoomScale property is set.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.PanPercent">
+      <summary>
+            Get or set the moved map range for each click when panning the map with the navigation control. The unit is: percentage, that is, relative to the MapControl controls. The value is an integer value between 0 and 100.
+            </summary>
+      <value>The default value is 25.</value>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.Visible">
+      <summary>
+            When the map window loads the MapNavigationControl, you can get or set whether the MapNavigationControl is displayed or not.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.MultiSelectableTree">
+      <summary>
+            MultiSelectableTree that is inherited from TreeView. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.MultiSelectableTree.#ctor">
+      <summary>
+            Creates a new MultiSelectableTree object. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MultiSelectableTree.SimpleMode">
+      <summary>
+            Gets or sets whether to active Simple Mode. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MultiSelectableTree.SelectedNodes">
+      <summary>
+            Gets or sets the array of the selected nodes in the layer tree. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MultiSelectableTree.MultiSelect">
+      <summary>
+            Gets or sets multinodes selection. The default is true. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MultiSelectableTree.Icons">
+      <summary>
+            Gets or sets a Flags to decide what icons will be shown for the nodes of the tree. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.SymbolDialog">
+      <summary>
+             Provides a interface interactive way to set the symbol styles, including: marker symbol, line symbol and fill symbol styles. 
+             </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.#ctor">
+      <summary>
+            Initializes a new instance of the SymbolDialog class. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog">
+      <summary>
+            Display the SymbolDialog. 
+            </summary>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the SymbolDialog.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            Displays the SymbolDialog as a modal dialog box which has the specified owner. 
+            </summary>
+      <param name="owner">Any objects that implemented IWin32Window.</param>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the SymbolDialog.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.GeoStyle,SuperMap.Data.SymbolType)">
+      <summary>
+            Display the SymbolDialog and specify the default symbol style of the SymbolDialog. 
+            </summary>
+      <param name="resources">Specifies the resource of the symbol selection manager. This manager will find symbols from a specified resource.</param>
+      <param name="geoStyle">Specify the default symbol style of the SymbolDialog.</param>
+      <param name="symbolType">Specify the type of the SymbolDialog to open, marker SymbolDialog, line SymbolDialog or fill SymbolDialog.</param>
+      <returns>Returns the symbol style specified in the SymbolDialog. It returns the symbol style specified in the SymbolDialog if the user clicked OK button in the SymbolDialog. Otherwise it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.GeoStyle,SuperMap.Data.SymbolType,System.String)">
+      <summary>
+            Displays the SymbolDialog, and specify the default symbol style and the text on the title of the SymbolDialog 
+            </summary>
+      <param name="resources">Specifies the resource of the symbol selection manager. This manager will find symbols from a specified resource.</param>
+      <param name="geoStyle">Specify the default symbol style of the SymbolDialog.</param>
+      <param name="symbolType">Specify the type of the SymbolDialog to open, marker SymbolDialog, line SymbolDialog or fill SymbolDialog.</param>
+      <param name="title">Specifies the title bar text of the dialog box of the SymbolDialog.</param>
+      <returns>Returns the symbol style specified in the SymbolDialog. It returns the symbol style specified in the SymbolDialog if the user clicked OK button in the SymbolDialog. Otherwise it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.GeoStyle3D,SuperMap.Data.SymbolType)">
+      <summary>
+            Display the SymbolDialog and specify the default 3D symbol style of the SymbolDialog. 
+            </summary>
+      <param name="resources">Specifies the resource of the symbol selection manager. This manager will find symbols from a specified resource.</param>
+      <param name="geoStyle3D">Specify the default 3D symbol style of the SymbolDialog.</param>
+      <param name="symbolType">Specify the type of the SymbolDialog to open, marker SymbolDialog, line SymbolDialog or fill SymbolDialog.</param>
+      <returns>Returns the 3D symbol style specified in the SymbolDialog. It returns the 3D symbol style specified in the SymbolDialog if the user clicked OK button in the SymbolDialog. Otherwise it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.GeoStyle3D,SuperMap.Data.SymbolType,System.String)">
+      <summary>
+            Displays the SymbolDialog, and specify the default 3D symbol style and the text on the title of the SymbolDialog 
+            </summary>
+      <param name="resources">Specifies the resource of the symbol selection manager. This manager will find symbols from a specified resource.</param>
+      <param name="geoStyle3D">Specify the default 3D symbol style of the SymbolDialog.</param>
+      <param name="symbolType">Specify the type of the SymbolDialog to open, marker SymbolDialog, line SymbolDialog or fill SymbolDialog.</param>
+      <param name="title">Specifies the title bar text of the dialog box of the SymbolDialog.</param>
+      <returns>Returns the 3D symbol style specified in the SymbolDialog. It returns the 3D symbol style specified in the SymbolDialog if the user clicked OK button in the SymbolDialog. Otherwise it returns null.</returns>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.Style">
+      <summary>
+            Gets or sets the symbol style set in the SymbolDialog. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.Resources">
+      <summary>
+            Gets or sets the resource of symbol selection manager. This manager will find symbols from a specified resource. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.Type">
+      <summary>
+            Gets or sets the type of the SymbolDialog, marker SymbolDialog, line SymbolDialog or fill SymbolDialog. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.SymbolID">
+      <summary>
+            Gets the index selected by of symbol selection manager. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.Style3D">
+      <summary>
+            Gets or sets the symbol style set in the SymbolDialog, it's the 3D symbol style. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.DoubleClickAction">
+      <summary>
+            Gets or sets the action of double click on a single symbol, for example there are two types: confirm or do nothing. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.UseApplyButton">
+      <summary>
+             Gets or sets whether to use button in the SymbolDialog.
+             </summary>
+    </member>
+    <member name="E:SuperMap.UI.SymbolDialog.GeoStyleChanged">
+      <summary>
+            This event is triggered when the symbol style changed in the SymbolDialog. 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.SymbolDialog.ApplyButtonClicked">
+      <summary>
+            This event is triggered when click the apply button in the SymbolDialog. 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.SymbolDialog.GeoStyle3DChanged">
+      <summary>
+            This event is triggered when the 3D symbol style changed in the SymbolDialog.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.ShowEditButton">
+      <summary>
+            Gets or sets whether to display the edit button in the SymbolDialog.
+            </summary>
+      <value>The default is false.</value>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.Title">
+      <summary>
+            Gets or sets the title of the SymbolDialog.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.AlphaEnabled">
+      <summary>
+            Gets or sets whether to set the Alpha value in the symbol selector; true means it can set the Aipha; otherwise, false.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.SymbolEditDialog">
+      <summary>
+             Symbol editor, provides the interface to create and edit symbols, the symbol editor has different states based on the different symbol types: Marker Symbol Editor, Line Symbol Editor, Fill Symbol Editor, 3D Marker Symbol Editor and 3D Line Symbol Editor.
+             </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolEditDialog.#ctor">
+      <summary>
+            Constructs a new SymbolEditDialog object. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolEditDialog.ShowDialog">
+      <summary>
+            Display the symbol editor.
+            </summary>
+      <returns>Determine whether the user clicked "OK" or "Cancel"  based on the return value. The return value of the method is DialogResult.OK if the user clicked "OK" in the symbol editor, it is DialogResult.Cancel otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolEditDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            Displays the Symbol Editor as a modal dialog box which has the specified owner.
+            </summary>
+      <param name="owner">Any objects that implemented IWin32Window.</param>
+      <returns>Determine whether the user clicked "OK" or "Cancel"  based on the return value. The return value of the method is DialogResult.OK if the user clicked "OK" in the symbol editor, it is DialogResult.Cancel otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolEditDialog.ShowDialog(SuperMap.Data.Symbol,SuperMap.Data.Resources)">
+      <summary>
+            Display the symbol editor and specify the symbol to edit and the resource which contains it.
+            </summary>
+      <param name="symbol">The symbol specified to edit, it must be a symbol in the resource specified by the resources parameter, an exception will be thrown otherwise.</param>
+      <param name="resources">The resource which contains the symbol to edit.</param>
+      <returns>Return the symbol edited.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolEditDialog.ShowDialog(SuperMap.Data.Symbol,SuperMap.Data.Resources,System.String)">
+      <summary>
+            Display symbol editor, you can specify the symbol to edit, the resource which contains it, and the text displayed on the title bar of the symbol editor.
+            </summary>
+      <param name="symbol">The symbol specified to edit, it must be a symbol in the resource specified by the resources parameter, an exception will be thrown otherwise.</param>
+      <param name="resources">The resource which contains the symbol to edit.</param>
+      <param name="title">The text displayed on the title bar of the symbol editor.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.Symbol">
+      <summary>
+            Gets or sets the symbols to edit.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.Resources">
+      <summary>
+            Gets or sets the resource which contains the symbol to edit.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.Title">
+      <summary>
+            Gets or sets the text displayed on the title bar of the symbol editor.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.Icon">
+      <summary>
+            Gets or sets the icon displayed on the title bar of the symbol editor.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.ShowIcon">
+      <summary>
+            Gets or sets whether to show icon on the title bar of the symbol editor.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.Location">
+      <summary>
+            Gets or sets the coordinates of the upper-left corner of the symbol editor.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.StartPosition">
+      <summary>
+            Gets or sets the original location of the symbol editor.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.SymbolLibraryDialog">
+      <summary>
+             Symbol library manager, provide the management of the symbol resource in a interface interactive way. 
+             </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolLibraryDialog.#ctor">
+      <summary>
+            Creates a new SymbolLibraryDialog Object. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolLibraryDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.SymbolType)">
+      <summary>
+            Displays the Symbol Library Manager and specifies currently used resources and symbol types for the Symbol Library Manager.
+            </summary>
+      <param name="resources">Specifies resources of the Symbol Library Manager. The Symbol Library Manager reads symbol information from the resources.</param>
+      <param name="symbolType">Specifies the symbol type which can be opened in the Symbol Library Manager.</param>
+      <returns>The return value of the dialog box.  It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the Symbol Library Manager.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolLibraryDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.SymbolType,System.String)">
+      <summary>
+            Displays the Symbol Library Manager and specifies currently used resources, symbol types and the caption of the Symbol Library Manager.
+            </summary>
+      <param name="resources">Specifies currently used resources of the Symbol Library Manager. The Symbol Library Manager reads symbol information from the resources.</param>
+      <param name="symbolType">Specifies which type of Symbol Library Manager to open. There are three types of Symbol Library Managers: point Symbol Library Manager, line Symbol Library Manager and fill Symbol Library Manager.</param>
+      <param name="title">Specifies the title bar text of the dialog box of the Symbol Library Manager</param>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the Symbol Library Manager.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolLibraryDialog.ShowDialog">
+      <summary>
+            Displays the Symbol Library Manager.
+            </summary>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the Symbol Library Manager.</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolLibraryDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            Displays the Symbol Library Manager as a modal dialog box which has the specified owner. 
+            </summary>
+      <param name="owner">Any objects that implemented IWin32Window.</param>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the Symbol Library Manager.</returns>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.DoubleClickAction">
+      <summary>
+            Gets or sets the action of double click on a single symbol, for example there are two types: confirm or do nothing.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.Resources">
+      <summary>
+            Gets or sets the resource of SymbolLibraryDialog. The SymbolLibraryDialog will read the symbol library of the specific type form the specified resource.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.SymbolID">
+      <summary>
+            Gets the index selected by of symbol selection manager.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.Type">
+      <summary>
+            Gets or sets the type of Symbol Library Manager to open. There are three types of Symbol Library Managers: point Symbol Library Manager, line Symbol Library Manager and fill Symbol Library Manager. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.ToolBar">
+      <summary>
+            Gets the tool bar on the SymbolLibraryDialog. The tool bar can be customized.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.Title">
+      <summary>
+            Gets or sets the title of the SymbolLibraryDialog.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.TextStyleControl">
+      <summary>
+            Text style edit control.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleControl.#ctor">
+      <summary>
+            Constructs a new TextStyleControl object. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.TextStyle">
+      <summary>
+            Gets or sets the text style set in the TextStyleControl. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.GeoText">
+      <summary>
+            Gets or sets the text style set in the TextStyleControl, this property can get or set the GeoText object operated by TextStyleControl.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.IsText3D">
+      <summary>
+            Gets or sets whether to display particular advanced setting options ("Scaling" and "Transparency" setting options) on the interface of TextStyleControl and these advanced setting options are only valid for the text objects in the scene. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.IsThemeText">
+      <summary>
+            Gets or sets whether to display particular advanced setting options ("Tilt Angle" setting options)  on the interface of TextStyleControl and these advanced setting options are only valid for the text objects in the label theme. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.SampleText">
+      <summary>
+            Gets or sets the sample text for previewing the text styles. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.Editable">
+      <summary>
+            Gets or sets whether the TextStyleControl is editable, that is, whether allows to do text style setting. If the value is true, the text style can be changed. If the value is false, the text style can not be changed and we can only view the text style settings. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.MapObject">
+      <summary>
+            Gets or sets a <see cref="T:SuperMap.Mapping.Map">MapLayout</see> object. 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.TextStyleControl.TextStyleChanged">
+      <summary>
+            This event is triggered when the text style in the TextStyleControl changed. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.TextStyleChangedEventArgs">
+      <summary>
+            The class to modify text style 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleChangedEventArgs.#ctor(SuperMap.Data.TextStyle)">
+      <summary>
+            Creates a new TextStyleChangedEventArgs object according to the specified arguments.  
+            </summary>
+      <param name="textStyle">The modified text style</param>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleChangedEventArgs.TextStyle">
+      <summary>
+            get the modified text style 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.TextStyleChangedEventHandler">
+      <summary>
+            The method class of the <see cref="E:SuperMap.UI.TextStyleControl.TextStyleChanged">TextStyleChanged</see> event. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The <see cref="T:SuperMap.UI.TextStyleChangedEventArgs">TextStyleChangedEventArgs</see> object containing event data.</param>
+    </member>
+    <member name="T:SuperMap.UI.TextStyleDialog">
+      <summary>
+            Text style editor. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.#ctor">
+      <summary>
+            Constructs a new TextStyleDialog object.  
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog">
+      <summary>
+            Display the text style editor. 
+            </summary>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the text style editor.</returns>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            Displays the text style editor as a modal dialog box which has the specified owner.
+            </summary>
+      <param name="owner">Any objects that implemented IWin32Window.</param>
+      <returns>The return value of the dialog box. It is used to get the value indicating whether the user clicked the "OK" button or "Cancel" button in the text style editor.</returns>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog(SuperMap.Data.TextStyle,System.Boolean,System.Boolean)">
+      <summary>
+            Display text style editor and users can specify the default text style in the text style editor. 
+            </summary>
+      <param name="textStyle">Specify the default text style.</param>
+      <param name="isThemeText">Whether to display the specific advanced setting options ("Zoom Scale" and "Opacity" options), these advanced setting options only support label thematic map and text object. True means display and false means do not display. See: <see cref="P:SuperMap.UI.TextStyleDialog.IsThemeText">TextStyleDialog.IsThemeText</see> property.</param>
+      <param name="is3DText">Whether to display the specific advanced setting options ("Angle of inclination" option), these advanced setting options only support text object in a scene. True means display and false means do not display. See: <see cref="P:SuperMap.UI.TextStyleDialog.IsText3D">TextStyleDialog.IsThemeText</see> property.</param>
+      <returns>Returns the TextStyle specified in the Text Style dialog. It returns the TextStyle specified in the Text Style dialog. If the user clicked OK button in the Text Style dialog. Otherwise it returns null.</returns>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog(SuperMap.Data.GeoText,System.Boolean,System.Boolean)">
+      <summary>
+            Display text style editor and users can specify the default text style in the text style editor and the sample text in the preview region. 
+            </summary>
+      <param name="geoText">A <c>GeoText</c> object. The default text style of the text style editor can be specified by <c>GeoText.TextStyle</c>; the text object to operate can be specified by <c>GeoText</c> object, the text of the object will be used in the preview region as the sample text.</param>
+      <param name="isThemeText">Whether to display the specific advanced setting options ("Zoom Scale" and "Opacity" options), these advanced setting options only support label thematic map and text object. True means display and false means do not display. See: <see cref="P:SuperMap.UI.TextStyleDialog.IsThemeText">TextStyleDialog.IsThemeText</see> property.</param>
+      <param name="is3DText">Whether to display the specific advanced setting options ("Angle of inclination" option), these advanced setting options only support text object in a scene. True means display and false means do not display. See: <see cref="P:SuperMap.UI.TextStyleDialog.IsText3D">TextStyleDialog.IsThemeText</see> property.</param>
+      <returns>Return the text style set in the text style editor. If the "OK" button in the text style editor was clicked, the text style will be returned by the <c>GeoText</c> object, since the text content can be edited in the text style editor, the result will also be returned; if the "Cancel" button was clicked, or the text style editor was closed directly, return null.</returns>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog(SuperMap.Data.TextStyle,System.Boolean,System.Boolean,System.Object)">
+      <summary>
+            Display dialog box
+            </summary>
+      <param name="textStyle">Text style</param>
+      <param name="isThemeText">Whether it is the text in the thematic map.</param>
+      <param name="is3DText">Whether it is 3D text.</param>
+      <param name="mapObject">The object to bind.</param>
+      <returns>The result of the text setting dialog box, the text set will be returned if click "OK", null will be returned if click "Cancel".</returns>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog(SuperMap.Data.GeoText,System.Boolean,System.Boolean,System.Object)">
+      <summary>
+            Display dialog box
+            </summary>
+      <param name="geoText">The text to set.</param>
+      <param name="isThemeText">Whether it is the text in the thematic map.</param>
+      <param name="is3DText">Whether it is 3D text.</param>
+      <param name="mapObject">The object to bind.</param>
+      <returns>The result of the text setting dialog box, the text set will be returned if click "OK", null will be returned if click "Cancel".</returns>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.TextStyle">
+      <summary>
+            Gets or sets the text style set in the text style editor. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.GeoText">
+      <summary>
+            Gets or sets the text style set in the text style editor, this property can get or set the GeoText object operated by text style editor.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.IsText3D">
+      <summary>
+            Gets or sets whether to display particular advanced setting options ("Scaling" and "Transparency" setting options) and these advanced setting options are only valid for the text objects in the scene. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.IsThemeText">
+      <summary>
+            Gets or sets whether to display particular advanced setting options ("Scaling" and "Transparency" setting options) in the text style editor and these advanced setting options are only valid for the text objects in the scene. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.SampleText">
+      <summary>
+            Gets or sets the sample text for previewing the text styles. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.Editable">
+      <summary>
+            Gets or sets whether the Text Style dialog is editable, that is, whether allows to do text style setting. If the value is true, the text style can be changed. If the value is false, the text style can not be changed and we can only view the text style settings. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.MapObject">
+      <summary>
+            Gets or sets a <see cref="T:SuperMap.Mapping.Map">MapLayout</see> object. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.TreeIconTypes">
+      <summary>
+            Defines a series of state image types. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.None">
+      <summary>
+            None. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.Visible">
+      <summary>
+            Represents an icon visible. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.Selectable">
+      <summary>
+            Represents an icon selectable. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.Editable">
+      <summary>
+            Represents an icon editable. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.Snapable">
+      <summary>
+            Represents an icon snappable. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.AlwaysRender">
+      <summary>
+            Represents an icon that can be always rendered. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.TypeIcon">
+      <summary>
+            The icon that represents the type of layer 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.AllIcon">
+      <summary>
+            Represents all the types of an icon that are activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.WorkspaceTreeDragData">
+      <summary>
+            The WorkspaceTreeDragData class, which provides obtaining corresponding data when user implement drag operation. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTreeDragData.#ctor">
+      <summary>
+            Creates a new instance of the WorkspaceTreeDragData object. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTreeDragData.#ctor(SuperMap.UI.WorkspaceTreeNodeDataType,System.Object)">
+      <summary>
+            Creates a new object of the WorkspaceTreeDragData object according to the given arguments. 
+            </summary>
+      <param name="dataType">The corresponding node type.</param>
+      <param name="data">The bound dataset.</param>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTreeDragData.DataType">
+      <summary>
+            Gets or sets the type of the dragged data. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTreeDragData.Data">
+      <summary>
+            Gets or sets the dragged data during the drag operation. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.Layer3DsTreeNodeBase">
+      <summary>
+            The Layer3DsTreeNodeBase class. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.TreeNodeBase">
+      <summary>
+            The TreeNodeBase base class. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.TreeNodeBase.GetData">
+      <summary>
+            Gets the data that belongs to the node. 
+            </summary>
+      <returns>The data that the node represents.</returns>
+    </member>
+    <member name="P:SuperMap.UI.TreeNodeBase.ParentTree">
+      <summary>
+            Gets the tree that the node belongs to. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.Layer3DsTreeNodeDataType">
+      <summary>
+            This enumeration defines the type constants of 3D layer tree node. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Unknown">
+      <summary>
+            None 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.ScreenLayer3D">
+      <summary>
+            The node of 3D screen layer 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Layer3Ds">
+      <summary>
+            The node of collection of 3D layers 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Layer3D">
+      <summary>
+            The node of 3D layer 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.TerrainLayers">
+      <summary>
+            The node of collection of terrain layers 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.TerrainLayer">
+      <summary>
+            The node of terrain layer 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Feature3Ds">
+      <summary>
+            The node of collection of 3D features. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Feature3D">
+      <summary>
+            The node of 3D feature 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Geometry">
+      <summary>
+            The node of geometry 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Theme3DUniqueItem">
+      <summary>
+            The node of 3D unique theme map item 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Theme3DRangeItem">
+      <summary>
+            The node of 3D range theme map item 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Theme3DGraphItem">
+      <summary>
+            The node of 3D graph theme map item
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.LayerGroup">
+      <summary>
+            Layer on the group layer.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.Layer3DsTree">
+      <summary>
+            The Layers3DTree class. This class is used to manage all the layers in the map. This class inherits from the <see cref="T:SuperMap.UI.MultiSelectableTree">MultiSelectableTree</see> class. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.Layer3DsTree.FindNode(SuperMap.Realspace.Layer3D)">
+      <summary>
+            Finds a tree node with the specified 3D layer object. 
+            </summary>
+      <param name="layer">The 3D layer object.</param>
+      <returns>Specifies the corresponding tree node of the Layer3DsTree object.</returns>
+    </member>
+    <member name="M:SuperMap.UI.Layer3DsTree.FindNode(System.String)">
+      <summary>
+            Finds a tree node with the specified caption of the 3D layer object. 
+            </summary>
+      <param name="caption">The name of the specified layer, i.e. the value of the <c>Layer.Caption</c> property.</param>
+      <returns>The tree node name that is the specified layer caption.</returns>
+    </member>
+    <member name="M:SuperMap.UI.Layer3DsTree.#ctor">
+      <summary>
+            Creates a new Layer3DsTree object. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.Layer3DsTree.RefreshNode(SuperMap.UI.Layer3DsTreeNodeBase)">
+      <summary>
+            Refreshes the selected tree node. 
+            </summary>
+      <param name="node">The specified tree node which needs to be refreshed.</param>
+      <returns>Returns Boolean True if successful, otherwise returns False</returns>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.Scene">
+      <summary>
+            Gets or sets scenes which are associated with the Layer3DsTree object. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.IconType">
+      <summary>
+            Gets or sets the type of the icons of the nodes in the tree structure.(deprecated) You can use <see cref="P:SuperMap.UI.Layer3DsTree.Icons">Icons</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.SimpleMode">
+      <summary>
+            Gets or sets whether to active Simple Mode. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.DropLineColor">
+      <summary>
+            Gets or sets the color of the DropLine. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.SelectedNodes">
+      <summary>
+            Gets or sets the array of the TreeNode object which is selected in the tree constructor. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.MultiSelect">
+      <summary>
+            Gets or sets multinodes selection. The default is true.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.ScreenLayer3DNode">
+      <summary>
+            Gets the node of 3D screen layer. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.Layer3DsNode">
+      <summary>
+            Gets the node of the 3D layer set. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.TerrainLayersNode">
+      <summary>
+            Gets the node of terrain layer. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.NodeContextMenuStrips">
+      <summary>
+             Gets the context menu dictionary of the tree nodes. 
+             </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.Interactions">
+      <summary>Gets the dictionary of user-define operations.</summary>
+    </member>
+    <member name="E:SuperMap.UI.Layer3DsTree.SelectionChanged">
+      <summary>In the 3D layer tree, this event is triggered after the selected tree node have changed.</summary>
+    </member>
+    <member name="E:SuperMap.UI.Layer3DsTree.BeforeIconClick">
+      <summary>Triggers this event before clicking the icon of the tree node.(obsolete) You can use the <see cref="E:SuperMap.UI.Layer3DsTree.BeforeTreeIconClick">BeforeTreeIconClick</see> to replace.</summary>
+    </member>
+    <member name="E:SuperMap.UI.Layer3DsTree.BeforeNodeContextMenuStripShow">
+      <summary>
+            Triggers this event before the context menu of the tree node is popped up 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.Layer3DsTree.BeforeTreeIconClick">
+      <summary>
+            Triggers this event before clicking the icon of the selected node.
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.Layer3DsTree.AfterTreeIconClick">
+      <summary>
+            Triggers this event after clicking the icon of the selected node.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.Icons">
+      <summary>
+             Gets or sets a Flags to decide what icons will be shown for the nodes of the tree.
+             </summary>
+    </member>
+    <member name="T:SuperMap.UI.Layer3DsTree.IconTypes">
+      <summary>
+            This enumeration defines the node image type constant (obsolete). You can use <see cref="T:SuperMap.UI.TreeIconTypes">TreeIconTypes</see> to replace.
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.None">
+      <summary>
+            None. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.Visible">
+      <summary>
+            Represents an icon visible. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.Selectable">
+      <summary>
+            Represents an icon selectable. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.Editable">
+      <summary>
+            Represents an icon editable. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.AlwaysRender">
+      <summary>
+            Represents an icon that can be always rendered. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.TypeIcon">
+      <summary>
+            Type selectable actived. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.AllIcon">
+      <summary>
+            Represents all the types of an icon that are activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.LayersControl">
+      <summary>
+            Layer manager, used to display and manage the layer in the map or scene related to it. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayersControl.#ctor">
+      <summary>
+            Initialize a new LayersControl object. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayersControl.#ctor(SuperMap.Mapping.Map)">
+      <summary>
+            Creates a new LayersControl object according to the specified arguments. 
+            </summary>
+      <param name="map">The specified map object.</param>
+    </member>
+    <member name="M:SuperMap.UI.LayersControl.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            Creates a new LayersControl object according to the specified arguments. 
+            </summary>
+      <param name="scene">The object of the specified scene.</param>
+    </member>
+    <member name="M:SuperMap.UI.LayersControl.Remove(SuperMap.Mapping.Map)">
+      <summary>
+            Deletes the specified map.
+            </summary>
+      <param name="map">The specified map object.</param>
+    </member>
+    <member name="M:SuperMap.UI.LayersControl.Remove(SuperMap.Realspace.Scene)">
+      <summary>
+            Deletes the specified map.
+            </summary>
+      <param name="scene">The specified scene.</param>
+    </member>
+    <member name="P:SuperMap.UI.LayersControl.Map">
+      <summary>
+            Gets or sets the current Map object which the layer control relates to.This property is incompatiable with the Scene property. If Scene property has been set, the Map property is null.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersControl.Scene">
+      <summary>
+            Gets or sets the current Scene object which the control relates to.This property is incompatiable with the Map property. If Map property has been set, the Scene property is null. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersControl.LayersTree">
+      <summary>
+            Gets the two-dimension layer tree and manages layers of the map(<see cref="T:SuperMap.Mapping.Map">Map</see>). The value of the attribute is a <c>Map</c> object. The attribute exists only when the specified <c>Map</c> object is not null, or else it is null. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersControl.Layer3DsTree">
+      <summary>
+            Gets 3D layer tree and manages layers in the scene(<see cref="T:SuperMap.Realspace.Scene">Scene</see>). The value of the attribute is a <c>Map</c> object. The attribute exists only when the specified <c>Map</c> object is not null, or else it is null. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.LayersTree">
+      <summary>
+            The 2D layer tree. This class is used to manage all the Layer objects in the map. This class inherits from the <see cref="T:SuperMap.UI.MultiSelectableTree">MultiSelectableTree</see> class. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.FindNode(SuperMap.Mapping.Layer)">
+      <summary>
+            Finds a tree node with the specified 2D layer object. 
+            </summary>
+      <param name="layer">The specified layer object.</param>
+      <returns>Specifies the corresponding tree node of the LayersTree object.</returns>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.FindNode(System.String)">
+      <summary>
+            Finds a tree node with the specified 2D layer name. 
+            </summary>
+      <param name="caption">The name of the specified layer, i.e. the value of the <c>Layer.Caption</c> property.</param>
+      <returns>The tree node name that is the specified layer caption.</returns>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.RefreshNode(SuperMap.UI.LayersTreeNodeBase)">
+      <summary>
+            Refreshes the selected tree nodes. 
+            </summary>
+      <param name="node">The specified tree node which needs to be refreshed.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.RefreshNode(SuperMap.UI.LayersTreeNodeBase,System.Boolean)">
+      <summary>
+            Refreshes the selected node according to the arguments 
+            </summary>
+      <param name="node">The specified tree node which needs to be refreshed.</param>
+      <param name="refreshChildren">Sets a value indicating whether to refresh the sub node of the specified node.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.CopyLayers">
+      <summary>
+            Copies the selected layers to the clipboard. You can paste the layers to other maps.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.PasteLayers">
+      <summary>
+            Inserts the layers that are in the clipboard to the current layer. The Workspace related to the target map should be the same object with the Workspace related to the copy map.
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.#ctor">
+      <summary>
+            Creates a new LayersTree object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.DragNodeEnabled">
+      <summary>
+            是否启用拖拽节点功能，false表示不启用，此时，所有选中树节点的拖动鼠标操作都无效。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.Map">
+      <summary>
+            Gets or sets maps which are associated with the LayersTree object. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.Icons">
+      <summary>
+             Gets or sets a flag to decide what icons will be shown for the nodes of the tree.
+             </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.SelectedNodes">
+      <summary>
+            Gets or sets the array of the tree node object which is selected in the tree constructor.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.IconType">
+      <summary>
+            Gets or sets the type of the icons of the nodes in the tree structure.(deprecated) You can use <see cref="P:SuperMap.UI.LayersTree.Icons">Icons</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.SimpleMode">
+      <summary>
+            Gets or sets whether to active Simple Mode. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.DropLineColor">
+      <summary>
+            Gets or sets the color of the DropLine. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.MultiSelect">
+      <summary>
+            Gets or sets multinodes selection. The default is true.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.NodeContextMenuStrips">
+      <summary>
+             Gets the context menu dictionary of the tree nodes. 
+             </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.Interactions">
+      <summary>Gets the dictionary of user-define operations.</summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.ShowVisibleScaleSign">
+      <summary>
+            Gets or sets whether to display the the maximum or minimum scale icon on the position of the layer icon.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.VisibleScaleNodesList">
+      <summary>
+            Gets or sets the layer list whose maximum and minimum scales have been recorded.
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.LayersTree.SelectionChanged">
+      <summary>In the LayersTree object, this event would be triggered if the selected tree node is changed.</summary>
+    </member>
+    <member name="E:SuperMap.UI.LayersTree.BeforeIconClick">
+      <summary>Triggers this event before clicking the icon of the selected node.(obsolete) You can use the <see cref="E:SuperMap.UI.LayersTree.BeforeTreeIconClick">BeforeTreeIconClick</see> to replace.</summary>
+    </member>
+    <member name="E:SuperMap.UI.LayersTree.BeforeNodeContextMenuStripShow">
+      <summary>
+            Triggers this event before the context menu of the tree node is popped up
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.LayersTree.BeforeTreeIconClick">
+      <summary>
+            Triggers this event before clicking the icon of the selected node.
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.LayersTree.AfterTreeIconClick">
+      <summary>
+            Triggers this event after clicking the icon of the selected node.
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.LayersTree.IconTypes">
+      <summary>
+            The IconTypes class.This class provides node icon types. Each icon means the releated function active. By bitwise operation, users could specified the icons to display.(obsolete). You can use <see cref="T:SuperMap.UI.TreeIconTypes">TreeIconTypes</see> to replace.
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.None">
+      <summary>
+            None. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.Visible">
+      <summary>
+            Represents an icon visible. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.Selectable">
+      <summary>
+            Represents an icon selectable. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.Editable">
+      <summary>
+            Represents an icon editable. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.Snapable">
+      <summary>
+            Represents an icon snappable. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.TypeIcon">
+      <summary>
+            Represents an icon that can be always rendered. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.AllIcon">
+      <summary>
+            Represents all the types of an icon that are activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.LayersTreeNodeBase">
+      <summary>
+            The LayersTreeNodeBase class. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.LayersTreeNodeDataType">
+      <summary>
+            This enumeration defines the type constants of 2D layer tree node.
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.Unknown">
+      <summary>
+            None 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.Layer">
+      <summary>
+            Layer. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeUniqueItem">
+      <summary>
+            The item of the unique value thematic map. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeRangeItem">
+      <summary>
+            The item of the range thematic map  
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeLabelItem">
+      <summary>
+            The item of the label thematic map. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeGraphItem">
+      <summary>
+            The item of the graph thematic map. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeGridUniqueItem">
+      <summary>
+            The item of the grid unique value thematic map. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeGridRangeItem">
+      <summary>
+            The item of the grid range thematic map.  
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.WmsSubLayer">
+      <summary>
+            The sub-layer of WMS.  
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.DisplayBandIndex">
+      <summary>
+            The displaying band index.  
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.SelectionChangedEventArgs">
+      <summary>
+            The SelectionChangedEventArgs class which provides data for the <see cref="E:SuperMap.UI.LayersTree.SelectionChanged">LayersTree.SelectionChanged</see>, the <see cref="E:SuperMap.UI.Layer3DsTree.SelectionChanged">Layer3DsTree.SelectionChanged</see> event and the <see cref="E:SuperMap.UI.WorkspaceTree.SelectionChanged">WorkspaceTree.SelectionChanged</see> event.
+             </summary>
+    </member>
+    <member name="M:SuperMap.UI.SelectionChangedEventArgs.#ctor(System.Windows.Forms.TreeNode[])">
+      <summary>
+            Creates a new SelectionChangedEventArgs object according to the specified arguments. 
+            </summary>
+      <param name="selectedNodes">The selected nodes.</param>
+    </member>
+    <member name="P:SuperMap.UI.SelectionChangedEventArgs.SelectedNodes">
+      <summary>
+            Gets the selected nodes. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.SelectionChangedEventHandler">
+      <summary>
+            Represents the method that handles the <see cref="E:SuperMap.UI.LayersTree.SelectionChanged">LayersTree.SelectionChanged</see>, <see cref="E:SuperMap.UI.Layer3DsTree.SelectionChanged">Layer3DTree.SelectionChanged</see> and <see cref="E:SuperMap.UI.WorkspaceTree.SelectionChanged">WorkspaceTree.SelectionChanged</see>. 
+            </summary>
+      <param name="sender">The source event.</param>
+      <param name="e">The 2D or 3D layer that contains the event data and the change event parameter class (<see cref="T:SuperMap.UI.SelectionChangedEventArgs">SelectionChangedEventArgs</see>) object selected by the workspace.</param>
+    </member>
+    <member name="T:SuperMap.UI.TreeNodeSortMode">
+      <summary>
+            Defines the node sorting mode constant. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeNodeSortMode.Name">
+      <summary>
+            Sorts by the name. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeNodeSortMode.Type">
+      <summary>
+            Sorts by the type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeNodeSortMode.Index">
+      <summary>
+            Sorts by the index which is also the build time. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.WorkspaceControl">
+      <summary>
+            The workspace manager. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceControl.#ctor">
+      <summary>
+            Creates a new instance of the WorkspaceTreeDragData object. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceControl.#ctor(SuperMap.Data.Workspace)">
+      <summary>
+            Creates a new instance of the WorkspaceTreeDragData object according to the given arguments. 
+            </summary>
+      <param name="workspace">The specified workspace object.</param>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.WorkspaceToolBar">
+      <summary>
+            Gets or sets the tool bar object of the workspace manager. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.WorkspaceTree">
+      <summary>
+            Gets the workspace tree object of the workspace manager.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.ExternImageDirectory">
+      <summary>
+            Gets or sets the external picture path. The external image is used to replace the default icon of the workspace manager. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.ExternImageEnabled">
+      <summary>
+            Gets or sets whether to use external images to replace the default icon of workspace manager. True indicates to use, indicates not to use. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.AllowDefaultAction">
+      <summary>
+            Gets or sets whether the WorkspaceControl is use the default setting, such as drag to copy the dataset, press F2 to rename, press Delete to delete dataset. True represents use the default setting, otherwise, false. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.DatasourcesNodeVisible">
+      <summary>
+            Gets or sets whether the node of the datasources is visible or not. True when it is visible, otherwise, false. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.MapsNodeVisible">
+      <summary>
+            Gets or sets whether the node of the maps is visible or not. true represents it is visible, otherwise, false. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.ScenesNodeVisible">
+      <summary>
+            Gets or sets whether the node of the scenes is visible or not. true represents it is visible, otherwise, false. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.LayoutsNodeVisible">
+      <summary>
+            Gets or sets whether the node of the layouts is visible or not. true represents it is visible, otherwise, false.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.ResourcesNodeVisible">
+      <summary>
+            Gets or sets whether the node of the resources is visible or not. True when it is visible, otherwise, false. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.WorkspaceTree">
+      <summary>
+            Use to show and manage the data in the workspace. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.SortNodes(SuperMap.UI.WorkspaceTreeNodeBase,SuperMap.UI.TreeNodeSortMode,System.Boolean)">
+      <summary>
+             Sorts the first sub node of the specified tree nodes according to the specified parameter. 
+             </summary>
+      <param name="nodebase">The specified tree nodes.</param>
+      <param name="treeNodeSortMode">Selects the way of sorting, including sorting by name, sorting by type and sorting by creation time.</param>
+      <param name="order">Specifies the order of sorting to be in order or in reverse.</param>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.SortNodes(SuperMap.UI.WorkspaceTreeNodeBase,System.Collections.Generic.IComparer{SuperMap.UI.WorkspaceTreeNodeBase})">
+      <summary>
+             According to the custom comparer, sorts the first-level sub nodes of the specified tree nodes. 
+             </summary>
+      <param name="nodebase">The specified tree nodes.</param>
+      <param name="compare">The custom comparer. Users define a new way of sorting by realizing their own comparison algorithm.</param>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.Reload">
+      <summary>
+            Refreshes all the tree nodes in the work space tree. After calling this method, the system will reconstruct all the tree nodes in the work space tree. Therefore, it will lead to the fact that all the tree nodes obtained before calling the <c> Reload() </c> method fail after calling the <c> Reload() </c> method. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.FindNodeDataset(SuperMap.Data.Dataset)">
+      <summary>
+            Finds out the tree nodes corresponding to the data set, according to the specified data set. 
+            </summary>
+      <param name="dataset">The specified dataset.</param>
+      <returns>Specifies the tree nodes corresponding to the data set.</returns>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.RefreshNode(SuperMap.UI.WorkspaceTreeNodeBase)">
+      <summary>
+            Refreshes the sub node of the tree nodes, according to the specified tree node. 
+            </summary>
+      <param name="node">The specified tree nodes.</param>
+      <returns>Returns a Boolean. True if successful, otherwise returns false.</returns>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.#ctor">
+      <summary>
+            Creates a new WorkspaceTreeDragData object. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.#ctor(SuperMap.Data.Workspace)">
+      <summary>
+            Creates a new WorkspaceTreeDragData object according to the specified arguments. 
+            </summary>
+      <param name="workspace">The specified workspace object.</param>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.MultiSelect">
+      <summary>
+            Gets or sets multinodes selection. The default is true.
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.SelectedNodes">
+      <summary>
+            Gets or sets the list of the selected TreeNodes in the tree structure. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.WorkspaceNode">
+      <summary>
+            Gets the tree node of the workspace in the tree structure. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.DatasourcesNode">
+      <summary>
+            Gets the tree node of the collection of datasource in the tree structure. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.MapsNode">
+      <summary>
+            Gets the tree node of the collection of Map in the tree structure. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.ScenesNode">
+      <summary>
+            Gets the tree node of the collection of scene in the tree structure. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.LayoutsNode">
+      <summary>
+            Gets the tree node of the collection of layout in the tree structure. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.ResourcesNode">
+      <summary>
+            Gets the tree node of the collection of resource in the tree structure. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.Workspace">
+      <summary>
+            Gets the work space related to setting the work space tree. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.AllowDefaultAction">
+      <summary>
+            Obtains or sets whether or not it responds to the mouse and keyboard operations of the work space tree. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.NodeContextMenuStrips">
+      <summary>
+             Gets the context menu dictionary of the tree nodes. 
+             </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.Interactions">
+      <summary>Gets the dictionary of user-define operations.</summary>
+    </member>
+    <member name="E:SuperMap.UI.WorkspaceTree.SelectionChanged">
+      <summary>Occurs when the selected node of WorkspaceTree changed.</summary>
+    </member>
+    <member name="E:SuperMap.UI.WorkspaceTree.AfterFileOpen">
+      <summary>
+            Occurs after the file was opened. 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.WorkspaceTree.BeforeFileOpen">
+      <summary>
+            Occurs before the file was opened. 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.WorkspaceTree.BeforeNodeContextMenuStripShow">
+      <summary>
+            The event before the right-click menu of workspace tree is popped up. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.WorkspaceTreeNodeBase">
+      <summary>
+            The WorkspaceTreeNodeBase class. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTreeNodeBase.Workspace">
+      <summary>
+            Gets the workspace that the data corresponding to the node belongs to. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTreeNodeBase.NodeType">
+      <summary>
+            Gets the type of the node of the workspace tree. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTreeNodeBase.WorkspaceTree">
+      <summary>
+            Gets the workspace tree that the node belongs to. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.WorkspaceTreeNodeDataType">
+      <summary>
+            This enumeration defines the type constants of workspace tree control node.  
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Unknown">
+      <summary>
+            Unknown type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Workspace">
+      <summary>
+            The workspace node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Datasources">
+      <summary>
+            The datasources node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Datasource">
+      <summary>
+            The datasource node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetTabular">
+      <summary>
+            The tabular dataset node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetVector">
+      <summary>
+            The vector dataset node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetImage">
+      <summary>
+            The image dataset node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetGrid">
+      <summary>
+            The gird dataset node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetGroup">
+      <summary>
+            The datasets node type.
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetTopology">
+      <summary>
+            The topology dataset node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetRelationship">
+      <summary>
+            The relation dataset node type.
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetUnknown">
+      <summary>
+            The unknown dataset node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.TopologyDatasetRelations">
+      <summary>
+            The node type of the items of the topology dataset. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.TopologyErrorDatasets">
+      <summary>
+            The node type of the items of the topology errors. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Maps">
+      <summary>
+            The maps node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.MapName">
+      <summary>
+            The map node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Scenes">
+      <summary>
+            The scenes node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.SceneName">
+      <summary>
+            The scene node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Layouts">
+      <summary>
+            The layouts node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.LayoutName">
+      <summary>
+            The layout node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Resources">
+      <summary>
+            The resources node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.SymbolMarker">
+      <summary>
+            The marker symbol node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.SymbolLine">
+      <summary>
+            The line symbol node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.SymbolFill">
+      <summary>
+            The fill symbol node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Dataset">
+      <summary>
+            The dataset node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.All">
+      <summary>
+            All the node type. 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetGridCollection">
+      <summary>
+            The collection node type of the grid dataset.
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetImageCollection">
+      <summary>
+            The collection node type of the image dataset.
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetGridCollectionItem">
+      <summary>
+            The gird dataset node type under the grid dataset collection.
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetImageCollectionItem">
+      <summary>
+            The image dataset node type under the image dataset collection.
+            </summary>
+    </member>
+  </members>
+</doc>

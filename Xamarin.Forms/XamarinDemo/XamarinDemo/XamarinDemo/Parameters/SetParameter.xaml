@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinDemo.Parameters.SetParameter">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label BackgroundColor="Blue" Grid.Row="0" Text="Set Data1:" />
+                <Entry BackgroundColor="Red" Grid.Row="1" Text="{Binding Data1, Mode=TwoWay}" />
+                <Button Clicked="GoToGetParameter" Grid.Row="2" Text="Go To GetParameter"></Button>
+                <Button Clicked="GoToGetParameter2" Grid.Row="3" Text="Go To GetParameter 2"></Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

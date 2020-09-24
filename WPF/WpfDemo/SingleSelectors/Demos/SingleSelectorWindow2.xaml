@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="WpfDemo.SingleSelectors.SingleSelectorWindow2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.SingleSelectors"
+        mc:Ignorable="d">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Button Name="btnSelectId" Content="获得选中项" Click="btnSelectId_Click"></Button>
+            <Border Name="border">
+
+            </Border>
+            <local:SingleSelector x:Name="singleSelector2"></local:SingleSelector>
+        </StackPanel>
+    </Grid>
+</UserControl>

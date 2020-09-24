@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.TerrainAnalyst</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst">
+      <summary>
+            水文分析类。用于填充洼地、流向分析、洼地计算、累积汇水量计算、流域计算、流长分析及矢量河网提取等水文分析功能，还提供网格剖分功能。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.BuildQuadMesh(SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            对单个简单面对象进行网格剖分。
+            </summary>
+      <param name="parameter">网格剖分参数对象。</param>
+      <param name="targetDatasource">存放剖分结果数据集的数据源。</param>
+      <param name="targetDatasetName">剖分结果数据集的名称。</param>
+      <returns>剖分后的结果数据集，剖分出的多个面以子对象形式返回。 </returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.BuildQuadMesh(SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter)">
+      <summary>
+            对单个简单面对象进行网格剖分，返回剖分后的简单面对象数组。 
+            </summary>
+      <param name="parameter">网格剖分参数对象。</param>
+      <returns>剖分后的简单面对象数组。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.Basin(SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            根据流向栅格计算流域盆地。
+            </summary>
+      <param name="directionGrid">指定的流向栅格数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 directionGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果数据集的名称。</param>
+      <returns>流域盆地栅格数据集。如果生成失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FillSink(SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            对 DEM 栅格数据填充伪洼地。
+            </summary>
+      <param name="surfaceGrid">指定的要进行填充洼地的 DEM 数据。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 surfaceGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果数据集的名称。</param>
+      <returns>无伪洼地的 DEM 栅格数据集。如果填充伪洼地失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FillSink(SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String,SuperMap.Data.DatasetVector)">
+      <summary>
+            根据已知的需要排除的洼地数据（点或面数据集）对 DEM 栅格数据填充伪洼地，在填洼结果栅格中这些洼地区域将被赋为无值。
+            </summary>
+      <param name="surfaceGrid">指定的要进行填充洼地的 DEM 数据。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 surfaceGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果数据集的名称。</param>
+      <param name="excludeArea">指定的用于指示已知自然洼地或要排除的洼地的点或面数据。如果是点数据集，一个或多个点所在的区域指示为洼地；如果是面数据集，每个面对象对应一个洼地区域。</param>
+      <returns>无伪洼地的 DEM 栅格数据集。如果填充伪洼地失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FlowDirection(SuperMap.Data.DatasetGrid,System.Boolean,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            对 DEM 栅格数据计算流向。为保证流向计算的正确性，建议使用填充伪洼地之后的 DEM 栅格数据。
+            </summary>
+      <param name="surfaceGrid">指定的用于计算流向的 DEM 数据。</param>
+      <param name="forceFlowAtEdge">指定是否强制边界的栅格流向为向外。如果为 true，则 DEM 栅格边缘处的所有单元的流向都是从栅格向外流动。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 surfaceGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果数据集的名称。</param>
+      <returns>结果流向栅格数据集。如果生成失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FlowDirection(SuperMap.Data.DatasetGrid,System.Boolean,SuperMap.Data.Datasource,System.String,System.String)">
+      <summary>
+            对 DEM 栅格数据计算流向，并创建高程梯度栅格。为保证流向计算的正确性，建议使用填充伪洼地之后的 DEM 栅格数据。
+            </summary>
+      <param name="surfaceGrid">指定的用于计算流向的 DEM 数据。</param>
+      <param name="forceFlowAtEdge">指定是否强制边界的栅格流向为向外。如果为 true，则 DEM 栅格边缘处的所有单元的流向都是从栅格向外流动。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 surfaceGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果数据集的名称。</param>
+      <param name="dropGridName">指定的高程梯度数据集的名称。</param>
+      <returns>结果流向栅格数据集。如果生成失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FlowAccumulation(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            根据流向栅格计算累积汇水量。可应用权重数据集计算加权累积汇水量。
+            </summary>
+      <param name="directionGrid">指定的流向栅格数据。</param>
+      <param name="weightGrid">指定的权重栅格数据。设置为 null 表示不使用权重数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 directionGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果数据集的名称。</param>
+      <returns>结果累积汇水量栅格数据集。如果生成失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.FlowLength(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,System.Boolean,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            根据流向栅格计算流长，即计算每个单元格沿着流向到其流向起始点或终止点之间的距离。可应用权重数据集计算加权流长。
+            </summary>
+      <param name="directionGrid">指定的流向栅格数据。</param>
+      <param name="weightGrid">指定的权重栅格数据。设置为 null 表示不使用权重数据集。</param>
+      <param name="upStream">指定计算方式为顺流而下还是溯流而上。true 表示溯流而上，false 表示顺流而下。 </param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 directionGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果流长数据集的名称。</param>
+      <returns>结果流长栅格数据集。如果生成失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.PourPoints(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,System.Int32,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            根据流向栅格和累积汇水量栅格生成汇水点栅格。
+            </summary>
+      <param name="directionGrid">指定的流向栅格数据。</param>
+      <param name="accumulationGrid">指定的累积汇水量栅格数据。</param>
+      <param name="areaLimit">指定的汇水量限制值。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 directionGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果栅格数据集的名称。</param>
+      <returns>结果汇水点栅格数据集。如果生成失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.StreamLink(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            连接水系，即根据栅格水系和流向栅格为每条河流赋予唯一值。
+            </summary>
+      <param name="streamGrid">指定的栅格水系数据。</param>
+      <param name="directionGrid">指定的流向栅格数据。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 directionGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果栅格数据集的名称。</param>
+      <returns>连接后的栅格水系，是一个栅格数据集。如果连接水系失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.StreamOrder(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,SuperMap.Analyst.TerrainAnalyst.StreamOrderType,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            对河流进行分级，根据河流等级为栅格水系编号。
+            </summary>
+      <param name="streamGrid">指定的栅格水系数据。</param>
+      <param name="directionGrid">指定的流向栅格数据。</param>
+      <param name="orderType">指定的流域水系编号方法。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 directionGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果栅格数据集的名称。</param>
+      <returns>编号后的栅格流域水系网络，为一个栅格数据集。如果编号失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.StreamToLine(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.TerrainAnalyst.StreamOrderType)">
+      <summary>
+            提取矢量水系，即将栅格水系转化为矢量水系，并将河流的等级存储到结果数据集的属性表中。
+            </summary>
+      <param name="streamGrid">指定的栅格水系数据。</param>
+      <param name="directionGrid">指定的流向栅格数据。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 directionGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果栅格数据集的名称。</param>
+      <param name="orderType">指定的河流分级方法。</param>
+      <returns>矢量水系数据集，为一个矢量线数据集。如果生成失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.Watershed(SuperMap.Data.DatasetGrid,SuperMap.Data.Point2Ds,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            流域分割，即生成指定汇水点（二维点集合）的流域盆地。
+            </summary>
+      <param name="directionGrid">指定的流向栅格数据。</param>
+      <param name="pourPoints">指定的汇水点，使用地理坐标单位。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 directionGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果栅格数据集的名称。</param>
+      <returns>指定汇水点的流域盆地栅格数据集。如果生成失败，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.Watershed(SuperMap.Data.DatasetGrid,SuperMap.Data.DatasetGrid,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            流域分割，即生成指定汇水点（汇水点栅格数据集）的流域盆地。
+            </summary>
+      <param name="directionGrid">指定的流向栅格数据。</param>
+      <param name="pourPointsGrid">指定的汇水点栅格数据。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。如果设置为 null，则结果数据集将自动存储到 directionGrid 所在的数据源中。</param>
+      <param name="resultGridName">指定的结果栅格数据集的名称。</param>
+      <returns>指定汇水点的流域盆地栅格数据集。如果生成失败，则返回 null。</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.TerrainAnalyst.HydrologyAnalyst.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter">
+      <summary>
+            网格剖分参数类。通常包括获取或设置网格剖分的行列数以及四个角点坐标。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.#ctor">
+      <summary>
+            构造一个网格剖分参数类的新对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.#ctor(SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter)">
+      <summary>
+            根据给定的网格剖分参数对象构造一个与其完全相同的新对象。  
+            </summary>
+      <param name="quadMeshParameter">网格剖分参数设置类对象。 </param>
+    </member>
+    <member name="M:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.#ctor(SuperMap.Data.GeoRegion,System.Int32,System.Int32,SuperMap.Data.Point2D,SuperMap.Data.Point2D,SuperMap.Data.Point2D,SuperMap.Data.Point2D,System.String,System.String)">
+      <summary>
+            根据给定的参数构造一个网格划分参数类的新对象。
+            </summary>
+      <param name="quadMeshRegion">网格剖分面对象。</param>
+      <param name="rowCount">网格剖分的行方向节点数。</param>
+      <param name="colCount">网格剖分的列方向节点数。</param>
+      <param name="leftBottomPoint">左下角点坐标。</param>
+      <param name="rightBottomPoint">右下角点坐标。</param>
+      <param name="rightTopPoint">右上角点坐标。</param>
+      <param name="leftTopPoint">左上角点坐标。</param>
+      <param name="colField">行字段名称</param>
+      <param name="rowField">列字段名称。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.QuadMeshRegion">
+      <summary>
+            获取或设置网格剖分的面对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.RowCount">
+      <summary>
+            获取或设置网格剖分的行方向节点数。 
+            </summary>
+      <value>默认值为0，表示不参与处理，若不为0，但是此值若小于多边形行方向的最大点数减一，则以多边形行方向的最大点数减一作为行数（RowCount）；若大于多边形行方向的最大点数减一，则会自动加点，使行方向的数目为RowCount。 </value>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.ColCount">
+      <summary>
+            获取或设置网格剖分的列方向节点数。 
+            </summary>
+      <value>默认值为0，表示不参与处理，若不为0，但是此值若小于多边形列方向的最大点数减一，则以多边形列方向的最大点数减一作为列数（ColCount）；若大于多边形列方向的最大点数减一，则会自动加点，使列方向的数目为ColCount。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.LeftTopPoint">
+      <summary>
+            设置网格剖分的区域多边形左上角点坐标。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.RightTopPoint">
+      <summary>
+            设置网格剖分的区域多边形右上角点坐标。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.LeftBottomPoint">
+      <summary>
+            设置网格剖分的区域多边形左下角点坐标。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.RightBottomPoint">
+      <summary>
+            设置网格剖分的区域多边形右下角点坐标。  
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.RowField">
+      <summary>
+            获取或设置网格剖分结果对象的行属性字段名称。此字段用来保存剖分结果对象的行号。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.TerrainAnalyst.QuadMeshParameter.ColField">
+      <summary>
+            获取或设置格网剖分结果对象的列属性字段名称。此字段用来保存剖分结果对象的列号。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.TerrainAnalyst.StreamOrderType">
+      <summary>
+            该枚举定义了流域水系编号（即河流分级）方法类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TerrainAnalyst.StreamOrderType.Strahler">
+      <summary>
+            Strahler 河流分级法。
+            <para>Strahler 河流分级法由 Strahler 于 1957 年提出。其规则定义为：直接发源于河源的河流为 1 级河流；同级的两条河流交汇形成的河流的等级比原来增加 1 级；不同等级的两条河流交汇形成的河流的等级等于原来河流中等级较高者。</para><para></para></summary>
+    </member>
+    <member name="F:SuperMap.Analyst.TerrainAnalyst.StreamOrderType.Shreve">
+      <summary>
+            Shreve 河流分级法。
+            <para>Shreve 河流分级法由 Shreve 于 1966 年提出。其规则定义为：直接发源于河源的河流等级为 1 级，两条河流交汇形成的河流的等级为两条河流等级的和。例如，两条 1 级河流交汇形成 2 级河流，一条 2 级河流和一条 3 级河流交汇形成一条 5 级河流。</para><para></para></summary>
+    </member>
+  </members>
+</doc>

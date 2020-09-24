@@ -1,0 +1,32 @@
+使用默认的上传方法
+<!--nz-upload nzName="image"与后端方法的IFormFile[] image参数对应-->
+<!--nzAction是上传图片的接口地址，nzChange是回调方法，也可以使用[nzCustomRequest]自定义上传方法-->
+<!--[nzAccept]限定上传文件格式为图片-->
+<nz-upload
+  nzName="image"
+  nzAction="{{actionUrl}}"
+  nzListType="picture-card"
+  [(nzFileList)]="fileList"
+  [nzShowButton]="fileList.length < 1"
+  [nzShowUploadList]="showUploadList"
+  [nzPreview]="handlePreview"
+  (nzChange)="handleChange($event)"
+  [nzBeforeUpload]="beforeUpload"
+  [nzRemove]="onRemove"
+  [nzAccept]="'image/*'"
+>
+  <i nz-icon type="plus"></i>
+  <div class="ant-upload-text">上传</div>
+</nz-upload>
+<nz-modal
+  [nzVisible]="previewVisible"
+  [nzContent]="modalContent"
+  [nzFooter]="null"
+  (nzOnCancel)="previewVisible = false"
+>
+  <ng-template #modalContent>
+  <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
+  </ng-template>
+</nz-modal>
+
+<button nz-button nzType="primary" (click)="getFileList()">获得当前图片列表</button>

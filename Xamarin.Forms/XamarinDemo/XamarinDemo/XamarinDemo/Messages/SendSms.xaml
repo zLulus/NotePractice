@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinDemo.Messages.SendSms">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label BackgroundColor="Blue" Grid.Row="0" Text="Phone Number:" />
+                <Label BackgroundColor="Green" Grid.Row="1" Text="{Binding PhoneNumber, Mode=TwoWay}" />
+                <Label BackgroundColor="Blue" Grid.Row="2" Text="Content:" />
+                <Label BackgroundColor="Green" Grid.Row="3" Text="{Binding Content, Mode=TwoWay}" />
+                <Button Clicked="SendSmsClicked" Grid.Row="4" Text="Send Sms"></Button>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

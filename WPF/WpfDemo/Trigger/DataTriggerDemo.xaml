@@ -1,12 +1,11 @@
-﻿<Window x:Class="WpfDemo.Trigger.DataTriggerDemo"
+﻿<UserControl x:Class="WpfDemo.Trigger.DataTriggerDemo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.Trigger"
-        mc:Ignorable="d"
-        Title="DataTriggerDemo" Height="300" Width="300">
-    <Window.Resources>
+        mc:Ignorable="d">
+    <UserControl.Resources>
         <!--单元格的样式-->
         <Style TargetType="DataGridCell" x:Key="ColorCell">
             <Style.Triggers>
@@ -21,7 +20,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-    </Window.Resources>
+    </UserControl.Resources>
     <Grid>
         <DataGrid ItemsSource="{Binding }" AutoGenerateColumns="False">
             <!--行头的样式-->
@@ -46,4 +45,4 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
-</Window>
+</UserControl>

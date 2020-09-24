@@ -1,0 +1,28 @@
+﻿<Window x:Class="SuperMapWpfDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SuperMapWpfDemo"
+        mc:Ignorable="d"
+        xmlns:wfi="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Content="读取shp文件存入指定表" Click="SaveShpFile_Click"></Button>
+        <Button Grid.Row="1" Content="读取shp文件更新指定表" Click="UpdateShpFile_Click"></Button>
+        <Button Grid.Row="2" Content="读取shp文件展示在地图上" Click="ReadShpFileAndShow_Click"></Button>
+        <wfi:WindowsFormsHost x:Name="hostMapControl" Grid.Row="3"></wfi:WindowsFormsHost>
+        <Button Grid.Row="4" Content="录入shp文件" Click="InsertShpFile_Click"></Button>
+        <Button Grid.Row="5" Content="创建数据集" Click="CreateDataset_Click"></Button>
+        <Button Grid.Row="5" Content="设置字段" Click="SetFieldInfo_Click"></Button>
+    </Grid>
+</Window>

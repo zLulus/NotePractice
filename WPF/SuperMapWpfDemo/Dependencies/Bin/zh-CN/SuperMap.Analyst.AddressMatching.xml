@@ -1,0 +1,688 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.AddressMatching</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressDictionary">
+      <summary>
+             地址词典类。该类用于管理地址词典。通过该类可以添加或删除地址词典中的词，可以实现文本文件与地址词典文件的相互转换，还可以实现多个地址词典的合并。
+             </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.#ctor">
+      <summary>
+            构造地址词典类的一个新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.#ctor(System.String)">
+      <summary>
+            根据指定的地址词典文件构造一个地址词典类对象。
+            </summary>
+      <param name="dictionaryFile">指定的地址词典文件的全路径。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.Contains(System.String)">
+      <summary>
+            判断该地址词典中是否包含指定的词。
+            </summary>
+      <param name="word">指定的词。</param>
+      <returns>如果地址词典中是否包含指定的词，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.Add(System.String)">
+      <summary>
+            向地址词典中添加指定的词。
+            </summary>
+      <param name="word">用户指定的词。</param>
+      <returns>新添加词在地址词典中的序号。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.Delete(System.String)">
+      <summary>
+            删除地址词典中指定的词。
+            </summary>
+      <param name="word">指定的将被删除的词。</param>
+      <returns>删除成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.Clear">
+      <summary>
+            清空地址词典中的所有词。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.Load(System.String)">
+      <summary>
+            加载指定的地址词典文件。
+            </summary>
+      <param name="dictionaryFile">指定的地址词典文件的全路径。</param>
+      <returns>加载成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.Save">
+      <summary>
+            保存地址词典。
+            </summary>
+      <returns>保存成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.SaveAs(System.String)">
+      <summary>
+            将地址词典文件另存为指定的地址词典文件。
+            </summary>
+      <param name="dictionaryFile">指定的地址词典文件的全路径。</param>
+      <returns>保存成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.TextToDictionary(System.String,System.String)">
+      <summary>
+            将文本文件转换成地址词典文件。
+            </summary>
+      <param name="textFile">待转换的文本文件的全路径。</param>
+      <param name="dictionaryFile">指定的地址词典文件的全路径。</param>
+      <returns>如果转换成功返回值为 true，否则为 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.DictionaryToText(System.String,System.String)">
+      <summary>
+            将地址词典文件转换成文本文件。
+            </summary>
+      <param name="dictionaryFile">待转换的地址词典文件的全路径。</param>
+      <param name="textFile">指定的文本文件全路径。</param>
+      <returns>如果转换成功返回值为 true，否则为 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.MergeDictionary(System.String,System.String,System.String)">
+      <summary>
+            将两个地址词典合并为一个地址词典。
+            </summary>
+      <param name="dictionaryFile1">待合并的地址词典文件全路径。</param>
+      <param name="dictionaryFile2">待合并的地址词典文件全路径。</param>
+      <param name="dictionaryFileResult">合并后的地址词典文件全路径。</param>
+      <returns>如果合并成功，返回值为 true；否则为 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.IndexOf(System.String)">
+      <summary>
+            返回指定的词在地址词典中的序号。
+            </summary>
+      <param name="word">指定的词。</param>
+      <returns>指定的词在地址词典中的序号。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.Delete(System.Int32)">
+      <summary>
+            删除地址词典中指定序号的词。
+            </summary>
+      <param name="index">指定的序号。</param>
+      <returns>删除成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressDictionary.Dispose">
+      <summary>
+            释放对象所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressDictionary.Count">
+      <summary>
+            获取地址词典中词的个数。
+            </summary>
+      <value>默认值为0 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressDictionary.Item(System.Int32)">
+      <summary>
+            获取地址词典中指定序号的词。
+            </summary>
+      <param name="index">指定的序号。</param>
+    </member>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressLoad">
+      <summary>
+             新的地址加载和匹配相分离的中文地址模糊匹配地址索引加载类。该类主要负责对中文地址库数据创建地址索引。以配合中文地址模糊匹配类 AddressSearch 进行地址的模糊查询。
+             </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoad.#ctor">
+      <summary>
+            默认构造函数，构造一个新的AddressLoad对象
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoad.Dispose">
+      <summary>
+            释放 AddressLoad 所占用的资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoad.Load">
+      <summary>
+            进行中文地址模糊匹配地址索引加载。
+            </summary>
+      <returns>如果载入成功，返回值为 true，否则为 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoad.Load(System.Boolean)">
+      <summary>
+             新的中文地址模糊匹配地址索引加载方法，支持在原有索引上追加数据。
+             </summary>
+      <param name="isAppend">当前加载是否是追加新的数据。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoad.Setting">
+      <summary>
+            返回或设置中文地址模糊匹配地址索引加载的参数设置对象。有关详情，请参见 AddressLoadSetting 类。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressLoadSetting">
+      <summary>
+            中文地址模糊匹配地址索引创建参数设置类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoadSetting.#ctor">
+      <summary>
+            默认构造函数，构造一个新的 AddressLoadSetting 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoadSetting.#ctor(SuperMap.Analyst.AddressMatching.AddressLoadSetting)">
+      <summary>
+            根据指定的 AddressLoadSetting 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="addressLoadSetting">指定的中文地址模糊匹配设置类对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoadSetting.ClearData">
+      <summary>
+            清除所有用于中文地址模糊匹配的数据。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoadSetting.AddDataset(SuperMap.Data.DatasetVector)">
+      <summary>
+            添加用于中文地址模糊匹配的数据集。
+            </summary>
+      <param name="dataset"> 用于中文地址模糊匹配的数据集。</param>
+      <returns>新添加的数据集在用于中文地址模糊匹配的数据集集合中的索引值。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoadSetting.AddField(System.String)">
+      <summary>
+            添加用来做中文地址模糊匹配的字段集合，该字段集合应该在每一个数据集中都存在。
+            </summary>
+      <param name="addressField">用来做中文地址模糊匹配的字段。</param>
+      <returns>新添加的字段在用于中文地址模糊匹配的字段集合中的索引值。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoadSetting.AddIndexField(System.String)">
+      <summary>
+            添加用来做中文地址模糊匹配的字段集合，该字段集合应该在每一个数据集中都存在。
+            </summary>
+      <param name="addressField">用来做中文地址模糊匹配的字段。</param>
+      <returns>新添加的字段在用于中文地址模糊匹配的字段集合中的索引值。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressLoadSetting.AddSaveField(System.String)">
+      <summary>
+            添加用来做中文地址保存的字段集合，该字段集合应该在每一个数据集中都存在。
+            </summary>
+      <param name="addressField">用来做中文地址保存的字段集合。段</param>
+      <returns>新添加的字段在用于中文地址模糊匹配的字段集合中的索引值。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.Datasets">
+      <summary>
+            返回用于中文地址模糊匹配的数据集集合，即待匹配的中文地址将在这些数据集中搜索与其匹配的内容。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.Fields">
+      <summary>
+            返回用来做中文地址模糊匹配的字段集合，即待匹配的中文地址将在参与匹配的数据集中的这些指定的字段中搜索与其匹配的项。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.IndexFields">
+      <summary>
+            返回用来做中文地址模糊匹配的字段集合，即待匹配的中文地址将在参与匹配的数据集中的这些指定的字段中搜索与其匹配的项。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.SaveFields">
+      <summary>
+            返回用来做中文地址保存的字段集合。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.DictionaryFile">
+      <summary>
+            返回或设置地址词典文件的全路径，包括文件夹目录和文件名。有关地址词典方面的内容，请参见 AddressDictionary 类。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.LoadDirectory">
+      <summary>
+            返回或设置中文地址模糊匹配地址索引创建的路径。指定路径可以不存在，则默认会创建路径。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.TopGroupField">
+      <summary>
+            返回或设置用来对中文地址模糊匹配的字段进行一级分组的字段名称。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.SecondaryGroupField">
+      <summary>
+            返回或设置用来对中文地址模糊匹配的字段进行二级分组的字段名称。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.LowestGroupField">
+      <summary>
+            返回或设置用来对中文地址模糊匹配的字段进行三级分组的字段名称。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.BINDistance">
+      <summary>
+            返回或设置逆向地址匹配索引创建的间隔距离。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressLoadSetting.LoadPoint">
+      <summary>
+            返回或设置是否为逆向地址匹配创建索引。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressMatch">
+      <summary>
+             中文地址模糊匹配类。该类主要提供实现中文地址模糊匹配所必须的条件，包括使用的地址词典、数据集、参与匹配的字段；还提供了实现中文地址模糊匹配的方法。
+             </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatch.#ctor">
+      <summary>
+            构造中文地址模糊匹配类的新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatch.Dispose">
+      <summary>
+            释放 AddressMatch 所占用的资源。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatch.Load">
+      <summary>
+            加载中文地址模糊匹配的相关设置。
+            </summary>
+      <returns>如果载入成功，返回值为 true，否则为 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatch.Match(SuperMap.Analyst.AddressMatching.AddressMatchParameter)">
+      <summary>
+            根据指定的中文地址模糊匹配参数对象进行实现地址匹配，获得地址匹配的结果。
+            </summary>
+      <param name="parameter">指定的中文地址模糊匹配参数类对象，该参数提供了待匹配的内容等，有关地址匹配参数的详情，请参见<see cref="T:SuperMap.Analyst.SpatialAnalyst.AddressMatchParameter">AddressMatchParameter</see> 类。</param>
+      <returns>中文地址模糊匹配结果集合对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatch.SegmentAddress(System.String)">
+      <summary>
+            根据地址词典对传入的中文地址进行分词，并返回分词的结果，在分词结果中将以“*”来分隔原中文地址中的各个词。举例：”我爱北京天安门”，经过该方法分词后的结果字符串为加入分隔符后：”我*爱*北京*天安门”。
+            </summary>
+      <param name="address">指定的中文地址。</param>
+      <returns>加入分隔符后的分词结果字符串。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatch.Setting">
+      <summary>
+            获取或设置中文地址模糊匹配设置对象。通过该属性可以设置地址匹配所使用的地址词典、参与地址匹配的数据集以及参与匹配的字段，有关详情，请参见 AddressMatchSetting 类。
+            </summary>
+      <value>默认值为 SuperMap.Analyst.AddressMatching.AddressMatchSetting。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressMatchParameter">
+      <summary>
+            中文地址模糊匹配参数类。该类提供了进行中文地址模糊匹配所需的参数，包括用于匹配的数据集、查询结果个数、查询待匹配的关键字以及搜索范围等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchParameter.#ctor">
+      <summary>
+            构造一个中文地址模糊匹配参数类的新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchParameter.#ctor(SuperMap.Analyst.AddressMatching.AddressMatchParameter)">
+      <summary>
+            根据指定的中文地址模糊匹配参数类对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="addressMatchParameter">给定的中文地址模糊匹配参数类对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchParameter.AddSearchDataset(SuperMap.Data.DatasetVector)">
+      <summary>
+            添加用于中文地址模糊匹配的数据集，添加成功返回该数据集在用于中文地址模糊匹配的数据集集合中的索引值。
+            </summary>
+      <param name="dataset">用于中文地址模糊匹配的数据集。</param>
+      <returns>添加成功返回数据集在数据集集合中数组的索引值，否则返回-1 。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchParameter.ClearSearchDataset">
+      <summary>
+            清除用于中文地址模糊匹配数据集集合中的所有数据集。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchParameter.RemoveSearchDataset(System.Int32)">
+      <summary>
+            移除用于中文地址模糊匹配数据集集合中指定索引处的数据集。
+            </summary>
+      <param name="index">指定的将被移除的数据集的索引。</param>
+      <returns>如果移除成功，返回值为 true；否则，false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchParameter.SetSearchDataset(System.Int32,SuperMap.Data.DatasetVector)">
+      <summary>
+            用指定的数据集替换用于中文地址模糊匹配的数据集集合中指定索引处的数据集。
+            </summary>
+      <param name="index">指定的索引值，即在用于中文地址模糊匹配的数据集集合中的索引值。</param>
+      <param name="dataset">指定的数据集。</param>
+      <returns>如果替换成功，返回值为 true；否则为 false。</returns>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchParameter.ResultCount">
+      <summary>
+            获取或设置查询结果的个数。
+            </summary>
+      <value>默认值为0 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchParameter.SearchAddress">
+      <summary>
+            获取或设置待匹配的中文地址。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchParameter.SearchDatasets">
+      <summary>
+            获取用于中文地址模糊匹配的数据集集合，即待匹配的中文地址将在这些数据集中搜索与其匹配的内容。
+            </summary>
+      <value>默认值为 SuperMap.Data.DatasetVector[]。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchParameter.IsAddressSegmented">
+      <summary>
+        <para>获取或设置传入的中文地址是否已经被分割，即用“*”分隔符进行了分词。“*”是分词符，即用户可以使用“*”符号自己对输入的待匹配的中文地址进行分词，从而划分自定义的有意义的词，进而通过中文地址模糊匹配方法找到匹配的内容。</para>
+        <para>true 表示传入的中文地址是经过分词的，false 表示传入的中文地址是没有经过分词的。</para>
+      </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchParameter.SearchRegion">
+      <summary>
+            获取或设置查询的区域。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchParameter.IsLocationReturn">
+      <summary>
+            获取或设置中文地址模糊匹配结果对象（即 AddressMatchResult 类）是否包含位置信息。true 表示中文地址模糊匹配结果对象包含位置信息，false 表示不包含位置信息。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressMatchResult">
+      <summary>
+            中文地址模糊匹配结果类。中文地址模糊匹配结果类存储了与输入的中文地址相匹配的查询结果的详细信息，包括查询出来的地址，该地址所在的数据集，该地址在源数据集中的 SMID，查询结果的评分值以及地址的地理位置信息。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResult.Address">
+      <summary>
+            获取匹配出来的地址。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResult.Province">
+      <summary>
+            获取匹配出来的地址的所在省份。新的地址加载和匹配相分离的地址匹配方法可以获取到。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResult.City">
+      <summary>
+            获取匹配出来的地址的所在市。新的地址加载和匹配相分离的地址匹配方法可以获取到。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResult.County">
+      <summary>
+            获取匹配出来的地址的所在区县。新的地址加载和匹配相分离的地址匹配方法可以获取到。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResult.Dataset">
+      <summary>
+            获取查询出来的中文地址所在的数据集。新的地址加载和匹配相分离的地址匹配方法获取不到。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResult.DatasetIndex">
+      <summary>
+            获取查询出来的中文地址所在的数据集的索引。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResult.ID">
+      <summary>
+            获取查询出来的地址在源数据集中所对应的 SMID。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResult.Score">
+      <summary>
+            获取匹配的评分结果。分值范围为0-100，分值越高，查询结果的匹配程度越好。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResult.Location">
+      <summary>
+            获取查询出来的地址所在的地理位置。如果查询出来的对象是点，则返回点的坐标；如果查询出来的对象是面或者其他对象，则返回对象的中心点。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResult.Addresses">
+      <summary>
+            获取匹配出来的地址的数组形式。地址数组的顺序和字段集合的输入顺序一一对应。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressMatchResults">
+      <summary>
+            中文地址模糊匹配结果集合类，存储了中文地址模糊匹配的所有结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchResults.Dispose">
+      <summary>
+            释放 AddressMatchResults 所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResults.Count">
+      <summary>
+            获取中文地址模糊匹配结果集中匹配结果的个数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchResults.Item(System.Int32)">
+      <summary>
+            获取中文地址模糊匹配结果集中指定索引的匹配结果。
+            </summary>
+      <param name="index">指定的索引。</param>
+    </member>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressMatchSetting">
+      <summary>
+            中文地址模糊匹配设置类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchSetting.#ctor">
+      <summary>
+            构造一个新的中文地址模糊匹配设置类对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchSetting.#ctor(SuperMap.Analyst.AddressMatching.AddressMatchSetting)">
+      <summary>
+            根据指定的中文地址模糊匹配设置类对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="addressMatchSetting">指定的中文地址模糊匹配设置类对象。</param>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchSetting.AddSearchData(SuperMap.Data.DatasetVector,System.String)">
+      <summary>
+            添加用于地址匹配的数据集。用于地址匹配的数据集即为待匹配的中文地址将在这些数据集中搜索与其匹配的内容。
+            </summary>
+      <param name="dataset">待添加的用于中文地址模糊匹配的数据集。</param>
+      <param name="addressField">用于中文地址模糊匹配的字段。</param>
+      <returns>新添加的数据集在用于中文地址模糊匹配的数据集集合中的索引值。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchSetting.SetSearchData(System.Int32,SuperMap.Data.DatasetVector,System.String)">
+      <summary>
+            用指定的数据集替换指定索引处的用于中文地址模糊匹配的数据集。
+            </summary>
+      <param name="index">要替换的数据集的索引，即在用于中文地址模糊匹配的数据集集合中的索引值。</param>
+      <param name="dataset">指定的数据集。</param>
+      <param name="addressField">指定的用来做匹配的字段。</param>
+      <returns>设置成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchSetting.RemoveSearchData(System.Int32)">
+      <summary>
+            移除指定索引的数据集。
+            </summary>
+      <param name="index">要移除的数据集的索引，即在用于中文地址模糊匹配的数据集集合中的索引值。</param>
+      <returns>移除成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressMatchSetting.ClearSearchData">
+      <summary>
+            清除所有用于中文地址模糊匹配的数据集。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchSetting.DictionaryFile">
+      <summary>
+            获取或设置地址词典文件的全路径，包括文件夹目录和文件名。有关地址词典方面的内容，请参见 AddressDictionary 类。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchSetting.Datasets">
+      <summary>
+            获取用于中文地址模糊匹配的数据集集合，即待匹配的中文地址将在这些数据集中搜索与其匹配的内容。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressMatchSetting.Fields">
+      <summary>
+            获取用来做中文地址模糊匹配的字段集合，即待匹配的中文地址将在参与匹配的数据集中的这些指定的字段中搜索与其匹配的项。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressSearch">
+      <summary>
+            新的地址加载和匹配相分离的中文地址模糊匹配类。该类根据中文地址库数据创建地址索引，提供中文地址模糊匹配的方法。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearch.#ctor(System.String)">
+      <summary>
+            新的地址加载和匹配相分离的地址匹配对象构建方法，需要指定已经加载的地址索引路径。有关新的加载地址索引的更多信息，请参见 AddressLoad 类。
+            <param name="indexDirectory">已经加载完的地址索引路径。</param></summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearch.Dispose">
+      <summary>
+            释放对象所占用的资源。调用该方法之后，此对象不再可用。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearch.Match(System.String,System.String,System.Int32)">
+      <summary>
+            新的地址加载和匹配相分离的地址匹配方法。
+            </summary>
+      <param name="searchCity">指定的要检索的地名地址所在的城市，该参数应该是进行 AddressLoad 时加载的数据集中的City字段中的值。</param>
+      <param name="searchAddress">指定的要检索的地名地址。</param>
+      <param name="resultCount">指定一次返回的最优检索结果的数目。范围为1到10之间。</param>
+      <returns>中文地址模糊匹配结果集合对象。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearch.#ctor">
+      <summary>
+             地址匹配对象构建方法。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearch.IsValidTopGroupName(System.String)">
+      <summary>
+            通过该方法可以判断 AddressSearchSetting 类设置的一级分组字段是否正确。
+            </summary>
+      <param name="name">一级分组字段名称。</param>
+      <returns>字段名称正确，返回true,否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearch.IsValidSecondaryGroupName(System.String)">
+      <summary>
+            通过该方法可以判断 AddressSearchSetting 类设置的二级分组字段是否正确。
+            </summary>
+      <param name="name">二级分组字段名称。</param>
+      <returns>字段名称正确，返回true,否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearch.IsValidLowestGroupName(System.String)">
+      <summary>
+            通过该方法可以判断 AddressSearchSetting 类设置的三级分组字段是否正确。
+            </summary>
+      <param name="name">三级分组字段名称。</param>
+      <returns>字段名称正确，返回true,否则返回false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearch.Match(System.String)">
+      <summary>
+            新的地址匹配接口，和get方法结合使用。
+            </summary>
+      <param name="searchAddress">指定的要检索的地名地址。</param>
+      <returns>结果匹配的数目。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearch.Get(System.Int32,System.Int32)">
+      <summary>
+            获取匹配结果的接口，和match方法结合使用。
+            </summary>
+      <param name="resultCount">指定一次返回的最优检索结果的数目，最大不能超过match返回的匹配数目。</param>
+      <param name="startPosition">指定match获取结果的起始位置。</param>
+      <returns>中文地址模糊匹配结果集合对象，详情参见 AddressMatchResults。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearch.Match(SuperMap.Data.Geometry,System.Double)">
+      <summary>
+            逆向地址匹配接口，和get方法结合使用。
+            </summary>
+      <param name="geometry">指定的点对象。</param>
+      <param name="dDistance">指定的搜索范围。</param>
+      <returns>结果匹配的数目。</returns>
+    </member>
+    <!-- Badly formed XML comment ignored for member "M:SuperMap.Analyst.AddressMatching.AddressSearch.Match(System.String,SuperMap.Analyst.AddressMatching.AddressSearchSetting)" -->
+    <!-- Badly formed XML comment ignored for member "M:SuperMap.Analyst.AddressMatching.AddressSearch.Match(SuperMap.Data.Geometry,System.Double,SuperMap.Analyst.AddressMatching.AddressSearchSetting)" -->
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressSearch.Setting">
+      <summary>
+            返回或设置中文地址模糊匹配的参数设置对象。通过该方法可以设置地址匹配所使用的搜索路径，搜索结果数目，搜索组别等信息，有关详情，请参见 AddressSearchSetting 类。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressSearchResult">
+      <summary>
+            中文地址模糊匹配结果集合类，可获取中文地址模糊匹配的所有结果。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearchResult.Get(System.Int32,System.Int32)">
+      <summary>
+            获取匹配结果的接口
+            </summary>
+      <param name="resultCount">指定一次返回的最优检索结果的数目，最大不能超过Count返回的匹配数目。</param>
+      <param name="startPosition">指定match获取结果的起始位置。</param>
+      <returns>中文地址模糊匹配结果集合对象，详情参见 <see cref="T:SuperMap.Analyst.AddressMatching.AddressMatchResults">AddressMatchResults</see>。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearchResult.Dispose">
+      <summary>
+            释放 AddressMatchResults 所占用的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressSearchResult.Count">
+      <summary>
+            获取中文地址模糊匹配结果集中匹配结果的个数。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.AddressMatching.AddressSearchSetting">
+      <summary>
+            中文地址模糊匹配的参数设置类。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearchSetting.#ctor">
+      <summary>
+            默认构造函数，构造一个新的 AddressSearchSetting 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.AddressMatching.AddressSearchSetting.#ctor(SuperMap.Analyst.AddressMatching.AddressSearchSetting)">
+      <summary>
+            根据指定的 AddressSearchSetting 对象构造一个与其完全相同的新对象。
+            </summary>
+      <param name="addressSearchSetting">指定的中文地址模糊匹配设置类对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressSearchSetting.SearchDirectory">
+      <summary>
+            返回或设置用于中文地址模糊匹配的搜索路径，即创建的地址数据索引的路径。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressSearchSetting.MaxResultCount">
+      <summary>
+            返回或设置用来做中文地址模糊匹配的搜索的匹配结果的最大数目。
+            </summary>
+      <value>默认值为 0。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressSearchSetting.TopGroupName">
+      <summary>
+            返回或设置用来做中文地址模糊匹配的一级分组的字段名称，前提是创建数据索引的时候也设置了一级分组字段名称。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressSearchSetting.SecondaryGroupName">
+      <summary>
+            返回或设置用来做中文地址模糊匹配的二级分组的字段名称，前提是创建数据索引的时候也设置了二级分组字段名称。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressSearchSetting.LowestGroupName">
+      <summary>
+            返回或设置用来做中文地址模糊匹配的三级分组的字段名称，前提是创建数据索引的时候也设置了三级分组字段名称。
+            </summary>
+      <value>默认值为 null。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressSearchSetting.IsLocationReturn">
+      <summary>
+            获取或设置中文地址模糊匹配结果对象（即 AddressMatchResult 类）是否包含位置信息。true 表示中文地址模糊匹配结果对象包含位置信息，false 表示不包含位置信息。
+            </summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.AddressMatching.AddressSearchSetting.IsAddressSegmented">
+      <summary>
+        <para>获取或设置传入的中文地址是否已经被分割，即用“*”分隔符进行了分词。“*”是分词符，即用户可以使用“*”符号自己对输入的待匹配的中文地址进行分词，从而划分自定义的有意义的词，进而通过中文地址模糊匹配方法找到匹配的内容。</para>
+        <para>true 表示传入的中文地址是经过分词的，false 表示传入的中文地址是没有经过分词的。</para>
+      </summary>
+      <value>默认值为 false。</value>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="WpfDemo.Template.DataTemplate.DataTemplateByCodeDemoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d">
+    <StackPanel Orientation="Vertical">
+        <Label Content="通过FrameworkElementFactory动态生成控件"></Label>
+        <DataGrid Name="dataGrid1" ItemsSource="{Binding }">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Age}"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Hometown}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="动态生成" Click="GenerateByFrameworkElementFactory_Click"></Button>
+
+        <Label Content="通过XmlReader动态生成控件"></Label>
+        <DataGrid Name="dataGrid2" ItemsSource="{Binding }">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Age}"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Hometown}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="动态生成" Click="GenerateByXmlReader_Click"></Button>
+    </StackPanel>
+</UserControl>

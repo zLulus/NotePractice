@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Necessary 为必要的图例，一定要绘制的图例项; count 为绘制的最大个数，即绘制的图例个数要<=Maxcount -->
+<LegendWeight version="1.0">
+	<Points Maxcount="10">
+		<Point SymbolID="13020150" name="政府驻地"/>
+		<Point SymbolID="13010200" name="独立房屋"/>
+		<Point SymbolID="20020100" name="高程点"/>
+	</Points>
+	<Lines Maxcount="10">
+		<Line SymbolID="21010255" name="等高线"/>
+		<Line SymbolID="14030555" name="高速公路"/>
+		<Line SymbolID="14030755" name="国省道"/>
+		<Line SymbolID="14030955" name="县道"/>
+		<Line SymbolID="16020155" name="河流"/>
+		<Line SymbolID="21010255" name="国界"/>
+		<Line SymbolID="21020306" name="市界"/>
+		<Line SymbolID="21020506" name="县界"/>
+		<Line SymbolID="16020100" name="河流"/>
+		<Line SymbolID="14010102" name="使用中的高铁"/>
+		<Line SymbolID="14010105" name="复线铁路"/>
+		<Line SymbolID="14030508" name="使用中的高速公路"/>
+		<Line SymbolID="14030550" name="国道"/>
+		<Line SymbolID="14030761" name="省道" Necessary="true"/>
+		<Line SymbolID="14030906" name="县道"/>
+		<Line SymbolID="14040300" name="小路"/>
+		<Line SymbolID="14031600" name="城区主要干道"/>
+		<Line SymbolID="13010212" name="独立房屋"/>
+		<Line SymbolID="20010100" name="首曲线"/>
+		<Line SymbolID="20010201" name="计曲线"/>
+		<Line SymbolID="15010100" name="电力线"/>
+	</Lines>
+	<Regions Maxcount="10">
+		<Region SymbolID="16020103" name="河流面"/>
+		<Region SymbolID="13020410" name="居民地及附属设施"/>
+	</Regions>
+</LegendWeight>

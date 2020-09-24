@@ -1,0 +1,2400 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Chart</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Chart.AgencyS57">
+      <summary>
+            The AgencyS57 class. It provides the related information of the agency which products the S-57 format data, including the acronym, code and name.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AgencyS57.Token">
+      <summary>
+            Gets the acronym of the agency.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AgencyS57.Code">
+      <summary>
+            Gets the code of the agency.
+            </summary>
+      <value>The default value is -1.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AgencyS57.AgencyName">
+      <summary>
+            Gets the name of the agency.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="T:SuperMap.Chart.AttributeExpectedInputsS57">
+      <summary>
+            The AttributeExpectedInputsS57 class. It's used to represent the related information of the expected input of the AttributeS57 object, such as the ID, meaning, definition, and references.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeExpectedInputsS57.ID">
+      <summary>
+            Gets the ID of the attribute that you expect to input.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeExpectedInputsS57.Meaning">
+      <summary>
+            Gets the meaning of the attribute that you expect to input.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeExpectedInputsS57.Definition">
+      <summary>
+            Gets the definitions of the attribute that you expect to input.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeExpectedInputsS57.References">
+      <summary>
+            Gets the references of the attribute that you expect to input.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.AttributeS57">
+      <summary>
+            The FeatureInfoS57 class. It's used to describe the basic information of the feature attributes, which includes the acronym, the name, and so on.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.Acronym">
+      <summary>
+            Gets the acronym of the attribute.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.Name">
+      <summary>
+            Gets the attribute field name.
+            </summary>
+      <value>The default value is String .Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.LocalName">
+      <summary>
+            Gets the localized name.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.Definition">
+      <summary>
+            Gets the definition of the attribute.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.References">
+      <summary>
+            Gets the reference information of the attribute.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.Remarks">
+      <summary>
+            Gets the remark information of the attribute.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.AttributeType">
+      <summary>
+            Gets the type of the attribute.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.Code">
+      <summary>
+            Gets the code of the attribute.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.SubSet">
+      <summary>
+            Gets the collection which the attribute belongs to.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.AttributeExpectedInputs">
+      <summary>
+            Gets the expected input collection of the S-57 feature attributes.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.Format">
+      <summary>
+            Gets the display format of the attribute.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.Indication">
+      <summary>
+            Gets the indication information of the attribute.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeS57.Condition">
+      <summary>
+            Gets the restrictions when using this attribute.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.AttributeSpecs">
+      <summary>
+            The AttributeSpecs class. It’s used to provide the attribute fields of the features in the chart. For example, the ENC 3.1 version. It is obsolete. Replace it with <see cref="T:SuperMap.Chart.AttributeSpec">AttributeSpec</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeSpecs.Code">
+      <summary>
+            Gets the attribute field code.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeSpecs.Required">
+      <summary>
+            Gets whether this attribute is required for the feature.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.AttributeTypeChart">
+      <summary>
+            This class defines the chart attribute type contant.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.AttributeTypeChart.None">
+      <summary>
+            Unknown type.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.AttributeTypeChart.Enumerated">
+      <summary>
+            Enumerated ('E'). It means the expected value is selected from the <see cref="T:SuperMap.Chart.AttributeExpectedInputsS57">AttributeExpectedInputsS57</see> collection, and the value must be correct.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.AttributeTypeChart.List">
+      <summary>
+            List ('L'). It means the expected value is one or several values selected from the <see cref="T:SuperMap.Chart.AttributeExpectedInputsS57">AttributeExpectedInputsS57</see> collection.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.AttributeTypeChart.Float">
+      <summary>
+            Float ('F'). It means the expected value is the float value with the limited ranges, resolution, unit and format.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.AttributeTypeChart.Integer">
+      <summary>
+            Integer ('I'). It means the expected value is the integer value with the limited ranges, resolution, unit and format.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.AttributeTypeChart.CodedString">
+      <summary>
+            CodedString ('A'). It means the expected value is the ASCII string with the specified format.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.AttributeTypeChart.FreeText">
+      <summary>
+            FreeText ('S'). It means the expected value is the alphanumeric mixed string with free format.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.ChartAttributeInfo">
+      <summary>
+            The ChartAttributeInfo class. This class can be used to retrieve information on a chart object attribute such as the short name, the full name, the code, and the field value of the attribute.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.ChartAttributeInfo.#ctor">
+      <summary>
+            Constructs a new ChartAttributeInfo object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartAttributeInfo.Acronym">
+      <summary>
+            Gets the six-letter short name of an attribute.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartAttributeInfo.Name">
+      <summary>
+            Gets the attribute field name.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartAttributeInfo.Code">
+      <summary>
+            Gets the attribute code.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartAttributeInfo.Value">
+      <summary>
+            Gets the field value of the attribute.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.ChartDatasetGroup">
+      <summary>
+            The chart dataset group class. This class offers a way of building the chart dataset group via the dataset group. It also offers the type, dataset name, and default scale of the chart dataset group. Besides, this class can get the feature dataset from the chart dataset group.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.ChartDatasetGroup.CreateInstance(SuperMap.Data.DatasetGroup)">
+      <summary>
+            Create the chart dataset group according to the given dataset group.
+            </summary>
+      <param name="datasetGroup">The specified dataset group.</param>
+      <returns>The chart dataset group which is successfully created.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartDatasetGroup.GetChartDatasetGroupType(SuperMap.Data.DatasetGroup)">
+      <summary>
+            Get the type of the chart dataset group from the given dataset group.
+            </summary>
+      <param name="datasetGroup">The specified dataset group.</param>
+      <returns>The type of the chart dataset group from the given dataset group.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartDatasetGroup.GetFeatureDataset(System.Int32,SuperMap.Data.DatasetType)">
+      <summary>
+            Get the feature dataset with specified feature code and dataset type from the current chart dataset group.
+            </summary>
+      <param name="code">This specified feature code.</param>
+      <param name="type">The specified dataset type. Point, line, region and tabular are supported.</param>
+      <returns>The feature dataset.</returns>
+      <overloads>
+        <summary>
+            Get the feature dataset from the current chart dataset group according to the specified parameters.
+            </summary>
+      </overloads>
+    </member>
+    <member name="M:SuperMap.Chart.ChartDatasetGroup.GetFeatureDataset(System.String,SuperMap.Data.DatasetType)">
+      <summary>
+            Get the feature dataset with specified feature acronym and dataset type from the current chart dataset group.
+            </summary>
+      <param name="acronym">This specified feature abbreviation.</param>
+      <param name="type">The specified dataset type. Point, line, region and tabular are supported.</param>
+      <returns>The feature dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartDatasetGroup.GetFeatureDatasets">
+      <summary>
+            Get all feature datasets from the current chart dataset group.
+            </summary>
+      <returns>All the feature datasets of the chart dataset group.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartDatasetGroup.Dispose">
+      <summary>
+            Releases all resources that the object occupies. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartDatasetGroup.DatasetGroup">
+      <summary>
+            Gets the dataset group corresponding to the current chart dataset group.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartDatasetGroup.Type">
+      <summary>
+            Gets the type of the chart dataset group.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartDatasetGroup.CellName">
+      <summary>
+            Gets the chart dataset name of the current chart dataset group. The field is DSID-DSNM.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartDatasetGroup.CompilationScale">
+      <summary>
+            Gets the chart scale of the current chart dataset group. The scale is used for making and editing the chart.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.ChartDatasetGroupType">
+      <summary>
+            This enumeration defines the type constant of chart dataset group.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.ChartDatasetGroupType.Unknown">
+      <summary>
+            Unknown type. Not a chart, or an unknown type of chart.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.ChartDatasetGroupType.S57DatasetGroup">
+      <summary>
+            The ineditable S-57 chart dataset group.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.ChartDatasetGroupType.S57EditDatasetGroup">
+      <summary>
+            The editable S-57 chart dataset group.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.ChartDisplayStyleType">
+      <summary>
+            This enum defines the chart display style constant.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.ChartDisplayStyleType.NONE">
+      <summary>
+            Unknown type.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.ChartDisplayStyleType.ENC">
+      <summary>
+            The chart type.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.ChartDisplayStyleType.PAPERCHART">
+      <summary>
+            The paper chart type.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.ChartEnvironment">
+      <summary>
+            The ChartEnvironment class. This class is used to add and delete displaying styles, get and set dictionary file path through ChartConfig.xml.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.Finalize">
+      <summary>
+            Releases unmanaged resources and performs other cleanup operations before the ChartEnvironment is reclaimed by garbage collection.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.#ctor">
+      <summary>
+            Creates a new object of ChartEnvironment.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.AddNewDisplayStyle(System.String,SuperMap.Chart.ChartDisplayStyleType)">
+      <summary>
+            Adds a new displaying style in the configuration file.
+            </summary>
+      <param name="newDisplayStyleName">The name of the new displaying style specified.</param>
+      <param name="displayStyleType">The specified displaying style.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.GetAreaLookupFile(System.String,System.Boolean)">
+      <summary>
+            Gets the path of the region style lookup table according to the specified parameters.
+            </summary>
+      <param name="displayStyleName">The name of the specified displaying style.</param>
+      <param name="isSymbolized">The specified border whether to symbolize or not. If false, it gets the region style lookup table that isn't symbolized.</param>
+      <returns>Gets the path of the region style lookup table.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.GetLineLookupFile(System.String)">
+      <summary>
+            Gets the path of the line style lookup table according to the specified displaying style.
+            </summary>
+      <param name="displayStyleName">The name of the specified displaying style.</param>
+      <returns>Gets the path of the line style lookup table.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.GetPointLookupFile(System.String,System.Boolean)">
+      <summary>
+            Gets the path of the point style lookup table according to the specified parameters.
+            </summary>
+      <param name="displayStyleName">The name of the specified displaying style.</param>
+      <param name="isSimplified">Whether the specified symbol is simplified. If false, gets the traditional point lookup table of the chart.</param>
+      <returns>Gets the path of the point style lookup table.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.GetColourTable(System.String,SuperMap.Chart.ColourModeChart)">
+      <summary>
+            Gets the path of the color table according to the parameters.
+            </summary>
+      <param name="displayStyleName">The name of the specified displaying style.</param>
+      <param name="colourMode">The specified color mode.</param>
+      <returns>The path of the color look-up table that you get.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.GetDisplayStyleNames">
+      <summary>
+            Gets names of the configured displaying styles in the configuration file.
+            </summary>
+      <returns>The name set of the displaying names that you get.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.GetDisplayStyleType(System.String)">
+      <summary>
+            Gets the displaying style type according to the displaying style name.
+            </summary>
+      <param name="displayStyleName">The name of the specified displaying style.</param>
+      <returns>The displaying style types that you get.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.RemoveDisplayStyle(System.String)">
+      <summary>
+            Removes the displaying style type according to the specified displaying style name.
+            </summary>
+      <param name="displayStyleName">The name of the specified displaying style.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.SetAreaLookupFile(System.String,System.String,System.Boolean)">
+      <summary>
+            Set the path of the region style lookup table.
+            </summary>
+      <param name="source">The specified style lookup table path.</param>
+      <param name="displayStyleName">The name of the specified displaying style.</param>
+      <param name="isSymbolized">The specified border whether to symbolize or not. If false, the region style lookup table isn't symbolized.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.SetColourTable(System.String,System.String,SuperMap.Chart.ColourModeChart)">
+      <summary>
+            Sets the color table path.
+            </summary>
+      <param name="source">The path of the color look-up table that you specify.</param>
+      <param name="displayStyleName">The name of the specified displaying style.</param>
+      <param name="colourMode">The specified color mode.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.SetLineLookupFile(System.String,System.String)">
+      <summary>
+            Set the path of the line style lookup table.
+            </summary>
+      <param name="source">The specified style lookup table path.</param>
+      <param name="displayStyleName">The name of the specified displaying style.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.SetPointLookupFile(System.String,System.String,System.Boolean)">
+      <summary>
+            Set the path of the point style lookup table.
+            </summary>
+      <param name="source">The specified style lookup table path.</param>
+      <param name="displayStyleName">The name of the specified displaying style.</param>
+      <param name="isSimplified">Whether the specified point is simplified. If false, sets the traditional point lookup table of the chart.</param>
+      <returns>True if it is removed successfully; false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartEnvironment.Dispose">
+      <summary>
+            Disposes the local resources that ChartEnvironment occupies.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartEnvironment.AgencyFile">
+      <summary>
+            Gets or sets the agency file path.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartEnvironment.S57AttributeFile">
+      <summary>
+            Gets or sets the S-57 attribute file path.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartEnvironment.S57ObjectFile">
+      <summary>
+            Gets or sets the S-57 object file path.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartEnvironment.S57SpecsInfoFile">
+      <summary>
+            Gets or sets the S-57 specification information file path.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartEnvironment.S57SpecsObjectFile">
+      <summary>
+            Gets or sets the S-57 specification object file path.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.ChartQuery">
+      <summary>
+             Query the records of one or more chart DatasetGroup objects based on query parameters, and set the spatial extent to query. You can use the <see cref="T:SuperMap.Chart.ChartQueryParameter">ChartQueryParameter</see> class to set the parameters. The parameters includes FeatureInfo, AttributeFilter and the types of features to query.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Chart.ChartQuery.Query(SuperMap.Data.DatasetGroup[],SuperMap.Chart.ChartQueryParameter[],SuperMap.Data.CursorType)">
+      <summary>
+            Finds feature objects conforming to the specified query parameters in one or more dataset group and returns the corresponding recordset.
+            </summary>
+      <param name="datasetGroups">The chart DatasetGroup array. It contains at least one DatasetGroup.</param>
+      <param name="queryParameters">The given ChartQueryParameter array. It contains at least one ChartQueryParameter object.</param>
+      <param name="cursorType">The given CursorType. The recordset can be modified when the CursorType is Dynamic, and the recordset is readOnly when the CursorType is Static.</param>
+      <returns>ChartQueryResult array.</returns>
+      <exception cref="T:System.ArgumentException">The length of datasetGroups is 0, or the length of queryParameters is 0.</exception>
+      <overloads>
+        <summary>
+            Finds feature objects conforming to the specified query parameters in one or more chart dataset group and returns the correspoinding recordset.
+            </summary>
+      </overloads>
+    </member>
+    <member name="M:SuperMap.Chart.ChartQuery.Query(SuperMap.Data.DatasetGroup[],SuperMap.Data.Rectangle2D,SuperMap.Chart.ChartQueryParameter[],SuperMap.Data.CursorType)">
+      <summary>
+            Query the records in one or more chart DatasetGroup objects based on the given parameters in the given spatial extent.
+            </summary>
+      <param name="datasetGroups">The chart DatasetGroup array. It contains at least one DatasetGroup.</param>
+      <param name="bounds">The specified space bounds.</param>
+      <param name="queryParameters">The given ChartQueryParameter array. It contains at least one ChartQueryParameter object.</param>
+      <param name="cursorType">The given CursorType. The recordset can be modified when the CursorType is Dynamic, and the recordset is readOnly when the CursorType is Static.</param>
+      <returns>ChartQueryResult array.</returns>
+      <exception cref="T:System.ArgumentException">The length of datasetGroups is 0, or the length of queryParameters is 0.</exception>
+    </member>
+    <member name="T:SuperMap.Chart.ChartQueryParameter">
+      <summary>
+            The ChartQueryParameter class is used to set the parameters for <see cref="T:SuperMap.Chart.ChartQuery">ChartQuery</see>. The parameters includes AttributeFilter, FeatureInfo and whether to query point (line/region) features.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.ChartQueryParameter.#ctor">
+      <summary>
+            Constructs a new ChartQueryParameter object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartQueryParameter.FeatureInfo">
+      <summary>
+            Gets or sets FeatureInfoSpec.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartQueryParameter.IsQueryPoint">
+      <summary>
+            Gets or sets whether to query point land mark.
+            </summary>
+      <value>The default value is true.</value>
+    </member>
+    <member name="P:SuperMap.Chart.ChartQueryParameter.IsQueryLine">
+      <summary>
+            Gets or sets whether to query line land mark.
+            </summary>
+      <value>The default value is true.</value>
+    </member>
+    <member name="P:SuperMap.Chart.ChartQueryParameter.IsQueryRegion">
+      <summary>
+            Gets or sets whether to query region land mark.
+            </summary>
+      <value>The default value is true.</value>
+    </member>
+    <member name="P:SuperMap.Chart.ChartQueryParameter.AttributeFilter">
+      <summary>
+            Gets or sets query filters.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="T:SuperMap.Chart.ChartQueryResult">
+      <summary>
+            The ChartQueryResult class is used to get the result of ChartQuery, including dataset name and the corresponding ChartQueryResult array.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartQueryResult.DatasetGroupName">
+      <summary>
+            Gets the name of the DatasetGroup in the ChartQueryResult.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartQueryResult.Recordsets">
+      <summary>
+            Gets the result Recordset array in the ChartQueryResult.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.ChartDatasetGroupManager">
+      <summary>
+             The ChartDatasetGroupManager class is used to create an editable S-57 chart dataset group, as well as the conversion between the editable S-57 dataset group and non-editable S-57 chart dataset group.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Chart.ChartDatasetGroupManager.ConvertToS57DatasetGroup(SuperMap.Chart.S57EditDatasetGroup,SuperMap.Data.Datasource)">
+      <summary>
+            Converts the specified editable S-57 chart dataset group into the S-57 chart dataset group.
+            </summary>
+      <param name="s57EditDatasetGroup">The specified editable S-57 dataset grouping.</param>
+      <param name="outputDatasource">The specified output datasource.</param>
+      <returns>A chart dataset group that has been converted successfully.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartDatasetGroupManager.CreateS57EditDatasetGroup(SuperMap.Chart.S57CellInformation,SuperMap.Data.Datasource,System.String,System.UInt16)">
+      <summary>
+            Creates a new editable S-57 chart dataset group according to the specified S-57 chart information definition parameter.
+            </summary>
+      <param name="s57CellInformation">The specified S-57 chart information definition parameter object.</param>
+      <param name="outputDatasource">The specified output datasource.</param>
+      <param name="FIDNSequence">The specified FIDN sequence name.</param>
+      <param name="FIDS">The specified FIDS.</param>
+      <returns>The created editable S-57 chart dataset group.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.ChartDatasetGroupManager.ConvertToS57EditDatasetGroup(SuperMap.Chart.S57DatasetGroup,SuperMap.Data.Datasource,System.String,System.UInt16)">
+      <summary>
+            Converts the specified S-57 chart dataset group into the editable S-57 chart dataset group.
+            </summary>
+      <param name="s57DatasetGroup">The specified editable S-57 chart dataset group object.</param>
+      <param name="outputDatasource">The specified output datasource.</param>
+      <param name="FIDNSequence">The specified FIDNSequence name.</param>
+      <param name="FIDS">The specified FIDS.</param>
+      <returns>The converted editable S-57 chart dataset group.</returns>
+    </member>
+    <member name="E:SuperMap.Chart.ChartDatasetGroupManager.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.ChartValidateParameter">
+      <summary>
+            The ChartValidateParameter class provides properties which can set the validation types of chart data, such as the topological relationship of spatial features, chart information parameters, water depth, the association information of features and feature objects.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.ChartValidateParameter.#ctor">
+      <summary>
+            Constructs a new ChartValidateParameter object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartValidateParameter.AreCheckMandatoryS57Fields">
+      <summary>
+            Gets or sets whether to check the parameter settings of a single chart. True denotes checking, while false denotes no checking. If the check is wrong, then it will be not to continue performing other checks.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Chart.ChartValidateParameter.IsCheckChainNodeTopology">
+      <summary>
+            Gets or sets whether to check the chain node topology. True means to check, while false means not to check.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Chart.ChartValidateParameter.AreCheckFeatureRelationships">
+      <summary>
+            Gets or sets whether to check the feature relationships. True means to check, while false means not to check.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Chart.ChartValidateParameter.AreCheckSoundings">
+      <summary>
+            Gets or sets whether to check the soundings. True means to check, while false means not to check.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Chart.ChartValidateParameter.AreCheckFeatureObjects">
+      <summary>
+            Gets or sets whether to check the feature objects. True means to check, while false means not to check.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="P:SuperMap.Chart.ChartValidateParameter.AreCheckSpatialAttributes">
+      <summary>
+            Gets or sets whether to check the attributes of spatial features. True means to check, while false means not to check.
+            </summary>
+      <value>The default value is false.</value>
+    </member>
+    <member name="T:SuperMap.Chart.ChartValidateResult">
+      <summary>
+            The S-58 chart data check result class is used for obtaining the results of S-58 chart data check, including check number and error information.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartValidateResult.CheckID">
+      <summary>
+            Gets the CheckID.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.ChartValidateResult.ErrorMessage">
+      <summary>
+            Gets the error information of the check item.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.ColourModeChart">
+      <summary>
+            This enumeration class defines the constants representing the types of modes for setting chart colors.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.ColourModeChart.DayBright">
+      <summary>
+            The day mode.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.ColourModeChart.Dusk">
+      <summary>
+            The dusk mode.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.ColourModeChart.Night">
+      <summary>
+            The night mode.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.DataExportChart">
+      <summary>
+        <para>The DataExportChart class. This class can export data into the standard chart data (*.000 and other format files). </para>
+      </summary>
+             /// <summary>
+            Creates a new instance of the <see cref="T:SuperMap.Chart.Conversion.DataExportChart">DataExportChart</see> object.
+            </summary></member>
+    <member name="M:SuperMap.Chart.Conversion.DataExportChart.#ctor">
+      <summary>
+            Creates a new instance of the <see cref="T:SuperMap.Chart.Conversion.DataExportChart">DataExportChart</see> object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.DataExportChart.Run">
+      <summary>
+            The exported result include the <see cref="T:SuperMap.Chart.Conversion.ExportResultChart">ExportResultChart</see> array corresponding with the successful and failure task of exporting.
+            </summary>
+      <returns>Return the result of export, including the <see cref="T:SuperMap.Chart.Conversion.ExportSettingChart">ExportSettingChart</see> arrays of success to export and the ExportSettingChart arrays of fail to export.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.DataExportChart.Finalize">
+      <summary>
+            Releases the resources before recycling DataExportChart.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.DataExportChart.Dispose">
+      <summary>
+            Releases all resources that the objects occupy.
+            </summary>
+    </member>
+    <member name="E:SuperMap.Chart.Conversion.DataExportChart.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.DataExportChart.ExportSettingCharts">
+      <summary>
+            Gets or sets the <see cref="T:SuperMap.Chart.Conversion.ExportSettingCharts">ExportSettingCharts</see> object, which could be used to implement several export settings.
+            </summary>
+      <value>The default is the <see cref="T:SuperMap.Chart.Conversion.ExportSettingCharts">ExportSettingCharts</see> object，which is used to store the <see cref="T:SuperMap.Chart.Conversion.ExportSettingChart">ExportSettingChart</see> object, and the default number of the <see cref="T:SuperMap.Chart.Conversion.ExportSettingChart">ExportSettingChart</see> object is zero.</value>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.DataImportChart">
+      <summary>
+             The ImportChart object. This class could import the chart data (000 format file, etc. ) into the chart dataset group supported by the SuperMap.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.DataImportChart.#ctor">
+      <summary>
+            Creates a new  instance of the <see cref="T:SuperMap.Chart.Conversion.DataImportChart">DataImportChart</see>.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.DataImportChart.Run">
+      <summary>
+            Implements the operation of importing dataset, return the <see cref="T:SuperMap.Chart.Conversion.ImportResultChart">ImportResultChart</see> object as the result of import.
+            </summary>
+      <returns>Returns the result of import, including the  <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see> collection corresponding to the successful or failed task.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.DataImportChart.Finalize">
+      <summary>
+            Releases the resources before recycling DataImportChart.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.DataImportChart.Dispose">
+      <summary>
+            Releases all resources that the objects occupy.
+            </summary>
+    </member>
+    <member name="E:SuperMap.Chart.Conversion.DataImportChart.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.DataImportChart.ImportSettingCharts">
+      <summary>
+            Gets or sets the settings for importing data. This method can be used to complete settings of many imports.
+            </summary>
+      <value>The default value is a <see cref="T:SuperMap.Chart.Conversion.ImportSettingCharts">ImportSettingCharts </see> object, which is used to store the <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see> object. The default  number of the <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see> object is 0.</value>
+    </member>
+    <member name="T:SuperMap.Chart.DictionaryManagerChart">
+      <summary>
+            The DictionaryManagerChart class. This class gets the agency, attribute, feature information, feature specification of product specification, S-58 check item, specification information file, and specification objects file.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetAgencys">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.AgencyS57">AgencyS57</see> collection object. It is obsolete. Replace it with <see cref="M:SuperMap.Chart.DictionaryManagerChart.GetAgencyS57s">GetAgencyS57s</see>.
+            </summary>
+      <returns>The AgencyS57 collection object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetAgencyS57s">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.AgencyS57">AgencyS57</see> collection object.
+            </summary>
+      <returns>The AgencyS57 collection object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoS57s">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.FeatureInfoS57">FeatureInfoS57</see> collection object.
+            </summary>
+      <returns>The FeatureInfoS57 collection object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetAttributeS57s">
+      <summary>
+            Gets the set of <see cref="T:SuperMap.Chart.AttributeS57">AttributeS57</see>.
+            </summary>
+      <returns>The FeatureInfoS57 collection object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoSpecss">
+      <summary>
+             Gets the <see cref="T:SuperMap.Chart.FeatureInfoSpecs">FeatureInfoSpecs</see> object. It is obsolete. Replace it with <see cref="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoSpecs">GetFeatureInfoSpecs()</see>.
+            </summary>
+      <returns>The FeatureInfoSpecs collection object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoSpecs">
+      <summary>
+             Gets the <see cref="T:SuperMap.Chart.FeatureInfoSpec">FeatureInfoSpec</see> collection object.
+            </summary>
+      <returns>The FeatureInfoSpecs collection object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetAgencyS57(System.Int32)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.AgencyS57">AgencyS57</see> object according to the given agency code.
+            </summary>
+      <param name="nCode">The given agency code.</param>
+      <returns>The AgencyS57 object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetAgencyS57(System.String)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.AgencyS57">AgencyS57</see> object according to the specified agency acronym.
+            </summary>
+      <param name="token">The specified agency acronym.</param>
+      <returns>The AgencyS57 object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoS57(System.Int32)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.FeatureInfoS57">FeatureInfoS57</see> object according to the specified feature ID.
+            </summary>
+      <param name="nCode">The specified feature ID.</param>
+      <returns>The FeatureInfoS57 object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoS57(System.String)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.FeatureInfoS57">FeatureInfoS57</see> object according to the specified feature acronym.
+            </summary>
+      <param name="acronym">The specified feature acronym.</param>
+      <returns>The FeatureInfoS57 object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetAttributeS57(System.Int32)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.AttributeS57">AttributeS5757</see> object according to the specified feature attribute code.
+            </summary>
+      <param name="nCode">The specified feature attribute code.</param>
+      <returns>The FeatureInfoS57 object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetAttributeS57(System.String)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.AttributeS57">FeatureInfoS57</see> object according to the acronym of the specified feature attribute.
+            </summary>
+      <param name="acronym">The acronym of the specified feature attribute.</param>
+      <returns>The FeatureInfoS57 object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoSpecs(System.Int32)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.FeatureInfoSpecs">FeatureInfoSpecs</see> object according to the specified feature code. It is obsolete. Replace it with <see cref="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoSpec(System.Int32)">GetFeatureInfoSpec(Int32)</see>.
+            </summary>
+      <param name="nCode">The specified feature ID.</param>
+      <returns>The FeatureInfoSpecs object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoSpecs(System.String)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.FeatureInfoSpecs">FeatureInfoSpecs</see> object according to the specified feature acronym. It is obsolete. Replace it with <see cref="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoSpec(System.String)">GetFeatureInfoSpec(String)</see>.
+            </summary>
+      <param name="acronym">The specified feature acronym.</param>
+      <returns>The FeatureInfoSpecs object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoSpec(System.Int32)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.FeatureInfoSpec">FeatureInfoSpecs</see> object according to the specified feature code.
+            </summary>
+      <param name="nCode">The specified feature ID.</param>
+      <returns>The FeatureInfoSpecs object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetFeatureInfoSpec(System.String)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.FeatureInfoSpec">FeatureInfoSpecs</see> object according to the specified feature acronym.
+            </summary>
+      <param name="acronym">The specified feature acronym.</param>
+      <returns>The FeatureInfoSpecs object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.ResetS57SpecsObjectsFile">
+      <summary>
+            Reset S57SpecsObjectsFile. It is obsolete. Replace it with <see cref="M:SuperMap.Chart.DictionaryManagerChart.ResetS57SpecObjectsFile">ResetS57SpecObjectsFile</see>.
+            </summary>
+      <returns>A Boolean value. It's used to determine whether the reset is successful. Return true if successful, or false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.ResetS57SpecsInfosFile">
+      <summary>
+            Reset S57SpecsInfosFile. It is obsolete. Replace it with <see cref="M:SuperMap.Chart.DictionaryManagerChart.ResetS57SpecInfosFile">ResetS57SpecObjectsFile</see>.
+            </summary>
+      <returns>A Boolean value. It's used to determine whether the reset is successful. Return true if successful, or false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.ResetS57SpecObjectsFile">
+      <summary>
+            Resets the S-57 specification dictionary file.
+            </summary>
+      <returns>A Boolean value. It's used to determine whether the reset is successful. Return true if successful, or false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.ResetS57SpecInfosFile">
+      <summary>
+            Resets the basic S-57 specification information file.
+            </summary>
+      <returns>A Boolean value. It's used to determine whether the reset is successful. Return true if successful, or false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.DictionaryManagerChart.GetS58Information(System.Int32)">
+      <summary>
+            Gets S-58 check items information according to the specified check item number, including check content, error level and basis.
+            </summary>
+      <param name="checkID">The specified S-58 check ID.</param>
+      <returns>The S-58 check information of the specified ID.</returns>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ExportChartSteppedEventArgs">
+      <summary>
+            Provides the data of the ExportChartSteppedEventArgs event. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportChartSteppedEventArgs.#ctor(System.String,System.String,System.Int32,System.Int32,SuperMap.Chart.Conversion.ExportSettingChart,System.Int32,System.Boolean)">
+      <summary>
+            Initializes a new instance of the SteppedEventArgs object
+            </summary>
+      <param name="title">The title of the current progress bar.</param>
+      <param name="message">The progress information of the current progress bar.</param>
+      <param name="percent">The percent of the current process have done</param>
+      <param name="subPercent">The completion percent of the current ongoing sub-operation.</param>
+      <param name="currentTask">The information of the current ongoing sub-operation.</param>
+      <param name="count">Gets the count of the items of the tasks.</param>
+      <param name="cancel">Whether to cancel all tasks.</param>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportChartSteppedEventArgs.TotalPercent">
+      <summary>
+            Gets the completion percent of the current operation.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportChartSteppedEventArgs.SubPercent">
+      <summary>
+            Gets the percent of the current sub item.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportChartSteppedEventArgs.CurrentTask">
+      <summary>
+            Gets the current ongoing item information, and returns the imported Setting directly.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportChartSteppedEventArgs.Count">
+      <summary>
+            Gets the count of the items of the tasks.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportChartSteppedEventArgs.Cancel">
+      <summary>
+            Gets or sets whether to cancel all the tasks.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportChartSteppedEventArgs.Title">
+      <summary>
+            Gets the title of the current progress bar.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportChartSteppedEventArgs.Message">
+      <summary>
+            Gets the progress information of the current progress bar.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ExportChartSteppedEventHandler">
+      <summary>
+            Represents the method that handles a Stepped event.
+            </summary>
+      <param name="sender">The specified source event.</param>
+      <param name="e">The <see cref="T:SuperMap.Chart.Conversion.ExportChartSteppedEventArgs">ExportChartSteppedEventArgs</see> class.</param>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ExportResultChart">
+      <summary>
+            The ExportResultChart class, which provides the two methods such as <see cref="P:SuperMap.Chart.Conversion.ExportResultChart.SucceedSettings">SucceedSettings</see>, <see cref="P:SuperMap.Chart.Conversion.ExportResultChart.FailedSettings">FailedSettings</see> to get the successful and the failed import settings.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportResultChart.SucceedSettings">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.Conversion.ExportSettingChart">ExportSettingChart</see> set of the successful tasks.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportResultChart.FailedSettings">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.Conversion.ExportSettingChart">ExportSettingChart</see> set of the failed tasks.The user can get whether the count of the failed tasks is zero to determine whether imported successfully.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ExportSettingChart">
+      <summary>
+            The ExportSettingChart class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportSettingChart.#ctor">
+      <summary>
+            Creates a new instance of the <see cref="T:SuperMap.Chart.Conversion.ExportSettingChart">ExportSettingChart</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportSettingChart.TargetFilePath">
+      <summary>
+            Gets or sets the path of the target file to be exported.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportSettingChart.IsOverwrite">
+      <summary>
+            Gets or sets whether to cover the files with the same name by force when exporting the files to the same directory.
+            </summary>
+      <value>The default is false, indicating that the export operation doesn't be performed, otherwise covering files by force.</value>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportSettingChart.TargetFileType">
+      <summary>
+            Gets or sets the type of the chart to be exported.
+            </summary>
+      <value>The default value is FileTypeChart.None.</value>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ExportSettingCharts">
+      <summary>
+             The ExportSettingCharts class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportSettingCharts.#ctor">
+      <summary>
+            The Constructor.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportSettingCharts.Add(SuperMap.Chart.Conversion.ExportSettingChart)">
+      <summary>
+            Adds the specified <see cref="T:SuperMap.Chart.Conversion.ExportSettingChart">ExportSettingChart </see> object into the <see cref="T:SuperMap.Chart.Conversion.ExportSettingCharts">ExportSettingCharts</see> object.
+            </summary>
+      <param name="exportSetting">The specified ExportSettingChart object.</param>
+      <returns>The index value corresponding to the newly added ExportSettingChart object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportSettingCharts.Insert(System.Int32,SuperMap.Chart.Conversion.ExportSettingChart)">
+      <summary>
+            Inserts the specified <see cref="T:SuperMap.Chart.Conversion.ExportSettingChart"> ExportSettingChart</see> object at the specified index of the <see cref="T:SuperMap.Chart.Conversion.ExportSettingCharts">ExportSettingCharts</see> class.
+            </summary>
+      <param name="index">The specified index.</param>
+      <param name="exportSetting">The specified ExportSettingChart object.</param>
+      <returns>Returns true if successful, otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportSettingCharts.Remove(System.Int32)">
+      <summary>
+            Removes the ExportSettingChart objects from the <see cref="T:SuperMap.Chart.Conversion.ExportSettingCharts">ExportSettingCharts</see> object with the specified index.
+            </summary>
+      <param name="index">The specified index value.</param>
+      <returns>Returns true if successful, otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportSettingCharts.Clear">
+      <summary>
+            Clears all the ExportSettingChart objects from the <see cref="T:SuperMap.Chart.Conversion.ExportSettingCharts">ExportSettingCharts</see> object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportSettingCharts.GetEnumerator">
+      <summary>
+             Gets the IEnumerator object.
+            </summary>
+      <returns>return the enumerator of the dataset set</returns>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportSettingCharts.Count">
+      <summary>
+            Gets the total count of the features of the <see cref="T:SuperMap.Chart.Conversion.ExportSettingCharts">ExportSettingCharts</see> object.
+            </summary>
+      <returns>Gets the total count of the features of the ExportSettingCharts object.</returns>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportSettingCharts.Item(System.Int32)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.Conversion.ExportSettingChart">ExportSettingChart</see> object with specified index in the <see cref="T:SuperMap.Chart.Conversion.ExportSettingCharts">ExportSettingCharts</see> object.
+            </summary>
+      <param name="index">The specified index value. index must be greater than 0 and less than the Count, otherwise an exception is thrown.</param>
+      <returns>The ExportSettingChart object corresponding to the specified index value.</returns>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ExportSettingChartS57">
+      <summary>
+            The ExportSettingChartS57 class. This class inherits from the <see cref="T:SuperMap.Chart.Conversion.ExportSettingChart">ExportSettingChart</see> class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportSettingChartS57.#ctor">
+      <summary>
+            Creates a new instance of the <see cref="T:SuperMap.Chart.Conversion.ExportSettingChartS57">ExportSettingChartS57</see>.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportSettingChartS57.#ctor(SuperMap.Chart.Conversion.ExportSettingChartS57)">
+      <summary>
+            Builds a new object that is the same with the given ExportSettingChartS57 object.
+            </summary>
+      <param name="exportSettingChartS57">The specified ExportSettingChartS57 object.</param>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ExportSettingChartS57.#ctor(SuperMap.Data.DatasetGroup,System.String)">
+      <summary>
+            Constructs a new <see cref="T:SuperMap.Chart.Conversion.ExportSettingChartS57">ExportSettingChartS57</see> object according to the specified parameter.
+            </summary>
+      <param name="sourceData">The specified outputted dataset object.</param>
+      <param name="targetFilePath">The path of the specified exported file.</param>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportSettingChartS57.SourceData">
+      <summary>
+            Gets or sets the whole chart DatasetGroup object to export.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ExportSettingChartS57.TargetFileType">
+      <summary>
+            Gets or sets the type of the chart to be exported.
+            </summary>
+      <value>The default value is <see cref="F:SuperMap.Chart.Conversion.FileTypeChart.S57">FileTypeChart.S57</see>.</value>
+    </member>
+    <member name="T:SuperMap.Chart.FeatureInfoS57">
+      <summary>
+            The FeatureInfoS57 class. It's used to represent the basic information of the FeatureS57, which includes the acronym, name, type and other related information.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoS57.Acronym">
+      <summary>
+            Gets the acronym of the feature.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoS57.Name">
+      <summary>
+            Gets the name of the feature.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoS57.Definition">
+      <summary>
+            Gets the definition of the feature.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoS57.References">
+      <summary>
+            Gets the reference information of the feature.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoS57.Remarks">
+      <summary>
+            Gets the remark information of the feature.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoS57.FeatureType">
+      <summary>
+            Gets the type of the feature.
+            </summary>
+      <value>The default value is <see cref="F:SuperMap.Chart.FeatureTypeChart.None">FeatureTypeChart.None</see>.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoS57.Code">
+      <summary>
+            Gets the code of the feature.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="T:SuperMap.Chart.FeatureInfoSpecs">
+      <summary>
+            The FeatureInfoSpecs class. It's used to describe the basic information of the specification feature of the products, which includes the name, type and the related attributes. For example, the ENC 3.1 version. It is obsolete. Replace it with <see cref="T:SuperMap.Chart.FeatureInfoSpec">FeatureInfoSpec</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpecs.Acronym">
+      <summary>
+            Gets the acronym of the feature.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpecs.Name">
+      <summary>
+            Gets the name of the object.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpecs.LocalName">
+      <summary>
+            Gets the localization name of the object.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpecs.Code">
+      <summary>
+            Gets the code of the feature.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpecs.Primitive">
+      <summary>
+            Gets the object type which could be applied by the feature.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpecs.AttributeFields">
+      <summary>
+            Gets the attribute fields of the feature.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.S57FeatureObjectIDInfo">
+      <summary>
+            -57 feature object identifier information class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureObjectIDInfo.#ctor">
+      <summary>
+            Constructs a new S57FeatureObjectIDInfo object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureObjectIDInfo.#ctor(System.String,System.String)">
+      <summary>
+            Constructs a new S57FeatureObjectIDInfo object according to given parameters.
+            </summary>
+      <param name="acronym">The specified feature acronym. </param>
+      <param name="featureObjectID">The specified FOID, i.e., long name.</param>
+    </member>
+    <member name="P:SuperMap.Chart.S57FeatureObjectIDInfo.Acronym">
+      <summary>
+            Gets or sets the feature acronym.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57FeatureObjectIDInfo.FeatureObjectID">
+      <summary>
+            Gets or sets FOID, i.e., long name.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="T:SuperMap.Chart.S57FeatureRelationships">
+      <summary>
+            The S-57 feature relationship class. This class provides the creation and maintenance of feature relationships (including master-slave relationship and equal relationship).
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.#ctor">
+      <summary>
+            Creates a new FeatureRelationships object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.#ctor(SuperMap.Chart.S57EditDatasetGroup)">
+      <summary>
+            Constructs a new FeatureRelationships object according to the specified S57EditDatasetGroup object.
+            </summary>
+      <param name="s57EditDatasetGroup">The specified S57EditDatasetGroup object.</param>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.SetS57EditDatasetGroup(SuperMap.Chart.S57EditDatasetGroup)">
+      <summary>
+            Set the editable S-57 chart dataset group.
+            </summary>
+      <param name="s57EditDatasetGroup">The editable S-57 chart dataset group.</param>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.GetMasterSlaves">
+      <summary>
+            Gets all the master-slave relationships in the current chart.
+            </summary>
+      <returns>All the master-slave relationships in the current chart. The dictionary key is the FOID of the master feature, and its value is the FOID of the slave feature.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.CreateMasterSlave(SuperMap.Chart.S57FeatureObjectIDInfo,SuperMap.Chart.S57FeatureObjectIDInfo[])">
+      <summary>
+            Creates a new master-slave relationship.
+            </summary>
+      <param name="masterFOIDInfo">The specified FOID of the specified master feature.</param>
+      <param name="slaveFOIDInfos">The specified FOID of the specified slave feature.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.GetMasterSlave(System.String)">
+      <summary>
+            Gets the FOID of the slave feature according to the specified master feature.
+            </summary>
+      <param name="masterFOID">The specified FOID of the specified master feature.</param>
+      <returns>The feature identifier information array of the slave feature corresponding to the specified master feature.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.SetMasterSlave(SuperMap.Chart.S57FeatureObjectIDInfo,SuperMap.Chart.S57FeatureObjectIDInfo[])">
+      <summary>
+            Resets the master-slave relationship.
+            </summary>
+      <param name="masterFOIDInfo">The specified FOID of the specified master feature.</param>
+      <param name="slaveFOIDInfos">The specified feature identifier information array of the specified slave feature.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.RemoveMasterSlave(System.String)">
+      <summary>
+            Deletes the master-slave relationship corresponding to the feature specified with the FOID.
+            </summary>
+      <param name="masterFOID">The specified FOID of the specified master feature.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.GetCollections">
+      <summary>
+            Gets the information of all the collection features in the current chart.
+            </summary>
+      <returns>The information of all the collection features in the current chart.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.CreateCollection(System.String,SuperMap.Chart.S57FeatureObjectIDInfo[])">
+      <summary>
+            Creates a collection feature according to the FOID of the specified feature object.
+            </summary>
+      <param name="acronym">The feature acronym of the specified collection feature is used for determining the type of the built collection feature, which only can be "C_AGGR" or "C_ASSO".</param>
+      <param name="referencedFOIDInfos">The feature identifier information array of the feature object referenced by the specified collection feature to be created.</param>
+      <returns>The FOID of the new collection feature.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.GetCollectionReferenceFeatures(System.String)">
+      <summary>
+            Gets the FOID of the feature object referenced by the specified collection feature.
+            </summary>
+      <param name="collectionFOID">The specified FOID of the specified collection feature.</param>
+      <returns>The feature identifier information array of the feature object referenced by the specified collection feature.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.SetCollectionReferenceFeatures(SuperMap.Chart.S57FeatureObjectIDInfo,SuperMap.Chart.S57FeatureObjectIDInfo[])">
+      <summary>
+            Resets the collection feature object, i.e., resets the referenced feature object of the specified collection feature object.
+            </summary>
+      <param name="collectionFOIDInfo">The FOID of the specified collection features to be reset.</param>
+      <param name="referencedFOIDInfos">The specified feature identifier information array of the specified referenced feature.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.RemoveCollection(System.String,System.Boolean)">
+      <summary>
+            Deletes the association relationship between the collection feature and its referenced feature, or specifies whether to delete the collection feature.
+            </summary>
+      <param name="collectionFOID">The specified collection feature whose association relationship will be deleted.</param>
+      <param name="isRemoveCollectionObject">Specifies whether to delete the collection feature. If true, then deletes the association relationship between the collection feature and its referenced feature, and deletes the collection feature (one record) from the collection feature dataset (a tabular table).</param>
+      <returns>A boolean value denotes whether deleting the collection feature and its referenced relationship are successful or not. True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.SetS57AttributeValue(SuperMap.Chart.S57FeatureObjectIDInfo,System.String,System.Object)">
+      <summary>
+            Sets the value of the attribute field specified by the collection feature.
+            </summary>
+      <param name="collectionFOIDInfo">The FOID of the specified collection feature.</param>
+      <param name="attributeAcronym">The attribute acronym of the specified collection feature.</param>
+      <param name="value">The specified attribute value to be set up.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.GetS57AttributeValue(SuperMap.Chart.S57FeatureObjectIDInfo,System.String)">
+      <summary>
+            Gets the value of the specified property of the collection feature.
+            </summary>
+      <param name="collectionFOIDInfo">The FOID of the specified collection feature.</param>
+      <param name="attributeAcronym">The acronym of the specified attribute to get.</param>
+      <returns>The value of the specified attribute.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureRelationships.GetS57AttributeValues(SuperMap.Chart.S57FeatureObjectIDInfo)">
+      <summary>
+            Gets the attribute information of the collection feature.
+            </summary>
+      <param name="collectionFOIDInfo">The FOID of the specified collection feature.</param>
+      <returns>The property information array of the collection feature.</returns>
+    </member>
+    <member name="T:SuperMap.Chart.FeatureTypeChart">
+      <summary>
+            This class defines the type constant of the features.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.FeatureTypeChart.None">
+      <summary>
+            The unknown feature object.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.FeatureTypeChart.Geo">
+      <summary>
+            The geographic feature object ('G'), indicating that the description of the objective world is contained.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.FeatureTypeChart.Meta">
+      <summary>
+            The mate-feature object ('M'), indicating that other feature information (such as the editing scale, vertical datum) is contained.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.FeatureTypeChart.Collection">
+      <summary>
+            The collection feature object ('C'), indicating that the relationship between features is described.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.FeatureTypeChart.Cartographic">
+      <summary>
+            The cartographic object ('$'), indicating that the map display information of the objective world entity is contained.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.FileTypeChart">
+      <summary>
+            This class defines the type constant of the chart conversion file.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.Conversion.FileTypeChart.None">
+      <summary>
+            Unknow data format.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.Conversion.FileTypeChart.S57">
+      <summary>
+            The S-57 chart format, 000 file.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ImportChartSteppedEventArgs">
+      <summary>
+            The ImportChartSteppedEventArgs class. 
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportChartSteppedEventArgs.#ctor(System.String,System.String,System.Int32,System.Int32,SuperMap.Chart.Conversion.ImportSettingChart,System.Int32,System.Boolean)">
+      <summary>
+            Initializes a new instance of the ImportSteppedEventArgs class with the specified parameters. 
+            </summary>
+      <param name="title">The title of the current progress bar.</param>
+      <param name="message">The progress information of the current progress bar.</param>
+      <param name="percent">Gets the total percent of the current operation.</param>
+      <param name="subPercent">Gets the percent of the current sub item.</param>
+      <param name="currentTask">The current item information.</param>
+      <param name="count">Gets the count of the items of the tasks.</param>
+      <param name="cancel">Whether to cancel all the import tasks.</param>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportChartSteppedEventArgs.Title">
+      <summary>
+            Gets the title of the current progress bar.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportChartSteppedEventArgs.Message">
+      <summary>
+            Gets the progress information of the current progress bar.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportChartSteppedEventArgs.TotalPercent">
+      <summary>
+            Gets the completion percent of the current operation.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportChartSteppedEventArgs.SubPercent">
+      <summary>
+            Gets the percent of the current sub item.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportChartSteppedEventArgs.CurrentTask">
+      <summary>
+            Gets the information of the item of the current task and returns the <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see> object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportChartSteppedEventArgs.Count">
+      <summary>
+            Gets the count of the items of the tasks. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportChartSteppedEventArgs.Cancel">
+      <summary>
+            Gets or sets whether to cancel all the tasks.
+            </summary>
+      <value>Returns true if successful, otherwise false.　</value>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ImportChartSteppedEventHandler">
+      <summary>
+            Represents the method that handles a Stepped event.
+            </summary>
+      <param name="sender">The specified source event.</param>
+      <param name="e">The <see cref="T:SuperMap.Chart.Conversion.ImportChartSteppedEventArgs">ImportChartSteppedEventArgs</see> class.</param>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ImportResultChart">
+      <summary>
+            The ExportResult class, which provides the two methods such as <see cref="P:SuperMap.Chart.Conversion.ImportResultChart.SucceedSettings">SucceedSettings</see>, <see cref="P:SuperMap.Chart.Conversion.ImportResultChart.FailedSettings">FailedSettings</see> to get the successful and the failed import settings.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportResultChart.Finalize">
+      <summary>
+            Releases unmanaged resources and performs other cleanup operations before the Geometry is reclaimed by garbage collection.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportResultChart.Dispose">
+      <summary>
+            Releases all resources that the objects occupy.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportResultChart.SucceedSettings">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see> settings of the successful tasks.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportResultChart.FailedSettings">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see> settings of the failed tasks.The user can get whether the count of the failed tasks is zero to determine whether imported successfully.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ImportSettingChart">
+      <summary>
+            The ImportSettingChart class. This class is the base class of all the import setting classes. It provides the common methods and properties.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportSettingChart.#ctor">
+      <summary>
+            Creates a new instance of the <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see>.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportSettingChart.Finalize">
+      <summary>
+            Frees the resources of the non-managed object before it is reclaimed by the garbage collector.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportSettingChart.Dispose">
+      <summary>
+            Releases all resources that the objects occupy.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingChart.SourceFilePath">
+      <summary>
+            Gets or sets the path of the chart file to be imported.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingChart.SourceFileType">
+      <summary>
+            Gets the type of the chart data to be imported.
+            </summary>
+      <value>The default value is <see cref="F:SuperMap.Chart.Conversion.FileTypeChart.None">FileTypeChart.None</see>.</value>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingChart.TargetEncodeType">
+      <summary>
+            Gets or sets the code type of the dataset to be created.
+            </summary>
+      <value>The default value is the code type in the source data.</value>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingChart.TargetDatasourceConnectionInfo">
+      <summary>
+            Gets or sets the target datasource connected information. If there is no corresponding datasource, create a new datasource according to the connected information.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingChart.TargetDatasource">
+      <summary>
+            Gets or sets the target datasource object to be imported.
+            </summary>
+      <value>The default value is null.</value>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingChart.ConvertToMercator">
+      <summary>
+            Sets or Gets whether to convert the imported data into the Mercator coordinate system.
+            </summary>
+      <value>The default is false.</value>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingChart.TargetDatasetGroup">
+      <summary>
+            Gets or sets the grouping information of the target dataset.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ImportSettingCharts">
+      <summary>
+            The collection class of import setting information.This class is the collection class of ImportSettingChart object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportSettingCharts.#ctor">
+      <summary>
+            Creates a new instance of the <see cref="T:SuperMap.Chart.Conversion.ImportSettingCharts">ImportSettingCharts</see> class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportSettingCharts.Add(SuperMap.Chart.Conversion.ImportSettingChart)">
+      <summary>
+            Adds a specified <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see> to the <see cref="T:SuperMap.Chart.Conversion.ImportSettingCharts">ImportSettingCharts</see> object.
+            </summary>
+      <param name="importSettingChart">The specified ImportSettingChart object.</param>
+      <returns>The index value corresponding to the newly added ImportSettingChart object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportSettingCharts.Insert(System.Int32,SuperMap.Chart.Conversion.ImportSettingChart)">
+      <summary>
+            Inserts a specified <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see> object to the specified index of the <see cref="T:SuperMap.Chart.Conversion.ImportSettingCharts"> ImportSettingCharts</see> object.
+            </summary>
+      <param name="index">The specified index.</param>
+      <param name="importSettingChart">The specified ImportSettingChart object.</param>
+      <returns>Returns true if successful, otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportSettingCharts.Remove(System.Int32)">
+      <summary>
+            Removes the items from the <see cref="T:SuperMap.Chart.Conversion.ImportSettingCharts">ImportSettingCharts</see> object with the specified index.
+            </summary>
+      <param name="index">The specified index value.</param>
+      <returns>Returns true if successful, otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportSettingCharts.Clear">
+      <summary>
+            Clears all the ImportSettingChart objects from the <see cref="T:SuperMap.Chart.Conversion.ImportSettingCharts">ImportSettingCharts</see> object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportSettingCharts.GetEnumerator">
+      <summary>
+            Gets the IEnumerator object.
+            </summary>
+      <returns>return the enumerator of the dataset set</returns>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingCharts.Count">
+      <summary>
+            Gets the total counts of the features of the <see cref="T:SuperMap.Chart.Conversion.ImportSettingCharts">ImportSettingCharts</see> object.
+            </summary>
+      <returns>Gets the count of the elements in the specified ImportSettings.</returns>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingCharts.Item(System.Int32)">
+      <summary>
+            Gets the <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see> object with specified index in the <see cref="T:SuperMap.Chart.Conversion.ImportSettingCharts">ImportSettingCharts</see> object.
+            </summary>
+      <param name="index">The specified index value.</param>
+      <returns>The specified index corresponding to the ImportSettingChart object.</returns>
+    </member>
+    <member name="T:SuperMap.Chart.Conversion.ImportSettingChartS57">
+      <summary>
+            The ImportSettingChartS57 class. This class is inherited from the <see cref="T:SuperMap.Chart.Conversion.ImportSettingChart">ImportSettingChart</see> class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.Conversion.ImportSettingChartS57.#ctor">
+      <summary>
+            Creates a new instance of the <see cref="T:SuperMap.Chart.Conversion.ImportSettingChartS57">ImportSettingChartS57</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingChartS57.SpatialIndex">
+      <summary>
+            Gets or sets the information of the spatial index.
+            </summary>
+      <value>The default value is null, indicating that the space index information is null.</value>
+    </member>
+    <member name="P:SuperMap.Chart.Conversion.ImportSettingChartS57.IsImportUpdates">
+      <summary>
+            Gets or sets whether to update the data (001, 002, ...) when the 000 file is imported.
+            </summary>
+      <value>The default value is true representing that the data will be updated.</value>
+    </member>
+    <member name="T:SuperMap.Chart.S57CellInformation">
+      <summary>
+            The S57CellInformation class is used for getting and setting the information of a S-57 electronic chart, including AgencyCode, CellName, IntendedUsage, EditionVersion, IssueDate, UpdateVersion, UpdateDate, DataSetIdentificationComment, CompilationScale, VerticalDatum, SoundingDatum, CoordinateFactor, DataSetParameterComment, ATTFLexicalLevel and NATFLexicalLevel.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57CellInformation.#ctor">
+      <summary>
+            Construct a new S57CellInformation object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57CellInformation.Dispose">
+      <summary>
+            Releases all resources that the object occupies. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.AgencyCode">
+      <summary>
+            Gets or sets the agency code, corresponding to DSID-AGEN.
+            </summary>
+      <value>The default value is -1.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.ATTFLexicalLevel">
+      <summary>
+            Gets or sets the vocabulary level of ATTF, corresponding to DSSI-AALL.
+            </summary>
+      <value>Default is S57LexicalLevel.Level0.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.CellName">
+      <summary>
+            Gets or sets the name of the dataset, corresponding to DSID-DSNM.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.CompilationScale">
+      <summary>
+            Gets or sets the data editing scale, corresponding to DSPM-CSCL.
+            </summary>
+      <value>The default value is -1.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.CoordinateFactor">
+      <summary>
+            Gets or sets the zoom in coefficient of the coordinates, corresponding to DSPM-COMF.
+            </summary>
+      <value>The default value is -1.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.DataSetIdentificationComment">
+      <summary>
+            Gets or sets the annotation information of the DSID field, corresponding to DSID-COMT.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.DataSetParameterComment">
+      <summary>
+            Gets or sets the annotation information of the DSPM field, corresponding to DSPM-COMT.
+            </summary>
+      <value>The default is a null string.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.EditionVersion">
+      <summary>
+            Gets or sets the version number, corresponding to DSID-EDTN.
+            </summary>
+      <value>The default value is 1.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.IntendedUsage">
+      <summary>
+            Gets or sets the nautical purpose, corresponding to DSID-INTU.
+            </summary>
+      <value>Default is S57IntendedUsage.OverView.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.IssueDate">
+      <summary>
+            Gets or sets the issure date, corresponding to DSID-ISDT.
+            </summary>
+      <value>The default value is 20130101.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.NATFLexicalLevel">
+      <summary>
+            Gets or sets the vocabulary level of NATF, corresponding to DSSI-NALL.
+            </summary>
+      <value>Default is S57LexicalLevel.Level0.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.SoundingDatum">
+      <summary>
+            Gets or sets the sounding datum, corresponding to DSPM-SDAT.
+            </summary>
+      <value>The default value is -1.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.UpdateDate">
+      <summary>
+            Gets or sets the update date, corresponding to DSID-UADT.
+            </summary>
+      <value>The default value is 20130101.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.UpdateVersion">
+      <summary>
+            Gets or sets the update version, corresponding to DSID-UPDN.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Chart.S57CellInformation.VerticalDatum">
+      <summary>
+            Gets or sets the vertical datum, corresponding to DSPM-VDAT.
+            </summary>
+      <value>The default value is -1.</value>
+    </member>
+    <member name="T:SuperMap.Chart.S57DatasetExtInfo">
+      <summary>
+            The S57DatasetExtInfo class. The extension information can be obtained by this class, such as dataset type, the acronym, the code and the dataset related to the attribute dataset, and so on.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetExtInfo.#ctor(SuperMap.Data.Dataset)">
+      <summary>
+            Creates a new instance of the S57DatasetExtInfo object. 
+             </summary>
+      <param name="dataset">The specified Dataset object.</param>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetExtInfo.Dispose">
+      <summary>
+             Releases all resources used by the S57DatasetExtInfo.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetExtInfo.Finalize">
+      <summary>
+             Frees the resources of the current managed object before it is reclaimed by the garbage collector.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetExtInfo.Update">
+      <summary>
+            Writes the extension information into the dataset.
+            </summary>
+      <returns>Returns true if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetExtInfo.IsChartDataset">
+      <summary>
+            Determines whether to be the chart dataset by the extension information.
+            </summary>
+      <returns>A boolean value means whether to be the chart dataset, returns true if yes, or false otherwise.</returns>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetExtInfo.Dataset">
+      <summary>
+            Gets or sets the dataset.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetExtInfo.S57DatasetType">
+      <summary>
+            Gets or sets the type of the S-57 dataset.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetExtInfo.FeatureAcronym">
+      <summary>
+            Gets or sets the S-57 feature acronym. Only chart dataset with the <see cref="F:SuperMap.Chart.S57DatasetType.S57FEATURE">S57DatasetType.S57FEATURE</see> type is supported.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetExtInfo.FeatureCode">
+      <summary>
+            Gets or sets the S-57 feature code. Only chart dataset with the <see cref="F:SuperMap.Chart.S57DatasetType.S57FEATURE">S57DatasetType.S57FEATURE</see> type is supported.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.S57DatasetGroup">
+      <summary>
+            The S-57 chart dataset grouping class.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroup.PrjCoordSys">
+      <summary>
+            Gets the coordinate system of the chart corresponding to the current S-57 chart dataset group.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.S57DatasetGroupExtInfo">
+      <summary>
+            The S57DatasetGroupExtInfo class. This class could be used get the grouped extension of the dataset, which includes the filename, the default scale, the spatial isolated node dataset, the spatial linked node dataset and so on.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetGroupExtInfo.#ctor(SuperMap.Data.DatasetGroup)">
+      <summary>
+            Creates a new S57DatasetGroupExtInfo object according to the specified arguments. 
+             </summary>
+      <param name="datasetGroup">The specified DatasetGroup object.</param>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetGroupExtInfo.Dispose">
+      <summary>
+             Releases all resources used by the S57DatasetGroupExtInfo.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetGroupExtInfo.Finalize">
+      <summary>
+             Frees the resources of the current managed object before it is reclaimed by the garbage collector.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetGroupExtInfo.Update">
+      <summary>
+            Writes the extension information to the dataset group. If this interface isn't called, the information cannot be written to the dataset group. 
+            </summary>
+      <returns>Returns true if successful, otherwise returns false</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetGroupExtInfo.IsChartDatasetGroup">
+      <summary>
+            Determines whether it is the chart dataset group by the extension information.
+            </summary>
+      <returns>A Boolean value indicates whether to be the chart dataset group, true means yes, or false otherwise.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetGroupExtInfo.GetFeatureDataset(System.Int32,SuperMap.Data.DatasetType)">
+      <summary>
+            Gets the feature dataset according to the feature code value and the dataset type (the geometry type). The dataset type contains <see cref="F:SuperMap.Data.DatasetType.Point">Point</see>, <see cref="F:SuperMap.Data.DatasetType.Line"> Line</see>, <see cref="F:SuperMap.Data.DatasetType.Region">Region</see>, and <see cref="F:SuperMap.Data.DatasetType.Tabular">Tabular</see>.
+            </summary>
+      <param name="code">The specified feature code.</param>
+      <param name="eType">The specified type of dataset.</param>
+      <returns>The feature dataset.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetGroupExtInfo.SetFeatureDataset(SuperMap.Data.Dataset)">
+      <summary>
+            Sets the feature dataset.
+            <para>The dataset requires that the extension information of the dataset has been set. If the current dataset group already contains the dataset with the same type, then the set fails. Because the feature with the same type has multiple geometry types. Therefore, a kind of features in the chart dataset group contains the dataset with several types, and every type is unique.</para></summary>
+      <param name="dataset">
+      </param>
+      <returns>Returns true if successful,otherwise returns false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57DatasetGroupExtInfo.DeleteFeature(System.Int32,SuperMap.Data.DatasetType)">
+      <summary>
+             Deletes the feature dataset with the specified code and the type (the geometry type).
+            </summary>
+      <param name="code">This specified feature code.</param>
+      <param name="eType">The specified type of dataset.</param>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.DatasetGroup">
+      <summary>
+            Gets or sets the DatasetGroup.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.ChartCellName">
+      <summary>
+             Gets or sets the filename of the chart. It's saved in the DSNM field.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.ChartScale">
+      <summary>
+            Gets or sets the scale of the layer.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.PrjCoordSys">
+      <summary>
+            Gets or sets the chart coordinates. Its supports WGS1984 and World Mercator.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.DSIDDataset">
+      <summary>
+            Gets or sets the DSID dataset. It supports the <see cref="F:SuperMap.Chart.S57DatasetType.S57DSID">S57DSID</see> type in the <see cref="T:SuperMap.Chart.S57DatasetType">S57DatasetType</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.VectorIsolatedDataset">
+      <summary>
+            Gets or sets the spatial isolated node dataset. It supports the <see cref="F:SuperMap.Chart.S57DatasetType.S57VI">S57VI</see> type in the <see cref="T:SuperMap.Chart.S57DatasetType">S57DatasetType</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.VectorConnectedDataset">
+      <summary>
+             Gets or sets the spatial linked node dataset. It supports the <see cref="F:SuperMap.Chart.S57DatasetType.S57VC">S57VI</see> type in the <see cref="T:SuperMap.Chart.S57DatasetType">S57DatasetType</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.VectorEdgeDataset">
+      <summary>
+            Gets or sets the spatial boundary line dataset. It supports the <see cref="F:SuperMap.Chart.S57DatasetType.S57VE">S57VE</see> type in the <see cref="T:SuperMap.Chart.S57DatasetType">S57DatasetType</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.FeatureToEdgeDataset">
+      <summary>
+            Gets or sets the dataset which stores the topology relationship from the feature to the spatial boundary. It supports the <see cref="F:SuperMap.Chart.S57DatasetType.S57FVE">S57FVE</see> type in the <see cref="T:SuperMap.Chart.S57DatasetType">S57DatasetType</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.FeatureToPointDataset">
+      <summary>
+             Gets or sets the dataset which stores the topology relationship from the feature to the spatial points (including the isolated nodes and the link nodes). It supports the <see cref="F:SuperMap.Chart.S57DatasetType.S57FVP">S57FVP</see> type in the <see cref="T:SuperMap.Chart.S57DatasetType">S57DatasetType</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.FeatureRelationShipDataset">
+      <summary>
+             Gets or sets the dataset which stores the relationships between the features. It supports the <see cref="F:SuperMap.Chart.S57DatasetType.S57RS">S57RS</see> type in the <see cref="T:SuperMap.Chart.S57DatasetType">S57DatasetType</see>.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57DatasetGroupExtInfo.FeatureDatasets">
+      <summary>
+             Gets or sets all the feature datasets in the current map sheet. It supports the <see cref="F:SuperMap.Chart.S57DatasetType.S57FEATURE">S57FEATURE</see> type in the <see cref="T:SuperMap.Chart.S57DatasetType">S57DatasetType</see>.
+             </summary>
+    </member>
+    <member name="T:SuperMap.Chart.S57DatasetType">
+      <summary>
+            This class defines the type constant of the chart dataset to be imported.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57DatasetType.NONE">
+      <summary>
+            Non-chart dataset.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57DatasetType.S57FEATURE">
+      <summary>
+            The feature dataset.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57DatasetType.S57DSID">
+      <summary>
+            The dataset that stores the DSID and DSPM field in the S-57 file.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57DatasetType.S57VI">
+      <summary>
+            The dataset that stores the spatial isolated points.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57DatasetType.S57VC">
+      <summary>
+            The dataset that stores the spatial link node.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57DatasetType.S57VE">
+      <summary>
+            The dataset that stores the spatial boundaries.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57DatasetType.S57FVE">
+      <summary>
+            The dataset that stores the spatial topology relationship from the feature object to the spatial boundary object.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57DatasetType.S57FVP">
+      <summary>
+            The dataset that stores the spatial topology relationship from the feature object to the spatial point (isolated point and link node).
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57DatasetType.S57RS">
+      <summary>
+            The dataset that stores the connection relationships between feature objects.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.AttributeSpec">
+      <summary>
+            The AttributeSpecs class. It’s used to provide the attribute fields of the features in the chart. For example, the ENC 3.1 version.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeSpec.Code">
+      <summary>
+            Gets the attribute field code.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Chart.AttributeSpec.Required">
+      <summary>
+            Gets whether this attribute is required for the feature.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.FeatureInfoSpec">
+      <summary>
+            The FeatureInfoSpecs class. It's used to describe the basic information of the specification feature of the products, which includes the name, type and the related attributes. For example, the ENC 3.1 version.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpec.Acronym">
+      <summary>
+            Gets the acronym of the feature.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpec.Name">
+      <summary>
+            Gets the name of the object.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpec.LocalName">
+      <summary>
+            Gets the localization name of the object.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpec.Code">
+      <summary>
+            Gets the code of the feature.
+            </summary>
+      <value>The default value is 0.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpec.Primitive">
+      <summary>
+            Gets the object type which could be applied by the feature.
+            </summary>
+      <value>The default value is String.Empty.</value>
+    </member>
+    <member name="P:SuperMap.Chart.FeatureInfoSpec.AttributeFields">
+      <summary>
+            Gets the attribute fields of the feature.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.S57EditDatasetGroup">
+      <summary>
+             Class of dataset group for editable S-57 chart data. This class is used to edit and query the chart data. It can create, delete feature datasets, append records to the feature dataset, set basic information of nautical chart, set chain node topological relations for the chart, and check S-58 data.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.CreateFeatureDataset(System.Int32,SuperMap.Data.DatasetType)">
+      <summary>
+            Creates a new feature dataset according to the specified feature code and the dataset type, and adds this new feature dataset to the current editable S-57 chart dataset group. The creation will be failed if the corresponding feature dataset exists.
+            </summary>
+      <param name="code">This specified feature code.</param>
+      <param name="datasetType">The specified dataset type. Point, line, region and tabular are supported.</param>
+      <returns>The new feature dataset. Return null if the creation is failed.</returns>
+      <overloads>
+        <summary>
+            Creates a new feature dataset according to the specified arguments, and adds this new feature dataset to the current editable S-57 chart dataset group.
+            </summary>
+      </overloads>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.CreateFeatureDataset(System.String,SuperMap.Data.DatasetType)">
+      <summary>
+            Creates a new feature dataset according to the specified feature acronym and the dataset type, and adds this new feature dataset to the current editable S-57 chart dataset group. The creation will be failed if the corresponding feature dataset exists.
+            </summary>
+      <param name="acronym">The specified feature acronym.</param>
+      <param name="datasetType">The specified dataset type. Point, line, region and tabular are supported.</param>
+      <returns>The new feature dataset. Return null if the creation is failed.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.AppendFeatureDataset(System.Int32,SuperMap.Data.Recordset,System.String[],System.String[],System.Boolean)">
+      <summary>
+            Appends recordset to the feature dataset with the given feature code and the dataset type from the current editable S-57 chart dataset group.
+            </summary>
+      <param name="code">This specified feature code.</param>
+      <param name="recordset">The specified feature dataset to be appended.</param>
+      <param name="sourceFields">The source field array, corresponding to the field in the source recordset to be appended.</param>
+      <param name="targetFields">The specified target field array, corresponding to the fields in the new or existed feature dataset.</param>
+      <param name="isCreateNewDataset">Whether to create a new feature dataset or not when the feature dataset doesn't exist. The new dataset will be created and the recordset appended if it is true; otherwise, false. Note, the recordset will be always appended to the dataset if the feature dataset exists, regardless of true or false.</param>
+      <returns>The feature dataset after being appended successfully.</returns>
+      <overloads>
+        <summary>
+            Appends the recordset to the feature dataset of the current editable S-57 chart dataset group according to the given aurgments.
+            </summary>
+      </overloads>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.AppendFeatureDataset(System.String,SuperMap.Data.Recordset,System.String[],System.String[],System.Boolean)">
+      <summary>
+            Appends recordset to the feature dataset with the given feature acronym and the dataset type from the current editable S-57 chart dataset group.
+            </summary>
+      <param name="acronym">The specified feature acronym.</param>
+      <param name="recordset">The specified feature dataset to be appended.</param>
+      <param name="sourceFields">The source field array, corresponding to the field in the source recordset to be appended.</param>
+      <param name="targetFields">The specified target field array, corresponding to the fields in the new or existed feature dataset.</param>
+      <param name="isCreateNewDataset">Whether to create a new feature dataset or not when the feature dataset doesn't exist. The new dataset will be created and the recordset appended if it is true; otherwise, false. Note, the recordset will be always appended to the dataset if the feature dataset exists, regardless of true or false.</param>
+      <returns>The feature dataset after being appended successfully.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.RemoveFeatureDataset(System.Int32,SuperMap.Data.DatasetType)">
+      <summary>
+            Deletes the feature dataset with the given feature code and the dataset type from the current editable S-57 chart dataset group.
+            </summary>
+      <param name="code">This specified feature code.</param>
+      <param name="datasetType">The specified dataset type. Point, line, region and tabular are supported.</param>
+      <returns>Returns true if successful; otherwise, false.</returns>
+      <overloads>
+        <summary>
+            Deletes a feature dataset from the current editable S-57 chart dataset group according to the given argument.
+            </summary>
+      </overloads>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.RemoveFeatureDataset(System.String,SuperMap.Data.DatasetType)">
+      <summary>
+            Deletes the feature dataset with the given feature acronym and the dataset type from the current editable S-57 chart dataset group.
+            </summary>
+      <param name="acronym">The specified feature acronym.</param>
+      <param name="datasetType">The specified dataset type. Point, line, region and tabular are supported.</param>
+      <returns>Returns true if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.Validate(SuperMap.Chart.ChartValidateParameter,System.Boolean)">
+      <summary>
+            Check the chart data according to the given parameters.
+            </summary>
+      <param name="parameter">The specified chart validation parameter.</param>
+      <param name="isShowProgress">Whether to show the progress information or not. Show the progress bar if it is true; otherwise, false.</param>
+      <returns>The collection of the chart data after being validated.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.BuildS57TopologyRelation(System.Boolean)">
+      <summary>
+            Builds the chain node topology for the chart that corresponds to the current S-57 chart dataset group.
+            </summary>
+      <param name="isShowProgress">Whether to show the progress information or not. Show the progress bar if it is true; otherwise, false.</param>
+      <returns>true if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.GetFeatureToSpatialPointers(System.Int64,SuperMap.Data.GeometryType,System.Boolean,System.Boolean)">
+      <summary>
+            Gets the feature objects reference to the spatial objects. The precondition is that the topology relation must be built.
+            </summary>
+      <param name="featureRCID">This specified feature RCID.</param>
+      <param name="geometryType">The geometry type of the specified feature object.</param>
+      <param name="isSpatialAttribute">Whether to return spatial attributes or not.</param>
+      <param name="isGeometry">Whether to return spatial geometries or not.</param>
+      <returns>The reference information array of feature objects to spatial objects.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.SetMaskingIndicator(System.Int64,System.String,SuperMap.Chart.S57MaskingIndicator)">
+      <summary>
+            Sets the masking indicator of the feature objects reference to the spatial objects. It is only valid for the line and region feature objects. The precondition is that the topology relation must be built.
+            </summary>
+      <param name="featureRCID">This specified feature RCID.</param>
+      <param name="spatialObjectID">The specified spatial object ID. For the spatial object ID, please refer to the  <see cref="P:SuperMap.Chart.S57FeatureToSpatialPointer.SpatialObjectID">SpatialObjectID</see> property of the <see cref="T:SuperMap.Chart.S57FeatureToSpatialPointer">S57FeatureToSpatialPointer</see> class.</param>
+      <param name="maskingIndicator">The specified masking indicator type.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.GetMaskingIndicator(System.Int64,System.String)">
+      <summary>
+            Gets the masking indicator of the feature objects reference to the spatial objects. It is only valid for the line and region feature objects. The precondition is that the topology relation must be built.
+            </summary>
+      <param name="featureRCID">The specified feature RCID.</param>
+      <param name="spatialObjectID">The specified spatial object ID. For the spatial object ID, please refer to the  <see cref="P:SuperMap.Chart.S57FeatureToSpatialPointer.SpatialObjectID">SpatialObjectID</see> property of the <see cref="T:SuperMap.Chart.S57FeatureToSpatialPointer">S57FeatureToSpatialPointer</see> class.</param>
+      <returns>The masking indicator of the feature objects reference to the spatial objects.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.SetSpatialAttribute(System.String,System.String,System.Object)">
+      <summary>
+            Sets the spatial attribute value.
+            </summary>
+      <param name="spatialObjectID">The specified spatial object ID. For the spatial object ID, please refer to the  <see cref="P:SuperMap.Chart.S57FeatureToSpatialPointer.SpatialObjectID">SpatialObjectID</see> property of the <see cref="T:SuperMap.Chart.S57FeatureToSpatialPointer">S57FeatureToSpatialPointer</see> class.</param>
+      <param name="attributeAcronym">The acronym of the specified attribute.</param>
+      <param name="value">The specified attribute value.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.GetSpatialAttributes(System.String)">
+      <summary>
+            Gets the spatial attribute value.
+            </summary>
+      <param name="spatialObjectID">The specified spatial object ID. For the spatial object ID, please refer to the  <see cref="P:SuperMap.Chart.S57FeatureToSpatialPointer.SpatialObjectID">SpatialObjectID</see> property of the <see cref="T:SuperMap.Chart.S57FeatureToSpatialPointer">S57FeatureToSpatialPointer</see> class.</param>
+      <returns>The array of the spatial attribute values.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.GetSpatialAttribute(System.String,System.String)">
+      <summary>
+            Gets the spatial attribute value.
+            </summary>
+      <param name="spatialObjectID">The specified spatial object ID. For the spatial object ID, please refer to the  <see cref="P:SuperMap.Chart.S57FeatureToSpatialPointer.SpatialObjectID">SpatialObjectID</see> property of the <see cref="T:SuperMap.Chart.S57FeatureToSpatialPointer">S57FeatureToSpatialPointer</see> class.</param>
+      <param name="attributeAcronym">The acronym of the specified attribute to get.</param>
+      <returns>The spatial attribute value.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.GetSpatialGeometry(System.String)">
+      <summary>
+            Gets the spatial geometry object.
+            </summary>
+      <param name="spatialObjectID">The specified spatial object ID. For the spatial object ID, please refer to the  <see cref="P:SuperMap.Chart.S57FeatureToSpatialPointer.SpatialObjectID">SpatialObjectID</see> property of the <see cref="T:SuperMap.Chart.S57FeatureToSpatialPointer">S57FeatureToSpatialPointer</see> class.</param>
+      <returns>The spatial geometry object.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.BuildFOIDs(System.Boolean)">
+      <summary>
+            Recreates the feature object ID (FOID) of all feature objects.
+            </summary>
+      <param name="isShowProgress">Whether to show the progress information or not. Show the progress bar if it is true; otherwise, false.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.GetFIDS">
+      <summary>
+            Gets the assigned feature ID distinction (FIDS) when the editable S-57 chart dataset group is created.
+            </summary>
+      <returns>The assigned feature ID distinction (FIDS)  for the editable S-57 chart dataset group.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57EditDatasetGroup.GetFIDNSequenceName">
+      <summary>
+            Gets the FIDN sequence name of the datasource where the editable S-57 chart dataset group stores.
+            </summary>
+      <returns>The FIDN sequence name of the datasource where the editable S-57 chart dataset group stores.</returns>
+    </member>
+    <member name="P:SuperMap.Chart.S57EditDatasetGroup.CellInformation">
+      <summary>
+            Gets or sets the chart definition parameters of the current editable S-57 dataset group.
+            </summary>
+    </member>
+    <member name="E:SuperMap.Chart.S57EditDatasetGroup.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated. 
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.S57FeatureToSpatialPointer">
+      <summary>
+            S57FeatureToSpatialPointer is used for retrieving the reference relationships between features and spatial objects, including the record ID of the referenced spatial object (RCID), the directions that Linear and planar features are relative to the spatial objects, the masking indicator of boundary lines and the differentiation between the internal boundary line and the external boundary line of the planar feature.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57FeatureToSpatialPointer.Dispose">
+      <summary>
+            Releases all resources that the object occupies. 
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57FeatureToSpatialPointer.SpatialObjectID">
+      <summary>
+            Gets an unique identifier of spatial identifier objects.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57FeatureToSpatialPointer.Orientation">
+      <summary>
+            Gets the reference way for the direction of the edge (linear spatial object).
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57FeatureToSpatialPointer.UsageIndicator">
+      <summary>
+            Gets the usage guide of the planar features to reference edges (linear spatial features).
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57FeatureToSpatialPointer.MaskingIndicator">
+      <summary>
+            Gets the masking indicator of reference edges (linear spatial features).
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57FeatureToSpatialPointer.Geometry">
+      <summary>
+            Gets the geometry object of the referenced spatial features.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S57FeatureToSpatialPointer.SpatialAttributes">
+      <summary>
+            Gets the property information of the referenced spatial features.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.S57IntendedUsage">
+      <summary>
+            This enumeration defines the nautical purpose constant of the S-57 chart.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57IntendedUsage.OverView">
+      <summary>
+            For review,namely schematic diagram.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57IntendedUsage.General">
+      <summary>
+            For general purpose, namely general map.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57IntendedUsage.Coastal">
+      <summary>
+            For coastal areas, namely coastal map.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57IntendedUsage.Approach">
+      <summary>
+            For inshore areas, namely the entrance map.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57IntendedUsage.Harbour">
+      <summary>
+            For ports, namely port map.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57IntendedUsage.Berthing">
+      <summary>
+            For berths, namely anchoring map.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.S57LexicalLevel">
+      <summary>
+            This enumeration defines S-57 character set constant.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57LexicalLevel.Level0">
+      <summary>
+            Level 0, i.e., ASC Ⅱ text, ISO / IEC 646 international reference version (IRV).
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57LexicalLevel.Level1">
+      <summary>
+            Level 1, i.e., the first part of the ISO 8859, the Latin alphabet series 1 (such as Western Europe, Latin). Level 1 character set can be directly used in almost all computer systems.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57LexicalLevel.Level2">
+      <summary>
+            Level 2, i.e., the UCS-2 complement level 1 (non-combining characters), ISO/IEC 10646 multilingual platform (for example, including Latin characters, Greek, Cyrillic, Chinese, Japanese, etc.). Level 2 character set is suitable for almost all languages​​, but its coding efficiency is low.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.S57MaskingIndicator">
+      <summary>
+            This enumeration defines the mask indicating constant of the spatial object.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57MaskingIndicator.Mask">
+      <summary>
+            Shield.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57MaskingIndicator.Show">
+      <summary>
+            Display.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Chart.S57MaskingIndicator.None">
+      <summary>
+            Irrelevant to the mask.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Chart.S57SoundingGroup">
+      <summary>
+            The S57SoundingGroup class is used for editing the soundings and providing rich functions such as grouping the soundings, adding/deleting sounding points into the sounding group and retrieving and modifying the feature attributes of soundings.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.#ctor">
+      <summary>
+            Constructs a new S57SoundingGroup object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.#ctor(SuperMap.Chart.S57EditDatasetGroup)">
+      <summary>
+            Constructs a new S57SoundingGroup object according to the specified S57EditDatasetGroup object.
+            </summary>
+      <param name="s57EditDatasetGroup">The specified S57EditDatasetGroup object.</param>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.SetS57EditDatasetGroup(SuperMap.Chart.S57EditDatasetGroup)">
+      <summary>
+            Set the editable S-57 chart dataset group.
+            </summary>
+      <param name="s57EditDatasetGroup">The editable S-57 chart dataset group.</param>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.GroupSoundingAll(System.Int32[])">
+      <summary>
+            Groups the specified sounding points and automatically divides the soundings point with same attributes into a group.
+            </summary>
+      <param name="ids">The specified sounding points ID array to be grouped. If it is specified as an null array, then all the sounding points in the sounding dataset will be grouped by default.</param>
+      <returns>The feature long name of each sounding group. If grouping is failed, then return null.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.GroupSounding(System.Int32[])">
+      <summary>
+            The specified sounding points are grouped into one group.
+            </summary>
+      <param name="ids">The specified water depth ID array.</param>
+      <returns>The feature long name after grouping. If grouping is failed, then return null.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.AddSoundingsToGroup(System.String,System.Int32[])">
+      <summary>
+            Adds the specified sounding points into an existing sounding group.
+            </summary>
+      <param name="soundingFOID">The long name of the specified existing sounding group.</param>
+      <param name="ids">The specified sounding ID group to be added into the sounding group.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.RemoveSoundingsFromGroup(System.String,System.Int32[])">
+      <summary>
+            Deletes the specified sounding points from an existing sounding group.
+            </summary>
+      <param name="soundingFOID">The long name of the specified sounding group.</param>
+      <param name="ids">The specified sounding points to be deleted.</param>
+      <returns>Returns true if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.GetSoundingGroupFeatureIDs">
+      <summary>
+            Gets the FOID for all the sounding groups in the current chart.
+            </summary>
+      <returns>The FOID array of the sounding group.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.GetSoundingPoints(System.String)">
+      <summary>
+            Gets the sounding point object of the specified FOID.
+            </summary>
+      <param name="soundingFOID">The long name of the specified sounding point.</param>
+      <returns>The sounding point array with the specified FOID. The sounding point uses the GeoPoint3D object for representation. The Z value is the sounding value. Unit is meter.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.GetSoundingGroupAttributes(System.String)">
+      <summary>
+            Gets the feature attribute of the sounding group of the specified FOID.
+            </summary>
+      <param name="soundingFOID">The long name of the specified sounding group.</param>
+      <returns>The feature attribute collection of sounding group.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.GetSoundingGroupAttribute(System.String,System.String)">
+      <summary>
+            Gets the value of the specified attribute of the sounding group.
+            </summary>
+      <param name="soundingFOID">The long name of the specified sounding group.</param>
+      <param name="attributeAcronym">The specified property acronym.</param>
+      <returns>The attribute value of the specified attribute acronym.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.SetSoundingGroupAttribute(System.String,System.String,System.Object)">
+      <summary>
+            Sets the attribute value of the specified attribute of the sounding group.
+            </summary>
+      <param name="soundingFOID">The long name of the specified sounding group.</param>
+      <param name="attributeAcronym">The specified property acronym.</param>
+      <param name="value">The specified attribute value.</param>
+      <returns>Returns true if successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.GetSoundingDepth(System.Int32)">
+      <summary>
+            Gets the depth of the sounding point.
+            </summary>
+      <param name="id">The specified soundings IDs.</param>
+      <returns>The given depth of the sounding point.</returns>
+    </member>
+    <member name="M:SuperMap.Chart.S57SoundingGroup.SetSoundingDepth(System.Int32,System.Double)">
+      <summary>
+            Sets the depth of the sounding point.
+            </summary>
+      <param name="id">The specified soundings IDs.</param>
+      <param name="depth">The specified depth.</param>
+      <returns>True if successful; otherwise, false.</returns>
+    </member>
+    <member name="T:SuperMap.Chart.S58Information">
+      <summary>
+            The S-58 check item information class. This class is used to get S-58 check ID, check contents, and error type.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S58Information.CheckID">
+      <summary>
+            Gets the check ID of this S-58 chart.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S58Information.Level">
+      <summary>
+            Gets the error level of this S-58 chart.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S58Information.Description">
+      <summary>
+            Gets the checking description of this S-58 chart.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Chart.S58Information.Reference">
+      <summary>
+            Gets the reference of this S-58 chart, i.e., the content position of S-57 standard.
+            </summary>
+    </member>
+  </members>
+</doc>

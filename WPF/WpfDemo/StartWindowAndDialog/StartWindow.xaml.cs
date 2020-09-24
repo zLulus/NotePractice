@@ -17,7 +17,7 @@ namespace WpfDemo.StartWindowAndDialog
     /// <summary>
     /// StartWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class StartWindow : Window
+    public partial class StartWindow : UserControl
     {
         public StartWindow()
         {

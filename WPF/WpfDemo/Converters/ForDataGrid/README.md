@@ -1,0 +1,2 @@
+﻿DataGrid的Converter获得每行的数据    
+[How to bind to WPF DataGrid row class instance and not it's property?](https://stackoverflow.com/questions/39873228/how-to-bind-to-wpf-datagrid-row-class-instance-and-not-its-property)    

@@ -1,0 +1,12 @@
+<nz-card nzTitle="前往Page2">
+    <input nz-input placeholder="传参" [(ngModel)]="parameter" />
+    <input nz-input placeholder="传参2" [(ngModel)]="parameter2" />
+    <input nz-input placeholder="传参3" [(ngModel)]="parameter3" />
+    <a [routerLink]="['/router-link-page2', parameter,parameter2,parameter3]">前往Page2</a>
+</nz-card>
+<nz-card nzTitle="前往Page3">
+    <input nz-input placeholder="传参" [(ngModel)]="page3Parameter" />
+    <a [routerLink]="['/router-link-page3']" [queryParams]="{page3Parameter:page3Parameter | json }">前往Page3</a>
+</nz-card>
+
+

@@ -7,6 +7,9 @@ using Xamarin.Forms;
 using XamarinDemo.Bindings;
 using XamarinDemo.CustomizingCell;
 using XamarinDemo.DemoPages;
+using XamarinDemo.Parameters;
+using XamarinDemo.PhoneCalls;
+using XamarinDemo.PopUps;
 
 namespace XamarinDemo
 {
@@ -61,6 +64,21 @@ namespace XamarinDemo
         public void BindingHeightClicked(object sender, EventArgs e)
         {
             Navigation.PushModalAsync(new BindingHeight());
+        }
+
+        public void SetParameterClicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new SetParameter());
+        }
+
+        public void PopUpsClicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new PopUpsDemo());
+        }
+
+        public void PhoneCallsClicked(object sender, EventArgs e)
+        {
+            Navigation.PushModalAsync(new PhoneCall());
         }
     }
 }

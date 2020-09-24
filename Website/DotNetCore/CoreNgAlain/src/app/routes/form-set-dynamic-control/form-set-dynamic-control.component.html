@@ -1,0 +1,30 @@
+<div class="form-group" >
+    <label>切换form表单</label>
+</div>
+<div>
+    <nz-select [(ngModel)]="selectFormTypeId" class="form-control" name="modules" (ngModelChange)="setFormType()">
+        <nz-option *ngFor="let formType of formTypes" [nzValue]="formType.id" [nzLabel]="formType.name">
+        </nz-option>
+    </nz-select>
+</div>
+<form nz-form [formGroup]="validateForm">
+    <nz-form-item *ngFor="let property of properties;let i = index">
+        <nz-form-label [nzSm]="2" [nzXs]="2" nzRequired>{{i+1}} {{property.displayName}}</nz-form-label>
+        <!--输入框-->
+        <nz-form-control [nzSm]="4" [nzXs]="4" *ngIf="property.controlType==0">
+            <input nz-input [formControlName]="property.nameChain" type="text" class="form-control" name="{{property.nameChain}}" [(ngModel)]="dataObj[property.nameChain]">
+        </nz-form-control>
+        <!--密码框-->
+        <nz-form-control [nzSm]="4" [nzXs]="4" *ngIf="property.controlType==1">
+            <input nz-input type="password" [formControlName]="property.nameChain" class="form-control" name="{{property.nameChain}}" [(ngModel)]="dataObj[property.nameChain]">
+        </nz-form-control>
+        <!--下拉框-->
+        <nz-form-control [nzSm]="4" [nzXs]="4" *ngIf="property.controlType==2">
+            <nz-select [(ngModel)]="dataObj[property.nameChain]" class="form-control" name="modules" [formControlName]="property.nameChain">
+                <nz-option *ngFor="let city of cities" [nzValue]="city.id" [nzLabel]="city.name">
+                </nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+</form>
+<button (click)="getData()" nz-button>获得data</button>

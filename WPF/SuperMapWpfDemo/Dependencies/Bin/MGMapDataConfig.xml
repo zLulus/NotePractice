@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SuperMapMGDataMap>
+	<MGResources>
+		<GjbTextConfigPath>./Resource/MGMapData/GJBTextConfig/GJBTEXT.config</GjbTextConfigPath>
+		<DepthLabelConfigPath>./Resource/MGMapData/DataProcessConfig/labelofHaishen.xml</DepthLabelConfigPath>
+		<InverseDataConfigPath>./Resource/MGMapData/DataProcessConfig/unilateralJuchi.xml</InverseDataConfigPath>
+		<GJBDatasetSplitConfigPath>./Resource/MGMapData/DatasetSplits/Split_GJB.xml</GJBDatasetSplitConfigPath>
+	</MGResources>
+	<MGObjects>
+		<CodeFieldIndexName>编码</CodeFieldIndexName>
+	</MGObjects>
+</SuperMapMGDataMap>

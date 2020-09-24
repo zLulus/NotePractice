@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>军图插件卸载</title>
+    <desc>Created with Sketch.</desc>
+    <g id="军需图标" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-272.000000, -320.000000)">
+            <g id="军图插件卸载" transform="translate(272.000000, 320.000000)">
+                <g transform="translate(3.000000, 3.000000)">
+                    <rect id="矩形" fill="#FFFFFF" x="0" y="0" width="24" height="24" rx="1"></rect>
+                    <polygon id="无动画" fill="#808FA1" points="6.5 7.52786405 4.33688104 9 5.01286556 6.46737621 3 4.67376208 5.68130608 4.58065045 6.5 2 7.31869392 4.58065045 10 4.67376208 7.98713444 6.46737621 8.66311896 9"></polygon>
+                    <path d="M4.5,12.5 C4.5,11.3954305 5.3954305,10.5 6.5,10.5 C7.6045695,10.5 8.5,11.3954305 8.5,12.5 L12.5,12.5 L12.5,8.54128841 L12.9005339,8.45998431 C13.8247388,8.27238061 14.5,7.45540363 14.5,6.5 C14.5,5.54459637 13.8247388,4.72761939 12.9005339,4.54001569 L12.5,4.45871159 L12.5,0.5 L1,0.5 C0.723857625,0.5 0.5,0.723857625 0.5,1 L0.5,12.5 L4.5,12.5 Z" id="形状结合" stroke="#808FA1"></path>
+                    <rect id="矩形" stroke="#5D6D7E" x="0.5" y="0.5" width="23" height="23" rx="1"></rect>
+                    <polygon id="矩形" fill="#FFFFFF" points="14.0427246 12 24 12 24 24 12 24 12 14.0942383"></polygon>
+                    <rect id="矩形" stroke="#EF633F" fill="#FFFFFF" x="13.5" y="13.5" width="12" height="12" rx="1"></rect>
+                    <path d="M20.5912338,18.1366883 L23.863961,18.1366883 L23.863961,20.5912338 L20.5912338,20.5912338 L20.5912338,23.863961 L18.1366883,23.863961 L18.1366883,20.5912338 L14.863961,20.5912338 L14.863961,18.1366883 L18.1366883,18.1366883 L18.1366883,14.863961 L20.5912338,14.863961 L20.5912338,18.1366883 Z" id="形状结合" stroke="#EF633F" fill="#FFFFFF" transform="translate(19.363961, 19.363961) rotate(-315.000000) translate(-19.363961, -19.363961) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

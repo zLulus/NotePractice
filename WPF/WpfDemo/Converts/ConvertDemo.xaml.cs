@@ -19,7 +19,7 @@ namespace WpfDemo.Converts
     /// <summary>
     /// ConvertDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class ConvertDemo : Window
+    public partial class ConvertDemo : UserControl
     {
         public ConvertDemo()
         {

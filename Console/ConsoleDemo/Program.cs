@@ -1,11 +1,26 @@
 ﻿using CodeLibrary;
+using CodeLibrary.CancleRequest;
+using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
+using CodeLibrary.IPAddresses;
+using CodeLibrary.ReadMdbFiles;
+using CodeLibrary.SendEmail;
+using CodeLibrary.SimulateMouseAndKeyboardEvent;
+using CodeLibrary.SpoofIpAddress;
+using CodeLibrary.UsePostgresql;
+using CodeLibrary.UsePostgresql.Enums;
+using CodeLibrary.UsePostgresql.Models;
+using CodeLibrary.UseRabbitMQ;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleDemo
@@ -32,7 +47,97 @@ namespace ConsoleDemo
             //ExcuteJsDemo.ExcuteJs();
 
             //C#调用js phantomjs
-            ExcuteJsByPhantomjsDemo.ExcuteJs();
+            //ExcuteJsByPhantomjsDemo.ExcuteJs();
+
+            //i++,++i
+            //TestCycle();
+
+            //Aggregate
+            //TestAggregate();
+
+            //C#调用Python
+            //保证已安装任意版本的python，并将其添加到环境变量(或者拷贝python.exe至bin目录根目录)
+            //CSharpUsingPythonDemo.ExcutePython();
+
+            //Postgresql测试
+            //Task.Run(async () =>
+            //{
+            //    await UsePostgresqlDemo.PostgresqlTest();
+            //});
+
+            //send email
+            //SendEmailDemo.Run();
+
+            //Spoof Ip Address
+            //string url = "";
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    SpoofIpAddressDemo.get(url);
+            //    Thread.Sleep(500);
+            //    Console.WriteLine(i);
+            //}
+
+            //Spoof Ip Address 3
+            //免费代理IP:
+            //需要翻墙：https://free-proxy-list.net/
+            //http://ip.zdaye.com/dayProxy/ip/220993.html
+            //string ip = "";
+            //int port = 80;
+            //string url = "";
+            ////验证代理IP地址是否可用
+            //SpoofIpAddressDemo3.ChecKedForIP((result) => { Console.WriteLine($"ChecKedForIP:{result}"); }, ip, port);
+            ////在请求时设置代理
+            //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyWhileRequest(ip, port,url);
+            ////全局设置代理
+            //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyForSystem(ip, port,url);
+
+            //模拟键盘、鼠标操作
+            //SimulateMouseAndKeyboardEventDemo.Run();
+
+            //网络延迟，取消请求
+            //CancleRequestDemo.CancleRequestByTimeout("http://localhost:1107");
+            //CancleRequestDemo.CancleRequestByTask("http://localhost:1107");
+
+            ////RabbitMQ Receiver
+            //var host = "localhost";
+            //var port = 5673;
+            //var userName = "guest";
+            //var password = "guest";
+            ////Receive.Run(host, port, userName, password);
+            ////Worker.Run(host, port, userName, password);
+            //ReceiveLogs.Run(host, port, userName, password);
+
+            //获得IPAddress列表
+            //IPAddressTool.GetIPAddressList();
+
+            //读取mdb文件
+            ReadMdbFileDemo.Run();
+
+
+            Console.ReadLine();
+        }
+
+        private static void TestAggregate()
+        {
+            var list = Enumerable.Range(1, 100);
+            var result = list.Aggregate((a, b) => (a + b));
+            Console.WriteLine($"1到100的和为{result}");
+            var nums = Enumerable.Range(2, 4);
+            var sum = nums.Aggregate(1, (a, b) => a * b);
+            Console.WriteLine($"2到5的积为{sum}");
+        }
+
+        private static void TestCycle()
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine(i);
+            }
+            for (int i = 0; i < 5; ++i)
+            {
+                Console.WriteLine(i);
+            }
+            Console.Read();
         }
 
         #region 关闭之前进行一些操作

@@ -1,0 +1,479 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Data.TileStorage</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Data.TileStorage.TileContent">
+      <summary>
+            Tile content management class. The data is the binary contents corresponding to every Tile. For example, Jpg caches is a Jpg picture content.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileContent.#ctor">
+      <summary>
+            The default constructor for constructing a new TileContent object.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileContent.#ctor(System.Byte[])">
+      <summary>
+            Initializes a new instance of the TileContent class with the specified parameters.
+             </summary>
+      <param name="data">The specified tile content.</param>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileContent.Dispose">
+      <summary>
+            Releases all resources that the object occupies.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContent.Key">
+      <summary>
+            Gets or sets the ID of the tile.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContent.Data">
+      <summary>
+            Gets or sets the content of the tile.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileDataType">
+      <summary>
+            This enumeration defines the data type of the cache tiles.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.NONE">
+      <summary>
+            Known format.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.DDS">
+      <summary>
+            DDS format.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.JPG">
+      <summary>
+            JPG
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.PNG">
+      <summary>
+            portal network graphic (PNG) format
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.GIF">
+      <summary>
+            GIF format.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileDataType.DXTZ">
+      <summary>
+            DXTZ format.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.ImageSizeOption">
+      <summary>
+            The enumeration defines the pixel sizes of cache tiles.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.ImageSizeOption.IBS_256">
+      <summary>
+            256*256
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.ImageSizeOption.IBS_512">
+      <summary>
+            512*512
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileContentInfo">
+      <summary>
+      </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileContentInfo.#ctor">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContentInfo.Level">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContentInfo.Row">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContentInfo.Column">
+      <summary>
+      </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileContentInfo.TilesetName">
+      <summary>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageConnection">
+      <summary>
+            Class for tile connection management. It is similar to the class of datasource connection management. TileStorageConnection stores service name, database, cache name, user name and password. If it is file-type, you can use service name to store the file path.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageConnection.#ctor">
+      <summary>
+            The default constructor for constructing a new TileStorageConnection object.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageConnection.FromXML(System.String)">
+      <summary>
+            Reads the service name, database, cache name, username and password from the specified XML string.
+            </summary>
+      <param name="xml">The specified XML string.</param>
+      <returns>Whether it is successful of reading. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageConnection.ToXML">
+      <summary>
+            Saves the server name, database, cache name, user name and password to XML string.
+            </summary>
+      <returns>The XML string.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageConnection.Dispose">
+      <summary>
+            Releases all resources that the object occupies.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.StorageType">
+      <summary>
+            Gets or sets the storage type of the caches.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.Server">
+      <summary>
+            Gets or sets the server name.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.Database">
+      <summary>
+            Gets or sets the database name.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.Name">
+      <summary>
+            Gets or sets the server name.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.User">
+      <summary>
+            Gets or sets the user name.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageConnection.Password">
+      <summary>
+            Gets or sets password.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageExtendInfo">
+      <summary>
+            The administration construction of user customized metadata storage.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageExtendInfo.#ctor">
+      <summary>
+            The default constructor for constructing a new TileStorageExtendInfo object.
+             </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageExtendInfo.Name">
+      <summary>
+            Gets or sets the name of extended property.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageExtendInfo.Value">
+      <summary>
+            Gets or sets the value of extended property.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageInfo">
+      <summary>
+            The cache information management class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.#ctor">
+      <summary>
+            The default constructor for constructing a new TileStorageInfo object.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.GetResolutions">
+      <summary>
+            Gets all scales of caches.
+            </summary>
+      <returns>The array that stores all scales.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.AddResolution(System.Double)">
+      <summary>
+            Adds a cache scale.
+            </summary>
+      <param name="resolution">the scale.</param>
+      <returns>Whether it is successful of adding. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.DeleteResolution(System.Double)">
+      <summary>
+            Deletes a cache scale.
+            </summary>
+      <param name="resolution">the scale.</param>
+      <returns>Whether it is successful of deleting. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.AddExtendInfo(System.String,System.String)">
+      <summary>
+            Adds the administration construction of user customized metadata storage.
+            </summary>
+      <param name="name">The name of the extended property.</param>
+      <param name="value">The value of extended property.</param>
+      <returns>Whether it is successful of adding. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.DeleteExtendInfo(System.String,System.String)">
+      <summary>
+            Deletes the administration construction of user customized metadata storage.
+            </summary>
+      <param name="name">The name of the extended property.</param>
+      <param name="value">The value of extended property.</param>
+      <returns>Whether it is successful of deleting. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.FromXML(System.String)">
+      <summary>
+            Reads the service name, database, cache name, username and password from the specified XML string.
+            </summary>
+      <param name="xml">The specified XML string.</param>
+      <returns>Whether it is successful of reading. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.ToXML">
+      <summary>
+            Saves the server name, database, cache name, user name and password to XML string.
+            </summary>
+      <returns>The XML string.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageInfo.Dispose">
+      <summary>
+            Releases all resources that the object occupies.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.StorageType">
+      <summary>
+            Gets the storage type of the extracted cache.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.Name">
+      <summary>
+            Gets the cache name, which is the same as the Name of TileStorageConnection.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.Bounds">
+      <summary>
+            Gets or sets the cache range.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.PrjCoordSys">
+      <summary>
+            Gets or sets the projected coordinate system for the caches
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.DataType">
+      <summary>
+            Gets or sets the data type of cache tiles.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.TileStorageSize">
+      <summary>
+            Gets or sets the pixel size of the cache tile.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.Origin">
+      <summary>
+            Gets or sets the origin point of the cached image.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.ExtendInfos">
+      <summary>
+            Gets the administration construction of user customized metadata storage.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.Description">
+      <summary>
+            Gets or sets the descriptive information of caches.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageInfo.Version">
+      <summary>
+            Gets or sets the version of the cache.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageLevelInfo">
+      <summary>
+            The cache level information management class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageLevelInfo.#ctor">
+      <summary>
+            The default constructor for constructing a new TileStorageLevelInfo object.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageLevelInfo.level">
+      <summary>
+            Gets or sets the number of cache level.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageLevelInfo.Width">
+      <summary>
+            Gets or sets the width of cache level.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageLevelInfo.Height">
+      <summary>
+            Gets or sets the height of cache level.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageLevelInfo.Resolution">
+      <summary>
+            Gets or sets the resolution of cache level.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageManager">
+      <summary>
+            The cache operation class.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.#ctor">
+      <summary>
+            The default constructor for constructing a new TileStorageManager object.
+             </summary>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.GetTileStorageNames(SuperMap.Data.TileStorage.TileStorageConnection)">
+      <summary>
+            Gets all cache names in the library according to the cache connections.
+            </summary>
+      <param name="connectInfo">The specified cache connection information.</param>
+      <returns>The name array of cache tiles.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.Create(SuperMap.Data.TileStorage.TileStorageConnection)">
+      <summary>
+            Creates the cache library according to the cache connection.
+            </summary>
+      <param name="connectInfo">The specified cache connection information.</param>
+      <returns>Whether it is successful of creating. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.Open(SuperMap.Data.TileStorage.TileStorageConnection)">
+      <summary>
+            Opens the cache library according to the cache connection.
+            </summary>
+      <param name="connectInfo">The specified cache connection information.</param>
+      <returns>Whether it is successful of opening. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.IsOpen">
+      <summary>
+            Gets whether the cache library is opened.
+            </summary>
+      <returns>true means to open; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.Close">
+      <summary>
+            Closes the cache library.
+            </summary>
+      <returns>true means to close successfully; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.SaveTile(System.Int32,System.Int32,System.Int32,SuperMap.Data.TileStorage.TileContent)">
+      <summary>
+            Saves the tile data.
+            </summary>
+      <param name="level">The tile layer.</param>
+      <param name="row">The tile row.</param>
+      <param name="column">The tile column.</param>
+      <param name="tileContent">Tile contents.</param>
+      <returns>Whether it is successful of saving. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.LoadData(System.String)">
+      <summary>
+            Loads the cache data according to the given ID.
+            </summary>
+      <param name="key">Cache ID.</param>
+      <returns>Cache data content.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.SaveData(System.String,SuperMap.Data.TileStorage.TileContent)">
+      <summary>
+            MongoOSG cache. Store the data according to the Key.
+            </summary>
+      <param name="key">The ID of MongoOSG.</param>
+      <param name="tileContent">The cache data corresponding to the ID.</param>
+      <returns>Whether it is successful of saving. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.LoadTile(System.Int32,System.Int32,System.Int32)">
+      <summary>
+            Loads the tile data.
+            </summary>
+      <param name="level">The tile layer.</param>
+      <param name="row">The tile row.</param>
+      <param name="column">The tile column.</param>
+      <returns>Tile contents.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.GetInfo">
+      <summary>
+            Gets the cache information.
+            </summary>
+      <returns>Cache information.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.UpdateInfo(SuperMap.Data.TileStorage.TileStorageInfo)">
+      <summary>
+            Updates the cache information.
+            </summary>
+      <param name="storageInfo">Cache information.</param>
+      <returns>Whether it is successful of updating. True means successful; otherwise, false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.TileStorage.TileStorageManager.Dispose">
+      <summary>
+            Releases all resources that the object occupies.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.TileStorage.TileStorageManager.ConnectInfo">
+      <summary>
+            Gets the connections.
+            </summary>
+    </member>
+    <member name="T:SuperMap.Data.TileStorage.TileStorageType">
+      <summary>
+            This enumeration defines the cache storage types.
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.UNKOWN">
+      <summary>
+            Unknown
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.Mongo">
+      <summary>
+            Stored by MongoDB
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.MongoV2">
+      <summary>
+            Stored by MongoDB V2.0
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.MongoOSG">
+      <summary>
+            Stored by MongoOSG
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.GPKG">
+      <summary>
+            Stored by GeoPackage
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.SeaweedFS">
+      <summary>
+            SeeWEEDFS缓存
+            </summary>
+    </member>
+    <member name="F:SuperMap.Data.TileStorage.TileStorageType.MVT">
+      <summary>
+            MVT矢量缓存
+            </summary>
+         </member>
+         <member name="F:SuperMap.Data.TileStorage.TileStorageType.Mongo3DTiles">
+             <summary>
+             Store 3DTiles data in Mongo database
+             </summary>
+         </member><member name="T:SuperMap.Data.TileStorage.TileVersion"><summary></summary></member><member name="M:SuperMap.Data.TileStorage.TileVersion.#ctor"><summary></summary></member><member name="M:SuperMap.Data.TileStorage.TileVersion.#ctor(System.String,System.String,System.String,System.DateTime,System.Double[],SuperMap.Data.Rectangle2D)"><summary></summary><param name="name"></param><param name="desc"></param><param name="parent"></param><param name="timetense"></param><param name="resolutions"></param><param name="bounds"></param></member><member name="P:SuperMap.Data.TileStorage.TileVersion.Name"><summary></summary></member><member name="P:SuperMap.Data.TileStorage.TileVersion.Desc"><summary></summary></member><member name="P:SuperMap.Data.TileStorage.TileVersion.Parent"><summary></summary></member><member name="P:SuperMap.Data.TileStorage.TileVersion.Timetense"><summary></summary></member><member name="P:SuperMap.Data.TileStorage.TileVersion.Resolutions"><summary></summary></member><member name="P:SuperMap.Data.TileStorage.TileVersion.Bounds"><summary></summary></member><member name="P:SuperMap.Data.TileStorage.TileVersion.Scales"><summary></summary></member></members>
+</doc>

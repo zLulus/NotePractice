@@ -19,7 +19,7 @@ namespace WpfDemo.DataContextAndItemSource
     /// <summary>
     /// DataContextAndItemSource.xaml 的交互逻辑
     /// </summary>
-    public partial class DataContextAndItemSource : Window
+    public partial class DataContextAndItemSource : UserControl
     {
         public DataContextAndItemSource()
         {

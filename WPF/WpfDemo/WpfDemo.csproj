@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,11 +9,14 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>WpfDemo</RootNamespace>
     <AssemblyName>WpfDemo</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -23,6 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,10 +37,41 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MicrosoftExpressionInteractions.3.0.40218.0\lib\net45\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.112.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.112.2\lib\net40\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.112.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.112.2\lib\net40\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.112.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.112.2\lib\net40\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,19 +90,254 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Animations\RectangleAnimationWindow.xaml.cs">
+      <DependentUpon>RectangleAnimationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Animations\RectangleAnimationWindow2.xaml.cs">
+      <DependentUpon>RectangleAnimationWindow2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bind\DataGridBackgroundBind.xaml.cs">
+      <DependentUpon>DataGridBackgroundBind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bind\DataGridBindMultiData.xaml.cs">
+      <DependentUpon>DataGridBindMultiData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Bind\Models\Report.cs" />
+    <Compile Include="Bind\Models\ReportDetail.cs" />
+    <Compile Include="Bind\Models\Teacher.cs" />
+    <Compile Include="Bind\Models\TeacherDetailInfo.cs" />
+    <Compile Include="Borders\BorderTestWindow.xaml.cs">
+      <DependentUpon>BorderTestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CheckBox\CheckBoxDemo.xaml.cs">
       <DependentUpon>CheckBoxDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckBox\SelectAllAndCancleCheckBoxWindow.xaml.cs">
+      <DependentUpon>SelectAllAndCancleCheckBoxWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CheckBox\ViewModels\SelectAllAndCancleCheckBoxViewModel.cs" />
+    <Compile Include="ClosableTabs\ClosableTab.cs" />
+    <Compile Include="ClosableTabs\ClosableTabDemo.xaml.cs">
+      <DependentUpon>ClosableTabDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClosableTabs\CloseableHeader.xaml.cs">
+      <DependentUpon>CloseableHeader.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Command\CommandDemoWithBindParameters.xaml.cs">
+      <DependentUpon>CommandDemoWithBindParameters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Command\CommandDemoWithParameters.xaml.cs">
+      <DependentUpon>CommandDemoWithParameters.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Command\Commands\DelegateCommand.cs" />
+    <Compile Include="Command\Models\Person.cs" />
+    <Compile Include="Command\Commands\RelayCommand.cs" />
+    <Compile Include="Command\ViewModels\CommandDemoWithBindParametersViewModel.cs" />
+    <Compile Include="Command\ViewModels\CommandDemoWithParametersViewModel.cs" />
+    <Compile Include="ContextMenus\CreateContextMenuWindow.xaml.cs">
+      <DependentUpon>CreateContextMenuWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\ForDataGrid\CellTextConverter.cs" />
+    <Compile Include="Converters\ForDataGrid\DataGridWindow.xaml.cs">
+      <DependentUpon>DataGridWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\ForDataGrid\DeleteVisibilityConverter.cs" />
+    <Compile Include="Converters\ForDataGrid\FakeDatabase.cs" />
+    <Compile Include="Converters\ForDataGrid\ModifyVisibilityConverter.cs" />
+    <Compile Include="Converters\ForForm\ViewModels\EditFieldMetaViewModel.cs" />
+    <Compile Include="Converters\ForForm\Converter\EditFieldVisibilityConverter.cs" />
+    <Compile Include="Converters\ForForm\Enum\EnumExtensions.cs" />
+    <Compile Include="Converters\ForForm\Enum\EnumInfo.cs" />
+    <Compile Include="Converters\ForForm\Enum\EnumTool.cs" />
+    <Compile Include="Converters\ForForm\Enum\FieldTypeEnum.cs" />
+    <Compile Include="Converters\ForForm\FormWindow.xaml.cs">
+      <DependentUpon>FormWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converts\ConvertDemo.xaml.cs">
       <DependentUpon>ConvertDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converts\Converts\ColorConvert.cs" />
     <Compile Include="Converts\Models\Student.cs" />
+    <Compile Include="CustomButton\TestCustomButtonWindow.xaml.cs">
+      <DependentUpon>TestCustomButtonWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomButton\XButton.xaml.cs">
+      <DependentUpon>XButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\ColumnTypeEnum.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\DataGridWithPageBaseViewModel.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\DelegateCommand.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\Extension.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\OperationInfo.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\Pager.xaml.cs">
+      <DependentUpon>Pager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\PageSettingViewModel.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Bases\SetDataColumnsItem.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\DataGridWithPage.xaml.cs">
+      <DependentUpon>DataGridWithPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicallyGeneratedDataGrid\DemoWindow.xaml.cs">
+      <DependentUpon>DemoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\Converters\DeleteVisibilityConverter.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\Converters\DisplayIdConverter.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\Converters\ModifyVisibilityConverter.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\ViewModels\ComboBoxFakeDatabase.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\ViewModels\DemoViewModel.cs" />
+    <Compile Include="DynamicallyGeneratedDataGrid\Samples\ViewModels\FakeDatabase.cs" />
+    <Compile Include="FTP\Dtos\RemoteDto.cs" />
+    <Compile Include="FTP\FTPTool.cs" />
+    <Compile Include="FTP\FTPWindow.xaml.cs">
+      <DependentUpon>FTPWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HistoricalDataManage\HistoricalDataManageWithTimeWindow.xaml.cs">
+      <DependentUpon>HistoricalDataManageWithTimeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HistoricalDataManage\Models\StudentScore.cs" />
+    <Compile Include="HistoricalDataManage\Tools\SqliteTool.cs" />
+    <Compile Include="InputOnlyNumber\InputOnlyNumberWindow.xaml.cs">
+      <DependentUpon>InputOnlyNumberWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsControls\ItemsControlDemo.xaml.cs">
+      <DependentUpon>ItemsControlDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsControls\ItemsControlWindow.xaml.cs">
+      <DependentUpon>ItemsControlWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsControls\ViewModels\EditDataModelEditionViewModel.cs" />
+    <Compile Include="ItemsControls\ViewModels\EditDataModelItemViewModel.cs" />
+    <Compile Include="ItemsControls\ViewModels\EditDataModelOneTableViewModel.cs" />
+    <Compile Include="ItemsControls\ViewModels\BaseNotifyPropertyChanged.cs" />
+    <Compile Include="ItemsControls\ViewModels\EnumInfo.cs" />
+    <Compile Include="LoadingDataAsync\LoadingDataAsyncWindow.xaml.cs">
+      <DependentUpon>LoadingDataAsyncWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingDataAsync\Models\Doctor.cs" />
+    <Compile Include="LoadingMarks\Demo.xaml.cs">
+      <DependentUpon>Demo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingMarks\LoadingMark.xaml.cs">
+      <DependentUpon>LoadingMark.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingMarks\ViewModels\LoadingMarkViewModel.cs" />
+    <Compile Include="LogicalTreeAndVisualTree\LogicalTreeAndVisualTreeWindow.xaml.cs">
+      <DependentUpon>LogicalTreeAndVisualTreeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogicalTreeAndVisualTree\Tools\LogicalTreeTool.cs" />
+    <Compile Include="LogicalTreeAndVisualTree\Tools\VisualTreeTool.cs" />
+    <Compile Include="LogicalTreeAndVisualTree\UserControls\TestTreeUserControl.xaml.cs">
+      <DependentUpon>TestTreeUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MarginAndPadding\MarginAndPaddingDemo.xaml.cs">
       <DependentUpon>MarginAndPaddingDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MenuConfigs\CustomMenuItem.cs" />
+    <Compile Include="MenuConfigs\PromptTab.xaml.cs">
+      <DependentUpon>PromptTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\ModuleMainWindow.xaml.cs">
+      <DependentUpon>ModuleMainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\UserControls\ContentContainer.xaml.cs">
+      <DependentUpon>ContentContainer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\UserControls\Header.xaml.cs">
+      <DependentUpon>Header.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\UserControls\LeftToolBar.xaml.cs">
+      <DependentUpon>LeftToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\UserControls\TopToolBar.xaml.cs">
+      <DependentUpon>TopToolBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MoveAndResizeControl\Dialogs\ModifyTextDialog.xaml.cs">
+      <DependentUpon>ModifyTextDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MoveAndResizeControl\MoveAndResizeControlWindow.xaml.cs">
+      <DependentUpon>MoveAndResizeControlWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MoveAndResizeControl\MoveAndResizeControlWindow2.xaml.cs">
+      <DependentUpon>MoveAndResizeControlWindow2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MoveAndResizeControl\Tools\Element.cs" />
+    <Compile Include="MultiBinding\MultiBinding2\MultiBinding2.xaml.cs">
+      <DependentUpon>MultiBinding2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiBinding\MultiBinding2\MultiBinding2Converter.cs" />
+    <Compile Include="MultiSelectors\MultiSelector.xaml.cs">
+      <DependentUpon>MultiSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiSelectors\MultiSelectorWindow.xaml.cs">
+      <DependentUpon>MultiSelectorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MultiSelectors\ViewModels\MultiSelectorViewModel.cs" />
+    <Compile Include="NavigationPages\DemoWindow.xaml.cs">
+      <DependentUpon>DemoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NavigationPages\Samples\DepartmentView.xaml.cs">
+      <DependentUpon>DepartmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NavigationPages\Samples\EmployeeView.xaml.cs">
+      <DependentUpon>EmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NavigationPages\NavigationPage.xaml.cs">
+      <DependentUpon>NavigationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NavigationPages\NavigationPageContentInfo.cs" />
+    <Compile Include="NavigationPages\Samples\TotalViewModel.cs" />
+    <Compile Include="Navigation\NavigationStartPage.xaml.cs">
+      <DependentUpon>NavigationStartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NoneBorder\NoneBorderDemo.xaml.cs">
       <DependentUpon>NoneBorderDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NoneBorder\NoneBorderStartPage.xaml.cs">
+      <DependentUpon>NoneBorderStartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotShowInTaskbarWindows\NotShowInTaskbarTab.xaml.cs">
+      <DependentUpon>NotShowInTaskbarTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NotShowInTaskbarWindows\NotShowInTaskbarWindow.xaml.cs">
+      <DependentUpon>NotShowInTaskbarWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenFiles\Commands\OpenFileCommand.cs" />
+    <Compile Include="OpenFiles\OpenTxtFileWindow.xaml.cs">
+      <DependentUpon>OpenTxtFileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PauseAndResumeTask\PauseAndResumeTaskWindow.xaml.cs">
+      <DependentUpon>PauseAndResumeTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PauseAndResumeTask\PauseToken.cs" />
+    <Compile Include="PauseAndResumeTask\PauseTokenSource.cs" />
+    <Compile Include="PauseAndResumeThread\PauseAndResumeThreadWindow.xaml.cs">
+      <DependentUpon>PauseAndResumeThreadWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintImage\PrintImageWindow.xaml.cs">
+      <DependentUpon>PrintImageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintImage\PrintImageWithPageSettingWindow.xaml.cs">
+      <DependentUpon>PrintImageWithPageSettingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintImage\PrintImageWithPageSettingWindow2.xaml.cs">
+      <DependentUpon>PrintImageWithPageSettingWindow2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintTable\Dtos\OrderDetail.cs" />
+    <Compile Include="PrintTable\Dtos\OrderMaster.cs" />
+    <Compile Include="PrintTable\Dtos\TestData.cs" />
+    <Compile Include="PrintTable\PrintPreviewWindow.xaml.cs">
+      <DependentUpon>PrintPreviewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintTable\PrintTableStartPage.xaml.cs">
+      <DependentUpon>PrintTableStartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintTable\Templates\IDocumentRenderer.cs" />
+    <Compile Include="PrintTable\PrintTableWindow.xaml.cs">
+      <DependentUpon>PrintTableWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PrintTable\Templates\OrderDocumentRenderer.cs" />
+    <Compile Include="ProcessBars\ProcessBarWithTextWindow.xaml.cs">
+      <DependentUpon>ProcessBarWithTextWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PropertyChanged\ChangeStudentInfo.xaml.cs">
@@ -76,6 +347,29 @@
     <Compile Include="PropertyChanged\ViewModels\ChangeStudentInfoViewModel.cs" />
     <Compile Include="RadioButton\RadioButtonDemo.xaml.cs">
       <DependentUpon>RadioButtonDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ScrollViewers\MoveScrollViewerByCode.xaml.cs">
+      <DependentUpon>MoveScrollViewerByCode.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSelectors\Demos\SingleSelectorWindow3.xaml.cs">
+      <DependentUpon>SingleSelectorWindow3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSelectors\SingleSelector.xaml.cs">
+      <DependentUpon>SingleSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSelectors\Demos\SingleSelectorWindow.xaml.cs">
+      <DependentUpon>SingleSelectorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSelectors\Demos\SingleSelectorWindow2.xaml.cs">
+      <DependentUpon>SingleSelectorWindow2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSelectors\SingleSelector2.xaml.cs">
+      <DependentUpon>SingleSelector2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SingleSelectors\ViewModels\SingleSelectorViewModel.cs" />
+    <Compile Include="SingleSelectors\ViewModels\SingleSelector2ViewModel.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="StartWindowAndDialog\Dialog.xaml.cs">
       <DependentUpon>Dialog.xaml</DependentUpon>
@@ -91,6 +385,9 @@
     </Compile>
     <Compile Include="Template\ControlTemplate\ControlTemplateDemo3.xaml.cs">
       <DependentUpon>ControlTemplateDemo3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Template\DataTemplate\DataTemplateByCodeDemoWindow.xaml.cs">
+      <DependentUpon>DataTemplateByCodeDemoWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Template\DataTemplate\DataTemplateDemo.xaml.cs">
       <DependentUpon>DataTemplateDemo.xaml</DependentUpon>
@@ -132,10 +429,18 @@
     <Compile Include="Trigger\DataTriggerDemo.xaml.cs">
       <DependentUpon>DataTriggerDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Trigger\DataTriggerDemo2.xaml.cs">
+      <DependentUpon>DataTriggerDemo2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Trigger\EventTriggerDemo.xaml.cs">
       <DependentUpon>EventTriggerDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Trigger\Models\AppointmentEditingEventArgs.cs" />
+    <Compile Include="Trigger\Models\ShowDialogEventArgs.cs" />
     <Compile Include="Trigger\Models\TypeClass.cs" />
+    <Compile Include="Trigger\MultiTriggerDemo.xaml.cs">
+      <DependentUpon>MultiTriggerDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Trigger\TriggerDemo.xaml.cs">
       <DependentUpon>TriggerDemo.xaml</DependentUpon>
     </Compile>
@@ -154,6 +459,17 @@
     <Compile Include="WindowIconAndBackground\WindowIconAndBackgroundDemo.xaml.cs">
       <DependentUpon>WindowIconAndBackgroundDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowIconAndBackground\WindowIconAndBackgroundStartPage.xaml.cs">
+      <DependentUpon>WindowIconAndBackgroundStartPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Animations\RectangleAnimationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Animations\RectangleAnimationWindow2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ArrayExtension\ArrayExtensionDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -166,6 +482,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Bind\DataGridBackgroundBind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Bind\DataGridBindMultiData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Borders\BorderTestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChangeUI\ChangeUIDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,7 +502,47 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CheckBox\SelectAllAndCancleCheckBoxWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClosableTabs\ClosableTabDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClosableTabs\CloseableHeader.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Command\CommandDemoWithBindParameters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Command\CommandDemoWithParameters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ContextMenus\CreateContextMenuWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Converters\ForDataGrid\DataGridWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Converters\ForForm\FormWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Converts\ConvertDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomButton\TestCustomButtonWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomButton\XButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,11 +558,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DynamicallyGeneratedDataGrid\Bases\Pager.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DynamicallyGeneratedDataGrid\DataGridWithPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DynamicallyGeneratedDataGrid\DemoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Expander\ExpanderDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FTP\FTPWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GetStaticFromBackgroundCode\GetStaticFromBackgroundCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistoricalDataManage\HistoricalDataManageWithTimeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputOnlyNumber\InputOnlyNumberWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemsControls\ItemsControlDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ItemsControls\ItemsControlWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,11 +606,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="LoadingDataAsync\LoadingDataAsyncWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="LoadingMarks\Demo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LoadingMarks\LoadingMark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogicalTreeAndVisualTree\LogicalTreeAndVisualTreeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogicalTreeAndVisualTree\UserControls\TestTreeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MultiBinding\MultiBinding2\MultiBinding2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Navigation\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Navigation\StartWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -254,18 +678,82 @@
     <Compile Include="Keyboard\Keyboard.xaml.cs">
       <DependentUpon>Keyboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Navigation\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Navigation\StartWindow.xaml.cs">
+      <DependentUpon>StartWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MarginAndPadding\MarginAndPaddingDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MenuConfigs\PromptTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\ModuleMainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\UserControls\ContentContainer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\UserControls\Header.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\UserControls\LeftToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modules\UserControls\TopToolBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MoveAndResizeControl\Dialogs\ModifyTextDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MoveAndResizeControl\MoveAndResizeControlWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MoveAndResizeControl\MoveAndResizeControlWindow2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MultiBinding\MultiBindingDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MultiSelectors\MultiSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MultiSelectors\MultiSelectorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NavigationPages\DemoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NavigationPages\Samples\DepartmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NavigationPages\Samples\EmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NavigationPages\NavigationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Navigation\NavigationStartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -285,11 +773,94 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="NoneBorder\NoneBorderStartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NotShowInTaskbarWindows\NotShowInTaskbarTab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NotShowInTaskbarWindows\NotShowInTaskbarWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="OpenFiles\OpenTxtFileWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PauseAndResumeTask\PauseAndResumeTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PauseAndResumeThread\PauseAndResumeThreadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintImage\PrintImageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintImage\PrintImageWithPageSettingWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintImage\PrintImageWithPageSettingWindow2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintTable\PrintPreviewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintTable\PrintTableStartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintTable\PrintTableWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PrintTable\Templates\OrderDocument.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Page>
+    <Page Include="ProcessBars\ProcessBarWithTextWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PropertyChanged\ChangeStudentInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RadioButton\RadioButtonDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ScrollViewers\MoveScrollViewerByCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleSelectors\Demos\SingleSelectorWindow3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleSelectors\SingleSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleSelectors\Demos\SingleSelectorWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleSelectors\Demos\SingleSelectorWindow2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SingleSelectors\SingleSelector2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -310,6 +881,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Template\ControlTemplate\ControlTemplateDemo3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\DataTemplate\DataTemplateByCodeDemoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -369,7 +944,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Trigger\DataTriggerDemo2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Trigger\EventTriggerDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Trigger\MultiTriggerDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -394,6 +977,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowIconAndBackground\WindowIconAndBackgroundDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowIconAndBackground\WindowIconAndBackgroundStartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -428,10 +1015,33 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Borders\READEME.md" />
+    <None Include="ClosableTabs\README.md" />
+    <None Include="ItemsControls\README.md" />
+    <None Include="LoadingMarks\README.md" />
+    <None Include="MenuConfigs\MenuConfig.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Converters\ForDataGrid\README.md" />
+    <None Include="Converters\ForForm\README.md" />
+    <None Include="DynamicallyGeneratedDataGrid\README.md" />
+    <None Include="FTP\README.md" />
+    <None Include="HistoricalDataManage\README.md" />
+    <None Include="LogicalTreeAndVisualTree\README.md" />
+    <None Include="MultiBinding\MultiBinding2\README.md" />
+    <None Include="MultiSelectors\README.md" />
+    <None Include="NavigationPages\README.md" />
+    <None Include="NotShowInTaskbarWindows\README.md" />
+    <None Include="packages.config" />
+    <None Include="PauseAndResumeTask\README.md" />
+    <None Include="PrintImage\README.md" />
+    <None Include="PrintTable\README.md" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SingleSelectors\README.md" />
+    <None Include="UserControlDemo\README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -453,10 +1063,41 @@
   <ItemGroup>
     <Resource Include="Template\ControlTemplate\Images\cat.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="MoveAndResizeControl\Resources\Images\1.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="WindowIconAndBackground\Images\background.jpg" />
     <Resource Include="WindowIconAndBackground\Images\icon.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PrintImage\Resources\Images\1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HistoricalDataManage\Databases\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MultiSelectors\Images\delete.png" />
+    <Resource Include="MultiSelectors\Images\emoticon_smile.png" />
+    <Resource Include="MultiSelectors\Images\folder_close_arrow.png" />
+    <Resource Include="MultiSelectors\Images\folder_go.png" />
+    <Resource Include="MultiSelectors\Images\folder_open_arrow.png" />
+    <Resource Include="MultiSelectors\Images\tick.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.3.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.3.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.3.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.2\build\net40\System.Data.SQLite.Core.targets')" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties MenuConfigs_4MenuConfig_1json__JSONSchema="http://json.schemastore.org/winget-pkgs" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

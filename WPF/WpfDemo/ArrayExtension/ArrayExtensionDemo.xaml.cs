@@ -17,7 +17,7 @@ namespace WpfDemo.ArrayExtension
     /// <summary>
     /// ArrayExtensionDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class ArrayExtensionDemo : Window
+    public partial class ArrayExtensionDemo : UserControl
     {
         public ArrayExtensionDemo()
         {

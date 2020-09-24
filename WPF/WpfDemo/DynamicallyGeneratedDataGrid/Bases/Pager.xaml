@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="WpfDemo.DynamicallyGeneratedDataGrid.Bases.Pager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfDemo.DynamicallyGeneratedDataGrid.Bases"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Background" Value="#f6f9fe"></Setter>
+            <Setter Property="BorderBrush" Value="#e9e9ea"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Center" MinHeight="35">
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="FirstPageButton" Margin="5,0" Click="FirstPageButton_Click">
+                <Path Width="7" Height="10" Data="M0,0L0,10 M0,5L6,2 6,8 0,5" Stroke="Black" StrokeThickness="1" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Button>
+            <Button x:Name="PreviousPageButton" Margin="0,0,5,0" Click="PreviousPageButton_Click">
+                <Path Width="8" Height="8" Data="M0,4L8,0 8,8z" Stroke="Black" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Button>
+            <TextBlock VerticalAlignment="Center">
+                <Run Text="第"/>
+                <Run x:Name="rCurrent" Text="0"/>
+                <Run Text="页"/>
+            </TextBlock>
+            <Button Margin="5,0" x:Name="NextPageButton" Click="NextPageButton_Click">
+                <Path Width="8" Height="8" Data="M0,4L8,0 8,8z" Stroke="Black" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Path.RenderTransform>
+                        <RotateTransform Angle="180" CenterX="4" CenterY="4" />
+                    </Path.RenderTransform>
+                </Path>
+            </Button>
+            <Button Margin="0,0,5,0" x:Name="LastPageButton" Click="LastPageButton_Click">
+                <Path x:Name="MainPath" Width="7" Height="10" Data="M0,0L0,10 M0,5 L6,2 6,8 0,5" Stroke="Black" StrokeThickness="1" Fill="Black" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Path.RenderTransform>
+                        <RotateTransform Angle="180" CenterX="3" CenterY="5" />
+                    </Path.RenderTransform>
+                </Path>
+            </Button>
+            <TextBlock VerticalAlignment="Center">
+                <Run Text="共"/>
+                <Run x:Name="rTotal" Text="0"/>
+                <Run Text="页"/>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</UserControl>

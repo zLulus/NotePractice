@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <title>Redirect By Form</title>
+</head>
+<body>
+    <form id="redirectForm" name="redirectForm" action="/RedirectUrl/RedirectByForm" method="post">
+        <div>
+            <input id="url" name="url" />
+            <button id="submit" onclick="Submit()">登录</button>
+        </div>
+    </form>
+</body>
+</html>
+
+<script>
+    function Submit() {
+        $("#redirectForm").submit();
+    }
+</script>

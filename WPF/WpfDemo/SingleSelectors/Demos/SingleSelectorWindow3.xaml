@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="WpfDemo.SingleSelectors.SingleSelectorWindow3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.SingleSelectors"
+        xmlns:ui="clr-namespace:WpfDemo.SingleSelectors"
+        mc:Ignorable="d" Loaded="Window_Loaded">
+    <Grid>
+        <DockPanel>
+            <Border DockPanel.Dock="Right">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                    <Button Name="btnSelectId" Content="选择" Click="btnSelectId_Click"></Button>
+                </StackPanel>
+            </Border>
+            <Border>
+                <DockPanel>
+                    <Border DockPanel.Dock="Bottom">
+                        <StackPanel Orientation="Horizontal" ToolTip="右键有更多功能哦！">
+                            <Image Height="16" Width="16"></Image>
+                            <Label Content="右键有更多功能哦！" Foreground="Gray"></Label>
+                        </StackPanel>
+                    </Border>
+                    <ui:SingleSelector2 x:Name="singleSelector"></ui:SingleSelector2>
+                </DockPanel>
+            </Border>
+        </DockPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,1104 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Analyst.SpatialStatistics</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.AggregationMethod">
+      <summary>该枚举定义了用于通过事件点创建数据集进行分析的聚合方法常量。</summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.AggregationMethod.NetWorkPolygons">
+      <summary>
+        <para>计算合适的网格大小,创建网格面数据集，生成的网格面数据集以面网格单元的点计数将作为分析字段执行热点分析。</para>
+        <para>网格会覆盖在输入事件点的上方，并将计算每个面网格单元内的点数目。如果未提供事件点发生区域的边界面数据(参阅<see cref="P:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.BoundingPolygons">BoundingPolygons</see>),则会利用输入事件点数据集范围划分网格，并且会删除不含点的面网格单元，仅会分析剩下的面网格单元;如果提供了边界面数据，则只会保留并分析在边界面数据集范围内的面网格单元。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.AggregationMethod.AggregationPolygons">
+      <summary>
+        <para>需要提供聚合事件点以获得事件计数的面数据集（参阅<see cref="P:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.BoundingPolygons">AggregatingPolygons</see>）,将计算每个面对象内的点事件数目，然后对面数据集以点事件数目作为分析字段执行热点分析。</para>
+        <para>
+        </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.AggregationMethod.SnapNearbyPoints">
+      <summary>
+        <para>为输入事件点数据集计算捕捉距离并使用该距离聚合附近的事件点，为每个聚合点提供一个点计数，代表聚合到一起的事件点数目，然后对生成聚合点数据集以聚合在一起的点事件数目作为分析字段执行热点分析。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns">
+      <summary>
+            分析模式类。该类可评估一组数据是形成离散空间模式、聚类空间模式或者随机空间模式。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.AutoCorrelation(SuperMap.Data.DatasetVector,SuperMap.Analyst.SpatialStatistics.PatternsParameter)">
+      <summary>
+            对矢量数据集进行空间自相关分析，并返回空间自相关分析结果。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="patternsParameter">指定的分析模式参数设置。</param>
+      <returns>空间自相关结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.HighOrLowClustering(SuperMap.Data.DatasetVector,SuperMap.Analyst.SpatialStatistics.PatternsParameter)">
+      <summary>
+            对矢量数据集进行高低值聚类分析,并返回高低值聚类分析结果。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="patternsParameter">指定的分析模式参数设置。</param>
+      <returns>高低值聚类结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.IncrementalAutoCorrelation(SuperMap.Data.DatasetVector,SuperMap.Analyst.SpatialStatistics.IncrementalParameter)">
+      <summary>
+            对矢量数据集进行增量空间自相关分析，并返回增量空间自相关分析结果数组。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="incrementalParameter">指定的增量空间自相关参数设置。</param>
+      <returns>增量空间自相关结果。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.AverageNearestNeighbor(SuperMap.Data.DatasetVector,System.Double,SuperMap.Analyst.SpatialStatistics.DistanceMethod)">
+      <summary>
+            对矢量数据集进行平均最近邻分析，并返回平均最近邻分析结果数组。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="studyArea">指定的研究区域面积。</param>
+      <param name="distanceMethod">指定的距离计算方法。</param>
+      <returns>平均最近邻结果。</returns>
+    </member>
+    <!-- Badly formed XML comment ignored for member "M:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.GeographicalDetector(SuperMap.Data.DatasetVector,System.String,System.String[],System.Boolean,System.Boolean,System.Boolean,System.Boolean)" -->
+    <member name="E:SuperMap.Analyst.SpatialStatistics.AnalyzingPatterns.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult">
+      <summary>
+            分析模式结果类。该类用于获取分析模式计算的结果，包括结果指数、期望、方差、Z得分和P值等。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult.Index">
+      <summary>
+            获取分析模式结果中的莫兰指数或GeneralG指数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult.Expectation">
+      <summary>
+            获取分析模式结果中的期望值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult.Variance">
+      <summary>
+            获取分析模式结果中的方差值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult.ZScore">
+      <summary>
+            获取分析模式结果中的Z得分。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.AnalyzingPatternsResult.PValue">
+      <summary>
+            获取分析模式结果中的P值。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.BandWidthType">
+      <summary>该枚举定义了地理加权回归分析带宽确定方式常量。另请参见 <see cref="T:SuperMap.Analyst.SpatialStatistics.GWRParameter">GWRParameter</see>。</summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.BandWidthType.AICc">
+      <summary>
+        <para>使用" Akaike 信息准则（AICc）"确定带宽范围。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.BandWidthType.CV">
+      <summary>
+        <para>使用"交叉验证"确定带宽范围。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.BandWidthType.BandWidth">
+      <summary>
+        <para>根据给定的固定距离或固定相邻数确定带宽范围。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions">
+      <summary>
+            聚类分布类。该类可识别一组数据具有统计显著性的热点、冷点或者空间异常值。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.HotSpotAnalyst(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.PatternsParameter)">
+      <summary>
+            热点分析，返回结果矢量数据集。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="patternsParameter">指定的聚类分布参数设置。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.ClusterOutlierAnalyst(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.PatternsParameter)">
+      <summary>
+            聚类和异常值分析，返回结果矢量数据集。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="patternsParameter">指定的聚类分布参数设置。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.OptimizedHotSpotAnalyst(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.OptimizedParameter)">
+      <summary>
+            优化的热点分析，返回结果矢量数据集。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="OptimizedParameter">指定的优化的热点分析参数设置。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.DensityBasedClustering(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Int32,System.Double,SuperMap.Data.Unit)">
+      <summary>
+            密度聚类。
+            </summary>
+      <param name="sourceDataset">指定的点数据集。</param>
+      <param name="outputDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="outputDatasetName">指定的结果数据集名称。</param>
+      <param name="minPilePointCount">聚类的点数目阀值。</param>
+      <param name="searchDistance">聚类半径。</param>
+      <param name="unit">聚类半径的单位。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.HierarchicalDensityBasedClustering(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Int32)">
+      <summary>
+            层次密度聚类。
+            </summary>
+      <param name="sourceDataset">指定的点数据集。</param>
+      <param name="outputDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="outputDatasetName">指定的结果数据集名称。</param>
+      <param name="minPilePointCount">聚类的点数目阀值。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.OrderingDensityBasedClustering(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,System.Int32,System.Double,SuperMap.Data.Unit,System.Int32)">
+      <summary>
+            顺序密度聚类。
+            </summary>
+      <param name="sourceDataset">指定的点数据集。</param>
+      <param name="outputDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="outputDatasetName">指定的结果数据集名称。</param>
+      <param name="minPilePointCount">聚类的点数目阀值。</param>
+      <param name="searchDistance">聚类半径。</param>
+      <param name="unit">聚类半径的单位。</param>
+      <param name="clusterSensitivity">聚类的紧密度，0到100之间。值越大,产生的聚类簇内的点越密集；值越小,产生的聚类簇内的点越稀疏。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.SpatialStatistics.ClusteringDistributions.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel">
+      <summary>该枚举定义了空间关系概念化模型常量。另请参见 <see cref="T:SuperMap.Analyst.SpatialStatistics.PatternsParameter">PatternsParameter</see>。</summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.InverseDistance">
+      <summary>
+        <para>反距离模型。</para>
+        <para>任何要素都会影响目标要素,但是随着距离的增加,影响会越小。要素之间的权重为距离分之一。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.InverseDistanceSquared">
+      <summary>
+        <para>反距离平方模型。</para>
+        <para>与"反距离模型"相似,随着距离的增加,影响下降的更快。要素之间的权重为距离的平方分之一。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.FixedDistanceBand">
+      <summary>
+        <para>固定距离模型。</para>
+        <para>在指定的固定距离范围内的要素具有相等的权重（权重为1）,在指定的固定距离范围之外的要素不会影响计算（权重为0）。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.ZoneOfIndifference">
+      <summary>
+        <para>无差别区域模型。</para>
+        <para>该模型是"反距离模型"和"固定距离模型"的结合。在指定的固定距离范围内的要素具有相等的权重（权重为1）;在指定的固定距离范围之外的要素,随着距离的增加,影响会越小。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.ContiguityEdgesOnly">
+      <summary>
+        <para>面邻接模型。</para>
+        <para>只有面面在有共享边界、重叠、包含、被包含的情况才会影响目标要素（权重为1）,否则,将会排除在目标要素计算之外（权重为0）。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.ContiguityEdgesNode">
+      <summary>
+        <para>面邻接模型。</para>
+        <para>只有面面在有接触的情况才会影响目标要素（权重为1）,否则,将会排除在目标要素计算之外（权重为0）。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.KNearestNeighbors">
+      <summary>
+        <para>K最邻近模型。</para>
+        <para>距目标要素最近的K个要素包含在目标要素的计算中（权重为1）,其余的要素将会排除在目标要素计算之外（权重为0）。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.SpatialWeightMatrixFile">
+      <summary>
+        <para>提供空间权重矩阵文件。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.DistanceMethod">
+      <summary>该枚举定义了距离计算方法常量。另请参见 <see cref="T:SuperMap.Analyst.SpatialStatistics.MeasureParameter">MeasureParameter</see>。</summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.DistanceMethod.Euclidean">
+      <summary>
+        <para>欧式距离。计算两点间的直线距离。</para>
+        <para>
+        </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.DistanceMethod.Manhattan">
+      <summary>
+        <para>曼哈顿距离。计算两点的x和y坐标的差值绝对值求和。该类型暂时不可用，仅作为测试,使用结果未知。</para>
+        <para>
+        </para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.EllipseSize">
+      <summary>该枚举定义了输出椭圆的大小常量。另请参见 <see cref="T:SuperMap.Analyst.SpatialStatistics.MeasureParameter">MeasureParameter</see>。</summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.EllipseSize.Single">
+      <summary>
+        <para>一个标准差。输出椭圆的长半轴和短半轴是对应的标准差的一倍。</para>
+        <para>当几何对象具有空间正态分布时，即这些几何对象在中心处集中而朝向外围时较少，则EllipseSize.Single生成的椭圆将会包含约占总数68%的几何对象在内。</para>
+        <para>
+        </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.EllipseSize.Twice">
+      <summary>
+        <para>二个标准差。输出椭圆的长半轴和短半轴是对应的标准差的二倍。</para>
+        <para>当几何对象具有空间正态分布时，即这些几何对象在中心处集中而朝向外围时较少，则EllipseSize.Twice生成的椭圆将会包含约占总数95%的几何对象在内。</para>
+        <para>
+        </para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.EllipseSize.Triple">
+      <summary>
+        <para>三个标准差。输出椭圆的长半轴和短半轴是对应的标准差的三倍。</para>
+        <para>当几何对象具有空间正态分布时，即这些几何对象在中心处集中而朝向外围时较少，则EllipseSize.Triple生成的椭圆将会包含约占总数99%的几何对象在内。</para>
+        <para>
+        </para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.GeographicalDetectorResult">
+      <summary>
+            地理探测器结果类。该类用于获取地理探测器计算的结果，包括因子探测器、 生态探测器、 交互作用探测器 、风险区探测器的分析结果。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GeographicalDetectorResult.Variables">
+      <summary>获取地理探测器解释变量。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GeographicalDetectorResult.FactorDetectorResults">
+      <summary>获取因子探测器分析结果。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GeographicalDetectorResult.RiskDetectorResult">
+      <summary>获取风险区探测器分析结果。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GeographicalDetectorResult.InteractionDetectorResult">
+      <summary>获取交互作用探测器分析结果。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GeographicalDetectorResult.EcologicalDetectorResult">
+      <summary>获取生态探测器分析结果。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.EcologicalDetectorResult">
+      <summary>
+            生态探测器分析结果类。该类用于获取对数据进行生态探测器得到的分析结果（请参阅<see cref="T:SuperMap.Analyst.SpatialStatistics.EcologicalDetectorValue">EcologicalDetectorValue</see> 类），以属性表的形式存放至结果数据源中，。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.EcologicalDetectorResult.EcologicalDetectorValues">
+      <summary>获取生态探测器分析结果值。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.EcologicalDetectorValue">
+      <summary>
+            生态探测器分析结果值类。该类用于获取对数据进行生态探测器得到的分析结果矩阵，包括结果矩阵行列要素（各解释变量名称）、是否呈现显著性的矩阵值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.EcologicalDetectorValue.VariableRow">
+      <summary>获取生态探测器分析结果矩阵的行要素，即各解释变量名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.EcologicalDetectorValue.VariableCol">
+      <summary>获取生态探测器分析结果矩阵的列要素，即各解释变量名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.EcologicalDetectorValue.getSig">
+      <summary>获取生态探测器分析结果矩阵值（是否显著性）。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.FactorDetectorResult">
+      <summary>
+            因子探测器分析结果类。该类用于获取对数据进行因子探测器得到的分析结果，以属性表的形式存放至结果数据源中，包括包括各解释变量的p值、q值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.FactorDetectorResult.Variable">
+      <summary>获取因子探测器解释变量。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.FactorDetectorResult.QValue">
+      <summary>获取因子探测器分析结果中的q值。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.FactorDetectorResult.PValue">
+      <summary>获取因子探测器分析结果中的p值。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.InteractionDetectorResult">
+      <summary>
+            交互作用探测器分析结果类。该类用于获取对数据进行交互作用探测器得到的分析结果，以属性表的形式存放至结果数据源中，包括不同解释变量之间交互作用的描述、以及分析结果矩阵（请参阅<see cref="T:SuperMap.Analyst.SpatialStatistics.InteractionDetectorValue">InteractionDetectorValue</see> 类）。
+            </summary>
+    </member>
+    <!-- Badly formed XML comment ignored for member "P:SuperMap.Analyst.SpatialStatistics.InteractionDetectorResult.InteractionDescriptions" -->
+    <member name="P:SuperMap.Analyst.SpatialStatistics.InteractionDetectorResult.InteractionDetectorValues">
+      <summary>获取交互作用探测器分析结果值。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.InteractionDetectorValue">
+      <summary>
+            交互作用探测器分析结果值类。该类用于获取对数据进行交互作用探测器得到的分析结果矩阵，包括结果矩阵行列要素（各解释变量名称）、两种解释变量共同作用下的q值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.InteractionDetectorValue.VariableRow">
+      <summary>获取交互作用探测器分析结果矩阵的行要素，即各解释变量名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.InteractionDetectorValue.VariableCol">
+      <summary>获取交互作用探测器分析结果矩阵的列要素，即各解释变量名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.InteractionDetectorValue.InteractionValue">
+      <summary>获取交互作用探测器分析结果矩阵值（两种解释变量共同作用下的q值）。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.RiskDetectorMean">
+      <summary>
+            风险区探测器结果均值类。该类用于获取对数据进行风险区探测器得到的不同解释变量各分层区域内的属性均值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.RiskDetectorMean.Variable">
+      <summary>获取风险区探测器解释变量名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.RiskDetectorMean.VariableUniqueValues">
+      <summary>获取风险区探测器解释变量字段唯一值。即解释变量的分层编号。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.RiskDetectorMean.Means">
+      <summary>获取风险区探测器某解释变量分层内的属性均值。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.RiskDetectorResult">
+      <summary>
+            风险区探测器分析结果类。该类用于获取对数据进行风险区探测器得到的分析结果，以属性表的形式存放至结果数据源中，包括每个解释变量的分层结果均值（请参阅<see cref="T:SuperMap.Analyst.SpatialStatistics.RiskDetectorValue">RiskDetectorValue</see> 类）、分层结果矩阵（请参阅<see cref="T:SuperMap.Analyst.SpatialStatistics.RiskDetectorMean">RiskDetectorMean</see> 类）。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.RiskDetectorResult.RiskDetectorMeans">
+      <summary>获取风险区探测器某解释变量的各分层区域内的属性均值。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.RiskDetectorResult.RiskDetectorValues">
+      <summary>获取风险区探测器分析结果值。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.RiskDetectorValue">
+      <summary>
+            风险区探测器分析结果值类。该类用于获取对数据进行风险区探测器得到的分析结果矩阵，包括结果矩阵行列要素（各解释变量的分层编号）、是否呈现显著性的矩阵值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.RiskDetectorValue.VariableRow">
+      <summary>获取风险区探测器分析结果矩阵的行要素，即各解释变量名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.RiskDetectorValue.VariableCol">
+      <summary>获取风险区探测器分析结果矩阵的列要素，即各解释变量名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.RiskDetectorValue.getSig">
+      <summary>获取风险区探测器分析结果矩阵值（是否显著性）。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.GWRAnalystResult">
+      <summary>
+            地理加权回归分析结果信息类。该类用于获取对数据集进行地理加权回归分析计算的结果，例如地理加权回归结果汇总（请参阅 <see cref="T:SuperMap.Analyst.SpatialStatistics.GWRSummary">GWRSummary</see> 类）、结果数据集等。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRAnalystResult.GWRSummary">
+      <summary>获取地理加权回归结果汇总。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRAnalystResult.ResultDataset">
+      <summary>获取地理加权回归结果数据集。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.GWRParameter">
+      <summary>地理加权回归分析参数类。该类主要用来对地理加权回归分析的参数进行设置。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.GWRParameter.#ctor">
+      <summary>默认构造函数，构造一个新的 GWRParameter 对象。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.GWRParameter.#ctor(SuperMap.Analyst.SpatialStatistics.GWRParameter)">
+      <summary>拷贝构造函数，根据给定的 GWRParameter 对象构造一个与其完全相同的新对象。</summary>
+      <param name="gwrParameter">指定的 GWRParameter 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.ModelFeild">
+      <summary>获取或设置建模字段的名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.ModelField">
+      <summary>获取或设置建模字段的名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.ExplanatoryFeilds">
+      <summary>获取或设置解释字段的名称的集合。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.ExplanatoryFields">
+      <summary>获取或设置解释字段的名称的集合。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.KernelType">
+      <summary>获取或设置带宽类型。</summary>
+      <value>默认值为 <see cref="F:SuperMap.Analyst.SpatialStatistics.KernelType.Fixed">KernelType.Fixed</see>。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.BandWidthType">
+      <summary>获取或设置带宽确定方式。</summary>
+      <value>默认值为 <see cref="F:SuperMap.Analyst.SpatialStatistics.BandWidthType.AICc">BandWidthType.AICc</see>。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.KernelFunction">
+      <summary>获取或设置核函数类型。</summary>
+      <value>默认值为 <see cref="F:SuperMap.Analyst.SpatialStatistics.KernelFunction.Gaussian">KernelFunction.Gaussian</see>。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.DistanceTolerance">
+      <summary>获取或设置带宽范围。</summary>
+      <value>默认值为 0.0。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRParameter.Neighbors">
+      <summary>获取或设置相邻数目。</summary>
+      <value>默认值为 2。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.GWRSummary">
+      <summary>
+            地理加权回归结果汇总类。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.Neighbors">
+      <summary>
+            获取地理加权回归结果汇总中的相邻数目。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.Bandwidth">
+      <summary>
+            获取地理加权回归结果汇总中的带宽范围。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.ResidualSquares">
+      <summary>
+            获取地理加权回归结果汇总中的残差平方和。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.Edf">
+      <summary>
+            获取地理加权回归结果汇总中的有效自由度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.EffectiveNumber">
+      <summary>
+            获取地理加权回归结果汇总中的有效的参数数量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.Sigma">
+      <summary>
+            获取地理加权回归结果汇总中的残差估计标准差。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.AIC">
+      <summary>
+            获取地理加权回归结果汇总中的AIC。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.AICc">
+      <summary>
+            获取地理加权回归结果汇总中的AICc。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.R2">
+      <summary>
+            获取地理加权回归结果汇总中的判定系数（R2）。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.GWRSummary.R2Adjusted">
+      <summary>
+            获取地理加权回归结果汇总中的校正的判定系数。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.IncrementalParameter">
+      <summary>增量空间自相关参数类。该类主要用来对增量空间自相关计算的参数进行设置。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.#ctor">
+      <summary>默认构造函数，构造一个新的 IncrementalParameter 对象。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.#ctor(SuperMap.Analyst.SpatialStatistics.IncrementalParameter)">
+      <summary>拷贝构造函数，根据给定的 incrementalParameter 对象构造一个与其完全相同的新对象。</summary>
+      <param name="incrementalParameter">指定的 incrementalParameter 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.AssessmentFieldName">
+      <summary>获取或设置评估字段的名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.IncrementalNumber">
+      <summary>获取或设置递增的距离段数目。</summary>
+      <value>默认值为 10。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.BeginDistance">
+      <summary>获取或设置开始距离。</summary>
+      <value>默认值为 0.0。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.IncrementalDistance">
+      <summary>获取或设置距离增量。</summary>
+      <value>默认值为 0.0。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.IsStandardization">
+      <summary>获取或设置是否对空间权重矩阵进行标准化。</summary>
+      <value>默认值为 false，即不进行标准化。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalParameter.DistanceMethod">
+      <summary>获取或设置距离计算方法类型。</summary>
+      <value>默认值为 <see cref="F:SuperMap.Analyst.SpatialStatistics.DistanceMethod.Euclidean">DistanceMethod.Euclidean</see>，即欧式距离。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.IncrementalResult">
+      <summary>
+            增量空间自相关结果类。该类用于获取增量空间自相关计算的结果，包括结果增量距离、莫兰指数、期望、方差、Z得分和P值等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.IncrementalResult.#ctor">
+      <summary>
+            构造函数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.Distance">
+      <summary>
+            获取增量空间自相关结果中的增量距离。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.Index">
+      <summary>
+            获取增量空间自相关结果中的莫兰指数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.Expectation">
+      <summary>
+            获取增量空间自相关结果中的期望值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.Variance">
+      <summary>
+            获取增量空间自相关结果中的方差值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.ZScore">
+      <summary>
+            获取增量空间自相关结果中的Z得分。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.IncrementalResult.PValue">
+      <summary>
+            获取增量空间自相关结果中的P值。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.KernelFunction">
+      <summary>该枚举定义了地理加权回归分析核函数类型常量。另请参见 <see cref="T:SuperMap.Analyst.SpatialStatistics.GWRParameter">GWRParameter</see>。</summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.KernelFunction.Gaussian">
+      <summary>
+        <para>高斯核函数。</para>
+        <para>高斯核函数计算公式:</para>
+        <para> W_ij=e^(-((d_ij/b)^2)/2)。</para>
+        <para> 其中W_ij为点i和点j之间的权重，d_ij为点i和点j之间的距离,b为带宽范围。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.KernelFunction.Bisquare">
+      <summary>
+        <para>二次核函数。</para>
+        <para>二次核函数计算公式:</para>
+        <para>如果d_ij≤b, W_ij=(1-(d_ij/b)^2))^2;否则,W_ij=0。</para>
+        <para> 其中W_ij为点i和点j之间的权重，d_ij为点i和点j之间的距离,b为带宽范围。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.KernelFunction.Boxcar">
+      <summary>
+        <para>盒状核函数。</para>
+        <para>盒状核函数计算公式:</para>
+        <para>如果d_ij≤b, W_ij=1;否则,W_ij=0。</para>
+        <para> 其中W_ij为点i和点j之间的权重，d_ij为点i和点j之间的距离,b为带宽范围。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.KernelFunction.Tricube">
+      <summary>
+        <para>立方体核函数。</para>
+        <para>立方体核函数计算公式:</para>
+        <para>如果d_ij≤b, W_ij=(1-(d_ij/b)^3))^3;否则,W_ij=0。</para>
+        <para> 其中W_ij为点i和点j之间的权重，d_ij为点i和点j之间的距离,b为带宽范围。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.KernelType">
+      <summary>该枚举定义了地理加权回归分析带宽类型常量。另请参见 <see cref="T:SuperMap.Analyst.SpatialStatistics.GWRParameter">GWRParameter</see>。</summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.KernelType.Fixed">
+      <summary>
+        <para>固定型带宽。针对每个回归分析点，使用一个固定的值作为带宽范围。</para>
+      </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.KernelType.Adaptive">
+      <summary>
+        <para>可变型带宽。针对每个回归分析点，使用回归点与第K个最近相邻点之间的距离作为带宽范围。其中,K为相邻数目。</para>
+      </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.MeasureParameter">
+      <summary>空间度量参数类。该类主要用来对空间度量地理分布计算的参数进行设置。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.MeasureParameter.#ctor">
+      <summary>默认构造函数，构造一个新的 MeasureParameter 对象。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.MeasureParameter.#ctor(SuperMap.Analyst.SpatialStatistics.MeasureParameter)">
+      <summary>拷贝构造函数，根据给定的 MeasureParameter 对象构造一个与其完全相同的新对象。</summary>
+      <param name="measureParameter">指定的 MeasureParameter 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.WeightField">
+      <summary>获取或设置权重字段的名称。</summary>
+      <value>默认值为 String.Empty，即无权重字段。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.SelfWeightField">
+      <summary>获取或设置自身权重字段的名称。</summary>
+      <value>默认值为 String.Empty，即无自身权重字段。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.EllipseSize">
+      <summary>获取或设置输出椭圆大小类型。</summary>
+      <value>默认值为 EllipseSize.Single，即一个标准差。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.GroupField">
+      <summary>获取或设置分组字段的名称。</summary>
+      <value>默认值为 String.Empty，即无分组字段。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.StatisticsFieldNames">
+      <summary>获取或设置统计字段的名称的集合。</summary>
+      <value>默认值为 String.Empty，表示无统计字段。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.StatisticsTypes">
+      <summary>获取或设置统计字段的类型的集合，它与 <see cref="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.StatisticsFieldNames">StatisticsFieldNames</see> 相对应。</summary>
+      <value>默认值为 String.Empty，表示无统计字段。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.DistanceMethod">
+      <summary>获取或设置距离计算方法类型。</summary>
+      <value>默认值为 DistanceMethod.Euclidean，即欧式距离。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.MeasureParameter.IsOrientation">
+      <summary>获取或设置是否忽略起点和终点的方向。</summary>
+      <value>默认值为 false。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.OLSAnalystResult">
+      <summary>
+            普通最小二乘法结果信息类。该类用于获取对数据集进行普通最小二乘法计算的结果，例如普通最小二乘法结果汇总（请参阅 <see cref="T:SuperMap.Analyst.SpatialStatistics.OLSSummary">OLSSummary</see> 类）、结果数据集等。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSAnalystResult.OLSSummary">
+      <summary>获取普通最小二乘法结果汇总。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSAnalystResult.ResultDataset">
+      <summary>获取普通最小二乘法结果数据集。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.OLSParameter">
+      <summary>普通最小二乘法分析参数类。该类主要用来对普通最小二乘法分析的参数进行设置。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.OLSParameter.#ctor">
+      <summary>默认构造函数，构造一个新的 OLSParameter 对象。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.OLSParameter.#ctor(SuperMap.Analyst.SpatialStatistics.OLSParameter)">
+      <summary>拷贝构造函数，根据给定的 OLSParameter 对象构造一个与其完全相同的新对象。</summary>
+      <param name="olsParameter">指定的 OLSParameter 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSParameter.ModelField">
+      <summary>获取或设置建模字段的名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSParameter.ExplanatoryFields">
+      <summary>获取或设置解释字段的名称的集合。</summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.OLSSummary">
+      <summary>
+            普通最小二乘法结果汇总类。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.AIC">
+      <summary>
+            获取普通最小二乘法结果汇总中的AIC。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.AICc">
+      <summary>
+            获取普通最小二乘法结果汇总中的AICc。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.R2">
+      <summary>
+            获取普通最小二乘法结果汇总中的判定系数（R2）。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.R2Adjusted">
+      <summary>
+            获取普通最小二乘法结果汇总中的校正的判定系数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Sigma2">
+      <summary>
+            获取普通最小二乘法结果汇总中的残差方差。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.FStatistic">
+      <summary>
+            获取普通最小二乘法结果汇总中的联合F统计量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.WaldStatistic">
+      <summary>
+            获取普通最小二乘法结果汇总中的联合卡方统计量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.KBPStatistic">
+      <summary>
+            获取普通最小二乘法结果汇总中的Koenker（Breusch-Pagan）统计量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.JBStatistic">
+      <summary>
+            获取普通最小二乘法结果汇总中的Jarque-Bera统计量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.FProbability">
+      <summary>
+            获取普通最小二乘法结果汇总中的联合F统计量的概率。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.WaldProbability">
+      <summary>
+            获取普通最小二乘法结果汇总中的联合卡方统计量的概率。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.KBPProbability">
+      <summary>
+            获取普通最小二乘法结果汇总中的Koenker（Breusch-Pagan）统计量的概率。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.JBProbability">
+      <summary>
+            获取普通最小二乘法结果汇总中的Jarque-Bera统计量的概率。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.FDof">
+      <summary>
+            获取普通最小二乘法结果汇总中的联合F统计量自由度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.WaldDof">
+      <summary>
+            获取普通最小二乘法结果汇总中的联合卡方统计量自由度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.KBPDof">
+      <summary>
+            获取普通最小二乘法结果汇总中的Koenker（Breusch-Pagan）统计量自由度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.JBDof">
+      <summary>
+            获取普通最小二乘法结果汇总中的Jarque-Bera统计量自由度。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Variable">
+      <summary>
+            获取普通最小二乘法结果汇总中的变量数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Coefficient">
+      <summary>
+            获取普通最小二乘法结果汇总中的系数。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.StdError">
+      <summary>
+            获取普通最小二乘法结果汇总中的标准误差。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.t_Statistic">
+      <summary>
+            获取普通最小二乘法结果汇总中的t分布统计量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Probability">
+      <summary>
+            获取普通最小二乘法结果汇总中的t分布统计量概率。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Robust_SE">
+      <summary>
+            获取普通最小二乘法结果汇总中的稳健系数标准差。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Robust_t">
+      <summary>
+            获取普通最小二乘法结果汇总中的稳健系数t分布统计量。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.Robust_Pr">
+      <summary>
+            获取普通最小二乘法结果汇总中的稳健系数概率。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.VIF">
+      <summary>
+            获取普通最小二乘法结果汇总中的方差膨胀因子。
+            </summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OLSSummary.CoefficientStd">
+      <summary>
+            获取普通最小二乘法结果汇总中的系数标准差。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.OptimizedParameter">
+      <summary>优化的热点分析参数类。该类主要用来对优化的热点分析计算的参数进行设置。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.#ctor">
+      <summary>默认构造函数，构造一个新的 OptimizedParameter 对象。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.#ctor(SuperMap.Analyst.SpatialStatistics.OptimizedParameter)">
+      <summary>拷贝构造函数，根据给定的 optimizedParameter 对象构造一个与其完全相同的新对象。</summary>
+      <param name="optimizedParameter">指定的 optimizedParameter 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.AssessmentFieldName">
+      <summary>获取或设置评估字段的名称。</summary>
+      <value>默认值为 String.Empty 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.AggregationMethod">
+      <summary>获取或设置聚合方法。</summary>
+      <value>默认值为 AggregationMethod.NetWorkPolygons 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.BoundingPolygons">
+      <summary>获取或设置事件点发生区域的边界面数据集。</summary>
+      <value>默认值为 null 。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.OptimizedParameter.AggregatingPolygons">
+      <summary>获取或设置聚合事件点以获得事件计数的面数据集。</summary>
+      <value>默认值为 null 。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.PatternsParameter">
+      <summary>分析模式参数类。该类主要用来对分析模式计算的参数进行设置。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.PatternsParameter.#ctor">
+      <summary>默认构造函数，构造一个新的 PatternsParameter 对象。</summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.PatternsParameter.#ctor(SuperMap.Analyst.SpatialStatistics.PatternsParameter)">
+      <summary>拷贝构造函数，根据给定的 patternsParameter 对象构造一个与其完全相同的新对象。</summary>
+      <param name="patternsParameter">指定的 patternsParameter 对象。</param>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.AssessmentFieldName">
+      <summary>获取或设置评估字段的名称。</summary>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.ConceptModel">
+      <summary>获取或设置空间关系概念化模型。</summary>
+      <value>默认值为 <see cref="F:SuperMap.Analyst.SpatialStatistics.ConceptualizationModel.InverseDistance">ConceptualizationModel.InverseDistance</see>。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.DistanceTolerance">
+      <summary>获取或设置中断距离容限。</summary>
+      <value>默认值为 -1.0。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.Exponent">
+      <summary>获取或设置反距离幂指数。</summary>
+      <value>默认值为 1.0。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.Neighbors">
+      <summary>获取或设置相邻数目。</summary>
+      <value>默认值为 1。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.IsStandardization">
+      <summary>获取或设置是否对空间权重矩阵进行标准化。</summary>
+      <value>默认值为 false，即不进行标准化。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.SelfWeightField">
+      <summary>获取或设置自身权重字段的名称。</summary>
+      <value>默认值为 String.Empty，即无自身权重字段。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.IsFDRAdjusted">
+      <summary>获取或设置是否进行FDR（错误发现率）校正。</summary>
+      <value>默认值为 false，即不进行FDR（错误发现率）校正。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.FilePath">
+      <summary>获取或设置空间权重矩阵文件路径。</summary>
+      <value>默认值为 String.Empty，即无空间权重矩阵文件。</value>
+    </member>
+    <member name="P:SuperMap.Analyst.SpatialStatistics.PatternsParameter.DistanceMethod">
+      <summary>获取或设置距离计算方法类型。</summary>
+      <value>默认值为 <see cref="F:SuperMap.Analyst.SpatialStatistics.DistanceMethod.Euclidean">DistanceMethod.Euclidean</see>，即欧式距离。</value>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.SpatialMeasure">
+      <summary>
+            空间度量类。该类可通过度量一组数据的分布来计算各类用于表现分布特征的值，如数据的中心、方向等。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureMeanCenter(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)">
+      <summary>
+             计算矢量数据的平均中心，返回结果矢量数据集。
+             </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="measureParameter">指定的空间度量参数设置。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureMedianCenter(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)">
+      <summary>
+             计算矢量数据的中位数中心，返回结果矢量数据集。
+             </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="measureParameter">指定的空间度量参数设置。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureCentralElement(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)">
+      <summary>
+             计算矢量数据的中心要素，返回结果矢量数据集。
+             </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="measureParameter">指定的空间度量参数设置。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureDirection(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)">
+      <summary>
+             计算矢量数据的方向分布，返回结果矢量数据集。
+             </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="measureParameter">指定的空间度量参数设置。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureStandardDistance(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)">
+      <summary>
+            计算矢量数据的标准距离，返回结果矢量数据集。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="measureParameter">指定的空间度量参数设置。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.MeasureLinearDirectionalMean(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.MeasureParameter)">
+      <summary>
+            计算线数据集的方向平均值，并返回结果矢量数据集。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。为线数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="measureParameter">指定的空间度量参数设置。</param>
+      <returns>结果矢量数据集。</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.SpatialStatistics.SpatialMeasure.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.SpatialRelModeling">
+      <summary>
+            空间关系建模类。该类可利用回归分析建立空间关系模型。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.SpatialRelModeling.GeographicWeightedRegression(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.GWRParameter)">
+      <summary>
+            地理加权回归分析。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="gwrParameter">指定的地理加权回归分析参数设置。</param>
+      <returns>地理加权回归分析结果信息。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.SpatialRelModeling.OrdinaryLeastSquares(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String,SuperMap.Analyst.SpatialStatistics.OLSParameter)">
+      <summary>
+            普通最小二乘法。
+            </summary>
+      <param name="sourceDataset">指定的待计算的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果数据集名称。</param>
+      <param name="gwrParameter">指定的普通最小二乘法参数设置。</param>
+      <returns>普通最小二乘法结果信息。</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.SpatialStatistics.SpatialRelModeling.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.StatisticsType">
+      <summary>
+            该枚举定义了数据集进行空间度量后的字段统计类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Max">
+      <summary>
+            统计字段的最大值。只对数值型字段有效。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Min">
+      <summary>
+            统计字段的最小值。只对数值型字段有效。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Sum">
+      <summary>
+            统计字段的和。只对数值型字段有效。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Mean">
+      <summary>
+            统计字段的平均值。只对数值型字段有效。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.First">
+      <summary>
+            保留第一个对象的字段值。对数值、布尔、时间和文本型字段都有效。
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Last">
+      <summary>
+            保留最后一个对象的字段值。对数值、布尔、时间和文本型字段都有效。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.Analyst.SpatialStatistics.StatisticsType.Median">
+      <summary>
+            统计字段的中位数。只对数值型字段有效。
+            </summary>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.StatisticsUtilities">
+      <summary>
+            空间统计分析工具类。该类可用于数据的简单处理。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.StatisticsUtilities.CollectEvents(SuperMap.Data.DatasetVector,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            收集事件,将事件数据转换成加权数据。
+            </summary>
+      <param name="sourceDataset">指定的待收集的数据集。可以为点、线、面数据集。</param>
+      <param name="targetDatasource">指定的用于存储结果点数据集的数据源。</param>
+      <param name="targetDatasetName">指定的结果点数据集名称。</param>
+      <returns>结果点数据集。</returns>
+    </member>
+    <member name="T:SuperMap.Analyst.SpatialStatistics.WeightsUtilities">
+      <summary>
+            空间权重矩阵工具类。该类可用来构建空间权重矩阵。
+            </summary>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.WeightsUtilities.BuildWeightMatrix(SuperMap.Data.DatasetVector,System.String,System.String,SuperMap.Analyst.SpatialStatistics.PatternsParameter)">
+      <summary>
+            构建空间权重矩阵。
+            </summary>
+      <param name="sourceDataset">指定源数据集。</param>
+      <param name="uniqueIDFieldName">指定的唯一ID字段名。</param>
+      <param name="filePath">指定的空间权重矩阵文件保存路径。</param>
+      <param name="patternsParameter">指定的分析模式参数设置。</param>
+      <returns>一个布尔值，表示构建空间权重矩阵是否成功，如果构建空间权重矩阵，返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.Analyst.SpatialStatistics.WeightsUtilities.ConverToTableDataset(System.String,SuperMap.Data.Datasource,System.String)">
+      <summary>
+            空间权重矩阵文件转换成属性表。
+            </summary>
+      <param name="filePath">指定的空间权重矩阵文件路径。</param>
+      <param name="targetDatasource">指定的用于存储结果属性表的数据源。</param>
+      <param name="targetDatasetName">指定的结果属性表名称。</param>
+      <returns>结果属性表。</returns>
+    </member>
+    <member name="E:SuperMap.Analyst.SpatialStatistics.WeightsUtilities.Stepped">
+      <summary>
+            启动进度条时触发该事件。
+            </summary>
+    </member>
+  </members>
+</doc>

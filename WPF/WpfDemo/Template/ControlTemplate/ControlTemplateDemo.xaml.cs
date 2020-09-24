@@ -17,11 +17,19 @@ namespace WpfDemo.Template.ControlTemplate
     /// <summary>
     /// ControlTemplateDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class ControlTemplateDemo : Window
+    public partial class ControlTemplateDemo : UserControl
     {
         public ControlTemplateDemo()
         {
             InitializeComponent();
+        }
+
+        private void ModifyTextBlockInTemplate_Click(object sender, RoutedEventArgs e)
+        {
+            var template = checkBox1.Template;
+            var myControl = template.FindName("textBlock1", checkBox1);
+            var tb = myControl as TextBlock;
+            tb.Background = new SolidColorBrush(Colors.LightPink);
         }
     }
 }

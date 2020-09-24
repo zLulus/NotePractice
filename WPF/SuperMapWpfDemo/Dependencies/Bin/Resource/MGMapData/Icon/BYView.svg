@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>32-执行</title>
+    <desc>Created with Sketch.</desc>
+    <g id="8-可视化建模" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="可视化建模" transform="translate(-126.000000, -12.000000)" fill-rule="nonzero">
+            <g id="8-可视化建模" transform="translate(13.000000, 12.000000)">
+                <g id="32-执行" transform="translate(113.000000, 0.000000)">
+                    <g id="执行" transform="translate(3.000000, 3.000000)">
+                        <circle id="椭圆形" stroke="#5D6D7E" fill="#FFFFFF" cx="13" cy="13" r="12.5"></circle>
+                        <polygon id="三角形" fill="#27A2DF" transform="translate(14.016113, 13.011719) rotate(-270.000000) translate(-14.016113, -13.011719) " points="14.0161133 8.51171875 20.5161133 17.5117188 7.51611328 17.5117188"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

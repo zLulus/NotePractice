@@ -17,6 +17,7 @@ import { HeroService } from './hero.service';
 import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 import { NameChainsComponent } from './name-chains/name-chains.component';
+import { JsonExamplesComponent } from './json-examples/json-examples.component';
 
 @NgModule({
   imports: [
@@ -39,7 +40,8 @@ import { NameChainsComponent } from './name-chains/name-chains.component';
     HeroDetailComponent,
     MessagesComponent,
     HeroSearchComponent,
-    NameChainsComponent
+    NameChainsComponent,
+    JsonExamplesComponent
   ],
   providers: [ HeroService, MessageService ],
   bootstrap: [ AppComponent ]

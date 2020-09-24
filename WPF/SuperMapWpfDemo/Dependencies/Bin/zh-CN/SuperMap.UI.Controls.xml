@@ -1,0 +1,2165 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.UI.Controls</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.UI.AfterFileOpenEventArgs">
+      <summary>
+            文件打开后事件参数类。 为文件打开后事件（<see cref="E:SuperMap.UI.WorkspaceTree.AfterFileOpen">WorkspaceTree.AfterFileOpen</see>）提供数据。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.AfterFileOpenEventArgs.#ctor(System.String)">
+      <summary>
+            根据指定的参数来构造一个 AfterFileOpenEventArgs 的新对象。  
+            </summary>
+      <param name="filePath">指定的刚打开的文件全路径。</param>
+    </member>
+    <member name="P:SuperMap.UI.AfterFileOpenEventArgs.FilePath">
+      <summary>
+            获取刚打开的文件全路径。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.AfterFileOpenEventHandler">
+      <summary>
+            表示处理文件打开后事件（<see cref="E:SuperMap.UI.WorkspaceTree.AfterFileOpen">WorkspaceTree.AfterFileOpen</see>）的方法类。 
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的文件打开后事件参数类（<see cref="T:SuperMap.UI.AfterFileOpenEventArgs">AfterFileOpenEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.AfterIconClickEventArgs">
+      <summary>
+            单击图层树节点上的图标后的事件参数类。为单击图层树节点上的图标后的事件（<see cref="E:SuperMap.UI.LayersTree.AfterTreeIconClick">LayersTree.AfterTreeIconClick</see> 和 <see cref="E:SuperMap.UI.Layer3DsTree.AfterTreeIconClick">Layer3DsTree.AfterTreeIconClick</see>）提供数据。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.AfterIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,SuperMap.UI.TreeIconTypes)">
+      <summary>
+            根据指定的参数来构造一个 AfterIconClickEventArgs 的新对象。 
+            </summary>
+      <param name="node">指定的树节点。</param>
+      <param name="iconType">指定的图层树节点的图片类型。</param>
+    </member>
+    <member name="P:SuperMap.UI.AfterIconClickEventArgs.IconType">
+      <summary>
+            获取图层树节点的图片类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.AfterIconClickEventArgs.Node">
+      <summary>
+            获取触发事件的图层树节点。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.AfterTreeIconClickEventHandler">
+      <summary>
+            表示处理单击图层树节点图标后的事件（<see cref="E:SuperMap.UI.LayersTree.AfterTreeIconClick">LayersTree.AfterTreeIconClick</see> 和 <see cref="E:SuperMap.UI.Layer3DsTree.AfterTreeIconClick">Layer3DsTree.AfterTreeIconClick</see>）的方法类。
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的图标单击后事件参数类（<see cref="T:SuperMap.UI.AfterIconClickEventArgs">AfterIconClickEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeFileOpenEventArgs">
+      <summary>
+            文件打开前事件参数类。为文件打开前事件（<see cref="E:SuperMap.UI.WorkspaceTree.BeforeFileOpen">WorkspaceTree.BeforeFileOpen</see>）提供数据。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.BeforeFileOpenEventArgs.#ctor(System.String,System.Boolean)">
+      <summary>
+            根据指定的参数来构造一个 BeforeFileOpenEventArgs 的新对象。 
+            </summary>
+      <param name="filePath">指定的要打开的文件全路径。</param>
+      <param name="cancel">是否取消以该参数类对象作为参数的事件所对应的操作。</param>
+    </member>
+    <member name="P:SuperMap.UI.BeforeFileOpenEventArgs.FilePath">
+      <summary>
+            获取或设置要打开的文件全路径。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.BeforeFileOpenEventArgs.Cancel">
+      <summary>
+            获取或设置指示是否应取消事件的值。如果应取消事件，则为 true；否则为 false。  
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.BeforeFileOpenEventHandler">
+      <summary>
+            表示处理文件打开前事件（<see cref="E:SuperMap.UI.WorkspaceTree.BeforeFileOpen">WorkspaceTree.BeforeFileOpen</see>）的方法类。 
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的文件打开前事件参数类（<see cref="T:SuperMap.UI.BeforeFileOpenEventArgs">BeforeFileOpenEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeIconClickEventArgs">
+      <summary>
+            单击图层树节点上的图标前的事件参数类。为单击图层树节点上的图标前的事件（<see cref="E:SuperMap.UI.LayersTree.BeforeTreeIconClick">LayersTree.BeforeTreeIconClick</see> 和 <see cref="E:SuperMap.UI.Layer3DsTree.BeforeTreeIconClick">Layer3DsTree.BeforeTreeIconClick</see>）提供数据。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.BeforeIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,System.Boolean)">
+      <summary>
+            根据指定的参数来构造一个 BeforeIconClickEventArgs 的新对象。已过时。使用<see cref="M:SuperMap.UI.BeforeIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,SuperMap.UI.TreeIconTypes,System.Boolean)">BeforeIconClickEventArgs</see>替代。
+            </summary>
+      <param name="node">指定的树节点。</param>
+      <param name="cancel">是否取消以该参数类对象作为参数的事件所对应的操作。</param>
+    </member>
+    <member name="M:SuperMap.UI.BeforeIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,SuperMap.UI.TreeIconTypes,System.Boolean)">
+      <summary>
+            根据指定的参数来构造一个 BeforeIconClickEventArgs 的新对象。 
+            </summary>
+      <param name="node">指定的树节点。</param>
+      <param name="iconType">指定的图层树节点的图片类型。</param>
+      <param name="cancel">是否取消以该参数类对象作为参数的事件所对应的操作。</param>
+    </member>
+    <member name="P:SuperMap.UI.BeforeIconClickEventArgs.Node">
+      <summary>
+            获取触发事件的图层树节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.BeforeIconClickEventArgs.Cancel">
+      <summary>
+            获取或设置是否取消事件的值。如果应取消事件，则为 true；否则为 false。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.BeforeIconClickEventArgs.IconType">
+      <summary>
+            获取图层树节点的图标。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.BeforeLayer3DsTreeIconClickEventArgs">
+      <summary>
+            该类已过时，使用<see cref="T:SuperMap.UI.BeforeIconClickEventArgs">BeforeIconClickEventArgs</see>替代。单击三维图层树节点上的图标前的事件参数类。为单击三维图层树节点上的图标前的事件（<see cref="E:SuperMap.UI.Layer3DsTree.BeforeIconClick">Layer3DsTree.BeforeIconClick</see>）提供数据。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.BeforeLayer3DsTreeIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,SuperMap.UI.TreeIconTypes)">
+      <summary>
+            根据指定的参数来构造一个 BeforeLayer3DsTreeIconClickEventArgs 的新对象。 
+            </summary>
+      <param name="node">指定的树节点。</param>
+      <param name="iconType">指定的触发事件的图标类型。</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeLayer3DsTreeIconClickEventHandler">
+      <summary>
+            已过时，使用<see cref="T:SuperMap.UI.BeforeTreeIconClickEventHandler">BeforeTreeIconClickEventHandler</see>替代。表示处理单击三维图层树节点上的图标前的事件（<see cref="E:SuperMap.UI.Layer3DsTree.BeforeIconClick">Layer3DsTree.BeforeIconClick</see>）的方法类。 
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的单击三维图层树节点上的图标前的事件参数类（<see cref="T:SuperMap.UI.BeforeLayer3DsTreeIconClickEventArgs">BeforeLayer3DsTreeIconClickEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeLayersTreeIconClickEventArgs">
+      <summary>
+            该类已过时，使用<see cref="T:SuperMap.UI.BeforeIconClickEventArgs">BeforeIconClickEventArgs</see>替代。单击二维图层树节点上的图标前的事件参数类。为单击二维图层树节点上的图标前的事件（<see cref="E:SuperMap.UI.LayersTree.BeforeIconClick">LayersTree.BeforeIconClick</see>）提供数据。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.BeforeLayersTreeIconClickEventArgs.#ctor(SuperMap.UI.TreeNodeBase,SuperMap.UI.TreeIconTypes)">
+      <summary>
+            根据指定的参数来构造一个 BeforeLayersTreeIconClickEventArgs 的新对象。 
+            </summary>
+      <param name="node">指定的树节点。</param>
+      <param name="iconType">指定的触发该事件的图标类型。</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeLayersTreeIconClickEventHandler">
+      <summary>
+            已过时，使用<see cref="T:SuperMap.UI.BeforeTreeIconClickEventHandler">BeforeTreeIconClickEventHandler</see>替代。表示处理单击二维图层树节点上的图标前的事件（<see cref="E:SuperMap.UI.LayersTree.BeforeIconClick">LayersTree.BeforeIconClick</see>）的方法类。 
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的单击树节点上的图标前的事件参数类（<see cref="T:SuperMap.UI.BeforeLayersTreeIconClickEventArgs">BeforeLayersTreeIconClickEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeNodeContextMenuStripShowEventArgs">
+      <summary>
+            树节点右键菜单弹出前的事件参数类。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.BeforeNodeContextMenuStripShowEventArgs.#ctor(SuperMap.UI.TreeNodeBase,System.Windows.Forms.ContextMenuStrip)">
+      <summary>
+            根据指定的参数来构造一个 BeforeNodeContextMenuStripShowEventArgs 的新对象。 
+            </summary>
+      <param name="node">指定的树节点。</param>
+      <param name="contextMenuStrip">指定的弹出的右键菜单。</param>
+    </member>
+    <member name="P:SuperMap.UI.BeforeNodeContextMenuStripShowEventArgs.Node">
+      <summary>
+            触发该事件的树节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.BeforeNodeContextMenuStripShowEventArgs.ContextMenuStrip">
+      <summary>
+            获取或设置弹出的右键菜单。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.BeforeNodeContextMenuStripShowEventHandler">
+      <summary>
+            表示处理三维图层树节点右键菜单弹出前的事件（<see cref="E:SuperMap.UI.Layer3DsTree.BeforeNodeContextMenuStripShow">Layer3DsTree.BeforeNodeContextMenuStripShow</see>）和二维图层树节点右键菜单弹出前事件（<see cref="E:SuperMap.UI.LayersTree.BeforeNodeContextMenuStripShow">LayersTree.BeforeNodeContextMenuStripShow</see>）的方法类。 
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的树节点右键菜单弹出前的事件参数类（<see cref="T:SuperMap.UI.BeforeNodeContextMenuStripShowEventArgs">BeforeNodeContextMenuStripShowEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.BeforeTreeIconClickEventHandler">
+      <summary>
+            表示处理单击图层树节点上的图标前的事件（<see cref="E:SuperMap.UI.LayersTree.BeforeTreeIconClick">LayersTree.BeforeTreeIconClick</see> 和 <see cref="E:SuperMap.UI.Layer3DsTree.BeforeTreeIconClick">Layer3DsTree.BeforeTreeIconClick</see>）的方法类。
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的单击图层树节点图标前的事件参数类（<see cref="T:SuperMap.UI.BeforeIconClickEventArgs">BeforeIconClickEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.ColorButton">
+      <summary>
+            颜色按钮，单击颜色按钮将弹出颜色选择器，颜色选择器提供了选择颜色和自定义颜色值的功能，以及通过颜色选择器可以打开颜色库管理器对颜色进行管理。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorButton.#ctor">
+      <summary>
+            构造一个 ColorButton 类的新对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorButton.Color">
+      <summary>
+            获取或设置颜色选择器中被选中的颜色。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorButton.ColorLibrary">
+      <summary>
+            获取从颜色选择器中打开颜色管理器时，其中所管理的颜色库。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorButton.XmlFilePath">
+      <summary>
+            获取或设置颜色管理器中所加载的颜色库对应的外部文件的全路径。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorButton.AlphaEnabled">
+      <summary>
+             获取或设置颜色透明度值是否可用，true 表示可用，false 表示不可用。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorButton.ShowOtherColor">
+      <summary>
+            获取或设置颜色选择器中的“其他颜色”的区域是否展开，true 表示展开，false 表示收起，不展开。
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.ColorButton.ColorChangeContinuing">
+      <summary>
+            当颜色选择器中所被选中的颜色变化时，触发该事件。
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.ColorButton.ColorChanged">
+      <summary>
+            当颜色选择器被关闭，并且其中所选择的颜色发生了变化，触发该事件。
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.ColorButton.ColorDropDownClosed">
+      <summary>
+            当颜色选择器被关闭后，触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.ColorCell">
+      <summary>
+            ColorCell 类，一个 ColorCell 对象对应色板中的一个色块。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorCell.#ctor">
+      <summary>
+            构造一个 ColorCell 类的新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorCell.#ctor(System.Drawing.Color)">
+      <summary>
+            根据给定的颜色值，构造一个 ColorCell 类的新对象。
+            </summary>
+      <param name="color">指定的颜色。</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorCell.#ctor(System.Drawing.Color,System.String)">
+      <summary>
+            根据给定的颜色值和 Tag（标签），构造一个 ColorCell 类的新对象。
+            </summary>
+      <param name="color">指定的颜色值。</param>
+      <param name="tag">指定的 Tag（标签）。</param>
+    </member>
+    <member name="P:SuperMap.UI.ColorCell.Color">
+      <summary>
+            获取或设置 ColorCell 对象的颜色值。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorCell.Tags">
+      <summary>
+            获取或设置 ColorCell 对象的 Tag（标签）。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.ColorLibrary">
+      <summary>
+            ColorLibrary 类，一个 ColorLibrary 对象对应一个颜色库，颜色库包含了若干个色板（ColorSwatch 对象），色板包含了若干个色块（ColorCell 对象），色板实现了对颜色的分类管理。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.#ctor">
+      <summary>
+            构造一个 ColorLibrary 类的新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.Add(SuperMap.UI.ColorSwatch)">
+      <summary>
+            向颜色库中添加一个色板。
+            </summary>
+      <param name="colorSwatch">指定的色板，即一个 ColorSwatch 对象。</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.FromFile(System.String)">
+      <summary>
+            从颜色库文件（*.xml文件）加载颜色库。颜色库文件采用 XML 格式存储颜色库中的色板，色板的排列顺序、色板的名称、色板中的色块等信息。
+            </summary>
+      <param name="fileName">指定的颜色库文件（*.xml文件）的全路径。通过 ColorLibrary.ToFile() 方法可以将颜色库存储为颜色库文件。</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.IndexOf(SuperMap.UI.ColorSwatch)">
+      <summary>
+            返回指定的色板在颜色库中的索引值。
+            </summary>
+      <param name="item">指定的颜色库中的色板。</param>
+      <returns>返回指定的色板在颜色库中的索引值。</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.LoadXml(System.String)">
+      <summary>
+            从描述颜色库的 XML 格式的字符串加载颜色库。
+            </summary>
+      <param name="xml">指定的描述颜色库的 XML 格式的字符串。</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.Remove(SuperMap.UI.ColorSwatch)">
+      <summary>
+            将指定色板从颜色库中移除。
+            </summary>
+      <param name="colorSwatch">指定的要移除的色板。</param>
+      <returns>移除成功返回 true；否则，返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.RemoveAt(System.Int32)">
+      <summary>
+            将指定索引处的色板从颜色库中移除。
+            </summary>
+      <param name="index">指定的要移除的色板在颜色库中的索引值。</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.SaveXml">
+      <summary>
+            将颜色库以 XML 格式的字符串存储。
+            </summary>
+      <returns>返回描述颜色库的 XML 格式的字符串。</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibrary.ToFile(System.String)">
+      <summary>
+            将颜色库存储为 XML 格式的文件（*.xml 文件），该文件采用 XML 格式存储颜色库中的色板，色板的排列顺序、色板的名称、色板中的色块等信息。
+            </summary>
+      <param name="fileName">指定的颜色库文件（*.xml 文件）的全路径。</param>
+    </member>
+    <member name="P:SuperMap.UI.ColorLibrary.Count">
+      <summary>
+            获取颜色库中的色板数目。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorLibrary.Item(System.String)">
+      <summary>
+            获取指定色板名称的色板。
+            </summary>
+      <param name="name">指定的色板的名称。</param>
+      <returns>指定色板名称的色板。</returns>
+    </member>
+    <member name="P:SuperMap.UI.ColorLibrary.Item(System.Int32)">
+      <summary>
+            获取颜色库中指定索引处的色板。
+            </summary>
+      <param name="index">指定的色板在颜色库中的索引值。</param>
+      <returns>颜色库中指定索引处的色板。</returns>
+    </member>
+    <member name="T:SuperMap.UI.ColorLibraryDialog">
+      <summary>
+            颜色管理器，用于管理颜色库中的颜色，颜色管理器当前管理的为一个颜色库。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.DialogBase">
+      <summary>
+            对话框基类。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.DialogBase.Icon">
+      <summary>
+            获取或设置对话框标题栏上的图标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.DialogBase.Location">
+      <summary>
+            获取或设置对话框的左上角的坐标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.DialogBase.ShowIcon">
+      <summary>
+            获取或设置一个布尔值，该值指示是否在窗体的标题栏中显示图标。true 为显示图标，false 为不显示。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.DialogBase.StartPosition">
+      <summary>
+            获取或设置对话框运行时的起始位置。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.DialogBase.Title">
+      <summary>
+            获取或设置对话框标题栏上所显示的文字。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibraryDialog.#ctor">
+      <summary>
+            构造一个 ColorLibraryDialog 类的新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibraryDialog.ShowDialog">
+      <summary>
+            显示颜色管理器。
+            </summary>
+      <returns>对话框的返回值，用以获取用户在颜色管理器对话框中单击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibraryDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            将颜色管理器对话框显示为具有指定所有者的模式对话框。
+            </summary>
+      <param name="owner">任何实现 IWin32Window 的对象。</param>
+      <returns>对话框的返回值，用以获取用户在颜色管理器对话框中单击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorLibraryDialog.ShowDialog(SuperMap.UI.ColorLibrary)">
+      <summary>
+            显示颜色管理器。
+            </summary>
+      <param name="library">指定的颜色管理器当前管理的颜色库。</param>
+    </member>
+    <member name="P:SuperMap.UI.ColorLibraryDialog.Library">
+      <summary>
+            获取或设置颜色管理器当前管理的颜色库。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.ColorSwatch">
+      <summary>
+            ColorSwatch 类，一个 ColorSwatch 对象对应一个色板。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.#ctor">
+      <summary>
+            构造一个 ColorSwatch 类的新对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.Add(SuperMap.UI.ColorCell)">
+      <summary>
+            向色板中添加一个色块。
+            </summary>
+      <param name="colorCell">指定的 ColorCell 对象，即要添加到色板中的色块。</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.FromFile(System.String)">
+      <summary>
+            从XML色板文件读取色板并加载，该XML文件按照一定的结构存储色板，包括色板中的颜色值、 Tag（标签）、色块的排列顺序等。
+            </summary>
+      <param name="fileName">指定的色板文件（*.xml）的全路径。XML色板文件按照一定的结构存储色板，包括色板中的颜色值、 Tag（标签）、色块的排列顺序等。通过 ColorSwatch.ToFile() 方法可以将色板存储为色板文件（*.xml文件）。</param>
+      <returns>成功加载返回 true；否则，返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.LoadXml(System.String)">
+      <summary>
+            通过 XML 格式的字符串加载其所描述的色板，该 XML 字符串按照一定的结构存储色板，包括色板中的颜色值、 Tag（标签）、色块的排列顺序等。
+            </summary>
+      <param name="xml">描述色板的 XML 字符串，该 XML 字符串按照一定的结构存储色板，包括色板中的颜色值、 Tag（标签）、色块的排列顺序等。</param>
+      <returns>成功加载返回 true；否则，返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.Remove(SuperMap.UI.ColorCell)">
+      <summary>
+            将指定的色块从色板中移除。
+            </summary>
+      <param name="cell">指定的要移除的色板中的色块。</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.RemoveAt(System.Int32)">
+      <summary>
+            移除色板中指定索引处的色块。
+            </summary>
+      <param name="index">指定的要移除的色块在色板中的索引值。</param>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.SaveXml">
+      <summary>
+            将色版以 XML 格式的字符串存储，该 XML 字符串存储了色板中的颜色值、 Tag（标签）、色块的排列顺序等信息。
+            </summary>
+      <returns>返回描述色板的 XML 格式的字符串。</returns>
+    </member>
+    <member name="M:SuperMap.UI.ColorSwatch.ToFile(System.String)">
+      <summary>
+            将色板存储为 XML 格式的文件（*.xml文件）。XML色板文件为按照一定的结构存储色板，包括色板中的颜色值、 Tag（标签）、色块的排列顺序等。
+            </summary>
+      <param name="fileName">指定的XML色板文件的全路径。</param>
+    </member>
+    <member name="P:SuperMap.UI.ColorSwatch.ColorCells">
+      <summary>
+            获取或设置色板中的色块集合。色板中包含若干个色块，一个色块为一个 ColorCell 对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorSwatch.Count">
+      <summary>
+            获取色板中的色块的数目。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.ColorSwatch.Item(System.Int32)">
+      <summary>
+            获取色板中的指定索引处的色块。
+            </summary>
+      <param name="index">指定的色块的索引值。</param>
+      <returns>指定索引处的色块。</returns>
+    </member>
+    <member name="P:SuperMap.UI.ColorSwatch.Name">
+      <summary>
+            获取或设置色板的名称。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.DoubleClickAction">
+      <summary>
+            该枚举定义了鼠标双击执行动作的类型常量。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.DoubleClickAction.None">
+      <summary>
+            不执行任何操作。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.DoubleClickAction.OK">
+      <summary>
+            执行和点击”确定”按钮相同的操作。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.DoubleClickAction.EditSymbol">
+      <summary>
+            编辑当前选中符号的操作。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.GeoStyle3DChangedEventArgs">
+      <summary>
+            为修改三维风格事件（<see cref="E:SuperMap.UI.SymbolDialog.GeoStyle3DChanged">SymbolDialog.GeoStyle3DChanged</see>）提供数据。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.GeoStyle3DChangedEventArgs.#ctor(SuperMap.Data.GeoStyle3D)">
+      <summary>
+            根据指定的参数来构造一个 GeoStyle3DChangedEventArgs 的新对象。 
+            </summary>
+      <param name="geoStyle3D">修改后的三维风格。</param>
+    </member>
+    <member name="P:SuperMap.UI.GeoStyle3DChangedEventArgs.GeoStyle3D">
+      <summary>
+            获取修改后的三维风格。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.GeoStyle3DChangedEventHandler">
+      <summary>
+            表示修改三维风格事件（<see cref="E:SuperMap.UI.SymbolDialog.GeoStyle3DChanged">SymbolDialog.GeoStyle3DChanged</see>）的方法类。 
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的修改三维风格事件参数类（<see cref="T:SuperMap.UI.GeoStyle3DChangedEventArgs">GeoStyle3DChangedEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.GeoStyleChangedEventArgs">
+      <summary>
+            为修改风格事件（<see cref="E:SuperMap.UI.SymbolDialog.GeoStyleChanged">SymbolDialog.GeoStyleChanged</see>）提供数据。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.GeoStyleChangedEventArgs.#ctor(SuperMap.Data.GeoStyle)">
+      <summary>
+            根据指定的参数来构造一个 GeoStyleChangedEventArgs 的新对象。 
+            </summary>
+      <param name="geoStyle">修改后的风格。</param>
+    </member>
+    <member name="P:SuperMap.UI.GeoStyleChangedEventArgs.GeoStyle">
+      <summary>
+            获取修改后的风格。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.GeoStyleChangedEventHandler">
+      <summary>
+            表示修改风格事件（<see cref="E:SuperMap.UI.SymbolDialog.GeoStyleChanged">SymbolDialog.GeoStyleChanged</see>）的方法类。 
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的修改风格事件参数类（<see cref="T:SuperMap.UI.GeoStyleChangedEventArgs">GeoStyleChangedEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.InteractionType">
+      <summary>该枚举定义了自定义用户操作类型常量。</summary>
+    </member>
+    <member name="F:SuperMap.UI.InteractionType.KeyDelete">
+      <summary>Delete 键操作。</summary>
+    </member>
+    <member name="F:SuperMap.UI.InteractionType.KeyF2">
+      <summary>F2 键操作。</summary>
+    </member>
+    <member name="F:SuperMap.UI.InteractionType.FileDrop">
+      <summary>拖拽文件操作。</summary>
+    </member>
+    <member name="F:SuperMap.UI.InteractionType.NodeDrop">
+      <summary>拖拽节点操作。目前只支持数据集拖拽到数据源。</summary>
+    </member>
+    <member name="T:SuperMap.UI.LayoutSettingDialog">
+      <summary>
+             布局设置对话框，提供了以界面交互方式对布局进行设置的场所。使用布局设置对话框，可以对布局环境、纸张进行设置，以及对布局进行优化，例如布局背景色、纸张前景色、标尺和刻度尺的显示、页数、页边距和网格设置等。
+             </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.#ctor">
+      <summary>
+            构造一个新的 LayoutSettingDialog 对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.#ctor(SuperMap.Layout.MapLayout)">
+      <summary>
+            根据指定的参数来构造一个 LayoutSettingDialog 的新对象。
+            </summary>
+      <param name="maplayout">指定的 MapLayout 对象。</param>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.ShowDialog(SuperMap.Layout.MapLayout)">
+      <summary>
+            显示布局设置对话框，并可以指定当前要进行设置的布局。
+            </summary>
+      <param name="maplayout">指定的布局对象。</param>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.ShowDialog(SuperMap.Layout.MapLayout,System.String)">
+      <summary>
+            显示布局设置对话框，并可以指定当前要进行设置的布局及布局设置对话框的标题。
+            </summary>
+      <param name="maplayout">指定的布局对象。</param>
+      <param name="title">指定布局设置对话框标题栏上所显示的文字。</param>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.ShowDialog">
+      <summary>
+            显示布局设置对话框。
+            </summary>
+      <returns>对话框的返回值，用以获取用户在布局设置对话框中点击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="M:SuperMap.UI.LayoutSettingDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            将布局设置对话框显示为具有指定所有者的模式对话框。
+            </summary>
+      <param name="owner">任何实现 IWin32Window 的对象。</param>
+      <returns>对话框的返回值，用以获取用户在布局设置对话框中点击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="P:SuperMap.UI.LayoutSettingDialog.Maplayout">
+      <summary>
+            获取或设置一个 <see cref="T:SuperMap.Layout.MapLayout">MapLayout</see> 对象。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.MapNavigationControl">
+      <summary>
+            地图导航控件。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.MapNavigationControl.#ctor">
+      <summary>
+            构造一个新的 MapNavigationControl 对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.MapNavigationControl.#ctor(SuperMap.UI.MapControl)">
+      <summary>
+            根据指定的参数来构造一个 MapNavigationControl 的新对象。
+            </summary>
+      <param name="mapControl">指定的新的地图导航控件所关联的 MapControl 对象。</param>
+    </member>
+    <member name="M:SuperMap.UI.MapNavigationControl.#ctor(System.ComponentModel.IContainer)">
+      <summary>
+            根据指定的参数来构造一个 MapNavigationControl 的新对象。
+            </summary>
+      <param name="container">新的地图导航控件所在的容器 System.ComponentModel.IContainer。</param>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.MapControl">
+      <summary>
+            获取或设置地图导航控件关联的 MapControl 对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.Anchor">
+      <summary>
+            获取或设置地图导航控件如何锚定到其所关联的MapControl 控件的边缘。
+            </summary>
+      <value>默认值为：AnchorStyles.Top | AnchorStyles.Left，即 AnchorStyles 中的 Top 和 Left 两个成员的按位组合。</value>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.Location">
+      <summary>
+            获取或设置地图导航控件最小外接矩形的左上角相对于其所关联的MapControl 控件的左上角的坐标。
+            </summary>
+      <value>默认值为：Point(20, 20)。</value>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.MaxScale">
+      <summary>
+            获取或设置通过地图导航控件中的滑块对地图所能缩放到的最大比例尺。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.MinScale">
+      <summary>
+            获取或设置通过地图导航控件中的滑块对地图所能缩放到的最小比例尺，需要同时设置MaxZoomScale属性才有效。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.PanPercent">
+      <summary>
+            获取或设置当用户使用地图导航控件进行平移地图时，每一次单击动作所移动的地图的范围，单位为：百分比，即相对于MapControl 控件大小的百分比，该属性值为0——100之间的整数。
+            </summary>
+      <value>默认值为：25。</value>
+    </member>
+    <member name="P:SuperMap.UI.MapNavigationControl.Visible">
+      <summary>
+            获取或设置当地图窗口中加载了 MapNavigationControl 控件时，该 MapNavigationControl 控件是否显示。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.MultiSelectableTree">
+      <summary>
+            多选树控件，继承自 TreeView。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.MultiSelectableTree.#ctor">
+      <summary>
+            构造一个新的 MultiSelectableTree 对象。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MultiSelectableTree.SimpleMode">
+      <summary>
+            获取或设置是否使用简洁模式。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MultiSelectableTree.SelectedNodes">
+      <summary>
+            获取或设置图层树中选中的节点数组。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MultiSelectableTree.MultiSelect">
+      <summary>
+            获取或设置是否支持同时选中多个树节点。 默认为值 true。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.MultiSelectableTree.Icons">
+      <summary>
+            获取或设置一个标记(Flags)，统一控制树中所有节点显示哪几个图标。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.SymbolDialog">
+      <summary>
+             符号选择器，提供了界面交互的方式设置符号风格，包括：点符号、线型符号和填充符号风格。 
+             </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.#ctor">
+      <summary>
+            构造一个新的 SymbolDialog 对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog">
+      <summary>
+            显示符号选择器。 
+            </summary>
+      <returns>对话框的返回值，用以获取用户在符号选择器中是单击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            将符号选择器显示为具有指定所有者的模式对话框。 
+            </summary>
+      <param name="owner">任何实现 IWin32Window 的对象。</param>
+      <returns>对话框的返回值，用以获取用户在符号选择器中是单击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.GeoStyle,SuperMap.Data.SymbolType)">
+      <summary>
+            显示符号选择器，并且可以指定符号选择器中当前所显示的默认符号风格。 
+            </summary>
+      <param name="resources">指定符号选择器使用的资源。符号选择器将从指定的资源中读取符号信息。</param>
+      <param name="geoStyle">指定符号选择器中当前所显示的默认符号风格。</param>
+      <param name="symbolType">指定打开的符号选择器的类型。符号选择器有点符号选择器、线型符号选择器和填充符号选择器三种类型。</param>
+      <returns>返回通过符号选择器设置的符号风格。如果用户在符号选择器中单击“确定”按钮，则返回所设置的符号风格；否则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.GeoStyle,SuperMap.Data.SymbolType,System.String)">
+      <summary>
+            显示符号选择器，并且可以指定符号选择器中当前所显示的默认符号风格以及符号选择器的对话框标题栏上所显示的文字。 
+            </summary>
+      <param name="resources">指定符号选择器使用的资源。符号选择器将从指定的资源中读取符号信息。</param>
+      <param name="geoStyle">指定符号选择器中当前所显示的默认符号风格。</param>
+      <param name="symbolType">指定打开的符号选择器的类型。符号选择器有点符号选择器、线型符号选择器和填充符号选择器三种类型。</param>
+      <param name="title">指定符号选择器的对话框标题栏上所显示的文字。</param>
+      <returns>返回通过符号选择器设置的符号风格。如果用户在符号选择器中单击“确定”按钮，则返回所设置的符号风格；否则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.GeoStyle3D,SuperMap.Data.SymbolType)">
+      <summary>
+            显示符号选择器，并且可以指定符号选择器中当前所显示的默认三维符号风格。 
+            </summary>
+      <param name="resources">指定符号选择器使用的资源。符号选择器将从指定的资源中读取符号信息。</param>
+      <param name="geoStyle3D">指定符号选择器中当前所显示的默认三维符号风格。</param>
+      <param name="symbolType">指定打开的符号选择器的类型。符号选择器有点符号选择器、线型符号选择器和填充符号选择器三种类型。</param>
+      <returns>可以返回通过符号选择器设置的三维符号风格。如果用户在符号选择器中单击“确定”按钮，则返回所设置的三维符号风格；否则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.GeoStyle3D,SuperMap.Data.SymbolType,System.String)">
+      <summary>
+            显示符号选择器，并且可以指定符号选择器中当前所显示的默认三维符号风格以及符号选择器的对话框标题栏上所显示的文字。 
+            </summary>
+      <param name="resources">指定符号选择器使用的资源。符号选择器将从指定的资源中读取符号信息。</param>
+      <param name="geoStyle3D">指定符号选择器中当前所显示的默认三维符号风格。</param>
+      <param name="symbolType">指定打开的符号选择器的类型。符号选择器有点符号选择器、线型符号选择器和填充符号选择器三种类型。</param>
+      <param name="title">指定符号选择器的对话框标题栏上所显示的文字。</param>
+      <returns>可以返回通过符号选择器设置的三维符号风格。如果用户在符号选择器中单击“确定”按钮，则返回所设置的三维符号风格；否则返回 null。</returns>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.Style">
+      <summary>
+            获取或设置符号选择器中所设置的符号风格。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.Resources">
+      <summary>
+            获取或设置符号选择器的资源。符号选择器将从指定的资源中读取符号信息。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.Type">
+      <summary>
+            获取或设置符号选择器的类型。符号选择器有点符号选择器、线型符号选择器和填充符号选择器三种类型。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.SymbolID">
+      <summary>
+            获取符号选择器中被选中的符号的编号。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.Style3D">
+      <summary>
+            获取或设置符号选择器中所设置的符号风格，该符号风格为三维符号风格。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.DoubleClickAction">
+      <summary>
+            获取或设置对单个符号双击执行的操作，如有直接确定或不执行任何操作两种类型。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.UseApplyButton">
+      <summary>
+             获取或设置符号选择器中是否使用应用按钮。true 表示使用，false 表示不使用。
+             </summary>
+    </member>
+    <member name="E:SuperMap.UI.SymbolDialog.GeoStyleChanged">
+      <summary>
+            当符号选择器中符号风格设置发生变化时，触发该事件。 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.SymbolDialog.ApplyButtonClicked">
+      <summary>
+            当单击符号选择器中的“应用”按钮时，触发该事件。 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.SymbolDialog.GeoStyle3DChanged">
+      <summary>
+            当符号选择器中三维符号风格设置发生变化时，触发该事件。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.ShowEditButton">
+      <summary>
+            获取或设置符号选择器是否显示编辑按钮。
+            </summary>
+      <value>默认为 false，不显示。</value>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.Title">
+      <summary>
+            获取或设置符号选择器的标题。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolDialog.AlphaEnabled">
+      <summary>
+            获取或设置符号选择器中是否可以设置颜色透明值（Alpha值）；true表示可以设置颜色透明值；false表示不可以设置颜色透明值。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.SymbolEditDialog">
+      <summary>
+             符号编辑器，提供了进行符号制作与编辑的界面环境，根据所编辑的符号类型（点符号、线型符号、填充符号、三维点符号、三维线型符号）的不同，符号编辑器的状态也相应的有：点符号编辑器、线型符号编辑器、填充符号编辑器、三维点符号编辑器、三维线型符号编辑器。
+             </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolEditDialog.#ctor">
+      <summary>
+            构造一个新的 SymbolEditDialog 对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolEditDialog.ShowDialog">
+      <summary>
+            显示符号编辑器。
+            </summary>
+      <returns>对话框的返回值，用以获取用户在符号编辑器中是单击了“确定”按钮，还是“取消”按钮。如果用户在符号编辑器中单击了“确定”按钮，则该方法的返回值为 DialogResult.OK；否则为 DialogResult.Cancel。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolEditDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            将符号编辑器显示为具有指定所有者的模式对话框。
+            </summary>
+      <param name="owner">任何实现 IWin32Window 的对象。</param>
+      <returns>对话框的返回值，用以获取用户在符号编辑器中是单击了“确定”按钮，还是“取消”按钮。如果用户在符号编辑器中单击了“确定”按钮，则该方法的返回值为 DialogResult.OK；否则为 DialogResult.Cancel。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolEditDialog.ShowDialog(SuperMap.Data.Symbol,SuperMap.Data.Resources)">
+      <summary>
+            显示符号编辑器，并且可以指定需要编辑的符号以及该符号所在的资源。
+            </summary>
+      <param name="symbol">指定的需要编辑的符号，该符号必须是 resources 参数指定的资源中的符号，否则会抛异常。</param>
+      <param name="resources">指定的需要编辑的符号所在的资源。</param>
+      <returns>返回符号编辑器编辑后的符号。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolEditDialog.ShowDialog(SuperMap.Data.Symbol,SuperMap.Data.Resources,System.String)">
+      <summary>
+            显示符号编辑器，并且可以指定需要编辑的符号、该符号所在的资源以及符号编辑器对话框的标题栏所显示的文本内容。
+            </summary>
+      <param name="symbol">指定的需要编辑的符号，该符号必须是 resources 参数指定的资源中的符号，否则会抛异常。</param>
+      <param name="resources">指定的需要编辑的符号所在的资源。</param>
+      <param name="title">指定的符号编辑器对话框的标题栏所显示的文本内容。</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.Symbol">
+      <summary>
+            获取或设置需要编辑的符号。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.Resources">
+      <summary>
+            获取或设置需要编辑的符号所在的资源。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.Title">
+      <summary>
+            获取或设置符号编辑器对话框的标题栏所显示的文本内容。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.Icon">
+      <summary>
+            获取或设置符号编辑器对话框的标题栏所显示的图标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.ShowIcon">
+      <summary>
+            获取或设置符号编辑器对话框的标题栏上是否显示图标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.Location">
+      <summary>
+            获取或设置符号编辑器对话框的左上角的坐标。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolEditDialog.StartPosition">
+      <summary>
+            获取或设置符号编辑器对话框打开时的起始位置。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.SymbolLibraryDialog">
+      <summary>
+             符号库管理器，提供了界面交互方式进行符号资源的管理。 
+             </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolLibraryDialog.#ctor">
+      <summary>
+            构造一个新的 SymbolLibraryDialog 对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.SymbolLibraryDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.SymbolType)">
+      <summary>
+            显示符号库管理器，并且可以指定符号库管理器当前使用的资源和符号类型。
+            </summary>
+      <param name="resources">指定符号库管理器的资源。符号库管理器将从中读取符号信息。</param>
+      <param name="symbolType">指定符号库管理中打开的符号类型。</param>
+      <returns>对话框的返回值。用以获取用户在符号库管理中是单击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolLibraryDialog.ShowDialog(SuperMap.Data.Resources,SuperMap.Data.SymbolType,System.String)">
+      <summary>
+            显示符号库管理器，并且可以指定符号库管理器当前使用的资源、符号类型及符号库管理器的标题。
+            </summary>
+      <param name="resources">指定符号库管理器当前使用的资源。符号库管理器将从中读取符号信息。</param>
+      <param name="symbolType">指定打开的符号库管理类型。符号库管理器有点符号库管理器、线型符号库管理器和填充符号库管理器三种类型。</param>
+      <param name="title">指定符号库管理器的对话框标题栏上所显示的文字。</param>
+      <returns>对话框的返回值，用以获取用户在符号库管理器中是单击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolLibraryDialog.ShowDialog">
+      <summary>
+            显示符号库管理器。
+            </summary>
+      <returns>对话框的返回值，用以获取用户在符号库管理器中是单击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="M:SuperMap.UI.SymbolLibraryDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            将符号库管理器显示为具有指定所有者的模式对话框。 
+            </summary>
+      <param name="owner">任何实现 IWin32Window 的对象。</param>
+      <returns>对话框的返回值，用以获取用户在符号库管理器中是单击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.DoubleClickAction">
+      <summary>
+            获取或设置对单个符号双击执行的操作，如有直接确定或不执行任何操作两种类型。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.Resources">
+      <summary>
+            获取或设置符号库管理器的资源。符号库管理器将从指定的资源中读取相应的类型的符号库。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.SymbolID">
+      <summary>
+            获取符号库管理器中被选中的符号的编号。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.Type">
+      <summary>
+            获取或设置符号库管理器的类型。符号库管理器有点符号库管理器、线型符号库管理器和填充符号库管理器三种类型。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.ToolBar">
+      <summary>
+            获取符号库管理器窗体上的工具条。获取工具条后可以对其进行自定义修改。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.SymbolLibraryDialog.Title">
+      <summary>
+            获取或设置符号库管理器的标题。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.TextStyleControl">
+      <summary>
+            文本风格编辑控件。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleControl.#ctor">
+      <summary>
+            构造一个新的 TextStyleControl 对象。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.TextStyle">
+      <summary>
+            获取或设置用户在文本风格编辑控件中所设置的文本风格。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.GeoText">
+      <summary>
+            获取或设置用户在文本风格编辑控件中所设置的文本风格，该属性还可以获取或设置文本风格编辑控件所操作的文本对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.IsText3D">
+      <summary>
+            获取或设置文本风格编辑控件界面上是否显示特定的高级设置选项（“缩放比例”和“不透明度”设置选项），并且这些高级设置选项只对场景中的文本对象有效。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.IsThemeText">
+      <summary>
+            获取或设置文本风格编辑控件界面上是否显示特定的高级设置选项（“倾斜角度”设置选项），并且这些高级设置选项只对标签专题中的文本对象有效。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.SampleText">
+      <summary>
+            获取或设置用于预览文本风格设置结果的示例文字。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.Editable">
+      <summary>
+            获取或设置文本风格编辑控件是否可编辑，即是否可以进行风格设置。该属性值为 true，表示可以进行文本风格的修改，为 false，不能进行文本风格的修改，只能查看文本风格的设置情况。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleControl.MapObject">
+      <summary>
+            获取或设置一个 <see cref="T:SuperMap.Mapping.Map">Map</see> 或 <see cref="T:SuperMap.Layout.MapLayout">MapLayout</see> 对象。 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.TextStyleControl.TextStyleChanged">
+      <summary>
+            当文本风格编辑控件中的文本风格设置发生变化时，触发该事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.TextStyleChangedEventArgs">
+      <summary>
+            文本风格修改的事件参数类。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleChangedEventArgs.#ctor(SuperMap.Data.TextStyle)">
+      <summary>
+            根据指定的参数来构造一个 TextStyleChangedEventArgs 的新对象。  
+            </summary>
+      <param name="textStyle">改变后的文本风格。</param>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleChangedEventArgs.TextStyle">
+      <summary>
+            获取改变后的文本风格。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.TextStyleChangedEventHandler">
+      <summary>
+            表示文本风格修改的事件（<see cref="E:SuperMap.UI.TextStyleControl.TextStyleChanged">TextStyleChanged</see>）的方法类。 
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的文本风格修改的事件参数类（<see cref="T:SuperMap.UI.TextStyleChangedEventArgs">TextStyleChangedEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.TextStyleDialog">
+      <summary>
+            文本风格编辑器。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.#ctor">
+      <summary>
+            构造一个新的 TextStyleDialog 对象。  
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog">
+      <summary>
+            显示文本风格编辑器，以供用户操作。 
+            </summary>
+      <returns>对话框的返回值，用以获取用户在文本风格编辑器中是单击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog(System.Windows.Forms.IWin32Window)">
+      <summary>
+            将文本风格编辑器显示为具有指定所有者的模式对话框。
+            </summary>
+      <param name="owner">任何实现 IWin32Window 的对象。</param>
+      <returns>对话框的返回值，用以获取用户在文本风格编辑器中是单击了“确定”按钮还是“取消”按钮。</returns>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog(SuperMap.Data.TextStyle,System.Boolean,System.Boolean)">
+      <summary>
+            显示文本风格编辑器，并且可以指定文本风格编辑器中当前所显示的默认文本风格。 
+            </summary>
+      <param name="textStyle">指定文本风格编辑器默认显示的文本风格。</param>
+      <param name="isThemeText">是否显示特定的高级设置选项（“缩放比例”和“不透明度”设置选项），并且这些高级设置选项只对标签专题图中的文本对象有效。True，表示显示；false，表示不显示。请参见：<see cref="P:SuperMap.UI.TextStyleDialog.IsThemeText">TextStyleDialog.IsThemeText</see> 属性。</param>
+      <param name="is3DText">是否显示特定的高级设置选项（“倾斜角度”设置选项），并且这些高级设置选项只对场景中的文本对象有效。True，表示显示；false，表示不显示。请参见：<see cref="P:SuperMap.UI.TextStyleDialog.IsText3D">TextStyleDialog.IsText3D</see> 属性。</param>
+      <returns>返回通过文本风格编辑器设置的文本风格。如果用户在文本风格编辑器中单击“确定”按钮，则返回所设置的文本风格；否则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog(SuperMap.Data.GeoText,System.Boolean,System.Boolean)">
+      <summary>
+            显示文本风格编辑器，并且可以指定文本风格编辑器中当前所显示的默认文本风格以及预览区中的示例文本。 
+            </summary>
+      <param name="geoText">一个 <c>GeoText</c> 对象。通过 <c>GeoText.TextStyle</c> 属性可以指定文本风格编辑器默认显示的文本风格；通过 <c>GeoText</c> 对象还可以指定文本风格设置所操作的文本对象，该文本对象的文本内容将作为预览区的示例文字。</param>
+      <param name="isThemeText">是否显示特定的高级设置选项（“缩放比例”和“不透明度”设置选项），并且这些高级设置选项只对标签专题图中的文本对象有效。True，表示显示；false，表示不显示。请参见：<see cref="P:SuperMap.UI.TextStyleDialog.IsThemeText">TextStyleDialog.IsThemeText</see> 属性。</param>
+      <param name="is3DText">是否显示特定的高级设置选项（“倾斜角度”设置选项），并且这些高级设置选项只对场景中的文本对象有效。True，表示显示；false，表示不显示。请参见：<see cref="P:SuperMap.UI.TextStyleDialog.IsText3D">TextStyleDialog.IsText3D</see> 属性。</param>
+      <returns>返回通过文本风格编辑器设置的文本风格。如果用户在文本风格编辑器中单击“确定”按钮，则通过 <c>GeoText</c> 对象返回所设置的文本风格，由于在文本风格编辑器中可以编辑文本对象的文本内容，所以编辑后的结果也将返回；如果用户在文本风格编辑器中单击“取消”按钮或直接关闭了文本风格编辑器，则返回 null。</returns>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog(SuperMap.Data.TextStyle,System.Boolean,System.Boolean,System.Object)">
+      <summary>
+            显示对话框
+            </summary>
+      <param name="textStyle">文本风格</param>
+      <param name="isThemeText">是否是专题图中的文本</param>
+      <param name="is3DText">是否是三维文本</param>
+      <param name="mapObject">需要绑定的对象</param>
+      <returns>文本设置对话框的结果，如果点击"确定"则返回设置的文本，如果点击"取消"则返回null</returns>
+    </member>
+    <member name="M:SuperMap.UI.TextStyleDialog.ShowDialog(SuperMap.Data.GeoText,System.Boolean,System.Boolean,System.Object)">
+      <summary>
+            显示对话框
+            </summary>
+      <param name="geoText">需要设置的文本</param>
+      <param name="isThemeText">是否是专题图中的文本</param>
+      <param name="is3DText">是否是三维文本</param>
+      <param name="mapObject">需要绑定的对象</param>
+      <returns>文本设置对话框的结果，如果点击"确定"则返回设置的文本，如果点击"取消"则返回null</returns>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.TextStyle">
+      <summary>
+            获取或设置用户在文本风格编辑器中所设置的文本风格。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.GeoText">
+      <summary>
+            获取或设置用户在文本风格编辑器中所设置的文本风格，该属性还可以获取或设置文本风格编辑器所操作的文本对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.IsText3D">
+      <summary>
+            获取或设置文本风格编辑器界面上是否显示特定的高级设置选项（“缩放比例”和“不透明度”设置选项），并且这些高级设置选项只对场景中的文本对象有效。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.IsThemeText">
+      <summary>
+            获取或设置文本风格编辑器界面上是否显示特定的高级设置选项（“倾斜角度”设置选项），并且这些高级设置选项只对标签专题中的文本对象有效。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.SampleText">
+      <summary>
+            获取或设置用于预览文本风格设置结果的示例文字。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.Editable">
+      <summary>
+            获取或设置文本风格编辑器是否可编辑，即是否可以进行风格设置。该属性值为 true，表示可以进行文本风格的修改，为 false，不能进行文本风格的修改，只能查看文本风格的设置情况。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.TextStyleDialog.MapObject">
+      <summary>
+            获取或设置一个 <see cref="T:SuperMap.Mapping.Map">Map</see> 或 <see cref="T:SuperMap.Layout.MapLayout">MapLayout</see> 对象。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.TreeIconTypes">
+      <summary>
+            该枚举定义了节点图片类型常量。该枚举定义了一系列状态图片类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.None">
+      <summary>
+            无图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.Visible">
+      <summary>
+            表示可视状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.Selectable">
+      <summary>
+            表示可选择状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.Editable">
+      <summary>
+            表示可编辑状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.Snapable">
+      <summary>
+            表示可捕捉状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.AlwaysRender">
+      <summary>
+            表示始终可渲染状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.TypeIcon">
+      <summary>
+            表示图层类型的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeIconTypes.AllIcon">
+      <summary>
+            表示所有状态均已激活的图标。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.WorkspaceTreeDragData">
+      <summary>
+            拖拽工作空间树节点时产生的拖拽数据。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTreeDragData.#ctor">
+      <summary>
+            构造一个新的 WorkspaceTreeDragData 对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTreeDragData.#ctor(SuperMap.UI.WorkspaceTreeNodeDataType,System.Object)">
+      <summary>
+            根据指定的参数来构造一个 WorkspaceTreeDragData 的新对象。 
+            </summary>
+      <param name="dataType">对应的节点类型。</param>
+      <param name="data">绑定的数据。</param>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTreeDragData.DataType">
+      <summary>
+            获取或设置拖拽数据的类型。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTreeDragData.Data">
+      <summary>
+            获取或设置拖放操作中拖放的实际数据。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.Layer3DsTreeNodeBase">
+      <summary>
+            三维图层树节点基类。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.TreeNodeBase">
+      <summary>
+            控件树节点基类。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.TreeNodeBase.GetData">
+      <summary>
+            获取节点所属的数据。 
+            </summary>
+      <returns>节点所表示的数据。</returns>
+    </member>
+    <member name="P:SuperMap.UI.TreeNodeBase.ParentTree">
+      <summary>
+            获取该节点所在的树。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.Layer3DsTreeNodeDataType">
+      <summary>
+            该枚举定义了三维图层树节点的类型常量。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Unknown">
+      <summary>
+            未知。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.ScreenLayer3D">
+      <summary>
+            三维屏幕图层节点。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Layer3Ds">
+      <summary>
+            三维图层集合节点。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Layer3D">
+      <summary>
+            三维图层节点。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.TerrainLayers">
+      <summary>
+            地形图层集合节点。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.TerrainLayer">
+      <summary>
+            地形图层节点。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Feature3Ds">
+      <summary>
+            三维要素集合节点。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Feature3D">
+      <summary>
+            三维要素节点。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Geometry">
+      <summary>
+            几何对象节点。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Theme3DUniqueItem">
+      <summary>
+            三维单值专题图子项节点。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Theme3DRangeItem">
+      <summary>
+            三维分段专题图子项节点。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.Theme3DGraphItem">
+      <summary>
+            三维统计专题图子项节点。
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTreeNodeDataType.LayerGroup">
+      <summary>
+            图层所在的分组图层。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.Layer3DsTree">
+      <summary>
+            三维图层树，该类用于管理场景中的图层，继承自 <see cref="T:SuperMap.UI.MultiSelectableTree">MultiSelectableTree</see> 类。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.Layer3DsTree.FindNode(SuperMap.Realspace.Layer3D)">
+      <summary>
+            根据给定的三维图层对象查找其所在的树节点。 
+            </summary>
+      <param name="layer">三维图层对象。</param>
+      <returns>指定三维图层对象对应的树节点。</returns>
+    </member>
+    <member name="M:SuperMap.UI.Layer3DsTree.FindNode(System.String)">
+      <summary>
+            根据给定的三维图层标题名称查找其所在的树节点。 
+            </summary>
+      <param name="caption">三维图层的标题名称，即 <c>Layer3D.Caption</c> 属性值。</param>
+      <returns>显示名称为指定的图层标题名称的树节点。</returns>
+    </member>
+    <member name="M:SuperMap.UI.Layer3DsTree.#ctor">
+      <summary>
+            构造一个新的 Layer3DsTree 对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.Layer3DsTree.RefreshNode(SuperMap.UI.Layer3DsTreeNodeBase)">
+      <summary>
+            用于刷新指定的树节点。 
+            </summary>
+      <param name="node">指定需要刷新的树节点。</param>
+      <returns>一个布尔值，如果成功返回 true；失败返回 false。</returns>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.Scene">
+      <summary>
+            获取或设置三维图层树关联的场景。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.IconType">
+      <summary>
+            获取或设置树中所有节点显示哪几个图标。已过时，使用<see cref="P:SuperMap.UI.Layer3DsTree.Icons">Icons</see>替代。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.SimpleMode">
+      <summary>
+            获取或设置是否使用简洁模式。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.DropLineColor">
+      <summary>
+            获取或设置 DropLine 的颜色。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.SelectedNodes">
+      <summary>
+            获取或设置树中选中的节点数组。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.MultiSelect">
+      <summary>
+            获取或设置是否支持同时选中多个树节点。 默认为值 true。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.ScreenLayer3DNode">
+      <summary>
+            获取屏幕图层节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.Layer3DsNode">
+      <summary>
+            获取三维图层集合节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.TerrainLayersNode">
+      <summary>
+            获取地形图层集合节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.NodeContextMenuStrips">
+      <summary>
+             获取树节点的右键菜单字典。 
+             </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.Interactions">
+      <summary>获取用户自定义操作的字典。</summary>
+    </member>
+    <member name="E:SuperMap.UI.Layer3DsTree.SelectionChanged">
+      <summary>在三维图层树中，选中的树节点发生改变后触发该事件。</summary>
+    </member>
+    <member name="E:SuperMap.UI.Layer3DsTree.BeforeIconClick">
+      <summary>单击树节点上的图标前触发该事件。已过时，使用<see cref="E:SuperMap.UI.Layer3DsTree.BeforeTreeIconClick">BeforeTreeIconClick</see>替代。</summary>
+    </member>
+    <member name="E:SuperMap.UI.Layer3DsTree.BeforeNodeContextMenuStripShow">
+      <summary>
+            在图层树节点的右键菜单弹出前，触发该事件。 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.Layer3DsTree.BeforeTreeIconClick">
+      <summary>
+            单击图层树节点上的图标前触发该事件。
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.Layer3DsTree.AfterTreeIconClick">
+      <summary>
+            单击图层树节点上的图标后触发该事件。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.Layer3DsTree.Icons">
+      <summary>
+             获取或设置一个标记(Flags)，统一控制树中所有节点显示哪几个图标。
+             </summary>
+    </member>
+    <member name="T:SuperMap.UI.Layer3DsTree.IconTypes">
+      <summary>
+            该枚举定义了节点图片类型常量。已过时。使用<see cref="T:SuperMap.UI.TreeIconTypes">TreeIconTypes</see>替代。
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.None">
+      <summary>
+            无图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.Visible">
+      <summary>
+            表示可视状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.Selectable">
+      <summary>
+            表示可选择状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.Editable">
+      <summary>
+            表示可编辑状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.AlwaysRender">
+      <summary>
+            表示始终可渲染状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.TypeIcon">
+      <summary>
+            表示类型可选择状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.Layer3DsTree.IconTypes.AllIcon">
+      <summary>
+            表示所有状态均已激活的图标。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.LayersControl">
+      <summary>
+            图层管理器，用来展现和管理其所关联的地图或者场景中的图层。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayersControl.#ctor">
+      <summary>
+            构造一个 LayersControl 类的新对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayersControl.#ctor(SuperMap.Mapping.Map)">
+      <summary>
+            根据指定的参数来构造一个 LayersControl 的新对象。 
+            </summary>
+      <param name="map">指定的地图对象。</param>
+    </member>
+    <member name="M:SuperMap.UI.LayersControl.#ctor(SuperMap.Realspace.Scene)">
+      <summary>
+            根据指定的参数来构造一个 LayersControl 的新对象。 
+            </summary>
+      <param name="scene">指定的三维场景对象。</param>
+    </member>
+    <member name="M:SuperMap.UI.LayersControl.Remove(SuperMap.Mapping.Map)">
+      <summary>
+            删除指定的地图。
+            </summary>
+      <param name="map">指定的地图对象。</param>
+    </member>
+    <member name="M:SuperMap.UI.LayersControl.Remove(SuperMap.Realspace.Scene)">
+      <summary>
+            删除指定的场景。
+            </summary>
+      <param name="scene">指定的场景对象。</param>
+    </member>
+    <member name="P:SuperMap.UI.LayersControl.Map">
+      <summary>
+            获取或设置图层管理器关联的地图。该属性和 Scene 是互斥的，如果设置了 Scene, 那么 Map 就为 null。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersControl.Scene">
+      <summary>
+            获取或设置图层管理器关联的场景，该属性和 Map 是互斥的，如果设置了 Map，那么 Scene 就为 null。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersControl.LayersTree">
+      <summary>
+            获取二维图层树，管理地图（<see cref="T:SuperMap.Mapping.Map">Map</see>）中的图层。该属性值为一个 <c>Map</c> 对象，只有指定的 <c>Map</c> 对象不为 null 时，该属性才会存在，否则为 null。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersControl.Layer3DsTree">
+      <summary>
+            获取三维图层树，管理场景（<see cref="T:SuperMap.Realspace.Scene">Scene</see>）中的图层。该属性值为一个 <c>Scene</c> 对象，只有指定的 <c>Scene</c> 对象不为 null 时，该属性才会存在，否则为 null。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.LayersTree">
+      <summary>
+            二维图层树，该类用于管理地图中的图层，继承自 <see cref="T:SuperMap.UI.MultiSelectableTree">MultiSelectableTree</see> 类。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.FindNode(SuperMap.Mapping.Layer)">
+      <summary>
+            根据给定的二维图层对象查找其所在的树节点。 
+            </summary>
+      <param name="layer">指定的图层对象。</param>
+      <returns>指定二维图层对象对应的树节点。</returns>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.FindNode(System.String)">
+      <summary>
+            根据给定的二维图层标题名称查找其所在的树节点。 
+            </summary>
+      <param name="caption">指定的图层标题名称，即 <c>Layer.Caption</c> 属性值。</param>
+      <returns>显示名称为指定的图层标题名称的树节点。</returns>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.RefreshNode(SuperMap.UI.LayersTreeNodeBase)">
+      <summary>
+            刷新指定的树节点。 
+            </summary>
+      <param name="node">指定的需要刷新的树节点。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.RefreshNode(SuperMap.UI.LayersTreeNodeBase,System.Boolean)">
+      <summary>
+            根据指定的参数刷新指定的树节点。 
+            </summary>
+      <param name="node">指定需要刷新的树节点。</param>
+      <param name="refreshChildren">设置是否刷新指定树节点下的子节点。</param>
+      <returns>一个布尔值，如果成功返回 true，否则返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.CopyLayers">
+      <summary>
+            把当前所选中的图层到剪切板中，可以将复制的图层粘贴到其他地图中。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.PasteLayers">
+      <summary>
+            在当前图层树上插入存放在剪切板中的图层。目标地图所关联Workspace对象必须与复制时地图所关联的Workspace对象为同一个对象。
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.LayersTree.#ctor">
+      <summary>
+            构造一个新的 LayersTree 对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.DragNodeEnabled">
+      <summary>
+            是否启用拖拽节点功能，false表示不启用，此时，所有选中树节点的拖动鼠标操作都无效。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.Map">
+      <summary>
+            获取或设置二维图层树关联的地图。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.Icons">
+      <summary>
+             获取或设置一个标记(Flags)，统一控制图层树中所有节点显示哪几个图标。
+             </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.SelectedNodes">
+      <summary>
+            获取或设置图层树中选中的树节点数组。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.IconType">
+      <summary>
+            获取或设置树中所有节点显示哪几个图标。已过时。使用<see cref="P:SuperMap.UI.LayersTree.Icons">Icons</see>替代。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.SimpleMode">
+      <summary>
+            获取或设置是否使用简洁模式。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.DropLineColor">
+      <summary>
+            获取或设置 DropLine 的颜色。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.MultiSelect">
+      <summary>
+            获取或设置是否支持同时选中多个树节点。 默认为值 true。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.NodeContextMenuStrips">
+      <summary>
+             获取树节点的右键菜单字典。 
+             </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.Interactions">
+      <summary>获取用户自定义操作的字典。</summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.ShowVisibleScaleSign">
+      <summary>
+            获取或设置是否在图层图标位置显示最大或最小比例尺的标识。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.LayersTree.VisibleScaleNodesList">
+      <summary>
+            获取或设置记录了所有设置了最大最小比例尺的图层列表。
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.LayersTree.SelectionChanged">
+      <summary>在二维图层树中，选中的树节点发生改变后触发该事件。</summary>
+    </member>
+    <member name="E:SuperMap.UI.LayersTree.BeforeIconClick">
+      <summary>单击图层树节点上的图标前触发该事件。已过时。使用<see cref="E:SuperMap.UI.LayersTree.BeforeTreeIconClick">BeforeTreeIconClick</see>替代。</summary>
+    </member>
+    <member name="E:SuperMap.UI.LayersTree.BeforeNodeContextMenuStripShow">
+      <summary>
+            在图层树节点的右键菜单弹出前，触发该事件。
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.LayersTree.BeforeTreeIconClick">
+      <summary>
+            单击图层树节点图标前触发该事件。
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.LayersTree.AfterTreeIconClick">
+      <summary>
+            单击图层树节点图标后触发该事件。
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.LayersTree.IconTypes">
+      <summary>
+            节点图片类。该枚举类定义了一系列图片类型，作为位域处理的对象。已过时。使用<see cref="T:SuperMap.UI.TreeIconTypes">TreeIconTypes</see>替代。
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.None">
+      <summary>
+            无图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.Visible">
+      <summary>
+            表示可视状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.Selectable">
+      <summary>
+            表示可选择状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.Editable">
+      <summary>
+            表示可编辑状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.Snapable">
+      <summary>
+            表示可捕捉状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.TypeIcon">
+      <summary>
+            表示始终可渲染状态的图标。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTree.IconTypes.AllIcon">
+      <summary>
+            表示所有状态均已激活的图标。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.LayersTreeNodeBase">
+      <summary>
+            二维图层树节点基类。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.LayersTreeNodeDataType">
+      <summary>
+            该枚举定义了二维图层树节点的类型常量。
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.Unknown">
+      <summary>
+            未知。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.Layer">
+      <summary>
+            图层。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeUniqueItem">
+      <summary>
+            单值专题图子项。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeRangeItem">
+      <summary>
+            分段专题图子项。  
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeLabelItem">
+      <summary>
+            标签专题图子项。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeGraphItem">
+      <summary>
+            统计专题图子项。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeGridUniqueItem">
+      <summary>
+            栅格单值专题图子项。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.ThemeGridRangeItem">
+      <summary>
+            栅格分段专题图子项。  
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.WmsSubLayer">
+      <summary>
+            WMS 子图层。  
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.LayersTreeNodeDataType.DisplayBandIndex">
+      <summary>
+            显示的波段索引。  
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.SelectionChangedEventArgs">
+      <summary>
+            选中节点变化事件参数类。为二维图层选择的改变事件（<see cref="E:SuperMap.UI.LayersTree.SelectionChanged">LayersTree.SelectionChanged</see>）和三维图层选择的改变事件（<see cref="E:SuperMap.UI.Layer3DsTree.SelectionChanged">Layer3DsTree.SelectionChanged</see>）以及工作空间树节点选择的改变事件（<see cref="E:SuperMap.UI.WorkspaceTree.SelectionChanged">WorkspaceTree.SelectionChanged</see>）提供数据。
+             </summary>
+    </member>
+    <member name="M:SuperMap.UI.SelectionChangedEventArgs.#ctor(System.Windows.Forms.TreeNode[])">
+      <summary>
+            根据指定的参数来构造一个 SelectionChangedEventArgs 的新对象。 
+            </summary>
+      <param name="selectedNodes">选中的节点。</param>
+    </member>
+    <member name="P:SuperMap.UI.SelectionChangedEventArgs.SelectedNodes">
+      <summary>
+            获取选中节点。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.SelectionChangedEventHandler">
+      <summary>
+            表示对二维图层选择的改变事件（<see cref="E:SuperMap.UI.LayersTree.SelectionChanged">LayersTree.SelectionChanged</see>）和三维图层选择的改变事件（<see cref="E:SuperMap.UI.Layer3DsTree.SelectionChanged">Layer3DTree.SelectionChanged</see>）以及工作空间树节点选择的改变事件（<see cref="E:SuperMap.UI.WorkspaceTree.SelectionChanged">WorkspaceTree.SelectionChanged</see>）的方法类。 
+            </summary>
+      <param name="sender">源事件。</param>
+      <param name="e">包含事件数据的二维或三维图层以及工作空间选择的改变事件参数类（<see cref="T:SuperMap.UI.SelectionChangedEventArgs">SelectionChangedEventArgs</see>）对象。</param>
+    </member>
+    <member name="T:SuperMap.UI.TreeNodeSortMode">
+      <summary>
+            该枚举定义了节点排序模式常量。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeNodeSortMode.Name">
+      <summary>
+            按照名称排序。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeNodeSortMode.Type">
+      <summary>
+            按照类型排序。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.TreeNodeSortMode.Index">
+      <summary>
+            按照存储索引即创建时间排序。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.WorkspaceControl">
+      <summary>
+            工作空间管理器。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceControl.#ctor">
+      <summary>
+            构造一个新的 WorkspaceControl 对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceControl.#ctor(SuperMap.Data.Workspace)">
+      <summary>
+            根据指定的参数来构造一个 WorkspaceControl 的新对象。 
+            </summary>
+      <param name="workspace">指定的工作空间对象。</param>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.WorkspaceToolBar">
+      <summary>
+            获取或设置工作空间管理器的工具条对象。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.WorkspaceTree">
+      <summary>
+            获取工作空间管理器的工作空间树对象。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.ExternImageDirectory">
+      <summary>
+            获取或设置外部图片路径。外部图片是用来替换工作空间管理器中所使用的默认图标。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.ExternImageEnabled">
+      <summary>
+            获取或设置是否使用外部图片来替换工作空间管理器中所使用的默认图标。true 表示使用，false 表示不可使用。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.AllowDefaultAction">
+      <summary>
+            获取或设置工作空间管理器是否采用默认操作。true 表示采用默认操作，false 表示非默认操作。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.DatasourcesNodeVisible">
+      <summary>
+            获取或设置数据源集合节点是否可见。true 表示可见，false 表示不可见。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.MapsNodeVisible">
+      <summary>
+            获取或设置地图集合节点是否可见。true 表示可见，false 表示不可见。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.ScenesNodeVisible">
+      <summary>
+            获取或设置场景集合节点是否可见。 true 表示可见，false 表示不可见。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.LayoutsNodeVisible">
+      <summary>
+            获取或设置布局集合节点是否可见。 true 表示可见，false表示不可见。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceControl.ResourcesNodeVisible">
+      <summary>
+            获取或设置资源集合节点是否可见。true 表示可见，false 表示不可见。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.WorkspaceTree">
+      <summary>
+            工作空间树，主要用来形象地展示工作空间中的数据内容以及管理工作空间中的数据。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.SortNodes(SuperMap.UI.WorkspaceTreeNodeBase,SuperMap.UI.TreeNodeSortMode,System.Boolean)">
+      <summary>
+             根据指定的参数，对指定的树节点下的第一级子节点进行排序。 
+             </summary>
+      <param name="nodebase">指定的树节点。</param>
+      <param name="treeNodeSortMode">选择排序的方式，包括：按照名称排序、按照类型排序、按照创建时间排序。</param>
+      <param name="order">指定排序的顺序是顺序还是逆序。</param>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.SortNodes(SuperMap.UI.WorkspaceTreeNodeBase,System.Collections.Generic.IComparer{SuperMap.UI.WorkspaceTreeNodeBase})">
+      <summary>
+             根据自定义比较器，对指定的树节点下的第一级子节点进行排序。 
+             </summary>
+      <param name="nodebase">指定的树节点。</param>
+      <param name="compare">自定义比较器。用户通过实现自己的比较算法，定义一种新的排序方式。</param>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.Reload">
+      <summary>
+            刷新工作空间树的所有树节点。调用该方法后，系统会重新构建工作空间树中的所有树节点对象，因此，会导致用户在调用<c> Reload() </c>方法前所获得的树节点对象，在调用<c> Reload() </c>方法后全部失效。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.FindNodeDataset(SuperMap.Data.Dataset)">
+      <summary>
+            根据指定的数据集，找到该数据集对应的树节点。 
+            </summary>
+      <param name="dataset">指定的数据集。</param>
+      <returns>指定数据集对应的树节点。</returns>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.RefreshNode(SuperMap.UI.WorkspaceTreeNodeBase)">
+      <summary>
+            根据指定的树节点，刷新该树节点下的子节点。 
+            </summary>
+      <param name="node">指定的树节点。</param>
+      <returns>一个布尔值，如果成功返回 true，失败返回 false。</returns>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.#ctor">
+      <summary>
+            构造一个新的 WorkspaceTree 对象。 
+            </summary>
+    </member>
+    <member name="M:SuperMap.UI.WorkspaceTree.#ctor(SuperMap.Data.Workspace)">
+      <summary>
+            根据指定的参数来构造一个 WorkspaceTree 的新对象。 
+            </summary>
+      <param name="workspace">指定的工作空间对象。</param>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.MultiSelect">
+      <summary>
+            获取或设置是否支持同时选中多个树节点。 默认为值 true。
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.SelectedNodes">
+      <summary>
+            获取或设置选中的树节点集合。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.WorkspaceNode">
+      <summary>
+            获取工作空间节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.DatasourcesNode">
+      <summary>
+            获取数据源集合节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.MapsNode">
+      <summary>
+            获取地图集合节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.ScenesNode">
+      <summary>
+            获取场景集合节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.LayoutsNode">
+      <summary>
+            获取布局集合节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.ResourcesNode">
+      <summary>
+            获取资源集合节点。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.Workspace">
+      <summary>
+            获取与设置工作空间树关联的工作空间。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.AllowDefaultAction">
+      <summary>
+            获取或设置是否响应工作空间树中的鼠标键盘操作。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.NodeContextMenuStrips">
+      <summary>
+             获取树节点的右键菜单字典。 
+             </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTree.Interactions">
+      <summary>获取用户自定义操作的字典。</summary>
+    </member>
+    <member name="E:SuperMap.UI.WorkspaceTree.SelectionChanged">
+      <summary>工作空间树节点选择发生改变后触发该事件。</summary>
+    </member>
+    <member name="E:SuperMap.UI.WorkspaceTree.AfterFileOpen">
+      <summary>
+            文件打开后触发该事件。 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.WorkspaceTree.BeforeFileOpen">
+      <summary>
+            文件打开前触发该事件。 
+            </summary>
+    </member>
+    <member name="E:SuperMap.UI.WorkspaceTree.BeforeNodeContextMenuStripShow">
+      <summary>
+            工作空间树节点右键菜单弹出前事件。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.WorkspaceTreeNodeBase">
+      <summary>
+            工作空间控件树节点基类。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTreeNodeBase.Workspace">
+      <summary>
+            获取该节点所关联的数据所属的工作空间。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTreeNodeBase.NodeType">
+      <summary>
+            获取该节点的类型。 
+            </summary>
+    </member>
+    <member name="P:SuperMap.UI.WorkspaceTreeNodeBase.WorkspaceTree">
+      <summary>
+            获取该节点所在的工作空间树。 
+            </summary>
+    </member>
+    <member name="T:SuperMap.UI.WorkspaceTreeNodeDataType">
+      <summary>
+            该枚举定义了工作空间树控件节点类型常量。  
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Unknown">
+      <summary>
+            未知类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Workspace">
+      <summary>
+            工作空间节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Datasources">
+      <summary>
+            数据源集合节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Datasource">
+      <summary>
+            数据源节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetTabular">
+      <summary>
+            纯属性数据集节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetVector">
+      <summary>
+            矢量数据集节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetImage">
+      <summary>
+            影像数据集节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetGrid">
+      <summary>
+            栅格数据集节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetGroup">
+      <summary>
+            数据集组节点类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetTopology">
+      <summary>
+            拓扑数据集节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetRelationship">
+      <summary>
+            关系数据集节点类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetUnknown">
+      <summary>
+            未知数据集节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.TopologyDatasetRelations">
+      <summary>
+            拓扑数据集子项集合节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.TopologyErrorDatasets">
+      <summary>
+            拓扑数据集错误子项集合节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Maps">
+      <summary>
+            地图集合节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.MapName">
+      <summary>
+            地图节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Scenes">
+      <summary>
+            场景集合节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.SceneName">
+      <summary>
+            场景节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Layouts">
+      <summary>
+            布局集合节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.LayoutName">
+      <summary>
+            布局节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Resources">
+      <summary>
+            资源集合节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.SymbolMarker">
+      <summary>
+            点符号资源节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.SymbolLine">
+      <summary>
+            线符号资源节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.SymbolFill">
+      <summary>
+            填充符号资源节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.Dataset">
+      <summary>
+            数据集节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.All">
+      <summary>
+            全部节点类型。 
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetGridCollection">
+      <summary>
+            栅格数据集集合节点类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetImageCollection">
+      <summary>
+            影像数据集集合节点类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetGridCollectionItem">
+      <summary>
+            栅格数据集集合下的栅格数据集节点类型。
+            </summary>
+    </member>
+    <member name="F:SuperMap.UI.WorkspaceTreeNodeDataType.DatasetImageCollectionItem">
+      <summary>
+            影像数据集集合下的影像数据集节点类型。
+            </summary>
+    </member>
+  </members>
+</doc>

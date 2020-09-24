@@ -1,0 +1,1435 @@
+<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>SuperMap.Data.Processing</name>
+  </assembly>
+  <members>
+    <member name="T:SuperMap.Data.Processing.CacheBuilderTIN">
+      <summary>
+            The TerrainCacheBuilder class, mainly used to generate the terrain cache for terrain data for publishing the 3D scene. Its configuration file format is *.sct.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.#ctor">
+      <summary>
+            Builds a new CacheBuilderTin object.
+            </summary>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.BuildTIN">
+      <summary>
+            Builds the terrain cache according to the grid dataset.
+            </summary>
+      <returns>Returns true if successful, otherwise returns false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.BuildOSGB">
+      <summary>
+            Creates terrain cache of OSGB format according to the raster dataset and image dataset.
+            </summary>
+      <returns>Returns true if successful, otherwise returns false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.CombineTerrainTIN(System.String,System.String,System.String,System.String)">
+      <summary>
+            Combine two terrain data to create a new terrain.
+            </summary>
+      <param name="strOut">The directory of the new terrain.</param>
+      <param name="strCacheName">The name of the new terrain cache.</param>
+      <param name="strTinA">The terrain A to be combined, where the priority of strTerrainA is higher than strTerrainB.</param>
+      <param name="strTinB">The terrain B to be combined.</param>
+      <returns>If merging successfully, returns true; otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.ConvertTinToOsgb(System.String,System.String,System.String,System.Collections.Generic.List{SuperMap.Data.Dataset})">
+      <summary>
+            Convert the terrain cache to OSGB cache, which can overlay multiple images.
+            </summary>
+      <param name="strOut">A directory of new terrain after conversion</param>
+      <param name="strCacheName">Specifies the name of the converted terrain cache.</param>
+      <param name="strSct">The terrain cache to be converted.</param>
+      <param name="arrImage">Specifies a list of images to be superimposed.</param>
+      <returns>The transform returns true on success, otherwise false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.BuildWaterMask(System.String,System.String,System.String,System.String)">
+      <summary>
+            Generate ocean expansion.
+            A map is constructed with vector surfaces, black represents land, white represents the ocean, and then generates three-dimensional caches of global subdivision.
+            The scope of the 3d cache is consistent with that of the Tin terrain.
+            </summary>
+      <param name="sctFile">The specified TIN terrain configuration file (*.sct).</param>
+      <param name="sci3dFile">Specify the image cache configuration file (*.sci3d).</param>
+      <param name="sctOutFolder">Specifies the save path for the newly generated cache.</param>
+      <param name="sctOutCacheName">Specifies the name of the newly generated cache.</param>
+      <returns>
+      </returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.CompactCacheFiles(System.String,System.String,System.String)">
+      <summary>
+            TIN cache transfer TIN to mix large file cache, upgrade load and browse performance.
+            </summary>
+      <param name="strInCacheSCT">The specified TIN terrain configuration file (*.sct).</param>
+      <param name="strOutCachePath">Specifies the save path for generating the TIN mixed large file cache.</param>
+      <param name="strCacheFileName">Cache file name</param>
+      <returns>Generate success returns true, failure returns false.</returns>
+    </member>
+    <member name="M:SuperMap.Data.Processing.CacheBuilderTIN.Dispose">
+      <summary>
+            Releases all resources that the object occupies.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.Dataset">
+      <summary>
+            Gets or sets the raster dataset to be used to create terrain cache.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.DatasetImage">
+      <summary>
+            Gets or sets the image dataset to be used to create terrain cache.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.OutputFolder">
+      <summary>
+            Gets or sets the full path of the folder which includes the output cache file.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.ClipRegion">
+      <summary>
+            Gets or sets the scope for generating cache Settings
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.IsBuildNormalMap">
+      <summary>
+            Gets or sets whether to build a normal graph
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.BeginLevel">
+      <summary>
+            Gets or sets the start level.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.EndLevel">
+      <summary>
+            Gets or sets the end level.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.IsEncodeDXT">
+      <summary>
+            Gets or sets whether to apply DXT texture compression.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.IsClearInvalidTriangle">
+      <summary>
+            Gets or sets whether to delete invalid triangle.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.Bounds">
+      <summary>
+            Gets or sets the range of the terrain cache.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.CacheName">
+      <summary>
+            Gets or sets the name of the built cache.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.Contrained">
+      <summary>
+            Set the constraint edge of the terrain.
+            </summary>
+    </member>
+    <member name="E:SuperMap.Data.Processing.CacheBuilderTIN.Stepped">
+      <summary>
+            The event is trigged when the process bar is activated.
+            </summary>
+    </member>
+    <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.NormalSize">
+      <summary>
+            Normal-line size
+            </summary>
+         </member>
+         <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.DealtOfEndLevel">
+             <summary>
+             Get or set the fine layer error.
+             </summary>
+         </member>
+         <member name="P:SuperMap.Data.Processing.CacheBuilderTIN.ProcessThreadsCount">
+             <summary>
+             Support multi-threading, get or set the number of threads.
+             </summary>
+         </member>
+         <member name="T:SuperMap.Data.Processing.CacheImageSize">
+             <summary>
+            This enumeration defines the 2D and 3D map cache, the formats of tiles (namely the formats of tiles corresponding to the configuration file  *.sci and *.sci3d).
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageSize.Size64"><summary>
+            64*64
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageSize.Size128"><summary>
+            128*128
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageSize.Size256"><summary>
+            256*256
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageSize.Size512"><summary>
+            512*512
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageSize.Size1024"><summary>
+            1024*1024
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageSize.Size2048"><summary>
+            2048*2048
+            </summary></member><member name="T:SuperMap.Data.Processing.CacheImageType"><summary>
+            This enumeration defines the 2D and 3D map cache, the formats of tiles (namely the formats of tiles corresponding to the configuration file  *.sci and *.sci3d.
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageType.PNG"><summary>
+            PNG, Portable Network Graphics, is a new image format on the Internet. PNG is able to provide a lossless compression image file with a length of 30% less than GIF. It also provides 24 and 48 true color image support and many other technical support.
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageType.GIF"><summary>
+            GIF type. Graphics Interchange Format image interchange format. GIF file data is a lossless compression format based on LZW algorithm. The compression rate is about 50%. (It is obsolete)
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageType.JPG"><summary>
+            JPG type. JPG with full name JPEG image uses 24 bit color to store a single raster image. The JPEG format is a platform independent format that supports the highest level of compression, however, the compression is lossy.
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageType.JPG_PNG"><summary>
+            The JPG_PNG type. If the tile format is set to JPG_PNG, these tiles are JPG or PNG format. The final format is determined by whether the tiles contain invalid pixels. For tiles that contain invalid pixels, the tile format is PNG, otherwise JPG. The PNG format is also used at the boundaries, while the JPG format is used in places without invalid data, which will greatly reduce the size of the cache data and optimize data downloading time.
+            </summary></member><member name="F:SuperMap.Data.Processing.CacheImageType.DXTZ"><summary><para>DXTZ type. This type is a compression format for DDS format images.</para><para>DDS image format is the abbreviation of DirectDraw Surface format, is the DirectX texture compression format. Using this type of texture compression format, it can significantly reduce the texture memory consumption.</para></summary></member><member name="F:SuperMap.Data.Processing.CacheImageType.PVRZ"><summary><para>PVRZ type. This type is a compression format for PVR format images.</para><para>PVR format is the picture format which  can be read directly by iOS display chip without parsing , so this type of texture compression format can achieve a faster rendering speed and lower memory occupancy in the iOS platform.</para></summary></member><member name="T:SuperMap.Data.Processing.BuildResultInfo"><summary>
+            The BuildResultInfo class.
+            </summary></member><member name="M:SuperMap.Data.Processing.BuildResultInfo.Dispose"><summary>Release the local resources that the BuildResultInfo object occupies.</summary></member><member name="P:SuperMap.Data.Processing.BuildResultInfo.TileCount"><summary>
+            Gets the count of tiles created.
+            </summary><returns>The count of tiles created.</returns></member><member name="P:SuperMap.Data.Processing.BuildResultInfo.BuildTime"><summary>
+            Gets the time cost for building the cache.
+            </summary><returns>The time cost for building the cache.</returns></member><member name="P:SuperMap.Data.Processing.BuildResultInfo.QueryTime"><summary>
+            Gets the time cost for querying, in second.
+            </summary><returns>The time cost for querying.</returns></member><member name="P:SuperMap.Data.Processing.BuildResultInfo.DrawTime"><summary>
+            Gets the time cost for drawing, in second.
+            </summary><returns>The time cost for drawing.</returns></member><member name="P:SuperMap.Data.Processing.BuildResultInfo.IOTime"><summary>
+            Gets the time cost for IO operations, in second.
+            </summary><returns>The time cost for IO operations.</returns></member><member name="T:SuperMap.Data.Processing.CompactFile"><summary>
+            Provides the operation class for the compact cache file (.cf) reading and writing.
+            </summary></member><member name="M:SuperMap.Data.Processing.CompactFile.#ctor"><summary>
+            Constructs a new object of the CompactFile class.
+            </summary></member><member name="M:SuperMap.Data.Processing.CompactFile.Dispose"><summary>
+            Releases the resources occupied by the CompactFile object.
+            </summary></member><member name="M:SuperMap.Data.Processing.CompactFile.Creat(System.String,System.Int32,System.Int32,System.String)"><summary>
+            Creates new compact file.
+            </summary><param name="cfPath">Directory name of the compact file.</param><param name="rowNum">Total row number of the index in the compact file. </param><param name="colNum">Total column number of the index in the compact file.</param><param name="pwd">The password of the compact file.</param><returns>Returns 0 if opened successfully, otherwise failed.</returns></member><member name="M:SuperMap.Data.Processing.CompactFile.Open(System.String,System.String)"><summary>
+            Open an existing compact file.
+            </summary><param name="cfPath">Directory name of the compact file.</param><param name="pwd">The password of the compact file.</param><returns>Returns 0 if opened successfully, otherwise failed.</returns></member><member name="M:SuperMap.Data.Processing.CompactFile.Close"><summary>
+            Close an existing compact file.
+            </summary><returns>Returns true if closed successfully, otherwise failed.</returns></member><member name="M:SuperMap.Data.Processing.CompactFile.SetAt(System.Int32,System.Int32,System.Byte[])"><summary>
+            Write data to the compact file.
+            </summary><param name="row">The index row of the compact file (it must be smaller than the total row number).</param><param name="col">The index column of the compact file (it must be smaller than the total column number).</param><param name="data">The data to be written.</param><returns>Returns 0 if written successfully, otherwise failed.</returns></member><member name="M:SuperMap.Data.Processing.CompactFile.GetAt(System.Int32,System.Int32)"><summary>
+            Read data from the compact file.
+            </summary><param name="row">The index row of the compact file (it must be smaller than the total row number).</param><param name="col">The index column of the compact file (it must be smaller than the total column number).</param><returns>Return the read data, it is null if it fails to read.</returns></member><member name="T:SuperMap.Data.Processing.DataRGBMode"><summary>
+            The enumeration defines expression scope type constants of the color value of the point cloud data, only valid for the point cloud data type of txt, xyz.
+            </summary></member><member name="F:SuperMap.Data.Processing.DataRGBMode.RGB_0_1"><summary>
+            The color value range is 0-1.
+            </summary></member><member name="F:SuperMap.Data.Processing.DataRGBMode.RGB_0_255"><summary>
+            The color value range is 0-255.
+            </summary></member><member name="T:SuperMap.Data.Processing.DataSeparator"><summary>
+            The enumeration defines separator type constants of each kind of information in the point cloud data, only valid for the point cloud data type of txt, xyz.
+            </summary></member><member name="F:SuperMap.Data.Processing.DataSeparator.SPACE"><summary>
+            The separator is space “ ”.
+            </summary></member><member name="F:SuperMap.Data.Processing.DataSeparator.COMMA"><summary>
+            The separator is comma “ ,”.
+            </summary></member><member name="F:SuperMap.Data.Processing.DataSeparator.COLON"><summary>
+            The separator is colon “:”.
+            </summary></member>
+        <member name="T:SuperMap.Data.Processing.DataUnit">
+            <summary>
+            This enumeration defines the point cloud data unit type constant.
+            </summary>
+        </member>
+        <member name="F:SuperMap.Data.Processing.DataUnit.Degree">
+            <summary>
+            degree
+            </summary>
+        </member>
+        <member name="F:SuperMap.Data.Processing.DataUnit.Meter">
+            <summary>
+            Meter
+            </summary>
+        </member>
+        <member name="F:SuperMap.Data.Processing.DataUnit.Centimeter">
+            <summary>
+            cm
+            </summary>
+        </member>
+        <member name="F:SuperMap.Data.Processing.DataUnit.Millimeter">
+            <summary>
+            Millimeter
+            </summary>
+        </member>
+        <member name="F:SuperMap.Data.Processing.DataUnit.Inch">
+            <summary>
+            inch
+            </summary>
+        </member>
+        <member name="F:SuperMap.Data.Processing.DataUnit.Foot">
+            <summary>
+            foot
+            </summary>
+        </member>
+        <member name="T:SuperMap.Data.Processing.ImageTilingMode">
+            <summary>
+            The enumeration defines the split mode constants of the image cache.
+            </summary></member><member name="F:SuperMap.Data.Processing.ImageTilingMode.Global"><summary>
+            Global tile type.
+            </summary></member><member name="F:SuperMap.Data.Processing.ImageTilingMode.Local"><summary>
+            Region tile type, layering by scale.
+            </summary></member><member name="T:SuperMap.Data.Processing.IntensionType"><summary>
+            Field type enumeration, sets the field to color information or intensity information.
+            </summary></member><member name="F:SuperMap.Data.Processing.IntensionType.ColorInfo"><summary>
+            When the point cloud itself stores the color, after setting the corresponding field type, it can generate point cloud cache with the color.
+            </summary></member><member name="F:SuperMap.Data.Processing.IntensionType.IntensionInfo"><summary>
+            Custom color range. It can generate a custom color buffer based on the elevation value or intensity value and custom color table.
+            </summary></member><member name="T:SuperMap.Data.Processing.MapCacheFile"><summary>The MapCacheFile class, used to perform operation on map cache.</summary></member><member name="M:SuperMap.Data.Processing.MapCacheFile.#ctor"><summary>
+            Construct a new MapCacheFile object.
+            </summary></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Clear(System.Double,SuperMap.Data.Rectangle2D)"><summary>
+            Clears all the tiles covered by the specific extent in specific scale.
+            </summary><param name="scale">The scale specified.</param><param name="bounds">The specified Bounds</param><returns>a boolean, whether to clear all the tiles covered by the specified extent in the specific scale.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Clear(System.Double[],SuperMap.Data.GeoRegion)"><summary>
+            Clear all the tiles covered by the specific extent in specific scale.
+            </summary><param name="scales">the scales specified.</param><param name="region">the specified Bounds</param><returns>a boolean, whether to clear all the tiles covered by the specified extent in the specific scale.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Clear(SuperMap.Data.GeoRegion)"><summary>
+            Clears all the tiles covered by the specific extent in specific scale.
+            </summary><param name="region">the specified Bounds</param><returns>a boolean, whether to clear all the tiles covered by the specified extent in the specific scale.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.GetTiles(SuperMap.Data.Rectangle2D,System.Double)"><summary>
+            Gets tile array covered by the specific extent in specific scale.
+            </summary><param name="bounds">The specified Bounds</param><param name="scale">The scale specified.</param><returns>the tile array covered by the specific extent in specific scale.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.HitTest(SuperMap.Data.Point2D,System.Double)"><summary>
+            Gets whether there is a tile at specific location in the given scale.
+            </summary><param name="point">The specific point.</param><param name="scale">The scale specified.</param><returns>a boolean, whether there is a tile at specific location in the given scale.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.GetValidRegion(SuperMap.Data.Rectangle2D,System.Double)"><summary>
+            Gets all the bounds that have tiles in the given extent and given scale.
+            </summary><param name="bounds">the specified Bounds</param><param name="scale">The scale specified.</param><returns>All the bounds that have tiles in the given extent and given scale.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.CheckTileBoundsValid(SuperMap.Data.Rectangle2D,System.Double)"><summary>
+            Determines whether the specified extent meets the tile rule of the specific scale.
+            </summary><param name="bounds">the specified Bounds</param><param name="scale">The scale specified.</param><returns>a boolean, whether the extent meets the tile rules of the specified scale.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Open(System.String)"><summary>
+            Open cache file.
+            </summary><returns>a boolean, return true if it is opened successfully; false otherwise.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Open(System.String,System.String)"><summary>
+            Open cache file.
+            </summary><param name="fileName">the full path of the folder includes the output cache file.</param><param name="password">cache password.</param><returns>a boolean, return true if it is opened successfully; false otherwise.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Merge(System.String)"><summary>
+            Merge cache.
+            </summary><param name="fileName">The path of the cache file to merge.</param><returns>a boolean, whether the cache is merged successfully.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Merge(System.String,System.String)"><summary>
+            Merge cache.
+            </summary><param name="fileName">The path of the cache file to merge.</param><param name="password">The password of the cache file to merge.</param><returns>a boolean, whether the cache is merged successfully.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Reload"><summary>
+            Reload the cache configuration file.
+            </summary><returns>a boolean, whether the reload of the cache configuration file is successful.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Convert(SuperMap.Data.Processing.StorageType,System.String,System.String)"><summary>
+            The conversion between cache of different store types.
+            </summary><param name="storage">The store mode of the target cache.</param><param name="path">The cache store path after converted.</param><param name="password">The password of the result cache file (you can set it as null when you don't need password).</param><returns>a boolean, whether the conversion is successfully.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Dispose"><summary>Releases all resources used by the MapCacheFile object.</summary></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Extract(System.Double[],SuperMap.Data.GeoRegion,SuperMap.Data.Processing.StorageType,System.String)"><summary>
+            Extract the cache tiles with the given scale and in the given extent to single cache.
+            </summary><param name="scales">the scales specified.</param><param name="region">the specified Bounds</param><param name="type">The storage type of the extracted cache.</param><param name="path">The storage path of the extracted cache.</param><returns>A Boolean value indicates whether the extracting was successful. true indicates it was successful, and false indicates it was not.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.Extract(SuperMap.Data.GeoRegion,System.String)"><summary>
+            Extract the cache tiles in the given extent to single cache.
+            </summary><param name="region">the specified Bounds</param><param name="path">The storage path of the extracted cache.</param><returns>A Boolean value indicates whether the extracting was successful. true indicates it was successful, and false indicates it was not.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheFile.DeleteRevisionNumber(System.Int32)"><summary>
+             Delete the specified user defined version.
+            </summary><param name="value">Specified user defined version.</param></member><member name="P:SuperMap.Data.Processing.MapCacheFile.Version"><summary>
+            Gets the cache version information. 
+            </summary><returns>the cache version information.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.Bounds"><summary>
+            Gets the bounds of the cache. 
+            </summary><returns>the Bounds of the cache.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.IndexBounds"><summary>
+            Gets the IndexBounds of the cache. 
+            </summary><returns>the IndexBounds of the cache.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.CacheName"><summary>
+            Gets the cache name. 
+            </summary><returns>the cache name.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.ClipRegion"><summary>
+            Gets the clip extent. 
+            </summary><returns>the clip extent.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.TileSize"><summary>
+            Gets the size of the cache tile. 
+            </summary><returns>the size of the cache tile.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.IsTransparent"><summary>
+            Gets whether the cache image are transparent. 
+            </summary><returns>whether the cache image are transparent.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.TileFormat"><summary>
+            Gets the TileFormat. 
+            </summary><returns>The format of the cache file.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.StorageType"><summary>
+            Gets the storage type of the map cache file. 
+            </summary><returns>The storage type of the map cache file.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.TilingMode"><summary>
+            Gets the tiling mode to build cache. 
+            </summary><returns>The tiling mode of cache.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.IsFillMargin"><summary>
+            Gets whether to fill the whole space with cache images. 
+            </summary><returns>a boolean, whether to file the whole space with cache images.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.OutputScaleCaptions"><summary>
+            Gets the alias of the cache scale. 
+            </summary><returns>The alias of the cache scale.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.DPI"><summary>
+            Gets the DPI of build the cache, which means Dots Per Inch, the range is (60, 180). 
+            </summary><returns>The DPI for the cache.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.PrjCoordSys"><summary>
+            Gets the projection mode. 
+            </summary><returns>the projection mode.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheFile.OutputScales"><summary>
+            Gets or sets the scale array to export.
+            </summary></member><member name="T:SuperMap.Data.Processing.MapTilingMode"><summary>
+            This enumeration defines the tile type constant when generating caches.
+            </summary></member><member name="F:SuperMap.Data.Processing.MapTilingMode.Global"><summary>
+            Global tile type.
+            </summary></member><member name="F:SuperMap.Data.Processing.MapTilingMode.Local"><summary>
+            Region tile type, layering by scale.
+            </summary></member><member name="T:SuperMap.Data.Processing.ObjRotateOption"><summary>
+            The enumeration defines the rotation type constants of the model object.
+            </summary></member><member name="F:SuperMap.Data.Processing.ObjRotateOption.NO_ROTATE"><summary>
+            No rotation.
+            </summary></member><member name="F:SuperMap.Data.Processing.ObjRotateOption.ROTATE_YZ"><summary>
+            The right hand rotates 90 degrees around the X axis, i.e. (x, -z, y).
+            </summary></member><member name="F:SuperMap.Data.Processing.ObjRotateOption.ROTATE_ZY"><summary>
+            The right hand rotates -90 degrees around the X axis, i.e. (x, z, -y).
+            </summary></member><member name="T:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool"><summary>
+            Oblique photogrammetry model data processing tools class. The class provides many methods like texture compression, whole-to-one processing, format conversion, files combination, to be used for different terminals.
+            </summary></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.#ctor"><summary>
+            Constructs a new ObliquePhotogrammetry3DModelTool object.
+            </summary></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.CompressTextures(System.String,System.String,SuperMap.Data.Processing.TextureCompressType)"><summary>
+            Texture compression. It is used when it expects smooth browsing effect in different terminals.
+            </summary><param name="scpFileName">Specify the directory name of the oblique photogrammetry data configuration file (*.scp).</param><param name="outputFolder">Specify the target directory to save the result data.</param><param name="type">Specify the data format after texture compression.</param><returns>true means compressed successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBTOS3M(System.String,System.String)"><summary>
+            Convert OSGB to S3M, used for the WebGL client.
+            </summary><param name="scpFileName">Specify the directory name of the oblique photogrammetry data configuration file (*.scp).</param><param name="outputFolder">Specify the target directory to save the result data.</param><returns>true means converted successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBTOS3M(System.String,System.String,SuperMap.Data.Processing.TextureCompressType)"><summary>
+            Convert OSGB to S3M, used for the WebGL client. This convertion method supports choosing the texture compression type.
+            </summary><param name="scpFileName">Specify the directory name of the oblique photogrammetry data configuration file (*.scp).</param><param name="outputFolder">Specify the target directory to save the result data.</param><param name="type">Specify the data format after compression.</param><returns>true means converted successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OBJTOOSGB(System.String,System.String)"><summary>
+            Convert OBJ exported by PhotoScan software to OSGB.
+            </summary><param name="xmlFileName">Specify the directory name of the xml file (PhotoScan configuration file).</param><param name="outputFolder">Specify the target directory to save the result data.</param><returns>true means converted successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OBJTOOSGB(System.String,System.String,SuperMap.Data.Point3D,SuperMap.Data.Point3D,SuperMap.Data.Processing.ObjRotateOption)"><summary>
+            Convert OBJ exported by PhotoScan software to OSGB, which supports rotating model.
+            </summary><param name="xmlFileName">Specify the directory name of the xml file (PhotoScan configuration file).</param><param name="outputFolder">Specify the target directory to save the result data.</param><param name="pointSrc">The original center of the OBJ file.</param><param name="pointDest">Specify the new center of the model after conversion,</param><param name="option">Specify the rotation type of the model.</param><returns>true means converted successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.Discret(System.String,System.String,SuperMap.Data.DatasetVector,System.String)"><summary>
+            Whole-to-one processing.
+            </summary><param name="scpFileName">Specify the directory name of the oblique photogrammetry data configuration file (*.scp).</param><param name="outputFolder">Specify the target directory to save the result data.</param><param name="pDatasetVector">Specify the vector dataset for whole-to-one processing.</param><param name="strFieldName">Specify the associated field name. It should be INT type and can identify the object, and it is recommended to use the system field SmID.</param><returns>true means whole-to-one processing successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.CombineFile(System.String,System.Collections.Generic.List{System.String})"><summary>
+            Combine the oblique photogrammetry model files.
+            </summary><param name="outFileName">Specify the directory name of the result data after combination.</param><param name="fileNames">Specify a group of file names to be combined.</param><returns>true means combined successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.CombineFile(System.String,System.Collections.Generic.List{System.String},SuperMap.Data.Processing.TextureCompressType)"><summary>
+            Combine the oblique photogrammetry model files. It can be compressed, to output different formats for different terminals.
+            </summary><param name="outFileName">Specify the directory name of the result data after combination.</param><param name="fileNames">Specify a group of file names to be combined.</param><param name="type">Specify the data format after compression.</param><returns>true means combined successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.CombineFile(System.String,System.String,System.Int32,SuperMap.Data.Processing.TextureCompressType)"><summary>
+            Combine the oblique photogrammetry model files. It can be compressed, to output different formats for different terminals, and it supports specifying the combined levels to reduce the root nodes number.
+            </summary><param name="inScpFileName">The directory name of the oblique photogrammetry data configuration file (*.scp) to be combined.</param><param name="outScpFileName">Specify the directory name of the output oblique photogrammetry data configuration file (*.scp) after combining.</param><param name="combineLevel">Specify the combined levels.</param><param name="type">Specify the data format after compression.</param><returns>true means combined successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.ModifyCenter(System.String,System.String,SuperMap.Data.Point3D)"><summary>
+            Modify the center of the model file.
+            </summary><param name="scpFileName">The directory name of the oblique photogrammetry data configuration file (*.scp) to be modified for its center.</param><param name="outputFolder">Specify the directory name of the result data after modifying center.</param><param name="pointNewCenter">Specify the new center.</param><returns>true means modifying center successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.GenerateProxyOSGBFiles(System.String,System.String,System.Int32)"><summary>
+            Generate proxy node for the model. It will generate a new index file without the model data, used to improve the model loading efficiency.
+            </summary><param name="inScpFileName">Specify the directory name of the oblique photogrammetry data configuration file (*.scp).</param><param name="outScpFileName">Specify the directory name of the output oblique photogrammetry data configuration file (*.scp).</param><param name="level">Specify the combined levels.</param><returns>true means to generate proxy node successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.SplitScpFile(System.String,System.Int32)"><summary>
+            Split the oblique photogrammetry data configuration file (*.scp).
+            </summary><param name="scpFileName">The directory name of the oblique photogrammetry data configuration file (*.scp) to be split.</param><param name="count">Number to be split.</param><returns>The file number after splitting.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBToCompactFile(System.String,System.String)"><summary>
+            Write the model data to a large file.
+            </summary><param name="scpFileName">Specify the directory name of the oblique photogrammetry data configuration file (*.scp).</param><param name="outputFolder">Specify the target directory to save the result data.</param><returns>Returns true if successful; otherwise false.</returns></member><member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBCreateHistoryFiles(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.DateTime},System.String,System.String)"><summary>
+            Oblique photographic model data generation history.
+            </summary>
+            <param name="scpFileNames">A collection of oblique photography profile (*.scp) path names for the history to be generated. </param>
+            <param name="dataTimes">Specified collection of historical time. </param>
+            <param name="scpCurrentFileName">The name of the history file to be output. </param>
+            <param name="outputFolder">The history path of the output. </param>
+            <returns>Generates whether the history is successful, true means success, false means failure. </returns>
+        </member>
+        <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBTODAE(System.String,System.String)">
+            <summary>
+            Tilting photographic model data and 3D slice buffer data into DAE data
+            Supports 3D slice buffers generated by lines, polygons, fine models, BIM models, 3D solid models, point clouds, and pipe points.
+            </summary>
+            <param name="scpFileName">Specified 3D tile cache configuration file (scp file). </param>
+            <param name="outputFolder"> target file output path. </param>
+            <returns> After the conversion is successful, the DAE file and the corresponding texture map are generated in the output path. </returns>
+        </member>
+        <member name="M:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.OSGBTO3DTiles(System.String,System.String)">
+            <summary>
+            The tilted photographic model data and the 3D slice cache data are converted into 3DTiles data.
+            Supports 3D slice buffers generated by lines, polygons, fine models, BIM models, 3D solid models, point clouds, and pipe points.
+            </summary>
+            <param name="scpFileName">Specified 3D tile cache configuration file (scp file). </param>
+            <param name="outputFolder"> target file output path. </param>
+            <returns> After the conversion is successful, 3DTiles data is generated in the output path. </returns>
+        </member>
+        <member name="E:SuperMap.Data.Processing.ObliquePhotogrammetry3DModelTool.Stepped">
+            <summary>
+            The event is trigged when the process bar is activated.
+            </summary></member><member name="T:SuperMap.Data.Processing.OSGBCacheBuilder"><summary>
+            OSGB cache generating class, through which the CAD dataset can be generated as the cache file in OSGB format.
+            </summary></member><member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.#ctor"><summary>
+            Builds a new OSGBCacheBuilder object.
+            </summary></member><member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.#ctor(SuperMap.Data.DatasetVector,System.String,System.String)"><summary>
+            Builds a new OSGBCacheBuilder object according to DatasetVector object, output directory and cache name.
+            </summary><param name="dataset">The specified dataset object.</param><param name="outputFolder">The specified output directory.</param><param name="name">The specified cache name.</param></member><member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.OSGBFile2MongoDB(System.String,SuperMap.Data.TileStorage.TileStorageConnection,System.String)"><summary>
+            Export the OSGB cache data to MongoDB database
+            </summary><param name="scpFileName">The full path of the scp file, which contains osgb cache file information.</param><param name="mongoConn">mongodb database connection information. A scp file corresponds to a Database of mongoConn.</param><param name="scpMongoFile">The new path of scp file. If successful, this file can be used to open the cache in mongodb.</param><returns></returns></member><member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.Build"><summary>
+            Cache generated.
+            </summary><returns>False means it fails, true means it successes.</returns></member><member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.Dispose"><summary>
+            Destroy objects
+            </summary></member><member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.GenerateConfigFile(System.String,SuperMap.Data.Point3D,SuperMap.Data.PrjCoordSys,System.Collections.Generic.List{System.String})"><summary>
+            Create scp index file.
+            </summary><param name="configFileName">scp file name.</param><param name="position">Insertion point.</param><param name="value">The projection information.</param><param name="fileNames">Specify the root node directory of OSGB.</param><returns>A boolean. Return true if successful; otherwise, false.</returns></member><member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.GenerateConfigFile(System.String,SuperMap.Data.Point3D,SuperMap.Data.PrjCoordSys,System.Boolean,System.Collections.Generic.List{System.String})"><summary>
+            Create scp index file, which supports NEU (local space rectangular coordinate system) coordinate system.
+            </summary>
+            <param name="configFileName">Specified name of the scp file. </param>
+            <param name="position">Specified insertion point coordinates. </param>
+            <param name="value">Specify projection information. </param>
+            <param name="bNEU">Specify whether it is a local space right angle system. </param>
+            <param name="fileNames">Specify the OSGB root node path. </param>
+            <returns> A Boolean value that returns true if the build succeeds, otherwise returns false. </returns>
+        </member>
+        <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.GenerateConfigFile(System.String,SuperMap.Data.Point3D,SuperMap.Data.PrjCoordSys,SuperMap.Data.PrjCoordSys,SuperMap.Data.CoordSysTransParameter,SuperMap.Data.CoordSysTransMethod , System.Collections.Generic.List{System.String})">
+            <summary>
+            Generates a scp index file. This method supports coordinate conversion based on conversion parameters.
+            </summary>
+            <param name="configFileName">specified scp file name</param>
+            <param name="position">Specified insertion point coordinates</param>
+            <param name="value">data original coordinate system information</param>
+            <param name="valueDes">Specify the target coordinate system information</param>
+            <param name="coordSysTransParam">Specify projection conversion parameters</param>
+            <param name="coordSysTransMethod">Specify the projection conversion method</param>
+            <param name="fileNames">Specify the OSGB root node path</param>
+            <returns> After the success, the coordinate converted spp file is generated. </returns>
+        </member>
+        <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.CombineOSGBFile(System.String,System.Collections.Generic.List{System.String},System.Double,System.Double,System.Single)">
+            <summary>
+            Combine OSGB file. Combine a rough level based on the specified OSGB model.
+            </summary>
+            <param name="outputFileName"> The name of the merged OSGB file. </param>
+            <param name="fileNames">A list of OSGB file names that need to be merged. </param>
+            <param name="dPercent">Specified simplification rate, the value range [0,1], 0 means that all the meshes are not simplified, and 1 means that the distance of the model mesh is all simplified within the specified threshold, 0- Between 1 means that the distance of the model mesh is simplified by a specified percentage within the specified threshold.
+            For example, 0.5 means that if the grid distance of the model is 100 within the specified threshold, then only 50 are simplified. </param>
+            <param name="dDistance">Specified switch distance, camera switch distance between the merged rough layer and the original OSGB file. </param>
+            <param name="fErrorValue">The specified mesh simplification threshold. When the model grid distance is less than the specified threshold, it will be simplified. </param>
+            <returns> A Boolean value that returns true if the merge succeeds, otherwise returns false. </returns>
+        </member>
+        <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.B3DMFile2MongoDB(System.String,SuperMap.Data.TileStorage.TileStorageConnection)">
+            <summary>
+            Import 3DTiles data into the MongoDB database.
+            </summary>
+            <param name="scpFileName">3DTiles data, loaded with the json file as an index. </param>
+            <param name="mongoConn">Cache connection management, including mogo server ip, database name and other information. </param>
+            <returns></returns>
+        </member>
+        <member name="M:SuperMap.Data.Processing.OSGBCacheBuilder.BuildTile(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.Int32}},System.Boolean)">
+            <summary>
+            The data set specifies the SmID to generate a three-dimensional tile.
+            </summary>
+            <param name="geoModelIDs">The object id of the 3D tile to be generated, the key is the data set name, and the value is the specified object id queue. </param>
+            <param name="bCombineModels"> Whether to merge the specified objects. </param>
+            <returns></returns>
+        </member>
+        <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.Bounds">
+            <summary>
+            Gets or sets the cache geographic range.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.CacheName"><summary>
+            Gets or sets the cache name which does not include the path and the suffix.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.Dataset"><summary>
+            Gets or sets the dataset object to generate the OSGB cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.DynamicPrjCoordSysType"><summary>
+            Gets or sets dynamic projection information.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.LODSize"><summary>
+            Gets or sets the level number of LOD.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.OutputFolder"><summary>
+            Gets or sets output directory.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.OutputScale"><summary>
+            Gets or sets the scales of the map cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.Recordset"><summary>
+            Gets or sets the recordset to generate the OSGB cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TileWidth"><summary>
+            Gets or sets OSGB cache tile size.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.DatasetArray"><summary>
+            Set up multiple datasets to generate a cache file.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TextureSharing"><summary>
+            Gets or sets the texture for use.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.ObjectFiltrateThreshold"><summary>
+            Gets or sets the filter threshold for the rough layer object, unit: pixel.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TileBounds"><summary>
+            Get the Bounds for each generated cache slice.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.LODRange"><summary>
+            Gets or sets the switching distance of each LOD level. The key is LOD level; the value is the distance value, unit: Meter.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.SimplifyPercent"><summary>
+            Gets or sets the grid simplification rate of the LOD level.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.PyramidSplitCount"><summary>
+            Gets or sets the split number of the pyramid.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TilePyramidSplitType"><summary>
+            Gets or sets the pyramid split type of single cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.IsInstance"><summary>
+            Gets or sets whether to create an instance.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.MipmapCount"><summary>
+            Gets or sets the Mipmap level of the image texture.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.IsCalNormal">
+             <summary>
+             Gets or sets whether to recalculate normals when generating the cache.
+             </summary>
+         </member>
+         <member name="E:SuperMap.Data.Processing.OSGBCacheBuilder.Stepped">
+             <summary>
+            The event is trigged when the process bar is activated.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.ConnectionInfo"><summary>
+            Sets the mongodb database connection information when creating.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.StorageType"><summary>
+            Gets or sets the storage type of the cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.ProcessType"><summary>
+            Gets or sets the file processing type when creating cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.FileType"><summary>
+            Gets or sets the data format when creating cache.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.Position">
+            <summary>
+            A three-dimensional tile of a planar scene is generated, and the user can obtain or set the insertion point position of the three-dimensional tile.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.IsCombineRepeatTextures">
+            <summary>
+            Gets or sets whether the repeat texture texture is grouped.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.IsRemoveNormal">
+            <summary>
+            Gets or sets whether to remove the raw data normal.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.TileInfosArray">
+            <summary>
+            Get information about each 3D tile.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.OSGBCacheBuilder.ProcessThreadsCount">
+            <summary>
+            Support multi-threading when generating 3D tiles, get or set the number of threads.
+            </summary>
+        </member>
+        <member name="T:SuperMap.Data.Processing.OSGBVolumeCacheBuilder">
+            <summary>
+            Body data generation cache (only optional OSGB cache)
+            </summary></member><member name="M:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.#ctor"><summary>
+            Construct a new OSGBVolumeCacheBuilder object.
+            </summary></member><member name="M:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.#ctor(SuperMap.Data.DatasetVolume,System.String)"><summary>
+            Construct a new OSGBVolumeCacheBuilder object.
+            </summary><param name="dataset">Volume data sets</param><param name="osgbFile">Oblique photography model. SCP index file</param></member><member name="M:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.Build"><summary>
+            To generate cache
+            </summary><returns>Generate success returns true, failure returns false.</returns></member><member name="M:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.Dispose"><summary>
+            Release the resources consumed by the object.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.DatasetVolume"><summary>
+            Gets or sets the body data set to generate the cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.OSGBFile"><summary>
+            Gets or sets the full path of the SCP file.
+            </summary></member><member name="P:SuperMap.Data.Processing.OSGBVolumeCacheBuilder.VolName">
+             <summary>
+             Gets or sets the volume data property name.
+             </summary>
+         </member>
+         <member name="T:SuperMap.Data.Processing.PointCloudCacheBuilder">
+             <summary>
+            The point cloud cache creating class, mainly used to generate the point cloud cache for the point cloud data for publishing the 3D scene. Its configuration file format is *..
+            </summary></member><member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.#ctor"><summary>
+            Builds a new PointCloudCacheBuilder object.
+            </summary></member><member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.#ctor(System.String,System.String,System.String)"><summary>
+            Constructs a new object of PointCloudCacheBuilder according to specified parameters.
+            </summary><param name="pointCloudName">Specify the name of the point cloud data.</param><param name="outputFolder">Specify the storage directory of the point cloud cache.</param><param name="cacheName">Specify the cache name.</param></member><member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.Build"><summary>
+            Create the point cloud cache.
+            </summary><returns>True, if the index creates successfully; otherwise false.</returns></member><member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.GeneratePointCloudList(System.String,System.Collections.Generic.List{System.String},SuperMap.Data.Point3D,SuperMap.Data.PrjCoordSys,SuperMap.Data.Processing.PointCloudInfoType,SuperMap.Data.Processing.DataSeparator,SuperMap.Data.Processing.DataRGBMode)"><summary>
+            Create the point cloud data list, used to read the point cloud data.
+            </summary>
+            <param name="listFileName">Specify the name of the list file to store. </param>
+            <param name="fileNames">An array of point cloud file names that need to generate 3D tiles. </param>
+            <param name="ptPos">Specify the insertion point of point cloud data. </param>
+            <param name="srcPrjCoordSys">Specify the point cloud data original coordinate system type. </param>
+            <param name="infoType">Specifies the type of information format for point cloud data storage. </param>
+            <param name="dataSeparator">Specifies the type of separator between the values ​​of the information in the point cloud data. </param>
+            <param name="RGBMode">Specifies the point cloud data color value representation. </param>
+            <param name="dataUnit">Specify point cloud data units. </param>
+            <returns> returns true if generated successfully, otherwise returns false. </returns>
+        </member>
+        <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.GetValidCategoryFields">
+            <summary>
+            Get a valid feature value field.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.SetGenerateNormal(System.Boolean)">
+            <summary>
+            Set whether to create the surface normal for the point cloud data when creating cache.
+            </summary><param name="bGenerate">Specify whether to create the surface normal.</param></member>
+         <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.GeneratePointCloudList(System.Collections.Generic.List{System.String},SuperMap.Data.Processing.PointCloudFileInfo)">
+             <summary>
+             Coordinate transformation is performed when the point cloud generates a 3D tile.
+             </summary>
+             <param name="fileNames">An array of point cloud file names that need to generate 3D tiles. </param>
+             <param name="pointCloudFileInfo">Set the point cloud information that generates the 3D tile. </param>
+             <returns></returns>
+         </member>
+         <member name="M:SuperMap.Data.Processing.PointCloudCacheBuilder.Dispose">
+             <summary>
+            Releases all resources that the object occupies.
+            </summary></member><member name="E:SuperMap.Data.Processing.PointCloudCacheBuilder.Stepped"><summary>
+            The event is trigged when the process bar is activated.
+            </summary></member><member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.PointCloudListName"><summary>
+            Gets or sets the point cloud file list name for creating cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.CacheName"><summary>
+            Gets or sets the name of the built point cloud cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.OutputFolder"><summary>
+            Gets or sets the path of the built cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.TilePyramidSplitType"><summary>
+            Gets or sets the pyramid split type of single Tile.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.CategoryField">
+            <summary>
+            Gets or sets the point cloud feature value field.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudCacheBuilder.FileType">
+            <summary>
+            Gets or sets the 3D tile file type. The S3M format is generated by default.
+            </summary>
+        </member>
+        <member name="T:SuperMap.Data.Processing.PointCloudCategoryField">
+            <summary>
+            This enumeration defines the point cloud cache eigenvalue field enumeration constant.
+            The point cloud generates a cache, and its feature value can be set; when layering is set, the color distribution can be set according to the feature value.
+            </summary>
+        </member>
+        <member name="F:SuperMap.Data.Processing.PointCloudCategoryField.Intensity">
+            <summary>
+            strength.
+            </summary>
+        </member>
+        <member name="F:SuperMap.Data.Processing.PointCloudCategoryField.PosZ">
+            <summary>
+            height.
+            </summary>
+        </member>
+        <member name="F:SuperMap.Data.Processing.PointCloudCategoryField.Classify">
+            <summary>
+            classification. For example, a laser point cloud in a park has categories such as floor, vegetation, and building.
+            </summary></member>
+        <member name="T:SuperMap.Data.Processing.PointCloudFileInfo">
+            <summary>
+            Point cloud information class. The point cloud information is structured to facilitate parameter setting when the point cloud generates 3D tiles.
+            </summary>
+        </member>
+        <member name="M:SuperMap.Data.Processing.PointCloudFileInfo.#ctor">
+            <summary>
+            The default constructor constructs a new point cloud information class object.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.CoordSystemTransMethod">
+            <summary>
+            Gets or sets the point cloud coordinate system conversion method.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.CoordSystemTransParameter">
+            <summary>
+            Gets or sets the point cloud coordinate system conversion parameters.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.DesPrjCoordSys">
+            <summary>
+            Gets or sets the point cloud target coordinate system.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.IsTransEnable">
+            <summary>
+            Gets or sets whether point cloud coordinate conversion is available.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.ListFileName">
+            <summary>
+            Get or set the point cloud list file.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.PointDataRGBMode">
+            <summary>
+            Gets or sets the color type.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.PointDataSeparator">
+            <summary>
+            Gets or sets the point cloud data separator.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.PointDataUnit">
+            <summary>
+            Get or set the point cloud unit.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.PointInfoType">
+            <summary>
+            Get or set the point cloud information format and support point cloud data in conventional formats such as TXT and XYZ.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.Position">
+            <summary>
+            Gets or sets the point cloud cache insertion point location.
+            </summary>
+        </member>
+        <member name="P:SuperMap.Data.Processing.PointCloudFileInfo.SrcPrjCoordSys">
+            <summary>
+            Gets or sets the point cloud source coordinate system.
+            </summary>
+        </member>
+        <member name="T:SuperMap.Data.Processing.PointCloudInfoType">
+            <summary>
+            The enumeration defines the information format type constants of the point cloud data type of TXT, XYZ.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ"><summary>
+            The format to use XYZ coordinates.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Reflectance"><summary>
+            The format to use XYZ coordinates and reflection intensity.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Reflectance_RGB"><summary>
+             The format to use XYZ coordinates, reflection intensity and color information.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Reflectance_Normal"><summary>
+             The format to use XYZ coordinates, reflection intensity and surface normal.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Reflectance_RGB_Normal"><summary>
+             The format to use XYZ coordinates, reflection intensity, color information and surface normal.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Reflectance_Normal_RGB"><summary>
+             The format to use XYZ coordinates, reflection intensity, surface normal and color information.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_RGB"><summary>
+             The format to use XYZ coordinates and color information.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_RGB_Reflectance"><summary>
+            The format to use XYZ coordinates, color information and reflection intensity.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_RGB_Normal"><summary>
+            The format to use XYZ coordinates, color information and surface normal.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_RGB_Reflectance_Normal"><summary>
+            The format to use XYZ coordinates, color information, reflection intensity, and surface normal.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_RGB_Normal_Reflectance"><summary>
+            The format to use XYZ coordinates, color information, surface normal and reflection intensity.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Normal"><summary>
+            The format to use XYZ coordinates and surface normal.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Normal_RGB"><summary>
+            The format to use XYZ coordinates, surface normal and color information.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Normal_Reflectance"><summary>
+            The format to use XYZ coordinates, surface normal and reflection intensity.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Normal_Reflectance_RGB"><summary>
+            The format to use XYZ coordinates, surface normal, reflection intensity and color information.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.XYZ_Normal_RGB_Reflectance"><summary>
+            The format to use XYZ coordinates, surface normal, color information and reflection intensity.
+            </summary></member><member name="F:SuperMap.Data.Processing.PointCloudInfoType.UnKnown"><summary>
+            Known format.
+            </summary></member><member name="T:SuperMap.Data.Processing.ProcessFileType"><summary>
+            The enumeration defines the file processing type constants when creating 3D cache(OSGB).
+            </summary></member><member name="F:SuperMap.Data.Processing.ProcessFileType.Normal"><summary>
+            Create with normal way.
+            </summary></member><member name="F:SuperMap.Data.Processing.ProcessFileType.Add"><summary>
+            Create with appending way. It supports the cache data with pyramid structure.
+            </summary></member><member name="T:SuperMap.Data.Processing.PyramidSplitType"><summary>
+            This enumeration defines the constant of pyramid split type.
+            </summary></member><member name="F:SuperMap.Data.Processing.PyramidSplitType.QuadTree"><summary>
+            Quadtree split.
+            </summary></member><member name="F:SuperMap.Data.Processing.PyramidSplitType.Octree"><summary>
+            Octree split.
+            </summary></member><member name="T:SuperMap.Data.Processing.TerrainCacheType"><summary>
+            This enumeration defines the format type constants of the generated terrain cache.
+            </summary></member><member name="F:SuperMap.Data.Processing.TerrainCacheType.DEM"><summary>
+            Generates raster (DEM) terrain cache.
+            </summary></member><member name="F:SuperMap.Data.Processing.TerrainCacheType.TIN"><summary>
+            Generates TIN terrain cache.
+            </summary></member><member name="T:SuperMap.Data.Processing.TextureCompressType"><summary>
+            The enumeration defines the format type constants of the generated data after performing the texture compression for the model data.
+            </summary></member><member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_NONE"><summary>
+            Unknown type.
+            </summary></member><member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_DXT"><summary>
+            DXT data format for PC.
+            </summary></member><member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_ETC"><summary>
+            ETC format for Android devices.
+            </summary></member><member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_PVR"><summary>
+            PVR format for iOS devices.
+            </summary></member><member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_JPG"><summary>
+            JPG format for all terminals.
+            </summary></member><member name="F:SuperMap.Data.Processing.TextureCompressType.TEXTURECOMPRESS_PNG"><summary>
+            PNG format for all terminals.
+            </summary></member><member name="T:SuperMap.Data.Processing.Tile"><summary>
+            Tile class. Used to get the information of cache tiles.
+            </summary></member><member name="M:SuperMap.Data.Processing.Tile.Dispose"><summary>Releases all resources used by the Tile object.</summary></member><member name="P:SuperMap.Data.Processing.Tile.Row"><summary>
+            Gets the row number of the tile.
+            </summary></member><member name="P:SuperMap.Data.Processing.Tile.Column"><summary>
+            Gets the column number of the tile.
+            </summary></member><member name="P:SuperMap.Data.Processing.Tile.Bounds"><summary>
+            Gets the column number of the tile.
+            </summary><returns>The bounds of the tiles.</returns></member><member name="P:SuperMap.Data.Processing.Tile.TileSize"><summary>
+            Gets the size of the tile.
+            </summary><returns>The size of the tile.</returns></member><member name="P:SuperMap.Data.Processing.Tile.Scale"><summary>
+            Gets the scale of the tile.
+            </summary><returns>The scale of the tile.</returns></member><member name="P:SuperMap.Data.Processing.Tile.Type"><summary>
+            Gets the data format of the tile.
+            </summary><returns>The data format of the tile.</returns></member><member name="P:SuperMap.Data.Processing.Tile.Data"><summary>
+            Gets tile data.
+            </summary><returns>Tile data.</returns></member><member name="T:SuperMap.Data.Processing.TileFormat"><summary>
+            This enumeration defines the 2D and 3D map cache, the formats of tiles (namely the formats of tiles corresponding to the configuration file  *.sci and *.sci3d.
+            </summary></member><member name="F:SuperMap.Data.Processing.TileFormat.PNG"><summary>
+            PNG, Portable Network Graphics, is a new image format on the Internet. PNG is able to provide a lossless compression image file with a length of 30% less than GIF. It also provides 24 and 48 true color image support and many other technical support.
+            </summary></member><member name="F:SuperMap.Data.Processing.TileFormat.PNG8"><summary>
+            PNG8 type. Compared with the PNG type, the PNG8 type takes up less space, which is only about 1/4 of PNG. However, PNG8 can only support 256 colors, while the background can not be set to transparent, please pay attention to these two restrictions.
+            </summary></member><member name="F:SuperMap.Data.Processing.TileFormat.GIF"><summary>
+            GIF type. Graphics Interchange Format image interchange format. GIF file data is a lossless compression format based on LZW algorithm. The compression rate is about 50%.
+            </summary></member><member name="F:SuperMap.Data.Processing.TileFormat.JPG"><summary>
+            JPG type. JPG with full name JPEG image uses 24 bit color to store a single raster image. The JPEG format is a platform independent format that supports the highest level of compression, however, the compression is lossy.
+            </summary></member><member name="F:SuperMap.Data.Processing.TileFormat.JPG_PNG"><summary>
+            The JPG_PNG type. If the tile format is set to JPG_PNG, these tiles are JPG or PNG format. The final format is determined by whether the tiles contain invalid pixels. For tiles that contain invalid pixels, the tile format is PNG, otherwise JPG. The PNG format is also used at the boundaries, while the JPG format is used in places without invalid data, which will greatly reduce the size of the cache data and optimize data downloading time.
+            </summary></member><member name="F:SuperMap.Data.Processing.TileFormat.DXTZ"><summary>
+            DXTZ type.
+            </summary></member><member name="F:SuperMap.Data.Processing.TileFormat.PBF"><summary>
+            矢量瓦片类型。
+            </summary></member><member name="T:SuperMap.Data.Processing.TileInfos">
+             <summary>
+             3D tile information class. The following information is provided when generating 3D tiles.
+             </summary>
+         </member>
+         <member name="M:SuperMap.Data.Processing.TileInfos.#ctor">
+             <summary>
+             The default constructor constructs a new 3D tile information class object.
+             </summary>
+         </member>
+         <member name="P:SuperMap.Data.Processing.TileInfos.Bounds">
+             <summary>
+             Gets or sets the bounds corresponding to the 3D tile.
+             </summary>
+         </member>
+         <member name="P:SuperMap.Data.Processing.TileInfos.Name">
+             <summary>
+             Gets or sets the 3D tile name.
+             </summary>
+         </member>
+         <member name="T:SuperMap.Data.Processing.TileSize">
+             <summary>
+            This enumeration defines the 2D and 3D map cache, the formats of tiles (namely the formats of tiles corresponding to the configuration file  *.sci and *.sci3d).
+            </summary></member><member name="F:SuperMap.Data.Processing.TileSize.Size64"><summary>
+            64*64
+            </summary></member><member name="F:SuperMap.Data.Processing.TileSize.Size128"><summary>
+            128*128
+            </summary></member><member name="F:SuperMap.Data.Processing.TileSize.Size256"><summary>
+            256*256
+            </summary></member><member name="F:SuperMap.Data.Processing.TileSize.Size512"><summary>
+            512*512
+            </summary></member><member name="F:SuperMap.Data.Processing.TileSize.Size1024"><summary>
+            1024*1024
+            </summary></member><member name="T:SuperMap.Data.Processing.CompressType"><summary><para>The class has been obsolete. Use <see cref="T:SuperMap.Data.EncodeType"> EncodeType</see> instead.  <see cref="T:SuperMap.Data.EncodeType"> EncodeType</see> class defines the code type constant for the cache file.</para><para>This enumeration defines the compress type constants of the cache.</para></summary></member><member name="F:SuperMap.Data.Processing.CompressType.NONE"><summary>
+            No compression. 
+            </summary></member><member name="F:SuperMap.Data.Processing.CompressType.ZIP"><summary>
+            The Zip compression.  
+            </summary></member><member name="T:SuperMap.Data.Processing.ImageCacheBuilder"><summary>The ImageCacheBuilder class, mainly used to generate image cache for image data for publishing the 3D scene. Its configuration file format is *.sci3d.</summary></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.#ctor"><summary>
+            Creates a new instance of the CacheBuilderSCI3D class.
+            </summary></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.#ctor(SuperMap.Data.DatasetImage,System.String)"><summary>
+            The CacheBuilderSCI3D class according to the full path of the image dataset and output cache file.
+            </summary><param name="dataset">The specified grid dataset.</param><param name="outputFolder">The full path of the output cache file.</param></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.#ctor(SuperMap.Data.DatasetImage,System.String,System.String)"><summary>
+            Creates a new instance of the ImageCacheBuilder class with the specified image dataset and the full path of the output folder.
+            </summary><param name="dataset">The specified grid dataset.</param><param name="outputFolder">The full path of the output cache file.</param><param name="cacheName">The name of the generated cache.</param></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.Build"><summary>
+            Create image cache.
+            <para>The  ComputeLevel()  method will be called automatically if the begin level and the end level is not set.</para></summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.ComputeLevel"><summary>
+            Calculates and sets the cache level for the data, which is primarily related to the extent of the files (image files, image datasets and grid datasets) to create caches.
+            </summary><returns>True, if successful; Otherwise false.</returns></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.ToConfigFile(System.String)"><summary>
+            Writes the properties of the CacheBuilderSCI3D object to a specified file. The suffix of the file is .sci3d. 
+            </summary><param name="fileName">The full path of the cache configuration file.</param><returns>True if successful; otherwise false. </returns></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.FromConfigFile(System.String)"><summary>
+            Imports the cache file and specify the properties according to the configuration file. 
+            </summary><param name="fileName">The full path of the cache configuration file.</param><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.ComputeImageFileName"><summary>
+            Gets the name list of the tiles to be generated. 
+            </summary><returns>The calculated name list of the tiles.</returns></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.ComputeImageFileName(System.Int32)"><summary>
+            Computes the the list of the names of the computed cache image according to the parameter. 
+            </summary><param name="specialLevel">The specified layer level.</param><returns>The calculated name list of the tiles.</returns></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.BuildWithoutConfigFile"><summary>
+            Builds the sci3d image cache for the image data. The cache configuration file would not be built by this method. 
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.ComputeOutputScales"><summary>
+            Calculates the appropriate output scale when the map cache is generated, that is, the default output scale. This operation will modify the value of the OutputScales property.
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.GetDefultOutputScales"><summary>
+             Returns the default scale.
+            </summary><returns>Returns the default scale.</returns></member><member name="M:SuperMap.Data.Processing.ImageCacheBuilder.Dispose"><summary>
+            Releases all resources that the object occupies.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.Dataset"><summary>
+            Gets or sets the image dataset to be created.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.OutputFolder"><summary>
+            Gets or sets the full path of the folder includes the output cache file.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.CacheName"><summary>
+            Gets or sets the name of the built cache file.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ClipRegion"><summary>
+            Gets or sets the clipped region of the dataset.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.BeginLevel"><summary>
+            Gets or sets the count of the cache level.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.EndLevel"><summary>
+            Gets or sets the end level in the building of the cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.StorageType"><summary>
+            Gets or sets the cache storage type. The default is StorageType.Original.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ImageFileName"><summary>
+            Gets or sets the image file name of the built cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DatasetGrid"><summary>
+            Builds the Grid dataset for the built cache. The color is specified by the color table of the dataset. 
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.SampleSize"><summary>
+            Gets or sets the sample size. The unit is pixel.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ImageType"><summary>
+            Gets or sets the type of the cached image. 
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.Password"><summary>
+            Gets or sets the password when a map object is created. When you add a layer, you need to type your password. If you use the default value, no password is set, and the default value is an empty string. 
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.SpecialValueColor"><summary><para>Sets the color of the specific raster value that the image cache created by raster dataset.</para><para>You can specify the color of the raster value as semitransparent, for example: Layer3DSetting.SpecialValueColor = Color.FromArgb(127, 255, 0, 0), display specific raster value as semitransparent red. The premise is set as false.</para></summary><value>The default value is Color [A=0, R=0, G=0, B=0], namely the transparent black.</value></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.SpecialValue"><summary>
+            Gets or sets the specific raster value that the image cache created by raster dataset.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.IsSpecialValueTransparent"><summary>
+            Gets or sets whether the SpecialValue is transparent that the image cache created by raster dataset.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.OutputScaleCaptions"><summary>
+            Gets or sets the alias of the cache scale. 
+            <para>The general setting is a string of the reciprocal of the scale size. For example, 1:10000 is 10000.</para><para>An exception is thrown is the set alias is not unique.</para></summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.OutputScales"><summary>
+            Gets or sets the scales array of the map cache.        
+            <para>The cache generating will fail if one of the cache scales is illegal.</para></summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ColorTable"><summary>Gets or sets the color table. </summary><value>The default value is a color collection object without a color, namely the <see cref="P:SuperMap.Data.Colors.Count">Colors.Count</see> is 0.</value></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.GridValueTable"><summary>
+            Gets or sets the cell value table.
+            </summary></member><member name="E:SuperMap.Data.Processing.ImageCacheBuilder.Stepped"><summary>
+            The event is trigged when the process bar is activated.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DefaultBeginLevel"><summary>
+             Gets the start level.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DefaultEndLevel"><summary>
+             Gets the end level.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DynamicPrjCoordSysType"><summary>
+             Gets or sets generating plane or spherical cache, it supports PrjCoordSysType.NoneEarth and PrjCoordSysType.EarthLongitudeLatitude.
+            <para>PrjCoordSysType.NoneEarth means plane cache, and PrjCoordSysType.EarthLongitudeLatitude means spherical cache.</para></summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.TilingMode"><summary>
+            Gets or sets the split mode of the image cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DatasetVolume"><summary>
+            Gets or sets the raster volume dataset.
+            </summary></member><member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ConnectionInfo">
+             <summary>
+             Set the information to connect to the mongo database when it is generated.
+             </summary>
+         </member>
+         <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.DatasetMosaic">
+             <summary>
+             The mosaic dataset generates a Sci3d image cache.
+             </summary>
+         </member>
+         <member name="P:SuperMap.Data.Processing.ImageCacheBuilder.ProcessThreadsCount">
+             <summary>
+             Gets or sets the number of threads when the mosaic dataset generates the Sci3d image cache.
+             </summary>
+         </member>
+         <member name="T:SuperMap.Data.Processing.MapCache3DBuilder"><summary>The MapCache3DBuilder class, which is mainly used to generate 3D map cache for the map for publishing the 3D scene. Its configuration file format is *.sci3d. The pyramid file directory structure of the 3D map cache is consistent with that of the image cache.</summary></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.#ctor"><summary>
+            Builds a new object of this class 
+            </summary></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.#ctor(SuperMap.Mapping.Map,System.String)"><summary>
+            Builds a new object according to the parameter. 
+            </summary><param name="map">The specified map to be generated the cache. </param><param name="outputFolder">The specified path to be generated the cache. </param></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.#ctor(SuperMap.Mapping.Map,System.String,System.String)"><summary>
+            Builds a new object according to the parameter. 
+            </summary><param name="map">The map to be generated the cache.</param><param name="outputFolder">The path for the cache.</param><param name="name">The name of the generated cache.</param></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.Build"><summary>
+            Builds the 3d map cache. 
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.ComputeLevel"><summary>
+            Computes the count of cache level which is appropriate to the dataset. 
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.ComputeImageFileName"><summary>
+             Returns the list of the names of the computed cache image in each layer.
+            </summary><returns>The computed name list of the cache image in every level.</returns></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.ComputeImageFileName(System.Int32)"><summary>
+            Computes the the list of the names of the computed cache image in the specified layer according to the parameter.
+            </summary><param name="specialLevel">The specified layer level.</param><returns>The computed name list of the cache image.</returns></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.ToConfigFile(System.String)"><summary>
+            Outputs the properties of the object to the specified file. The suffix the file is .sci3d. 
+            </summary><param name="fileName">The path of the specified file.</param><returns>True if successful; otherwise false.</returns></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.FromConfigFile(System.String)"><summary>
+            Imports the cache file and specify the properties according to the configuration file. 
+            </summary><param name="fileName">The path of the cache configuration file.</param><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.BuildWithoutConfigFile"><summary>
+            Creates 3d map cache for map object. 3d map cache setting file will not be created by this method.
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.MapCache3DBuilder.Dispose"><summary>
+            Releases all resources that the object occupies.
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.Map"><summary>
+            Gets or sets the outputted region to build the cache.  
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.ClipRegion"><summary>
+            Gets or sets the polygon region to build cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.Bounds"><summary>
+            Gets or sets the outputed geographic range. This property has to be set. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.CacheName"><summary>
+            Gets or sets the name of the built cache configuration file. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.ImageSize"><summary>
+            Gets or sets the size of cache picture. The default value is Size256. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.ImageCompress"><summary>
+            Gets or sets the compression ratio of the image cache. The default value is 75 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.OutputFolder"><summary>
+            Gets or sets the path of the built cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.IsTransparent"><summary>
+            Gets or sets whether the background of the cache image is transparent. The default value is false. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.ImageType"><summary>
+            Gets or sets the type of the cache image. The default value is JPG 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.StorageType"><summary>
+            Gets or sets the cache storage type. The default is StorageType.Original.
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.BeginLevel"><summary>
+            Gets or sets the count of the cache level. 
+            </summary><value>The default value is 0.</value></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.EndLevel"><summary>
+            Gets or sets the end level in the building of the cache. 
+            </summary><value>The default value is 4.</value></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.Password"><summary>
+            Gets or sets the password for the data when generate a cache. When you add a layer, you need to type your password. If you use the default value, no password is set, and the default value is String.Empty. 
+            </summary></member><member name="E:SuperMap.Data.Processing.MapCache3DBuilder.Stepped"><summary>
+            The event is trigged when the process bar is activated.  
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCache3DBuilder.IsFillMargin"><summary>
+            Gets or sets whether to fill the whole space with cache image.
+            </summary></member><member name="T:SuperMap.Data.Processing.MapCacheBuilder"><summary>The MapCacheBuilder class, which is mainly used to generate the map cache configuration file with the sci format. The 2D map cache refers to generating the cache for the 2D map.</summary></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.#ctor"><summary>
+            Builds a new object of the MapCacheBuilder class. 
+            </summary></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.#ctor(SuperMap.Mapping.Map,System.String,System.Double[])"><summary>
+            Builds a new object of the MapCacheBuilder class according to the specified parameters. 
+            </summary><param name="map">The map to be generated the cache.</param><param name="outputFolder">The path for the cache.</param><param name="outputScales">The scale to be output.</param></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.GetImageBounds(System.String)"><summary>
+            Gets the geographic range of the specified cached images. 
+            </summary><param name="imageFile">The specified path of the images.</param><returns>The geographic extent. </returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.Build"><summary>
+            Creates the cache of the map. 
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.ToConfigFile(System.String)"><summary>
+             Saves the user settings of the map cache to the specified file. The suffix of the file is sci.
+             </summary><param name="fileName">The path of the specified file.</param><returns>True if successful; otherwise false.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.FromConfigFile(System.String)"><summary>
+             Imports the map cache configuration file, that is, setting the map cache object according to the contents of the configuration file. 
+             </summary><param name="fileName">The path of the specified cache configuration file.</param><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.ComputeImageFileName(SuperMap.Data.Point2D,System.Double)"><summary>
+             Gets the name of the cache image which is built according to the specified scale and central point. 
+             </summary><param name="center">The center point to be calculated. </param><param name="scale">The specified scale when calculating. </param><returns>Calculates the name of the map cache image </returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.ComputeImageFileName(SuperMap.Data.Rectangle2D,System.Double)"><summary>
+            Gets the name of the cache image which is built according to the specified scale and geographic range. 
+            </summary><param name="imageBounds">The geographical bounds to be calculated.</param><param name="scale">The specified scale when calculating.</param><returns>The name of the computed cache image.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.ComputeOutputScales"><summary>
+             Calculates the appropriate output scale when the map cache is generated, that is, the default output scale. This operation will modify the value of the OutputScales property.
+             </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.BuildWithoutConfigFile"><summary>
+             Generates the map cache without a map cache configuration file.
+             </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.Dispose"><summary>
+            Releases all resources that the object occupies. 
+            </summary></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.OriginalToCompact(System.String,System.String,System.String)"><summary>
+            Convert original cache to compact cache, this method can be used to compress the original cache file and save disk space.
+            </summary><param name="originalFileName">The full path of the specified original cache configuration file.</param><param name="compactPath">The specified output path of generating compact cache file.</param><param name="password">The specified password of the generated compact file.</param><returns></returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.GlobalLevelToScale(System.Int32[])"><summary>
+            Calculate the scale and alias of the cache level according to the cache level and array.
+            </summary><param name="levels">The specified cache level array.</param><returns>Returns the dictionary compose by the scale and alias of the cache levels, key is the scale of the cache level, value is the alias of the scale.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.GlobalLevelToScale(System.Int32[],SuperMap.Data.PrjCoordSys,SuperMap.Data.Processing.TileSize)"><summary>
+            Calculate the scale and alias of the cache level according to the cache level array, projection information and the size of the tile.
+            </summary><param name="levels">The specified cache level array.</param><param name="prjCoordSys">The projection information specified.</param><param name="tileSize">The size of the tile, the default value is 256.</param><returns>Returns the dictionary compose by the scale and alias of the cache levels, key is the scale of the cache level, value is the alias of the scale.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.GetDefaultOutputScales"><summary>
+            Returns the default scale.
+            </summary><returns>Returns the default scale.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.GetTiles(SuperMap.Data.Rectangle2D,System.Double)"><summary>
+            Gets corresponding tiles according to the scale and range.
+            </summary><param name="bounds">The Extent</param><param name="scale">Specified scale.</param><returns>Returns the tiles to meet the condition.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.Build(System.Boolean,System.Boolean)"><summary>
+            Generate vector tiles or styles based on parameters.
+            </summary><param name="buildVectorTile">Whether to generate vector tiles, true represents generation;False means not generated.</param><param name="buildStyle">Whether to generate vector tile style, true represents generation;False means not generated.</param><returns>A Boolean value, if the cache succeeds, returns true or false.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.BuildWithoutConfigFile(System.Boolean,System.Boolean)"><summary>
+            Generate vector tiles or styles based on parameters, but do not generate cache configuration files.
+            </summary><param name="buildVectorTile">Whether vector tiles are generated, true means generated; false means not generated.</param><param name="buildStyle">Whether to generate a vector tile style, true means generate; false means not to generate.</param><returns>A Boolean value that returns true if the cache was created successfully, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.GetGlobalLevelScales"><summary>
+            Get global stratification of all tier scales.
+            </summary><returns></returns></member><member name="M:SuperMap.Data.Processing.MapCacheBuilder.ExportGlyph(System.String,System.String,System.Int32,System.Int32)"><summary>
+            Exports a font cache file (.pbf) of the specified character encoding range.
+            </summary><param name="path">The path to save the specified export file.</param><param name="name">Specify a font name.</param><param name="start">Specifies the starting value of the character encoding.</param><param name="end">Specifies the end value of the character encoding.</param></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.Map"><summary>
+            Gets or sets the map to create a cache. If the map contains a data layer provided by the web type engine, the cache is failed to be generated.
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.ClipRegion"><summary>
+             Gets or sets the clip region of the map cache. 
+             </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.Bounds"><summary>
+            Gets or sets the geographic extent of the map cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.CacheName"><summary>
+            Gets or sets the name of the built cache configuration file. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.OutputScaleCaptions"><summary>
+            Gets or sets the alias of the cache scale. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.OutputScales"><summary>
+            Gets or sets the scales array of the map cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.TileSize"><summary>
+            Gets or sets the size of the cached image. 
+            </summary><returns>The size of the map cache file.</returns><value>The default value is Size256.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.ImageCompress"><summary>
+             Gets or sets the compress ratio of the cached image. 
+             </summary><value>The default is 75.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.OutputFolder"><summary>
+            Gets or sets the path of the built cache.  
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsTransparent"><summary>
+            Gets or sets whether the background of the cache image is transparent. 
+            </summary><value>The default is false.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.TileFormat"><summary>
+            Gets or sets the type of the cached image.
+            </summary><returns>The type of the map cache file.</returns><value>The default value is JPG.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.StorageType"><summary>
+            Gets or sets the storage mode of the map cache. 
+            </summary><value>The default is StorageType.Original.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.IndexBounds"><summary>
+            Gets or sets the index extent of the map cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.Password"><summary>
+            Gets or sets the password of the map cache. 
+            </summary><value>The default value is String.Empty, that is not to set the password of the map cache.</value></member><member name="E:SuperMap.Data.Processing.MapCacheBuilder.Stepped"><summary>
+            The event is trigged when the process bar is activated. 
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.Version"><summary>
+            Gets or sets the version of the cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.HashCode"><summary>
+            Gets the Hash value of the map cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.TilingMode"><summary>
+             Gets or sets the tile split mode of the map cache.
+             </summary><returns>
+             The tile mode for map cache.
+             </returns></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsFillMargin"><summary>
+            Gets or sets whether to fill the whole space with cache image.
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.DPI"><summary>
+            Gets or sets the DPI of build the cache, which means Dots Per Inch.
+            </summary><value>The default value is 0, it means build cache based on the DPI of the current map.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsAppending"><summary>
+            Gets or sets whether to append building cache.
+            </summary><value>If set to append caches, that is, to overwrite overlapped regions, true will be returned.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.BuildResult"><summary>
+             Gets the result information of creating cache, including the count of tiles and time.
+             </summary><returns>The result information of creating cache.</returns></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsDeleteLogFile"><summary>
+            Gets or sets whether to delete log file after built cache.
+            </summary><value>The default value is false.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsBlockOverRecord"><summary>
+            Gets or sets whether to write progress information to log file. That is the result information for every scale and every cache, including the count of tiles, cost, etc.
+            </summary><value>The default value is false.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsScaleOverRecord"><summary>
+            Gets or sets whether to write the information for each scale when it is created to log file. Including the count of tiles, cost, etc.
+            </summary><value>The default value is false.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsTaskOverRecord"><summary>
+            Gets or sets whether to write the result information when the cache is built to log file. Including the count of tiles, cost, etc.
+            </summary><value>The default value is false.</value></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.IsAppendHashCode"><summary>
+             Gets or set whether to add HashCode.
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.ConnectionInfo"><summary>
+            Gets or sets the mongodb database connection information when creating.
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.IgnoreInvalidDrawing"><summary>
+            Gets or sets whether to ignore the plot area without valid data when generating the cache; true, means ignore, the plot area without valid data drawing will not generate tiles.
+            </summary></member><member name="P:SuperMap.Data.Processing.MapCacheBuilder.MVTStyleWithoutFont"><summary>
+            Gets or sets whether to generate a font when generating a vector tile style, true, indicating that no font is generated, false, indicating that the font is generated.
+            </summary></member><member name="T:SuperMap.Data.Processing.MapCacheVersion"><summary><para>Defines cache version type constant.</para><para>SuperMap GIS 6R products supports a variety of generating caches, to use and manage caches of different versions, <c>MapCacheVersion</c> enum is provided to define the version constant.</para><para>From  SuperMap Objects.NET 6R(2012) Service Pack 2, the default value for MapCacheVersion is Version_50, and the previous default value is Version_40.</para></summary></member><member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_UNKNOWN"><summary>
+            Unknown version.
+            </summary></member><member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_10"><summary>
+            1.0 cache, used in 3D scene.
+            </summary></member><member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_20"><summary>
+            2.0 cache, used in IS.NET.
+            </summary></member><member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_21"><summary>
+            2.1 cache, the IS.NET cache which use new map cache generation scheme.
+            </summary></member><member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_30"><summary>
+            3.0 cache, used in iServer 2.0.
+            </summary></member><member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_31"><summary>
+            3.1 cache, the iServer 2.0 cache which uses the new cache image generation scheme.
+            </summary></member><member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_40"><summary>
+            4.0 cache, used in iServer 6R.
+            </summary></member><member name="F:SuperMap.Data.Processing.MapCacheVersion.Version_50"><summary>
+            5.0 cache, used in iServer6R(2012) Service Pack 1.
+            </summary></member><member name="T:SuperMap.Data.Processing.ModelCacheBuilder"><summary><para>This class has been obsolete, use the <see cref="T:SuperMap.Data.Processing.VectorCacheBuilder">VectorCacheBuilder</see> class to construct cache, see VectorCacheBuilder class for more information. VectorCacheBuilder is used for creating the vector model cache for 3D Scene generated by vector model data. It uses *.scv format. </para><para>The CacheBuilderSCM class. This class builds cache for the SCM model.</para></summary></member><member name="M:SuperMap.Data.Processing.ModelCacheBuilder.#ctor"><summary>
+            Initializes a new instance of the CacheBuilderSCM class with the specified parameters.
+            </summary></member><member name="M:SuperMap.Data.Processing.ModelCacheBuilder.#ctor(SuperMap.Data.DatasetVector,System.String,System.String,System.String)"><summary>
+            Initializes a new instance of the CacheBuilderSCM class with the specified parameters.
+            </summary><param name="dataset">The specified vector dataset used to create the cache.</param><param name="latitudeField">The name of the field in the model which stores the latitude value.</param><param name="longitudeField">The name of the field in the model which storages the longitude value.</param><param name="outputFolder">The path of the folder of outputting the cache files.</param></member><member name="M:SuperMap.Data.Processing.ModelCacheBuilder.Build"><summary>
+            Builds the model cache.
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ModelCacheBuilder.ToConfigFile(System.String)"><summary>
+            Writes the properties of the CacheBuilderSCM object to a specified file. The suffix of the file is .sci3d. 
+            </summary><param name="fileName">The full path of the cache configuration file.</param><returns>True if successful; otherwise false.</returns></member><member name="M:SuperMap.Data.Processing.ModelCacheBuilder.FromConfigFile(System.String)"><summary>
+            Imports the cache file and specify the properties of the SCM model cache class according to the configuration file.
+            </summary><param name="fileName">The full path of the cache configuration file.</param><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.ModelCacheBuilder.Dispose"><summary>
+            Releases all resources that the object occupies.
+            </summary></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.Dataset"><summary>
+            Gets or sets the DatasetVector object which is used to create the cache, supporting point, line, region datasets. It uses the relevant field information to create the cache.
+            </summary><value>The default value is null.</value></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.OutputFolder"><summary>
+            Gets or sets the folder of outputting the cache files.
+            </summary><value>The default value is String.Empty.</value></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.CacheName"><summary>
+            Gets or sets the name of the built cache, where the name is corresponding with the name of the SCM file except for the postfix and information of the path of the file.
+            </summary><value>The default is UntiledModelCache.</value></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.Level"><summary>
+            Gets or sets the level of the cache file. The default value is 16.
+            </summary><value>The default value is 16.</value></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.ModelPathField"><summary>
+            Gets or sets the full path of the sgm file.
+            </summary><value>The default value is String .Empty.</value></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.UpdateSize"><summary>
+            Gets or sets the count of the updating size when render the cache layer. The value is the count of the UpdateSize*UpdateSize.
+            </summary><value>The default value is 8.</value></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.LatitudeField"><summary>
+            Gets or sets the name of the field in the model which stores the latitude value.
+            </summary></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.LongitudeField"><summary>
+            Gets or sets the name of the field in the model which stores the longitude value.
+            </summary></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.ScaleXField"><summary>
+            Gets or sets the field name of X axis zoom ratio in the storage model of the Detest.
+            </summary></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.ScaleYField"><summary>
+            Gets or sets the field name of Y axis zoom ratio in the storage model of the Detest.
+            </summary></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.ScaleZField"><summary>
+            Gets or sets the field name of Z axis zoom ratio in the storage model of the Detest.
+            </summary></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.RotateXField"><summary>
+            Gets or sets a value representing the field name of rotation angle of X axis in the storage model of the Detest.
+            </summary></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.RotateYField"><summary>
+            Gets or sets the field name of rotation angle of Y axis in the storage model of the Detest.
+            </summary></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.RotateZField"><summary>
+            Gets or sets the field name of rotation angle of Z axis in the storage model of the Detest.
+            </summary></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.Bounds"><summary>
+            Gets or sets the bounds of the cache. The unit is latitude and longitude.
+            </summary><value>The default value is {-180,-90,180,90}.</value></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.IsCompressModel"><summary>
+            Gets or sets whether to compress the texture picture of the model when building the cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.ModelCacheBuilder.AltitudeField"><summary>
+            Gets or sets the name of the field in the model which stores the altitude of location in the dataset.
+            </summary></member><member name="E:SuperMap.Data.Processing.ModelCacheBuilder.Stepped"><summary>
+            The event is trigged when the process bar is activated.
+            </summary></member><member name="T:SuperMap.Data.Processing.SceneCacheBuilder"><summary>This class can build the cache corresponding to the layer of the whole scene, and build a new scene.</summary></member><member name="M:SuperMap.Data.Processing.SceneCacheBuilder.#ctor"><summary>
+            Creates a new instance of SceneCacheBuilder class. 
+            </summary></member><member name="M:SuperMap.Data.Processing.SceneCacheBuilder.#ctor(SuperMap.Realspace.Scene,System.String)"><summary>
+            Builds a new instance of the SceneCacheBuilder class according to the parameter. 
+            </summary><param name="scene">The scene to be generated a cache.</param><param name="outputFolder">The path for the cache.</param></member><member name="M:SuperMap.Data.Processing.SceneCacheBuilder.Build"><summary>
+            Creates the scene cache 
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.SceneCacheBuilder.BuildOfflinePackage(System.String,System.String)"><summary>
+            Build offline package based on the given parameter. The offline package is in *.7z format, it includes all the cache files build by the dataset and a configuration file (*.xml).
+            <para>It is obsolete. Because it downloads by the layers on the mobile side from the 7C version.</para></summary><param name="workspacePath">The path of the given scene cache workspace file.</param><param name="sceneName">The name of the scene in the scene cache.</param><returns>Return true if the offline package built successfully.</returns></member><member name="M:SuperMap.Data.Processing.SceneCacheBuilder.Dispose"><summary>
+            Releases all resources that the object occupies.
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.Scene"><summary>
+            Gets or sets the scene object. 
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.IsBoundsCeiled"><summary>
+            Gets or sets whether to regular the range of cache data.The property has to be true when the local cache is build manually and published by iServer in order to avoid the situation that there is something wrong with the border of the cache picture.
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.IsCalNormal"><summary>
+            Gets or sets whether the generation cache calculates the normals
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.StorageType"><summary>
+            Gets or sets the cache storage type. The default is StorageType.Original.
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.UpdateSize"><summary>
+            Gets or sets a value which represents the count of refreshed cache when rendering, the value is UpdateSize *UpdateSize. 
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.ImageSize"><summary>
+            Gets or sets the size of cache picture. The default value is CacheImageSize.Size256 (that is 256*256). 
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.OutputFolder"><summary>
+            Gets or sets the path of the built cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.OutputWorkspaceConnectionInfo"><summary>
+            Gets or sets the connection info of the current workspace. When the mode is default mode which is null, A smwu type of workspace file will be built in the OutputFolder folder, which has the same name as the name of Scene. 
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.OutputSceneName"><summary>
+            Gets or sets the name of the built scene. The name will be stored in the workspace corresponding to OutputWorkspaceConnectionInfo 
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.Bounds"><summary>
+            Gets or sets the range of built cache. Note: In 6R(2012) SP2, this method is not recommended.
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.OutputLayerNames"><summary>
+            Gets or sets what data corresponding to the layer will be built with cache.Those data which are not in the list will not build the cache. When the value is null, all the layer will build cache or use the built cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.OutputTerrainLayerNames"><summary>
+            Gets or sets what data corresponding to the terrain layer will be built with cache.Those data which are not in the list will not build the cache. When the value is null, all the terrain layer will build cache or use the built cache
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.IsInstance"><summary>
+            Gets or sets whether to instantiate.
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.Password"><summary>
+            Gets or sets the password of the cache. The password is needed when opening a cache. If used the default value, then the password is not needed.The default value is String.Empty 
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.CompressedTextureType"><summary>
+            Gets or sets the type of compressed texture when creating scene cache. See the <see cref="T:SuperMap.Data.CompressedTextureType">CompressedTextureType</see> enumeration for the types of compressed texture.
+            </summary><value>The default value is CompressedTextureType.DDS.</value></member><member name="E:SuperMap.Data.Processing.SceneCacheBuilder.Stepped"><summary>
+            The event is trigged when the process bar is activated. 
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.PreCacheLayerNames"><summary>
+            Gets or sets the name of the layer to be generated precache in the scene. For performance considerations, the server side publishes static cache, but at the same time in order to achieve the update of the data, the workspace published by the server side is required to associate the dataset information. Precache is designed to take into account both performance and update. In iDesktop (or iObjects) it can generate part of cache or all cache, after that the cache can be put in the same directory of the workspace, then the published workspace will both have datasets and cache. When the client requests data, the cache data can be quickly sent. And when users change the dataset, the server will change data and remove the old cache, and use the dataset to create new cache, and notify the client update the corresponding tiles, so as to realize the partially update function on the client. The precache is designed for the B/S partially update data, if not for this purpose, it is not recommended to check the precache setting when making cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.SceneCacheBuilder.TerrainCacheType"><summary>
+            Gets or sets the type of the built terrain cache.
+            </summary>
+         </member>
+         <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.ProcessThreadsCount">
+             <summary>
+             Generate scene cache supports multi-threading, get or set the number of threads.
+             </summary>
+         </member>
+         <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.IsRemoveNormal">
+             <summary>
+             Gets or sets whether to remove the raw data normal.
+             </summary>
+         </member>
+         <member name="P:SuperMap.Data.Processing.SceneCacheBuilder.IsCombineRepeatTextures">
+             <summary>
+             Gets or sets whether the repeat texture texture is grouped.
+             </summary>
+         </member>
+         <member name="T:SuperMap.Data.Processing.StorageType">
+             <summary>
+            The enumeration defines the storage type constant of the cache tiles. 
+            </summary></member><member name="F:SuperMap.Data.Processing.StorageType.Original"><summary><para>The original type: Saves the tiles to the original picture format, as an exposed picture in multiple folders.</para><para>When the storage type is StorageType.Original, the Password property is invalid.</para></summary></member><member name="F:SuperMap.Data.Processing.StorageType.Compact"><summary><para>The compact type: Large-size cache format. At this time, the tiles that are originally exposed will be saved in a compact format.</para><para>If you use this type, you can set a password for the cache, that is the Password property of every cache builder class can be valid. When it is StorageType.Original, the Password property is invalid.</para></summary></member><member name="F:SuperMap.Data.Processing.StorageType.Single"><summary><para>Single file format. The storage type stores all of the tile files in a single file.</para><para>If you use this type, you can set a password for the cache, that is the Password property of every cache builder class can be valid. When it is StorageType.Original, the Password property is invalid.</para></summary></member><member name="F:SuperMap.Data.Processing.StorageType.GPKG"><summary>
+            GPKG cache format.
+            </summary></member><member name="F:SuperMap.Data.Processing.StorageType.MongoDB"><summary>
+            MongoDB cache format.
+            </summary></member><member name="T:SuperMap.Data.Processing.TerrainCacheBuilder"><summary>The TerrainCacheBuilder class, mainly used to generate the terrain cache for terrain data for publishing the 3D scene. Its configuration file format is *.sct.</summary></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.#ctor"><summary>
+            Initializes a new instance of the CacheBuilderSCT class. 
+            </summary></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.#ctor(SuperMap.Data.DatasetGrid,System.String)"><summary>
+            Creates a new instance of the CacheBuilderSCT object with the specified grid dataset and the full path of the output folder. 
+            </summary><param name="dataset">The specified grid dataset.</param><param name="outputFolder">The full path of the output cache file.</param></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.#ctor(SuperMap.Data.DatasetGrid,System.String,System.String)"><summary>
+            Creates a new instance of the CacheBuilderSCT object with the specified image dataset, the full path of the output folder, and the specified name of the output cache file. 
+            </summary><param name="dataset">The specified grid dataset.</param><param name="outputFolder">The full path of the output cache file.</param><param name="cacheName">The name of the generated cache.</param></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.Build"><summary>
+            Builds the terrain cache.
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.ComputeTerrainFileName"><summary>
+            Returns the list of the names of the computed cache image in each layer. 
+            </summary><returns>The computed name list of the cache image in every level.</returns></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.ComputeTerrainFileName(System.Int32)"><summary>
+            Computes the the list of the names of the computed cache image in the specified layer according to the parameter. 
+            </summary><param name="specialLevel">The specified layer level.</param><returns>The computed name list of the cache image.</returns></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.ToConfigFile(System.String)"><summary>
+            Outputs the properties of the object to the specified file. The suffix of the file is .sct. 
+            </summary><param name="fileName">The full path of the cache configuration file.</param><returns>True if successful; otherwise false.</returns></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.FromConfigFile(System.String)"><summary>
+            Imports the cache file and specify the properties according to the configuration file. 
+            </summary><param name="fileName">The full path of the cache configuration file.</param><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.ComputeLevel"><summary>
+            Computes the suitable cache level for the dataset. It will automatically call this method in non-default constructor. It will not implement this method through setting dataset. 
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.BuildWithoutConfigFile"><summary>
+            Builds terrain cache for terrain data. The cache setting file would not be built by this method. 
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.ComputeOutputScales"><summary>
+            Calculates the appropriate output scale when the map cache is generated, that is, the default output scale. This operation will modify the value of the OutputScales property.
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.GetDefaultOutputScales"><summary>
+            Returns the default scale.
+            </summary><returns>Returns the default scale.</returns></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.GetTiles(SuperMap.Data.Rectangle2D,System.Double)"><summary>
+            Gets corresponding tiles according to the scale and range.
+            </summary><param name="bounds">The Extent</param><param name="scale">Specified scale.</param><returns>Returns the tiles to meet the condition.</returns></member><member name="M:SuperMap.Data.Processing.TerrainCacheBuilder.Dispose"><summary>
+            Releases all resources that the object occupies.
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.Dataset"><summary>
+            Gets or sets the grid dataset to build the cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.OutputFolder"><summary>
+            Gets or sets the full path of the folder which includes the output cache file. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.CacheName"><summary>
+            Gets or sets the name of the built cache, where the name is corresponding with the name of the SCT file except for the postfix and information of the path of the file. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.ClipRegion"><summary>
+            Gets or sets the clipped region of the dataset. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.BeginLevel"><summary>
+            Gets or sets the count of the cache level. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.EndLevel"><summary>
+            Gets or sets the end level in the building of the cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.SampleSize"><summary>
+            Gets or sets the sample size. The unit is pixel. 
+            </summary><value>The default value is 129.</value></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.StorageType"><summary>
+            Gets or sets the cache storage type. The default is StorageType.Original.
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.Password"><summary>
+            Gets or sets the password when a map object is created. When you add a layer, you need to type your password. If you use the default value, no password is set, and the default value is an empty string. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.CompressType"><summary><para>The property has been obsolete, using the  <see cref="P:SuperMap.Data.Processing.TerrainCacheBuilder.EncodeType">EncodeType</see>  attribute to instead.</para><para>Gets or sets the compression mode of the cache file.</para></summary></member><member name="E:SuperMap.Data.Processing.TerrainCacheBuilder.Stepped"><summary>
+            The event is trigged when the process bar is activated. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.EncodeType"><summary>
+            Gets or sets the compress type of the terrain cache file.
+            </summary><value>The default value is EncodeType.None, that is do not use encoding.</value></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.DefaultBeginLevel"><summary>
+            Gets the start level. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.DefaultEndLevel"><summary>
+            Gets the end level. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.OutputScaleCaptions"><summary>
+            Gets or sets the alias of the cache scale. 
+            <para>The general setting is a string of the reciprocal of the scale size. For example, 1:10000 is 10000.</para><para>An exception is thrown is the set alias is not unique.</para></summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.OutputScales"><summary>
+            Gets or sets the scales array of the map cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.DynamicPrjCoordSysType"><summary>
+             Gets or sets generating plane or spherical cache, it supports PrjCoordSysType.NoneEarth and PrjCoordSysType.EarthLongitudeLatitude.
+            <para>PrjCoordSysType.NoneEarth means plane cache, and PrjCoordSysType.EarthLongitudeLatitude means spherical cache.</para></summary></member><member name="P:SuperMap.Data.Processing.TerrainCacheBuilder.ConnectionInfo"><summary>
+            Gets or sets the mongodb database connection information when creating.
+            </summary></member><member name="T:SuperMap.Data.Processing.VectorCacheBuilder"><summary>The VectorCacheBuilder class, mainly used to generate vector cache for vector data for releasing the 3D scene. Its configuration file format is *.scv. </summary></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.#ctor"><summary>
+            Builds a new object of this class. 
+            </summary></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.#ctor(SuperMap.Data.Recordset,System.String)"><summary>
+            Builds a new instance of the VectorCacheBuilder object according to the given parameter. 
+            </summary><param name="recordset">The recordset for generating the cache.</param><param name="outputFolder">The path for the cache.</param></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.#ctor(SuperMap.Data.Recordset,System.String,System.String)"><summary>
+            Builds a new instance of the VectorCacheBuilder object according to the given parameter.  
+            </summary><param name="recordset">The recordset for generating the cache.</param><param name="outputFolder">The path for the cache.</param><param name="name">Gets or sets the name of the cache configuration file.</param></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.#ctor(SuperMap.Data.DatasetVector,System.String,System.String)"><summary>
+            Builds a new instance of the VectorCacheBuilder object according to the given parameter.  
+            </summary><param name="dataset">The vector dataset used to generate the cache.</param><param name="outputFolder">The path for the cache.</param><param name="name">Gets or sets the name of the cache configuration file.</param></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.Build"><summary>
+            Builds the vector cache. 
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.ComputeFileName"><summary>
+            Gets the file list specified by the Bounds, Level and OutputFolder of this instance. The filename is absolute path. 
+            </summary><returns>The name of the computed cache image.</returns></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.ComputeLevel"><summary>
+            Computes the appropriate count of the cache level for the dataset.
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.ToConfigFile(System.String)"><summary>
+            Outputs the properties of the object to the specified file. The suffix the file is .scv. 
+            </summary><param name="fileName">The specified path of the configuration file to be saved.</param><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.FromConfigFile(System.String)"><summary>
+            Imports the cache file and specify the properties according to the configuration file. 
+            </summary><param name="fileName">Returns true if successful, otherwise returns false.</param><returns>The path of the specified imported setting file.</returns></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.BuildWithoutConfigFile"><summary>
+            Builds vector cache for vector data. The vector cache setting file will not be built by this method.
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.BuildTexture(System.String,System.Int32)"><summary>
+            Create texture image according to the index path and the hierarchy.
+            </summary><param name="path">Specify the index path of the texture image.</param><param name="level">The specified layer level.</param><returns>True, if the index creates successfully; otherwise false.</returns></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.BuildToFile"><summary>
+            Generates OSGB format based on point-cloud data.
+            </summary><returns>Whether to be successful.</returns></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.SetIntensionFieldName(System.String,SuperMap.Data.Processing.IntensionType)"><summary>
+            Sets the field and field type of the point-cloud cache.
+            </summary><param name="value">The specified name of the field.</param><param name="type">The specified type of the field.</param></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.GetIntensionFieldName"><summary>
+            Gets the field name to generate cache.
+            </summary><returns></returns></member><member name="M:SuperMap.Data.Processing.VectorCacheBuilder.Dispose"><summary>
+            Releases all resources that the object occupies.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Recordset"><summary>
+            Gets or sets the recordset for building the cache. The point,line,region,text and CAD dataset are supported.  
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Dataset"><summary>
+            Gets or sets the recordset for building the cache. The point,line,region,text and CAD dataset are supported. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.FieldNames"><summary>
+            Gets or sets the field name array of the cache data.  
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Bounds"><summary>
+            Gets or sets the geographic range of the built cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.CacheName"><summary>
+            Gets or sets the name of the built cache configuration file.  
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.OutputFolder"><summary>
+            Gets or sets the path of the built cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.StorageType"><summary>
+            Gets or sets the cache storage type. The default is StorageType.Original.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Level"><summary>
+            Gets or sets the count of the cache level. 
+            </summary><value>The default value is 16.</value></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.UpdateSize"><summary>
+            Gets or sets how many caches are refreshed when the layer is rendered in the Scene. The value is the count of UpdateSize * UpdateSize 
+            </summary><value>The default value is 16.</value></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Password"><summary>
+            Gets or sets the password when a map object is created. When you add a layer, you need to type your password. If you use the default value, no password is set, and the default value is an empty string. 
+            </summary></member><member name="E:SuperMap.Data.Processing.VectorCacheBuilder.Stepped"><summary>
+            The event is trigged when the process bar is activated. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.EncodeType"><summary>
+            Gets or sets the compression type of the cache file.
+            </summary><value>The default value is ZIP, or EncodeType.LZW.</value></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.CompressedTextureType"><summary>
+            Gets or sets the type of compressed texture when creating model cache. See the <see cref="T:SuperMap.Data.CompressedTextureType">CompressedTextureType</see> enumeration for the types of compressed texture.
+            </summary><value>The default value is CompressedTextureType.DDS.</value></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.IsBuildLOD"><summary>
+            Gets or sets whether to set LOD for the model.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.SimplificationPercent"><summary>
+            Model simplification.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.OutputScale"><summary>
+            Gets or sets the cache scales. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.Origin"><summary>
+            Set the original point. The row number and column number is calculated based on this point.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.VectorCacheTileType"><summary>
+            Gets or set the tile type.
+            </summary><value>The default is to generate spatial and attribute data tile which is VectorCacheTileType.GeometryAndAttribute.</value></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.ColorTable"><summary>
+            Gets or sets the color table class of the point-cloud data.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.DynamicPrjCoordSysType"><summary>
+             Gets or sets generating plane or spherical cache, it supports PrjCoordSysType.NoneEarth and PrjCoordSysType.EarthLongitudeLatitude.
+            <para>PrjCoordSysType.NoneEarth means plane cache, and PrjCoordSysType.EarthLongitudeLatitude means spherical cache.</para></summary></member><member name="P:SuperMap.Data.Processing.VectorCacheBuilder.TileWidth"><summary>
+                       Gets or sets the tile size. The unit is the same with the cache range unit.
+                       </summary><value>The default value is 0.</value></member><member name="T:SuperMap.Data.Processing.VectorCacheTileType"><summary>
+            The enumeration defines the type constant of the vector cache tile file. The default value is GeometryAndAttribute, that is, both the geometry and property data tiles are generated.
+            </summary></member><member name="F:SuperMap.Data.Processing.VectorCacheTileType.Geometry"><summary><para>Geometry tile. Only generates geometry tile which is .scvb format.</para></summary></member><member name="F:SuperMap.Data.Processing.VectorCacheTileType.Attribute"><summary><para>Attribute tile. Only generates attribute tile which is .scvd format. </para></summary></member><member name="F:SuperMap.Data.Processing.VectorCacheTileType.GeometryAndAttribute"><summary><para>Geometry and attribute tiles. Both generates geometry and attribute tiles which include .scvb and .scvd files.</para></summary></member><member name="T:SuperMap.Data.Processing.VectorModelCacheBuilder"><summary>This class has been abandoned, use the <see cref="T:SuperMap.Data.Processing.VectorCacheBuilder">VectorCacheBuilder</see> class to construct cache, see VectorCacheBuilder class for more information. VectorModelCacheBuilder is used for creating the vector model cache for 3D Scene generated by vector model data. </summary></member><member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.#ctor"><summary>
+            Builds a new instance of the VectorModelCacheBuilder class.  
+            </summary></member><member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.#ctor(SuperMap.Data.DatasetVector,System.String,System.String,System.String)"><summary>
+            Builds a new instance of the VectorModelCacheBuilder class according to the given parameters. 
+            </summary><param name="dataset">The dataset for generating the cache.</param><param name="latitudeField">The specified latitude field name.</param><param name="longitudeField">The specified longitude field name.</param><param name="outputFolder">The path for the cache.</param></member><member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.Build"><summary>
+            Builds the Vector model cache.
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.ToConfigFile(System.String)"><summary>
+            Outputs the properties of the object to the specified file. The suffix the file is .scv. 
+            </summary><param name="fileName">The path of the specified file.</param><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.FromConfigFile(System.String)"><summary>
+            Imports the cache file and specify the properties according to the configuration file.
+            </summary><param name="fileName">The path of the specified file.</param><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.BuildWithoutConfigFile"><summary>
+            Builds the cache for Vector Model. The cache setting file will not be built by this method. 
+            </summary><returns>Returns true if successful, otherwise returns false.</returns></member><member name="M:SuperMap.Data.Processing.VectorModelCacheBuilder.Dispose"><summary>
+            Releases all resources that the object occupies.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.Dataset"><summary>
+            Gets or sets the vector dataset for building the vector model cache. The point, line, region, text, CAD, property table is supported. The LongtitudeField, LatitudeField and ModelPathField have to be set. 
+             </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.Bounds"><summary>
+            Gets or sets the geographic range of the built cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.CacheName"><summary>
+            Gets or sets the name of the built cache. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.OutputFolder"><summary>
+            Gets or sets the path of the built cache.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.StorageType"><summary>
+            Gets or sets the cache storage type. The default is StorageType.Original.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.Level"><summary>
+            Gets or sets the level number of the build cache. The default value is 16.  
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.UpdateSize"><summary>
+            Gets or sets how many cache tiles are updated when the layer is rendered in the Scene. The value is the count of UpdateSize * UpdateSize 
+            </summary><value>The default value is 8.</value></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.ModelPathField"><summary>
+            Gets or sets the path field name of the model. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.LatitudeField"><summary>
+            Gets or sets the field name of latitude in the storage model of the Detest. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.LongitudeField"><summary>
+            Gets or sets the field name of longitude in the storage model of the Detest. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.AltitudeField"><summary>
+            Gets or sets the name of the field in the model which stores the altitude of location in the dataset. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.ScaleXField"><summary>
+            Gets or sets the field name of X axis zoom ratio in the storage model of the Detest. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.ScaleYField"><summary>
+            Gets or sets the field name of Y axis zoom ratio in the storage model of the Detest. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.ScaleZField"><summary>
+            Gets or sets the field name of Z axis zoom ratio in the storage model of the Detest. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.RotateXField"><summary>
+            Gets or sets the field name of rotation angle of X axis in the storage model of the Detest. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.RotateYField"><summary>
+            Gets or sets the field name of rotation angle of Y axis in the storage model of the Detest.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.RotateZField"><summary>
+            Gets or sets the field name of rotation angle of Z axis in the storage model of the Detest. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.Password"><summary>
+            Gets or sets the password when a map object is created. When you add a layer, you need to type your password. If you use the default value, no password is set, and the default value is an empty string. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.FieldNames"><summary>
+            Gets or sets the field name array of the cache data. 
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.TextureMaxLevel"><summary>
+            Gets or sets the texture level of the built cache.The default value is 3 and it is in the range of 3 to 10.
+            </summary></member><member name="P:SuperMap.Data.Processing.VectorModelCacheBuilder.CompressType"><summary>
+            Gets or sets the compression type of the cache file. 
+            </summary></member><member name="E:SuperMap.Data.Processing.VectorModelCacheBuilder.Stepped"><summary>
+            The event is trigged when the process bar is activated. 
+            </summary></member></members>
+</doc>

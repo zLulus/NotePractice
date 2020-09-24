@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="WpfDemo.Bind.DataGridBindMultiData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.Bind"
+        mc:Ignorable="d">
+    <Grid>
+        <DataGrid ItemsSource="{Binding }" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="编号" Binding="{Binding SchoolNumber}" Width="*"/>
+                <DataGridTextColumn Header="姓名" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="性别" Binding="{Binding Sex}" Width="*"/>
+                <!--格式化日期-->
+                <DataGridTextColumn Header="入职时间" Binding="{Binding Path=TeacherDetailInfo.EntryTime, StringFormat=\{0:yyyy年MM月dd日\}}" Width="*"/>
+                <!--如果这里是双向绑定，则是下面的写法，Mode是双向(TwoWay)，触发器是变化即触发-->
+                <!--<DataGridTextColumn Header="入职时间" Binding="{Binding Path=TeacherDetailInfo.EntryTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>-->
+                <DataGridTextColumn Header="住址" Binding="{Binding Path=TeacherDetailInfo.Address}" Width="2*"/>
+                <DataGridTemplateColumn Header="操作" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Button Content="删除" Tag="{Binding SchoolNumber}" Click="Delete_Click" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,141 @@
+{
+  "app": {
+    "name": "Alain",
+    "description": "Ng-zorro admin panel front-end framework"
+  },
+  "user": {
+    "name": "Admin",
+    "avatar": "./assets/tmp/img/avatar.jpg",
+    "email": "zenglu.17@qq.com"
+  },
+  "menu": [
+    {
+      "text": "主导航",
+      "i18n": "main_navigation",
+      "group": true,
+      "hideInBreadcrumb": true,
+      "children": [
+        {
+          "text": "仪表盘",
+          "i18n": "dashboard",
+          "icon": "icon-speedometer",
+          "children": [
+            {
+              "text": "仪表盘",
+              "link": "/dashboard",
+              "i18n": "dashboard"
+            }
+          ]
+        },
+        {
+          "text": "angular form set dynamic control",
+          "link": "/form-set-dynamic-control",
+          "i18n": "form-set-dynamic-control-demo"
+        },
+        {
+          "text": "activate and deactivate demo",
+          "i18n": "activate and deactivate demo",
+          "icon": "icon-speedometer",
+          "children": [
+            {
+              "text": "can deactivate",
+              "link": "/can-deactivate",
+              "i18n": "can-deactivate-demo"
+            },
+            {
+              "text": "can activate",
+              "link": "/can-activate",
+              "i18n": "can-activate-demo"
+            }
+          ]
+        },
+        {
+          "text": "data transfer demo",
+          "i18n": "data transfer demo",
+          "icon": "icon-speedometer",
+          "children": [
+            {
+              "text": "data transfer",
+              "link": "/data-transfer",
+              "i18n": "data-transfer-demo"
+            },
+            {
+              "text": "data transfer two",
+              "link": "/data-transfer-two",
+              "i18n": "data-transfer-two-demo"
+            }
+          ]
+        },
+        {
+          "text": "promise test",
+          "link": "/promise-test",
+          "i18n": "promise-test-demo"
+        },
+        {
+          "text": "file upload demo",
+          "i18n": "file upload demo",
+          "icon": "icon-speedometer",
+          "children": [
+            {
+              "text": "file upload defaullt",
+              "link": "/file-upload-defaullt",
+              "i18n": "file-upload-defaullt-demo"
+            },
+            {
+              "text": "file upload for custom request",
+              "link": "/file-upload-for-custom-request",
+              "i18n": "file-upload-for-custom-request-demo"
+            }
+          ]
+        },
+        {
+          "text": "array remove",
+          "link": "/array-remove",
+          "i18n": "array-remove-demo"
+        },
+        {
+          "text": "echarts baidu",
+          "link": "/echarts-baidu",
+          "i18n": "echarts-baidu-demo"
+        },
+        {
+          "text": "router link demo",
+          "i18n": "router-link-demo",
+          "icon": "icon-speedometer",
+          "children": [
+            {
+              "text": "router link page1",
+              "link": "/router-link-page1",
+              "i18n": "router-link-page1-demo"
+            },
+            {
+              "text": "router link page2",
+              "link": "/router-link-page2",
+              "i18n": "router-link-page2-demo"
+            },
+            {
+              "text": "router link page3",
+              "link": "/router-link-page3",
+              "i18n": "router-link-page3-demo"
+            }
+          ]
+        },
+        {
+          "text": "drawer all back",
+          "link": "/drawer-call-back-list",
+          "i18n": "drawer-call-back-list-demo"
+        },
+        {
+          "text": "nswag enum test",
+          "link": "/nswag-enum-test",
+          "i18n": "nswag-enum-test-demo"
+        },
+        {
+          "text": "front count",
+          "link": "/front-count",
+          "i18n": "front-count-demo"
+        }
+      ]
+    }
+  ]
+}

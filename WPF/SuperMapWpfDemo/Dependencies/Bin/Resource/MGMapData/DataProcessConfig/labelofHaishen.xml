@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Group>
+  <Default>
+    <Conditions>
+      <Condition>
+        <DatasetName>海底地貌及底质P</DatasetName>
+        <OldFieldName>水深值</OldFieldName>
+        <NewFieldName>水深值_Subscript</NewFieldName>
+      </Condition>
+    </Conditions>
+  </Default>
+  <Users>
+    <Conditions>
+      <Condition>
+        <DatasetName>海底地貌及底质P</DatasetName>
+        <OldFieldName>水深值</OldFieldName>
+        <NewFieldName>水深值_Subscript</NewFieldName>
+      </Condition>
+    </Conditions>
+  </Users>
+</Group>

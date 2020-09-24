@@ -17,7 +17,7 @@ namespace WpfDemo.Trigger
     /// <summary>
     /// EventTriggerDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class EventTriggerDemo : Window
+    public partial class EventTriggerDemo : UserControl
     {
         public EventTriggerDemo()
         {

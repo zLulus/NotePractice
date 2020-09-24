@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <title>Redirect By Ajax</title>
+</head>
+<body>
+    <div>
+        <input id="url" />
+        <button onclick="RedirectByAjax()">跳转页面</button>
+    </div>
+</body>
+</html>
+
+<script>
+    function RedirectByAjax() {
+        //ajax请求完成一些工作
+        $.ajax({
+            type: "POST",
+            url: "/RedirectUrl/RedirectByAjax",
+            data: {
+                url: $("#url").val()
+            },
+            success: function (url) {
+                //得到结果，跳转页面
+                location.href = url;
+            }
+        });
+    }
+</script>

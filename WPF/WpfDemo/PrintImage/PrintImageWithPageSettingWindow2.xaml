@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="WpfDemo.PrintImage.PrintImageWithPageSettingWindow2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.PrintImage"
+        mc:Ignorable="d" Loaded="Window_Load">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="A4+横向" Click="A4WithHorizontalClick" Margin="5"></Button>
+            <Button Content="A4+纵向" Click="A4WithVerticalClick" Margin="5"></Button>
+            <Button Content="A3+横向" Click="A3WithHorizontalClick" Margin="5"></Button>
+            <Button Content="A3+纵向" Click="A3WithVerticalClick" Margin="5"></Button>
+            <Button Content="打印图片" Click="PrintImage" Margin="5"></Button>
+        </StackPanel>
+        <Grid Grid.Row="1" Name="myGrid">
+            <Border Name="imageBorder" Height="29.7cm" Width="21cm" Background="LightPink" >
+                <Image Source="/PrintImage/Resources/Images/1.jpg"></Image>
+            </Border>
+        </Grid>
+        
+    </Grid>
+</UserControl>

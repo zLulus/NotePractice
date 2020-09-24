@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54 (76480) - https://sketchapp.com -->
+    <title>配图检查</title>
+    <desc>Created with Sketch.</desc>
+    <g id="军需图标" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="画板" transform="translate(-104.000000, -278.000000)">
+            <g id="配图检查" transform="translate(104.000000, 278.000000)">
+                <g transform="translate(3.000000, 3.000000)">
+                    <circle id="椭圆形" fill="#FFFFFF" cx="10" cy="10" r="10"></circle>
+                    <rect id="矩形" stroke="#808FA1" fill="#FFFFFF" x="6.5" y="3.5" width="17" height="12"></rect>
+                    <polygon id="三角形" stroke="#27A2DF" fill="#FFFFFF" points="17.5 8 21 13 14 13"></polygon>
+                    <circle id="椭圆形" stroke="#30AD98" cx="12.5" cy="8.5" r="2.5"></circle>
+                    <circle id="椭圆形" stroke="#5D6D7E" cx="10.5" cy="10.5" r="10"></circle>
+                    <path d="M17,17.3225098 L18.883975,19.2064848" id="直线-52" stroke="#5D6D7E" stroke-linecap="square"></path>
+                    <circle id="椭圆形" stroke="#FFFFFF" cx="10.5" cy="10.5" r="9"></circle>
+                    <rect id="矩形" fill="#5D6D7E" transform="translate(21.958740, 22.111816) rotate(-45.000000) translate(-21.958740, -22.111816) " x="20.4587402" y="17.1118164" width="3" height="10" rx="1.5"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

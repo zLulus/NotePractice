@@ -1,13 +1,12 @@
-﻿<Window x:Class="WpfDemo.Converts.ConvertDemo"
+﻿<UserControl x:Class="WpfDemo.Converts.ConvertDemo"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDemo.Converts"
         xmlns:converts="clr-namespace:WpfDemo.Converts.Converts"
-        mc:Ignorable="d"
-        Title="ConvertDemo" Height="300" Width="300">
-    <Window.Resources>
+        mc:Ignorable="d">
+    <UserControl.Resources>
         <!--在这里引入ColorConvert.cs 并给它一个前端的名称myConvert-->
         <converts:ColorConvert x:Key="MyConvert"></converts:ColorConvert>
         <Style x:Key="Item" TargetType="ListViewItem">
@@ -19,7 +18,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-    </Window.Resources>
+    </UserControl.Resources>
     <Grid>
         <!--使用ItemContainerStyle将Style赋给ListView-->
         <ListView ItemsSource="{Binding }" ItemContainerStyle="{StaticResource Item}">
@@ -33,4 +32,4 @@
             </ListView.View>
         </ListView>
     </Grid>
-</Window>
+</UserControl>

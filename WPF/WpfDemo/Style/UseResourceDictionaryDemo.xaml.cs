@@ -17,7 +17,7 @@ namespace WpfDemo.Style
     /// <summary>
     /// UseResourceDictionaryDemo.xaml 的交互逻辑
     /// </summary>
-    public partial class UseResourceDictionaryDemo : Window
+    public partial class UseResourceDictionaryDemo : UserControl
     {
         public UseResourceDictionaryDemo()
         {

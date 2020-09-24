@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="WpfDemo.Trigger.MultiTriggerDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.Trigger"
+        mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="CheckBox" >
+            <Style.Triggers>
+                <MultiTrigger >
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsChecked"
+                                   Value="true" />
+                        <Condition Property="Content" 
+                                   Value="飞鸟相与还。"/>
+                    </MultiTrigger.Conditions>
+
+                    <MultiTrigger.Setters>
+                        <Setter Property="FontSize" Value="20" />
+                        <Setter Property="Foreground" Value="Blue" />
+                    </MultiTrigger.Setters>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Content="勾选“飞鸟”语句触发MultiTrigger"></Label>
+        <StackPanel Grid.Row="1">
+            <CheckBox Content="山气日夕佳，"/>
+            <CheckBox Content="飞鸟相与还。"/>
+            <CheckBox Content="此中有真意，"/>
+            <CheckBox Content="欲辨已忘言。"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
