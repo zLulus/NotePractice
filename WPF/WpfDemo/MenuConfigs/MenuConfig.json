@@ -207,6 +207,13 @@
             ]
           },
           {
+            "Title": "ComboBox",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.UseComboBox.UseComboBoxDemo",
+            "Children": [
+            ]
+          },
+          {
             "Title": "Basic use of Expander(Expander基本使用)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Expander.ExpanderDemo",
