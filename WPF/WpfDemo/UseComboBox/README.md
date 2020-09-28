@@ -7,3 +7,5 @@
 #### 参考资料
 [Step by Step WPF Data Binding with Comboboxes](https://www.codeproject.com/Articles/301678/Step-by-Step-WPF-Data-Binding-with-Comboboxes)   
 [WPF之SelectedValue与SelectedValuePath](https://www.cnblogs.com/jiangyan219/articles/10921334.html)   
+[ComboBox.SelectedItem 属性](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.forms.combobox.selecteditem?view=netcore-3.1&WT.mc_id=DT-MVP-5003010)   
+[ListControl.SelectedValue 属性](https://docs.microsoft.com/zh-cn/dotnet/api/system.windows.forms.listcontrol.selectedvalue?view=netcore-3.1&WT.mc_id=DT-MVP-5003010)   
