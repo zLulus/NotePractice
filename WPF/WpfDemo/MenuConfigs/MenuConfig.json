@@ -208,9 +208,23 @@
           },
           {
             "Title": "ComboBox",
-            "DllName": "WpfDemo.exe",
-            "ClassName": "WpfDemo.UseComboBox.UseComboBoxDemo",
+            "DllName": "",
+            "ClassName": "",
             "Children": [
+              {
+                "Title": "ComboBox does not set SelectedValuePath(ComboBox不设置SelectedValuePath)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.UseComboBox.UseComboBoxDemo",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "ComboBox set SelectedValuePath(ComboBox设置SelectedValuePath)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.UseComboBox.UseComboBoxDemo2",
+                "Children": [
+                ]
+              }
             ]
           },
           {

@@ -447,6 +447,9 @@
     <Compile Include="UseComboBox\UseComboBoxDemo.xaml.cs">
       <DependentUpon>UseComboBoxDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UseComboBox\UseComboBoxDemo2.xaml.cs">
+      <DependentUpon>UseComboBoxDemo2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UseComboBox\ViewModels\FruitViewModel.cs" />
     <Compile Include="UseComboBox\ViewModels\UseComboBoxViewModel.cs" />
     <Compile Include="UserControlDemo\OwnUserControl.xaml.cs">
@@ -966,6 +969,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UseComboBox\UseComboBoxDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UseComboBox\UseComboBoxDemo2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
