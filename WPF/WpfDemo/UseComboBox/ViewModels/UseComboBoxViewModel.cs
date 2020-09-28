@@ -11,5 +11,6 @@ namespace WpfDemo.UseComboBox.ViewModels
     {
         public ObservableCollection<FruitViewModel> Fruits { get; set; }
         public FruitViewModel SelectFruit { get; set; }
+        public FruitViewModel SelectValueFruit { get; set; }
     }
 }

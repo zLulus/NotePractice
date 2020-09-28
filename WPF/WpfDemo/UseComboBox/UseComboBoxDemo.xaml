@@ -7,11 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Orientation="Vertical">
-        <ComboBox Name="comboBox" ItemsSource="{Binding Fruits}" DisplayMemberPath="Name" SelectedItem="{Binding SelectFruit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="50"></ComboBox>
-        <Label Content="Bind Data:"></Label>
+        <ComboBox Name="comboBox" ItemsSource="{Binding Fruits}" DisplayMemberPath="Name" SelectedItem="{Binding SelectFruit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectValueFruit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Height="50"></ComboBox>
+        <Label Content="SelectedItem Bind Data:"></Label>
         <Label Content="{Binding SelectFruit.Name,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"></Label>
         <Label Content="Select Item:"></Label>
         <Label Content="{Binding ElementName=comboBox,Path=SelectedItem.Name,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"></Label>
+        <Label Content="SelectedValue Bind Data:"></Label>
+        <Label Content="{Binding SelectValueFruit.Name,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"></Label>
         <Label Content="Select Value:"></Label>
         <Label Content="{Binding ElementName=comboBox,Path=SelectedValue.Name, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"></Label>
     </StackPanel>
