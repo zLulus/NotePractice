@@ -207,6 +207,27 @@
             ]
           },
           {
+            "Title": "ComboBox",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "ComboBox does not set SelectedValuePath(ComboBox不设置SelectedValuePath)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.UseComboBox.UseComboBoxDemo",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "ComboBox set SelectedValuePath(ComboBox设置SelectedValuePath)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.UseComboBox.UseComboBoxDemo2",
+                "Children": [
+                ]
+              }
+            ]
+          },
+          {
             "Title": "Basic use of Expander(Expander基本使用)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.Expander.ExpanderDemo",
