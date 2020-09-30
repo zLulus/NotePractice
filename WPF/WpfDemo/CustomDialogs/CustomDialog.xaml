@@ -1,0 +1,25 @@
+﻿<Window x:Class="WpfDemo.CustomDialogs.CustomDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDemo.CustomDialogs"
+        mc:Ignorable="d" ShowInTaskbar="False" WindowStartupLocation="CenterScreen"
+        Title="CustomDialog" Height="450" Width="800">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ContentControl Grid.Row="0" Margin="0" x:Name="contentContainer"  />
+            <Border  Grid.Row="1"  BorderThickness="0,2,0,0">
+                <DockPanel Name="dpBottom" DockPanel.Dock="Bottom" LastChildFill="True"  Height="40" Background="#F0F0F0">
+                    <Button Content="取消" DockPanel.Dock="Right" Name="btnCancel" Height="30"  Padding="10,5"  Margin="5,5,20,5" IsCancel="True"  />
+                    <Button Content="确定"  DockPanel.Dock="Right"  Name="btnOK" Height="30" Padding="10,5" Margin="5,5,20,5" />
+                    <Border Name="bdrBottom"/>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

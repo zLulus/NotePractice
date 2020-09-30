@@ -164,6 +164,15 @@
     <Compile Include="CustomButton\XButton.xaml.cs">
       <DependentUpon>XButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomDialogs\CustomDialog.xaml.cs">
+      <DependentUpon>CustomDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomDialogs\TestCustomDialogContentControl.xaml.cs">
+      <DependentUpon>TestCustomDialogContentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomDialogs\TestCustomDialogDemo.xaml.cs">
+      <DependentUpon>TestCustomDialogDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DynamicallyGeneratedDataGrid\Bases\ColumnTypeEnum.cs" />
     <Compile Include="DynamicallyGeneratedDataGrid\Bases\DataGridWithPageBaseViewModel.cs" />
     <Compile Include="DynamicallyGeneratedDataGrid\Bases\DelegateCommand.cs" />
@@ -563,6 +572,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomButton\XButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomDialogs\CustomDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomDialogs\TestCustomDialogContentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomDialogs\TestCustomDialogDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1113,6 +1134,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HistoricalDataManage\Databases\" />
+    <Folder Include="ValidationForms\ValidationForm3\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="MultiSelectors\Images\delete.png" />

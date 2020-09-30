@@ -786,6 +786,13 @@
             ]
           },
           {
+            "Title": "Custom Dialog(自定义弹窗)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.CustomDialogs.TestCustomDialogDemo",
+            "Children": [
+            ]
+          },
+          {
             "Title": "Form validation and submission(表单验证与提交)",
             "DllName": "",
             "ClassName": "",

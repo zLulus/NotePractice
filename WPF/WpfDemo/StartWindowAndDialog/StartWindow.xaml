@@ -7,10 +7,12 @@
         mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox Margin="20" x:Name="InputTextBox"></TextBox>
-        <Button Margin="20" Grid.Row="1" Content="打开弹窗" Click="OpenDialog"></Button>
+        <TextBlock Grid.Row="0" Text="The content entered below will be displayed in the pop-up window(下面输入的内容将显示在弹窗中)"></TextBlock>
+        <TextBox Margin="5" Grid.Row="1" x:Name="InputTextBox"></TextBox>
+        <Button Margin="5" Grid.Row="2" Content="打开弹窗" Click="OpenDialog"></Button>
     </Grid>
 </UserControl>
