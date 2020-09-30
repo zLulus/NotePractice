@@ -784,6 +784,27 @@
             "ClassName": "WpfDemo.NotShowInTaskbarWindows.NotShowInTaskbarTab",
             "Children": [
             ]
+          },
+          {
+            "Title": "Form validation and submission(表单验证与提交)",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "Single page version1(单页面版本1)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.ValidationForms.ValidationForm1.ValidationFormInOneUserControl",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "Single page version2(单页面版本2)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.ValidationForms.ValidationForm2.ValidationFormInOneUserControl2",
+                "Children": [
+                ]
+              }
+            ]
           }
         ]
       }

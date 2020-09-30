@@ -461,6 +461,18 @@
     <Compile Include="UserControlDemo\UseUserControlWindow.xaml.cs">
       <DependentUpon>UseUserControlWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValidationForms\ValidationForm1\ValidationFormInOneUserControl.xaml.cs">
+      <DependentUpon>ValidationFormInOneUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationForms\ValidationForm2\ErrorCollectionToVisibility.cs" />
+    <Compile Include="ValidationForms\ValidationForm2\OverThirteenValidationRule.cs" />
+    <Compile Include="ValidationForms\ValidationForm2\Person.cs" />
+    <Compile Include="ValidationForms\ValidationForm2\TextBoxNotEmptyValidationRule.cs" />
+    <Compile Include="ValidationForms\ValidationForm2\ValidationFormInOneUserControl2.xaml.cs">
+      <DependentUpon>ValidationFormInOneUserControl2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationForms\ValidationForm1\LengLimitValidationRule.cs" />
+    <Compile Include="ValidationForms\ValidationForm1\ValidationFormViewModel.cs" />
     <Compile Include="VisualStateManager\VisualStateManagerDemo.xaml.cs">
       <DependentUpon>VisualStateManagerDemo.xaml</DependentUpon>
     </Compile>
@@ -988,6 +1000,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ValidationForms\ValidationForm1\ValidationFormInOneUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValidationForms\ValidationForm2\ValidationFormInOneUserControl2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VisualStateManager\VisualStateManagerDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1059,6 +1079,7 @@
     <None Include="SingleSelectors\README.md" />
     <None Include="UseComboBox\README.md" />
     <None Include="UserControlDemo\README.md" />
+    <None Include="ValidationForms\README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
