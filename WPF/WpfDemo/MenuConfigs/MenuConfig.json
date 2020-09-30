@@ -810,6 +810,13 @@
                 "ClassName": "WpfDemo.ValidationForms.ValidationForm2.ValidationFormInOneUserControl2",
                 "Children": [
                 ]
+              },
+              {
+                "Title": "Validate forms in a custom dialog(在自定义弹窗中验证表单)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.ValidationForms.ValidationForm3.ValidationForm3Demo",
+                "Children": [
+                ]
               }
             ]
           }

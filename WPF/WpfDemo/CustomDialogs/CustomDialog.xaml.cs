@@ -13,6 +13,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfDemo.ValidationForms.ValidationForm3;
 
 namespace WpfDemo.CustomDialogs
 {
@@ -66,6 +67,19 @@ namespace WpfDemo.CustomDialogs
 
             //设置内容
             contentContainer.Content = control;
+
+            //绑定提交按钮是否可用
+            Type t = control.DataContext.GetType();//获得该类的Type
+            var property = t.GetProperties().Where(x => x.Name == nameof(ViewModelWithValidation.IsSubmitButtonEnable)).FirstOrDefault();
+            if (property != null)
+            {
+                btnOK.DataContext = control.DataContext;
+                btnOK.SetBinding(Button.IsEnabledProperty, new Binding(nameof(ViewModelWithValidation.IsSubmitButtonEnable))
+                {
+                    Mode = BindingMode.OneWay,
+                    UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+                });
+            }
         }
 
         public void ShowDialog(Func<bool> onOKCallback)

@@ -482,6 +482,14 @@
     </Compile>
     <Compile Include="ValidationForms\ValidationForm1\LengLimitValidationRule.cs" />
     <Compile Include="ValidationForms\ValidationForm1\ValidationFormViewModel.cs" />
+    <Compile Include="ValidationForms\ValidationForm3\ValidationForm3Demo.xaml.cs">
+      <DependentUpon>ValidationForm3Demo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationForms\ValidationForm3\ViewModelWithValidation.cs" />
+    <Compile Include="ValidationForms\ValidationForm3\ValidationFormInDialog.xaml.cs">
+      <DependentUpon>ValidationFormInDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ValidationForms\ValidationForm3\ValidationFormInDialogViewModel.cs" />
     <Compile Include="VisualStateManager\VisualStateManagerDemo.xaml.cs">
       <DependentUpon>VisualStateManagerDemo.xaml</DependentUpon>
     </Compile>
@@ -1029,6 +1037,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ValidationForms\ValidationForm3\ValidationForm3Demo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValidationForms\ValidationForm3\ValidationFormInDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VisualStateManager\VisualStateManagerDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1134,7 +1150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HistoricalDataManage\Databases\" />
-    <Folder Include="ValidationForms\ValidationForm3\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="MultiSelectors\Images\delete.png" />
