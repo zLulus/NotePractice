@@ -28,15 +28,32 @@ namespace WpfDemo.ValidationForms.ValidationForm1
 
             vm = new ValidationFormViewModel();
             DataContext = vm;
+
+            
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ResetSubmitButton();
+        }
+
+        private void ResetSubmitButton()
         {
             var b1 = Validation.GetHasError(nameTextBox);
             var b2 = Validation.GetHasError(ageTextBox);
             var b3 = Validation.GetHasError(remarkTextBox);
 
             submitButton.IsEnabled = !b1 && !b2 && !b3;
+        }
+
+        private void submitButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("提交");
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ResetSubmitButton();
         }
     }
 }

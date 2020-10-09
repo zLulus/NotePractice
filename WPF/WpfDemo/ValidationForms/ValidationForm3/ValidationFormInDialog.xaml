@@ -17,8 +17,8 @@
                         <validations:LengLimitValidationRule ValidatesOnTargetUpdated="True"
                                                              CanBeNull="False"
                                                              CanNotBeNullMessage="必须填写姓名"
-                                                           MinLength="2"
-                                                           MaxLength="20"
+                                                             MinLength="2"
+                                                             MaxLength="20"
                                                              MinLengthMessage="最小长度为{0}"
                                                              MaxLengthMessage="最大长度为{0}"/>
                     </Binding.ValidationRules>
@@ -33,8 +33,8 @@
                         <validations:LengLimitValidationRule ValidatesOnTargetUpdated="True"
                                                              CanBeNull="False"
                                                              CanNotBeNullMessage="必须填写年龄"
-                                                           MinLength="0"
-                                                           MaxLength="2"
+                                                             MinLength="0"
+                                                             MaxLength="2"
                                                              MinLengthMessage="填写数字的最小长度为{0}"
                                                              MaxLengthMessage="填写数字的最大长度为{0}"/>
                     </Binding.ValidationRules>
@@ -49,8 +49,8 @@
                         <validations:LengLimitValidationRule ValidatesOnTargetUpdated="True"
                                                              CanBeNull="True"
                                                              CanNotBeNullMessage=""
-                                                           MinLength="0"
-                                                           MaxLength="200"
+                                                             MinLength="0"
+                                                             MaxLength="200"
                                                              MinLengthMessage="最小长度为{0}"
                                                              MaxLengthMessage="最大长度为{0}"/>
                     </Binding.ValidationRules>
