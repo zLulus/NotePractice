@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfDemo.CustomDialogs;
 using WpfDemo.CustomerWindow;
 using WpfDemo.Navigation;
 
@@ -29,8 +30,13 @@ namespace WpfDemo
 
         private void ShowKeyboard(object sender, RoutedEventArgs e)
         {
-            //InputNumberWindow window = new InputNumberWindow();
-            //window.Show();
+            CustomDialog dialog = new CustomDialog(new InputNumberWindow(), "软键盘");
+            dialog.Width = 1100;
+            dialog.Height = 590;
+            dialog.ShowDialog(() =>
+            {
+                return true;
+            });
         }
 
         private void PagePop(object sender, RoutedEventArgs e)
@@ -45,8 +51,11 @@ namespace WpfDemo
 
         private void ButtonShowToolTip(object sender, RoutedEventArgs e)
         {
-            //ButtonShowToolTip window = new ButtonShowToolTip();
-            //window.Show();
+            CustomDialog dialog = new CustomDialog(new ButtonShowToolTip(), "Button with ToolTip");
+            dialog.ShowDialog(() =>
+            {
+                return true;
+            });
         }
     }
 }

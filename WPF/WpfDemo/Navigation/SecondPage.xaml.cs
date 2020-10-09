@@ -27,7 +27,7 @@ namespace WpfDemo.Navigation
 
         private void GoBack(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("../MainPage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Navigation/MainPage.xaml", UriKind.Relative));
         }
     }
 }
