@@ -7,6 +7,17 @@
              xmlns:validations="clr-namespace:WpfDemo.ValidationForms.ValidationRules"
              mc:Ignorable="d" Loaded="UserControl_Loaded"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <!--错误信息显示-->
+        <Style TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <StackPanel Orientation="Vertical">
         <Label Content="表单"></Label>
         <Label Content="姓名"></Label>
