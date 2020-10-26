@@ -435,6 +435,10 @@
     <Compile Include="TextBlockRun\TextBlockRunDemo.xaml.cs">
       <DependentUpon>TextBlockRunDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TreeViewBind\TreeViewBindDemo.xaml.cs">
+      <DependentUpon>TreeViewBindDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeViewBind\ViewModels\DisplayViewModel.cs" />
     <Compile Include="Trigger\DataTriggerDemo.xaml.cs">
       <DependentUpon>DataTriggerDemo.xaml</DependentUpon>
     </Compile>
@@ -986,6 +990,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TextBlockRun\TextBlockRunDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TreeViewBind\TreeViewBindDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
