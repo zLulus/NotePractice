@@ -33,11 +33,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Tap to pick up the observer, tap again to drop it."
-                           Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
-                           Margin="0,0,0,10"
-                           TextWrapping="WrapWithOverflow" TextAlignment="Center" FontWeight="SemiBold" />
-
+                <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="移动观察者" Click="ChangeModeViewPointStatus_Click"></Button>
                 <TextBlock Text="Heading"
                            Grid.Row="1" Grid.Column="0"
                            HorizontalAlignment="Right" />
@@ -153,8 +149,9 @@
                 <TextBlock Text="绘制并计算重叠"
                            Grid.Row="0" Grid.Column="0"
                            TextWrapping="WrapWithOverflow" TextAlignment="Center" FontWeight="SemiBold" />
-                <Button Content="绘制圆柱体" Grid.Row="1" Click="DrawCylinder_Click"></Button>
-                <Button Content="清除圆柱体" Grid.Row="2"></Button>
+                <Button Content="切换为移动模式" Grid.Row="1" Click="ChangeModeStatus_Click"></Button>
+                <Button Content="绘制长方体" Grid.Row="2" Click="Draw_Click"></Button>
+                <Button Content="清除长方体" Grid.Row="3" Click="Clear_Click"></Button>
             </Grid>
         </Border>
     </Grid>

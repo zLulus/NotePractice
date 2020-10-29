@@ -44,13 +44,29 @@ namespace ArcGIS3D.WpfDemo
         // Symbol for viewpoint.
         private SimpleMarkerSceneSymbol _viewpointSymbol;
 
-        // Flag indicating if the viewshed will move with the mouse.
-        private bool _subscribedToMouseMoves;
+        /// <summary>
+        /// 移动观察者-是否绘制完毕
+        /// Flag indicating if the viewshed will move with the mouse.
+        /// </summary>
+        private bool subscribedToMouseViewPoint;
 
         // Height of the viewpoint above the ground.
         private double _viewHeight;
 
         GraphicsOverlay overlay;
+
+        /// <summary>
+        /// 移动观察者
+        /// </summary>
+        bool isMoveViewpoint;
+        /// <summary>
+        /// 绘制圆柱体
+        /// </summary>
+        bool isDraw;
+        /// <summary>
+        /// 绘制圆柱体-
+        /// </summary>
+        bool subscribedToDraw;
 
         public ViewshedLocation()
         {
@@ -62,6 +78,9 @@ namespace ArcGIS3D.WpfDemo
 
         private void Initialize()
         {
+            isMoveViewpoint = false;
+            isDraw = false;
+
             _viewHeight = HeightSlider.Value;
 
             // Create the scene with the imagery basemap.
@@ -131,26 +150,53 @@ namespace ArcGIS3D.WpfDemo
 
             // Set the surface placement mode for the overlay.
             overlay.SceneProperties.SurfacePlacement = SurfacePlacement.Absolute;
+            MySceneView.GraphicsOverlays.Add(overlay);
+
         }
 
         private void MySceneViewOnGeoViewTapped(object sender, GeoViewInputEventArgs geoViewInputEventArgs)
         {
-            // The viewshed observer is picked up and moving. Drop it.
-            if (_subscribedToMouseMoves)
+            //移动观察者
+            if (isMoveViewpoint)
             {
-                MySceneView.MouseMove -= MySceneViewOnMouseMove;
-            }
-            // The viewshed observer is currently pinned. Pick it up.
-            else
-            {
-                MySceneView.MouseMove += MySceneViewOnMouseMove;
-            }
+                // The viewshed observer is picked up and moving. Drop it.
+                if (subscribedToMouseViewPoint)
+                {
+                    MySceneView.MouseMove -= MySceneViewOnMoveViewPoint;
+                }
+                // The viewshed observer is currently pinned. Pick it up.
+                else
+                {
+                    MySceneView.MouseMove += MySceneViewOnMoveViewPoint;
+                }
 
-            // Toggle the viewshed movement flag.
-            _subscribedToMouseMoves = !_subscribedToMouseMoves;
+                // Toggle the viewshed movement flag.
+                subscribedToMouseViewPoint = !subscribedToMouseViewPoint;
+            }
+            //绘制立方体
+            else if(isDraw)
+            {
+                if (subscribedToDraw == false)
+                {
+                    points = new List<MapPoint>();
+                    //预览
+                    //MySceneView.MouseMove
+                    //编辑中
+                    MySceneView.PreviewMouseLeftButtonDown += MySceneViewOnMouseMoveAddPoint;
+                    //完成
+                    MySceneView.PreviewMouseRightButtonDown += MySceneViewOnMouseMoveWithDraw;
+                }
+                subscribedToDraw = true;
+            }
         }
 
-        private void MySceneViewOnMouseMove(object sender, MouseEventArgs mouseEventArgs)
+        #region 观察者
+        /// <summary>
+        /// 移动观察者
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="mouseEventArgs"></param>
+        private void MySceneViewOnMoveViewPoint(object sender, MouseEventArgs mouseEventArgs)
         {
             // Get the mouse position.
             Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
@@ -175,6 +221,11 @@ namespace ArcGIS3D.WpfDemo
             _viewpointOverlay.Graphics.Add(new Graphic(onMapLocation, _viewpointSymbol));
         }
 
+        /// <summary>
+        /// 修改观察者的设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HandleSettingsChange(object sender, RoutedEventArgs e)
         {
             // Return if viewshed hasn't been created yet. This happens when the sample is starting.
@@ -215,22 +266,70 @@ namespace ArcGIS3D.WpfDemo
 
             }
         }
+        #endregion
 
-        private void DrawCylinder_Click(object sender, RoutedEventArgs e)
+        #region 绘制
+        List<MapPoint> points;
+        private void MySceneViewOnMouseMoveAddPoint(object sender, MouseEventArgs mouseEventArgs)
         {
-            SimpleMarkerSceneSymbolStyle symbolStyle = SimpleMarkerSceneSymbolStyle.Cylinder;
-            System.Drawing.Color color = System.Drawing.Color.Blue;
-            // Create the symbol.
-            SimpleMarkerSceneSymbol symbol = new SimpleMarkerSceneSymbol(symbolStyle, color, 200, 200, 200, SceneSymbolAnchorPosition.Center);
+            // Get the mouse position.
+            Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
 
-            MapPoint point = new MapPoint(-4.5, 20, 30);
+            // Get the corresponding MapPoint.
+            MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
+            points.Add(onMapLocation);
+        }
+        private void MySceneViewOnMouseMoveWithDraw(object sender, MouseEventArgs mouseEventArgs)
+        {
+            // Get the mouse position.
+            Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
 
+            // Get the corresponding MapPoint.
+            List<MapPoint> pointsWithZ = new List<MapPoint>();
+            foreach(var point in points)
+            {
+                pointsWithZ.Add(new MapPoint(point.X, point.Y, point.Z+ 200,point.SpatialReference));
+            }
+            points.AddRange(pointsWithZ);
+            MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
+            Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+
+            SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.Black,null);
             // Create the graphic from the geometry and the symbol.
-            Graphic item = new Graphic(point, symbol);
+            Graphic item = new Graphic(polygon, simpleFillSymbol);
 
             // Add the graphic to the overlay.
             overlay.Graphics.Add(item);
 
+            MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnMouseMoveAddPoint;
+            MySceneView.PreviewMouseRightButtonDown -= MySceneViewOnMouseMoveWithDraw;
+        }
+        #endregion
+
+        #region 切换模式
+        private void Draw_Click(object sender, RoutedEventArgs e)
+        {
+            isDraw = true;
+            isMoveViewpoint = false;
+            subscribedToDraw = false;
+        }
+
+        private void ChangeModeViewPointStatus_Click(object sender, RoutedEventArgs e)
+        {
+            isDraw = false;
+            isMoveViewpoint = true;
+        }
+
+        private void ChangeModeStatus_Click(object sender, RoutedEventArgs e)
+        {
+            isDraw = false;
+            isMoveViewpoint = false;
+        }
+        #endregion
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            overlay.Graphics.Clear();
         }
     }
 }
