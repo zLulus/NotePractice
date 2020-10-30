@@ -181,10 +181,8 @@ namespace ArcGIS3D.WpfDemo
                     points = new List<MapPoint>();
                     //预览
                     //MySceneView.MouseMove
-                    //编辑中
+                    //编辑
                     MySceneView.PreviewMouseLeftButtonDown += MySceneViewOnMouseMoveAddPoint;
-                    //完成
-                    MySceneView.PreviewMouseRightButtonDown += MySceneViewOnMouseMoveWithDraw;
                 }
                 subscribedToDraw = true;
             }
@@ -272,51 +270,59 @@ namespace ArcGIS3D.WpfDemo
         List<MapPoint> points;
         private void MySceneViewOnMouseMoveAddPoint(object sender, MouseEventArgs mouseEventArgs)
         {
-            // Get the mouse position.
-            Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
-
-            // Get the corresponding MapPoint.
-            MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
-            Test(onMapLocation.X, onMapLocation.Y, onMapLocation.Z);
-            //points.Add(onMapLocation);
-        }
-        private void MySceneViewOnMouseMoveWithDraw(object sender, MouseEventArgs mouseEventArgs)
-        {
-            // Get the mouse position.
-            Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
-
-            //List<MapPoint> drawPoints = new List<MapPoint>();
-            // Get the corresponding MapPoint.
-            List<MapPoint> pointsWithZ = new List<MapPoint>();
-            for(int i = points.Count - 1; i>=0; i--)
+            if (points.Count < 3)
             {
-                var point = points[i];
-                pointsWithZ.Add(new MapPoint(point.X, point.Y, point.Z + 200, point.SpatialReference));
+                // Get the mouse position.
+                Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
+
+                // Get the corresponding MapPoint.
+                MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
+                //TestCreateCube(onMapLocation.X, onMapLocation.Y, onMapLocation.Z);
+                //防止重复点击
+                var isExist = points.Where(x => x.X == onMapLocation.X && x.Y == onMapLocation.Y && x.Z == onMapLocation.Z).FirstOrDefault();
+                if(isExist==null)
+                    points.Add(onMapLocation);
             }
-            //foreach(var point in points)
-            //{
-            //    pointsWithZ.Add(new MapPoint(point.X, point.Y, point.Z+ 200,point.SpatialReference));
-            //}
-            points.AddRange(pointsWithZ);
-            //drawPoints.AddRange(points);
-            //drawPoints.AddRange(pointsWithZ);
-            //drawPoints.Add(pointsWithZ[0]);
-            //drawPoints.Add(points[points.Count - 1]);
-            //drawPoints.Add(points[0]);
-            MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
+            if (points.Count >= 3)
+            {
+                //绘制
+                Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
 
-            Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+                //var lastPoint = new MapPoint(points[0].X, points[2].Y, points[0].Z, points[0].SpatialReference);
+                var centerX = (points[0].X + points[2].X) / 2.0;
+                var centerY = (points[0].Y + points[2].Y) / 2.0;
+                var centerZ = points[0].Z;
+                var centerPoint = new MapPoint(centerX, centerY, centerZ, points[0].SpatialReference);
 
-            SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.Black, null);
-            // Create the graphic from the geometry and the symbol.
-            Graphic item = new Graphic(polygon, simpleFillSymbol);
+                SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.DarkSeaGreen, 1, SceneSymbolAnchorPosition.Center);
+                //symbol.Heading
+                symbol.Height = 100;
+                symbol.Width = Distance(points[0], points[1]);
+                symbol.Depth = Distance(points[1], points[2]);
+                // Create the graphic from the geometry and the symbol.
+                Graphic item = new Graphic(centerPoint, symbol);
 
+                // Add the graphic to the overlay.
+                overlay.Graphics.Add(item);
 
-            // Add the graphic to the overlay.
-            overlay.Graphics.Add(item);
+                points = new List<MapPoint>();
+            }
+           
+        }
 
-            MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnMouseMoveAddPoint;
-            MySceneView.PreviewMouseRightButtonDown -= MySceneViewOnMouseMoveWithDraw;
+        public static double Distance(MapPoint point1, MapPoint point2)
+        {
+            return Distance((decimal)point1.X, (decimal)point1.Y, (decimal)point2.X, (decimal)point2.Y);
+        }
+
+        public static double Distance(decimal x1, decimal y1, decimal x2, decimal y2)
+        {
+            decimal d = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2);
+            
+            double result = Math.Sqrt((double)d);
+
+            return result;
+
         }
         #endregion
 
@@ -346,12 +352,29 @@ namespace ArcGIS3D.WpfDemo
             overlay.Graphics.Clear();
         }
 
-        private void DrawTest_Click(object sender, RoutedEventArgs e)
+        private void TestCreateCube(double x ,double y,double z)
         {
-            Test(0,0,0);
+            Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+
+
+            SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.LightPink, 500, SceneSymbolAnchorPosition.Center);
+            //角度
+            symbol.Heading = 120;
+            //高 z
+            symbol.Height = 50;
+            //x
+            symbol.Width = 100;
+            //y
+            symbol.Depth = 150;
+            //SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.Black, null);
+            // Create the graphic from the geometry and the symbol.
+            Graphic item = new Graphic(new MapPoint(x, y, z), symbol);
+
+            // Add the graphic to the overlay.
+            overlay.Graphics.Add(item);
         }
 
-        private void Test(double x ,double y,double z)
+        private void TestCreate(double x, double y, double z)
         {
             points = new List<MapPoint>();
             points.Add(new MapPoint(x, y, z));
@@ -366,8 +389,13 @@ namespace ArcGIS3D.WpfDemo
             Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
 
 
-            SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.LightPink, 100, SceneSymbolAnchorPosition.Center);
-            //SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.Black, null);
+            //SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateSphere(System.Drawing.Color.LightPink, 50, SceneSymbolAnchorPosition.Center);
+            //圆柱体
+            //SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCylinder(System.Drawing.Color.LightPink, 50, 80, SceneSymbolAnchorPosition.Center);
+            //多面体
+            //SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateDiamond(System.Drawing.Color.LightPink, 50,80, SceneSymbolAnchorPosition.Center);
+            //四面体
+            SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateTetrahedron(System.Drawing.Color.LightPink, 50,80, SceneSymbolAnchorPosition.Center);
             // Create the graphic from the geometry and the symbol.
             Graphic item = new Graphic(new MapPoint(x, y, z), symbol);
 
