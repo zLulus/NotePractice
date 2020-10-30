@@ -277,26 +277,40 @@ namespace ArcGIS3D.WpfDemo
 
             // Get the corresponding MapPoint.
             MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
-            points.Add(onMapLocation);
+            Test(onMapLocation.X, onMapLocation.Y, onMapLocation.Z);
+            //points.Add(onMapLocation);
         }
         private void MySceneViewOnMouseMoveWithDraw(object sender, MouseEventArgs mouseEventArgs)
         {
             // Get the mouse position.
             Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
 
+            //List<MapPoint> drawPoints = new List<MapPoint>();
             // Get the corresponding MapPoint.
             List<MapPoint> pointsWithZ = new List<MapPoint>();
-            foreach(var point in points)
+            for(int i = points.Count - 1; i>=0; i--)
             {
-                pointsWithZ.Add(new MapPoint(point.X, point.Y, point.Z+ 200,point.SpatialReference));
+                var point = points[i];
+                pointsWithZ.Add(new MapPoint(point.X, point.Y, point.Z + 200, point.SpatialReference));
             }
+            //foreach(var point in points)
+            //{
+            //    pointsWithZ.Add(new MapPoint(point.X, point.Y, point.Z+ 200,point.SpatialReference));
+            //}
             points.AddRange(pointsWithZ);
+            //drawPoints.AddRange(points);
+            //drawPoints.AddRange(pointsWithZ);
+            //drawPoints.Add(pointsWithZ[0]);
+            //drawPoints.Add(points[points.Count - 1]);
+            //drawPoints.Add(points[0]);
             MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
+
             Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
 
-            SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.Black,null);
+            SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.Black, null);
             // Create the graphic from the geometry and the symbol.
             Graphic item = new Graphic(polygon, simpleFillSymbol);
+
 
             // Add the graphic to the overlay.
             overlay.Graphics.Add(item);
@@ -330,6 +344,35 @@ namespace ArcGIS3D.WpfDemo
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             overlay.Graphics.Clear();
+        }
+
+        private void DrawTest_Click(object sender, RoutedEventArgs e)
+        {
+            Test(0,0,0);
+        }
+
+        private void Test(double x ,double y,double z)
+        {
+            points = new List<MapPoint>();
+            points.Add(new MapPoint(x, y, z));
+            points.Add(new MapPoint(x, y + 100, z));
+            points.Add(new MapPoint(x + 100, y, z));
+            points.Add(new MapPoint(x + 100, y + 100, z));
+
+            points.Add(new MapPoint(x, y, z + 200));
+            points.Add(new MapPoint(x, y + 100, z + 200));
+            points.Add(new MapPoint(x + 100, y, z + 200));
+            points.Add(new MapPoint(x + 100, y + 100, z + 200));
+            Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+
+
+            SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.LightPink, 100, SceneSymbolAnchorPosition.Center);
+            //SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.Black, null);
+            // Create the graphic from the geometry and the symbol.
+            Graphic item = new Graphic(new MapPoint(x, y, z), symbol);
+
+            // Add the graphic to the overlay.
+            overlay.Graphics.Add(item);
         }
     }
 }

@@ -151,7 +151,8 @@
                            TextWrapping="WrapWithOverflow" TextAlignment="Center" FontWeight="SemiBold" />
                 <Button Content="切换为移动模式" Grid.Row="1" Click="ChangeModeStatus_Click"></Button>
                 <Button Content="绘制长方体" Grid.Row="2" Click="Draw_Click"></Button>
-                <Button Content="清除长方体" Grid.Row="3" Click="Clear_Click"></Button>
+                <Button Content="绘制长方体(测试)" Grid.Row="3" Click="DrawTest_Click"></Button>
+                <Button Content="清除长方体" Grid.Row="4" Click="Clear_Click"></Button>
             </Grid>
         </Border>
     </Grid>
