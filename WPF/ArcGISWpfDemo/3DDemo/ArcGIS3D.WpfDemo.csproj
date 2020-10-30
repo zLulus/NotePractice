@@ -43,9 +43,6 @@
     <Reference Include="Esri.ArcGISRuntime.Hydrography, Version=100.9.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
       <HintPath>packages\Esri.ArcGISRuntime.Hydrography.100.9.0\lib\net461\Esri.ArcGISRuntime.Hydrography.dll</HintPath>
     </Reference>
-    <Reference Include="Esri.ArcGISRuntime.LocalServices, Version=100.9.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
-      <HintPath>packages\Esri.ArcGISRuntime.LocalServices.100.9.0\lib\net461\Esri.ArcGISRuntime.LocalServices.dll</HintPath>
-    </Reference>
     <Reference Include="Esri.ArcGISRuntime.WPF, Version=100.9.0.0, Culture=neutral, PublicKeyToken=8fc3cc631e44ad86, processorArchitecture=MSIL">
       <HintPath>packages\Esri.ArcGISRuntime.WPF.100.9.0\lib\net461\Esri.ArcGISRuntime.WPF.dll</HintPath>
     </Reference>
@@ -78,13 +75,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dialogs\SetCubeInfo.xaml.cs">
+      <DependentUpon>SetCubeInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SetHeight.xaml.cs">
       <DependentUpon>SetHeight.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Enums\TapTypeEnum.cs" />
     <Compile Include="Models\PointInfo.cs" />
+    <Compile Include="ViewModels\NotifyPropertyChanged.cs" />
+    <Compile Include="ViewModels\SetCubeInfoViewModel.cs" />
     <Compile Include="ViewshedLocation.xaml.cs">
       <DependentUpon>ViewshedLocation.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dialogs\SetCubeInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\SetHeight.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -166,12 +173,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\Esri.ArcGISRuntime.runtimes.win.100.9.0\build\net461\Esri.ArcGISRuntime.runtimes.win.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.runtimes.win.100.9.0\build\net461\Esri.ArcGISRuntime.runtimes.win.targets'))" />
     <Error Condition="!Exists('packages\Esri.ArcGISRuntime.100.9.0\build\net461\Esri.ArcGISRuntime.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.100.9.0\build\net461\Esri.ArcGISRuntime.targets'))" />
-    <Error Condition="!Exists('packages\Esri.ArcGISRuntime.Hydrography.100.9.0\build\net461\Esri.ArcGISRuntime.Hydrography.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.Hydrography.100.9.0\build\net461\Esri.ArcGISRuntime.Hydrography.targets'))" />
     <Error Condition="!Exists('packages\Esri.ArcGISRuntime.WPF.100.9.0\build\net461\Esri.ArcGISRuntime.WPF.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.WPF.100.9.0\build\net461\Esri.ArcGISRuntime.WPF.targets'))" />
-    <Error Condition="!Exists('packages\Esri.ArcGISRuntime.LocalServices.100.9.0\build\net461\Esri.ArcGISRuntime.LocalServices.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.LocalServices.100.9.0\build\net461\Esri.ArcGISRuntime.LocalServices.targets'))" />
+    <Error Condition="!Exists('packages\Esri.ArcGISRuntime.Hydrography.100.9.0\build\net461\Esri.ArcGISRuntime.Hydrography.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Esri.ArcGISRuntime.Hydrography.100.9.0\build\net461\Esri.ArcGISRuntime.Hydrography.targets'))" />
   </Target>
   <Import Project="packages\Esri.ArcGISRuntime.100.9.0\build\net461\Esri.ArcGISRuntime.targets" Condition="Exists('packages\Esri.ArcGISRuntime.100.9.0\build\net461\Esri.ArcGISRuntime.targets')" />
-  <Import Project="packages\Esri.ArcGISRuntime.Hydrography.100.9.0\build\net461\Esri.ArcGISRuntime.Hydrography.targets" Condition="Exists('packages\Esri.ArcGISRuntime.Hydrography.100.9.0\build\net461\Esri.ArcGISRuntime.Hydrography.targets')" />
   <Import Project="packages\Esri.ArcGISRuntime.WPF.100.9.0\build\net461\Esri.ArcGISRuntime.WPF.targets" Condition="Exists('packages\Esri.ArcGISRuntime.WPF.100.9.0\build\net461\Esri.ArcGISRuntime.WPF.targets')" />
-  <Import Project="packages\Esri.ArcGISRuntime.LocalServices.100.9.0\build\net461\Esri.ArcGISRuntime.LocalServices.targets" Condition="Exists('packages\Esri.ArcGISRuntime.LocalServices.100.9.0\build\net461\Esri.ArcGISRuntime.LocalServices.targets')" />
+  <Import Project="packages\Esri.ArcGISRuntime.Hydrography.100.9.0\build\net461\Esri.ArcGISRuntime.Hydrography.targets" Condition="Exists('packages\Esri.ArcGISRuntime.Hydrography.100.9.0\build\net461\Esri.ArcGISRuntime.Hydrography.targets')" />
 </Project>

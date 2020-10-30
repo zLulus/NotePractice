@@ -1,4 +1,6 @@
 ﻿using ArcGIS3D.WpfDemo.Dialogs;
+using ArcGIS3D.WpfDemo.Enums;
+using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Mapping;
 using Esri.ArcGISRuntime.Symbology;
@@ -56,18 +58,8 @@ namespace ArcGIS3D.WpfDemo
 
         GraphicsOverlay overlay;
 
-        /// <summary>
-        /// 移动观察者
-        /// </summary>
-        bool isMoveViewpoint;
-        /// <summary>
-        /// 绘制圆柱体
-        /// </summary>
-        bool isDraw;
-        /// <summary>
-        /// 绘制圆柱体-
-        /// </summary>
-        bool subscribedToDraw;
+        TapTypeEnum tapTypeEnum { get; set; }
+        bool isFirstDrawByPolygon;
 
         public ViewshedLocation()
         {
@@ -79,8 +71,7 @@ namespace ArcGIS3D.WpfDemo
 
         private void Initialize()
         {
-            isMoveViewpoint = false;
-            isDraw = false;
+            tapTypeEnum = TapTypeEnum.None;
 
             _viewHeight = HeightSlider.Value;
 
@@ -158,7 +149,7 @@ namespace ArcGIS3D.WpfDemo
         private void MySceneViewOnGeoViewTapped(object sender, GeoViewInputEventArgs geoViewInputEventArgs)
         {
             //移动观察者
-            if (isMoveViewpoint)
+            if (tapTypeEnum==TapTypeEnum.MoveViewPoint)
             {
                 // The viewshed observer is picked up and moving. Drop it.
                 if (subscribedToMouseViewPoint)
@@ -175,9 +166,9 @@ namespace ArcGIS3D.WpfDemo
                 subscribedToMouseViewPoint = !subscribedToMouseViewPoint;
             }
             //绘制立方体
-            else if(isDraw)
+            else if(tapTypeEnum==TapTypeEnum.DrawByPolygon)
             {
-                if (subscribedToDraw == false)
+                if (isFirstDrawByPolygon == false)
                 {
                     points = new List<MapPoint>();
                     //预览
@@ -185,7 +176,15 @@ namespace ArcGIS3D.WpfDemo
                     //编辑
                     MySceneView.PreviewMouseLeftButtonDown += MySceneViewOnMouseMoveAddPoint;
                 }
-                subscribedToDraw = true;
+                isFirstDrawByPolygon = true;
+            }
+            else if (tapTypeEnum == TapTypeEnum.DrawByCenter)
+            {
+                
+            }
+            else if (tapTypeEnum == TapTypeEnum.Select)
+            {
+                
             }
         }
 
@@ -338,24 +337,115 @@ namespace ArcGIS3D.WpfDemo
         }
         #endregion
 
+        #region 绘制-中心点
+        private void MySceneViewOnDrawByCenter(object sender, MouseEventArgs mouseEventArgs)
+        {
+            // Get the mouse position.
+            Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
+
+            // Get the corresponding MapPoint.
+            MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
+
+            SetCubeInfo setCubeInfo = new SetCubeInfo(onMapLocation.X, onMapLocation.Y, onMapLocation.Z);
+            var dialogResult = setCubeInfo.ShowDialog();
+            if(dialogResult.HasValue && dialogResult.Value)
+            {
+                var centerPoint = new MapPoint(setCubeInfo.vm.X, setCubeInfo.vm.Y, setCubeInfo.vm.Z, onMapLocation.SpatialReference);
+
+                SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.DarkSeaGreen, 1, SceneSymbolAnchorPosition.Center);
+                //旋转角度
+                symbol.Heading = setCubeInfo.vm.Heading;
+                //z
+                symbol.Height = setCubeInfo.vm.Height;
+                //x
+                symbol.Width = setCubeInfo.vm.Width;
+                //y
+                symbol.Depth = setCubeInfo.vm.Depth;
+                // Create the graphic from the geometry and the symbol.
+                Graphic item = new Graphic(centerPoint, symbol);
+
+                // Add the graphic to the overlay.
+                overlay.Graphics.Add(item);
+
+
+                MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
+            }
+           
+        }
+        #endregion
+
+        #region 选择
+        private async void MySceneViewOnSelect(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
+        {
+            // Get the scene layer from the scene (first and only operational layer).
+            ArcGISSceneLayer sceneLayer = (ArcGISSceneLayer)MySceneView.Scene.OperationalLayers.First();
+
+            // Clear any existing selection.
+            sceneLayer.ClearSelection();
+            await SetSelectFeature(e, sceneLayer);
+        }
+
+        private async Task SetSelectFeature(GeoViewInputEventArgs e, ArcGISSceneLayer sceneLayer)
+        {
+            try
+            {
+                // Identify the layer at the tap point.
+                // Use a 10-pixel tolerance around the point and return a maximum of one feature.
+                //最多返回1个特征
+                IdentifyLayerResult result = await MySceneView.IdentifyLayerAsync(sceneLayer, e.Position, 10, false, 1);
+
+                // Get the GeoElements that were identified (will be 0 or 1 element).
+                IReadOnlyList<GeoElement> geoElements = result.GeoElements;
+
+                // If a GeoElement was identified, select it in the scene.
+                if (geoElements.Any())
+                {
+                    GeoElement geoElement = geoElements.FirstOrDefault();
+                    if (geoElement != null)
+                    {
+                        // Select the feature to highlight it in the scene view.
+                        sceneLayer.SelectFeature((Feature)geoElement);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error");
+            }
+        }
+        #endregion
+
         #region 切换模式
         private void Draw_Click(object sender, RoutedEventArgs e)
         {
-            isDraw = true;
-            isMoveViewpoint = false;
-            subscribedToDraw = false;
+            MySceneView.GeoViewTapped -= MySceneViewOnSelect;
+            tapTypeEnum = TapTypeEnum.DrawByPolygon;
+            isFirstDrawByPolygon = false;
         }
 
         private void ChangeModeViewPointStatus_Click(object sender, RoutedEventArgs e)
         {
-            isDraw = false;
-            isMoveViewpoint = true;
+            MySceneView.GeoViewTapped -= MySceneViewOnSelect;
+            tapTypeEnum = TapTypeEnum.MoveViewPoint;
         }
 
         private void ChangeModeStatus_Click(object sender, RoutedEventArgs e)
         {
-            isDraw = false;
-            isMoveViewpoint = false;
+            MySceneView.GeoViewTapped -= MySceneViewOnSelect;
+            tapTypeEnum = TapTypeEnum.None;
+        }
+
+        private void DrawByCenter_Click(object sender, RoutedEventArgs e)
+        {
+            MySceneView.GeoViewTapped -= MySceneViewOnSelect;
+            tapTypeEnum = TapTypeEnum.DrawByCenter;
+            MySceneView.PreviewMouseLeftButtonDown += MySceneViewOnDrawByCenter;
+        }
+
+        private void Select_Click(object sender, RoutedEventArgs e)
+        {
+            tapTypeEnum = TapTypeEnum.Select;
+            MySceneView.GeoViewTapped += MySceneViewOnSelect;
         }
         #endregion
 
@@ -364,6 +454,7 @@ namespace ArcGIS3D.WpfDemo
             overlay.Graphics.Clear();
         }
 
+        #region 测试
         private void TestCreateCube(double x ,double y,double z)
         {
             SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.LightPink, 500, SceneSymbolAnchorPosition.Center);
@@ -397,5 +488,7 @@ namespace ArcGIS3D.WpfDemo
             // Add the graphic to the overlay.
             overlay.Graphics.Add(item);
         }
+
+        #endregion
     }
 }
