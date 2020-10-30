@@ -1,0 +1,25 @@
+﻿<Window x:Class="ArcGIS3D.WpfDemo.Dialogs.SetHeight"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArcGIS3D.WpfDemo.Dialogs"
+        mc:Ignorable="d"
+        Title="SetHeight" Height="150" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Height="100" Width="50">
+            <TextBlock Text="高度：" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        </Grid>
+
+        <TextBox Grid.Column="1" Height="50" Name="heightTextBox" Text="50"></TextBox>
+        <Button Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Content="确定" Click="SetHeight_Click"></Button>
+    </Grid>
+</Window>

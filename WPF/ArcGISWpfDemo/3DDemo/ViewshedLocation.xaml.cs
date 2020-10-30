@@ -1,4 +1,5 @@
-﻿using Esri.ArcGISRuntime.Geometry;
+﻿using ArcGIS3D.WpfDemo.Dialogs;
+using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Mapping;
 using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.UI;
@@ -285,27 +286,38 @@ namespace ArcGIS3D.WpfDemo
             }
             if (points.Count >= 3)
             {
-                //绘制
-                Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+                SetHeight setHeight = new SetHeight();
+                var dialogResult= setHeight.ShowDialog();
+                if(dialogResult.HasValue && dialogResult.Value)
+                {
+                    //绘制
+                    //var lastPoint = new MapPoint(points[0].X, points[2].Y, points[0].Z, points[0].SpatialReference);
+                    var centerX = (points[0].X + points[2].X) / 2.0;
+                    var centerY = (points[0].Y + points[2].Y) / 2.0;
+                    var centerZ = points[0].Z;
+                    var centerPoint = new MapPoint(centerX, centerY, centerZ, points[0].SpatialReference);
 
-                //var lastPoint = new MapPoint(points[0].X, points[2].Y, points[0].Z, points[0].SpatialReference);
-                var centerX = (points[0].X + points[2].X) / 2.0;
-                var centerY = (points[0].Y + points[2].Y) / 2.0;
-                var centerZ = points[0].Z;
-                var centerPoint = new MapPoint(centerX, centerY, centerZ, points[0].SpatialReference);
+                    SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.DarkSeaGreen, 1, SceneSymbolAnchorPosition.Center);
+                    //旋转角度
+                    //symbol.Heading
+                    //z
+                    symbol.Height = setHeight.height;
+                    //x
+                    //symbol.Width = Distance(points[0], points[1]);
+                    //y
+                    //symbol.Depth = Distance(points[1], points[2]);
+                    symbol.Width = 20;
+                    symbol.Depth = 50;
+                    var _distanceMeasurement = new LocationDistanceMeasurement(points[0], points[1]);
+                    // Create the graphic from the geometry and the symbol.
+                    Graphic item = new Graphic(centerPoint, symbol);
 
-                SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.DarkSeaGreen, 1, SceneSymbolAnchorPosition.Center);
-                //symbol.Heading
-                symbol.Height = 100;
-                symbol.Width = Distance(points[0], points[1]);
-                symbol.Depth = Distance(points[1], points[2]);
-                // Create the graphic from the geometry and the symbol.
-                Graphic item = new Graphic(centerPoint, symbol);
+                    // Add the graphic to the overlay.
+                    overlay.Graphics.Add(item);
 
-                // Add the graphic to the overlay.
-                overlay.Graphics.Add(item);
-
-                points = new List<MapPoint>();
+                    points = new List<MapPoint>();
+                }
+              
             }
            
         }
@@ -354,9 +366,6 @@ namespace ArcGIS3D.WpfDemo
 
         private void TestCreateCube(double x ,double y,double z)
         {
-            Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
-
-
             SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.LightPink, 500, SceneSymbolAnchorPosition.Center);
             //角度
             symbol.Heading = 120;
@@ -366,7 +375,6 @@ namespace ArcGIS3D.WpfDemo
             symbol.Width = 100;
             //y
             symbol.Depth = 150;
-            //SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.Black, null);
             // Create the graphic from the geometry and the symbol.
             Graphic item = new Graphic(new MapPoint(x, y, z), symbol);
 
@@ -376,19 +384,6 @@ namespace ArcGIS3D.WpfDemo
 
         private void TestCreate(double x, double y, double z)
         {
-            points = new List<MapPoint>();
-            points.Add(new MapPoint(x, y, z));
-            points.Add(new MapPoint(x, y + 100, z));
-            points.Add(new MapPoint(x + 100, y, z));
-            points.Add(new MapPoint(x + 100, y + 100, z));
-
-            points.Add(new MapPoint(x, y, z + 200));
-            points.Add(new MapPoint(x, y + 100, z + 200));
-            points.Add(new MapPoint(x + 100, y, z + 200));
-            points.Add(new MapPoint(x + 100, y + 100, z + 200));
-            Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
-
-
             //SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateSphere(System.Drawing.Color.LightPink, 50, SceneSymbolAnchorPosition.Center);
             //圆柱体
             //SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCylinder(System.Drawing.Color.LightPink, 50, 80, SceneSymbolAnchorPosition.Center);
