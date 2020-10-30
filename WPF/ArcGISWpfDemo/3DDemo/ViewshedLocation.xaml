@@ -34,31 +34,31 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="移动观察者" Click="ChangeModeViewPointStatus_Click"></Button>
-                <TextBlock Text="Heading"
+                <TextBlock Text="观察方位"
                            Grid.Row="1" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="Pitch"
+                <TextBlock Text="观察范围"
                            Grid.Row="2" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="Horizontal angle"
+                <TextBlock Text="横向角度"
                            Grid.Row="3" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="Vertical angle"
+                <TextBlock Text="纵向角度"
                            Grid.Row="4" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="Height"
+                <TextBlock Text="观察高度"
                            Grid.Row="5" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="Minimum distance"
+                <TextBlock Text="最小距离"
                            Grid.Row="6" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="Maximum distance"
+                <TextBlock Text="最大距离"
                            Grid.Row="7" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="Frustum visibility"
+                <TextBlock Text="视锥可见性"
                            Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="Analysis visibility"
+                <TextBlock Text="分析可见性"
                            Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
                            HorizontalAlignment="Right" />
 
@@ -154,6 +154,7 @@
                 <!--<Button Content="绘制长方体(点选三点)" Grid.Row="3" Click="Draw_Click"></Button>-->
                 <Button Content="清除长方体" Grid.Row="4" Click="Clear_Click"></Button>
                 <Button Content="选中" Grid.Row="5" Click="Select_Click"></Button>
+                <Button Content="测试分析" Grid.Row="6" Click="TestAnalysis_Click"></Button>
             </Grid>
         </Border>
     </Grid>

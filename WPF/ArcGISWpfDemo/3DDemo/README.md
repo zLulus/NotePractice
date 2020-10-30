@@ -7,7 +7,7 @@ Error		ArcGIS Runtime Local Server SDK v100.9 component not installed. Local Ser
 创建圆柱体
 https://developers.arcgis.com/net/latest/wpf/sample-code/scene-symbols/
 数据分析（重合）
-
+https://developers.arcgis.com/net/latest/wpf/api-reference/html/M_Esri_ArcGISRuntime_Geometry_GeometryEngine_Overlaps.htm
 选中
 https://developers.arcgis.com/net/latest/wpf/sample-code/scene-layer-selection/
 数据分析（视觉）

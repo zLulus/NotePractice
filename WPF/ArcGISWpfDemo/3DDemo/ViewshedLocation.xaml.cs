@@ -35,6 +35,8 @@ namespace ArcGIS3D.WpfDemo
         // Hold the URL to the buildings scene layer.
         private readonly Uri _buildingsUrl = new Uri("https://tiles.arcgis.com/tiles/P3ePLMYs2RVChkJx/arcgis/rest/services/Buildings_Brest/SceneServer/layers/0");
 
+        ArcGISSceneLayer sceneLayer;
+
         // Hold a reference to the viewshed analysis.
         private LocationViewshed _viewshed;
 
@@ -84,8 +86,9 @@ namespace ArcGIS3D.WpfDemo
             mySurface.ElevationSources.Add(new ArcGISTiledElevationSource(_localElevationImageService));
             myScene.BaseSurface = mySurface;
 
+            //基础图层
             // Add the scene layer.
-            ArcGISSceneLayer sceneLayer = new ArcGISSceneLayer(_buildingsUrl);
+            sceneLayer = new ArcGISSceneLayer(_buildingsUrl);
             myScene.OperationalLayers.Add(sceneLayer);
 
             // Create the MapPoint representing the initial location.
@@ -101,6 +104,7 @@ namespace ArcGIS3D.WpfDemo
                 MinimumDistanceSlider.Value,
                 MaximumDistanceSlider.Value);
 
+            //初始位置摄像头
             // Create a camera based on the initial location.
             Camera camera = new Camera(initialLocation, 200.0, 20.0, 70.0, 0.0);
 
@@ -367,7 +371,6 @@ namespace ArcGIS3D.WpfDemo
                 // Add the graphic to the overlay.
                 overlay.Graphics.Add(item);
 
-
                 MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
             }
            
@@ -377,18 +380,52 @@ namespace ArcGIS3D.WpfDemo
         #region 选择
         private async void MySceneViewOnSelect(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
-            // Get the scene layer from the scene (first and only operational layer).
-            ArcGISSceneLayer sceneLayer = (ArcGISSceneLayer)MySceneView.Scene.OperationalLayers.First();
-
-            // Clear any existing selection.
-            sceneLayer.ClearSelection();
-            await SetSelectFeature(e, sceneLayer);
+            //白色建筑
+            //await SetSelectFeature(e);
+            //绘制图层
+            await SetSelect(e);
         }
 
-        private async Task SetSelectFeature(GeoViewInputEventArgs e, ArcGISSceneLayer sceneLayer)
+        private async Task SetSelect(Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
+        {
+            IdentifyGraphicsOverlayResult result = null;
+
+            try
+            {
+                // Identify the tapped graphics
+                result = await MySceneView.IdentifyGraphicsOverlayAsync(overlay, e.Position, 1, false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error");
+            }
+
+            // Return if there are no results
+            if (result == null || result.Graphics.Count < 1)
+            {
+                return;
+            }
+
+            // Get the first identified graphic
+            Graphic identifiedGraphic = result.Graphics.First();
+
+            // Clear any existing selection, then select the tapped graphic
+            overlay.ClearSelection();
+            identifiedGraphic.IsSelected = true;
+
+            // Get the selected graphic's geometry
+            //Geometry selectedGeometry = identifiedGraphic.Geometry;
+        }
+
+        private async Task SetSelectFeature(GeoViewInputEventArgs e)
         {
             try
             {
+                // Get the scene layer from the scene (first and only operational layer).
+                ArcGISSceneLayer sceneLayer = (ArcGISSceneLayer)MySceneView.Scene.OperationalLayers.First();
+
+                // Clear any existing selection.
+                sceneLayer.ClearSelection();
                 // Identify the layer at the tap point.
                 // Use a 10-pixel tolerance around the point and return a maximum of one feature.
                 //最多返回1个特征
@@ -489,6 +526,25 @@ namespace ArcGIS3D.WpfDemo
             overlay.Graphics.Add(item);
         }
 
+        private void TestAnalysis_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MapPoint location1 = new MapPoint(-4.5, 48.4, 46 + _viewHeight);
+                MapPoint location2 = new MapPoint(-4.5, 48.4, 46 + _viewHeight);
+
+                var b = GeometryEngine.Overlaps(location1, location2);
+                var b2= GeometryEngine.Intersection(location1, location2);
+                var b3 = GeometryEngine.Within(location1, location2);
+            }
+            catch(Exception ex)
+            {
+
+            }
+           
+        }
         #endregion
+
+
     }
 }
