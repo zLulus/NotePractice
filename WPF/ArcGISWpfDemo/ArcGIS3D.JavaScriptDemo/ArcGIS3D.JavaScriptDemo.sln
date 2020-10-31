@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGIS3D.JavaScriptDemo", "ArcGIS3D.JavaScriptDemo\ArcGIS3D.JavaScriptDemo.csproj", "{EDA6693E-8DC8-4EA6-B562-CA552930AAA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EDA6693E-8DC8-4EA6-B562-CA552930AAA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDA6693E-8DC8-4EA6-B562-CA552930AAA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDA6693E-8DC8-4EA6-B562-CA552930AAA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDA6693E-8DC8-4EA6-B562-CA552930AAA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {169CA909-3989-4C58-99C8-4BBD65BBC3FE}
+	EndGlobalSection
+EndGlobal

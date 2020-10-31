@@ -73,6 +73,8 @@ namespace ArcGIS3D.WpfDemo
 
         private void Initialize()
         {
+            
+
             tapTypeEnum = TapTypeEnum.None;
 
             _viewHeight = HeightSlider.Value;
@@ -86,7 +88,7 @@ namespace ArcGIS3D.WpfDemo
             mySurface.ElevationSources.Add(new ArcGISTiledElevationSource(_localElevationImageService));
             myScene.BaseSurface = mySurface;
 
-            //基础图层
+            //基础图层-白色建筑
             // Add the scene layer.
             sceneLayer = new ArcGISSceneLayer(_buildingsUrl);
             myScene.OperationalLayers.Add(sceneLayer);
@@ -282,10 +284,14 @@ namespace ArcGIS3D.WpfDemo
                 // Get the corresponding MapPoint.
                 MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
                 //TestCreateCube(onMapLocation.X, onMapLocation.Y, onMapLocation.Z);
-                //防止重复点击
-                var isExist = points.Where(x => x.X == onMapLocation.X && x.Y == onMapLocation.Y && x.Z == onMapLocation.Z).FirstOrDefault();
-                if(isExist==null)
-                    points.Add(onMapLocation);
+                if (onMapLocation != null)
+                {
+                    //防止重复点击
+                    var isExist = points.Where(x => x != null && x.X == onMapLocation.X && x.Y == onMapLocation.Y && x.Z == onMapLocation.Z).FirstOrDefault();
+                    if (isExist == null)
+                        points.Add(onMapLocation);
+                }
+             
             }
             if (points.Count >= 3)
             {
@@ -295,29 +301,49 @@ namespace ArcGIS3D.WpfDemo
                 {
                     //绘制
                     //var lastPoint = new MapPoint(points[0].X, points[2].Y, points[0].Z, points[0].SpatialReference);
-                    var centerX = (points[0].X + points[2].X) / 2.0;
-                    var centerY = (points[0].Y + points[2].Y) / 2.0;
-                    var centerZ = points[0].Z;
-                    var centerPoint = new MapPoint(centerX, centerY, centerZ, points[0].SpatialReference);
+                    //var centerX = (points[0].X + points[2].X) / 2.0;
+                    //var centerY = (points[0].Y + points[2].Y) / 2.0;
+                    //var centerZ = points[0].Z;
+                    //var centerPoint = new MapPoint(centerX, centerY, centerZ, points[0].SpatialReference);
+                    //Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+                    //polygon.Dimension
 
-                    SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.DarkSeaGreen, 1, SceneSymbolAnchorPosition.Center);
+
+                    //SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.DarkSeaGreen, 1, SceneSymbolAnchorPosition.Center);
                     //旋转角度
                     //symbol.Heading
                     //z
-                    symbol.Height = setHeight.height;
+                    //symbol.Height = setHeight.height;
                     //x
                     //symbol.Width = Distance(points[0], points[1]);
                     //y
                     //symbol.Depth = Distance(points[1], points[2]);
-                    symbol.Width = 20;
-                    symbol.Depth = 50;
-                    var _distanceMeasurement = new LocationDistanceMeasurement(points[0], points[1]);
+                    //symbol.Width = 20;
+                    //symbol.Depth = 50;
+                    //var _distanceMeasurement = new LocationDistanceMeasurement(points[0], points[1]);
                     // Create the graphic from the geometry and the symbol.
-                    Graphic item = new Graphic(centerPoint, symbol);
+                    //Graphic item = new Graphic(centerPoint, symbol);
 
                     // Add the graphic to the overlay.
-                    overlay.Graphics.Add(item);
+                    //overlay.Graphics.Add(item);
 
+
+                    // Create a point collection with coordinates that approximates the border between California and Nevada.
+                    Esri.ArcGISRuntime.Geometry.PointCollection thePointCollection = new Esri.ArcGISRuntime.Geometry.PointCollection(SpatialReferences.Wgs84);
+                    foreach(var p in points)
+                    {
+                        thePointCollection.Add(p.X, p.Y,p.Z);
+                    }
+                    foreach (var p in points)
+                    {
+                        thePointCollection.Add(p.X, p.Y, p.Z+100);
+                    }
+
+                    // Create a polyline from the point collection.
+                    Esri.ArcGISRuntime.Geometry.Polyline thePolyline = new Esri.ArcGISRuntime.Geometry.Polyline(thePointCollection);
+                    SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.AliceBlue, null);
+                    Graphic item = new Graphic(thePolyline, simpleFillSymbol);
+                    overlay.Graphics.Add(item);
                     points = new List<MapPoint>();
                 }
               
@@ -381,9 +407,9 @@ namespace ArcGIS3D.WpfDemo
         private async void MySceneViewOnSelect(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             //白色建筑
-            //await SetSelectFeature(e);
+            await SetSelectFeature(e);
             //绘制图层
-            await SetSelect(e);
+            //await SetSelect(e);
         }
 
         private async Task SetSelect(Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
@@ -414,7 +440,8 @@ namespace ArcGIS3D.WpfDemo
             identifiedGraphic.IsSelected = true;
 
             // Get the selected graphic's geometry
-            //Geometry selectedGeometry = identifiedGraphic.Geometry;
+            Esri.ArcGISRuntime.Geometry.Geometry selectedGeometry = identifiedGraphic.Geometry;
+
         }
 
         private async Task SetSelectFeature(GeoViewInputEventArgs e)
@@ -536,6 +563,12 @@ namespace ArcGIS3D.WpfDemo
                 var b = GeometryEngine.Overlaps(location1, location2);
                 var b2= GeometryEngine.Intersection(location1, location2);
                 var b3 = GeometryEngine.Within(location1, location2);
+
+                List<MapPoint> points = new List<MapPoint>();
+                points.Add(new MapPoint(-4.5, 48.4, 46 + _viewHeight));
+                points.Add(new MapPoint(-4.5, 43, 46 + _viewHeight));
+                var polyline = new Esri.ArcGISRuntime.Geometry.Polyline(points);
+                var g1=  GeometryEngine.Difference(location1, polyline);
             }
             catch(Exception ex)
             {
@@ -543,8 +576,13 @@ namespace ArcGIS3D.WpfDemo
             }
            
         }
+
         #endregion
 
-
+        private void TestLayer_Click(object sender, RoutedEventArgs e)
+        {
+            var f = sceneLayer.FeatureTable;
+            var sel = sceneLayer.GetSelectedFeaturesAsync().Result.ToList();
+        }
     }
 }
