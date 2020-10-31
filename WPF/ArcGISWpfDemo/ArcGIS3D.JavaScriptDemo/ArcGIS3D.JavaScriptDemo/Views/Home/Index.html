@@ -103,7 +103,7 @@
             });
 
             // Create a layer with visualVariables to use interactive handles for size and rotation
-            //提供交互编辑
+            //提供交互编辑+固定样式的模板（旅馆、直升飞机等）
             var recreationLayer = new FeatureLayer({
                 title: "Recreation",
                 url:
@@ -168,7 +168,7 @@
                                     name: "Swing"
                                 }
                             }
-                        }
+                        },
                     ]
                 }
             });
@@ -182,6 +182,7 @@
                 map: webscene
             });
 
+            //创建编辑页（右上角）
             view.when(function () {
                 view.popup.autoOpenEnabled = false; //disable popups
                 // Create the Editor
@@ -199,7 +200,9 @@
             view.map.addMany([bufferLayer, sketchLayer]);
 
             // create the layerView's to add the filter
+            //建筑
             let sceneLayerView = null;
+            //树木
             let featureLayerView = null;
             view.map.load().then(function () {
                 // loop through webmap's operational layers
@@ -308,6 +311,7 @@
                 }
             });
 
+            //设置筛选的图层
             // select the layer to filter on
             let featureLayerViewFilterSelected = true;
             document
@@ -364,6 +368,7 @@
                 bufferLayer.removeAll();
                 sceneLayerView.filter = null;
                 featureLayerView.filter = null;
+                recreationLayer.filter = null;
             }
 
             // set the geometry filter on the visible FeatureLayerView
@@ -374,18 +379,22 @@
                     geometry: filterGeometry,
                     spatialRelationship: selectedFilter
                 };
-
+                //设置过滤器，进行条件筛选
                 if (featureLayerView) {
                     if (featureLayerViewFilterSelected) {
+                        recreationLayer.filter = featureFilter;
                         featureLayerView.filter = featureFilter;
                     } else {
+                        recreationLayer.filter = null;
                         featureLayerView.filter = null;
                     }
                 }
                 if (sceneLayerView) {
                     if (sceneLayerViewFilterSelected) {
+                        recreationLayer.filter = featureFilter;
                         sceneLayerView.filter = featureFilter;
                     } else {
+                        recreationLayer.filter = null;
                         sceneLayerView.filter = null;
                     }
                 }

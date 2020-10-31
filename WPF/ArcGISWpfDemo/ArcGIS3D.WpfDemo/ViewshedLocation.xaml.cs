@@ -327,23 +327,22 @@ namespace ArcGIS3D.WpfDemo
                     // Add the graphic to the overlay.
                     //overlay.Graphics.Add(item);
 
-
-                    // Create a point collection with coordinates that approximates the border between California and Nevada.
                     Esri.ArcGISRuntime.Geometry.PointCollection thePointCollection = new Esri.ArcGISRuntime.Geometry.PointCollection(SpatialReferences.Wgs84);
-                    foreach(var p in points)
-                    {
-                        thePointCollection.Add(p.X, p.Y,p.Z);
-                    }
                     foreach (var p in points)
                     {
-                        thePointCollection.Add(p.X, p.Y, p.Z+100);
+                        thePointCollection.Add(p.X, p.Y, p.Z);
+                    }
+                    for(int i= points.Count-1;i<0;i--)
+                    {
+                        thePointCollection.Add(points[i].X, points[i].Y, points[i].Z + 100);
                     }
 
                     // Create a polyline from the point collection.
-                    Esri.ArcGISRuntime.Geometry.Polyline thePolyline = new Esri.ArcGISRuntime.Geometry.Polyline(thePointCollection);
+                    Esri.ArcGISRuntime.Geometry.Polygon thePolyline = new Esri.ArcGISRuntime.Geometry.Polygon(thePointCollection);
                     SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.AliceBlue, null);
                     Graphic item = new Graphic(thePolyline, simpleFillSymbol);
                     overlay.Graphics.Add(item);
+
                     points = new List<MapPoint>();
                 }
               
@@ -407,9 +406,9 @@ namespace ArcGIS3D.WpfDemo
         private async void MySceneViewOnSelect(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             //白色建筑
-            await SetSelectFeature(e);
+            //await SetSelectFeature(e);
             //绘制图层
-            //await SetSelect(e);
+            await SetSelect(e);
         }
 
         private async Task SetSelect(Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
@@ -455,8 +454,8 @@ namespace ArcGIS3D.WpfDemo
                 sceneLayer.ClearSelection();
                 // Identify the layer at the tap point.
                 // Use a 10-pixel tolerance around the point and return a maximum of one feature.
-                //最多返回1个特征
-                IdentifyLayerResult result = await MySceneView.IdentifyLayerAsync(sceneLayer, e.Position, 10, false, 1);
+                //最多返回6个特征
+                IdentifyLayerResult result = await MySceneView.IdentifyLayerAsync(sceneLayer, e.Position, 10, false, 6);
 
                 // Get the GeoElements that were identified (will be 0 or 1 element).
                 IReadOnlyList<GeoElement> geoElements = result.GeoElements;
@@ -582,6 +581,8 @@ namespace ArcGIS3D.WpfDemo
         private void TestLayer_Click(object sender, RoutedEventArgs e)
         {
             var f = sceneLayer.FeatureTable;
+            //f.QueryFeaturesAsync
+
             var sel = sceneLayer.GetSelectedFeaturesAsync().Result.ToList();
         }
     }
