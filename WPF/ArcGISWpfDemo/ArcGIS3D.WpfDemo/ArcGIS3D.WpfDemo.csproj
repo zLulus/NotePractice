@@ -85,7 +85,7 @@
     <Compile Include="Models\PointInfo.cs" />
     <Compile Include="OBBCollisions\OBB.cs" />
     <Compile Include="OBBCollisions\OBBCollision.cs" />
-    <Compile Include="OBBCollisions\vec3.cs" />
+    <Compile Include="OBBCollisions\Vec3.cs" />
     <Compile Include="ViewModels\NotifyPropertyChanged.cs" />
     <Compile Include="ViewModels\SetCubeInfoViewModel.cs" />
     <Compile Include="ViewshedLocation.xaml.cs">

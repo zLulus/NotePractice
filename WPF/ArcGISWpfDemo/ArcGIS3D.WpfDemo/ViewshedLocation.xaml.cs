@@ -582,51 +582,53 @@ namespace ArcGIS3D.WpfDemo
         private void TestLayer_Click(object sender, RoutedEventArgs e)
         {
             var f = sceneLayer.FeatureTable;
-            //f.QueryFeaturesAsync
-            
             var sel = sceneLayer.GetSelectedFeaturesAsync().Result.ToList();
         }
 
         private void TestOBBCollision_Click(object sender, RoutedEventArgs e)
         {
             // create two obbs
+            //两个OBB A和B
             OBB A, B;
 
             // set the first obb's properties
             A = new OBB();
             // set its center position
-            A.Pos = new vec3(0, 0, 0);
+            //定义A的中心点为(0,0,0)
+            A.Pos = new Vec3(0, 0, 0);
 
             // set the half size
-            A.Half_size = new vec3(10, 1, 1);
+            //定义A的1/2边长(10,1,1)，即A的边长为(20,2,2)
+            A.Half_size = new Vec3(10, 1, 1);
 
             // set the axes orientation
-            A.AxisX = new vec3(1, 0, 0);
-
-            A.AxisY = new vec3(0, 1, 0);
-
-            A.AxisZ = new vec3(0, 0, 1);
+            //定义A的x,y,z轴方向
+            A.AxisX = new Vec3(1, 0, 0);
+            A.AxisY = new Vec3(0, 1, 0);
+            A.AxisZ = new Vec3(0, 0, 1);
 
             // set the second obb's properties
             B = new OBB();
             // set its center position
-            B.Pos = new vec3(20, 0, 0);
+            B.Pos = new Vec3(20, 0, 0);
 
             // set the half size
-            B.Half_size = new vec3(10, 1, 1);
+            B.Half_size = new Vec3(10, 1, 1);
 
             // set the axes orientation
-            B.AxisX = new vec3(1, 0, 0);
-            B.AxisY = new vec3(0, 1, 0);
-            B.AxisZ = new vec3(0, 0, 1);
+            B.AxisX = new Vec3(1, 0, 0);
+            B.AxisY = new Vec3(0, 1, 0);
+            B.AxisZ = new Vec3(0, 0, 1);
 
             // run the code and get the result as a message
-            if (OBBCollision.getCollision(A, B))
+            if (OBBCollision.GetCollision(A, B))
             {
+                //碰撞
                 Console.WriteLine("Collision!!!");
             }
             else
             {
+                //未碰撞
                 Console.WriteLine("No collision.");
             }
 

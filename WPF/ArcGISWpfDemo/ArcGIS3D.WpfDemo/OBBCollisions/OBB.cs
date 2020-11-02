@@ -11,10 +11,10 @@ namespace ArcGIS3D.WpfDemo.OBBCollisions
     /// </summary>
     public class OBB
     {
-        public vec3 Pos { get; set; }
-        public vec3 AxisX { get; set; }
-        public vec3 AxisY { get; set; }
-        public vec3 AxisZ { get; set; }
-        public vec3 Half_size { get; set; }
+        public Vec3 Pos { get; set; }
+        public Vec3 AxisX { get; set; }
+        public Vec3 AxisY { get; set; }
+        public Vec3 AxisZ { get; set; }
+        public Vec3 Half_size { get; set; }
     }
 }

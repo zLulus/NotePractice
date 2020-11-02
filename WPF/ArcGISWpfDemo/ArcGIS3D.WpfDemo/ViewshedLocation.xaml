@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ArcGIS3D.WpfDemo" xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:ArcGIS3D.WpfDemo" 
+             xmlns:esri="http://schemas.esri.com/arcgis/runtime/2013"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
@@ -17,16 +18,16 @@
         <Border Style="{StaticResource BorderStyle}">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -135,27 +136,27 @@
         <Border Style="{StaticResource BorderStyle}" Margin="0,350,30,0" Height="300">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="绘制并计算重叠"
                            Grid.Row="0" Grid.Column="0"
                            TextWrapping="WrapWithOverflow" TextAlignment="Center" FontWeight="SemiBold" />
                 <Button Content="切换为移动模式" Grid.Row="1" Click="ChangeModeStatus_Click"></Button>
                 <Button Content="绘制长方体(点选中心点)" Grid.Row="2" Click="DrawByCenter_Click"></Button>
-                <Button Content="绘制长方体(点选三点)" Grid.Row="3" Click="Draw_Click"></Button>
+                <!--<Button Content="绘制长方体(点选三点)" Grid.Row="3" Click="Draw_Click"></Button>-->
                 <Button Content="清除长方体" Grid.Row="4" Click="Clear_Click"></Button>
                 <Button Content="选中" Grid.Row="5" Click="Select_Click"></Button>
-                <Button Content="测试分析" Grid.Row="6" Click="TestAnalysis_Click"></Button>
-                <Button Content="测试图层" Grid.Row="7" Click="TestLayer_Click"></Button>
+                <!--<Button Content="测试分析" Grid.Row="6" Click="TestAnalysis_Click"></Button>-->
+                <!--<Button Content="测试图层" Grid.Row="7" Click="TestLayer_Click"></Button>-->
                 <Button Content="OBB碰撞测试" Grid.Row="8" Click="TestOBBCollision_Click"></Button>
             </Grid>
         </Border>
