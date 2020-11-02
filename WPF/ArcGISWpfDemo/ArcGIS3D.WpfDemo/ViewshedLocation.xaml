@@ -156,6 +156,7 @@
                 <Button Content="选中" Grid.Row="5" Click="Select_Click"></Button>
                 <Button Content="测试分析" Grid.Row="6" Click="TestAnalysis_Click"></Button>
                 <Button Content="测试图层" Grid.Row="7" Click="TestLayer_Click"></Button>
+                <Button Content="OBB碰撞测试" Grid.Row="8" Click="TestOBBCollision_Click"></Button>
             </Grid>
         </Border>
     </Grid>

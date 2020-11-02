@@ -1,5 +1,6 @@
 ﻿using ArcGIS3D.WpfDemo.Dialogs;
 using ArcGIS3D.WpfDemo.Enums;
+using ArcGIS3D.WpfDemo.OBBCollisions;
 using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Mapping;
@@ -582,8 +583,53 @@ namespace ArcGIS3D.WpfDemo
         {
             var f = sceneLayer.FeatureTable;
             //f.QueryFeaturesAsync
-
+            
             var sel = sceneLayer.GetSelectedFeaturesAsync().Result.ToList();
+        }
+
+        private void TestOBBCollision_Click(object sender, RoutedEventArgs e)
+        {
+            // create two obbs
+            OBB A, B;
+
+            // set the first obb's properties
+            A = new OBB();
+            // set its center position
+            A.Pos = new vec3(0, 0, 0);
+
+            // set the half size
+            A.Half_size = new vec3(10, 1, 1);
+
+            // set the axes orientation
+            A.AxisX = new vec3(1, 0, 0);
+
+            A.AxisY = new vec3(0, 1, 0);
+
+            A.AxisZ = new vec3(0, 0, 1);
+
+            // set the second obb's properties
+            B = new OBB();
+            // set its center position
+            B.Pos = new vec3(20, 0, 0);
+
+            // set the half size
+            B.Half_size = new vec3(10, 1, 1);
+
+            // set the axes orientation
+            B.AxisX = new vec3(1, 0, 0);
+            B.AxisY = new vec3(0, 1, 0);
+            B.AxisZ = new vec3(0, 0, 1);
+
+            // run the code and get the result as a message
+            if (OBBCollision.getCollision(A, B))
+            {
+                Console.WriteLine("Collision!!!");
+            }
+            else
+            {
+                Console.WriteLine("No collision.");
+            }
+
         }
     }
 }

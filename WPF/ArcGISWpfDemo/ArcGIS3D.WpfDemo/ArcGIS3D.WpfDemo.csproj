@@ -83,6 +83,9 @@
     </Compile>
     <Compile Include="Enums\TapTypeEnum.cs" />
     <Compile Include="Models\PointInfo.cs" />
+    <Compile Include="OBBCollisions\OBB.cs" />
+    <Compile Include="OBBCollisions\OBBCollision.cs" />
+    <Compile Include="OBBCollisions\vec3.cs" />
     <Compile Include="ViewModels\NotifyPropertyChanged.cs" />
     <Compile Include="ViewModels\SetCubeInfoViewModel.cs" />
     <Compile Include="ViewshedLocation.xaml.cs">
@@ -141,6 +144,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="OBBCollisions\README.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -165,6 +169,7 @@
     <Content Include="Resources\SyntaxHighlighting\highlight.css" />
     <Content Include="Resources\SyntaxHighlighting\highlight.pack.js" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Esri.ArcGISRuntime.runtimes.win.100.9.0\build\net461\Esri.ArcGISRuntime.runtimes.win.targets" Condition="Exists('packages\Esri.ArcGISRuntime.runtimes.win.100.9.0\build\net461\Esri.ArcGISRuntime.runtimes.win.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
