@@ -73,10 +73,36 @@ namespace ArcGIS3D.WpfDemo
                 ShapefileFeatureTable myShapefile = await ShapefileFeatureTable.OpenAsync(ShpFilePath);
 
                 // Create a feature layer to display the shapefile
-                featureLayer = new FeatureLayer(myShapefile);
+                featureLayer = new FeatureLayer(myShapefile)
+                {
+                    // Set the rendering mode of the feature layer to be dynamic (needed for extrusion to work)
+                    RenderingMode = FeatureRenderingMode.Dynamic
+                };
                 var spF = featureLayer.SpatialReference;
                 var spFG = featureLayer.SpatialReference.BaseGeographic;
-                //shpLayer.SceneProperties.SurfacePlacement = SurfacePlacement.Draped;
+
+                #region 绘制高程
+                // Create a new simple line symbol for the feature layer
+                SimpleLineSymbol mySimpleLineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, System.Drawing.Color.Black, 1);
+
+                // Create a new simple fill symbol for the feature layer 
+                SimpleFillSymbol mysimpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.WhiteSmoke, mySimpleLineSymbol);
+
+                // Create a new simple renderer for the feature layer
+                SimpleRenderer mySimpleRenderer = new SimpleRenderer(mysimpleFillSymbol);
+
+                // Get the scene properties from the simple renderer
+                RendererSceneProperties myRendererSceneProperties = mySimpleRenderer.SceneProperties;
+
+                // Set the extrusion mode for the scene properties
+                myRendererSceneProperties.ExtrusionMode = ExtrusionMode.AbsoluteHeight;
+
+                // Set the initial extrusion expression
+                myRendererSceneProperties.ExtrusionExpression = "[Z]";
+
+                // Set the feature layer's renderer to the define simple renderer
+                featureLayer.Renderer = mySimpleRenderer;
+                #endregion
 
                 // Add the feature layer to the map
                 MySceneView.Scene = new Scene(BasemapType.DarkGrayCanvasVector);
