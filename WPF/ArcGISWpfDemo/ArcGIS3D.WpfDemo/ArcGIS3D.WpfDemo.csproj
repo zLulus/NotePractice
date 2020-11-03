@@ -75,6 +75,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CubeCollision.xaml.cs">
+      <DependentUpon>CubeCollision.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SetCubeInfo.xaml.cs">
       <DependentUpon>SetCubeInfo.xaml</DependentUpon>
     </Compile>
@@ -93,6 +96,10 @@
     <Compile Include="ViewshedLocation.xaml.cs">
       <DependentUpon>ViewshedLocation.xaml</DependentUpon>
     </Compile>
+    <Page Include="CubeCollision.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Dialogs\SetCubeInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -7,6 +7,6 @@
         mc:Ignorable="d" Loaded="Window_Loaded"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <local:ViewshedLocation></local:ViewshedLocation>
+        <local:CubeCollision></local:CubeCollision>
     </Grid>
 </Window>
