@@ -158,6 +158,7 @@
                 <!--<Button Content="测试分析" Grid.Row="6" Click="TestAnalysis_Click"></Button>-->
                 <!--<Button Content="测试图层" Grid.Row="7" Click="TestLayer_Click"></Button>-->
                 <Button Content="OBB碰撞测试" Grid.Row="8" Click="TestOBBCollision_Click"></Button>
+                <Button Content="计算两个无旋转长方体的重叠体积" Grid.Row="9" Click="TestIntersectingVolume_Click"></Button>
             </Grid>
         </Border>
     </Grid>

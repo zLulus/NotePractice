@@ -1,5 +1,6 @@
 ﻿using ArcGIS3D.WpfDemo.Dialogs;
 using ArcGIS3D.WpfDemo.Enums;
+using ArcGIS3D.WpfDemo.IntersectingVolumes;
 using ArcGIS3D.WpfDemo.OBBCollisions;
 using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Geometry;
@@ -632,6 +633,19 @@ namespace ArcGIS3D.WpfDemo
                 Console.WriteLine("No collision.");
             }
 
+        }
+
+        private void TestIntersectingVolume_Click(object sender, RoutedEventArgs e)
+        {
+            Cuboid A = new Cuboid();
+            A.LeftBottomPoint = new Vec3(0, 0, 0);
+            A.RightTopPoint = new Vec3(10, 10, 10);
+
+            Cuboid B = new Cuboid();
+            B.LeftBottomPoint = new Vec3(10, 10, 10);
+            B.RightTopPoint = new Vec3(25, 25, 25);
+
+            var v = IntersectingVolume.CalculateIntersectingVolume(A, B);
         }
     }
 }

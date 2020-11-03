@@ -82,6 +82,8 @@
       <DependentUpon>SetHeight.xaml</DependentUpon>
     </Compile>
     <Compile Include="Enums\TapTypeEnum.cs" />
+    <Compile Include="IntersectingVolumes\IntersectingVolume.cs" />
+    <Compile Include="IntersectingVolumes\Cuboid.cs" />
     <Compile Include="Models\PointInfo.cs" />
     <Compile Include="OBBCollisions\OBB.cs" />
     <Compile Include="OBBCollisions\OBBCollision.cs" />
@@ -144,6 +146,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="IntersectingVolumes\README.md" />
     <None Include="OBBCollisions\README.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
