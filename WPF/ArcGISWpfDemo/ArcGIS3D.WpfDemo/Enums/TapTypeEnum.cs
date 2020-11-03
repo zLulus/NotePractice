@@ -25,5 +25,7 @@ namespace ArcGIS3D.WpfDemo.Enums
         /// 高亮选中
         /// </summary>
         Select=4,
+        SelectFeatureLayer=5,
+        SelectGraphicLayer=6
     }
 }

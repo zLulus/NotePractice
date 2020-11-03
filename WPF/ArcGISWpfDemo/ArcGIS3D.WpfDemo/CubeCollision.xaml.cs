@@ -61,7 +61,20 @@ namespace ArcGIS3D.WpfDemo
             InitializeMap();
         }
 
+        #region 初始化
         private async void InitializeMap()
+        {
+            //shp
+            await InitializeFeatureLayer();
+
+            //tiff
+            InitializeImageOverlay();
+
+            //绘图图层
+            InitializeGraphicsOverlaye();
+        }
+
+        private async Task InitializeFeatureLayer()
         {
             // Create a new map to display in the map view with a streets basemap
             //shp
@@ -104,44 +117,45 @@ namespace ArcGIS3D.WpfDemo
                 featureLayer.Renderer = mySimpleRenderer;
                 #endregion
 
-                // Add the feature layer to the map
+                //设置底图样式
                 MySceneView.Scene = new Scene(BasemapType.DarkGrayCanvasVector);
+                // Add the feature layer to the map
                 MySceneView.Scene.Basemap = new Basemap(featureLayer);
                 var bSp = MySceneView.Scene.Basemap.BaseLayers[0].SpatialReference;
                 var sp = MySceneView.SpatialReference;
                 // Zoom the map to the extent of the shapefile
                 await MySceneView.SetViewpointAsync(new Viewpoint(myShapefile.Extent));
-                //await MyMapView.SetViewpointGeometryAsync(newFeatureLayer.FullExtent, 50);
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString(), "Error");
             }
+        }
 
-            //tiff
+        private void InitializeImageOverlay()
+        {
             try
             {
-                //////https://developers.arcgis.com/net/latest/wpf/guide/add-image-overlays.htm
-                ////////// Create an Envelope for displaying the image frame in the correct location
-                //var sp = new SpatialReference(4523);
-                //Envelope pacificSouthwestEnvelope = new Envelope(35563999.499069, 3547066.496987, 35564412.860201, 3547500.100019, sp);
+                ////https://developers.arcgis.com/net/latest/wpf/guide/add-image-overlays.htm
+                //////// Create an Envelope for displaying the image frame in the correct location
+                var sp = new SpatialReference(4523);
+                Envelope pacificSouthwestEnvelope = featureLayer.FullExtent;//new Envelope(, 3547066.496987, 35564412.860201, 3547500.100019, sp);
 
-                //////// Create a RuntimeImage to display using a local png file
-                ////RuntimeImage image = new RuntimeImage(new System.Uri("file:///D:/Project/ChangZhen/3547.00-564.00.tif"));
-                ////RuntimeImage image = new RuntimeImage(new System.Uri("file:///D:/Project/ChangZhen/3547.00-564.00.png"));
+                ////// Create an ImageFrame with a local image file and the extent envelope  
+                ImageFrame imageFrame = new ImageFrame(new System.Uri(TifFilePath), pacificSouthwestEnvelope);
+                //ImageFrame imageFrame = new ImageFrame(image, pacificSouthwestEnvelope);
 
-                //////// Create an ImageFrame with a local image file and the extent envelope  
-                //ImageFrame imageFrame = new ImageFrame(new System.Uri(TifFilePath), pacificSouthwestEnvelope);
-                ////ImageFrame imageFrame = new ImageFrame(image, pacificSouthwestEnvelope);
+                ////// Add the ImageFrame to an ImageOverlay and set it to be 50% transparent
+                ImageOverlay imageOverlay = new ImageOverlay(imageFrame);
+                //透明度
+                imageOverlay.Opacity = 1;
 
-                //////// Add the ImageFrame to an ImageOverlay and set it to be 50% transparent
-                //ImageOverlay imageOverlay = new ImageOverlay(imageFrame);
-                //imageOverlay.Opacity = 0.5;
-
-                ////// Add the ImageOverlay to the scene view's ImageOverlay collection
-                //MySceneView.ImageOverlays.Add(imageOverlay);
-                /////todo 没有加载出来
+                //// Add the ImageOverlay to the scene view's ImageOverlay collection
+                //MySceneView.Overlays.Items.Add(imageOverlay);
+                MySceneView.ImageOverlays.Add(imageOverlay);
+                ///todo 没有加载出来
                 //imageFrame.LoadAsync().Wait();
+
 
                 //// Load the raster file
                 //Raster myRasterFile = new Raster("file:///D:/Project/ChangZhen/3547.00-564.00.tif");
@@ -157,36 +171,43 @@ namespace ArcGIS3D.WpfDemo
             {
                 MessageBox.Show(ex.ToString(), "Error");
             }
+        }
 
-            //todo 加载高程
-            //https://developers.arcgis.com/net/10-2/store/guide/add-layers-to-your-scene.htm
-            //// query for all graphics in the feature service, include z-coordinate values
-            //var queryTask = new QueryTask(new Uri("file:///D:/Project/场镇/场镇.shp"));
-            //var query = new Query("1=1");
-            //query.ReturnZ = true;
-            //var result = await queryTask.ExecuteAsync(query);
-
-            //// create a graphics layer to show the graphics using absolute placement using the z values
-            //var graphicsLayer = new GraphicsLayer();
-            //graphicsLayer.SceneProperties.SurfacePlacement = SurfacePlacement.Absolute;
-
-            //// build graphics from the results, symbolize with a red line
-            //var lineSym = new SimpleLineSymbol { Color = Colors.Red, Style = SimpleLineStyle.Solid, Width = 5 };
-            //graphicsLayer.GraphicsSource = from f in result.FeatureSet.Features select new Graphic(f.Geometry, lineSym);
-
-            //// add the layer to the scene
-            //MySceneView.Scene.Layers.Add(graphicsLayer);
-
+        private void InitializeGraphicsOverlaye()
+        {
             //绘画图层
             // Create the graphics overlay.
             graphicOverlay = new GraphicsOverlay();
             //缩小放大
-            graphicOverlay.ScaleSymbols = true;
+            graphicOverlay.ScaleSymbols = false;
+            //#region 绘制高程
+            //// Create a new simple line symbol for the feature layer
+            //SimpleLineSymbol mySimpleLineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, System.Drawing.Color.Black, 1);
+
+            //// Create a new simple fill symbol for the feature layer 
+            //SimpleFillSymbol mysimpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.WhiteSmoke, mySimpleLineSymbol);
+
+            //// Create a new simple renderer for the feature layer
+            //SimpleRenderer mySimpleRenderer = new SimpleRenderer(mysimpleFillSymbol);
+
+            //// Get the scene properties from the simple renderer
+            //RendererSceneProperties myRendererSceneProperties = mySimpleRenderer.SceneProperties;
+
+            //// Set the extrusion mode for the scene properties
+            //myRendererSceneProperties.ExtrusionMode = ExtrusionMode.AbsoluteHeight;
+
+            //// Set the initial extrusion expression
+            //myRendererSceneProperties.ExtrusionExpression = "[Z]";
+
+            //// Set the feature layer's renderer to the define simple renderer
+            //graphicOverlay.Renderer = mySimpleRenderer;
+            //#endregion
 
             // Set the surface placement mode for the overlay.
             graphicOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Absolute;
             MySceneView.GraphicsOverlays.Add(graphicOverlay);
         }
+        #endregion
 
         private void MySceneViewOnGeoViewTapped(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
@@ -199,25 +220,34 @@ namespace ArcGIS3D.WpfDemo
 
             }
         }
+
         #region 切换模式
 
         private void ChangeModeStatus_Click(object sender, RoutedEventArgs e)
         {
-            MySceneView.GeoViewTapped -= MySceneViewOnSelect;
+            MySceneView.GeoViewTapped -= MySceneViewOnSelectFeatureLayer;
+            MySceneView.GeoViewTapped -= MySceneViewOnSelectGraphicLayer;
             tapTypeEnum = TapTypeEnum.None;
         }
 
         private void DrawByCenter_Click(object sender, RoutedEventArgs e)
         {
-            MySceneView.GeoViewTapped -= MySceneViewOnSelect;
+            MySceneView.GeoViewTapped -= MySceneViewOnSelectFeatureLayer;
+            MySceneView.GeoViewTapped -= MySceneViewOnSelectGraphicLayer;
             tapTypeEnum = TapTypeEnum.DrawByCenter;
             MySceneView.PreviewMouseLeftButtonDown += MySceneViewOnDrawByCenter;
         }
 
-        private void Select_Click(object sender, RoutedEventArgs e)
+        private void SelectFeatureLayer_Click(object sender, RoutedEventArgs e)
         {
-            tapTypeEnum = TapTypeEnum.Select;
-            MySceneView.GeoViewTapped += MySceneViewOnSelect;
+            tapTypeEnum = TapTypeEnum.SelectFeatureLayer;
+            MySceneView.GeoViewTapped += MySceneViewOnSelectFeatureLayer;
+        }
+
+        private void SelectGraphicLayer_Click(object sender, RoutedEventArgs e)
+        {
+            tapTypeEnum = TapTypeEnum.SelectGraphicLayer;
+            MySceneView.GeoViewTapped += MySceneViewOnSelectGraphicLayer;
         }
         #endregion
 
@@ -226,12 +256,15 @@ namespace ArcGIS3D.WpfDemo
             graphicOverlay.Graphics.Clear();
         }
 
-        #region 选择
-        private async void MySceneViewOnSelect(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
+        #region 选择-高亮
+        private async void MySceneViewOnSelectFeatureLayer(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             //shp图层
             await SetSelectForFeatureLayer(e);
+        }
 
+        private async void MySceneViewOnSelectGraphicLayer(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
+        {
             //绘制图层
             await SetSelectForGraphicsOverlay(e);
         }
@@ -250,7 +283,7 @@ namespace ArcGIS3D.WpfDemo
 
                 //// Convert the tolerance to map units.
                 ////double mapTolerance = tolerance * MySceneView.UnitsPerPixel;
-                ////todo 单位
+                ////单位未知
                 //double mapTolerance = tolerance * 0.000001;
 
                 //// Get the tapped point.
@@ -357,10 +390,34 @@ namespace ArcGIS3D.WpfDemo
                 MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
             }
 
+            //todo
+            //var num = 0.01;
+            //List<MapPoint> points = new List<MapPoint>();
+            //points.Add(onMapLocation);
+            //points.Add(new MapPoint(onMapLocation.X+ num, onMapLocation.Y, onMapLocation.Z, onMapLocation.SpatialReference));
+            //points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y + num, onMapLocation.Z, onMapLocation.SpatialReference));
+            //points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y+ num, onMapLocation.Z, onMapLocation.SpatialReference));
+
+            //points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            ////points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            ////points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            ////points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z+ num, onMapLocation.SpatialReference));
+
+            ////var blueSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Pink };
+
+            //Esri.ArcGISRuntime.Geometry.Polyline polyline = new Esri.ArcGISRuntime.Geometry.Polyline(points);
+            //// Create the graphic from the geometry and the symbol.
+            //Graphic item = new Graphic(polyline);
+
+            //// Add the graphic to the overlay.
+            //graphicOverlay.Graphics.Add(item);
+
+            //MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
+
         }
         #endregion
 
-        #region OBB
+        #region 判断关系
         private void CheckOBBCollision_Click(object sender, RoutedEventArgs e)
         {
             if (selectGraphicGeometry == null || selectFeatureGeometry == null)
@@ -368,6 +425,7 @@ namespace ArcGIS3D.WpfDemo
                 MessageBox.Show("请选择一个shp数据和一个绘制数据!");
                 return;
             }
+
 
             var g1 = GeometryEngine.Difference(selectGraphicGeometry, selectFeatureGeometry);
 
