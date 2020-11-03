@@ -28,13 +28,8 @@ namespace ArcGIS3D.WpfDemo
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // 设置全屏  
-            this.WindowState = System.Windows.WindowState.Normal;
+            this.WindowState = System.Windows.WindowState.Maximized;
             this.ResizeMode = System.Windows.ResizeMode.CanResize;
-
-            this.Left = 0.0;
-            this.Top = 0.0;
-            this.Width = System.Windows.SystemParameters.PrimaryScreenWidth;
-            this.Height = System.Windows.SystemParameters.VirtualScreenHeight;
 
         }
     }
