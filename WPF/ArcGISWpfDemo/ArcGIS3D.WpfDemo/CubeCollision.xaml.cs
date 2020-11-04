@@ -7,6 +7,7 @@ using Esri.ArcGISRuntime.Rasters;
 using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.UI;
 using Esri.ArcGISRuntime.UI.Controls;
+using ESRI.ArcGIS.Geometry;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -51,8 +52,8 @@ namespace ArcGIS3D.WpfDemo
             get { return ConfigurationManager.AppSettings["TifFilePath"]; }
         }
 
-        Esri.ArcGISRuntime.Geometry.Geometry selectFeatureGeometry { get; set; }
-        Esri.ArcGISRuntime.Geometry.Geometry selectGraphicGeometry { get; set; }
+        GeoElement selectFeatureGeoElement { get; set; }
+        Graphic selectGraphicGraphic { get; set; }
 
         public CubeCollision()
         {
@@ -140,7 +141,7 @@ namespace ArcGIS3D.WpfDemo
                 ////https://developers.arcgis.com/net/latest/wpf/guide/add-image-overlays.htm
                 //////// Create an Envelope for displaying the image frame in the correct location
                 var sp = new SpatialReference(4523);
-                Envelope pacificSouthwestEnvelope = featureLayer.FullExtent;//new Envelope(, 3547066.496987, 35564412.860201, 3547500.100019, sp);
+                Esri.ArcGISRuntime.Geometry.Envelope pacificSouthwestEnvelope = featureLayer.FullExtent;//new Envelope(, 3547066.496987, 35564412.860201, 3547500.100019, sp);
 
                 ////// Create an ImageFrame with a local image file and the extent envelope  
                 ImageFrame imageFrame = new ImageFrame(new System.Uri(TifFilePath), pacificSouthwestEnvelope);
@@ -276,7 +277,7 @@ namespace ArcGIS3D.WpfDemo
             GeoElement geoElement = result.GeoElements.FirstOrDefault();
             if (geoElement != null)
             {
-                selectFeatureGeometry = geoElement.Geometry;
+                selectFeatureGeoElement = geoElement;
 
                 #region 根据范围查询
                 // Define the selection tolerance.
@@ -312,7 +313,7 @@ namespace ArcGIS3D.WpfDemo
                 QueryParameters queryParams = new QueryParameters
                 {
                     // Set the geometry to selection envelope for selection by geometry.
-                    Geometry = selectFeatureGeometry//selectionEnvelope
+                    Geometry = selectFeatureGeoElement.Geometry //selectionEnvelope
                 };
                 // Select the features based on query parameters defined above.
                 await featureLayer.SelectFeaturesAsync(queryParams, Esri.ArcGISRuntime.Mapping.SelectionMode.New);
@@ -340,14 +341,11 @@ namespace ArcGIS3D.WpfDemo
             }
 
             // Get the first identified graphic
-            Graphic identifiedGraphic = result.Graphics.First();
+            selectGraphicGraphic = result.Graphics.First();
 
             // Clear any existing selection, then select the tapped graphic
             graphicOverlay.ClearSelection();
-            identifiedGraphic.IsSelected = true;
-
-            // Get the selected graphic's geometry
-            selectGraphicGeometry = identifiedGraphic.Geometry;
+            selectGraphicGraphic.IsSelected = true;
         }
 
         #endregion
@@ -356,7 +354,7 @@ namespace ArcGIS3D.WpfDemo
         private async void MySceneViewOnDrawByCenter(object sender, MouseEventArgs mouseEventArgs)
         {
             // Get the mouse position.
-            Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
+            System.Windows.Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
 
             // Get the corresponding MapPoint.
             MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
@@ -376,11 +374,11 @@ namespace ArcGIS3D.WpfDemo
                 SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.DarkSeaGreen, 1, SceneSymbolAnchorPosition.Center);
                 //旋转角度
                 symbol.Heading = setCubeInfo.vm.Heading;
-                //z
+                //z 高
                 symbol.Height = setCubeInfo.vm.Height;
-                //x
+                //长
                 symbol.Width = setCubeInfo.vm.Width;
-                //y
+                //宽
                 symbol.Depth = setCubeInfo.vm.Depth;
                 // Create the graphic from the geometry and the symbol.
                 Graphic item = new Graphic(centerPoint, symbol);
@@ -425,16 +423,70 @@ namespace ArcGIS3D.WpfDemo
             //Test2();
             //Test3();
 
-            if (selectGraphicGeometry == null || selectFeatureGeometry == null)
+
+            if (selectGraphicGraphic == null || selectFeatureGeoElement == null)
             {
                 MessageBox.Show("请选择一个shp数据和一个绘制数据!");
                 return;
             }
+            //IGeometry2 geo = selectFeatureGeoElement as IGeometry2;
 
-            //todo 获得几何体各定点信息
-            //var g1 = GeometryEngine.Intersects(selectGraphicGeometry, selectFeatureGeometry);
+            //ISpatialReferenceFactory spatialReferenceFactory = new SpatialReferenceEnvironmentClass();
+            //ISpatialReference spatialReference =spatialReferenceFactory.CreateESRISpatialReferenceFromPRJ(selectFeatureGeoElement.Geometry.SpatialReference.WkText);
 
-            //https://desktop.arcgis.com/zh-cn/arcmap/10.3/tools/3d-analyst-toolbox/intersect-3d-3d-analyst-.htm
+            //geo.Project(spatialReference);
+
+
+            //创建shp几何体
+            Esri.ArcGISRuntime.Geometry.Polygon selectFeatureGeometryRealCube = GetSelectFeatureGeometryRealCube();
+
+
+            //创建绘画几何体
+            Esri.ArcGISRuntime.Geometry.Polygon selectGraphicGeometryRealCube = GetSelectGraphicGeometryRealCube();
+
+            var g1 = GeometryEngine.Intersects(selectGraphicGeometryRealCube, selectFeatureGeometryRealCube);
+        }
+
+        private Esri.ArcGISRuntime.Geometry.Polygon GetSelectGraphicGeometryRealCube()
+        {
+            Esri.ArcGISRuntime.Geometry.Polygon selectGraphicGeometryRealCube = null;
+            var symbol = selectGraphicGraphic.Symbol as SimpleMarkerSceneSymbol;
+            var z = symbol.Height;
+            var kuan = symbol.Width;
+            var chang = symbol.Depth;
+            var heading = symbol.Heading;
+            var selectGraphicGeometryMapPoint = selectGraphicGraphic.Geometry as MapPoint;
+            List<MapPoint> points = new List<MapPoint>();
+            //todo 角度 or 采用四点+设置高程绘图
+            //获得四个角点的数据
+            points.Add(new MapPoint(selectGraphicGeometryMapPoint.X - 0.5 * kuan, selectGraphicGeometryMapPoint.Y - 0.5 * chang, z, selectGraphicGeometryMapPoint.SpatialReference));
+            points.Add(new MapPoint(selectGraphicGeometryMapPoint.X - 0.5 * kuan, selectGraphicGeometryMapPoint.Y + 0.5 * chang, z, selectGraphicGeometryMapPoint.SpatialReference));
+            points.Add(new MapPoint(selectGraphicGeometryMapPoint.X + 0.5 * kuan, selectGraphicGeometryMapPoint.Y - 0.5 * chang, z, selectGraphicGeometryMapPoint.SpatialReference));
+            points.Add(new MapPoint(selectGraphicGeometryMapPoint.X + 0.5 * kuan, selectGraphicGeometryMapPoint.Y + 0.5 * chang, z, selectGraphicGeometryMapPoint.SpatialReference));
+
+            selectGraphicGeometryRealCube = new Esri.ArcGISRuntime.Geometry.Polygon(points, selectGraphicGeometryMapPoint.SpatialReference);
+            return selectGraphicGeometryRealCube;
+        }
+
+        private Esri.ArcGISRuntime.Geometry.Polygon GetSelectFeatureGeometryRealCube()
+        {
+            Esri.ArcGISRuntime.Geometry.Polygon selectFeatureGeometryRealCube = null;
+            var feature = selectFeatureGeoElement as Feature;
+            var selectFeatureGeometryPolygon = selectFeatureGeoElement.Geometry as Esri.ArcGISRuntime.Geometry.Polygon;
+            if (selectFeatureGeometryPolygon.Parts.Count > 0)
+            {
+                List<MapPoint> points = new List<MapPoint>();
+                var part = selectFeatureGeometryPolygon.Parts[0];
+                foreach (var point in part.Points)
+                {
+                    object z = 0;
+                    feature.Attributes.TryGetValue("Z", out z);
+                    points.Add(new MapPoint(point.X, point.Y, (double)z, selectFeatureGeometryPolygon.SpatialReference));
+                }
+                selectFeatureGeometryRealCube = new Esri.ArcGISRuntime.Geometry.Polygon(points, selectFeatureGeometryPolygon.SpatialReference);
+            }
+
+            return selectFeatureGeometryRealCube;
         }
 
         private void Test()
@@ -463,6 +515,14 @@ namespace ArcGIS3D.WpfDemo
             var b= GeometryEngine.Intersects(polygon1, polygon2);
             var g3 = GeometryEngine.Intersection(polygon1, polygon2);
             var g2= GeometryEngine.Intersections(polygon1, polygon2);
+            var g = g3 as Esri.ArcGISRuntime.Geometry.Polygon;
+            foreach(var part in g.Parts)
+            {
+                foreach(var point in part.Points)
+                {
+
+                }
+            }
             //var g1 = GeometryEngine.Difference(polygon1, polygon2);
 
         }
