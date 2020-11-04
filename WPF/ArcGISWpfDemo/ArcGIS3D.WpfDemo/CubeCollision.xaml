@@ -26,7 +26,7 @@
                 </Grid.RowDefinitions>
                 <Button Content="切换为移动模式" Grid.Row="1" Click="ChangeModeStatus_Click"></Button>
                 <Button Content="绘制长方体(点选中心点)" Grid.Row="2" Click="DrawByCenter_Click"></Button>
-                <Button Content="清除长方体" Grid.Row="4" Click="Clear_Click"></Button>
+                <Button Content="清除绘制图层" Grid.Row="4" Click="Clear_Click"></Button>
                 <Button Content="选择基础图层" Grid.Row="5" Click="SelectFeatureLayer_Click"></Button>
                 <Button Content="选择绘制图层" Grid.Row="7" Click="SelectGraphicLayer_Click"></Button>
                 <Button Content="判定二者关系" Grid.Row="8" Click="CheckOBBCollision_Click"></Button>

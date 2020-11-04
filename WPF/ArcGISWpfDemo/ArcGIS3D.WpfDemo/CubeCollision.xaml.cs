@@ -11,6 +11,7 @@ using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -390,24 +391,24 @@ namespace ArcGIS3D.WpfDemo
                 MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
             }
 
-            //todo
+            //根据多点绘制长方体
             //var num = 0.01;
             //List<MapPoint> points = new List<MapPoint>();
-            //points.Add(onMapLocation);
-            //points.Add(new MapPoint(onMapLocation.X+ num, onMapLocation.Y, onMapLocation.Z, onMapLocation.SpatialReference));
-            //points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y + num, onMapLocation.Z, onMapLocation.SpatialReference));
-            //points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y+ num, onMapLocation.Z, onMapLocation.SpatialReference));
+            ////points.Add(onMapLocation);
+            ////points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y, onMapLocation.Z, onMapLocation.SpatialReference));
+            ////points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y + num, onMapLocation.Z, onMapLocation.SpatialReference));
+            ////points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y + num, onMapLocation.Z, onMapLocation.SpatialReference));
 
             //points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
-            ////points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
-            ////points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y, onMapLocation.Z + num, onMapLocation.SpatialReference));
-            ////points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z+ num, onMapLocation.SpatialReference));
+            //points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            //points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            //points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z + num, onMapLocation.SpatialReference));
 
-            ////var blueSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Pink };
+            //var blueSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Pink };
 
-            //Esri.ArcGISRuntime.Geometry.Polyline polyline = new Esri.ArcGISRuntime.Geometry.Polyline(points);
+            //Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
             //// Create the graphic from the geometry and the symbol.
-            //Graphic item = new Graphic(polyline);
+            //Graphic item = new Graphic(polygon);
 
             //// Add the graphic to the overlay.
             //graphicOverlay.Graphics.Add(item);
@@ -420,16 +421,107 @@ namespace ArcGIS3D.WpfDemo
         #region 判断关系
         private void CheckOBBCollision_Click(object sender, RoutedEventArgs e)
         {
+            //Test();
+            //Test2();
+            //Test3();
+
             if (selectGraphicGeometry == null || selectFeatureGeometry == null)
             {
                 MessageBox.Show("请选择一个shp数据和一个绘制数据!");
                 return;
             }
 
-
-            var g1 = GeometryEngine.Difference(selectGraphicGeometry, selectFeatureGeometry);
+            //todo 获得几何体各定点信息
+            //var g1 = GeometryEngine.Intersects(selectGraphicGeometry, selectFeatureGeometry);
 
             //https://desktop.arcgis.com/zh-cn/arcmap/10.3/tools/3d-analyst-toolbox/intersect-3d-3d-analyst-.htm
+        }
+
+        private void Test()
+        {
+            var onMapLocation = new MapPoint(0, 0, 0, SpatialReferences.Wgs84);
+
+            var num = 1;
+            List<MapPoint> points = new List<MapPoint>();
+
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z + num, onMapLocation.SpatialReference));
+
+            Esri.ArcGISRuntime.Geometry.Polygon polygon1 = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+
+            var num2 = 2;
+            points = new List<MapPoint>();
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y + num2, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + num2, onMapLocation.Y + num2, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + num2, onMapLocation.Y, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+
+            Esri.ArcGISRuntime.Geometry.Polygon polygon2 = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+
+            var b= GeometryEngine.Intersects(polygon1, polygon2);
+            var g3 = GeometryEngine.Intersection(polygon1, polygon2);
+            var g2= GeometryEngine.Intersections(polygon1, polygon2);
+            //var g1 = GeometryEngine.Difference(polygon1, polygon2);
+
+        }
+
+        private void Test2()
+        {
+            var onMapLocation = new MapPoint(0, 0, 0, SpatialReferences.Wgs84);
+
+            var num =-1;
+            List<MapPoint> points = new List<MapPoint>();
+
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y, onMapLocation.Z + num, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z + num, onMapLocation.SpatialReference));
+
+            Esri.ArcGISRuntime.Geometry.Polygon polygon1 = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+
+            var num2 = 2;
+            points = new List<MapPoint>();
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y + num2, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + num2, onMapLocation.Y + num2, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + num2, onMapLocation.Y, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+
+            Esri.ArcGISRuntime.Geometry.Polygon polygon2 = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+
+            var b = GeometryEngine.Intersects(polygon1, polygon2);
+            var g3 = GeometryEngine.Intersection(polygon1, polygon2);
+            var g2 = GeometryEngine.Intersections(polygon1, polygon2);
+
+        }
+
+        private void Test3()
+        {
+            var onMapLocation = new MapPoint(0, 0, 0, SpatialReferences.Wgs84);
+
+            List<MapPoint> points = new List<MapPoint>();
+
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y , onMapLocation.Z-3 , onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + 3, onMapLocation.Y , onMapLocation.Z , onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + 3, onMapLocation.Y+3, onMapLocation.Z , onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z + 3, onMapLocation.SpatialReference));
+
+            Esri.ArcGISRuntime.Geometry.Polygon polygon1 = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+
+            var num2 = 5;
+            points = new List<MapPoint>();
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y + num2, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + num2, onMapLocation.Y + num2, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X + num2, onMapLocation.Y, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+            points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z + num2, onMapLocation.SpatialReference));
+
+            Esri.ArcGISRuntime.Geometry.Polygon polygon2 = new Esri.ArcGISRuntime.Geometry.Polygon(points);
+
+            var b = GeometryEngine.Intersects(polygon1, polygon2);
+            var g3 = GeometryEngine.Intersection(polygon1, polygon2);
+            var g2 = GeometryEngine.Intersections(polygon1, polygon2);
+
         }
 
         #endregion
