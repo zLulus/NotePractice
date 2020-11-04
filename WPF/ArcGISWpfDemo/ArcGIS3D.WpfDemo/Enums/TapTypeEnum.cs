@@ -26,6 +26,7 @@ namespace ArcGIS3D.WpfDemo.Enums
         /// </summary>
         Select=4,
         SelectFeatureLayer=5,
-        SelectGraphicLayer=6
+        SelectGraphicLayer=6,
+        SelectIntersectionOverlay=7
     }
 }

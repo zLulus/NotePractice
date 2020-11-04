@@ -147,6 +147,9 @@ namespace ArcGIS3D.WpfDemo
 
             // Add the graphics overlay
             MySceneView.GraphicsOverlays.Add(_viewpointOverlay);
+
+            // Subscribe to tap events. This enables the 'pick up' and 'drop' workflow for moving the viewpoint.
+            MySceneView.GeoViewTapped += MySceneViewOnGeoViewTapped;
         }
 
         private async Task InitializeFeatureLayer()
@@ -211,30 +214,41 @@ namespace ArcGIS3D.WpfDemo
         {
             try
             {
-                ////https://developers.arcgis.com/net/latest/wpf/guide/add-image-overlays.htm
-                //////// Create an Envelope for displaying the image frame in the correct location
-                //var sp = new SpatialReference(4523);
-                //MapPoint centerPoint = new MapPoint(105.67956087176, 32.0470744099947, -9.31322574615479E-10, featureLayer.SpatialReference);
-                //double width = 15.0959;
-                //double height = 14.3770;
-                //Esri.ArcGISRuntime.Geometry.Envelope pacificSouthwestEnvelope = new Envelope(centerPoint, width, height);
-                Esri.ArcGISRuntime.Geometry.Envelope pacificSouthwestEnvelope =featureLayer.FullExtent;//new Envelope(, 3547066.496987, 35564412.860201, 3547500.100019, sp);
+                //////https://developers.arcgis.com/net/latest/wpf/guide/add-image-overlays.htm
+                ////////// Create an Envelope for displaying the image frame in the correct location
+                ////var sp = new SpatialReference(4523);
+                ////MapPoint centerPoint = new MapPoint(105.67956087176, 32.0470744099947, -9.31322574615479E-10, featureLayer.SpatialReference);
+                ////double width = 15.0959;
+                ////double height = 14.3770;
+                ////Esri.ArcGISRuntime.Geometry.Envelope pacificSouthwestEnvelope = new Envelope(centerPoint, width, height);
+                //Esri.ArcGISRuntime.Geometry.Envelope pacificSouthwestEnvelope =featureLayer.FullExtent;//new Envelope(, 3547066.496987, 35564412.860201, 3547500.100019, sp);
 
-                ////// Create an ImageFrame with a local image file and the extent envelope  
-                ImageFrame imageFrame = new ImageFrame(new System.Uri(TifFilePath), pacificSouthwestEnvelope);
-                //ImageFrame imageFrame = new ImageFrame(image, pacificSouthwestEnvelope);
+                //////// Create an ImageFrame with a local image file and the extent envelope  
+                //ImageFrame imageFrame = new ImageFrame(new System.Uri(TifFilePath), pacificSouthwestEnvelope);
+                ////ImageFrame imageFrame = new ImageFrame(image, pacificSouthwestEnvelope);
 
-                ////// Add the ImageFrame to an ImageOverlay and set it to be 50% transparent
-                ImageOverlay imageOverlay = new ImageOverlay(imageFrame);
-                //透明度
-                imageOverlay.Opacity = 1;
+                //////// Add the ImageFrame to an ImageOverlay and set it to be 50% transparent
+                //ImageOverlay imageOverlay = new ImageOverlay(imageFrame);
+                ////透明度
+                //imageOverlay.Opacity = 1;
 
-                //// Add the ImageOverlay to the scene view's ImageOverlay collection
-                //MySceneView.Overlays.Items.Add(imageOverlay);
-                MySceneView.ImageOverlays.Add(imageOverlay);
-                ///todo 没有加载出来
-                //imageFrame.LoadAsync().Wait();
-                //await MySceneView.SetViewpointAsync(new Viewpoint(imageFrame.Extent));
+                ////// Add the ImageOverlay to the scene view's ImageOverlay collection
+                ////MySceneView.Overlays.Items.Add(imageOverlay);
+                //MySceneView.ImageOverlays.Add(imageOverlay);
+                /////todo 没有加载出来
+                ////imageFrame.LoadAsync().Wait();
+                ////await MySceneView.SetViewpointAsync(new Viewpoint(imageFrame.Extent));
+
+                ArcGISTiledElevationSource elevationSource = new ArcGISTiledElevationSource(new Uri(TifFilePath));
+                
+                Surface mySurface = new Surface();
+                mySurface.ElevationSources.Add(elevationSource);
+                MySceneView.Scene.BaseSurface = mySurface;
+
+                //RasterLayer rasterLayer = new RasterLayer(TifFilePath);
+                //var l = rasterLayer as ImageAdjustmentLayer;
+                //MySceneView.AnalysisOverlays.Add()
+                //MySceneView.ImageOverlays.Add(l.Item) ;
             }
             catch (Exception ex)
             {
@@ -275,6 +289,7 @@ namespace ArcGIS3D.WpfDemo
             // Set the surface placement mode for the overlay.
             graphicOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Absolute;
             MySceneView.GraphicsOverlays.Add(graphicOverlay);
+
         }
 
 
@@ -293,19 +308,7 @@ namespace ArcGIS3D.WpfDemo
             //移动观察者
             if (tapTypeEnum == TapTypeEnum.MoveViewPoint)
             {
-                // The viewshed observer is picked up and moving. Drop it.
-                if (subscribedToMouseViewPoint)
-                {
-                    MySceneView.MouseMove -= MySceneViewOnMoveViewPoint;
-                }
-                // The viewshed observer is currently pinned. Pick it up.
-                else
-                {
-                    MySceneView.MouseMove += MySceneViewOnMoveViewPoint;
-                }
-
-                // Toggle the viewshed movement flag.
-                subscribedToMouseViewPoint = !subscribedToMouseViewPoint;
+                MySceneView.MouseMove -= MySceneViewOnMoveViewPoint;
             }
             else if (tapTypeEnum == TapTypeEnum.DrawByCenter)
             {
@@ -321,43 +324,68 @@ namespace ArcGIS3D.WpfDemo
 
         private void ChangeModeStatus_Click(object sender, RoutedEventArgs e)
         {
-            MySceneView.GeoViewTapped -= MySceneViewOnSelectFeatureLayer;
-            MySceneView.GeoViewTapped -= MySceneViewOnSelectGraphicLayer;
+            ResetEvent();
             tapTypeEnum = TapTypeEnum.None;
         }
 
         private void DrawByCenter_Click(object sender, RoutedEventArgs e)
         {
-            MySceneView.GeoViewTapped -= MySceneViewOnSelectFeatureLayer;
-            MySceneView.GeoViewTapped -= MySceneViewOnSelectGraphicLayer;
+            ResetEvent();
             tapTypeEnum = TapTypeEnum.DrawByCenter;
             MySceneView.PreviewMouseLeftButtonDown += MySceneViewOnDrawByCenter;
         }
 
         private void SelectFeatureLayer_Click(object sender, RoutedEventArgs e)
         {
+            ResetEvent();
             tapTypeEnum = TapTypeEnum.SelectFeatureLayer;
             MySceneView.GeoViewTapped += MySceneViewOnSelectFeatureLayer;
         }
 
         private void SelectGraphicLayer_Click(object sender, RoutedEventArgs e)
         {
+            ResetEvent();
             tapTypeEnum = TapTypeEnum.SelectGraphicLayer;
             MySceneView.GeoViewTapped += MySceneViewOnSelectGraphicLayer;
+
         }
 
+
+        private void SelectIntersectionOverlay_Click(object sender, RoutedEventArgs e)
+        {
+            ResetEvent();
+            tapTypeEnum = TapTypeEnum.SelectIntersectionOverlay;
+            MySceneView.GeoViewTapped += MySceneViewOnSelectIntersectionOverlay;
+        }
+
+        
         private void ChangeModeViewPointStatus_Click(object sender, RoutedEventArgs e)
         {
+            ResetEvent();
+            tapTypeEnum = TapTypeEnum.MoveViewPoint;
+            MySceneView.MouseMove += MySceneViewOnMoveViewPoint;
+        }
+
+        private void ResetEvent()
+        {
+            MySceneView.MouseMove -= MySceneViewOnMoveViewPoint;
             MySceneView.GeoViewTapped -= MySceneViewOnSelectFeatureLayer;
             MySceneView.GeoViewTapped -= MySceneViewOnSelectGraphicLayer;
-            tapTypeEnum = TapTypeEnum.MoveViewPoint;
+            MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
         }
         #endregion
 
-        private void Clear_Click(object sender, RoutedEventArgs e)
+        #region 清理图层
+        private void ClearGraphicOverlay_Click(object sender, RoutedEventArgs e)
         {
             graphicOverlay.Graphics.Clear();
         }
+
+        private void ClearIntersectionOverlay_Click(object sender, RoutedEventArgs e)
+        {
+            intersectionOverlay.Graphics.Clear();
+        }
+        #endregion
 
         #region 选择-高亮
         private async void MySceneViewOnSelectFeatureLayer(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
@@ -369,7 +397,13 @@ namespace ArcGIS3D.WpfDemo
         private async void MySceneViewOnSelectGraphicLayer(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             //绘制图层
-            await SetSelectForGraphicsOverlay(e);
+            selectGraphic= await SetSelectForGraphicsOverlay(e,graphicOverlay);
+        }
+
+        private async void MySceneViewOnSelectIntersectionOverlay(object sender, GeoViewInputEventArgs e)
+        {
+            //结果显示图层
+            await SetSelectForGraphicsOverlay(e, intersectionOverlay);
         }
 
         private async Task SetSelectForFeatureLayer(GeoViewInputEventArgs e)
@@ -421,14 +455,14 @@ namespace ArcGIS3D.WpfDemo
             }
         }
 
-        private async Task SetSelectForGraphicsOverlay(Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
+        private async Task<Graphic> SetSelectForGraphicsOverlay(Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e, GraphicsOverlay target)
         {
             IdentifyGraphicsOverlayResult result = null;
 
             try
             {
                 // Identify the tapped graphics
-                result = await MySceneView.IdentifyGraphicsOverlayAsync(graphicOverlay, e.Position, 1, false);
+                result = await MySceneView.IdentifyGraphicsOverlayAsync(target, e.Position, 1, false);
             }
             catch (Exception ex)
             {
@@ -438,16 +472,19 @@ namespace ArcGIS3D.WpfDemo
             // Return if there are no results
             if (result == null || result.Graphics.Count < 1)
             {
-                return;
+                return null;
             }
 
             // Get the first identified graphic
-            selectGraphic = result.Graphics.First();
+            var graphic = result.Graphics.First();
 
             // Clear any existing selection, then select the tapped graphic
-            graphicOverlay.ClearSelection();
-            selectGraphic.IsSelected = true;
+            target.ClearSelection();
+
+            graphic.IsSelected = true;
+            return graphic;
         }
+
 
         #endregion
 
@@ -784,9 +821,9 @@ namespace ArcGIS3D.WpfDemo
             _viewpointOverlay.Graphics.Add(new Graphic(_viewshed.Location, _viewpointSymbol));
 
         }
+
+
         #endregion
-
-
 
     }
 }
