@@ -38,6 +38,10 @@ namespace ArcGIS3D.WpfDemo
         /// </summary>
         GraphicsOverlay graphicOverlay { get; set; }
         /// <summary>
+        /// 重叠结果显示图层
+        /// </summary>
+        GraphicsOverlay intersectionOverlay { get; set; }
+        /// <summary>
         /// shp图层
         /// </summary>
         FeatureLayer featureLayer { get; set; }
@@ -52,7 +56,7 @@ namespace ArcGIS3D.WpfDemo
         }
 
         GeoElement selectFeatureGeoElement { get; set; }
-        Graphic selectGraphicGraphic { get; set; }
+        Graphic selectGraphic { get; set; }
 
         public CubeCollision()
         {
@@ -72,7 +76,10 @@ namespace ArcGIS3D.WpfDemo
             InitializeImageOverlay();
 
             //绘图图层
-            InitializeGraphicsOverlaye();
+            InitializeGraphicsOverlay();
+
+            //重叠结果显示图层
+            InitializeIntersectionOverlay();
         }
 
         private async Task InitializeFeatureLayer()
@@ -133,14 +140,18 @@ namespace ArcGIS3D.WpfDemo
             }
         }
 
-        private void InitializeImageOverlay()
+        private async void InitializeImageOverlay()
         {
             try
             {
                 ////https://developers.arcgis.com/net/latest/wpf/guide/add-image-overlays.htm
                 //////// Create an Envelope for displaying the image frame in the correct location
-                var sp = new SpatialReference(4523);
-                Esri.ArcGISRuntime.Geometry.Envelope pacificSouthwestEnvelope = featureLayer.FullExtent;//new Envelope(, 3547066.496987, 35564412.860201, 3547500.100019, sp);
+                //var sp = new SpatialReference(4523);
+                //MapPoint centerPoint = new MapPoint(105.67956087176, 32.0470744099947, -9.31322574615479E-10, featureLayer.SpatialReference);
+                //double width = 15.0959;
+                //double height = 14.3770;
+                //Esri.ArcGISRuntime.Geometry.Envelope pacificSouthwestEnvelope = new Envelope(centerPoint, width, height);
+                Esri.ArcGISRuntime.Geometry.Envelope pacificSouthwestEnvelope =featureLayer.FullExtent;//new Envelope(, 3547066.496987, 35564412.860201, 3547500.100019, sp);
 
                 ////// Create an ImageFrame with a local image file and the extent envelope  
                 ImageFrame imageFrame = new ImageFrame(new System.Uri(TifFilePath), pacificSouthwestEnvelope);
@@ -156,17 +167,7 @@ namespace ArcGIS3D.WpfDemo
                 MySceneView.ImageOverlays.Add(imageOverlay);
                 ///todo 没有加载出来
                 //imageFrame.LoadAsync().Wait();
-
-
-                //// Load the raster file
-                //Raster myRasterFile = new Raster("file:///D:/Project/ChangZhen/3547.00-564.00.tif");
-
-                //// Create the layer
-                //RasterLayer myRasterLayer = new RasterLayer(myRasterFile);
-
-                //MySceneView.Overlays.Items.Add(myRasterLayer);
-
-                //myRasterLayer.LoadAsync().Wait();
+                //await MySceneView.SetViewpointAsync(new Viewpoint(imageFrame.Extent));
             }
             catch (Exception ex)
             {
@@ -174,7 +175,7 @@ namespace ArcGIS3D.WpfDemo
             }
         }
 
-        private void InitializeGraphicsOverlaye()
+        private void InitializeGraphicsOverlay()
         {
             //绘画图层
             // Create the graphics overlay.
@@ -207,6 +208,16 @@ namespace ArcGIS3D.WpfDemo
             // Set the surface placement mode for the overlay.
             graphicOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Absolute;
             MySceneView.GraphicsOverlays.Add(graphicOverlay);
+        }
+
+
+
+        private void InitializeIntersectionOverlay()
+        {
+            intersectionOverlay = new GraphicsOverlay();
+            intersectionOverlay.ScaleSymbols = false;
+            intersectionOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Absolute;
+            MySceneView.GraphicsOverlays.Add(intersectionOverlay);
         }
         #endregion
 
@@ -340,11 +351,11 @@ namespace ArcGIS3D.WpfDemo
             }
 
             // Get the first identified graphic
-            selectGraphicGraphic = result.Graphics.First();
+            selectGraphic = result.Graphics.First();
 
             // Clear any existing selection, then select the tapped graphic
             graphicOverlay.ClearSelection();
-            selectGraphicGraphic.IsSelected = true;
+            selectGraphic.IsSelected = true;
         }
 
         #endregion
@@ -417,7 +428,7 @@ namespace ArcGIS3D.WpfDemo
             //Test3();
 
 
-            if (selectGraphicGraphic == null || selectFeatureGeoElement == null)
+            if (selectGraphic == null || selectFeatureGeoElement == null)
             {
                 MessageBox.Show("请选择一个shp数据和一个绘制数据!");
                 return;
@@ -443,6 +454,13 @@ namespace ArcGIS3D.WpfDemo
 
             if (b)
             {
+                foreach(var g in g2)
+                {
+                    var redSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Red,Style=SimpleFillSymbolStyle.Solid };
+                    Graphic item = new Graphic(g, redSymbol);
+                    intersectionOverlay.Graphics.Add(item);
+                }
+                
                 MessageBox.Show("二者重叠");
             }
             else
@@ -462,12 +480,12 @@ namespace ArcGIS3D.WpfDemo
         private Esri.ArcGISRuntime.Geometry.Polygon GetSelectGraphicGeometryRealCube()
         {
             Esri.ArcGISRuntime.Geometry.Polygon selectGraphicGeometryRealCube = null;
-            var symbol = selectGraphicGraphic.Symbol as SimpleMarkerSceneSymbol;
+            var symbol = selectGraphic.Symbol as SimpleMarkerSceneSymbol;
             var z = symbol.Height;
             var kuan = symbol.Width;
             var chang = symbol.Depth;
             var heading = symbol.Heading;
-            var selectGraphicGeometryMapPoint = selectGraphicGraphic.Geometry as MapPoint;
+            var selectGraphicGeometryMapPoint = selectGraphic.Geometry as MapPoint;
 
             var rightMapPoint= GeometryEngine.Project(selectGraphicGeometryMapPoint, selectFeatureGeoElement.Geometry.SpatialReference) as MapPoint;
 
@@ -495,6 +513,7 @@ namespace ArcGIS3D.WpfDemo
                 var part = selectFeatureGeometryPolygon.Parts[0];
                 foreach (var point in part.Points)
                 {
+                    //从属性中获得z
                     object z = 0;
                     feature.Attributes.TryGetValue("Z", out z);
                     points.Add(new MapPoint(point.X, point.Y, (double)z, selectFeatureGeometryPolygon.SpatialReference));
