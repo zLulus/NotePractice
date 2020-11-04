@@ -24,6 +24,124 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="移动观察者" Click="ChangeModeViewPointStatus_Click"></Button>
+                <TextBlock Text="观察方位"
+                           Grid.Row="1" Grid.Column="0"
+                           HorizontalAlignment="Right" />
+                <TextBlock Text="观察范围"
+                           Grid.Row="2" Grid.Column="0"
+                           HorizontalAlignment="Right" />
+                <TextBlock Text="横向角度"
+                           Grid.Row="3" Grid.Column="0"
+                           HorizontalAlignment="Right" />
+                <TextBlock Text="纵向角度"
+                           Grid.Row="4" Grid.Column="0"
+                           HorizontalAlignment="Right" />
+                <TextBlock Text="观察高度"
+                           Grid.Row="5" Grid.Column="0"
+                           HorizontalAlignment="Right" />
+                <TextBlock Text="最小距离"
+                           Grid.Row="6" Grid.Column="0"
+                           HorizontalAlignment="Right" />
+                <TextBlock Text="最大距离"
+                           Grid.Row="7" Grid.Column="0"
+                           HorizontalAlignment="Right" />
+                <TextBlock Text="视锥可见性"
+                           Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
+                           HorizontalAlignment="Right" />
+                <TextBlock Text="分析可见性"
+                           Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
+                           HorizontalAlignment="Right" />
+
+                <Slider x:Name="HeadingSlider"
+                        Grid.Row="1" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                        Value="238" Maximum="360"
+                        TickFrequency="1" IsSnapToTickEnabled="True"
+                        ValueChanged="HandleSettingsChange" />
+                <Slider x:Name="PitchSlider"
+                        Grid.Row="2" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                        Value="60" Maximum="180"
+                        TickFrequency="1" IsSnapToTickEnabled="True"
+                        ValueChanged="HandleSettingsChange" />
+                <Slider x:Name="HorizontalAngleSlider"
+                        Grid.Row="3" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                        Value="75" Maximum="120" Minimum="1"
+                        TickFrequency="1" IsSnapToTickEnabled="True"
+                        ValueChanged="HandleSettingsChange" />
+                <Slider x:Name="VerticalAngleSlider"
+                        Grid.Row="4" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                        Value="90" Maximum="120" Minimum="1"
+                        TickFrequency="1" IsSnapToTickEnabled="True"
+                        ValueChanged="HandleSettingsChange" />
+                <Slider x:Name="HeightSlider"
+                        Grid.Row="5" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                        Value="18" Maximum="200" Minimum="0"
+                        TickFrequency="1" IsSnapToTickEnabled="True"
+                        ValueChanged="HandleSettingsChange" />
+                <Slider x:Name="MinimumDistanceSlider"
+                        Grid.Row="6" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                        Value="5" Maximum="8999" Minimum="5"
+                        TickFrequency="1" IsSnapToTickEnabled="True"
+                        ValueChanged="HandleSettingsChange" />
+                <Slider x:Name="MaximumDistanceSlider"
+                        Grid.Row="7" Grid.Column="1"
+                        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                        Value="1500" Minimum="1" Maximum="9999"
+                        TickFrequency="1" IsSnapToTickEnabled="True"
+                        ValueChanged="HandleSettingsChange" />
+                <CheckBox x:Name="FrustumVisibilityCheck"
+                          Grid.Row="8" Grid.Column="2"
+                          Margin="5" VerticalAlignment="Center"
+                          Checked="HandleSettingsChange"
+                          Unchecked="HandleSettingsChange" />
+                <CheckBox x:Name="AnalysisVisibilityCheck"
+                          Grid.Row="9" Grid.Column="2"
+                          Margin="5" VerticalAlignment="Center"
+                          IsChecked="True"
+                          Checked="HandleSettingsChange"
+                          Unchecked="HandleSettingsChange" />
+
+                <Label Content="{Binding Value, ElementName=HeadingSlider}"
+                       Grid.Row="1" Grid.Column="2" />
+                <Label Content="{Binding Value, ElementName=PitchSlider}"
+                       Grid.Row="2" Grid.Column="2" />
+                <Label Content="{Binding Value, ElementName=HorizontalAngleSlider}"
+                       Grid.Row="3" Grid.Column="2" />
+                <Label Content="{Binding Value, ElementName=VerticalAngleSlider}"
+                       Grid.Row="4" Grid.Column="2" />
+                <Label Content="{Binding Value, ElementName=HeightSlider}"
+                       Grid.Row="5" Grid.Column="2" />
+                <Label Content="{Binding Value, ElementName=MinimumDistanceSlider}"
+                       Grid.Row="6" Grid.Column="2" />
+                <Label Content="{Binding Value, ElementName=MaximumDistanceSlider}"
+                       Grid.Row="7" Grid.Column="2" />
+            </Grid>
+        </Border>
+        <Border Style="{StaticResource BorderStyle}" Margin="0,350,30,0" Height="300">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
                 <Button Content="切换为移动模式" Grid.Row="1" Click="ChangeModeStatus_Click"></Button>
                 <Button Content="绘制长方体(点选中心点)" Grid.Row="2" Click="DrawByCenter_Click"></Button>
                 <Button Content="清除绘制图层" Grid.Row="4" Click="Clear_Click"></Button>

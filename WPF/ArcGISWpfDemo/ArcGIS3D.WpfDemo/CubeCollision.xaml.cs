@@ -7,6 +7,7 @@ using Esri.ArcGISRuntime.Rasters;
 using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.UI;
 using Esri.ArcGISRuntime.UI.Controls;
+using Esri.ArcGISRuntime.UI.GeoAnalysis;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -32,6 +33,9 @@ namespace ArcGIS3D.WpfDemo
     /// </summary>
     public partial class CubeCollision : UserControl
     {
+        /// <summary>
+        /// 点击模式
+        /// </summary>
         TapTypeEnum tapTypeEnum { get; set; }
         /// <summary>
         /// 绘画图层
@@ -55,8 +59,31 @@ namespace ArcGIS3D.WpfDemo
             get { return ConfigurationManager.AppSettings["TifFilePath"]; }
         }
 
+        /// <summary>
+        /// 选择的shp图层要素
+        /// </summary>
         GeoElement selectFeatureGeoElement { get; set; }
+        /// <summary>
+        /// 选择的绘制图层要素
+        /// </summary>
         Graphic selectGraphic { get; set; }
+        #region 观察者
+        // Hold a reference to the viewshed analysis.
+        private LocationViewshed _viewshed;
+        // Graphics overlay for viewpoint symbol.
+        private GraphicsOverlay _viewpointOverlay;
+        // Symbol for viewpoint.
+        private SimpleMarkerSceneSymbol _viewpointSymbol;
+        // Hold a reference to the analysis overlay that will hold the viewshed analysis.
+        private AnalysisOverlay _analysisOverlay;
+        // Height of the viewpoint above the ground.
+        private double _viewHeight;
+        /// <summary>
+        /// 移动观察者-是否绘制完毕
+        /// Flag indicating if the viewshed will move with the mouse.
+        /// </summary>
+        private bool subscribedToMouseViewPoint;
+        #endregion
 
         public CubeCollision()
         {
@@ -80,6 +107,46 @@ namespace ArcGIS3D.WpfDemo
 
             //重叠结果显示图层
             InitializeIntersectionOverlay();
+
+            //观察者
+            InitializeViewshed();
+        }
+
+        private void InitializeViewshed()
+        {
+            var initialLocation = new MapPoint(105.67956087176, 32.0470744099947, -9.31322574615479E-10, featureLayer.SpatialReference);
+            // Create the location viewshed analysis.
+            _viewshed = new LocationViewshed(
+                initialLocation,
+                HeadingSlider.Value,
+                PitchSlider.Value,
+                HorizontalAngleSlider.Value,
+                VerticalAngleSlider.Value,
+                MinimumDistanceSlider.Value,
+                MaximumDistanceSlider.Value);
+
+            // Create a symbol for the viewpoint.
+            _viewpointSymbol = SimpleMarkerSceneSymbol.CreateSphere(System.Drawing.Color.Blue, 10, SceneSymbolAnchorPosition.Center);
+
+            // Add the symbol to the viewpoint overlay.
+            _viewpointOverlay = new GraphicsOverlay
+            {
+                SceneProperties = new LayerSceneProperties(SurfacePlacement.Absolute)
+            };
+            _viewpointOverlay.Graphics.Add(new Graphic(initialLocation, _viewpointSymbol));
+
+
+            // Create an analysis overlay for showing the viewshed analysis.
+            _analysisOverlay = new AnalysisOverlay();
+
+            // Add the viewshed analysis to the overlay.
+            _analysisOverlay.Analyses.Add(_viewshed);
+
+            // Add the analysis overlay to the SceneView.
+            MySceneView.AnalysisOverlays.Add(_analysisOverlay);
+
+            // Add the graphics overlay
+            MySceneView.GraphicsOverlays.Add(_viewpointOverlay);
         }
 
         private async Task InitializeFeatureLayer()
@@ -223,7 +290,24 @@ namespace ArcGIS3D.WpfDemo
 
         private void MySceneViewOnGeoViewTapped(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
-            if (tapTypeEnum == TapTypeEnum.DrawByCenter)
+            //移动观察者
+            if (tapTypeEnum == TapTypeEnum.MoveViewPoint)
+            {
+                // The viewshed observer is picked up and moving. Drop it.
+                if (subscribedToMouseViewPoint)
+                {
+                    MySceneView.MouseMove -= MySceneViewOnMoveViewPoint;
+                }
+                // The viewshed observer is currently pinned. Pick it up.
+                else
+                {
+                    MySceneView.MouseMove += MySceneViewOnMoveViewPoint;
+                }
+
+                // Toggle the viewshed movement flag.
+                subscribedToMouseViewPoint = !subscribedToMouseViewPoint;
+            }
+            else if (tapTypeEnum == TapTypeEnum.DrawByCenter)
             {
 
             }
@@ -260,6 +344,13 @@ namespace ArcGIS3D.WpfDemo
         {
             tapTypeEnum = TapTypeEnum.SelectGraphicLayer;
             MySceneView.GeoViewTapped += MySceneViewOnSelectGraphicLayer;
+        }
+
+        private void ChangeModeViewPointStatus_Click(object sender, RoutedEventArgs e)
+        {
+            MySceneView.GeoViewTapped -= MySceneViewOnSelectFeatureLayer;
+            MySceneView.GeoViewTapped -= MySceneViewOnSelectGraphicLayer;
+            tapTypeEnum = TapTypeEnum.MoveViewPoint;
         }
         #endregion
 
@@ -620,5 +711,82 @@ namespace ArcGIS3D.WpfDemo
         }
 
         #endregion
+
+        #region 观察者
+        /// <summary>
+        /// 移动观察者
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="mouseEventArgs"></param>
+        private void MySceneViewOnMoveViewPoint(object sender, MouseEventArgs mouseEventArgs)
+        {
+            // Get the mouse position.
+            Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
+
+            // Get the corresponding MapPoint.
+            MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
+
+            // Return if the MapPoint is null. This might happen if mouse leaves SceneView area.
+            if (onMapLocation == null)
+            {
+                return;
+            }
+
+            // Adjust the Z value of the MapPoint to reflect the selected height.
+            onMapLocation = new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z + _viewHeight);
+
+            // Update the viewshed.
+            _viewshed.Location = onMapLocation;
+
+            // Update the viewpoint symbol.
+            _viewpointOverlay.Graphics.Clear();
+            _viewpointOverlay.Graphics.Add(new Graphic(onMapLocation, _viewpointSymbol));
+        }
+
+        /// <summary>
+        /// 修改观察者的设置
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void HandleSettingsChange(object sender, RoutedEventArgs e)
+        {
+            // Return if viewshed hasn't been created yet. This happens when the sample is starting.
+            if (_viewshed == null)
+            {
+                return;
+            }
+            // Calculate the difference between the old and new height.
+            double difference = HeightSlider.Value - _viewHeight;
+
+            // Update the view height value to the new value.
+            _viewHeight = HeightSlider.Value;
+
+            // Move the viewshed to the new height.
+            _viewshed.Location = new MapPoint(_viewshed.Location.X, _viewshed.Location.Y, _viewshed.Location.Z + difference);
+
+            // Update the viewshed settings.
+            _viewshed.Heading = HeadingSlider.Value;
+            _viewshed.Pitch = PitchSlider.Value;
+            _viewshed.HorizontalAngle = HorizontalAngleSlider.Value;
+            _viewshed.VerticalAngle = VerticalAngleSlider.Value;
+            _viewshed.MinDistance = MinimumDistanceSlider.Value;
+            _viewshed.MaxDistance = MaximumDistanceSlider.Value;
+
+            // Update visibility of the viewshed analysis.
+            _viewshed.IsVisible = (bool)AnalysisVisibilityCheck.IsChecked;
+
+            // Update visibility of the frustum. Note that the frustum will be invisible
+            //     regardless of this setting if the viewshed analysis is not visible.
+            _viewshed.IsFrustumOutlineVisible = (bool)FrustumVisibilityCheck.IsChecked;
+
+            // Update the viewpoint graphic.
+            _viewpointOverlay.Graphics.Clear();
+            _viewpointOverlay.Graphics.Add(new Graphic(_viewshed.Location, _viewpointSymbol));
+
+        }
+        #endregion
+
+
+
     }
 }
