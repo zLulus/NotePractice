@@ -7,7 +7,6 @@ using Esri.ArcGISRuntime.Rasters;
 using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.UI;
 using Esri.ArcGISRuntime.UI.Controls;
-using ESRI.ArcGIS.Geometry;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -358,12 +357,6 @@ namespace ArcGIS3D.WpfDemo
 
             // Get the corresponding MapPoint.
             MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
-            //var p2=await MySceneView.ScreenToLocationAsync(cursorSceenPoint);
-            //var p3= MySceneView.PointFromScreen(cursorSceenPoint);
-            //var p4 = MySceneView.PointToScreen(cursorSceenPoint);
-            //todo 转换坐标系，原坐标系单位是经纬度，要转成米
-            //MapPointBuilder.CreateWithM()
-            //onMapLocation.SpatialReference = new SpatialReference(@"");
 
             SetCubeInfo setCubeInfo = new SetCubeInfo(onMapLocation.X, onMapLocation.Y, onMapLocation.Z);
             var dialogResult = setCubeInfo.ShowDialog();
@@ -444,7 +437,26 @@ namespace ArcGIS3D.WpfDemo
             //创建绘画几何体
             Esri.ArcGISRuntime.Geometry.Polygon selectGraphicGeometryRealCube = GetSelectGraphicGeometryRealCube();
 
-            var g1 = GeometryEngine.Intersects(selectGraphicGeometryRealCube, selectFeatureGeometryRealCube);
+            var b = GeometryEngine.Intersects(selectFeatureGeometryRealCube, selectGraphicGeometryRealCube);
+            var g3 = GeometryEngine.Intersection(selectFeatureGeometryRealCube, selectGraphicGeometryRealCube);
+            var g2 = GeometryEngine.Intersections(selectFeatureGeometryRealCube, selectGraphicGeometryRealCube);
+
+            if (b)
+            {
+                MessageBox.Show("二者重叠");
+            }
+            else
+            {
+                MessageBox.Show("二者不重叠");
+            }
+            //var g = g3 as Esri.ArcGISRuntime.Geometry.Polygon;
+            //foreach (var part in g.Parts)
+            //{
+            //    foreach (var point in part.Points)
+            //    {
+
+            //    }
+            //}
         }
 
         private Esri.ArcGISRuntime.Geometry.Polygon GetSelectGraphicGeometryRealCube()
@@ -456,15 +468,19 @@ namespace ArcGIS3D.WpfDemo
             var chang = symbol.Depth;
             var heading = symbol.Heading;
             var selectGraphicGeometryMapPoint = selectGraphicGraphic.Geometry as MapPoint;
+
+            var rightMapPoint= GeometryEngine.Project(selectGraphicGeometryMapPoint, selectFeatureGeoElement.Geometry.SpatialReference) as MapPoint;
+
             List<MapPoint> points = new List<MapPoint>();
             //todo 角度 or 采用四点+设置高程绘图
+            //todo 可以在绘图的时候就把坐标系换了
             //获得四个角点的数据
-            points.Add(new MapPoint(selectGraphicGeometryMapPoint.X - 0.5 * kuan, selectGraphicGeometryMapPoint.Y - 0.5 * chang, z, selectGraphicGeometryMapPoint.SpatialReference));
-            points.Add(new MapPoint(selectGraphicGeometryMapPoint.X - 0.5 * kuan, selectGraphicGeometryMapPoint.Y + 0.5 * chang, z, selectGraphicGeometryMapPoint.SpatialReference));
-            points.Add(new MapPoint(selectGraphicGeometryMapPoint.X + 0.5 * kuan, selectGraphicGeometryMapPoint.Y - 0.5 * chang, z, selectGraphicGeometryMapPoint.SpatialReference));
-            points.Add(new MapPoint(selectGraphicGeometryMapPoint.X + 0.5 * kuan, selectGraphicGeometryMapPoint.Y + 0.5 * chang, z, selectGraphicGeometryMapPoint.SpatialReference));
+            points.Add(new MapPoint(rightMapPoint.X - 0.5 * kuan, rightMapPoint.Y - 0.5 * chang, z, rightMapPoint.SpatialReference));
+            points.Add(new MapPoint(rightMapPoint.X - 0.5 * kuan, rightMapPoint.Y + 0.5 * chang, z, rightMapPoint.SpatialReference));
+            points.Add(new MapPoint(rightMapPoint.X + 0.5 * kuan, rightMapPoint.Y - 0.5 * chang, z, rightMapPoint.SpatialReference));
+            points.Add(new MapPoint(rightMapPoint.X + 0.5 * kuan, rightMapPoint.Y + 0.5 * chang, z, rightMapPoint.SpatialReference));
 
-            selectGraphicGeometryRealCube = new Esri.ArcGISRuntime.Geometry.Polygon(points, selectGraphicGeometryMapPoint.SpatialReference);
+            selectGraphicGeometryRealCube = new Esri.ArcGISRuntime.Geometry.Polygon(points, rightMapPoint.SpatialReference);
             return selectGraphicGeometryRealCube;
         }
 
