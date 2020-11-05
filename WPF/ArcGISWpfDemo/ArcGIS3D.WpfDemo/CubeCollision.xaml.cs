@@ -82,7 +82,7 @@ namespace ArcGIS3D.WpfDemo
         /// 移动观察者-是否绘制完毕
         /// Flag indicating if the viewshed will move with the mouse.
         /// </summary>
-        private bool subscribedToMouseViewPoint;
+        //private bool subscribedToMouseViewPoint;
         #endregion
 
         public CubeCollision()
@@ -169,8 +169,8 @@ namespace ArcGIS3D.WpfDemo
                     // Set the rendering mode of the feature layer to be dynamic (needed for extrusion to work)
                     RenderingMode = FeatureRenderingMode.Dynamic
                 };
-                var spF = featureLayer.SpatialReference;
-                var spFG = featureLayer.SpatialReference.BaseGeographic;
+                //var spF = featureLayer.SpatialReference;
+                //var spFG = featureLayer.SpatialReference.BaseGeographic;
 
                 #region 绘制高程
                 // Create a new simple line symbol for the feature layer
@@ -202,8 +202,8 @@ namespace ArcGIS3D.WpfDemo
                 MySceneView.Scene = new Scene(BasemapType.DarkGrayCanvasVector);
                 // Add the feature layer to the map
                 MySceneView.Scene.Basemap = new Basemap(featureLayer);
-                var bSp = MySceneView.Scene.Basemap.BaseLayers[0].SpatialReference;
-                var sp = MySceneView.SpatialReference;
+                //var bSp = MySceneView.Scene.Basemap.BaseLayers[0].SpatialReference;
+                //var sp = MySceneView.SpatialReference;
                 // Zoom the map to the extent of the shapefile
                 await MySceneView.SetViewpointAsync(new Viewpoint(myShapefile.Extent));
             }
@@ -242,11 +242,15 @@ namespace ArcGIS3D.WpfDemo
                 ////imageFrame.LoadAsync().Wait();
                 ////await MySceneView.SetViewpointAsync(new Viewpoint(imageFrame.Extent));
 
-                ArcGISTiledElevationSource elevationSource = new ArcGISTiledElevationSource(new Uri(TifFilePath));
+
+
+                //ArcGISTiledElevationSource elevationSource = new ArcGISTiledElevationSource(new Uri(TifFilePath));
                 
-                Surface mySurface = new Surface();
-                mySurface.ElevationSources.Add(elevationSource);
-                MySceneView.Scene.BaseSurface = mySurface;
+                //Surface mySurface = new Surface();
+                //mySurface.ElevationSources.Add(elevationSource);
+                //MySceneView.Scene.BaseSurface = mySurface;
+
+
 
                 //RasterLayer rasterLayer = new RasterLayer(TifFilePath);
                 //var l = rasterLayer as ImageAdjustmentLayer;
@@ -277,6 +281,7 @@ namespace ArcGIS3D.WpfDemo
 
             //// Create a new simple renderer for the feature layer
             //SimpleRenderer mySimpleRenderer = new SimpleRenderer(mysimpleFillSymbol);
+            
 
             //// Get the scene properties from the simple renderer
             //RendererSceneProperties myRendererSceneProperties = mySimpleRenderer.SceneProperties;
@@ -340,6 +345,15 @@ namespace ArcGIS3D.WpfDemo
             MySceneView.PreviewMouseLeftButtonDown += MySceneViewOnDrawByCenter;
         }
 
+
+        private void DrawByPoint_Click(object sender, RoutedEventArgs e)
+        {
+            ResetEvent();
+            points = new List<MapPoint>();
+            tapTypeEnum = TapTypeEnum.DrawByPolygon;
+            MySceneView.PreviewMouseLeftButtonDown += MySceneViewOnMouseMoveDrawByPolygon;
+        }
+
         private void SelectFeatureLayer_Click(object sender, RoutedEventArgs e)
         {
             ResetEvent();
@@ -377,6 +391,98 @@ namespace ArcGIS3D.WpfDemo
             MySceneView.GeoViewTapped -= MySceneViewOnSelectFeatureLayer;
             MySceneView.GeoViewTapped -= MySceneViewOnSelectGraphicLayer;
             MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
+            MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnMouseMoveDrawByPolygon;
+        }
+        #endregion
+
+        #region 绘制
+        List<MapPoint> points;
+        private void MySceneViewOnMouseMoveDrawByPolygon(object sender, MouseEventArgs mouseEventArgs)
+        {
+            if (points.Count < 4)
+            {
+                // Get the mouse position.
+                Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
+
+                // Get the corresponding MapPoint.
+                MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
+                //TestCreateCube(onMapLocation.X, onMapLocation.Y, onMapLocation.Z);
+                if (onMapLocation != null)
+                {
+                    //防止重复点击
+                    var isExist = points.Where(x => x != null && x.X == onMapLocation.X && x.Y == onMapLocation.Y && x.Z == onMapLocation.Z).FirstOrDefault();
+                    if (isExist == null)
+                        points.Add(onMapLocation);
+                }
+
+            }
+            if (points.Count >= 4)
+            {
+                SetHeight setHeight = new SetHeight();
+                var dialogResult = setHeight.ShowDialog();
+                if (dialogResult.HasValue && dialogResult.Value)
+                {
+                    try
+                    {
+                        //上
+                        List<MapPoint> pointsWithZ = new List<MapPoint>();
+                        foreach (var p in points)
+                        {
+                            pointsWithZ.Add(new MapPoint(p.X, p.Y, setHeight.height, p.SpatialReference));
+                            //pointsWithZ.Add(MapPoint.CreateWithM(p.X, p.Y, p.Z + setHeight.height, setHeight.height, p.SpatialReference));
+                        }
+                        Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(pointsWithZ, points[0].SpatialReference);
+                        DrawOnePolygon(polygon);
+                        //下
+                        pointsWithZ = new List<MapPoint>();
+                        foreach (var p in points)
+                        {
+                            pointsWithZ.Add(new MapPoint(p.X, p.Y, 0, p.SpatialReference));
+                        }
+                        polygon = new Esri.ArcGISRuntime.Geometry.Polygon(pointsWithZ, points[0].SpatialReference);
+                        DrawOnePolygon(polygon);
+                        //左
+                        //右
+                        //前
+                        //后
+                        //CreateOneSide(setHeight.height, 0, 1);
+                        //CreateOneSide(setHeight.height, 1, 2);
+                        //CreateOneSide(setHeight.height, 2, 3);
+                        //CreateOneSide(setHeight.height, 3, 0);
+
+                        MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnMouseMoveDrawByPolygon;
+                        points = new List<MapPoint>();
+                    }
+                    catch(Exception ex)
+                    {
+
+                    }
+                
+                }
+
+            }
+
+        }
+
+        private void CreateOneSide(double height,int index1,int index2)
+        {
+            List<MapPoint> pointsWithZ = new List<MapPoint>();
+            MapPoint p1 = points[0];
+            MapPoint p2 = points[1];
+            pointsWithZ.Add(new MapPoint(p1.X, p1.Y, 0, p1.SpatialReference));
+            pointsWithZ.Add(new MapPoint(p1.X, p1.Y, height, p1.SpatialReference));
+            pointsWithZ.Add(new MapPoint(p2.X, p2.Y, 0, p2.SpatialReference));
+            pointsWithZ.Add(new MapPoint(p2.X, p2.Y, height, p2.SpatialReference));
+            var polygon = new Esri.ArcGISRuntime.Geometry.Polygon(pointsWithZ, p1.SpatialReference);
+            DrawOnePolygon(polygon);
+        }
+
+        private void DrawOnePolygon(Esri.ArcGISRuntime.Geometry.Polygon polygon)
+        {
+            SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.AliceBlue, null);
+            Graphic item = new Graphic(polygon, simpleFillSymbol);
+
+            graphicOverlay.Graphics.Add(item);
         }
         #endregion
 
@@ -407,6 +513,8 @@ namespace ArcGIS3D.WpfDemo
 
         private async void MySceneViewOnSelectIntersectionOverlay(object sender, GeoViewInputEventArgs e)
         {
+            graphicOverlay.ClearSelection();
+            featureLayer.ClearSelection();
             //结果显示图层
             await SetSelectForGraphicsOverlay(e, intersectionOverlay);
 
@@ -423,37 +531,6 @@ namespace ArcGIS3D.WpfDemo
             {
                 selectFeatureGeoElement = geoElement;
 
-                #region 根据范围查询
-                // Define the selection tolerance.
-                //double tolerance = 15;
-
-                //// Convert the tolerance to map units.
-                ////double mapTolerance = tolerance * MySceneView.UnitsPerPixel;
-                ////单位未知
-                //double mapTolerance = tolerance * 0.000001;
-
-                //// Get the tapped point.
-                //MapPoint geometry = e.Location;
-
-                //// Normalize the geometry if wrap-around is enabled.
-                ////    This is necessary because of how wrapped-around map coordinates are handled by Runtime.
-                ////    Without this step, querying may fail because wrapped-around coordinates are out of bounds.
-                ////if (MyMapView.IsWrapAroundEnabled)
-                ////{
-                ////    geometry = (MapPoint)GeometryEngine.NormalizeCentralMeridian(geometry);
-                ////}
-
-                //// Define the envelope around the tap location for selecting features.
-                //Envelope selectionEnvelope = new Envelope(geometry.X - mapTolerance, geometry.Y - mapTolerance, geometry.X + mapTolerance,
-                //    geometry.Y + mapTolerance, MySceneView.Scene.SpatialReference);
-
-                //// Define the query parameters for selecting features.
-                //QueryParameters queryParams = new QueryParameters
-                //{
-                //    // Set the geometry to selection envelope for selection by geometry.
-                //    Geometry = selectionEnvelope
-                //};
-                #endregion
                 QueryParameters queryParams = new QueryParameters
                 {
                     // Set the geometry to selection envelope for selection by geometry.
@@ -623,25 +700,36 @@ namespace ArcGIS3D.WpfDemo
         private Esri.ArcGISRuntime.Geometry.Polygon GetSelectGraphicGeometryRealCube()
         {
             Esri.ArcGISRuntime.Geometry.Polygon selectGraphicGeometryRealCube = null;
-            var symbol = selectGraphic.Symbol as SimpleMarkerSceneSymbol;
-            var z = symbol.Height;
-            var kuan = symbol.Width;
-            var chang = symbol.Depth;
-            var heading = symbol.Heading;
-            var selectGraphicGeometryMapPoint = selectGraphic.Geometry as MapPoint;
+            if (selectGraphic.Geometry is MapPoint)
+            {
+                
+                var symbol = selectGraphic.Symbol as SimpleMarkerSceneSymbol;
+                var z = symbol.Height;
+                var kuan = symbol.Width;
+                var chang = symbol.Depth;
+                var heading = symbol.Heading;
+                var selectGraphicGeometryMapPoint = selectGraphic.Geometry as MapPoint;
 
-            var rightMapPoint= GeometryEngine.Project(selectGraphicGeometryMapPoint, selectFeatureGeoElement.Geometry.SpatialReference) as MapPoint;
+                var rightMapPoint = GeometryEngine.Project(selectGraphicGeometryMapPoint, selectFeatureGeoElement.Geometry.SpatialReference) as MapPoint;
 
-            List<MapPoint> points = new List<MapPoint>();
-            //todo 角度 or 采用四点+设置高程绘图
-            //todo 可以在绘图的时候就把坐标系换了
-            //获得四个角点的数据
-            points.Add(new MapPoint(rightMapPoint.X - 0.5 * kuan, rightMapPoint.Y - 0.5 * chang, z, rightMapPoint.SpatialReference));
-            points.Add(new MapPoint(rightMapPoint.X - 0.5 * kuan, rightMapPoint.Y + 0.5 * chang, z, rightMapPoint.SpatialReference));
-            points.Add(new MapPoint(rightMapPoint.X + 0.5 * kuan, rightMapPoint.Y - 0.5 * chang, z, rightMapPoint.SpatialReference));
-            points.Add(new MapPoint(rightMapPoint.X + 0.5 * kuan, rightMapPoint.Y + 0.5 * chang, z, rightMapPoint.SpatialReference));
+                List<MapPoint> points = new List<MapPoint>();
+                //todo 角度 or 采用四点+设置高程绘图
+                //todo 可以在绘图的时候就把坐标系换了
+                //获得四个角点的数据
+                points.Add(new MapPoint(rightMapPoint.X - 0.5 * kuan, rightMapPoint.Y - 0.5 * chang, z, rightMapPoint.SpatialReference));
+                points.Add(new MapPoint(rightMapPoint.X - 0.5 * kuan, rightMapPoint.Y + 0.5 * chang, z, rightMapPoint.SpatialReference));
+                points.Add(new MapPoint(rightMapPoint.X + 0.5 * kuan, rightMapPoint.Y - 0.5 * chang, z, rightMapPoint.SpatialReference));
+                points.Add(new MapPoint(rightMapPoint.X + 0.5 * kuan, rightMapPoint.Y + 0.5 * chang, z, rightMapPoint.SpatialReference));
 
-            selectGraphicGeometryRealCube = new Esri.ArcGISRuntime.Geometry.Polygon(points, rightMapPoint.SpatialReference);
+                selectGraphicGeometryRealCube = new Esri.ArcGISRuntime.Geometry.Polygon(points, rightMapPoint.SpatialReference);
+                
+            }
+            else if(selectGraphic.Geometry is Esri.ArcGISRuntime.Geometry.Polygon)
+            {
+                var polygon = selectGraphic.Geometry as Esri.ArcGISRuntime.Geometry.Polygon;
+                //转坐标系
+                selectGraphicGeometryRealCube= GeometryEngine.Project(polygon, selectFeatureGeoElement.Geometry.SpatialReference) as Esri.ArcGISRuntime.Geometry.Polygon;
+            }
             return selectGraphicGeometryRealCube;
         }
 
