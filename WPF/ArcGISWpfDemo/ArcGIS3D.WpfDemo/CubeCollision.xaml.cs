@@ -61,19 +61,19 @@ namespace ArcGIS3D.WpfDemo
 
         string ShpFilePath
         {
-            get { return ConfigurationManager.AppSettings["ShpFilePath"]; }
+            get { return $"{System.IO.Directory.GetCurrentDirectory()}\\Data\\{ConfigurationManager.AppSettings["ShpFilePath"]}"; }
         }
         string TifFilePath
         {
-            get { return ConfigurationManager.AppSettings["TifFilePath"]; }
+            get { return $"{System.IO.Directory.GetCurrentDirectory()}\\Data\\{ConfigurationManager.AppSettings["TifFilePath"]}"; }
         }
         string GraphicShpFilePath
         {
-            get { return ConfigurationManager.AppSettings["GraphicShpFilePath"]; }
+            get { return $"{System.IO.Directory.GetCurrentDirectory()}\\Data\\{ConfigurationManager.AppSettings["GraphicShpFilePath"]}"; }
         }
         string ResultShpFilePath
         {
-            get { return ConfigurationManager.AppSettings["ResultShpFilePath"]; }
+            get { return $"{System.IO.Directory.GetCurrentDirectory()}\\Data\\{ConfigurationManager.AppSettings["ResultShpFilePath"]}"; }
         }
 
         /// <summary>
