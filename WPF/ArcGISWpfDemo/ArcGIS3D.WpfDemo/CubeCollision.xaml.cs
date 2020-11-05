@@ -119,6 +119,7 @@ namespace ArcGIS3D.WpfDemo
         /// 是否移动坦克
         /// </summary>
         bool IsAnimateTank { get; set; }
+        List<MapPoint> route = new List<MapPoint>();
         #endregion
 
         public CubeCollision()
@@ -155,6 +156,10 @@ namespace ArcGIS3D.WpfDemo
 
         private async void InitializeTankViewshed()
         {
+            IsAnimateTank = false;
+
+            route.Add(new MapPoint(105.680263573341, 32.0464130283866, 9.31322574615479E-10, SpatialReferences.Wgs84));
+
             // Configure the graphics overlay for the tank and add the overlay to the SceneView.
             _tankOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Relative;
             MySceneView.GraphicsOverlays.Add(_tankOverlay);
@@ -177,7 +182,7 @@ namespace ArcGIS3D.WpfDemo
                 //       This ensures that the tank is on the ground rather than partially under it.
                 tankSymbol.AnchorPosition = SceneSymbolAnchorPosition.Bottom;
                 // - Create the graphic.
-                _tank = new Graphic(new MapPoint(105.67956087176, 32.0470744099947, SpatialReferences.Wgs84), tankSymbol);
+                _tank = new Graphic(new MapPoint(105.67953087176, 32.0481024099947, SpatialReferences.Wgs84), tankSymbol);
                 // - Update the heading.
                 _tank.Attributes["HEADING"] = 0.0;
                 // - Add the graphic to the overlay.
@@ -210,6 +215,7 @@ namespace ArcGIS3D.WpfDemo
                 //// - Apply the camera controller to the SceneView.
                 //MySceneView.CameraController = cameraController;
 
+                //手动移动坦克
                 // Create a timer; this will enable animating the tank.
                 Timer animationTimer = new Timer(60)
                 {
@@ -227,8 +233,35 @@ namespace ArcGIS3D.WpfDemo
                 // - Start the timer.
                 animationTimer.Start();
 
+                //坦克自动移动
+                //todo
+                Timer animationTimer2 = new Timer(1000*5)
+                {
+                    Enabled = true,
+                    AutoReset = true
+                };
+                // - Move the tank every time the timer expires.
+                animationTimer2.Elapsed += (o, e) =>
+                {
+                    if (!IsAnimateTank)
+                    {
+                        foreach(var p in route)
+                        {
+                            _tankEndPoint = p;
+                            AnimateTank();
+                        }
+                        
+                    }
+                };
+                // - Start the timer.
+                animationTimer2.Start();
+
                 // Allow the user to click to define a new destination.
-                MySceneView.GeoViewTapped += (sender, args) => { _tankEndPoint = args.Location; };
+                MySceneView.GeoViewTapped += (sender, args) => 
+                { 
+                    _tankEndPoint = args.Location;
+                    var rightMapPoint = GeometryEngine.Project(_tankEndPoint, featureLayer.SpatialReference) as MapPoint;
+                };
             }
             catch (Exception e)
             {
@@ -286,7 +319,7 @@ namespace ArcGIS3D.WpfDemo
                 graphicLayer.Renderer = mySimpleRenderer;
                 #endregion
 
-                graphicLayer.Opacity = 0.7;
+                graphicLayer.Opacity = 0.8;
 
                 MySceneView.Scene.Basemap.BaseLayers.Add(graphicLayer);
             }
@@ -380,7 +413,7 @@ namespace ArcGIS3D.WpfDemo
                 #endregion
 
                 //
-                featureLayer.Opacity = 0.7;
+                featureLayer.Opacity = 0.8;
 
                 //设置底图样式
                 MySceneView.Scene = new Scene(BasemapType.DarkGrayCanvasVector);
@@ -389,7 +422,10 @@ namespace ArcGIS3D.WpfDemo
                 //var bSp = MySceneView.Scene.Basemap.BaseLayers[0].SpatialReference;
                 //var sp = MySceneView.SpatialReference;
                 // Zoom the map to the extent of the shapefile
-                await MySceneView.SetViewpointAsync(new Viewpoint(myShapefile.Extent));
+                //设置摄像头
+                Camera camera = new Camera(32.0429071258535, 105.677752767021, 200.0, 20.0, 70.0, 0.0);
+                var viewpoint = new Viewpoint(myShapefile.Extent, camera);
+                await MySceneView.SetViewpointAsync(viewpoint);
             }
             catch (Exception e)
             {
@@ -1227,10 +1263,22 @@ namespace ArcGIS3D.WpfDemo
                 return;
             }
 
+            GeodeticDistanceResult distance = MoveTank(_tankEndPoint);
+
+            // Clear the destination if the tank already arrived.
+            if (distance.Distance < 5)
+            {
+                _tankEndPoint = null;
+            }
+        }
+
+        private GeodeticDistanceResult MoveTank(MapPoint endPoint)
+        {
             // Get the current location and distance from the destination.
             MapPoint location = (MapPoint)_tank.Geometry;
+            //var rightMapPoint = GeometryEngine.Project(location, endPoint.SpatialReference) as MapPoint;
             GeodeticDistanceResult distance = GeometryEngine.DistanceGeodetic(
-                location, _tankEndPoint, _metersUnit, _degreesUnit, GeodeticCurveType.Geodesic);
+                location, endPoint, _metersUnit, _degreesUnit, GeodeticCurveType.Geodesic);
 
             // Move the tank a short distance.
             location = GeometryEngine.MoveGeodetic(new List<MapPoint>() { location }, 1.0, _metersUnit, distance.Azimuth1, _degreesUnit,
@@ -1241,12 +1289,7 @@ namespace ArcGIS3D.WpfDemo
             double heading = (double)_tank.Attributes["HEADING"];
             heading = heading + (distance.Azimuth1 - heading) / 10;
             _tank.Attributes["HEADING"] = heading;
-
-            // Clear the destination if the tank already arrived.
-            if (distance.Distance < 5)
-            {
-                _tankEndPoint = null;
-            }
+            return distance;
         }
         #endregion
 
