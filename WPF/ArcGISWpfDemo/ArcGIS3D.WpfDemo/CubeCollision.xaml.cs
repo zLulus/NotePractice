@@ -1,5 +1,6 @@
 ﻿using ArcGIS3D.WpfDemo.Dialogs;
 using ArcGIS3D.WpfDemo.Enums;
+using ArcGIS3D.WpfDemo.Managers;
 using Esri.ArcGISRuntime.Data;
 using Esri.ArcGISRuntime.Geometry;
 using Esri.ArcGISRuntime.Mapping;
@@ -17,6 +18,7 @@ using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -103,6 +105,22 @@ namespace ArcGIS3D.WpfDemo
         //private bool subscribedToMouseViewPoint;
         #endregion
 
+        #region 坦克观察者
+        // Graphic and overlay for showing the tank
+        private readonly GraphicsOverlay _tankOverlay = new GraphicsOverlay();
+        private Graphic _tank;
+
+        // Animation properties
+        private MapPoint _tankEndPoint;
+        // Units for geodetic calculation (used in animating tank)
+        private readonly LinearUnit _metersUnit = (LinearUnit)Unit.FromUnitId(9001);
+        private readonly AngularUnit _degreesUnit = (AngularUnit)Unit.FromUnitId(9102);
+        /// <summary>
+        /// 是否移动坦克
+        /// </summary>
+        bool IsAnimateTank { get; set; }
+        #endregion
+
         public CubeCollision()
         {
             InitializeComponent();
@@ -130,6 +148,92 @@ namespace ArcGIS3D.WpfDemo
 
             //观察者
             InitializeViewshed();
+
+            //坦克观察者
+            InitializeTankViewshed();
+        }
+
+        private async void InitializeTankViewshed()
+        {
+            // Configure the graphics overlay for the tank and add the overlay to the SceneView.
+            _tankOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Relative;
+            MySceneView.GraphicsOverlays.Add(_tankOverlay);
+
+            // Configure the heading expression for the tank; this will allow the
+            //     viewshed to update automatically based on the tank's position.
+            SimpleRenderer renderer3D = new SimpleRenderer();
+            renderer3D.SceneProperties.HeadingExpression = "[HEADING]";
+            _tankOverlay.Renderer = renderer3D;
+
+            try
+            {
+                // Create the tank graphic - get the model path.
+                string modelPath = DataManager.GetDataFolder("07d62a792ab6496d9b772a24efea45d0", "bradle.3ds");
+                // - Create the symbol and make it 10x larger (to be the right size relative to the scene).
+                ModelSceneSymbol tankSymbol = await ModelSceneSymbol.CreateAsync(new Uri(modelPath), 10);
+                // - Adjust the position.
+                tankSymbol.Heading = 90;
+                // - The tank will be positioned relative to the scene surface by its bottom.
+                //       This ensures that the tank is on the ground rather than partially under it.
+                tankSymbol.AnchorPosition = SceneSymbolAnchorPosition.Bottom;
+                // - Create the graphic.
+                _tank = new Graphic(new MapPoint(105.67956087176, 32.0470744099947, SpatialReferences.Wgs84), tankSymbol);
+                // - Update the heading.
+                _tank.Attributes["HEADING"] = 0.0;
+                // - Add the graphic to the overlay.
+                _tankOverlay.Graphics.Add(_tank);
+
+                // Create a viewshed for the tank.
+                GeoElementViewshed geoViewshed = new GeoElementViewshed(
+                    geoElement: _tank,
+                    horizontalAngle: 90.0,
+                    verticalAngle: 40.0,
+                    minDistance: 0.1,
+                    maxDistance: 250.0,
+                    headingOffset: 0.0,
+                    pitchOffset: 0.0)
+                {
+                    // Offset viewshed observer location to top of tank.
+                    OffsetZ = 3.0
+                };
+
+                // Create the analysis overlay and add to the scene.
+                AnalysisOverlay overlay = new AnalysisOverlay();
+                overlay.Analyses.Add(geoViewshed);
+                MySceneView.AnalysisOverlays.Add(overlay);
+
+                //// Create a camera controller to orbit the tank.
+                //OrbitGeoElementCameraController cameraController = new OrbitGeoElementCameraController(_tank, 200.0)
+                //{
+                //    CameraPitchOffset = 45.0
+                //};
+                //// - Apply the camera controller to the SceneView.
+                //MySceneView.CameraController = cameraController;
+
+                // Create a timer; this will enable animating the tank.
+                Timer animationTimer = new Timer(60)
+                {
+                    Enabled = true,
+                    AutoReset = true
+                };
+                // - Move the tank every time the timer expires.
+                animationTimer.Elapsed += (o, e) =>
+                {
+                    if (IsAnimateTank)
+                    {
+                        AnimateTank();
+                    }
+                };
+                // - Start the timer.
+                animationTimer.Start();
+
+                // Allow the user to click to define a new destination.
+                MySceneView.GeoViewTapped += (sender, args) => { _tankEndPoint = args.Location; };
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Error");
+            }
         }
 
         private async Task InitializeIntersectionLayer()
@@ -216,7 +320,7 @@ namespace ArcGIS3D.WpfDemo
             _viewpointOverlay.Graphics.Add(new Graphic(initialLocation, _viewpointSymbol));
 
 
-            // Create an analysis overlay for showing the viewshed analysis.
+            // Create an analysis overlay for showinSetViewpointCameraAsyncg the viewshed analysis.
             _analysisOverlay = new AnalysisOverlay();
 
             // Add the viewshed analysis to the overlay.
@@ -465,6 +569,13 @@ namespace ArcGIS3D.WpfDemo
             MySceneView.MouseMove += MySceneViewOnMoveViewPoint;
         }
 
+
+        private void MoveTank_Click(object sender, RoutedEventArgs e)
+        {
+            ResetEvent();
+            IsAnimateTank = true;
+        }
+
         private void ResetEvent()
         {
             MySceneView.MouseMove -= MySceneViewOnMoveViewPoint;
@@ -472,6 +583,8 @@ namespace ArcGIS3D.WpfDemo
             MySceneView.GeoViewTapped -= MySceneViewOnSelectGraphicLayer;
             MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
             MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnMouseMoveDrawByPolygon;
+            MySceneView.GeoViewTapped -= MySceneViewOnSelectIntersectionOverlay;
+            IsAnimateTank = false;
         }
         #endregion
 
@@ -515,6 +628,9 @@ namespace ArcGIS3D.WpfDemo
                     feature.Geometry = polygon;
                     await graphicLayer.FeatureTable.AddFeatureAsync(feature);
 
+                    MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnMouseMoveDrawByPolygon;
+                    //清空
+                    points = new List<MapPoint>();
                     //try
                     //{
                     //    //上
@@ -597,13 +713,13 @@ namespace ArcGIS3D.WpfDemo
         private async void MySceneViewOnSelectFeatureLayer(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             //shp图层
-            selectFeatureGeoElement= await SetSelectForLayer(e,featureLayer);
+            selectFeatureGeoElement= await SetSelectForFeatureLayer(e);
         }
 
         private async void MySceneViewOnSelectGraphicLayer(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
         {
             //绘制图层
-            selectGraphic= await SetSelectForLayer(e, graphicLayer);
+            selectGraphic= await SetSelectForGraphicLayer(e);
             //selectGraphic = await SetSelectForGraphicsOverlay(e,graphicOverlay);
         }
 
@@ -612,7 +728,7 @@ namespace ArcGIS3D.WpfDemo
             graphicLayer.ClearSelection();
             featureLayer.ClearSelection();
             //结果显示图层
-            await SetSelectForLayer(e, intersectionLayer);
+            await SetSelectForIntersectionLayer(e);
             //await SetSelectForGraphicsOverlay(e, intersectionOverlay);
 
             //selectGraphic.IsVisible = false;
@@ -620,21 +736,70 @@ namespace ArcGIS3D.WpfDemo
             //selectFeatureGeoElement.
         }
 
-        private async Task<GeoElement> SetSelectForLayer(GeoViewInputEventArgs e,FeatureLayer featureLayer)
+        //private async Task<GeoElement> SetSelectForLayer(GeoViewInputEventArgs e,FeatureLayer featureLayer)
+        //{
+        //    var result = await MySceneView.IdentifyLayerAsync(featureLayer, e.Position, 1, false);
+        //    GeoElement geoElement = result.GeoElements.FirstOrDefault();
+        //    if (geoElement != null)
+        //    {
+        //        QueryParameters queryParams = new QueryParameters
+        //        {
+        //            // Set the geometry to selection envelope for selection by geometry.
+        //            Geometry = geoElement.Geometry //selectionEnvelope
+        //        };
+        //        // Select the features based on query parameters defined above.
+        //        await featureLayer.SelectFeaturesAsync(queryParams, Esri.ArcGISRuntime.Mapping.SelectionMode.New);
+        //    }
+        //    return geoElement;
+        //}
+
+        private async Task<GeoElement> SetSelectForIntersectionLayer(GeoViewInputEventArgs e)
+        {
+            var result = await MySceneView.IdentifyLayerAsync(intersectionLayer, e.Position, 1, false);
+            GeoElement geoElement = result.GeoElements.FirstOrDefault();
+            if (geoElement != null)
+            {
+                QueryParameters queryParams = new QueryParameters
+                {
+                    // Set the geometry to selection envelope for selection by geometry.
+                    Geometry = geoElement.Geometry //selectionEnvelope
+                };
+                // Select the features based on query parameters defined above.
+                await intersectionLayer.SelectFeaturesAsync(queryParams, Esri.ArcGISRuntime.Mapping.SelectionMode.New);
+            }
+            return geoElement;
+        }
+
+        private async Task<GeoElement> SetSelectForFeatureLayer(GeoViewInputEventArgs e)
         {
             var result = await MySceneView.IdentifyLayerAsync(featureLayer, e.Position, 1, false);
             GeoElement geoElement = result.GeoElements.FirstOrDefault();
             if (geoElement != null)
             {
-                selectFeatureGeoElement = geoElement;
-
                 QueryParameters queryParams = new QueryParameters
                 {
                     // Set the geometry to selection envelope for selection by geometry.
-                    Geometry = selectFeatureGeoElement.Geometry //selectionEnvelope
+                    Geometry = geoElement.Geometry //selectionEnvelope
                 };
                 // Select the features based on query parameters defined above.
                 await featureLayer.SelectFeaturesAsync(queryParams, Esri.ArcGISRuntime.Mapping.SelectionMode.New);
+            }
+            return geoElement;
+        }
+
+        private async Task<GeoElement> SetSelectForGraphicLayer(GeoViewInputEventArgs e)
+        {
+            var result = await MySceneView.IdentifyLayerAsync(graphicLayer, e.Position, 1, false);
+            GeoElement geoElement = result.GeoElements.FirstOrDefault();
+            if (geoElement != null)
+            {
+                QueryParameters queryParams = new QueryParameters
+                {
+                    // Set the geometry to selection envelope for selection by geometry.
+                    Geometry = geoElement.Geometry //selectionEnvelope
+                };
+                // Select the features based on query parameters defined above.
+                await graphicLayer.SelectFeaturesAsync(queryParams, Esri.ArcGISRuntime.Mapping.SelectionMode.New);
             }
             return geoElement;
         }
@@ -778,17 +943,25 @@ namespace ArcGIS3D.WpfDemo
                         {
                             var feature = intersectionLayer.FeatureTable.CreateFeature();
                             feature.Attributes.Remove("Z");
-                            double z = 0;
+                            double z = double.MaxValue;
                             List<MapPoint> pointsWithZ = new List<MapPoint>();
                             foreach (var point in part.Points)
                             {
-                                z = point.Z;
+                                //只能计算平面体（即同一平面Z相同的数据）
+                                if (point.Z < z)
+                                {
+                                    z = point.Z;
+                                }
+                                
                                 pointsWithZ.Add(new MapPoint(point.X, point.Y, point.SpatialReference));
                             }
                             feature.Attributes.Add("Z", z);
                             Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(pointsWithZ, pointsWithZ[0].SpatialReference);
                             feature.Geometry = polygon;
                             await intersectionLayer.FeatureTable.AddFeatureAsync(feature);
+
+                            graphicLayer.ClearSelection();
+                            featureLayer.ClearSelection();
                         }
                     }
                  
@@ -1043,6 +1216,38 @@ namespace ArcGIS3D.WpfDemo
         }
 
 
+        #endregion
+
+        #region 坦克观察者
+        private void AnimateTank()
+        {
+            // Return if the tank already arrived.
+            if (_tankEndPoint == null)
+            {
+                return;
+            }
+
+            // Get the current location and distance from the destination.
+            MapPoint location = (MapPoint)_tank.Geometry;
+            GeodeticDistanceResult distance = GeometryEngine.DistanceGeodetic(
+                location, _tankEndPoint, _metersUnit, _degreesUnit, GeodeticCurveType.Geodesic);
+
+            // Move the tank a short distance.
+            location = GeometryEngine.MoveGeodetic(new List<MapPoint>() { location }, 1.0, _metersUnit, distance.Azimuth1, _degreesUnit,
+                GeodeticCurveType.Geodesic).First();
+            _tank.Geometry = location;
+
+            // Rotate to face the destination.
+            double heading = (double)_tank.Attributes["HEADING"];
+            heading = heading + (distance.Azimuth1 - heading) / 10;
+            _tank.Attributes["HEADING"] = heading;
+
+            // Clear the destination if the tank already arrived.
+            if (distance.Distance < 5)
+            {
+                _tankEndPoint = null;
+            }
+        }
         #endregion
 
     }
