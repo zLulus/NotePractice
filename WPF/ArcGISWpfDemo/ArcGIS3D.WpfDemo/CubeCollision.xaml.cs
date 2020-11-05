@@ -177,8 +177,8 @@ namespace ArcGIS3D.WpfDemo
                 SimpleLineSymbol mySimpleLineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, System.Drawing.Color.Black, 1);
 
                 // Create a new simple fill symbol for the feature layer 
-                SimpleFillSymbol mysimpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.WhiteSmoke, mySimpleLineSymbol);
-
+                SimpleFillSymbol mysimpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Cross, System.Drawing.Color.WhiteSmoke, mySimpleLineSymbol);
+                
                 // Create a new simple renderer for the feature layer
                 SimpleRenderer mySimpleRenderer = new SimpleRenderer(mysimpleFillSymbol);
 
@@ -194,6 +194,9 @@ namespace ArcGIS3D.WpfDemo
                 // Set the feature layer's renderer to the define simple renderer
                 featureLayer.Renderer = mySimpleRenderer;
                 #endregion
+
+                //
+                featureLayer.Opacity = 0.7;
 
                 //设置底图样式
                 MySceneView.Scene = new Scene(BasemapType.DarkGrayCanvasVector);
@@ -263,6 +266,8 @@ namespace ArcGIS3D.WpfDemo
             graphicOverlay = new GraphicsOverlay();
             //缩小放大
             graphicOverlay.ScaleSymbols = false;
+            //透明度
+            graphicOverlay.Opacity = 0.7;
             //#region 绘制高程
             //// Create a new simple line symbol for the feature layer
             //SimpleLineSymbol mySimpleLineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, System.Drawing.Color.Black, 1);
@@ -404,6 +409,10 @@ namespace ArcGIS3D.WpfDemo
         {
             //结果显示图层
             await SetSelectForGraphicsOverlay(e, intersectionOverlay);
+
+            //selectGraphic.IsVisible = false;
+            //featureLayer.IsVisible = false;
+            //selectFeatureGeoElement.
         }
 
         private async Task SetSelectForFeatureLayer(GeoViewInputEventArgs e)
@@ -482,6 +491,7 @@ namespace ArcGIS3D.WpfDemo
             target.ClearSelection();
 
             graphic.IsSelected = true;
+
             return graphic;
         }
 
@@ -503,7 +513,8 @@ namespace ArcGIS3D.WpfDemo
             {
                 var centerPoint = new MapPoint(setCubeInfo.vm.X, setCubeInfo.vm.Y, setCubeInfo.vm.Z, onMapLocation.SpatialReference);
 
-                SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.DarkSeaGreen, 1, SceneSymbolAnchorPosition.Center);
+                //设置中心点为底部的中心点，否则显示的高度只有设置高度的一半（剩下的部分在地下）
+                SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.DarkSeaGreen, 1, SceneSymbolAnchorPosition.Bottom);
                 //旋转角度
                 symbol.Heading = setCubeInfo.vm.Heading;
                 //z 高
@@ -512,6 +523,7 @@ namespace ArcGIS3D.WpfDemo
                 symbol.Width = setCubeInfo.vm.Width;
                 //宽
                 symbol.Depth = setCubeInfo.vm.Depth;
+                
                 // Create the graphic from the geometry and the symbol.
                 Graphic item = new Graphic(centerPoint, symbol);
 
@@ -571,24 +583,27 @@ namespace ArcGIS3D.WpfDemo
 
             //创建shp几何体
             Esri.ArcGISRuntime.Geometry.Polygon selectFeatureGeometryRealCube = GetSelectFeatureGeometryRealCube();
-
+            
 
             //创建绘画几何体
             Esri.ArcGISRuntime.Geometry.Polygon selectGraphicGeometryRealCube = GetSelectGraphicGeometryRealCube();
 
-            var b = GeometryEngine.Intersects(selectFeatureGeometryRealCube, selectGraphicGeometryRealCube);
-            var g3 = GeometryEngine.Intersection(selectFeatureGeometryRealCube, selectGraphicGeometryRealCube);
-            var g2 = GeometryEngine.Intersections(selectFeatureGeometryRealCube, selectGraphicGeometryRealCube);
+            var b = GeometryEngine.Intersects(selectGraphicGeometryRealCube, selectFeatureGeometryRealCube);
+            //var g3 = GeometryEngine.Intersection(selectFeatureGeometryRealCube, selectGraphicGeometryRealCube);
+            var g2 = GeometryEngine.Intersections(selectGraphicGeometryRealCube, selectFeatureGeometryRealCube);
 
             if (b)
             {
-                foreach(var g in g2)
+                foreach (var g in g2)
                 {
-                    var redSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Red,Style=SimpleFillSymbolStyle.Solid };
+                    var redSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Red, Style = SimpleFillSymbolStyle.Solid };
                     Graphic item = new Graphic(g, redSymbol);
                     intersectionOverlay.Graphics.Add(item);
                 }
-                
+                //var redSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Red, Style = SimpleFillSymbolStyle.Solid };
+                //Graphic item = new Graphic(g3, redSymbol);
+                //intersectionOverlay.Graphics.Add(item);
+
                 MessageBox.Show("二者重叠");
             }
             else

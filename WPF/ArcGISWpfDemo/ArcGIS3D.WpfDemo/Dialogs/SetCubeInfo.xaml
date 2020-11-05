@@ -4,9 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArcGIS3D.WpfDemo.Dialogs"
-        mc:Ignorable="d"
-        Title="SetCubeInfo" Height="250" Width="500">
-    <Grid>
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="设置立方体信息" Height="330" Width="500">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Margin" Value="3"></Setter>
+                <Setter Property="Background" Value="White"></Setter>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Style.Setters>
+                <Setter Property="Margin" Value="0,5,12,5"></Setter>
+                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            </Style.Setters>
+        </Style>
+        <Style TargetType="TextBox">
+            <Style.Setters>
+                <Setter Property="Margin" Value="0,0,0,5"></Setter>
+            </Style.Setters>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="20,10,20,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -19,70 +38,26 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
-            <TextBlock Text="中心点："></TextBlock>
-        </Grid>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"></ColumnDefinition>
-                <ColumnDefinition Width="70*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="X:"></TextBlock>
-            <TextBox Grid.Column="1" Text="{Binding X}"></TextBox>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"></ColumnDefinition>
-                <ColumnDefinition Width="70*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Y:"></TextBlock>
-            <TextBox Grid.Column="1" Text="{Binding Y}"></TextBox>
-        </Grid>
-        <Grid Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"></ColumnDefinition>
-                <ColumnDefinition Width="70*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Z:"></TextBlock>
-            <TextBox Grid.Column="1" Text="{Binding Z}"></TextBox>
-        </Grid>
-        <Grid Grid.Row="4">
-            <TextBlock Text="立方体："></TextBlock>
-        </Grid>
-        <Grid Grid.Row="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"></ColumnDefinition>
-                <ColumnDefinition Width="70*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="宽度:"></TextBlock>
-            <TextBox Grid.Column="1" Text="{Binding Width}"></TextBox>
-        </Grid>
-        <Grid Grid.Row="6">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"></ColumnDefinition>
-                <ColumnDefinition Width="70*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="长度:"></TextBlock>
-            <TextBox Grid.Column="1" Text="{Binding Depth}"></TextBox>
-        </Grid>
-        <Grid Grid.Row="7">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"></ColumnDefinition>
-                <ColumnDefinition Width="70*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="高度:"></TextBlock>
-            <TextBox Grid.Column="1" Text="{Binding Height}"></TextBox>
-        </Grid>
-        <Grid Grid.Row="8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"></ColumnDefinition>
-                <ColumnDefinition Width="70*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="角度:"></TextBlock>
-            <TextBox Grid.Column="1" Text="{Binding Heading}"></TextBox>
-        </Grid>
-        <Grid Grid.Row="9">
-            <Button Content="确定" Click="Draw_Click"></Button>
-        </Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="中心点位置"></TextBlock>
+        <TextBlock Grid.Row="1" Text="X:"></TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding X}"></TextBox>
+        <TextBlock Grid.Row="2" Text="Y:"></TextBlock>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Y}"></TextBox>
+        <TextBlock Grid.Row="3" Text="Z:"></TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Z}"></TextBox>
+        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Text="立方体参数"></TextBlock>
+        <TextBlock Grid.Row="5" Text="宽度:"></TextBlock>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Width}"></TextBox>
+        <TextBlock Grid.Row="6" Text="长度:"></TextBlock>
+        <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding Depth}"></TextBox>
+        <TextBlock  Grid.Row="7" Text="高度:"></TextBlock>
+        <TextBox  Grid.Row="7" Grid.Column="1" Text="{Binding Height}"></TextBox>
+        <TextBlock Grid.Row="8" Text="角度:"></TextBlock>
+        <TextBox Grid.Row="8" Grid.Column="1" Text="{Binding Heading}"></TextBox>
+        <Button Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Content="确定" Click="Draw_Click"></Button>
     </Grid>
 </Window>

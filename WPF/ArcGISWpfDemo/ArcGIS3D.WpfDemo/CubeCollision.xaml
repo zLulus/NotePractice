@@ -6,11 +6,19 @@
              xmlns:local="clr-namespace:ArcGIS3D.WpfDemo" 
              xmlns:esri="clr-namespace:Esri.ArcGISRuntime.UI.Controls;assembly=Esri.ArcGISRuntime.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="1050" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Style.Setters>
+                <Setter Property="Margin" Value="3"></Setter>
+                <Setter Property="Background" Value="White"></Setter>
+            </Style.Setters>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <esri:SceneView x:Name="MySceneView" GeoViewDoubleTapped="MySceneViewOnGeoViewTapped">
         </esri:SceneView>
-        <Border Style="{StaticResource BorderStyle}">
+        <Border Style="{StaticResource BorderStyle}" Opacity="0.7">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -23,112 +31,130 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Content="移动观察者" Click="ChangeModeViewPointStatus_Click"></Button>
-                <TextBlock Text="观察方位"
-                           Grid.Row="1" Grid.Column="0"
-                           HorizontalAlignment="Right" />
-                <TextBlock Text="观察范围"
-                           Grid.Row="2" Grid.Column="0"
-                           HorizontalAlignment="Right" />
-                <TextBlock Text="横向角度"
-                           Grid.Row="3" Grid.Column="0"
-                           HorizontalAlignment="Right" />
-                <TextBlock Text="纵向角度"
+                <Label Content="观察者功能" FontSize="20" FontWeight="Bold"></Label>
+                <Button Grid.Row="1" Content="移动观察者" Click="ChangeModeViewPointStatus_Click"></Button>
+                <GroupBox Header="设置参数" Grid.Row="2">
+                    <Grid Margin="0,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="观察方位"
+                           Grid.Row="2" Grid.Column="0"/>
+                        <TextBlock Text="观察范围"
+                           Grid.Row="3" Grid.Column="0"/>
+                        <TextBlock Text="横向角度"
                            Grid.Row="4" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="观察高度"
+                        <TextBlock Text="纵向角度"
                            Grid.Row="5" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="最小距离"
+                        <TextBlock Text="观察高度"
                            Grid.Row="6" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="最大距离"
+                        <TextBlock Text="最小距离"
                            Grid.Row="7" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="视锥可见性"
-                           Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
+                        <TextBlock Text="最大距离"
+                           Grid.Row="8" Grid.Column="0"
                            HorizontalAlignment="Right" />
-                <TextBlock Text="分析可见性"
+                        <TextBlock Text="视锥可见性"
                            Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"
                            HorizontalAlignment="Right" />
+                        <TextBlock Text="分析可见性"
+                           Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"
+                           HorizontalAlignment="Right" />
 
-                <Slider x:Name="HeadingSlider"
-                        Grid.Row="1" Grid.Column="1"
+                        <Slider x:Name="HeadingSlider"
+                        Grid.Row="2" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Center"
                         Value="238" Maximum="360"
                         TickFrequency="1" IsSnapToTickEnabled="True"
                         ValueChanged="HandleSettingsChange" />
-                <Slider x:Name="PitchSlider"
-                        Grid.Row="2" Grid.Column="1"
+                        <Slider x:Name="PitchSlider"
+                        Grid.Row="3" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Center"
                         Value="60" Maximum="180"
                         TickFrequency="1" IsSnapToTickEnabled="True"
                         ValueChanged="HandleSettingsChange" />
-                <Slider x:Name="HorizontalAngleSlider"
-                        Grid.Row="3" Grid.Column="1"
+                        <Slider x:Name="HorizontalAngleSlider"
+                        Grid.Row="4" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Center"
                         Value="75" Maximum="120" Minimum="1"
                         TickFrequency="1" IsSnapToTickEnabled="True"
                         ValueChanged="HandleSettingsChange" />
-                <Slider x:Name="VerticalAngleSlider"
-                        Grid.Row="4" Grid.Column="1"
+                        <Slider x:Name="VerticalAngleSlider"
+                        Grid.Row="5" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Center"
                         Value="90" Maximum="120" Minimum="1"
                         TickFrequency="1" IsSnapToTickEnabled="True"
                         ValueChanged="HandleSettingsChange" />
-                <Slider x:Name="HeightSlider"
-                        Grid.Row="5" Grid.Column="1"
+                        <Slider x:Name="HeightSlider"
+                        Grid.Row="6" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Center"
                         Value="18" Maximum="200" Minimum="0"
                         TickFrequency="1" IsSnapToTickEnabled="True"
                         ValueChanged="HandleSettingsChange" />
-                <Slider x:Name="MinimumDistanceSlider"
-                        Grid.Row="6" Grid.Column="1"
+                        <Slider x:Name="MinimumDistanceSlider"
+                        Grid.Row="7" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Center"
                         Value="5" Maximum="8999" Minimum="5"
                         TickFrequency="1" IsSnapToTickEnabled="True"
                         ValueChanged="HandleSettingsChange" />
-                <Slider x:Name="MaximumDistanceSlider"
-                        Grid.Row="7" Grid.Column="1"
+                        <Slider x:Name="MaximumDistanceSlider"
+                        Grid.Row="8" Grid.Column="1"
                         HorizontalAlignment="Stretch" VerticalAlignment="Center"
                         Value="1500" Minimum="1" Maximum="9999"
                         TickFrequency="1" IsSnapToTickEnabled="True"
                         ValueChanged="HandleSettingsChange" />
-                <CheckBox x:Name="FrustumVisibilityCheck"
-                          Grid.Row="8" Grid.Column="2"
+                        <CheckBox x:Name="FrustumVisibilityCheck"
+                          Grid.Row="9" Grid.Column="2"
                           Margin="5" VerticalAlignment="Center"
                           Checked="HandleSettingsChange"
                           Unchecked="HandleSettingsChange" />
-                <CheckBox x:Name="AnalysisVisibilityCheck"
-                          Grid.Row="9" Grid.Column="2"
+                        <CheckBox x:Name="AnalysisVisibilityCheck"
+                          Grid.Row="10" Grid.Column="2"
                           Margin="5" VerticalAlignment="Center"
                           IsChecked="True"
                           Checked="HandleSettingsChange"
                           Unchecked="HandleSettingsChange" />
 
-                <Label Content="{Binding Value, ElementName=HeadingSlider}"
-                       Grid.Row="1" Grid.Column="2" />
-                <Label Content="{Binding Value, ElementName=PitchSlider}"
+                        <Label Content="{Binding Value, ElementName=HeadingSlider}"
                        Grid.Row="2" Grid.Column="2" />
-                <Label Content="{Binding Value, ElementName=HorizontalAngleSlider}"
+                        <Label Content="{Binding Value, ElementName=PitchSlider}"
                        Grid.Row="3" Grid.Column="2" />
-                <Label Content="{Binding Value, ElementName=VerticalAngleSlider}"
+                        <Label Content="{Binding Value, ElementName=HorizontalAngleSlider}"
                        Grid.Row="4" Grid.Column="2" />
-                <Label Content="{Binding Value, ElementName=HeightSlider}"
+                        <Label Content="{Binding Value, ElementName=VerticalAngleSlider}"
                        Grid.Row="5" Grid.Column="2" />
-                <Label Content="{Binding Value, ElementName=MinimumDistanceSlider}"
+                        <Label Content="{Binding Value, ElementName=HeightSlider}"
                        Grid.Row="6" Grid.Column="2" />
-                <Label Content="{Binding Value, ElementName=MaximumDistanceSlider}"
+                        <Label Content="{Binding Value, ElementName=MinimumDistanceSlider}"
                        Grid.Row="7" Grid.Column="2" />
+                        <Label Content="{Binding Value, ElementName=MaximumDistanceSlider}"
+                       Grid.Row="8" Grid.Column="2" />
+                    </Grid>
+                </GroupBox>
+              
             </Grid>
         </Border>
-        <Border Style="{StaticResource BorderStyle}" Margin="0,350,30,0" Height="300">
+        <Border Style="{StaticResource BorderStyle}" Margin="0,400,30,0" Opacity="0.7">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -142,14 +168,24 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
+                <Label Content="几何关系功能" FontSize="20" FontWeight="Bold"></Label>
                 <Button Content="切换为移动模式" Grid.Row="1" Click="ChangeModeStatus_Click"></Button>
-                <Button Content="绘制长方体(点选中心点)" Grid.Row="2" Click="DrawByCenter_Click"></Button>
-                <Button Content="清除绘制图层" Grid.Row="3" Click="ClearGraphicOverlay_Click"></Button>
-                <Button Content="清除结果显示图层" Grid.Row="4" Click="ClearIntersectionOverlay_Click"></Button>
-                <Button Content="选择基础图层" Grid.Row="5" Click="SelectFeatureLayer_Click"></Button>
-                <Button Content="选择绘制图层" Grid.Row="6" Click="SelectGraphicLayer_Click"></Button>
-                <Button Content="判定二者关系" Grid.Row="7" Click="CheckOBBCollision_Click"></Button>
-                <Button Content="选择结果显示图层" Grid.Row="8" Click="SelectIntersectionOverlay_Click"></Button>
+                <Button Content="绘制长方体" Grid.Row="2" Click="DrawByCenter_Click"></Button>
+                <GroupBox Header="判断几何关系" Grid.Row="3">
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="选择基础图层" Click="SelectFeatureLayer_Click"></Button>
+                        <Button Content="选择绘制图层" Click="SelectGraphicLayer_Click"></Button>
+                        <Button Content="判定二者关系" Click="CheckOBBCollision_Click"></Button>
+                        <Button Content="选择结果显示图层" Click="SelectIntersectionOverlay_Click"></Button>
+                    </StackPanel>
+                  
+                </GroupBox>
+                <GroupBox Header="清除" Grid.Row="4">
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="清除绘制图层" Click="ClearGraphicOverlay_Click"></Button>
+                        <Button Content="清除结果显示图层" Click="ClearIntersectionOverlay_Click"></Button>
+                    </StackPanel>
+                </GroupBox>
             </Grid>
         </Border>
     </Grid>

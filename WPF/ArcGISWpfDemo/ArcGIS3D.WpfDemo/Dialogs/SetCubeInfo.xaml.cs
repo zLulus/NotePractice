@@ -30,8 +30,8 @@ namespace ArcGIS3D.WpfDemo.Dialogs
                 Y=y,
                 Z=z,
                 Width=20,
-                Depth=50,
-                Height=30,
+                Depth=20,
+                Height=3,
                 Heading=0,
             };
             DataContext = vm;
