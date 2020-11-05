@@ -45,7 +45,7 @@ namespace ArcGIS3D.WpfDemo
         /// <summary>
         /// 重叠结果显示图层
         /// </summary>
-        GraphicsOverlay intersectionOverlay { get; set; }
+        //GraphicsOverlay intersectionOverlay { get; set; }
         /// <summary>
         /// shp图层
         /// </summary>
@@ -54,6 +54,10 @@ namespace ArcGIS3D.WpfDemo
         /// 绘图Layer
         /// </summary>
         FeatureLayer graphicLayer { get; set; }
+        /// <summary>
+        /// 重叠结果显示图层
+        /// </summary>
+        FeatureLayer intersectionLayer { get; set; }
 
         string ShpFilePath
         {
@@ -121,53 +125,65 @@ namespace ArcGIS3D.WpfDemo
             await InitializeGraphicsLayer();
 
             //重叠结果显示图层
-            InitializeIntersectionOverlay();
+            //InitializeIntersectionOverlay();
+            await InitializeIntersectionLayer();
 
             //观察者
             InitializeViewshed();
         }
 
+        private async Task InitializeIntersectionLayer()
+        {
+            try
+            {
+                ShapefileFeatureTable myShapefile = await ShapefileFeatureTable.OpenAsync(ResultShpFilePath);
+                intersectionLayer = new FeatureLayer(myShapefile)
+                {
+                    RenderingMode = FeatureRenderingMode.Dynamic
+                };
+
+                #region 绘制高程
+                SimpleLineSymbol mySimpleLineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, System.Drawing.Color.Black, 1);
+                SimpleFillSymbol mysimpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Cross, System.Drawing.Color.Red, mySimpleLineSymbol);
+                SimpleRenderer mySimpleRenderer = new SimpleRenderer(mysimpleFillSymbol);
+                RendererSceneProperties myRendererSceneProperties = mySimpleRenderer.SceneProperties;
+                myRendererSceneProperties.ExtrusionMode = ExtrusionMode.AbsoluteHeight;
+                myRendererSceneProperties.ExtrusionExpression = "[Z]";
+                intersectionLayer.Renderer = mySimpleRenderer;
+                #endregion
+
+                intersectionLayer.Opacity = 1;
+
+                MySceneView.Scene.Basemap.BaseLayers.Add(intersectionLayer);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString(), "Error");
+            }
+        }
+
         private async Task InitializeGraphicsLayer()
         {
-            // Create a new map to display in the map view with a streets basemap
-            //shp
             try
             {
                 ShapefileFeatureTable myShapefile = await ShapefileFeatureTable.OpenAsync(GraphicShpFilePath);
-                // Create a feature layer to display the shapefile
                 graphicLayer = new FeatureLayer(myShapefile)
                 {
-                    // Set the rendering mode of the feature layer to be dynamic (needed for extrusion to work)
                     RenderingMode = FeatureRenderingMode.Dynamic
                 };
-                //graphicLayer.FeatureTable=new ArcGISFeatureTable()
 
                 #region 绘制高程
-                // Create a new simple line symbol for the feature layer
                 SimpleLineSymbol mySimpleLineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, System.Drawing.Color.Black, 1);
-
-                // Create a new simple fill symbol for the feature layer 
                 SimpleFillSymbol mysimpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Cross, System.Drawing.Color.DarkGray, mySimpleLineSymbol);
-
-                // Create a new simple renderer for the feature layer
                 SimpleRenderer mySimpleRenderer = new SimpleRenderer(mysimpleFillSymbol);
-
-                // Get the scene properties from the simple renderer
                 RendererSceneProperties myRendererSceneProperties = mySimpleRenderer.SceneProperties;
-
-                // Set the extrusion mode for the scene properties
                 myRendererSceneProperties.ExtrusionMode = ExtrusionMode.AbsoluteHeight;
-
-                // Set the initial extrusion expression
                 myRendererSceneProperties.ExtrusionExpression = "[Z]";
-
-                // Set the feature layer's renderer to the define simple renderer
                 graphicLayer.Renderer = mySimpleRenderer;
                 #endregion
 
                 graphicLayer.Opacity = 0.7;
 
-                // Add the feature layer to the map
                 MySceneView.Scene.Basemap.BaseLayers.Add(graphicLayer);
             }
             catch (Exception e)
@@ -368,13 +384,13 @@ namespace ArcGIS3D.WpfDemo
 
 
 
-        private void InitializeIntersectionOverlay()
-        {
-            intersectionOverlay = new GraphicsOverlay();
-            intersectionOverlay.ScaleSymbols = false;
-            intersectionOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Absolute;
-            MySceneView.GraphicsOverlays.Add(intersectionOverlay);
-        }
+        //private void InitializeIntersectionOverlay()
+        //{
+        //    intersectionOverlay = new GraphicsOverlay();
+        //    intersectionOverlay.ScaleSymbols = false;
+        //    intersectionOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Absolute;
+        //    MySceneView.GraphicsOverlays.Add(intersectionOverlay);
+        //}
         #endregion
 
         private void MySceneViewOnGeoViewTapped(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
@@ -566,12 +582,14 @@ namespace ArcGIS3D.WpfDemo
         #region 清理图层
         private void ClearGraphicOverlay_Click(object sender, RoutedEventArgs e)
         {
+            //todo
             //graphicOverlay.Graphics.Clear();
         }
 
         private void ClearIntersectionOverlay_Click(object sender, RoutedEventArgs e)
         {
-            intersectionOverlay.Graphics.Clear();
+            //todo
+            //intersectionOverlay.Graphics.Clear();
         }
         #endregion
 
@@ -594,7 +612,8 @@ namespace ArcGIS3D.WpfDemo
             graphicLayer.ClearSelection();
             featureLayer.ClearSelection();
             //结果显示图层
-            await SetSelectForGraphicsOverlay(e, intersectionOverlay);
+            await SetSelectForLayer(e, intersectionLayer);
+            //await SetSelectForGraphicsOverlay(e, intersectionOverlay);
 
             //selectGraphic.IsVisible = false;
             //featureLayer.IsVisible = false;
@@ -717,7 +736,7 @@ namespace ArcGIS3D.WpfDemo
         #endregion
 
         #region 判断关系
-        private void CheckOBBCollision_Click(object sender, RoutedEventArgs e)
+        private async void CheckOBBCollision_Click(object sender, RoutedEventArgs e)
         {
             //Test();
             //Test2();
@@ -752,9 +771,29 @@ namespace ArcGIS3D.WpfDemo
             {
                 foreach (var g in g2)
                 {
-                    var redSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Red, Style = SimpleFillSymbolStyle.Solid };
-                    Graphic item = new Graphic(g, redSymbol);
-                    intersectionOverlay.Graphics.Add(item);
+                    if(g is Esri.ArcGISRuntime.Geometry.Polygon)
+                    {
+                        var p = g as Esri.ArcGISRuntime.Geometry.Polygon;
+                        foreach(var part in p.Parts)
+                        {
+                            var feature = intersectionLayer.FeatureTable.CreateFeature();
+                            feature.Attributes.Remove("Z");
+                            double z = 0;
+                            List<MapPoint> pointsWithZ = new List<MapPoint>();
+                            foreach (var point in part.Points)
+                            {
+                                z = point.Z;
+                                pointsWithZ.Add(new MapPoint(point.X, point.Y, point.SpatialReference));
+                            }
+                            feature.Attributes.Add("Z", z);
+                            Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(pointsWithZ, pointsWithZ[0].SpatialReference);
+                            feature.Geometry = polygon;
+                            await intersectionLayer.FeatureTable.AddFeatureAsync(feature);
+                        }
+                    }
+                 
+                    
+                    //intersectionOverlay.Graphics.Add(item);
                 }
                 //var redSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Red, Style = SimpleFillSymbolStyle.Solid };
                 //Graphic item = new Graphic(g3, redSymbol);

@@ -1,5 +1,5 @@
 ﻿Severity	Code	Description	Project	File	Line	Suppression State
-Error		ArcGIS Runtime Local Server SDK v100.9 component not installed. Local Server is required to build this project. Download and install Local Server from http://links.esri.com/arcgis-runtime-local-server-sdk-v100	Captain.ArcGIS.3D.Demo			
+Error		ArcGIS Runtime Local Server SDK v100.9 component not installed. Local Server is required to build this project. Download and install Local Server from http://links.esri.com/arcgis-runtime-local-server-sdk-v100			
 下载并安装ArcGIS Runtime Local Server SDK
 
 #### 参考资料
