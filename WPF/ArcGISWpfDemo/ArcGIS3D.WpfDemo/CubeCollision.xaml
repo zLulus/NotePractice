@@ -172,7 +172,7 @@
                 <Button Content="切换为移动模式" Grid.Row="1" Click="ChangeModeStatus_Click"></Button>
                 <Button Content="移动坦克" Grid.Row="2" Click="MoveTank_Click"></Button>
                 <!--<Button Content="绘制长方体" Grid.Row="2" Click="DrawByCenter_Click"></Button>-->
-                <Button Content="绘制长方体-四点" Grid.Row="3" Click="DrawByPoint_Click"></Button>
+                <Button Content="绘制长方体" Grid.Row="3" Click="DrawByPoint_Click"></Button>
                 <GroupBox Header="判断几何关系" Grid.Row="4">
                     <StackPanel Orientation="Vertical">
                         <Button Content="选择基础图层" Click="SelectFeatureLayer_Click"></Button>

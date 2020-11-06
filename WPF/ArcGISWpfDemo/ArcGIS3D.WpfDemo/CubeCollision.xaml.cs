@@ -10,6 +10,7 @@ using Esri.ArcGISRuntime.Symbology;
 using Esri.ArcGISRuntime.UI;
 using Esri.ArcGISRuntime.UI.Controls;
 using Esri.ArcGISRuntime.UI.GeoAnalysis;
+using Newtonsoft.Json;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ using System.Configuration;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows;
@@ -116,10 +118,12 @@ namespace ArcGIS3D.WpfDemo
         private readonly LinearUnit _metersUnit = (LinearUnit)Unit.FromUnitId(9001);
         private readonly AngularUnit _degreesUnit = (AngularUnit)Unit.FromUnitId(9102);
         /// <summary>
-        /// 是否移动坦克
+        /// 切换移动坦克的模式（false=自动；true=手动）
         /// </summary>
-        bool IsAnimateTank { get; set; }
+        bool isAnimateTank { get; set; }
+        bool isFinishRoute { get; set; }
         List<MapPoint> route = new List<MapPoint>();
+        double gap = 0.00001;
         #endregion
 
         public CubeCollision()
@@ -141,6 +145,7 @@ namespace ArcGIS3D.WpfDemo
 
             //绘图图层
             //InitializeGraphicsOverlay();
+            //todo shp必须有数据?
             await InitializeGraphicsLayer();
 
             //重叠结果显示图层
@@ -156,9 +161,24 @@ namespace ArcGIS3D.WpfDemo
 
         private async void InitializeTankViewshed()
         {
-            IsAnimateTank = false;
-
-            route.Add(new MapPoint(105.680263573341, 32.0464130283866, 9.31322574615479E-10, SpatialReferences.Wgs84));
+            isAnimateTank = false;
+            isFinishRoute = true;
+            //设置坦克自移动的路径
+            route.Add(new MapPoint(105.68032648899845, 32.046688336747344, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.6795961273594, 32.046558078485113, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67895987690494, 32.046532905811574, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67835509090905, 32.04680003518245, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67764150078037, 32.046889517876, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67729368856232, 32.046784288553589, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67735337848897, 32.046309531310364, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67749941913492, 32.046094942667231, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67812928127192, 32.045973713959775, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67835997263025, 32.045912348144157, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67865843206963, 32.045868063537768, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67919632065649, 32.045676804675345, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67944181001506, 32.04532480449501, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.68003860958297, 32.045206927960834, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.68032699164685, 32.045876596661039, 0, SpatialReferences.Wgs84));
 
             // Configure the graphics overlay for the tank and add the overlay to the SceneView.
             _tankOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Relative;
@@ -182,7 +202,7 @@ namespace ArcGIS3D.WpfDemo
                 //       This ensures that the tank is on the ground rather than partially under it.
                 tankSymbol.AnchorPosition = SceneSymbolAnchorPosition.Bottom;
                 // - Create the graphic.
-                _tank = new Graphic(new MapPoint(105.67953087176, 32.0481024099947, SpatialReferences.Wgs84), tankSymbol);
+                _tank = new Graphic(new MapPoint(105.68032648899845, 32.046688336747344, SpatialReferences.Wgs84), tankSymbol);
                 // - Update the heading.
                 _tank.Attributes["HEADING"] = 0.0;
                 // - Add the graphic to the overlay.
@@ -217,7 +237,7 @@ namespace ArcGIS3D.WpfDemo
 
                 //手动移动坦克
                 // Create a timer; this will enable animating the tank.
-                Timer animationTimer = new Timer(60)
+                System.Timers.Timer animationTimer = new System.Timers.Timer(60)
                 {
                     Enabled = true,
                     AutoReset = true
@@ -225,7 +245,7 @@ namespace ArcGIS3D.WpfDemo
                 // - Move the tank every time the timer expires.
                 animationTimer.Elapsed += (o, e) =>
                 {
-                    if (IsAnimateTank)
+                    if (isAnimateTank)
                     {
                         AnimateTank();
                     }
@@ -234,8 +254,7 @@ namespace ArcGIS3D.WpfDemo
                 animationTimer.Start();
 
                 //坦克自动移动
-                //todo
-                Timer animationTimer2 = new Timer(1000*5)
+                System.Timers.Timer animationTimer2 = new System.Timers.Timer(15000)
                 {
                     Enabled = true,
                     AutoReset = true
@@ -243,16 +262,12 @@ namespace ArcGIS3D.WpfDemo
                 // - Move the tank every time the timer expires.
                 animationTimer2.Elapsed += (o, e) =>
                 {
-                    if (!IsAnimateTank)
-                    {
-                        foreach(var p in route)
-                        {
-                            _tankEndPoint = p;
-                            AnimateTank();
-                        }
-                        
-                    }
+                    MoveTankForRoute();
                 };
+                Task.Run(() =>
+                {
+                    MoveTankForRoute();
+                });
                 // - Start the timer.
                 animationTimer2.Start();
 
@@ -260,12 +275,51 @@ namespace ArcGIS3D.WpfDemo
                 MySceneView.GeoViewTapped += (sender, args) => 
                 { 
                     _tankEndPoint = args.Location;
+                    //route.Add(_tankEndPoint);
                     var rightMapPoint = GeometryEngine.Project(_tankEndPoint, featureLayer.SpatialReference) as MapPoint;
                 };
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString(), "Error");
+            }
+        }
+
+        private void MoveTankForRoute()
+        {
+            if (!isAnimateTank && isFinishRoute)
+            {
+                var json = JsonConvert.SerializeObject(route);
+                isFinishRoute = false;
+                foreach (var p in route)
+                {
+                    //_tankEndPoint = p;
+                    //AnimateTank();
+
+                    while (true)
+                    {
+                        MoveTank(p);
+                        var nowLocation = _tank.Geometry as MapPoint;
+                        //手动等待坦克到位
+                        if (nowLocation.X <= p.X + gap
+                        && nowLocation.X >= p.X - gap
+                        && nowLocation.Y <= p.Y + gap
+                        && nowLocation.Y >= p.Y - gap)
+                        {
+                            break;
+                        }
+                        if (isAnimateTank)
+                        {
+                            break;
+                        }
+                        Thread.Sleep(60);
+                    }
+                    if (isAnimateTank)
+                    {
+                        break;
+                    }
+                }
+                isFinishRoute = true;
             }
         }
 
@@ -331,7 +385,8 @@ namespace ArcGIS3D.WpfDemo
 
         private void InitializeViewshed()
         {
-            var initialLocation = new MapPoint(105.67956087176, 32.0470744099947, -9.31322574615479E-10, featureLayer.SpatialReference);
+            //var initialLocation = new MapPoint(105.67956087176, 32.0470744099947, -9.31322574615479E-10, featureLayer.SpatialReference);
+            var initialLocation = new MapPoint(105.67956087176, 32.0470744099947, 5, featureLayer.SpatialReference);
             // Create the location viewshed analysis.
             _viewshed = new LocationViewshed(
                 initialLocation,
@@ -350,7 +405,9 @@ namespace ArcGIS3D.WpfDemo
             {
                 SceneProperties = new LayerSceneProperties(SurfacePlacement.Absolute)
             };
-            _viewpointOverlay.Graphics.Add(new Graphic(initialLocation, _viewpointSymbol));
+            // Update the viewpoint graphic.
+            _viewpointOverlay.Graphics.Clear();
+            _viewpointOverlay.Graphics.Add(new Graphic(_viewshed.Location, _viewpointSymbol));
 
 
             // Create an analysis overlay for showinSetViewpointCameraAsyncg the viewshed analysis.
@@ -365,8 +422,6 @@ namespace ArcGIS3D.WpfDemo
             // Add the graphics overlay
             MySceneView.GraphicsOverlays.Add(_viewpointOverlay);
 
-            // Subscribe to tap events. This enables the 'pick up' and 'drop' workflow for moving the viewpoint.
-            MySceneView.GeoViewTapped += MySceneViewOnGeoViewTapped;
         }
 
         private async Task InitializeFeatureLayer()
@@ -423,9 +478,13 @@ namespace ArcGIS3D.WpfDemo
                 //var sp = MySceneView.SpatialReference;
                 // Zoom the map to the extent of the shapefile
                 //设置摄像头
-                Camera camera = new Camera(32.0429071258535, 105.677752767021, 200.0, 20.0, 70.0, 0.0);
+                Camera camera = new Camera(32.0429071258535, 105.678052767021, 200.0, 20.0, 70.0, 0.0);
                 var viewpoint = new Viewpoint(myShapefile.Extent, camera);
                 await MySceneView.SetViewpointAsync(viewpoint);
+
+
+                //订阅点击事件（含多个功能的逻辑）
+                MySceneView.GeoViewTapped += MySceneViewOnGeoViewTapped;
             }
             catch (Exception e)
             {
@@ -609,7 +668,7 @@ namespace ArcGIS3D.WpfDemo
         private void MoveTank_Click(object sender, RoutedEventArgs e)
         {
             ResetEvent();
-            IsAnimateTank = true;
+            isAnimateTank = true;
         }
 
         private void ResetEvent()
@@ -620,7 +679,7 @@ namespace ArcGIS3D.WpfDemo
             MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
             MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnMouseMoveDrawByPolygon;
             MySceneView.GeoViewTapped -= MySceneViewOnSelectIntersectionOverlay;
-            IsAnimateTank = false;
+            isAnimateTank = false;
         }
         #endregion
 
@@ -1272,6 +1331,11 @@ namespace ArcGIS3D.WpfDemo
             }
         }
 
+        /// <summary>
+        /// 移动一小段距离，并且转向
+        /// </summary>
+        /// <param name="endPoint"></param>
+        /// <returns></returns>
         private GeodeticDistanceResult MoveTank(MapPoint endPoint)
         {
             // Get the current location and distance from the destination.
@@ -1289,9 +1353,9 @@ namespace ArcGIS3D.WpfDemo
             double heading = (double)_tank.Attributes["HEADING"];
             heading = heading + (distance.Azimuth1 - heading) / 10;
             _tank.Attributes["HEADING"] = heading;
+
             return distance;
         }
         #endregion
-
     }
 }
