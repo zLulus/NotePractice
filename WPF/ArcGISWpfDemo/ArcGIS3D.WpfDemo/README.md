@@ -7,6 +7,7 @@ OBB碰撞算法C#版
 #### 运行须知
 shp数据和tif数据需要自行提供，放在`/Data/`目录下，具体说明看该目录下的说明
 定位的坐标、摄像头等因素需要根据自己的数据进行修改
+坦克模型需要安装ArcGIS Runtime Local Server SDK才能正常显示
 
 #### 错误处理
 Severity	Code	Description	Project	File	Line	Suppression State
