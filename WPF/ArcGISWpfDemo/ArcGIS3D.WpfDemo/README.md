@@ -1,4 +1,15 @@
-﻿Severity	Code	Description	Project	File	Line	Suppression State
+﻿#### 功能说明
+基于ArcGIS开发的观察者视野显示
+基于ArcGIS开发的动态观察者视野显示
+基于ArcGIS开发的计算两立方体是否重叠，重叠部分展示
+OBB碰撞算法C#版
+
+#### 运行须知
+shp数据和tif数据需要自行提供，放在`/Data/`目录下，具体说明看该目录下的说明
+定位的坐标、摄像头等因素需要根据自己的数据进行修改
+
+#### 错误处理
+Severity	Code	Description	Project	File	Line	Suppression State
 Error		ArcGIS Runtime Local Server SDK v100.9 component not installed. Local Server is required to build this project. Download and install Local Server from http://links.esri.com/arcgis-runtime-local-server-sdk-v100			
 下载并安装ArcGIS Runtime Local Server SDK
 

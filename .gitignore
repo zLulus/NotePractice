@@ -241,4 +241,10 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /WPF/MenuWpfDemo
-/WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data
+/WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data/*.dbf
+/WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data/*.prj
+/WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data/*.sbn
+/WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data/*.sbx
+/WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data/*.shp
+/WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data/*.xml
+/WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data/*.shx

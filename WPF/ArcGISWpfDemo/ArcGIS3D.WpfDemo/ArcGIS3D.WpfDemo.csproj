@@ -179,6 +179,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\README.md" />
     <None Include="Data\场镇.dbf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

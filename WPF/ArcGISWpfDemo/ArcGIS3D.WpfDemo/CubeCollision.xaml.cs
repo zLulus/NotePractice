@@ -496,45 +496,10 @@ namespace ArcGIS3D.WpfDemo
         {
             try
             {
-                //////https://developers.arcgis.com/net/latest/wpf/guide/add-image-overlays.htm
-                ////////// Create an Envelope for displaying the image frame in the correct location
-                ////var sp = new SpatialReference(4523);
-                ////MapPoint centerPoint = new MapPoint(105.67956087176, 32.0470744099947, -9.31322574615479E-10, featureLayer.SpatialReference);
-                ////double width = 15.0959;
-                ////double height = 14.3770;
-                ////Esri.ArcGISRuntime.Geometry.Envelope pacificSouthwestEnvelope = new Envelope(centerPoint, width, height);
-                //Esri.ArcGISRuntime.Geometry.Envelope pacificSouthwestEnvelope =featureLayer.FullExtent;//new Envelope(, 3547066.496987, 35564412.860201, 3547500.100019, sp);
-
-                //////// Create an ImageFrame with a local image file and the extent envelope  
-                //ImageFrame imageFrame = new ImageFrame(new System.Uri(TifFilePath), pacificSouthwestEnvelope);
-                ////ImageFrame imageFrame = new ImageFrame(image, pacificSouthwestEnvelope);
-
-                //////// Add the ImageFrame to an ImageOverlay and set it to be 50% transparent
-                //ImageOverlay imageOverlay = new ImageOverlay(imageFrame);
-                ////透明度
-                //imageOverlay.Opacity = 1;
-
-                ////// Add the ImageOverlay to the scene view's ImageOverlay collection
-                ////MySceneView.Overlays.Items.Add(imageOverlay);
-                //MySceneView.ImageOverlays.Add(imageOverlay);
-                /////todo 没有加载出来
-                ////imageFrame.LoadAsync().Wait();
-                ////await MySceneView.SetViewpointAsync(new Viewpoint(imageFrame.Extent));
-
-
-
-                //ArcGISTiledElevationSource elevationSource = new ArcGISTiledElevationSource(new Uri(TifFilePath));
-                
-                //Surface mySurface = new Surface();
-                //mySurface.ElevationSources.Add(elevationSource);
-                //MySceneView.Scene.BaseSurface = mySurface;
-
-
-
-                //RasterLayer rasterLayer = new RasterLayer(TifFilePath);
-                //var l = rasterLayer as ImageAdjustmentLayer;
-                //MySceneView.AnalysisOverlays.Add()
-                //MySceneView.ImageOverlays.Add(l.Item) ;
+                //https://developers.arcgis.com/net/latest/wpf/guide/add-image-overlays.htm
+                Raster raster = new Raster(TifFilePath);
+                RasterLayer rasterLayer = new RasterLayer(raster);
+                MySceneView.Scene.Basemap.BaseLayers.Add(rasterLayer);
             }
             catch (Exception ex)
             {
