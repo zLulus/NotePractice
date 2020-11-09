@@ -119,9 +119,6 @@
     <Compile Include="OBBCollisions\Vec3.cs" />
     <Compile Include="ViewModels\NotifyPropertyChanged.cs" />
     <Compile Include="ViewModels\SetCubeInfoViewModel.cs" />
-    <Compile Include="ViewshedLocation.xaml.cs">
-      <DependentUpon>ViewshedLocation.xaml</DependentUpon>
-    </Compile>
     <Page Include="CubeCollision.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,10 +152,6 @@
     <Page Include="Resources\LoadingSpinner.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ViewshedLocation.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

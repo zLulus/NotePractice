@@ -42,27 +42,39 @@ namespace ArcGIS3D.WpfDemo
         /// 点击模式
         /// </summary>
         TapTypeEnum tapTypeEnum { get; set; }
-        /// <summary>
-        /// 绘画图层
-        /// </summary>
-        //GraphicsOverlay graphicOverlay { get; set; }
-        /// <summary>
-        /// 重叠结果显示图层
-        /// </summary>
-        //GraphicsOverlay intersectionOverlay { get; set; }
-        /// <summary>
-        /// shp图层
-        /// </summary>
-        FeatureLayer featureLayer { get; set; }
-        /// <summary>
-        /// 绘图Layer
-        /// </summary>
-        FeatureLayer graphicLayer { get; set; }
-        /// <summary>
-        /// 重叠结果显示图层
-        /// </summary>
-        FeatureLayer intersectionLayer { get; set; }
 
+        #region 初始化
+        //视域点
+        double ViewshedX = 105.67956087176, ViewshedY= 32.0470744099947, ViewshedZ=5;
+        //坦克
+        double TankX = 105.68032648899845, TankY = 32.046688336747344;
+        //摄像头
+        double FeatureLayerLatitude = 32.0429071258535, FeatureLayerLongitude = 105.678052767021;
+        /// <summary>
+        /// 坦克移动路线
+        /// </summary>
+        private void InitializeTankRouteData()
+        {
+            route = new List<MapPoint>();
+            route.Add(new MapPoint(105.68032648899845, 32.046688336747344, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.6795961273594, 32.046558078485113, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67895987690494, 32.046532905811574, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67835509090905, 32.04680003518245, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67764150078037, 32.046889517876, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67729368856232, 32.046784288553589, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67735337848897, 32.046309531310364, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67749941913492, 32.046094942667231, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67812928127192, 32.045973713959775, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67835997263025, 32.045912348144157, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67865843206963, 32.045868063537768, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67919632065649, 32.045676804675345, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.67944181001506, 32.04532480449501, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.68003860958297, 32.045206927960834, 0, SpatialReferences.Wgs84));
+            route.Add(new MapPoint(105.68032699164685, 32.045876596661039, 0, SpatialReferences.Wgs84));
+        }
+        #endregion
+
+        #region file path
         string ShpFilePath
         {
             get { return $"{System.IO.Directory.GetCurrentDirectory()}\\Data\\{ConfigurationManager.AppSettings["ShpFilePath"]}"; }
@@ -79,7 +91,21 @@ namespace ArcGIS3D.WpfDemo
         {
             get { return $"{System.IO.Directory.GetCurrentDirectory()}\\Data\\{ConfigurationManager.AppSettings["ResultShpFilePath"]}"; }
         }
+        #endregion
 
+        #region 绘制 & 分析
+        /// <summary>
+        /// shp图层
+        /// </summary>
+        FeatureLayer featureLayer { get; set; }
+        /// <summary>
+        /// 绘图Layer
+        /// </summary>
+        FeatureLayer graphicLayer { get; set; }
+        /// <summary>
+        /// 重叠结果显示图层
+        /// </summary>
+        FeatureLayer intersectionLayer { get; set; }
         /// <summary>
         /// 选择的shp图层要素
         /// </summary>
@@ -88,7 +114,8 @@ namespace ArcGIS3D.WpfDemo
         /// 选择的绘制图层要素
         /// </summary>
         GeoElement selectGraphic { get; set; }
-        //Graphic selectGraphic { get; set; }
+        #endregion
+
         #region 观察者
         // Hold a reference to the viewshed analysis.
         private LocationViewshed _viewshed;
@@ -122,7 +149,10 @@ namespace ArcGIS3D.WpfDemo
         /// </summary>
         bool isAnimateTank { get; set; }
         bool isFinishRoute { get; set; }
-        List<MapPoint> route = new List<MapPoint>();
+        List<MapPoint> route { get; set; }
+        /// <summary>
+        /// 误差
+        /// </summary>
         double gap = 0.00001;
         #endregion
 
@@ -134,7 +164,7 @@ namespace ArcGIS3D.WpfDemo
             InitializeMap();
         }
 
-        #region 初始化
+        #region 初始化方法
         private async void InitializeMap()
         {
             //shp
@@ -144,12 +174,10 @@ namespace ArcGIS3D.WpfDemo
             InitializeImageOverlay();
 
             //绘图图层
-            //InitializeGraphicsOverlay();
-            //todo shp必须有数据?
+            //shp必须有数据，否则读取shp报错
             await InitializeGraphicsLayer();
 
             //重叠结果显示图层
-            //InitializeIntersectionOverlay();
             await InitializeIntersectionLayer();
 
             //观察者
@@ -164,21 +192,7 @@ namespace ArcGIS3D.WpfDemo
             isAnimateTank = false;
             isFinishRoute = true;
             //设置坦克自移动的路径
-            route.Add(new MapPoint(105.68032648899845, 32.046688336747344, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.6795961273594, 32.046558078485113, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67895987690494, 32.046532905811574, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67835509090905, 32.04680003518245, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67764150078037, 32.046889517876, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67729368856232, 32.046784288553589, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67735337848897, 32.046309531310364, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67749941913492, 32.046094942667231, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67812928127192, 32.045973713959775, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67835997263025, 32.045912348144157, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67865843206963, 32.045868063537768, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67919632065649, 32.045676804675345, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.67944181001506, 32.04532480449501, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.68003860958297, 32.045206927960834, 0, SpatialReferences.Wgs84));
-            route.Add(new MapPoint(105.68032699164685, 32.045876596661039, 0, SpatialReferences.Wgs84));
+            InitializeTankRouteData();
 
             // Configure the graphics overlay for the tank and add the overlay to the SceneView.
             _tankOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Relative;
@@ -202,7 +216,7 @@ namespace ArcGIS3D.WpfDemo
                 //       This ensures that the tank is on the ground rather than partially under it.
                 tankSymbol.AnchorPosition = SceneSymbolAnchorPosition.Bottom;
                 // - Create the graphic.
-                _tank = new Graphic(new MapPoint(105.68032648899845, 32.046688336747344, SpatialReferences.Wgs84), tankSymbol);
+                _tank = new Graphic(new MapPoint(TankX,TankY, SpatialReferences.Wgs84), tankSymbol);
                 // - Update the heading.
                 _tank.Attributes["HEADING"] = 0.0;
                 // - Add the graphic to the overlay.
@@ -264,6 +278,7 @@ namespace ArcGIS3D.WpfDemo
                 {
                     MoveTankForRoute();
                 };
+                //马上执行一次
                 Task.Run(() =>
                 {
                     MoveTankForRoute();
@@ -272,8 +287,8 @@ namespace ArcGIS3D.WpfDemo
                 animationTimer2.Start();
 
                 // Allow the user to click to define a new destination.
-                MySceneView.GeoViewTapped += (sender, args) => 
-                { 
+                MySceneView.GeoViewTapped += (sender, args) =>
+                {
                     _tankEndPoint = args.Location;
                     //route.Add(_tankEndPoint);
                     var rightMapPoint = GeometryEngine.Project(_tankEndPoint, featureLayer.SpatialReference) as MapPoint;
@@ -285,17 +300,15 @@ namespace ArcGIS3D.WpfDemo
             }
         }
 
+       
+
         private void MoveTankForRoute()
         {
             if (!isAnimateTank && isFinishRoute)
             {
-                var json = JsonConvert.SerializeObject(route);
                 isFinishRoute = false;
                 foreach (var p in route)
                 {
-                    //_tankEndPoint = p;
-                    //AnimateTank();
-
                     while (true)
                     {
                         MoveTank(p);
@@ -385,8 +398,7 @@ namespace ArcGIS3D.WpfDemo
 
         private void InitializeViewshed()
         {
-            //var initialLocation = new MapPoint(105.67956087176, 32.0470744099947, -9.31322574615479E-10, featureLayer.SpatialReference);
-            var initialLocation = new MapPoint(105.67956087176, 32.0470744099947, 5, featureLayer.SpatialReference);
+            var initialLocation = new MapPoint(ViewshedX, ViewshedY, ViewshedZ, featureLayer.SpatialReference);
             // Create the location viewshed analysis.
             _viewshed = new LocationViewshed(
                 initialLocation,
@@ -441,8 +453,6 @@ namespace ArcGIS3D.WpfDemo
                     // Set the rendering mode of the feature layer to be dynamic (needed for extrusion to work)
                     RenderingMode = FeatureRenderingMode.Dynamic
                 };
-                //var spF = featureLayer.SpatialReference;
-                //var spFG = featureLayer.SpatialReference.BaseGeographic;
 
                 #region 绘制高程
                 // Create a new simple line symbol for the feature layer
@@ -467,18 +477,15 @@ namespace ArcGIS3D.WpfDemo
                 featureLayer.Renderer = mySimpleRenderer;
                 #endregion
 
-                //
                 featureLayer.Opacity = 0.8;
 
                 //设置底图样式
                 MySceneView.Scene = new Scene(BasemapType.DarkGrayCanvasVector);
                 // Add the feature layer to the map
                 MySceneView.Scene.Basemap.BaseLayers.Add(featureLayer);
-                //var bSp = MySceneView.Scene.Basemap.BaseLayers[0].SpatialReference;
-                //var sp = MySceneView.SpatialReference;
                 // Zoom the map to the extent of the shapefile
                 //设置摄像头
-                Camera camera = new Camera(32.0429071258535, 105.678052767021, 200.0, 20.0, 70.0, 0.0);
+                Camera camera = new Camera(FeatureLayerLatitude, FeatureLayerLongitude, 200.0, 20.0, 70.0, 0.0);
                 var viewpoint = new Viewpoint(myShapefile.Extent, camera);
                 await MySceneView.SetViewpointAsync(viewpoint);
 
@@ -507,54 +514,6 @@ namespace ArcGIS3D.WpfDemo
             }
         }
 
-        //private void InitializeGraphicsOverlay()
-        //{
-        //    //绘画图层
-        //    // Create the graphics overlay.
-        //    graphicOverlay = new GraphicsOverlay();
-        //    //缩小放大
-        //    graphicOverlay.ScaleSymbols = false;
-        //    //透明度
-        //    graphicOverlay.Opacity = 0.7;
-        //    //#region 绘制高程
-        //    //// Create a new simple line symbol for the feature layer
-        //    //SimpleLineSymbol mySimpleLineSymbol = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, System.Drawing.Color.Black, 1);
-
-        //    //// Create a new simple fill symbol for the feature layer 
-        //    //SimpleFillSymbol mysimpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.WhiteSmoke, mySimpleLineSymbol);
-
-        //    //// Create a new simple renderer for the feature layer
-        //    //SimpleRenderer mySimpleRenderer = new SimpleRenderer(mysimpleFillSymbol);
-            
-
-        //    //// Get the scene properties from the simple renderer
-        //    //RendererSceneProperties myRendererSceneProperties = mySimpleRenderer.SceneProperties;
-
-        //    //// Set the extrusion mode for the scene properties
-        //    //myRendererSceneProperties.ExtrusionMode = ExtrusionMode.AbsoluteHeight;
-
-        //    //// Set the initial extrusion expression
-        //    //myRendererSceneProperties.ExtrusionExpression = "[Z]";
-
-        //    //// Set the feature layer's renderer to the define simple renderer
-        //    //graphicOverlay.Renderer = mySimpleRenderer;
-        //    //#endregion
-
-        //    // Set the surface placement mode for the overlay.
-        //    graphicOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Absolute;
-        //    MySceneView.GraphicsOverlays.Add(graphicOverlay);
-
-        //}
-
-
-
-        //private void InitializeIntersectionOverlay()
-        //{
-        //    intersectionOverlay = new GraphicsOverlay();
-        //    intersectionOverlay.ScaleSymbols = false;
-        //    intersectionOverlay.SceneProperties.SurfacePlacement = SurfacePlacement.Absolute;
-        //    MySceneView.GraphicsOverlays.Add(intersectionOverlay);
-        //}
         #endregion
 
         private void MySceneViewOnGeoViewTapped(object sender, Esri.ArcGISRuntime.UI.Controls.GeoViewInputEventArgs e)
@@ -580,13 +539,6 @@ namespace ArcGIS3D.WpfDemo
         {
             ResetEvent();
             tapTypeEnum = TapTypeEnum.None;
-        }
-
-        private void DrawByCenter_Click(object sender, RoutedEventArgs e)
-        {
-            ResetEvent();
-            tapTypeEnum = TapTypeEnum.DrawByCenter;
-            MySceneView.PreviewMouseLeftButtonDown += MySceneViewOnDrawByCenter;
         }
 
 
@@ -641,7 +593,6 @@ namespace ArcGIS3D.WpfDemo
             MySceneView.MouseMove -= MySceneViewOnMoveViewPoint;
             MySceneView.GeoViewTapped -= MySceneViewOnSelectFeatureLayer;
             MySceneView.GeoViewTapped -= MySceneViewOnSelectGraphicLayer;
-            MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
             MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnMouseMoveDrawByPolygon;
             MySceneView.GeoViewTapped -= MySceneViewOnSelectIntersectionOverlay;
             isAnimateTank = false;
@@ -759,13 +710,11 @@ namespace ArcGIS3D.WpfDemo
         private void ClearGraphicOverlay_Click(object sender, RoutedEventArgs e)
         {
             //todo
-            //graphicOverlay.Graphics.Clear();
         }
 
         private void ClearIntersectionOverlay_Click(object sender, RoutedEventArgs e)
         {
             //todo
-            //intersectionOverlay.Graphics.Clear();
         }
         #endregion
 
@@ -898,68 +847,6 @@ namespace ArcGIS3D.WpfDemo
 
         #endregion
 
-        #region 绘制-中心点
-        private async void MySceneViewOnDrawByCenter(object sender, MouseEventArgs mouseEventArgs)
-        {
-            // Get the mouse position.
-            System.Windows.Point cursorSceenPoint = mouseEventArgs.GetPosition(MySceneView);
-
-            // Get the corresponding MapPoint.
-            MapPoint onMapLocation = MySceneView.ScreenToBaseSurface(cursorSceenPoint);
-
-            SetCubeInfo setCubeInfo = new SetCubeInfo(onMapLocation.X, onMapLocation.Y, onMapLocation.Z);
-            var dialogResult = setCubeInfo.ShowDialog();
-            if (dialogResult.HasValue && dialogResult.Value)
-            {
-                var centerPoint = new MapPoint(setCubeInfo.vm.X, setCubeInfo.vm.Y, setCubeInfo.vm.Z, onMapLocation.SpatialReference);
-
-                //设置中心点为底部的中心点，否则显示的高度只有设置高度的一半（剩下的部分在地下）
-                SimpleMarkerSceneSymbol symbol = SimpleMarkerSceneSymbol.CreateCube(System.Drawing.Color.DarkSeaGreen, 1, SceneSymbolAnchorPosition.Bottom);
-                //旋转角度
-                symbol.Heading = setCubeInfo.vm.Heading;
-                //z 高
-                symbol.Height = setCubeInfo.vm.Height;
-                //长
-                symbol.Width = setCubeInfo.vm.Width;
-                //宽
-                symbol.Depth = setCubeInfo.vm.Depth;
-                
-                // Create the graphic from the geometry and the symbol.
-                Graphic item = new Graphic(centerPoint, symbol);
-
-                // Add the graphic to the overlay.
-                //graphicOverlay.Graphics.Add(item);
-
-                MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
-            }
-
-            //根据多点绘制长方体
-            //var num = 0.01;
-            //List<MapPoint> points = new List<MapPoint>();
-            ////points.Add(onMapLocation);
-            ////points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y, onMapLocation.Z, onMapLocation.SpatialReference));
-            ////points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y + num, onMapLocation.Z, onMapLocation.SpatialReference));
-            ////points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y + num, onMapLocation.Z, onMapLocation.SpatialReference));
-
-            //points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
-            //points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y + num, onMapLocation.Z + num, onMapLocation.SpatialReference));
-            //points.Add(new MapPoint(onMapLocation.X + num, onMapLocation.Y, onMapLocation.Z + num, onMapLocation.SpatialReference));
-            //points.Add(new MapPoint(onMapLocation.X, onMapLocation.Y, onMapLocation.Z + num, onMapLocation.SpatialReference));
-
-            //var blueSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Pink };
-
-            //Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(points);
-            //// Create the graphic from the geometry and the symbol.
-            //Graphic item = new Graphic(polygon);
-
-            //// Add the graphic to the overlay.
-            //graphicOverlay.Graphics.Add(item);
-
-            //MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnDrawByCenter;
-
-        }
-        #endregion
-
         #region 判断关系
         private async void CheckOBBCollision_Click(object sender, RoutedEventArgs e)
         {
@@ -973,13 +860,6 @@ namespace ArcGIS3D.WpfDemo
                 MessageBox.Show("请选择一个shp数据和一个绘制数据!");
                 return;
             }
-            //IGeometry2 geo = selectFeatureGeoElement as IGeometry2;
-
-            //ISpatialReferenceFactory spatialReferenceFactory = new SpatialReferenceEnvironmentClass();
-            //ISpatialReference spatialReference =spatialReferenceFactory.CreateESRISpatialReferenceFromPRJ(selectFeatureGeoElement.Geometry.SpatialReference.WkText);
-
-            //geo.Project(spatialReference);
-
 
             //创建shp几何体
             Esri.ArcGISRuntime.Geometry.Polygon selectFeatureGeometryRealCube = GetSelectFeatureGeometryRealCube(selectFeatureGeoElement);
@@ -989,7 +869,6 @@ namespace ArcGIS3D.WpfDemo
             Esri.ArcGISRuntime.Geometry.Polygon selectGraphicGeometryRealCube = GetSelectFeatureGeometryRealCube(selectGraphic);
 
             var b = GeometryEngine.Intersects(selectGraphicGeometryRealCube, selectFeatureGeometryRealCube);
-            //var g3 = GeometryEngine.Intersection(selectFeatureGeometryRealCube, selectGraphicGeometryRealCube);
             var g2 = GeometryEngine.Intersections(selectGraphicGeometryRealCube, selectFeatureGeometryRealCube);
 
             if (b)
@@ -1024,13 +903,7 @@ namespace ArcGIS3D.WpfDemo
                             featureLayer.ClearSelection();
                         }
                     }
-                 
-                    
-                    //intersectionOverlay.Graphics.Add(item);
                 }
-                //var redSymbol = new SimpleFillSymbol() { Color = System.Drawing.Color.Red, Style = SimpleFillSymbolStyle.Solid };
-                //Graphic item = new Graphic(g3, redSymbol);
-                //intersectionOverlay.Graphics.Add(item);
 
                 MessageBox.Show("二者重叠");
             }
@@ -1038,51 +911,9 @@ namespace ArcGIS3D.WpfDemo
             {
                 MessageBox.Show("二者不重叠");
             }
-            //var g = g3 as Esri.ArcGISRuntime.Geometry.Polygon;
-            //foreach (var part in g.Parts)
-            //{
-            //    foreach (var point in part.Points)
-            //    {
-
-            //    }
-            //}
         }
 
-        //private Esri.ArcGISRuntime.Geometry.Polygon GetSelectGraphicGeometryRealCube()
-        //{
-        //    Esri.ArcGISRuntime.Geometry.Polygon selectGraphicGeometryRealCube = null;
-        //    if (selectGraphic.Geometry is MapPoint)
-        //    {
-                
-        //        var symbol = selectGraphic.Symbol as SimpleMarkerSceneSymbol;
-        //        var z = symbol.Height;
-        //        var kuan = symbol.Width;
-        //        var chang = symbol.Depth;
-        //        var heading = symbol.Heading;
-        //        var selectGraphicGeometryMapPoint = selectGraphic.Geometry as MapPoint;
-
-        //        var rightMapPoint = GeometryEngine.Project(selectGraphicGeometryMapPoint, selectFeatureGeoElement.Geometry.SpatialReference) as MapPoint;
-
-        //        List<MapPoint> points = new List<MapPoint>();
-        //        //采用四点+设置高程绘图
-        //        //通过中心点和角度获得四个角点的数据（未完成）
-        //        points.Add(new MapPoint(rightMapPoint.X - 0.5 * kuan, rightMapPoint.Y - 0.5 * chang, z, rightMapPoint.SpatialReference));
-        //        points.Add(new MapPoint(rightMapPoint.X - 0.5 * kuan, rightMapPoint.Y + 0.5 * chang, z, rightMapPoint.SpatialReference));
-        //        points.Add(new MapPoint(rightMapPoint.X + 0.5 * kuan, rightMapPoint.Y - 0.5 * chang, z, rightMapPoint.SpatialReference));
-        //        points.Add(new MapPoint(rightMapPoint.X + 0.5 * kuan, rightMapPoint.Y + 0.5 * chang, z, rightMapPoint.SpatialReference));
-
-        //        selectGraphicGeometryRealCube = new Esri.ArcGISRuntime.Geometry.Polygon(points, rightMapPoint.SpatialReference);
-                
-        //    }
-        //    else if(selectGraphic.Geometry is Esri.ArcGISRuntime.Geometry.Polygon)
-        //    {
-        //        var polygon = selectGraphic.Geometry as Esri.ArcGISRuntime.Geometry.Polygon;
-        //        //转坐标系
-        //        selectGraphicGeometryRealCube= GeometryEngine.Project(polygon, selectFeatureGeoElement.Geometry.SpatialReference) as Esri.ArcGISRuntime.Geometry.Polygon;
-        //    }
-        //    return selectGraphicGeometryRealCube;
-        //}
-
+     
         private Esri.ArcGISRuntime.Geometry.Polygon GetSelectFeatureGeometryRealCube(GeoElement geoElement)
         {
             Esri.ArcGISRuntime.Geometry.Polygon selectFeatureGeometryRealCube = null;
@@ -1139,7 +970,6 @@ namespace ArcGIS3D.WpfDemo
 
                 }
             }
-            //var g1 = GeometryEngine.Difference(polygon1, polygon2);
 
         }
 
