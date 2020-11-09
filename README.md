@@ -9,6 +9,8 @@
 | 6|Xamarin.Forms                                |Xamarin.Forms demo                      |
 | 7| MiniProgramDemo                                    |Wechat Mini Program demo                   |
 
+You can go to [My Blog](https://www.cnblogs.com/Lulus/) to view the explanation of the corresponding demo.
+
 You can download the part of the project you need through [GitZip](https://gitzip.org/), and GitZip also supports [online download](https://kinolien.github.io/gitzip/).
 
 中文如下：    
@@ -22,6 +24,8 @@ You can download the part of the project you need through [GitZip](https://gitzi
 | 5| WCFServer     |WCF Rest,WCF SOAP,Windows服务,WCF 单元测试等 |
 | 6|Xamarin.Forms                                |Xamarin.Forms示例demo                      |
 | 7| MiniProgramDemo                                    |微信小程序demo                     |
+
+你可以前往[我的博客](https://www.cnblogs.com/Lulus/)查看对应demo的讲解说明。
 
 你可以通过[GitZip](https://gitzip.org/)工具下载项目中你需要的那一部分，GitZip也支持[在线下载](https://kinolien.github.io/gitzip/)。
 
