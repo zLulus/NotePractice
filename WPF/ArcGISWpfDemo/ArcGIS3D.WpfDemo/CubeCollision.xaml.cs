@@ -633,7 +633,6 @@ namespace ArcGIS3D.WpfDemo
                     foreach (var p in points)
                     {
                         pointsWithZ.Add(new MapPoint(p.X, p.Y, p.SpatialReference));
-                        //pointsWithZ.Add(MapPoint.CreateWithM(p.X, p.Y, p.Z + setHeight.height, setHeight.height, p.SpatialReference));
                     }
                     Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(pointsWithZ, points[0].SpatialReference);
                     feature.Geometry = polygon;
@@ -642,68 +641,11 @@ namespace ArcGIS3D.WpfDemo
                     MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnMouseMoveDrawByPolygon;
                     //清空
                     points = new List<MapPoint>();
-                    //try
-                    //{
-                    //    //上
-                    //    List<MapPoint> pointsWithZ = new List<MapPoint>();
-                    //    foreach (var p in points)
-                    //    {
-                    //        pointsWithZ.Add(new MapPoint(p.X, p.Y, setHeight.height, p.SpatialReference));
-                    //        //pointsWithZ.Add(MapPoint.CreateWithM(p.X, p.Y, p.Z + setHeight.height, setHeight.height, p.SpatialReference));
-                    //    }
-                    //    Esri.ArcGISRuntime.Geometry.Polygon polygon = new Esri.ArcGISRuntime.Geometry.Polygon(pointsWithZ, points[0].SpatialReference);
-                    //    DrawOnePolygon(polygon);
-                    //    //下
-                    //    pointsWithZ = new List<MapPoint>();
-                    //    foreach (var p in points)
-                    //    {
-                    //        pointsWithZ.Add(new MapPoint(p.X, p.Y, 0, p.SpatialReference));
-                    //    }
-                    //    polygon = new Esri.ArcGISRuntime.Geometry.Polygon(pointsWithZ, points[0].SpatialReference);
-                    //    DrawOnePolygon(polygon);
-                    //    //左
-                    //    //右
-                    //    //前
-                    //    //后
-                    //    //CreateOneSide(setHeight.height, 0, 1);
-                    //    //CreateOneSide(setHeight.height, 1, 2);
-                    //    //CreateOneSide(setHeight.height, 2, 3);
-                    //    //CreateOneSide(setHeight.height, 3, 0);
-
-                    //    MySceneView.PreviewMouseLeftButtonDown -= MySceneViewOnMouseMoveDrawByPolygon;
-                    //    points = new List<MapPoint>();
-                    //}
-                    //catch(Exception ex)
-                    //{
-
-                    //}
-
                 }
 
             }
 
         }
-
-        //private void CreateOneSide(double height,int index1,int index2)
-        //{
-        //    List<MapPoint> pointsWithZ = new List<MapPoint>();
-        //    MapPoint p1 = points[0];
-        //    MapPoint p2 = points[1];
-        //    pointsWithZ.Add(new MapPoint(p1.X, p1.Y, 0, p1.SpatialReference));
-        //    pointsWithZ.Add(new MapPoint(p1.X, p1.Y, height, p1.SpatialReference));
-        //    pointsWithZ.Add(new MapPoint(p2.X, p2.Y, 0, p2.SpatialReference));
-        //    pointsWithZ.Add(new MapPoint(p2.X, p2.Y, height, p2.SpatialReference));
-        //    var polygon = new Esri.ArcGISRuntime.Geometry.Polygon(pointsWithZ, p1.SpatialReference);
-        //    DrawOnePolygon(polygon);
-        //}
-
-        //private void DrawOnePolygon(Esri.ArcGISRuntime.Geometry.Polygon polygon)
-        //{
-        //    SimpleFillSymbol simpleFillSymbol = new SimpleFillSymbol(SimpleFillSymbolStyle.Solid, System.Drawing.Color.AliceBlue, null);
-        //    Graphic item = new Graphic(polygon, simpleFillSymbol);
-
-        //    graphicOverlay.Graphics.Add(item);
-        //}
         #endregion
 
         #region 清理图层
@@ -905,15 +847,14 @@ namespace ArcGIS3D.WpfDemo
                     }
                 }
 
-                MessageBox.Show("二者重叠");
+                MessageBox.Show("二者相交");
             }
             else
             {
-                MessageBox.Show("二者不重叠");
+                MessageBox.Show("二者不相交");
             }
         }
 
-     
         private Esri.ArcGISRuntime.Geometry.Polygon GetSelectFeatureGeometryRealCube(GeoElement geoElement)
         {
             Esri.ArcGISRuntime.Geometry.Polygon selectFeatureGeometryRealCube = null;
