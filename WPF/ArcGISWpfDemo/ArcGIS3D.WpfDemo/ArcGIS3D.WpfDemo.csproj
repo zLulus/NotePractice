@@ -179,6 +179,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Data\3547.00-564.00.aux">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\3547.00-564.00.prj">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\3547.00-564.00.tfw">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Data\README.md" />
     <None Include="Data\场镇.dbf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -253,6 +262,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Data\绘制图层.shp.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\3547.00-564.00.tif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\3547.00-564.00.tif.aux.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\3547.00-564.00.tif.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="Resources\github-markdown.css" />
