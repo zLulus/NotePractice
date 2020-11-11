@@ -70,8 +70,13 @@ namespace ArcGISWpfDemo
 
         private void ConvertGeometryToWKT_Click(object sender, RoutedEventArgs e)
         {
-            //WKTWriter writer = new WKTWriter();
-            //var wkt = writer.Write(geo);
+            List<NetTopologySuite.Geometries.Coordinate> coordinates = new List<NetTopologySuite.Geometries.Coordinate>();
+            coordinates.Add(new NetTopologySuite.Geometries.Coordinate(0, 0));
+            coordinates.Add(new NetTopologySuite.Geometries.Coordinate(100, 100));
+            NetTopologySuite.Geometries.LineString geo = new NetTopologySuite.Geometries.LineString(coordinates.ToArray());
+            geo.SRID = 4526;
+            WKTWriter writer = new WKTWriter();
+            var wkt = writer.Write(geo);
         }
 
         private void ConvertGeoJSONToGeometry_Click(object sender, RoutedEventArgs e)
@@ -93,7 +98,17 @@ namespace ArcGISWpfDemo
 
         private void ConvertGeometryToWKB_Click(object sender, RoutedEventArgs e)
         {
+            List<NetTopologySuite.Geometries.Coordinate> coordinates = new List<NetTopologySuite.Geometries.Coordinate>();
+            coordinates.Add(new NetTopologySuite.Geometries.Coordinate(0, 0));
+            coordinates.Add(new NetTopologySuite.Geometries.Coordinate(100, 100));
+            NetTopologySuite.Geometries.LineString geo = new NetTopologySuite.Geometries.LineString(coordinates.ToArray());
 
+            WKBWriter writer = new WKBWriter();
+            var bytes= writer.Write(geo);
+
+            //测试
+            WKBReader reader = new WKBReader();
+            NetTopologySuite.Geometries.Geometry geom = reader.Read(bytes);
         }
 
 
