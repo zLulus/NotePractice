@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{C286108A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGISWpfDemo", "ArcGISWpfDemo\Demo\ArcGISWpfDemo.csproj", "{8D39F3B2-AA84-42D8-A4C2-C8E2D2F8A417}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGIS3D.WpfDemo", "ArcGISWpfDemo\3DDemo\ArcGIS3D.WpfDemo\ArcGIS3D.WpfDemo.csproj", "{30BE1A1E-0AC0-4D80-B111-7798937575E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcGIS3D.WpfDemo", "ArcGISWpfDemo\ArcGIS3D.WpfDemo\ArcGIS3D.WpfDemo.csproj", "{30BE1A1E-0AC0-4D80-B111-7798937575E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

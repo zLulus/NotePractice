@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Esri.ArcGISRuntime;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Windows;
 namespace ArcGISWpfDemo
 {
     /// <summary>
-    /// App.xaml 的交互逻辑
+    /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
@@ -17,13 +18,18 @@ namespace ArcGISWpfDemo
         {
             try
             {
-                Esri.ArcGISRuntime.ArcGISRuntimeEnvironment.Initialize();
+                // Deployed applications must be licensed at the Lite level or greater. 
+                // See https://developers.arcgis.com/licensing for further details.
+
+                // Initialize the ArcGIS Runtime before any components are created.
+                ArcGISRuntimeEnvironment.Initialize();
             }
             catch (Exception ex)
             {
-                // Show the message and shut down
-                MessageBox.Show(string.Format("There was an error that prevented initializing the runtime. {0}", ex.Message));
-                Current.Shutdown();
+                MessageBox.Show(ex.ToString(), "ArcGIS Runtime initialization failed.");
+
+                // Exit application
+                this.Shutdown();
             }
         }
     }

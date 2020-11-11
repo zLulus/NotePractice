@@ -68,6 +68,11 @@ namespace ArcGISWpfDemo
 
         }
 
+        private void ConvertGeometryToWKT_Click(object sender, RoutedEventArgs e)
+        {
+            //WKTWriter writer = new WKTWriter();
+            //var wkt = writer.Write(geo);
+        }
 
         private void ConvertGeoJSONToGeometry_Click(object sender, RoutedEventArgs e)
         {
@@ -86,6 +91,10 @@ namespace ArcGISWpfDemo
             NetTopologySuite.Geometries.Geometry geom = reader.Read(wkbBytes);
         }
 
+        private void ConvertGeometryToWKB_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
 
 
         private void OpenTxtFile_Click(object sender, RoutedEventArgs e)

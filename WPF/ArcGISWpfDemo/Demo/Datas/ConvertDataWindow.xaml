@@ -14,13 +14,17 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Name="filePathTextBlock" IsEnabled="False"></TextBlock>
         <!--可以改为数据库连接，连接超图数据库-->
         <Button Grid.Row="1" Content="打开txt文件" Click="OpenTxtFile_Click"></Button>
         <Button Grid.Row="2" Content="GeoJSON->Geometry" Click="ConvertGeoJSONToGeometry_Click"></Button>
         <Button Grid.Row="3" Content="WKB->Geometry" Click="ConvertWKBToGeometry_Click"></Button>
-        <Button Grid.Row="4" Content="WKT->Geometry" Click="ConvertWKTToGeometry_Click"></Button>
-        <Button Grid.Row="5" Content="WKT->WKB" Click="ConvertWKTToWKB_Click"></Button>
+        <Button Grid.Row="4" Content="Geometry->WKB" Click="ConvertGeometryToWKB_Click"></Button>
+        <Button Grid.Row="5" Content="WKT->Geometry" Click="ConvertWKTToGeometry_Click"></Button>
+        <Button Grid.Row="6" Content="Geometry->WKT" Click="ConvertGeometryToWKT_Click"></Button>
+        <Button Grid.Row="7" Content="WKT->WKB" Click="ConvertWKTToWKB_Click"></Button>
     </Grid>
 </Window>
