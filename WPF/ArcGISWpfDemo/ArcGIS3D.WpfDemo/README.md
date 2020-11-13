@@ -2,7 +2,7 @@
 基于ArcGIS开发的观察者视野显示       
 ![20201109_134553](https://user-images.githubusercontent.com/19277908/98504441-f4f17800-2291-11eb-8433-c10412ece43f.gif)    
 基于ArcGIS开发的动态观察者视野显示        
-![坦克](https://user-images.githubusercontent.com/19277908/98502948-59aad380-228e-11eb-9b42-c4cc71f43631.gif)    
+![坦克](https://user-images.githubusercontent.com/19277908/99024910-946c7e80-25a2-11eb-8195-f311525e7a34.gif)    
 基于ArcGIS开发的计算两立方体是否相交，相交部分展示      
 ![立方体关系](https://user-images.githubusercontent.com/19277908/98502752-bfe32680-228d-11eb-9a57-b62519691e1e.gif)    
 OBB碰撞算法C#版       
