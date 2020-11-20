@@ -7,6 +7,6 @@
         mc:Ignorable="d" WindowStartupLocation="Manual"  WindowStyle="None"  AllowsTransparency="True" Background="Transparent" WindowState="Normal"
         Title="NoneBorderDemo">
     <Grid>
-        <Label Content="点我拖动" FontSize="70" Foreground="White"></Label>
+        <Label Content="点我拖动" FontSize="70" Foreground="Black"></Label>
     </Grid>
 </Window>

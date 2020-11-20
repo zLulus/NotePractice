@@ -18,7 +18,7 @@
         </StackPanel>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid x:Name="generateControlGrid" Width="2500" Height="1500">
-                <TextBlock Name="locationTextBlock"  Text="111111" Height="100" Width="100" Margin="-1000,-1000,0,0"></TextBlock>
+                <TextBlock Name="locationTextBlock"  Text="111111" Height="100" Width="100" Margin="2000,-1200,0,0"></TextBlock>
             </Grid>
         </ScrollViewer>
     </Grid>
