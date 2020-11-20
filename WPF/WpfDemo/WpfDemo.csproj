@@ -200,6 +200,9 @@
     <Compile Include="FTP\FTPWindow.xaml.cs">
       <DependentUpon>FTPWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GenerateControls\GenerateControl.xaml.cs">
+      <DependentUpon>GenerateControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HistoricalDataManage\HistoricalDataManageWithTimeWindow.xaml.cs">
       <DependentUpon>HistoricalDataManageWithTimeWindow.xaml</DependentUpon>
     </Compile>
@@ -628,6 +631,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FTP\FTPWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GenerateControls\GenerateControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

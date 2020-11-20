@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="WpfDemo.GenerateControls.GenerateControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfDemo.GenerateControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button Content="获取控件位置" Click="GetLocation_Click"></Button>
+            <Button Content="清除控件" Click="Clear_Click"></Button>
+            <Button Content="新增" Click="GenerateControl_Click"></Button>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Grid x:Name="generateControlGrid" Width="2500" Height="1500">
+                <TextBlock Name="locationTextBlock"  Text="111111" Height="100" Width="100" Margin="-1000,-1000,0,0"></TextBlock>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+   
+</UserControl>

@@ -826,6 +826,13 @@
                 ]
               }
             ]
+          },
+          {
+            "Title": "获得控件位置 & 动态生成控件",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.GenerateControls.GenerateControl",
+            "Children": [
+            ]
           }
         ]
       }
