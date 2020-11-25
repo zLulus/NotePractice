@@ -51,6 +51,9 @@
     <Reference Include="Npgsql, Version=4.0.3.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.4.0.3\lib\net451\Npgsql.dll</HintPath>
     </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.19.10.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\packages\RabbitMQ.Client.5.1.0\lib\net451\RabbitMQ.Client.dll</HintPath>
     </Reference>
@@ -83,6 +86,7 @@
   <ItemGroup>
     <Compile Include="AsyncDemo.cs" />
     <Compile Include="CancleRequest\CancleRequestDemo.cs" />
+    <Compile Include="ConnectOracle\ConnectOracleDemo.cs" />
     <Compile Include="CSharpUsingPython\CSharpUsingPythonDemo.cs" />
     <Compile Include="ExcuteJsByPhantomjs\ExcuteJsByPhantomjsDemo.cs" />
     <Compile Include="ExcuteJs\ExcuteJsDemo.cs" />

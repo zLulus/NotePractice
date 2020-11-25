@@ -1,5 +1,6 @@
 ﻿using CodeLibrary;
 using CodeLibrary.CancleRequest;
+using CodeLibrary.ConnectOracle;
 using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
@@ -111,8 +112,10 @@ namespace ConsoleDemo
             //IPAddressTool.GetIPAddressList();
 
             //读取mdb文件
-            ReadMdbFileDemo.Run();
+            //ReadMdbFileDemo.Run();
 
+            //连接oracle数据库
+            ConnectOracleDemo.Run();
 
             Console.ReadLine();
         }
