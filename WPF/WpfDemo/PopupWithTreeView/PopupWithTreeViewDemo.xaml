@@ -7,23 +7,48 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Orientation="Vertical">
-        <Label Content="单选"></Label>
-        <Grid Margin="15">
+        <Label Content="Single choice(单选)"></Label>
+        <Grid Margin="15,5,0,15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBox Grid.Row="0" x:Name="singleHeader" Width="300" Height="30" PreviewMouseDown="singleHeader_PreviewMouseDown" HorizontalAlignment="Left" />
             <Popup Grid.Row="1" x:Name="singlePopup" AllowsTransparency="True" IsOpen="False">
-                <TreeView x:Name="singleTree" Initialized="singleTree_Initialized" SelectedItemChanged="singleTree_SelectedItemChanged">
-                    <TreeViewItem Header="Test1" x:Name="Tree1Item1">
-                        <TreeViewItem Header="1test1" />
-                        <TreeViewItem Header="2test2" />
-                    </TreeViewItem>
-                    <TreeViewItem Header="Test2" />
+                <TreeView x:Name="singleTree" ItemsSource="{Binding }" Initialized="singleTree_Initialized" SelectedItemChanged="singleTree_SelectedItemChanged">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock VerticalAlignment="Center" FontSize="18" Text="{Binding Name}" Margin="2,0,0,0"></TextBlock>
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
                 </TreeView>
             </Popup>
         </Grid>
-        <!--<Label Content="多选"></Label>-->
+        <Label Content="Multiple choice(多选)"></Label>
+        <Grid Margin="15,5,0,15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" x:Name="multiHeader" Width="300" Height="30" PreviewMouseDown="multiHeader_PreviewMouseDown" HorizontalAlignment="Left" />
+            <Popup Grid.Row="1" x:Name="multiPopup" AllowsTransparency="True" IsOpen="False">
+                <StackPanel Orientation="Vertical">
+                    <TreeView x:Name="multiTree" ItemsSource="{Binding }" Initialized="multiTree_Initialized">
+                        <TreeView.ItemTemplate>
+                            <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsCanChecked,Mode=OneWay}" Checked="CheckBox_CheckedOrUncheck" Unchecked="CheckBox_CheckedOrUncheck"></CheckBox>
+                                    <TextBlock VerticalAlignment="Center" FontSize="18" Text="{Binding Name}" Margin="2,0,0,0"></TextBlock>
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+                        </TreeView.ItemTemplate>
+                    </TreeView>
+                    <Button Content="Close(关闭)" Click="CloseMultiPopup_Click"></Button>
+                </StackPanel>
+                
+            </Popup>
+        </Grid>
     </StackPanel>
 </UserControl>

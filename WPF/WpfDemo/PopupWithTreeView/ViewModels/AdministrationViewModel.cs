@@ -33,48 +33,40 @@ namespace WpfDemo.PopupWithTreeView.ViewModels
 
             }
         }
-        private short level;
-        public short Level
+        private bool isCanChecked;
+        /// <summary>
+        /// 是否可以被选择
+        /// </summary>
+        public bool IsCanChecked
         {
             set
             {
-                level = value;
-                OnPropertyChanged(nameof(Level));
+                isCanChecked = value;
+                OnPropertyChanged(nameof(IsCanChecked));
             }
             get
             {
-                return level;
+                return isCanChecked;
 
             }
         }
-        private string code;
-        public string Code
+        private bool isChecked;
+        /// <summary>
+        /// 是否被选择
+        /// </summary>
+        public bool IsChecked
         {
             set
             {
-                code = value;
-                OnPropertyChanged(nameof(Code));
+                isChecked = value;
+                OnPropertyChanged(nameof(IsChecked));
             }
             get
             {
-                return code;
+                return isChecked;
 
             }
         }
-        //private bool isChecked;
-        //public bool IsChecked
-        //{
-        //    set
-        //    {
-        //        isChecked = value;
-        //        OnPropertyChanged(nameof(IsChecked));
-        //    }
-        //    get
-        //    {
-        //        return isChecked;
-
-        //    }
-        //}
         private string name;
         public string Name
         {
@@ -92,6 +84,8 @@ namespace WpfDemo.PopupWithTreeView.ViewModels
         public ObservableCollection<AdministrationViewModel> Children { get; set; }
         public AdministrationViewModel()
         {
+            IsCanChecked = false;
+            IsChecked = false;
             Children = new ObservableCollection<AdministrationViewModel>();
         }
     }
