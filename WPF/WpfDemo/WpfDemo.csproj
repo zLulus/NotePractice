@@ -123,6 +123,10 @@
     <Compile Include="ClosableTabs\CloseableHeader.xaml.cs">
       <DependentUpon>CloseableHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PopupWithTreeView\PopupWithTreeViewDemo.xaml.cs">
+      <DependentUpon>PopupWithTreeViewDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PopupWithTreeView\ViewModels\AdministrationViewModel.cs" />
     <Compile Include="Command\CommandDemoWithBindParameters.xaml.cs">
       <DependentUpon>CommandDemoWithBindParameters.xaml</DependentUpon>
     </Compile>
@@ -857,6 +861,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PopupWithTreeView\PopupWithTreeViewDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PrintImage\PrintImageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1122,6 +1130,7 @@
     <None Include="NotShowInTaskbarWindows\README.md" />
     <None Include="packages.config" />
     <None Include="PauseAndResumeTask\README.md" />
+    <None Include="PopupWithTreeView\README.md" />
     <None Include="PrintImage\README.md" />
     <None Include="PrintTable\README.md" />
     <None Include="Properties\Settings.settings">

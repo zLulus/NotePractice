@@ -10,7 +10,7 @@ using System.Windows.Data;
 
 namespace WpfDemo.ValidationForms.ValidationForm2
 {
-    class ErrorCollectionToVisibility : IValueConverter
+    public class ErrorCollectionToVisibility : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

@@ -325,6 +325,13 @@
             "ClassName": "WpfDemo.TreeViewBind.TreeViewBindDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "Popup with TreeView(Popup和TreeView)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.PopupWithTreeView.PopupWithTreeViewDemo",
+            "Children": [
+            ]
           }
         ]
       },
