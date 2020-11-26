@@ -29,4 +29,4 @@ You can download the part of the project you need through [🔨GitZip](https://g
 
 你可以通过[🔨GitZip](https://gitzip.org/)工具下载项目中你需要的那一部分，GitZip也支持[🔨在线下载](https://kinolien.github.io/gitzip/)。
 
-If you have any questions about NotePractice, you can create issues.
+⚡️If you have any questions about NotePractice, you can create issues.
