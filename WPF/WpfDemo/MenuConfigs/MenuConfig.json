@@ -630,6 +630,20 @@
             "ClassName": "WpfDemo.LoadingMarks.Demo",
             "Children": [
             ]
+          },
+          {
+            "Title": "Transform(转换)",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "Rotate By Center(绕控件中心点旋转)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.Transforms.RotateByCenterDemo",
+                "Children": [
+                ]
+              }
+            ]
           }
         ]
       },

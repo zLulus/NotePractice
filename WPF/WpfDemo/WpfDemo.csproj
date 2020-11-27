@@ -442,6 +442,9 @@
     <Compile Include="TextBlockRun\TextBlockRunDemo.xaml.cs">
       <DependentUpon>TextBlockRunDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Transforms\RotateByCenterDemo.xaml.cs">
+      <DependentUpon>RotateByCenterDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TreeViewBind\TreeViewBindDemo.xaml.cs">
       <DependentUpon>TreeViewBindDemo.xaml</DependentUpon>
     </Compile>
@@ -1005,6 +1008,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TextBlockRun\TextBlockRunDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Transforms\RotateByCenterDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
