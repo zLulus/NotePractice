@@ -6,21 +6,19 @@
              xmlns:local="clr-namespace:WpfDemo.Transforms"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <StackPanel>
-
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <Label Content="前端旋转"></Label>
             <Slider Value="0" Name="slider" Minimum="0" Maximum="360" />
-
-            <Button Margin="0,200,0,0" Content="Button" Width="120" Height="30" RenderTransformOrigin="0.5,0.5">
-
+            <Button Margin="0,100,0,0" Content="旋转按钮" Width="120" Height="30" RenderTransformOrigin="0.5,0.5">
                 <Button.RenderTransform>
-
                     <RotateTransform x:Name="rotateTransform" Angle="{Binding ElementName=slider,Path=Value}" />
-
                 </Button.RenderTransform>
-
             </Button>
-
+            <Label Content="后端旋转"></Label>
+            <Slider Value="0" Name="backgroundSlider" Minimum="0" Maximum="360" ValueChanged="backgroundSlider_ValueChanged"/>
+            <Button x:Name="backgroundeButton" Margin="0,100,0,0" Content="旋转按钮" Width="120" Height="30" RenderTransformOrigin="0.5,0.5">
+            </Button>
         </StackPanel>
-    </Grid>
+    </ScrollViewer>
 </UserControl>

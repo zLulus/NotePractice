@@ -24,5 +24,13 @@ namespace WpfDemo.Transforms
         {
             InitializeComponent();
         }
+
+        private void backgroundSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            RotateTransform rt = new RotateTransform();
+            rt.Angle = backgroundSlider.Value;
+            //RenderTransformOrigin="0.5,0.5"
+            backgroundeButton.RenderTransform = rt;
+        }
     }
 }
