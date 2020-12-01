@@ -18,14 +18,7 @@
         </StackPanel>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid x:Name="generateControlGrid" Width="2500" Height="1500">
-                <TextBlock Name="locationTextBlock" MouseUp="locationTextBlock_MouseUp" MouseDown="locationTextBlock_MouseDown" MouseMove="locationTextBlock_MouseMove" MouseLeave="locationTextBlock_MouseLeave" Text="Test" Height="100" Width="100" Margin="2000,-1200,0,0">
-                      <!--移动对象-->
-                    <TextBlock.RenderTransform>
-                        <TransformGroup>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </TextBlock.RenderTransform>
-                </TextBlock>
+                <TextBlock Name="locationTextBlock" Text="Test" Height="100" Width="100" Margin="2000,-1200,0,0"></TextBlock>
             </Grid>
         </ScrollViewer>
     </Grid>
