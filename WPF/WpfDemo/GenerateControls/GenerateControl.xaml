@@ -14,11 +14,18 @@
         <StackPanel Orientation="Horizontal">
             <Button Content="获取控件位置" Click="GetLocation_Click"></Button>
             <Button Content="清除控件" Click="Clear_Click"></Button>
-            <Button Content="新增" Click="GenerateControl_Click"></Button>
+            <Button Content="重新创建控件" Click="GenerateControl_Click"></Button>
         </StackPanel>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid x:Name="generateControlGrid" Width="2500" Height="1500">
-                <TextBlock Name="locationTextBlock"  Text="111111" Height="100" Width="100" Margin="2000,-1200,0,0"></TextBlock>
+                <TextBlock Name="locationTextBlock" MouseUp="locationTextBlock_MouseUp" MouseDown="locationTextBlock_MouseDown" MouseMove="locationTextBlock_MouseMove" MouseLeave="locationTextBlock_MouseLeave" Text="Test" Height="100" Width="100" Margin="2000,-1200,0,0">
+                      <!--移动对象-->
+                    <TextBlock.RenderTransform>
+                        <TransformGroup>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
             </Grid>
         </ScrollViewer>
     </Grid>
