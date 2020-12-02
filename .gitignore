@@ -251,3 +251,6 @@ ModelManifest.xml
 /WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data/*.aux
 /WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data/*.tfw
 /WPF/ArcGISWpfDemo/ArcGIS3D.WpfDemo/Data/*.tif
+/Java/.idea
+/Java/out
+/Java/*.iml

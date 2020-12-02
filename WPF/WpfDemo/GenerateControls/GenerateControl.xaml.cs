@@ -36,6 +36,7 @@ namespace WpfDemo.GenerateControls
             }
             TextBlock textBlock = new TextBlock();
             textBlock.Text = "Test";
+            //通过Margin重新定位控件的位置
             textBlock.Margin = new Thickness(p.X , p.Y , 0, 0);
             //textBlock.Margin = new Thickness(p.X+ translateTransform.X, p.Y+ translateTransform.Y, 0, 0);
             //textBlock.SetValue(Canvas.LeftProperty, p.X);
@@ -44,6 +45,13 @@ namespace WpfDemo.GenerateControls
         }
 
         private void GetLocation_Click(object sender, RoutedEventArgs e)
+        {
+            GetCurrentLocation();
+
+            MessageBox.Show($"({p.X},{p.Y})");
+        }
+
+        private void GetCurrentLocation()
         {
             // Get absolute location on screen of upper left corner of button
             Point locationFromScreen = this.locationTextBlock.PointToScreen(new Point(0, 0));
@@ -55,13 +63,16 @@ namespace WpfDemo.GenerateControls
             Point generateControlGridLocation = this.generateControlGrid.PointToScreen(new Point(0, 0));
 
             p = new Point(locationFromScreen.X - generateControlGridLocation.X, locationFromScreen.Y - generateControlGridLocation.Y);
-
-            MessageBox.Show($"({p.X},{p.Y})");
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             generateControlGrid.Children.Clear();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            GetCurrentLocation();
         }
     }
 }

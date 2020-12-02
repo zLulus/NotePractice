@@ -1120,6 +1120,7 @@
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
     <None Include="ClosableTabs\README.md" />
+    <None Include="GenerateControls\README.md" />
     <None Include="ItemsControls\README.md" />
     <None Include="LoadingMarks\README.md" />
     <None Include="MenuConfigs\MenuConfig.json">
