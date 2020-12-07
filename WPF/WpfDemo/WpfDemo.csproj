@@ -455,6 +455,10 @@
     <Compile Include="Trigger\DataTriggerDemo2.xaml.cs">
       <DependentUpon>DataTriggerDemo2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Trigger\DebugTriggers\DebugTriggerDemo.xaml.cs">
+      <DependentUpon>DebugTriggerDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Trigger\DebugTriggers\TriggerTracing.cs" />
     <Compile Include="Trigger\EventTriggerDemo.xaml.cs">
       <DependentUpon>EventTriggerDemo.xaml</DependentUpon>
     </Compile>
@@ -1024,6 +1028,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Trigger\DataTriggerDemo2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Trigger\DebugTriggers\DebugTriggerDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

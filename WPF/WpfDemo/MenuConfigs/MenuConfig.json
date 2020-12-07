@@ -602,6 +602,13 @@
             "ClassName": "WpfDemo.Trigger.DataTriggerDemo2",
             "Children": [
             ]
+          },
+          {
+            "Title": "Debug Trigger(调试触发器)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Trigger.DebugTriggers.DebugTriggerDemo",
+            "Children": [
+            ]
           }
         ]
       },
