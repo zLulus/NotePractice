@@ -123,6 +123,9 @@
     <Compile Include="ClosableTabs\CloseableHeader.xaml.cs">
       <DependentUpon>CloseableHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListBoxWithScroll\ListBoxWithScrollDemo.xaml.cs">
+      <DependentUpon>ListBoxWithScrollDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PopupWithTreeView\PopupWithTreeViewDemo.xaml.cs">
       <DependentUpon>PopupWithTreeViewDemo.xaml</DependentUpon>
     </Compile>
@@ -674,6 +677,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Keyboard\Keyboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListBoxWithScroll\ListBoxWithScrollDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
