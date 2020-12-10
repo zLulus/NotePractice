@@ -11,7 +11,7 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Click="MoveToButtom_Click"></Button>
+        <Button Grid.Row="0" Click="MoveToButtom_Click" Content="Move ListBox to the buttom"></Button>
         <ListBox Grid.Row="1" x:Name="listBox"></ListBox>
     </Grid>
 </UserControl>
