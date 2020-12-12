@@ -123,6 +123,10 @@
     <Compile Include="ClosableTabs\CloseableHeader.xaml.cs">
       <DependentUpon>CloseableHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListBoxShowImages\ListBoxShowImagesDemo.xaml.cs">
+      <DependentUpon>ListBoxShowImagesDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListBoxShowImages\ViewModels\ListBoxShowImagesViewModel.cs" />
     <Compile Include="ListBoxWithScroll\ListBoxWithScrollDemo.xaml.cs">
       <DependentUpon>ListBoxWithScrollDemo.xaml</DependentUpon>
     </Compile>
@@ -680,6 +684,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ListBoxShowImages\ListBoxShowImagesDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ListBoxWithScroll\ListBoxWithScrollDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1205,6 +1213,14 @@
     <Resource Include="MultiSelectors\Images\folder_go.png" />
     <Resource Include="MultiSelectors\Images\folder_open_arrow.png" />
     <Resource Include="MultiSelectors\Images\tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ListBoxShowImages\Images\OIP %281%29.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ListBoxShowImages\Images\OIP.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

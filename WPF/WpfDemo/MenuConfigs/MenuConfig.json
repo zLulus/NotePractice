@@ -334,10 +334,24 @@
             ]
           },
           {
-            "Title": "Slide the ListBox to the bottom(滑动ListBox至底部)",
-            "DllName": "WpfDemo.exe",
-            "ClassName": "WpfDemo.ListBoxWithScroll.ListBoxWithScrollDemo",
+            "Title": "ListBox",
+            "DllName": "",
+            "ClassName": "",
             "Children": [
+              {
+                "Title": "Slide the ListBox to the bottom(滑动ListBox至底部)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.ListBoxWithScroll.ListBoxWithScrollDemo",
+                "Children": [
+                ]
+              },
+              {
+                "Title": "ListBox display image list(ListBox展示图片列表)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.ListBoxShowImages.ListBoxShowImagesDemo",
+                "Children": [
+                ]
+              }
             ]
           }
         ]
