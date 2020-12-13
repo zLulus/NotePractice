@@ -877,9 +877,16 @@
             ]
           },
           {
-            "Title": "获得控件位置 & 动态生成控件",
+            "Title": "Get control position & Dynamic generate control(获得控件位置 & 动态生成控件)",
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.GenerateControls.GenerateControl",
+            "Children": [
+            ]
+          },
+          {
+            "Title": "Select Folder(选择文件夹)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.SelectFolder.SelectFolderDemo",
             "Children": [
             ]
           }
