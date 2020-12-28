@@ -4,6 +4,7 @@ using CodeLibrary.ConnectOracle;
 using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
+using CodeLibrary.HexAndBytes;
 using CodeLibrary.IPAddresses;
 using CodeLibrary.ReadMdbFiles;
 using CodeLibrary.SendEmail;
@@ -115,7 +116,10 @@ namespace ConsoleDemo
             //ReadMdbFileDemo.Run();
 
             //连接oracle数据库
-            ConnectOracleDemo.Run();
+            //ConnectOracleDemo.Run();
+
+            //byte[] and number
+            HexAndBytesDemo.Run();
 
             Console.ReadLine();
         }
