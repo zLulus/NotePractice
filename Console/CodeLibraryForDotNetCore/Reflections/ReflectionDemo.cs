@@ -52,22 +52,38 @@ namespace CodeLibraryForDotNetCore.Reflections
         public static void TestAccessLevel()
         {
             Type t = typeof(Student);
+
+            //默认:实例、静态-非私有字段
+            var fields = t.GetFields();
             //实例、私有字段
             var noPublicFields = t.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
             //实例、非私有字段
             var publicFields = t.GetFields(BindingFlags.Instance | BindingFlags.Public);
+
+            //默认:实例、静态-非私有属性
+            var properties = t.GetProperties();
             //实例、私有属性
             var noPublicProperties = t.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic);
             //实例、非私有属性
             var publicProperties = t.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+
+            //默认:实例、静态-非私有方法
+            var methods = t.GetMethods();
             //实例、私有方法
             var noPublicMethods = t.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic);
             //实例、非私有方法
             var publicMethods = t.GetMethods(BindingFlags.Instance | BindingFlags.Public);
+
+            //默认:实例、静态-非私有属性
+            var staticProperties = t.GetProperties();
             //静态、私有属性
-            var noPublicStaticProperties = t.GetMethods(BindingFlags.Static | BindingFlags.NonPublic);
+            var noPublicStaticProperties = t.GetProperties(BindingFlags.Static | BindingFlags.NonPublic);
             //静态、非私有属性
-            var publicStaticProperties = t.GetMethods(BindingFlags.Static | BindingFlags.Public);
+            var publicStaticProperties = t.GetProperties(BindingFlags.Static | BindingFlags.Public);
+
+            //其他：实例、静态-私有属性
+            //=noPublicProperties+noPublicStaticProperties
+            var noPublicProperties2 = t.GetProperties(BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic);
         }
 
         private static void CopyValueToTarget<T>(T source, T target) where T:class
