@@ -189,6 +189,8 @@ namespace DotNetCoreConsole
             //ReflectionDemo.Run();
             //获得方法相关信息
             //ReflectionDemo.UseCallerMemberNameAttribute();
+            //测试不同访问级别、静态/实例的访问权限
+            ReflectionDemo.TestAccessLevel();
 
             //接口和抽象类
             //InterfacesAndAbstractClassesDemo.Run();
@@ -207,7 +209,7 @@ namespace DotNetCoreConsole
             //ReadAndWriteXmlDemo.Run();
 
             //时间戳
-            UseTimeStampDemo.Run();
+            //UseTimeStampDemo.Run();
 
             Console.ReadLine();
         }
