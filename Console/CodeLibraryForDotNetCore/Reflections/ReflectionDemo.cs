@@ -53,6 +53,11 @@ namespace CodeLibraryForDotNetCore.Reflections
         {
             Type t = typeof(Student);
 
+            //Student student = new Student();
+            //Type t = student.GetType();
+
+            //t = Type.GetType("CodeLibraryForDotNetCore.Reflections.Models.Student");
+
             //默认:实例、静态-非私有字段
             var fields = t.GetFields();
             //实例、私有字段

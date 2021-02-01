@@ -45,6 +45,7 @@ using CodeLibraryForDotNetCore.IndexerAndCollection;
 using CodeLibraryForDotNetCore.Pattern.SingletonPattern;
 using CodeLibraryForDotNetCore.ReadAndWriteXml;
 using CodeLibraryForDotNetCore.UseTimestamp;
+using CodeLibraryForDotNetCore.AnonymousTypes;
 
 namespace DotNetCoreConsole
 {
@@ -190,7 +191,7 @@ namespace DotNetCoreConsole
             //获得方法相关信息
             //ReflectionDemo.UseCallerMemberNameAttribute();
             //测试不同访问级别、静态/实例的访问权限
-            ReflectionDemo.TestAccessLevel();
+            //ReflectionDemo.TestAccessLevel();
 
             //接口和抽象类
             //InterfacesAndAbstractClassesDemo.Run();
@@ -210,6 +211,9 @@ namespace DotNetCoreConsole
 
             //时间戳
             //UseTimeStampDemo.Run();
+
+            //匿名类型
+            AnonymousTypeDemo.Run();
 
             Console.ReadLine();
         }
