@@ -20,20 +20,39 @@ namespace WpfDemo.Dial
     /// </summary>
     public partial class DialDemo : UserControl
     {
+        WpfDemo.Dial.VPN VPN { get; set; }
+        DialDemoViewModel dialDemoViewModel { get; set; }
         public DialDemo()
         {
             InitializeComponent();
+
+            VPN = new VPN();
+            dialDemoViewModel = new DialDemoViewModel();
+            DataContext = dialDemoViewModel;
         }
 
 
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
+            //断开之前的连接
+            VPN.Disconnect();
+            string selectedProtocol = dialDemoViewModel.Protocol.Tag.ToString();
+            VPN.setParameters(dialDemoViewModel.IP, dialDemoViewModel.AdapterName, dialDemoViewModel.UserName, dialDemoViewModel.Password, selectedProtocol, dialDemoViewModel.PreSharedKey);
 
+            var result = VPN.Connect();
+            if (result)
+            {
+                MessageBox.Show("Connect Succeeded!");
+            }
+            else
+            {
+                MessageBox.Show("Connect Failed!");
+            }
         }
 
         private void Disconnect_Click(object sender, RoutedEventArgs e)
         {
-
+            VPN.Disconnect();
         }
     }
 }

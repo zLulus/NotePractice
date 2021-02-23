@@ -40,6 +40,9 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotRas, Version=1.3.5166.33434, Culture=neutral, PublicKeyToken=b378f04384b7892a, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotRas.for.Win7.1.3.0\lib\net40\DotRas.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -142,6 +145,7 @@
       <DependentUpon>DialDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dial\DialDemoViewModel.cs" />
+    <Compile Include="Dial\VPN.cs" />
     <Compile Include="ListBoxShowImages\ListBoxShowImagesDemo.xaml.cs">
       <DependentUpon>ListBoxShowImagesDemo.xaml</DependentUpon>
     </Compile>
@@ -1173,6 +1177,7 @@
     </EmbeddedResource>
     <None Include="Borders\READEME.md" />
     <None Include="ClosableTabs\README.md" />
+    <None Include="Dial\README.md" />
     <None Include="GenerateControls\README.md" />
     <None Include="ItemsControls\README.md" />
     <None Include="LoadingMarks\README.md" />
