@@ -138,6 +138,10 @@
     <Compile Include="ClosableTabs\CloseableHeader.xaml.cs">
       <DependentUpon>CloseableHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dial\DialDemo.xaml.cs">
+      <DependentUpon>DialDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dial\DialDemoViewModel.cs" />
     <Compile Include="ListBoxShowImages\ListBoxShowImagesDemo.xaml.cs">
       <DependentUpon>ListBoxShowImagesDemo.xaml</DependentUpon>
     </Compile>
@@ -647,6 +651,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DependencyProperties\TestCustomBorder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dial\DialDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

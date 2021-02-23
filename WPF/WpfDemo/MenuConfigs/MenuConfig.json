@@ -889,6 +889,13 @@
             "ClassName": "WpfDemo.SelectFolder.SelectFolderDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "Dial(拨号)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.Dial.DialDemo",
+            "Children": [
+            ]
           }
         ]
       }
