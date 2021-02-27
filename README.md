@@ -13,6 +13,9 @@ You can go to [👀My Blog](https://www.cnblogs.com/Lulus/) to view the explanat
 
 You can download the part of the project you need through [🔨GitZip](https://gitzip.org/), and GitZip also supports [🔨online download](https://kinolien.github.io/gitzip/).
 
+If you come from my blog and don't find the code snippet you want, please don't leave!    
+They are just moved, and they can be found by searching!      
+
 中文如下：    
 # 该项目为[❤笔记](https://github.com/zLulus/My_Note)对应练习项目
 |序号 | 模块名称                                          |  模块技术点                        |                     
@@ -28,6 +31,9 @@ You can download the part of the project you need through [🔨GitZip](https://g
 你可以前往[👀我的博客](https://www.cnblogs.com/Lulus/)查看对应demo的讲解说明。
 
 你可以通过[🔨GitZip](https://gitzip.org/)工具下载项目中你需要的那一部分，GitZip也支持[🔨在线下载](https://kinolien.github.io/gitzip/)。
+
+如果你从我的博客过来，没有找到你想要的代码片段，请不要离开！   
+它们只是被移动了位置，通过检索就可以找到!   
 
 ⚡️If you have any questions about NotePractice, you can create issues.
 
