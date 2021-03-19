@@ -16,6 +16,8 @@ You can download the part of the project you need through [🔨GitZip](https://g
 If you come from my blog and don't find the code snippet you want, please don't leave!    
 They are just moved, and they can be found by searching!      
 
+⚡️If you have any questions about NotePractice, you can create issues.
+
 中文如下：    
 # 该项目为[❤笔记](https://github.com/zLulus/My_Note)对应练习项目
 |序号 | 模块名称                                          |  模块技术点                        |                     
@@ -35,8 +37,7 @@ They are just moved, and they can be found by searching!
 如果你从我的博客过来，没有找到你想要的代码片段，请不要离开！   
 它们只是被移动了位置，通过检索就可以找到!   
 
-⚡️If you have any questions about NotePractice, you can create issues.
-
+⚡️如果你对NotePractice有任何疑问，请提issues。
 
 
 <br>
