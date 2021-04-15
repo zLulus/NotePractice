@@ -896,6 +896,13 @@
             "ClassName": "WpfDemo.Dial.DialDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "Restart Process(重启)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.RestartProcess.RestartProcessDemo",
+            "Children": [
+            ]
           }
         ]
       }
