@@ -7,7 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <Label Content="TextBox Input Decimal Number:"></Label>
+        <Label Content="TextBox Input Decimal Number(Without StringFormat):"></Label>
+        <TextBox Height="50" Text="{Binding InputNumber2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <Label Content="TextBox Input Decimal Number(With StringFormat):"></Label>
         <TextBox Height="50" Text="{Binding InputNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:N2}}"></TextBox>
         <Button Content="Get the Number!" Click="GetNumber_Click"></Button>
     </StackPanel>

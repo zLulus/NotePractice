@@ -9,6 +9,19 @@ namespace WpfDemo.TextBoxInputDecimal.ViewModels
 {
     public class TextBoxInputDecimalViewModel : INotifyPropertyChanged
     {
+        private decimal inputNumber2;
+        public decimal InputNumber2
+        {
+            get
+            {
+                return inputNumber2;
+            }
+            set
+            {
+                inputNumber2 = value;
+                NotifyPropertyChanged(nameof(InputNumber2));
+            }
+        }
         private decimal inputNumber;
         public decimal InputNumber
         {
