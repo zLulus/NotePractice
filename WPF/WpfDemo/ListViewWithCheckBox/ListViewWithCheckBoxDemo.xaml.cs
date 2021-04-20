@@ -22,6 +22,7 @@ namespace WpfDemo.ListViewWithCheckBox
     /// </summary>
     public partial class ListViewWithCheckBoxDemo : UserControl
     {
+        //https://stackoverflow.com/questions/28546582/wpf-listview-header-checkbox-and-mvvm-command
         ObservableCollection<MyTask> vm { get; set; }
         public ListViewWithCheckBoxDemo()
         {
