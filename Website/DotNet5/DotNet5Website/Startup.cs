@@ -1,3 +1,5 @@
+using DotNet5Website.Extensions;
+using DotNet5Website.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +37,7 @@ namespace DotNet5Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Microsoft.AspNetCore.Hosting.IApplicationLifetime lifetime)
         {
             if (env.IsDevelopment())
             {
@@ -52,6 +54,21 @@ namespace DotNet5Website
             {
                 endpoints.MapControllers();
             });
+
+            //参考资料
+            //https://www.cnblogs.com/edisonchou/p/9124985.html
+            //https://www.cnblogs.com/edisonchou/p/9148034.html
+            // register this service
+            ServiceEntity serviceEntity = new ServiceEntity
+            {
+                //这里应该根据实际IP取哦
+                IP = "127.0.0.1",
+                Port = Convert.ToInt32(Configuration["Service:Port"]),
+                ServiceName = Configuration["Service:Name"],
+                ConsulIP = Configuration["Consul:IP"],
+                ConsulPort = Convert.ToInt32(Configuration["Consul:Port"])
+            };
+            app.RegisterConsul(lifetime, serviceEntity);
         }
     }
 }
