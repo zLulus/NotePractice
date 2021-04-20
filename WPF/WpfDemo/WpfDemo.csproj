@@ -153,6 +153,10 @@
     <Compile Include="ListBoxWithScroll\ListBoxWithScrollDemo.xaml.cs">
       <DependentUpon>ListBoxWithScrollDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ListViewWithCheckBox\ListViewWithCheckBoxDemo.xaml.cs">
+      <DependentUpon>ListViewWithCheckBoxDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ListViewWithCheckBox\ViewModels\MyTask.cs" />
     <Compile Include="PopupWithTreeView\PopupWithTreeViewDemo.xaml.cs">
       <DependentUpon>PopupWithTreeViewDemo.xaml</DependentUpon>
     </Compile>
@@ -722,6 +726,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ListBoxWithScroll\ListBoxWithScrollDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ListViewWithCheckBox\ListViewWithCheckBoxDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

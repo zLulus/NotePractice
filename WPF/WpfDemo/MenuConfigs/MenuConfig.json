@@ -353,6 +353,12 @@
                 ]
               }
             ]
+          },
+          {
+            "Title": "ListView with header CheckBox(ListView列头包含全选CheckBox)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.ListViewWithCheckBox.ListViewWithCheckBoxDemo",
+            "Children": []
           }
         ]
       },
