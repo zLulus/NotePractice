@@ -10,7 +10,7 @@
         <ListView x:Name="taskListBox" SelectionMode="Single" ItemsSource="{Binding }">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="选择">
+                    <GridViewColumn>
                         <GridViewColumn.HeaderTemplate>
                             <DataTemplate>
                                 <CheckBox Checked="SelectAll_Checked" Unchecked="SelectAll_Unchecked"/>
