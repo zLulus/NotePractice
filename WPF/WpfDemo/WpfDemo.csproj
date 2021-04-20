@@ -482,6 +482,10 @@
     <Compile Include="TextBlockRun\TextBlockRunDemo.xaml.cs">
       <DependentUpon>TextBlockRunDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TextBoxInputDecimal\TextBoxInputDecimalDemo.xaml.cs">
+      <DependentUpon>TextBoxInputDecimalDemo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TextBoxInputDecimal\ViewModels\TextBoxInputDecimalViewModel.cs" />
     <Compile Include="Transforms\RotateByCenterDemo.xaml.cs">
       <DependentUpon>RotateByCenterDemo.xaml</DependentUpon>
     </Compile>
@@ -1076,6 +1080,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TextBlockRun\TextBlockRunDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TextBoxInputDecimal\TextBoxInputDecimalDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

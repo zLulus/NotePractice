@@ -359,6 +359,12 @@
             "DllName": "WpfDemo.exe",
             "ClassName": "WpfDemo.ListViewWithCheckBox.ListViewWithCheckBoxDemo",
             "Children": []
+          },
+          {
+            "Title": "TextBox Input Decimal(TextBox输入小数)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.TextBoxInputDecimal.TextBoxInputDecimalDemo",
+            "Children": []
           }
         ]
       },
