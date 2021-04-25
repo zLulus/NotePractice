@@ -1,5 +1,6 @@
 ﻿using DotNet5.CodeLibrary.ArraySegments;
 using DotNet5.CodeLibrary.Discards;
+using DotNet5.CodeLibrary.LambdaTests;
 using DotNet5.CodeLibrary.Traverse;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,19 @@ namespace DotNet5Console
 
             //Console.WriteLine("List集合正序/倒序操作:");
             //TraverseListDemo.Run();
-            Console.WriteLine("ArrayList集合正序/倒序操作:");
-            TraverseArrayListDemo.Run();
+            //Console.WriteLine("ArrayList集合正序/倒序操作:");
+            //TraverseArrayListDemo.Run();
+
+            //lambda和闭包
+            //lambda == 匿名函数
+            //在返回函数中引用外部函数的参数或局部变量的程序结构，我们称为闭包
+            //闭包和 lambda 经常一起出现
+            //匿名函数会拷贝一份参数到函数对象中
+            //LambdaLifeCycleDemo.Run();
+            //LambdaLifeCycleDemo.Run2();
+            //LambdaLifeCycleDemo.Run3();
+            //LambdaLifeCycleDemo.Run4();
+            //LambdaLifeCycleDemo.Run5();
 
             Console.ReadLine();
         }
