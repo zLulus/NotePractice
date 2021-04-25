@@ -27,7 +27,7 @@ namespace CodeLibrary.UseRabbitMQ
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body;
-                var message = Encoding.UTF8.GetString(body);
+                var message = Encoding.UTF8.GetString(body.ToArray());
                 Console.WriteLine($"{DateTime.Now} [x] Received {message}");
             };
             channel.BasicConsume(queue: "hello",
