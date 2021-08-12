@@ -165,6 +165,9 @@
       <DependentUpon>ListViewWithCheckBoxDemo.xaml</DependentUpon>
     </Compile>
     <Compile Include="ListViewWithCheckBox\ViewModels\MyTask.cs" />
+    <Compile Include="LockMouse\LockMouseDemo.xaml.cs">
+      <DependentUpon>LockMouseDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PopupWithTreeView\PopupWithTreeViewDemo.xaml.cs">
       <DependentUpon>PopupWithTreeViewDemo.xaml</DependentUpon>
     </Compile>
@@ -755,6 +758,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoadingMarks\LoadingMark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LockMouse\LockMouseDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

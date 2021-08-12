@@ -915,6 +915,13 @@
             "ClassName": "WpfDemo.RestartProcess.RestartProcessDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "Lock Mouse",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.LockMouse.LockMouseDemo",
+            "Children": [
+            ]
           }
         ]
       }
