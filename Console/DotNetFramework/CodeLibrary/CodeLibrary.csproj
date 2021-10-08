@@ -70,6 +70,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -111,6 +112,7 @@
   <ItemGroup>
     <Compile Include="AsyncDemo.cs" />
     <Compile Include="CancleRequest\CancleRequestDemo.cs" />
+    <Compile Include="ComputerPerformanceMonitor\ComputerPerformanceMonitorTool.cs" />
     <Compile Include="ConnectOracle\ConnectOracleDemo.cs" />
     <Compile Include="CSharpUsingPython\CSharpUsingPythonDemo.cs" />
     <Compile Include="ExcuteJsByPhantomjs\ExcuteJsByPhantomjsDemo.cs" />

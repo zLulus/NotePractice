@@ -1,5 +1,6 @@
 ﻿using CodeLibrary;
 using CodeLibrary.CancleRequest;
+using CodeLibrary.ComputerPerformanceMonitor;
 using CodeLibrary.ConnectOracle;
 using CodeLibrary.CSharpUsingPython;
 using CodeLibrary.ExcuteJs;
@@ -119,7 +120,10 @@ namespace ConsoleDemo
             //ConnectOracleDemo.Run();
 
             //byte[] and number
-            HexAndBytesDemo.Run();
+            //HexAndBytesDemo.Run();
+
+            //电脑性能监控
+            ComputerPerformanceMonitorTool.Run();
 
             Console.ReadLine();
         }
