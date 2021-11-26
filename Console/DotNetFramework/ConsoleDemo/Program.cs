@@ -3,6 +3,7 @@ using CodeLibrary.CancleRequest;
 using CodeLibrary.ComputerPerformanceMonitor;
 using CodeLibrary.ConnectOracle;
 using CodeLibrary.CSharpUsingPython;
+using CodeLibrary.DeleteFileInUse;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
 using CodeLibrary.HexAndBytes;
@@ -123,7 +124,10 @@ namespace ConsoleDemo
             //HexAndBytesDemo.Run();
 
             //电脑性能监控
-            ComputerPerformanceMonitorTool.Run();
+            //ComputerPerformanceMonitorTool.Run();
+
+            //删除正在被使用的文件
+            DeleteFileInUseDemo.Run();
 
             Console.ReadLine();
         }

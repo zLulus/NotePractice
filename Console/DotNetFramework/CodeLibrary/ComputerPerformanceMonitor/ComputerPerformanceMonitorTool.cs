@@ -16,20 +16,16 @@ namespace CodeLibrary.ComputerPerformanceMonitor
     {
         public static void Run()
         {
-            PerformanceCounter cpuCounter;
-            PerformanceCounter ramCounter;
-            cpuCounter = new PerformanceCounter();
-            cpuCounter.CategoryName = "Processor";
-            cpuCounter.CounterName = "% Processor Time";
-            cpuCounter.InstanceName = "_Total";
-            cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-            ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+            PerformanceCounter cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            PerformanceCounter ramCounter = new PerformanceCounter("Memory", "Available MBytes");
+            //PerformanceCounter gpuCounter = new PerformanceCounter("GPU Engine", "Utilization Percentage", "_Total");
 
             while (true)
             {
                 System.Threading.Thread.Sleep(1000);
                 Console.WriteLine("电脑CPU使用率：" + cpuCounter.NextValue() + " %");
                 Console.WriteLine("电脑可使用内存：" + ramCounter.NextValue() + "MB");
+                //Console.WriteLine("电脑GPU使用率：" + gpuCounter.NextValue() + " %");
                 Console.WriteLine();
 
                 if ((int)cpuCounter.NextValue() > 80)
