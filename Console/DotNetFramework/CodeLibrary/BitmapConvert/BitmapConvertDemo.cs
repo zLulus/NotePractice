@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -15,8 +16,9 @@ namespace CodeLibrary.BitmapConvert
             //Test2();
             //Test3();
             //Test4();
-            //Test5();
-            Test6();
+            //Test5Ok();
+            //Test6();
+            Test7Ok();
         }
 
         private static void Test1()
@@ -183,7 +185,7 @@ namespace CodeLibrary.BitmapConvert
             });
         }
 
-        public static void Test5()
+        public static void Test5Ok()
         {
             System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
             System.Drawing.Bitmap bmp2 = new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
@@ -272,6 +274,54 @@ namespace CodeLibrary.BitmapConvert
 
                     }
 
+                }
+                catch (Exception ex)
+                {
+
+                }
+            });
+        }
+
+        public static void Test7Ok()
+        {
+            System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
+            Task.Run(() =>
+            {
+                try
+                {
+                    var cpbmp1 = (Bitmap)bmp1.Clone();
+                    while (true)
+                    {
+                        for (int i = 0; i < cpbmp1.Width; i++)
+                            for (int j = 0; j < cpbmp1.Height; j++)
+                            {
+                                var c1 = cpbmp1.GetPixel(i, j);
+                            }
+                        Thread.Sleep(100);
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            });
+
+            Task.Run(() =>
+            {
+                try
+                {
+                    var cpbmp2 = (Bitmap)bmp1.Clone();
+                    while (true)
+                    {
+                        for (int i = 0; i < cpbmp2.Width; i++)
+                            for (int j = 0; j < cpbmp2.Height; j++)
+                            {
+                                var c1 = cpbmp2.GetPixel(i, j);
+                            }
+                        Thread.Sleep(100);
+
+                    }
                 }
                 catch (Exception ex)
                 {
