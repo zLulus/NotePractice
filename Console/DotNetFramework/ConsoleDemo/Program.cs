@@ -1,4 +1,5 @@
 ﻿using CodeLibrary;
+using CodeLibrary.BitmapConvert;
 using CodeLibrary.CancleRequest;
 using CodeLibrary.ComputerPerformanceMonitor;
 using CodeLibrary.ConnectOracle;
@@ -127,7 +128,9 @@ namespace ConsoleDemo
             //ComputerPerformanceMonitorTool.Run();
 
             //删除正在被使用的文件
-            DeleteFileInUseDemo.Run();
+            //DeleteFileInUseDemo.Run();
+
+            BitmapConvertDemo.Run();
 
             Console.ReadLine();
         }
