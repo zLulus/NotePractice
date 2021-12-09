@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -24,7 +25,8 @@ namespace CodeLibrary.BitmapConvert
             //Test5Ok();
             //Test6();
             //Test7Ok();
-            Test8();
+            //Test8();
+            Test9();
         }
 
         private static void Test1()
@@ -396,5 +398,36 @@ namespace CodeLibrary.BitmapConvert
                 }
             });
         }
+
+
+
+        private static void Test9()
+        {
+            System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(file);
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            for (int i = 0; i < bmp1.Width; i++)
+                for (int j = 0; j < bmp1.Height; j++)
+                {
+                    var c1 = bmp1.GetPixel(i, j);
+                }
+            sw.Stop();
+            Console.WriteLine($"{nameof(Bitmap)}:{sw.ElapsedMilliseconds}");
+
+
+
+            OldLockBitmap oldLockBitmap = new OldLockBitmap(bmp1);
+            oldLockBitmap.LockBits();
+            sw.Start();
+            for (int i = 0; i < oldLockBitmap.Width; i++)
+                for (int j = 0; j < oldLockBitmap.Height; j++)
+                {
+                    var c1 = oldLockBitmap.GetPixel(i, j);
+                }
+            sw.Stop();
+            oldLockBitmap.UnlockBits();
+            Console.WriteLine($"{nameof(OldLockBitmap)}:{sw.ElapsedMilliseconds}");
+        }
+
     }
 }

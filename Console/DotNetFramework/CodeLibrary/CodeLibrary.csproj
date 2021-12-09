@@ -117,6 +117,7 @@
     <Compile Include="BitmapConvert\BitmapConvertDemo.cs" />
     <Compile Include="BitmapConvert\BitmapSourceHelper.cs" />
     <Compile Include="BitmapConvert\LockBitmap.cs" />
+    <Compile Include="BitmapConvert\OldLockBitmap.cs" />
     <Compile Include="CancleRequest\CancleRequestDemo.cs" />
     <Compile Include="ComputerPerformanceMonitor\ComputerPerformanceMonitorTool.cs" />
     <Compile Include="ConnectOracle\ConnectOracleDemo.cs" />
