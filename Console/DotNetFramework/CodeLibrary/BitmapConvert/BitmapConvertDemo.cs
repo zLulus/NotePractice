@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media.Imaging;
+using static CodeLibrary.BitmapConvert.BitmapSourceHelper;
 
 namespace CodeLibrary.BitmapConvert
 {
     public static class BitmapConvertDemo
     {
+        private static string file = @"D:\壁纸\th5.jpg";
         public static void Run()
         {
             //Test1();
@@ -18,12 +23,13 @@ namespace CodeLibrary.BitmapConvert
             //Test4();
             //Test5Ok();
             //Test6();
-            Test7Ok();
+            //Test7Ok();
+            Test8();
         }
 
         private static void Test1()
         {
-            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
+            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(file);
             LockBitmap lockBitmap = new LockBitmap(bmp);
             //lockBitmap.LockBits();
             //lockBitmap.UnlockBits();
@@ -47,7 +53,7 @@ namespace CodeLibrary.BitmapConvert
 
         public static void Test2()
         {
-            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
+            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(file);
             Task.Run(() =>
             {
                 try
@@ -93,7 +99,7 @@ namespace CodeLibrary.BitmapConvert
 
         public static void Test3()
         {
-            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
+            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(file);
             LockBitmap lockBitmap = new LockBitmap(bmp);
             Task.Run(() =>
             {
@@ -141,7 +147,7 @@ namespace CodeLibrary.BitmapConvert
         static System.Drawing.Bitmap staticBitmap;
         public static void Test4()
         {
-            staticBitmap= new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
+            staticBitmap= new System.Drawing.Bitmap(file);
             Task.Run(() =>
             {
                 try
@@ -187,8 +193,8 @@ namespace CodeLibrary.BitmapConvert
 
         public static void Test5Ok()
         {
-            System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
-            System.Drawing.Bitmap bmp2 = new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
+            System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(file);
+            System.Drawing.Bitmap bmp2 = new System.Drawing.Bitmap(file);
             Task.Run(() =>
             {
                 try
@@ -234,7 +240,7 @@ namespace CodeLibrary.BitmapConvert
             });
         }
 
-        static readonly System.Drawing.Bitmap readonlyBitmap = new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
+        static readonly System.Drawing.Bitmap readonlyBitmap = new System.Drawing.Bitmap(file);
         public static void Test6()
         {
             Task.Run(() =>
@@ -284,7 +290,7 @@ namespace CodeLibrary.BitmapConvert
 
         public static void Test7Ok()
         {
-            System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(@"D:\壁纸\th5.jpg");
+            System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(file);
             Task.Run(() =>
             {
                 try
@@ -318,6 +324,67 @@ namespace CodeLibrary.BitmapConvert
                             for (int j = 0; j < cpbmp2.Height; j++)
                             {
                                 var c1 = cpbmp2.GetPixel(i, j);
+                            }
+                        Thread.Sleep(100);
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            });
+        }
+
+
+
+        private static void Test8()
+        {
+            //https://stackoverflow.com/questions/1176910/finding-specific-pixel-colors-of-a-bitmapimage
+            System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(file);
+            //MemoryStream ms = new MemoryStream();
+            //bmp1.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+
+            //var bitmapSource =  BitmapSourceHelper.ImageBytesToImageSource(ms);
+            //ms.Close();
+
+            //var pixelColors= BitmapSourceHelper.GetPixels(bitmapSource);
+            var bitmapSource = BitmapSourceHelper.BitmapToBitmapSource(bmp1);
+            PixelColor[,] pixelColors = new PixelColor[1920, 1080];
+            BitmapSourceHelper.CopyPixels(bitmapSource, pixelColors, bitmapSource.PixelWidth * 4, 0);
+            
+            Task.Run(() =>
+            {
+                try
+                {
+                    while (true)
+                    {
+
+                        for (int i = 0; i < bmp1.Width; i++)
+                            for (int j = 0; j < bmp1.Height; j++)
+                            {
+                                var c1 = BitmapSourceHelper.GetColor(pixelColors,i, j);
+                            }
+                        Thread.Sleep(100);
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+            });
+
+            Task.Run(() =>
+            {
+                try
+                {
+                    while (true)
+                    {
+                        for (int i = 0; i < bmp1.Width; i++)
+                            for (int j = 0; j < bmp1.Height; j++)
+                            {
+                                var c1 = BitmapSourceHelper.GetColor(pixelColors, i, j);
                             }
                         Thread.Sleep(100);
 

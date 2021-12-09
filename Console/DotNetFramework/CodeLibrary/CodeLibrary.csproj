@@ -60,6 +60,7 @@
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Oracle.ManagedDataAccess.19.11.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="RabbitMQ.Client, Version=6.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RabbitMQ.Client.6.2.1\lib\net461\RabbitMQ.Client.dll</HintPath>
     </Reference>
@@ -109,10 +110,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsyncDemo.cs" />
     <Compile Include="BitmapConvert\BitmapConvertDemo.cs" />
+    <Compile Include="BitmapConvert\BitmapSourceHelper.cs" />
     <Compile Include="BitmapConvert\LockBitmap.cs" />
     <Compile Include="CancleRequest\CancleRequestDemo.cs" />
     <Compile Include="ComputerPerformanceMonitor\ComputerPerformanceMonitorTool.cs" />
