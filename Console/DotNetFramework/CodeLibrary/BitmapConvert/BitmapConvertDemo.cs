@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Media.Imaging;
-using static CodeLibrary.BitmapConvert.BitmapSourceHelper;
 
 namespace CodeLibrary.BitmapConvert
 {
@@ -69,9 +62,9 @@ namespace CodeLibrary.BitmapConvert
                             }
                         Thread.Sleep(100);
                     }
-                   
+
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
 
                 }
@@ -90,7 +83,7 @@ namespace CodeLibrary.BitmapConvert
                             }
                         Thread.Sleep(100);
                     }
-                       
+
                 }
                 catch (Exception ex)
                 {
@@ -116,7 +109,7 @@ namespace CodeLibrary.BitmapConvert
                             }
                         Thread.Sleep(100);
                     }
-                       
+
                 }
                 catch (Exception ex)
                 {
@@ -137,7 +130,7 @@ namespace CodeLibrary.BitmapConvert
                             }
                         Thread.Sleep(100);
                     }
-                        
+
                 }
                 catch (Exception ex)
                 {
@@ -149,7 +142,7 @@ namespace CodeLibrary.BitmapConvert
         static System.Drawing.Bitmap staticBitmap;
         public static void Test4()
         {
-            staticBitmap= new System.Drawing.Bitmap(file);
+            staticBitmap = new System.Drawing.Bitmap(file);
             Task.Run(() =>
             {
                 try
@@ -163,7 +156,7 @@ namespace CodeLibrary.BitmapConvert
                             }
                         Thread.Sleep(100);
                     }
-                        
+
                 }
                 catch (Exception ex)
                 {
@@ -184,7 +177,7 @@ namespace CodeLibrary.BitmapConvert
                             }
                         Thread.Sleep(100);
                     }
-                        
+
                 }
                 catch (Exception ex)
                 {
@@ -211,7 +204,7 @@ namespace CodeLibrary.BitmapConvert
                         Thread.Sleep(100);
 
                     }
-                       
+
                 }
                 catch (Exception ex)
                 {
@@ -233,7 +226,7 @@ namespace CodeLibrary.BitmapConvert
                         Thread.Sleep(100);
 
                     }
-                        
+
                 }
                 catch (Exception ex)
                 {
@@ -354,7 +347,7 @@ namespace CodeLibrary.BitmapConvert
             var bitmapSource = BitmapSourceHelper.BitmapToBitmapSource(bmp1);
             PixelColor[,] pixelColors = new PixelColor[1920, 1080];
             BitmapSourceHelper.CopyPixels(bitmapSource, pixelColors, bitmapSource.PixelWidth * 4, 0);
-            
+
             Task.Run(() =>
             {
                 try
@@ -365,7 +358,7 @@ namespace CodeLibrary.BitmapConvert
                         for (int i = 0; i < bmp1.Width; i++)
                             for (int j = 0; j < bmp1.Height; j++)
                             {
-                                var c1 = BitmapSourceHelper.GetColor(pixelColors,i, j);
+                                var c1 = BitmapSourceHelper.GetColor(pixelColors, i, j);
                             }
                         Thread.Sleep(100);
 
@@ -403,14 +396,17 @@ namespace CodeLibrary.BitmapConvert
 
         private static void Test9()
         {
+            int times = 1;
+
             System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(file);
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            for (int i = 0; i < bmp1.Width; i++)
-                for (int j = 0; j < bmp1.Height; j++)
-                {
-                    var c1 = bmp1.GetPixel(i, j);
-                }
+            for (int number = 0; number < times; number++)
+                for (int i = 0; i < bmp1.Width; i++)
+                    for (int j = 0; j < bmp1.Height; j++)
+                    {
+                        var c1 = bmp1.GetPixel(i, j);
+                    }
             sw.Stop();
             Console.WriteLine($"{nameof(Bitmap)}:{sw.ElapsedMilliseconds}");
 
@@ -418,15 +414,29 @@ namespace CodeLibrary.BitmapConvert
 
             OldLockBitmap oldLockBitmap = new OldLockBitmap(bmp1);
             oldLockBitmap.LockBits();
-            sw.Start();
-            for (int i = 0; i < oldLockBitmap.Width; i++)
-                for (int j = 0; j < oldLockBitmap.Height; j++)
-                {
-                    var c1 = oldLockBitmap.GetPixel(i, j);
-                }
+            sw.Restart();
+            for (int number = 0; number < times; number++)
+                for (int i = 0; i < bmp1.Width; i++)
+                    for (int j = 0; j < bmp1.Height; j++)
+                    {
+                        var c1 = oldLockBitmap.GetPixel(i, j);
+                    }
             sw.Stop();
             oldLockBitmap.UnlockBits();
-            Console.WriteLine($"{nameof(OldLockBitmap)}:{sw.ElapsedMilliseconds}");
+            Console.WriteLine($"{nameof(OldLockBitmap)}1:{sw.ElapsedMilliseconds}");
+
+            //wrong
+            sw.Restart();
+            for (int number = 0; number < times; number++)
+                for (int i = 0; i < bmp1.Width; i++)
+                    for (int j = 0; j < bmp1.Height; j++)
+                    {
+                        oldLockBitmap.LockBits();
+                        var c1 = oldLockBitmap.GetPixel(i, j);
+                        oldLockBitmap.UnlockBits();
+                    }
+            sw.Stop();
+            Console.WriteLine($"{nameof(OldLockBitmap)}2:{sw.ElapsedMilliseconds}");
         }
 
     }
