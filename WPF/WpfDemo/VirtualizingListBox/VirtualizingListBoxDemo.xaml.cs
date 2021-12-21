@@ -29,7 +29,7 @@ namespace WpfDemo.VirtualizingListBox
             InitializeComponent();
 
             timer=new Timer();
-            timer.Interval = 100;
+            timer.Interval = 1;
             timer.Elapsed += AddData;
             listBox.ItemsSource = new ObservableCollection<string>();
         }
@@ -46,7 +46,7 @@ namespace WpfDemo.VirtualizingListBox
                 {
                     listBox.ScrollIntoView(listBox.Items[listBox.Items.Count - 1]);
                 }
-                if (dataContext != null && dataContext.Count > 30)
+                if (dataContext != null && dataContext.Count > 200)
                 {
                     dataContext.Clear();
                 }

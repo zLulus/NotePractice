@@ -36,6 +36,12 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <ListBox Style="{StaticResource ListBoxStyle}" ItemTemplate="{StaticResource  ListBoxDataTemplate}" x:Name="listBox"></ListBox>
+        <ListBox x:Name="listBox" VirtualizingStackPanel.VirtualizationMode="Recycling"  VirtualizingStackPanel.IsVirtualizing="True">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate >
+                    <VirtualizingStackPanel   Orientation="Vertical" />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
     </Grid>
 </UserControl>
