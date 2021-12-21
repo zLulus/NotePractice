@@ -564,6 +564,9 @@
       <DependentUpon>ValidationFormInDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValidationForms\ValidationForm3\ValidationFormInDialogViewModel.cs" />
+    <Compile Include="VirtualizingListBox\VirtualizingListBoxDemo.xaml.cs">
+      <DependentUpon>VirtualizingListBoxDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VisualStateManager\VisualStateManagerDemo.xaml.cs">
       <DependentUpon>VisualStateManagerDemo.xaml</DependentUpon>
     </Compile>
@@ -1168,6 +1171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ValidationForms\ValidationForm3\ValidationFormInDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VirtualizingListBox\VirtualizingListBoxDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

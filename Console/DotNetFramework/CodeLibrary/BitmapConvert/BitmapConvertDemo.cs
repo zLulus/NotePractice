@@ -396,8 +396,9 @@ namespace CodeLibrary.BitmapConvert
 
         private static void Test9()
         {
-            int times = 1;
+            int times = 10;
 
+            //no. 2
             System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(file);
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -410,8 +411,7 @@ namespace CodeLibrary.BitmapConvert
             sw.Stop();
             Console.WriteLine($"{nameof(Bitmap)}:{sw.ElapsedMilliseconds}");
 
-
-
+            //no. 1
             OldLockBitmap oldLockBitmap = new OldLockBitmap(bmp1);
             oldLockBitmap.LockBits();
             sw.Restart();
@@ -425,7 +425,7 @@ namespace CodeLibrary.BitmapConvert
             oldLockBitmap.UnlockBits();
             Console.WriteLine($"{nameof(OldLockBitmap)}1:{sw.ElapsedMilliseconds}");
 
-            //wrong
+            //no. 3 very slow
             sw.Restart();
             for (int number = 0; number < times; number++)
                 for (int i = 0; i < bmp1.Width; i++)

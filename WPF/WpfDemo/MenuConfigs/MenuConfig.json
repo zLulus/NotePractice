@@ -351,6 +351,13 @@
                 "ClassName": "WpfDemo.ListBoxShowImages.ListBoxShowImagesDemo",
                 "Children": [
                 ]
+              },
+              {
+                "Title": "Virtualizing ListBox(ListBox虚拟化)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.VirtualizingListBox.VirtualizingListBoxDemo",
+                "Children": [
+                ]
               }
             ]
           },
