@@ -576,6 +576,10 @@
     <Compile Include="WindowIconAndBackground\WindowIconAndBackgroundStartPage.xaml.cs">
       <DependentUpon>WindowIconAndBackgroundStartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WritingBoard\Converters\RectConverter.cs" />
+    <Compile Include="WritingBoard\WritingBoardDemo.xaml.cs">
+      <DependentUpon>WritingBoardDemo.xaml</DependentUpon>
+    </Compile>
     <Page Include="Animations\RectangleAnimationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1187,6 +1191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowIconAndBackground\WindowIconAndBackgroundStartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WritingBoard\WritingBoardDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

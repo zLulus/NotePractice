@@ -929,6 +929,13 @@
             "ClassName": "WpfDemo.LockMouse.LockMouseDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "Writing Board Demo(写字板)",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.WritingBoard.WritingBoardDemo",
+            "Children": [
+            ]
           }
         ]
       }
