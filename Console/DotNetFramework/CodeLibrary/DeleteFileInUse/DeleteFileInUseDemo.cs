@@ -11,7 +11,7 @@ namespace CodeLibrary.DeleteFileInUse
     {
         public static void Run()
         {
-            string filePath = @"";
+            string filePath = @"the file u want to delete";
             var processes= FileUtil.WhoIsLocking(filePath);
             foreach(var process in processes)
                 process.Kill();

@@ -9,7 +9,7 @@ namespace CodeLibrary.DeleteFileInUse
     /// <summary>
     /// https://stackoverflow.com/questions/317071/how-do-i-find-out-which-process-is-locking-a-file-using-net/20623311
     /// </summary>
-    static public class FileUtil
+    public static class FileUtil
     {
         [StructLayout(LayoutKind.Sequential)]
         struct RM_UNIQUE_PROCESS
@@ -83,7 +83,7 @@ namespace CodeLibrary.DeleteFileInUse
         /// http://wyupdate.googlecode.com/svn-history/r401/trunk/frmFilesInUse.cs (no copyright in code at time of viewing)
         /// 
         /// </remarks>
-        static public List<Process> WhoIsLocking(string path)
+        public static List<Process> WhoIsLocking(string path)
         {
             uint handle;
             string key = Guid.NewGuid().ToString();
@@ -108,6 +108,9 @@ namespace CodeLibrary.DeleteFileInUse
                 //Note: there's a race condition here -- the first call to RmGetList() returns
                 //      the total number of process. However, when we call RmGetList() again to get
                 //      the actual processes this number may have increased.
+                //注意：这里有一个竞争条件——
+                //对 RmGetList() 的第一次调用返回进程总数。
+                //然而，当我们再次调用 RmGetList() 得到这个数字可能会增加的实际进程。
                 res = RmGetList(handle, out pnProcInfoNeeded, ref pnProcInfo, null, ref lpdwRebootReasons);
 
                 if (res == ERROR_MORE_DATA)
