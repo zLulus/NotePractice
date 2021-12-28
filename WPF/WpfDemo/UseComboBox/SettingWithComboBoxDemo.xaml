@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Orientation="Vertical">
-        <ComboBox ItemsSource="{Binding Fruits}" DisplayMemberPath="Name" SelectedItem="{Binding SelectFruit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></ComboBox>
-        <Button Content="get current select item(获得当前选项)" Click="GetCurrentSelectItem_Click"></Button>
-        <Button Content="reset select item(清空、重置)" Click="ResetSelectItem_Click"></Button>
+        <Label Content="ComboBox:"></Label>
+        <ComboBox ItemsSource="{Binding Fruits}" DisplayMemberPath="Name" SelectedItem="{Binding SelectFruit,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="20"></ComboBox>
+        <Button Content="get current select item(获得当前选项)" Click="GetCurrentSelectItem_Click" FontSize="20"></Button>
+        <Button Content="reset select item(清空、重置)" Click="ResetSelectItem_Click" FontSize="20"></Button>
     </StackPanel>
 </UserControl>
