@@ -21,6 +21,7 @@ namespace WpfDemo.UseComboBox
             vm.Fruits.Add(new FruitViewModel() { Id = 1, Name = "Apple" });
             vm.Fruits.Add(new FruitViewModel() { Id = 2, Name = "Pear" });
             vm.Fruits.Add(new FruitViewModel() { Id = 3, Name = "Banana" });
+            //设置选项，反显
             vm.SelectFruit = vm.Fruits.FirstOrDefault(x => x.Id == 1);
 
             DataContext = vm;
@@ -31,11 +32,12 @@ namespace WpfDemo.UseComboBox
             if(vm.SelectFruit!=null)
                 MessageBox.Show($"{vm.SelectFruit.Name}");
             else
-                MessageBox.Show($"None");
+                MessageBox.Show($"None(没有选项)");
         }
 
         private void ResetSelectItem_Click(object sender, RoutedEventArgs e)
         {
+            //清空
             vm.SelectFruit = null;
         }
     }
