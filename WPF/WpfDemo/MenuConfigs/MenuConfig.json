@@ -224,6 +224,13 @@
                 "ClassName": "WpfDemo.UseComboBox.UseComboBoxDemo2",
                 "Children": [
                 ]
+              },
+              {
+                "Title": "ComboBox set and display value(ComboBox设置与反显)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.UseComboBox.SettingWithComboBoxDemo",
+                "Children": [
+                ]
               }
             ]
           },

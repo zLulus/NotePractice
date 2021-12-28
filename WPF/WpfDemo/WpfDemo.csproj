@@ -527,6 +527,9 @@
     <Compile Include="Trigger\TriggerDemo.xaml.cs">
       <DependentUpon>TriggerDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UseComboBox\SettingWithComboBoxDemo.xaml.cs">
+      <DependentUpon>SettingWithComboBoxDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UseComboBox\UseComboBoxDemo.xaml.cs">
       <DependentUpon>UseComboBoxDemo.xaml</DependentUpon>
     </Compile>
@@ -534,6 +537,7 @@
       <DependentUpon>UseComboBoxDemo2.xaml</DependentUpon>
     </Compile>
     <Compile Include="UseComboBox\ViewModels\FruitViewModel.cs" />
+    <Compile Include="UseComboBox\ViewModels\SettingWithComboBoxDemoViewModel.cs" />
     <Compile Include="UseComboBox\ViewModels\UseComboBoxViewModel.cs" />
     <Compile Include="UserControlDemo\OwnUserControl.xaml.cs">
       <DependentUpon>OwnUserControl.xaml</DependentUpon>
@@ -1139,6 +1143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Trigger\TriggerDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UseComboBox\SettingWithComboBoxDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
