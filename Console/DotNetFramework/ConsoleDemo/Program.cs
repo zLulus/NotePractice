@@ -130,7 +130,10 @@ namespace ConsoleDemo
             //删除正在被使用的文件
             //DeleteFileInUseDemo.Run();
 
-            BitmapConvertDemo.Run();
+            //BitmapConvertDemo.Run();
+
+            Console.WriteLine($"{DateTime.Now == DateTime.Now}");
+            Console.WriteLine($"{DateTime.UtcNow == DateTime.UtcNow}");
 
             Console.ReadLine();
         }
