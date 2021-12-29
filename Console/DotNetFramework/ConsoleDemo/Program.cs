@@ -4,6 +4,7 @@ using CodeLibrary.CancleRequest;
 using CodeLibrary.ComputerPerformanceMonitor;
 using CodeLibrary.ConnectOracle;
 using CodeLibrary.CSharpUsingPython;
+using CodeLibrary.DateTimeTest;
 using CodeLibrary.DeleteFileInUse;
 using CodeLibrary.ExcuteJs;
 using CodeLibrary.ExcuteJsByPhantomjs;
@@ -132,8 +133,7 @@ namespace ConsoleDemo
 
             //BitmapConvertDemo.Run();
 
-            Console.WriteLine($"{DateTime.Now == DateTime.Now}");
-            Console.WriteLine($"{DateTime.UtcNow == DateTime.UtcNow}");
+            DateTimeTestDemo.Run();
 
             Console.ReadLine();
         }

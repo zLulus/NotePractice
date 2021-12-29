@@ -122,6 +122,7 @@
     <Compile Include="ComputerPerformanceMonitor\ComputerPerformanceMonitorTool.cs" />
     <Compile Include="ConnectOracle\ConnectOracleDemo.cs" />
     <Compile Include="CSharpUsingPython\CSharpUsingPythonDemo.cs" />
+    <Compile Include="DateTimeTest\DateTimeTestDemo.cs" />
     <Compile Include="DeleteFileInUse\DeleteFileInUseDemo.cs" />
     <Compile Include="DeleteFileInUse\FileUtil.cs" />
     <Compile Include="ExcuteJsByPhantomjs\ExcuteJsByPhantomjsDemo.cs" />
