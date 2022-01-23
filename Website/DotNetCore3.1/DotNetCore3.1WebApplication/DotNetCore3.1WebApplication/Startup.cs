@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,12 +15,12 @@ namespace DotNetCore3._1WebApplication
 {
     public class Startup
     {
+        private IConfiguration _configuration;
+
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -39,9 +40,23 @@ namespace DotNetCore3._1WebApplication
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllers();
+
+            //    endpoints.MapGet("/", async context =>
+            //    {
+            //        var processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            //        await context.Response.WriteAsync(processName);
+            //    });
+            //});
+
+            app.Run(async (context) =>
             {
-                endpoints.MapControllers();
+                //防止乱码
+                context.Response.ContentType = "text/plain;charset=utf-8";
+                //注入后通过_configuration访问MyKey
+                await context.Response.WriteAsync(_configuration["MyKey"]);
             });
         }
     }
