@@ -1,5 +1,6 @@
-﻿{
+{
   "$schema": "http://json.schemastore.org/launchsettings.json",
+  "MyKey": "launchSettings.json中MyKey的值ֵ",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
@@ -12,7 +13,6 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,12 +20,10 @@
     "DotNetCore3._1WebApplication": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
-      "applicationUrl": "http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "http://localhost:5000"
     }
-  },
-  "MyKey": "launchSettings.json中MyKey的值ֵ"
+  }
 }
