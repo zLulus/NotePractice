@@ -30,7 +30,10 @@ namespace DotNetCore3._1WebApplication
                 .AddJsonOptions(options =>
                 {
                     options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
-                });
+                })
+                //协商内容
+                //请求头设置为Accept:application/xml
+                .AddXmlSerializerFormatters();
 
             services.AddScoped<IStudentRepository, MemoryStudentRepository>();
         }
