@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>DotNetCore3._1WebApplication.Service</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNetCore3.1WebApplication.Model\DotNetCore3.1WebApplication.Model.csproj" />
+  </ItemGroup>
+
+</Project>

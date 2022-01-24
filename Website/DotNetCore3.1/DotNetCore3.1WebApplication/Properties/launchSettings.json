@@ -26,5 +26,6 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
-  }
+  },
+  "MyKey": "launchSettings.json中MyKey的值ֵ"
 }
