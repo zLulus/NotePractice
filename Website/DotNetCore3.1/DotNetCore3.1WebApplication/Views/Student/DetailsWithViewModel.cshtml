@@ -1,18 +1,22 @@
 ﻿@model StudentDetailsViewModel
-<html>
-<head>
-    <title> </title>
-</head>
-<body>
 <h3>@Model.Title</h3>
-<div>
-    姓名 :@Model.Student.Name
+<div class="row justify-content-center m-3">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Student.Name</h1>
+            </div>
+            <div class="card-body text-center">
+                <img class="card-img-top " src="images/noimage.png" />
+                <h4>学生ID:@Model.Student.Id</h4>
+                <h4>邮箱 :@Model.Student.Email</h4>
+                <h4>主修科目 :@Model.Student.Major</h4>
+            </div>
+            <div class="card-footer text-center">
+                <a href="#" class="btn btn-primary">返回</a>
+                <a href="#" class="btn btn-primary">编辑</a>
+                <a href="#" class="btn btn-danger">删除</a>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    邮箱 :@Model.Student.Email
-</div>
-<div>
-    主修科目 :@Model.Student.Major
-</div>
-</body>
-</html>

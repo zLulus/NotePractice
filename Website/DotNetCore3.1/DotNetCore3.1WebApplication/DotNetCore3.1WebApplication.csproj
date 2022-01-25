@@ -15,5 +15,11 @@
     <ProjectReference Include="..\DotNetCore3.1WebApplication.Service\DotNetCore3.1WebApplication.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\images\noimage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 
 </Project>
