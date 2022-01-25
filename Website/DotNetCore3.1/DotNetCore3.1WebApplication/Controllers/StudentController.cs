@@ -31,7 +31,10 @@ namespace DotNetCore3._1WebApplication.Controllers
         {
             var student = _studentRepository.GetStudent(id);
             if (student == null)
-                throw new CustomException($"查询不到id为{id}的学生信息");
+            {
+                Response.StatusCode = 404;
+                return View("StudentNotFound",id);
+            }
             StudentDetailsViewModel viewModel = new StudentDetailsViewModel()
             {
                 Student = student,

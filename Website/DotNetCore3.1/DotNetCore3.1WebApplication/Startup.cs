@@ -47,7 +47,7 @@ namespace DotNetCore3._1WebApplication
                 await next();
                 logger.LogInformation($"传出响应时间:{DateTime.Now}");
             });
-
+            
             if (env.IsDevelopment())
             {
                 DeveloperExceptionPageOptions developerExceptionPageOptions = new
@@ -58,8 +58,13 @@ namespace DotNetCore3._1WebApplication
 
                 app.UseDeveloperExceptionPage(developerExceptionPageOptions);
             }
-
-            app.UseAuthorization();
+            else
+            {
+                //app.UseExceptionHandler("/Error");
+                //app.UseStatusCodePages();
+                //app.UseStatusCodePagesWithRedirects("/Error/{0}");
+                app.UseStatusCodePagesWithReExecute("/Error/{0}");
+            }
 
             //支持wwwroot目录下的Index.htm、Index.html、default.htm、default.html   
             //DefaultFilesMiddleware -> DefaultFilesOptions
@@ -68,6 +73,8 @@ namespace DotNetCore3._1WebApplication
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             //默认路由
             //｛controller=Home｝/｛action=Index｝/｛id?｝
