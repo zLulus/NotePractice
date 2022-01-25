@@ -5,11 +5,11 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore3.1WebApplication", "DotNetCore3.1WebApplication\DotNetCore3.1WebApplication.csproj", "{6F3DDAA0-5371-4EAD-8E59-DEC0AEB1CDFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore3.1WebApplication.Model", "DotNetCore3.1WebApplication.Model\DotNetCore3.1WebApplication.Model.csproj", "{7DB31EE6-79CD-4438-9C8D-01C096E5BC8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore3.1WebApplication.Model", "DotNetCore3.1WebApplication.Model\DotNetCore3.1WebApplication.Model.csproj", "{7DB31EE6-79CD-4438-9C8D-01C096E5BC8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore3.1WebApplication.Service", "DotNetCore3.1WebApplication.Service\DotNetCore3.1WebApplication.Service.csproj", "{5094603B-590D-41EE-B16C-3D6EED68D25F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore3.1WebApplication.Service", "DotNetCore3.1WebApplication.Service\DotNetCore3.1WebApplication.Service.csproj", "{5094603B-590D-41EE-B16C-3D6EED68D25F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore3.1WebApplication.Common", "DotNetCore3.1WebApplication.Common\DotNetCore3.1WebApplication.Common.csproj", "{3DE0732C-9062-44E3-A4F7-A1E596DD4B6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore3.1WebApplication.Common", "DotNetCore3.1WebApplication.Common\DotNetCore3.1WebApplication.Common.csproj", "{3DE0732C-9062-44E3-A4F7-A1E596DD4B6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

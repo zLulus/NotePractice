@@ -25,5 +25,10 @@ namespace DotNetCore3._1WebApplication.Service
         {
             return _studentList.FirstOrDefault(a => a.Id == id);
         }
+
+        public IEnumerable<Student> GetAllStudents()
+        {
+            return _studentList;
+        }
     }
 }

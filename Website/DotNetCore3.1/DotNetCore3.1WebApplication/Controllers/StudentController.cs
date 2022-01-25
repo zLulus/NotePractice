@@ -1,25 +1,58 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DotNetCore3._1WebApplication.Common;
+using DotNetCore3._1WebApplication.Model;
+using DotNetCore3._1WebApplication.Service;
+using DotNetCore3._1WebApplication.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNetCore3._1WebApplication.Controllers
 {
+    //常规路由
     public class StudentController : Controller
     {
-        // GET: HomeController/Details/5
-        public ActionResult Details(int id)
+        private readonly IStudentRepository _studentRepository;
+        public StudentController(IStudentRepository studentRepository)
         {
-            return View();
+            _studentRepository = studentRepository;
         }
 
-        // GET: HomeController/Edit
+        // GET: Student/Details/1
+        public ViewResult Details(int id)
+        {
+            var student = _studentRepository.GetStudent(id);
+            if (student == null)
+                throw new CustomException($"查询不到id为{id}的学生信息");
+            ViewBag.PageTitle = "学生详情";
+            return View(student);
+        }
+
+        // GET: Student/DetailsWithViewModel/1
+        public ViewResult DetailsWithViewModel(int id)
+        {
+            var student = _studentRepository.GetStudent(id);
+            if (student == null)
+                throw new CustomException($"查询不到id为{id}的学生信息");
+            StudentDetailsViewModel viewModel = new StudentDetailsViewModel()
+            {
+                Student = student,
+                Title = "学生详情-来自vm"
+            };
+            return View(viewModel);
+        }
+
+        // GET: Student/Edit
         public ActionResult Edit()
         {
             return View();
         }
 
+        // GET: Student/List
         public ActionResult List()
         {
-            return View();
+            //查询所有的学生信息
+            var model = _studentRepository.GetAllStudents();
+            //将学生列表传递到视图
+            return View(model);
         }
     }
 }

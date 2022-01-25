@@ -59,8 +59,6 @@ namespace DotNetCore3._1WebApplication
                 app.UseDeveloperExceptionPage(developerExceptionPageOptions);
             }
 
-            app.UseRouting();
-
             app.UseAuthorization();
 
             //支持wwwroot目录下的Index.htm、Index.html、default.htm、default.html   
@@ -69,7 +67,29 @@ namespace DotNetCore3._1WebApplication
             //允许访问静态文件  eg./images/th.png
             app.UseStaticFiles();
 
-            app.UseMvcWithDefaultRoute();
+            app.UseRouting();
+
+            //默认路由
+            //｛controller=Home｝/｛action=Index｝/｛id?｝
+            //app.UseMvcWithDefaultRoute();
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller=Home}/{action=Index}/{id?}");
+            //});
+
+            //终结点路由
+            //设置路由规则
+            //UseEndpoints是一个可以处理跨不同中间件系统（如MVC、 Razor Pages、 Blazor、SignalR和gRPC）的路由系统。通过终结点路由可以使端点相互协作，并使系统比没有相互对话的终端中间件更全面。
+            //放置在UseRouting()中间件之后
+            //dotnet开发团队推荐使用终结点路由
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
