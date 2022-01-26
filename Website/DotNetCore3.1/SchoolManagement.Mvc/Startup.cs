@@ -9,7 +9,9 @@ using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SchoolManagement.EntityFrameworkCore;
 using SchoolManagement.EntityFrameworkCore.DataRepositories;
 
 namespace SchoolManagement.Mvc
@@ -25,6 +27,12 @@ namespace SchoolManagement.Mvc
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //使用SQLServer数据库，通过IConfiguration访问去获取数据库连接
+            //AddDbContextPool()方法提供了数据库连接池（DbContextPool）
+            //AddDbContextPool()方法的性能优于AddDbContext()方法
+            services.AddDbContextPool<AppDbContext>(
+                options => options.UseSqlServer(_configuration.GetConnectionString("SchoolManagementDBConnection")));
+
             //AddControllersWithViews+AddRazorPages
             //services.AddMvc();
             //services.AddMvcCore();
