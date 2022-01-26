@@ -5,7 +5,7 @@ namespace DotNetCore3._1WebApplication.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class GetMyKeyFromConfigurationController : Controller
+    public class GetMyKeyFromConfigurationController : ControllerBase
     {
         private IConfiguration _configuration;
         public GetMyKeyFromConfigurationController(IConfiguration configuration)

@@ -7,7 +7,7 @@ namespace DotNetCore3._1WebApplication.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class GetStudentByIdController : Controller
+    public class GetStudentByIdController : ControllerBase
     {
         private readonly IStudentRepository _studentRepository;
 
