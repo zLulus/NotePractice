@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SchoolManagement.Core.Models.Enums;
 
 namespace SchoolManagement.Core.Models
 {
@@ -11,7 +12,7 @@ namespace SchoolManagement.Core.Models
         /// <summary>
         /// 主修科目
         /// </summary>
-        public string Major { get; set; }
+        public MajorEnum Major { get; set; }
         public string Email { get; set; }
     }
 }

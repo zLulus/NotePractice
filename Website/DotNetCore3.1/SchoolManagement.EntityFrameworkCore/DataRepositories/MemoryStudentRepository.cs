@@ -1,8 +1,7 @@
-﻿using System;
+﻿using SchoolManagement.Core.Models;
+using SchoolManagement.Core.Models.Enums;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using SchoolManagement.Core.Models;
 
 namespace SchoolManagement.EntityFrameworkCore.DataRepositories
 {
@@ -13,12 +12,9 @@ namespace SchoolManagement.EntityFrameworkCore.DataRepositories
         {
             _studentList = new List<Student>()
             {
-                new Student() {Id = 1,Name = "张三",Major = "计算机科学",Email =
-                    "zhangsan@qq.com" },
-                new Student() {Id = 2,Name = "李四",Major = "物流",Email =
-                    "lisi@qq.com" },
-                new Student() {Id = 3,Name = "赵六",Major = "电子商务",Email =
-                    "zhaoliu@qq.com" },
+                new Student() {Id = 1,Name = "张三",Major =MajorEnum.ComputerScience, Email = "zhangsan@qq.com" },
+                new Student() {Id = 2,Name = "李四",Major = MajorEnum.Math, Email = "lisi@qq.com" },
+                new Student() {Id = 3,Name = "赵六",Major = MajorEnum.English, Email = "zhaoliu@qq.com" },
             };
         }
         public Student GetStudent(int id)
