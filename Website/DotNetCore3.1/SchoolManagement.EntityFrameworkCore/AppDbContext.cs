@@ -13,6 +13,7 @@ namespace SchoolManagement.EntityFrameworkCore
         public DbSet<Student> Students { get; set; }
         public DbSet<Scroe> Scroes { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -26,6 +27,7 @@ namespace SchoolManagement.EntityFrameworkCore
             modelBuilder.Entity<Student>().ToTable(nameof(Student), SchoolManagementConsts.SchemaName);
             modelBuilder.Entity<Scroe>().ToTable(nameof(Scroe), SchoolManagementConsts.SchemaName);
             modelBuilder.Entity<Course>().ToTable(nameof(Course), SchoolManagementConsts.SchemaName);
+            modelBuilder.Entity<TodoItem>().ToTable(nameof(TodoItem), SchoolManagementConsts.SchemaName);
             modelBuilder.Seed();
         }
     }
