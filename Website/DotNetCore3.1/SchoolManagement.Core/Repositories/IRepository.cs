@@ -180,6 +180,16 @@ namespace SchoolManagement.Core.Repositories
         Task<long> LongCountAsync(Expression<Func<TEntity,bool>> predicate);
         #endregion
 
+        #region 原生sql
 
+        IQueryable<TEntity> FromSqlRaw(string sql);
+        IQueryable<TEntity> FromSqlInterpolated(FormattableString formattableString);
+        Task<int> ExecuteSqlRawAsync(string sql);
+        int ExecuteSqlRaw(string sql);
+        int ExecuteSqlInterpolated(FormattableString formattableString);
+        Task<int> ExecuteSqlInterpolatedAsync(FormattableString formattableString);
+        Task<List<IDictionary<string, object>>> ExecuteReaderAsync(string sql);
+
+        #endregion
     }
 }

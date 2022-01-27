@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -178,6 +179,69 @@ namespace SchoolManagement.Core.Repositories
         public async Task<long> LongCountAsync(Expression<Func<TEntity,bool>> predicate)
         {
             return await GetAll().Where(predicate).LongCountAsync();
+        }
+        public IQueryable<TEntity> FromSqlRaw(string sql)
+        {
+            return Table.FromSqlRaw(sql);
+        }
+        public IQueryable<TEntity> FromSqlInterpolated(FormattableString formattableString)
+        {
+            return Table.FromSqlInterpolated(formattableString);
+        }
+        public async Task<int> ExecuteSqlRawAsync(string sql)
+        {
+            return await _dbContext.Database.ExecuteSqlRawAsync(sql);
+        }
+        public int ExecuteSqlRaw(string sql)
+        {
+            return _dbContext.Database.ExecuteSqlRaw(sql);
+        }
+        public int ExecuteSqlInterpolated(FormattableString formattableString)
+        {
+            return _dbContext.Database.ExecuteSqlInterpolated(formattableString);
+        }
+        public async Task<int> ExecuteSqlInterpolatedAsync(FormattableString formattableString)
+        {
+            return await _dbContext.Database.ExecuteSqlInterpolatedAsync(formattableString);
+        }
+
+        public async Task<List<IDictionary<string, object>>> ExecuteReaderAsync(string sql)
+        {
+            //https://stackoverflow.com/questions/17920146/find-the-datatype-of-field-from-datareader-object
+            var metaDataList = new List<IDictionary<String, Object>>();
+            //获取数据库的上下文连接
+            var conn = _dbContext.Database.GetDbConnection();
+            try
+            { //打开数据库连接
+                await conn.OpenAsync();
+                //建立连接，因为非委托资源，所以需要使用using进行内存资源的释放
+                using (var command = conn.CreateCommand())
+                {
+                    command.CommandText = sql;//赋值需要执行的SQL语句
+                    using (DbDataReader reader = await command.ExecuteReaderAsync())
+                    {
+                        //执行命令
+                        if (reader.HasRows) //判断是否有返回行
+                        {
+                            while (await reader.ReadAsync())
+                            {
+                                IDictionary<string, object> dictionary = new Dictionary<string, object>();
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    dictionary.Add(reader.GetName(i),reader[i]);
+                                }
+                                metaDataList.Add(dictionary);
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            { //关闭数据库连接
+                conn.Close();
+            }
+
+            return metaDataList;
         }
     }
 }
