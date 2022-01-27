@@ -2,7 +2,7 @@
 
 namespace SchoolManagement.Mvc.ViewModels
 {
-    public class StudentDetailsViewModel
+    public class StudentDetailsDto
     {
         public Student Student { get; set; }
         public string Title { get; set; }

@@ -2,7 +2,7 @@ using System;
 
 namespace SchoolManagement.Mvc.ViewModels
 {
-    public class ErrorViewModel
+    public class ErrorDto
     {
         public string RequestId { get; set; }
 

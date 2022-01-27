@@ -1,25 +1,25 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Core.Models;
 using SchoolManagement.Core.Repositories;
+using System.Threading.Tasks;
 
 namespace SchoolManagement.Mvc.Controllers
 {
+    //测试仓储服务
     [Route("api/[controller]")]
     [ApiController]
     public class TestRepositoryBaseController : ControllerBase
     {
-        private readonly IRepository<Student,int> _studentRepository;
-        public TestRepositoryBaseController(IRepository<Student,int> studentRepository)
+        private readonly IRepository<Student, int> _studentRepository;
+        public TestRepositoryBaseController(IRepository<Student, int> studentRepository)
         {
             _studentRepository = studentRepository;
         }
 
         public async Task<string> TestRepositoryBase()
         {
-            var student =  _studentRepository.GetAllList().FirstOrDefault();
+            var student = await _studentRepository.GetAll().FirstOrDefaultAsync();
             var oop = await _studentRepository.SingleAsync(a => a.Id == 2);
             var longCount = await _studentRepository.LongCountAsync();
             var count = _studentRepository.Count();

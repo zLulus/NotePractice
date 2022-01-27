@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,9 @@ namespace SchoolManagement.Core.Repositories
     public interface IRepository<TEntity,TPrimaryKey> where TEntity : class
     {
         #region Query
+
+        IQueryable<TEntity> GetAll();
+
         List<TEntity> GetAllList();
         /// <summary>
         /// 用于获取所有实体的异步实现

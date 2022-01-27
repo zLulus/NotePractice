@@ -33,7 +33,7 @@ namespace SchoolManagement.Mvc.Controllers
                 Response.StatusCode = 404;
                 return View("StudentNotFound", id);
             }
-            StudentDetailsViewModel viewModel = new StudentDetailsViewModel()
+            StudentDetailsDto viewModel = new StudentDetailsDto()
             {
                 Student = student,
                 Title = "学生详情-来自vm"

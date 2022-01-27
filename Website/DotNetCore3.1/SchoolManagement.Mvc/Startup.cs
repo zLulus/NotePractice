@@ -1,19 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Text.Unicode;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SchoolManagement.Application.Students;
 using SchoolManagement.Core.Repositories;
 using SchoolManagement.EntityFrameworkCore;
 using SchoolManagement.EntityFrameworkCore.DataRepositories;
+using System;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace SchoolManagement.Mvc
 {
@@ -45,11 +43,14 @@ namespace SchoolManagement.Mvc
                 //协商内容
                 //请求头设置为Accept:application/xml
                 .AddXmlSerializerFormatters();
-            
+
             //普通仓储
             services.AddScoped<IStudentRepository, MemoryStudentRepository>();
             //泛型仓储
             services.AddTransient(typeof(IRepository<,>), typeof(RepositoryBase<,>));
+
+            //注册服务
+            services.AddScoped<IStudentService, StudentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
