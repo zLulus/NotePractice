@@ -48,7 +48,7 @@ namespace SchoolManagement.EntityFrameworkCore.Seed
             modelBuilder.Entity<Scroe>().HasData(
                 new Scroe
                 {
-                    Id = 1,
+                    Id = 2,
                     CourseId = 1,
                     StudentId = 3,
                     ScroeNumber = 90
