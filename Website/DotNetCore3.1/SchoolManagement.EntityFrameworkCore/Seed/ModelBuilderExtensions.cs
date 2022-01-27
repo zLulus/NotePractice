@@ -15,11 +15,8 @@ namespace SchoolManagement.EntityFrameworkCore.Seed
                 new Student
                 {
                     Id = 2,
-
                     Name = "张三",
-
                     Major = MajorEnum.ComputerScience,
-
                     Email = "zhangsan@qq.com"
                 }
             );
@@ -27,12 +24,34 @@ namespace SchoolManagement.EntityFrameworkCore.Seed
                 new Student
                 {
                     Id = 3,
-
                     Name = "李四",
-
                     Major = MajorEnum.Math,
-
                     Email = "lisi@360.com"
+                }
+            );
+            modelBuilder.Entity<Course>().HasData(
+                new Course
+                {
+                    Id = 1,
+                    Title = "数学"
+                }
+            );
+            modelBuilder.Entity<Scroe>().HasData(
+                new Scroe
+                {
+                    Id = 1,
+                    CourseId = 1,
+                    StudentId = 2,
+                    ScroeNumber = 99
+                }
+            );
+            modelBuilder.Entity<Scroe>().HasData(
+                new Scroe
+                {
+                    Id = 1,
+                    CourseId = 1,
+                    StudentId = 3,
+                    ScroeNumber = 90
                 }
             );
         }
