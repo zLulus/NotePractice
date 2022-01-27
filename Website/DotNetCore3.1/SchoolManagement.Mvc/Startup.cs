@@ -11,6 +11,7 @@ using System.Text.Unicode;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SchoolManagement.Core.Repositories;
 using SchoolManagement.EntityFrameworkCore;
 using SchoolManagement.EntityFrameworkCore.DataRepositories;
 
@@ -44,8 +45,11 @@ namespace SchoolManagement.Mvc
                 //协商内容
                 //请求头设置为Accept:application/xml
                 .AddXmlSerializerFormatters();
-
+            
+            //普通仓储
             services.AddScoped<IStudentRepository, MemoryStudentRepository>();
+            //泛型仓储
+            services.AddTransient(typeof(IRepository<,>), typeof(RepositoryBase<,>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

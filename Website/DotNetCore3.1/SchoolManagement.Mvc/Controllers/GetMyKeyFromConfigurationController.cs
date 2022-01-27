@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 namespace SchoolManagement.Mvc.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GetMyKeyFromConfigurationController : ControllerBase
     {
         private IConfiguration _configuration;

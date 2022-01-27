@@ -5,7 +5,7 @@ using SchoolManagement.EntityFrameworkCore.DataRepositories;
 namespace SchoolManagement.Mvc.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GetStudentByIdController : ControllerBase
     {
         private readonly IStudentRepository _studentRepository;

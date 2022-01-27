@@ -3,7 +3,7 @@
 namespace SchoolManagement.Mvc.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class GetCurrentProcessNameController : ControllerBase
     {
         [HttpGet]
