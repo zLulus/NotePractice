@@ -35,6 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IACore, Version=1.7.6223.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\IACore.dll</HintPath>
+    </Reference>
+    <Reference Include="IALoader, Version=1.7.6223.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\IALoader.dll</HintPath>
+    </Reference>
+    <Reference Include="IAWinFX">
+      <HintPath>..\Libs\IAWinFX.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity">
