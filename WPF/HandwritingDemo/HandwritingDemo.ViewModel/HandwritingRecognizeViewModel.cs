@@ -2,11 +2,13 @@
 using System.Linq;
 using System.Windows.Ink;
 using System.Windows.Input;
-using WritingBoard.WpfApp.Commands;
 
-namespace WritingBoard.WpfApp
+namespace HandwritingDemo.ViewModel
 {
-    internal class MainWindowViewModel: NotifyPropertyChangedBase
+    /// <summary>
+    /// 识别核心类
+    /// </summary>
+    public class HandwritingRecognizeViewModel : NotifyPropertyChangedBase
     {
         private readonly int MAX_Alternates_COUNT = 9;
         /// <summary>
@@ -34,6 +36,11 @@ namespace WritingBoard.WpfApp
         }
 
         public ICommand RecognizeCommand { get; }
+        public ICommand ClearCommand { get; }
+        public ICommand UndoCommand { get; }
+        public ICommand RemoveCommand { get; }
+        public ICommand CloseCommand { get; }
+        public ICommand TextSelectCommand { get; }
 
         private string _inputText;
         public string InputText
@@ -50,10 +57,30 @@ namespace WritingBoard.WpfApp
             }
         }
 
-        public MainWindowViewModel()
+        public StrokeCollection _strokes;
+        public StrokeCollection Strokes
+        {
+            get { return _strokes; }
+
+            set
+            {
+                if (_strokes != value)
+                {
+                    _strokes = value;
+                    RaisePropertyChanged(nameof(Strokes));
+                }
+            }
+        }
+
+        public HandwritingRecognizeViewModel()
         {
             Alternates = new ObservableCollection<string>();
             RecognizeCommand = new Command<StrokeCollection>(Recognize);
+            ClearCommand = new Command(Clear);
+            UndoCommand = new Command(Undo);
+            RemoveCommand = new Command(Remove);
+            CloseCommand = new Command(Close);
+            TextSelectCommand = new Command<string>(TextSelect);
         }
 
         /// <summary>
@@ -101,6 +128,40 @@ namespace WritingBoard.WpfApp
                 points.Add(stroke.StylusPoints);
 
             return new Stroke(points);
+        }
+
+        private void TextSelect(string text)
+        {
+            InputText += text;
+            Clear();
+        }
+
+        private void Close()
+        {
+            Clear();
+        }
+
+        private void Clear()
+        {
+            Strokes.Clear();
+            ClearAlternates();
+        }
+
+        private void Undo()
+        {
+            if (Strokes.Count == 0)
+                return;
+
+            Strokes.RemoveAt(Strokes.Count - 1);
+            RecognizeCommand.Execute(Strokes);
+        }
+
+        private void Remove()
+        {
+            if (string.IsNullOrEmpty(InputText))
+                return;
+
+            InputText = InputText.Substring(0, InputText.Length - 1);
         }
     }
 }

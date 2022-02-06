@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WritingBoard.WpfApp.Commands
+namespace HandwritingDemo.ViewModel
 {
     public class Command<T> : ICommand
     {
