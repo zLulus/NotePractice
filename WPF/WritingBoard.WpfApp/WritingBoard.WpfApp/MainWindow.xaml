@@ -1,16 +1,16 @@
-﻿<UserControl x:Class="WpfDemo.WritingBoard.WritingBoardDemo"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WpfDemo.WritingBoard"
-              xmlns:local2="clr-namespace:WpfDemo.WritingBoard.Converters"
-             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             mc:Ignorable="d"   Background="Transparent"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
+﻿<Window x:Class="WritingBoard.WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WritingBoard.WpfApp"
+        xmlns:local2="clr-namespace:WritingBoard.WpfApp.Converters"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
         <local2:RectConverter x:Key="RectConverter" />
-    </UserControl.Resources>
+    </Window.Resources>
     <Border Background="Transparent" x:Name="border" CornerRadius="20" Margin="12,0,12,12">
         <Border.Effect>
             <DropShadowEffect ShadowDepth="12" BlurRadius="9" Direction="315" Color="#333333" Opacity="0.13"/>
@@ -111,4 +111,4 @@
 
         </Grid>
     </Border>
-</UserControl>
+</Window>

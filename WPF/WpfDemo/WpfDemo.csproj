@@ -96,7 +96,8 @@
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>WritingBoard\Libs\System.Windows.Interactivity.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -579,10 +580,6 @@
     </Compile>
     <Compile Include="WindowIconAndBackground\WindowIconAndBackgroundStartPage.xaml.cs">
       <DependentUpon>WindowIconAndBackgroundStartPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WritingBoard\Converters\RectConverter.cs" />
-    <Compile Include="WritingBoard\WritingBoardDemo.xaml.cs">
-      <DependentUpon>WritingBoardDemo.xaml</DependentUpon>
     </Compile>
     <Page Include="Animations\RectangleAnimationWindow.xaml">
       <SubType>Designer</SubType>
@@ -1199,10 +1196,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowIconAndBackground\WindowIconAndBackgroundStartPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WritingBoard\WritingBoardDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfDemo.WritingBoard
+namespace WritingBoard.WpfApp
 {
     /// <summary>
-    /// WritingBoardDemo.xaml 的交互逻辑
+    /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class WritingBoardDemo : UserControl
+    public partial class MainWindow : Window
     {
-        public WritingBoardDemo()
+        public MainWindow()
         {
             InitializeComponent();
         }

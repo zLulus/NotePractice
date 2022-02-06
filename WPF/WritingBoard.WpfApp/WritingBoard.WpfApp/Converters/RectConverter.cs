@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace WpfDemo.WritingBoard.Converters
+namespace WritingBoard.WpfApp.Converters
 {
     internal class RectConverter : IMultiValueConverter
     {
