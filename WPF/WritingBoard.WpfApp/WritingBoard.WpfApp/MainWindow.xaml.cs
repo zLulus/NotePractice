@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using WritingBoard.WpfApp.Commands;
 
 namespace WritingBoard.WpfApp
 {
@@ -20,9 +10,60 @@ namespace WritingBoard.WpfApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainWindowViewModel vm { get; set; }
+        public ICommand ClearCommand { get; }
+        public ICommand UndoCommand { get; }
+        public ICommand RemoveCommand { get; }
+        public ICommand CloseCommand { get; }
+        public ICommand TextSelectCommand { get; }
+
+        public event Action Closed;
+
         public MainWindow()
         {
+            vm = new MainWindowViewModel();
+            DataContext = vm;
+            ClearCommand = new Command(Clear);
+            UndoCommand = new Command(Undo);
+            RemoveCommand = new Command(Remove);
+            CloseCommand = new Command(Close);
+            TextSelectCommand = new Command<string>(TextSelect);
             InitializeComponent();
+        }
+
+        private void TextSelect(string text)
+        {
+            vm.InputText += text;
+            Clear();
+        }
+
+        private void Close()
+        {
+            Clear();
+            Closed?.Invoke();
+        }
+
+        private void Clear()
+        {
+            inkCanvas.Strokes.Clear();
+            vm.ClearAlternates();
+        }
+
+        private void Undo()
+        {
+            if (inkCanvas.Strokes.Count == 0)
+                return;
+
+            inkCanvas.Strokes.RemoveAt(inkCanvas.Strokes.Count - 1);
+            vm.RecognizeCommand.Execute(inkCanvas.Strokes);
+        }
+
+        private void Remove()
+        {
+            if (string.IsNullOrWhiteSpace(vm.InputText))
+                return;
+
+            vm.InputText = vm.InputText.Substring(0, vm.InputText.Length - 1);
         }
     }
 }

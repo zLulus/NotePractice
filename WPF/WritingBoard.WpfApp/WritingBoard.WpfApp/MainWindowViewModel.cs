@@ -73,20 +73,20 @@ namespace WritingBoard.WpfApp
 
             Stroke stroke = GetCombinedStore(strokes);
 
-            //using (InkAnalyzer analyzer = new System.Windows.Ink.InkAnalyzer())
-            //{
-            //    analyzer.AddStroke(stroke, ChsLanguageId);
-            //    analyzer.SetStrokeType(stroke, StrokeType.Writing);
+            using (InkAnalyzer analyzer = new InkAnalyzer())
+            {
+                analyzer.AddStroke(stroke, ChsLanguageId);
+                analyzer.SetStrokeType(stroke, StrokeType.Writing);
 
-            //    AnalysisStatus status = analyzer.Analyze();
+                AnalysisStatus status = analyzer.Analyze();
 
-            //    if (status.Successful)
-            //    {
-            //        foreach (string item in analyzer.GetAlternates().OfType<AnalysisAlternate>().Select(x => x.RecognizedString).ToArray())
-            //            if (Alternates.Count < MAX_Alternates_COUNT)
-            //                Alternates.Add(item);
-            //    }
-            //}
+                if (status.Successful)
+                {
+                    foreach (string item in analyzer.GetAlternates().OfType<AnalysisAlternate>().Select(x => x.RecognizedString).ToArray())
+                        if (Alternates.Count < MAX_Alternates_COUNT)
+                            Alternates.Add(item);
+                }
+            }
         }
 
         /// <summary>

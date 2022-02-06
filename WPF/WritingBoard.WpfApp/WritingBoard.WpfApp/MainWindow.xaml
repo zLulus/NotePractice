@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:WritingBoard.WpfApp"
         xmlns:local2="clr-namespace:WritingBoard.WpfApp.Converters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="850" Width="800">
     <Window.Resources>
         <local2:RectConverter x:Key="RectConverter" />
     </Window.Resources>
@@ -81,12 +81,6 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Border Grid.Column="0" Grid.Row="0" Background="#5889EB" CornerRadius="20" VerticalAlignment="Center" HorizontalAlignment="Center" Height="60" Width="120">
-                            <Border.InputBindings>
-                                <MouseBinding MouseAction="LeftClick" Command="{Binding CloseCommand, ElementName=root}" />
-                            </Border.InputBindings>
-                            <Label Name="closeOrSearchLabel" Content="关闭" Foreground="#FFFFFF" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35" />
-                        </Border>
                         <Border Grid.Column="1" Grid.Row="0" Background="#5889EB" CornerRadius="20" VerticalAlignment="Center" HorizontalAlignment="Center" Height="60" Width="120">
                             <Border.InputBindings>
                                 <MouseBinding MouseAction="LeftClick" Command="{Binding UndoCommand, ElementName=root}" />
