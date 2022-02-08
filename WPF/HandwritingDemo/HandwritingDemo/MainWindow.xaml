@@ -10,13 +10,15 @@
     <Window.Resources>
         <converter:RectConverter x:Key="RectConverter" />
     </Window.Resources>
-    <Grid>
+    <Grid Margin="12,0,12,12">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" IsEnabled="False" Text="{Binding InputText}"></TextBlock>
-        <Border Grid.Row="1" Background="Transparent" x:Name="border" CornerRadius="20" Margin="12,0,12,12">
+        <TextBlock Text="识别结果：" FontSize="20"></TextBlock>
+        <TextBlock Grid.Row="1" IsEnabled="False" Text="{Binding InputText}" FontSize="20"></TextBlock>
+        <Border Grid.Row="2" Background="Transparent" x:Name="border" CornerRadius="20">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="12" BlurRadius="9" Direction="315" Color="#333333" Opacity="0.13"/>
             </Border.Effect>
@@ -72,7 +74,7 @@
                                         <Border.InputBindings>
                                             <MouseBinding MouseAction="LeftClick" Command="{Binding TextSelectCommand}" CommandParameter="{Binding}" />
                                         </Border.InputBindings>
-                                        <Label Content="{Binding}" Foreground="#888888" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                        <Label Content="{Binding Name}" Foreground="#888888" FontSize="40" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                     </Border>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

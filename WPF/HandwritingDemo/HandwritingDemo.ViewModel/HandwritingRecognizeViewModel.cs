@@ -16,12 +16,12 @@ namespace HandwritingDemo.ViewModel
         /// </summary>
         private static readonly int ChsLanguageId = 0x0804;
 
-        private ObservableCollection<string> _alternates;
+        private ObservableCollection<AlternateViewModel> _alternates;
 
         /// <summary>
         /// Get 候选词列表
         /// </summary>
-        public ObservableCollection<string> Alternates
+        public ObservableCollection<AlternateViewModel> Alternates
         {
             get { return _alternates; }
 
@@ -40,7 +40,6 @@ namespace HandwritingDemo.ViewModel
         public ICommand UndoCommand { get; }
         public ICommand RemoveCommand { get; }
         public ICommand CloseCommand { get; }
-        public ICommand TextSelectCommand { get; }
 
         private string _inputText;
         public string InputText
@@ -74,13 +73,12 @@ namespace HandwritingDemo.ViewModel
 
         public HandwritingRecognizeViewModel()
         {
-            Alternates = new ObservableCollection<string>();
+            Alternates = new ObservableCollection<AlternateViewModel>();
             RecognizeCommand = new Command<StrokeCollection>(Recognize);
             ClearCommand = new Command(Clear);
             UndoCommand = new Command(Undo);
             RemoveCommand = new Command(Remove);
             CloseCommand = new Command(Close);
-            TextSelectCommand = new Command<string>(TextSelect);
         }
 
         /// <summary>
@@ -107,7 +105,7 @@ namespace HandwritingDemo.ViewModel
                 {
                     foreach (string item in analyzer.GetAlternates().OfType<AnalysisAlternate>().Select(x => x.RecognizedString).ToArray())
                         if (Alternates.Count < MAX_Alternates_COUNT)
-                            Alternates.Add(item);
+                            Alternates.Add(new AlternateViewModel(this,item));
                 }
             }
         }
@@ -130,18 +128,12 @@ namespace HandwritingDemo.ViewModel
             return new Stroke(points);
         }
 
-        private void TextSelect(string text)
-        {
-            InputText += text;
-            Clear();
-        }
-
         private void Close()
         {
             Clear();
         }
 
-        private void Clear()
+        public void Clear()
         {
             Strokes.Clear();
             ClearAlternates();
