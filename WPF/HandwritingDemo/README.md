@@ -7,6 +7,3 @@
 [Handwriting Recognition](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/ms754080(v=vs.100)?redirectedfrom=MSDN&WT.mc_id=DT-MVP-5003010)    
 引用问题     
 [WPF Handwriting .NET 4.5 Windows 8: Missing IAWinFX.dll and others](https://stackoverflow.com/questions/27502373/wpf-handwriting-net-4-5-windows-8-missing-iawinfx-dll-and-others/30516175#30516175)    
-uwp手写识别官方示例   
-[Ink Analysis sample](https://docs.microsoft.com/zh-cn/samples/microsoft/windows-universal-samples/inkanalysis/)   
-[InkAnalysis](https://github.com/microsoft/Windows-universal-samples/tree/main/Samples/InkAnalysis/cs)    

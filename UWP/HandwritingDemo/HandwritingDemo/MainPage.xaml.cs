@@ -38,6 +38,7 @@ namespace HandwritingDemo
 
             vm = new MainPageViewModel();
             DataContext = vm;
+            //设置绘画信息
             inkCanvas.InkPresenter.InputDeviceTypes = Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Pen | Windows.UI.Core.CoreInputDeviceTypes.Touch;
             InkDrawingAttributes inkDrawingAttributes = inkCanvas.InkPresenter.CopyDefaultDrawingAttributes();
             inkDrawingAttributes.Size = new Size(8, 8);
@@ -45,7 +46,7 @@ namespace HandwritingDemo
             inkDrawingAttributes.FitToCurve = true;
             inkDrawingAttributes.PenTip = PenTipShape.Rectangle;
             inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(inkDrawingAttributes);
-
+            //识别事件
             inkCanvas.InkPresenter.StrokesCollected += InkPresenter_StrokesCollected;
         }
 
@@ -89,6 +90,7 @@ namespace HandwritingDemo
 
             foreach (InkRecognitionResult result in results)
             {
+                //获得识别结果
                 foreach (string text in result.GetTextCandidates())
                 {
                     if (vm.Alternates.Count < MAX_ALTERNATES_COUNT)

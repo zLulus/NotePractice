@@ -26,7 +26,7 @@
                     </LinearGradientBrush>
                 </Rectangle.Fill>
             </Rectangle>
-            <TextBlock Text="请手写输入" Foreground="#333333" FontSize="36" VerticalAlignment="Center" Margin="16,0,0,0" />
+            <TextBlock Text="手写识别" Foreground="#333333" FontSize="36" VerticalAlignment="Center" Margin="16,0,0,0" />
             <Grid Background="#FFFFFF" Grid.Row="1" Margin="15,16,16,19" BorderThickness="1" BorderBrush="#8EB9DC">
                 <InkCanvas x:Name="inkCanvas" />
                 <StackPanel Height="60" Spacing="25" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="17,0,0,16" Orientation="Horizontal">
