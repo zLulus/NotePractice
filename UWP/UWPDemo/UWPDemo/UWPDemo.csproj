@@ -129,6 +129,9 @@
     <Compile Include="UserControls\DispatcherDemo.xaml.cs">
       <DependentUpon>DispatcherDemo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\RectangleGeometryDemo.xaml.cs">
+      <DependentUpon>RectangleGeometryDemo.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -159,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\DispatcherDemo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RectangleGeometryDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

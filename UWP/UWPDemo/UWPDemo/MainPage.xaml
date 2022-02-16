@@ -17,6 +17,9 @@
             <controls:TabViewItem Header="Dispatcher">
                 <userControls:DispatcherDemo></userControls:DispatcherDemo>
            </controls:TabViewItem>
-       </controls:TabView>
+            <controls:TabViewItem Header="RectangleGeometry Demo">
+                <userControls:RectangleGeometryDemo></userControls:RectangleGeometryDemo>
+           </controls:TabViewItem>
+        </controls:TabView>
     </Grid>
 </Page>
