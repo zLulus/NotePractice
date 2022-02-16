@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="UWPDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:userControls="using:UWPDemo.UserControls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+   <Grid>
+       <controls:TabView>
+           <controls:TabViewItem Header="阴影">
+                <userControls:CreateShadowDemo></userControls:CreateShadowDemo>
+           </controls:TabViewItem>
+           <controls:TabViewItem Header="测试2">
+               <TextBlock Text="222"></TextBlock>
+           </controls:TabViewItem>
+       </controls:TabView>
+    </Grid>
+</Page>
