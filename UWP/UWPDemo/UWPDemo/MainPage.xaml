@@ -14,8 +14,8 @@
            <controls:TabViewItem Header="阴影">
                 <userControls:CreateShadowDemo></userControls:CreateShadowDemo>
            </controls:TabViewItem>
-           <controls:TabViewItem Header="测试2">
-               <TextBlock Text="222"></TextBlock>
+            <controls:TabViewItem Header="Dispatcher">
+                <userControls:DispatcherDemo></userControls:DispatcherDemo>
            </controls:TabViewItem>
        </controls:TabView>
     </Grid>

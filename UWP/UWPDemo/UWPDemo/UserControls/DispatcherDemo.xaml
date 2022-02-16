@@ -10,6 +10,6 @@
     d:DesignWidth="400">
 
     <Grid>
-
+        <Button Content="Test Dispatcher(测试Dispatcher)" Tapped="TestDispatcher_Tapped"></Button>
     </Grid>
 </UserControl>

@@ -15,12 +15,12 @@
                               OffsetY="10"
                               BlurRadius="50"
                               ShadowOpacity=".7"
-                              Width="120"
+                              Width="220"
                               Height="120"
                               HorizontalContentAlignment="Stretch"
                               VerticalContentAlignment="Stretch">
         <Border CornerRadius="45" Background="#F6F6F6">
-            <TextBlock Text="实现阴影" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            <TextBlock Text="Create Shadow(实现阴影)" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         </Border>
     </controls:DropShadowPanel>
 </UserControl>
