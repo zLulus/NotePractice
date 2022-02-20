@@ -5,6 +5,7 @@ using DotNet5.CodeLibrary.Traverse;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using DotNet5.CodeLibrary.TestRefAndOut;
 
 namespace DotNet5Console
 {
@@ -33,6 +34,10 @@ namespace DotNet5Console
             //LambdaLifeCycleDemo.Run3();
             //LambdaLifeCycleDemo.Run4();
             //LambdaLifeCycleDemo.Run5();
+
+            //值传递和引用传递
+            //https://www.cnblogs.com/eventhorizon/p/10357576.html
+            TestRefAndOutDemo.Run();
 
             Console.ReadLine();
         }
