@@ -1,5 +1,7 @@
 using DotNet5Website.Extensions;
+using DotNet5Website.HostedServices;
 using DotNet5Website.Models;
+using DotNet5Website.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +35,20 @@ namespace DotNet5Website
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DotNet5Website", Version = "v1" });
                 c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+            });
+
+            //后台任务
+            //https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-6.0&tabs=visual-studio?WT.mc_id=DT-MVP-5003010
+            services.AddHostedService<TimedHostedService>();
+
+            services.AddHostedService<ConsumeScopedServiceHostedService>();
+            services.AddScoped<IScopedProcessingService, ScopedProcessingService>();
+
+            services.AddSingleton<MonitorLoop>();
+            services.AddHostedService<QueuedHostedService>();
+            services.AddSingleton<IBackgroundTaskQueue>(ctx =>
+            {
+                return new BackgroundTaskQueue(100);
             });
         }
 

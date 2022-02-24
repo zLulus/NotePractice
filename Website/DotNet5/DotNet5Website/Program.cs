@@ -1,5 +1,7 @@
+using DotNet5Website.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,7 +15,12 @@ namespace DotNet5Website
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            IHostBuilder hostBuilder = CreateHostBuilder(args);
+            IHost host = hostBuilder.Build();
+            var monitorLoop = host.Services.GetRequiredService<MonitorLoop>();
+            monitorLoop.StartMonitorLoop();
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
