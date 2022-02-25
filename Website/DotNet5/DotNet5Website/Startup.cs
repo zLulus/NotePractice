@@ -1,20 +1,13 @@
-using DotNet5Website.Extensions;
 using DotNet5Website.HostedServices;
 using DotNet5Website.Middlewares;
-using DotNet5Website.Models;
 using DotNet5Website.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace DotNet5Website
 {
@@ -52,11 +45,15 @@ namespace DotNet5Website
                 return new BackgroundTaskQueue(100);
             });
 
+            //依赖注入
             //生命周期
             //https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-6.0&WT.mc_id=DT-MVP-5003010#lifetime-and-registration-options
             services.AddTransient<IOperationTransient, Operation>();
             services.AddScoped<IOperationScoped, Operation>();
             services.AddSingleton<IOperationSingleton, Operation>();
+
+            services.AddScoped<IMyDependency, MyDependency>();
+            services.AddScoped<IMyDependency, MyDependency2>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
