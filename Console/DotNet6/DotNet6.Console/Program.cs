@@ -4,6 +4,8 @@ using DotNet6.CodeLibrary.RedisTest;
 
 //await RedisTestDemo.Run();
 
-await ConcurrentTestDemo.Run();
+//await ConcurrentTestDemo.Run();
+
+
 
 Console.ReadLine();
