@@ -8,6 +8,7 @@ namespace DotNet6.CodeLibrary.ReaderWriterLockTest
 {
     /// <summary>
     /// https://docs.microsoft.com/zh-cn/dotnet/api/system.threading.readerwriterlock?view=net-6.0&WT.mc_id=DT-MVP-5003010
+    /// https://github.com/dotnet/runtime/blob/main/src/libraries/System.Threading/src/System/Threading/ReaderWriterLock.cs
     /// </summary>
     public class ReaderWriterLockTestDemo
     {
