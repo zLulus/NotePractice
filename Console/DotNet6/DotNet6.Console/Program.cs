@@ -3,6 +3,7 @@ using DotNet6.CodeLibrary.ConcurrentTest;
 using DotNet6.CodeLibrary.FlagsTest;
 using DotNet6.CodeLibrary.ReaderWriterLockTest;
 using DotNet6.CodeLibrary.RedisTest;
+using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 
 //await RedisTestDemo.Run();
 
@@ -11,6 +12,8 @@ using DotNet6.CodeLibrary.RedisTest;
 //ReaderWriterLockTestDemo.Run();
 //ReaderWriterLockSlimTestDemo.Run();
 
-FlagsTestDemo.Run();
+//FlagsTestDemo.Run();
+
+ReflectionPerformanceTestDemo.Run();
 
 Console.ReadLine();
