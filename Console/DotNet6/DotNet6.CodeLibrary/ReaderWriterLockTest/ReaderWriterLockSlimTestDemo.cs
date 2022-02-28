@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace DotNet6.CodeLibrary.ReaderWriterLockTest
 {
+    /// <summary>
+    /// https://docs.microsoft.com/zh-cn/dotnet/api/system.threading.readerwriterlockslim?view=net-6.0&WT.mc_id=DT-MVP-5003010
+    /// 推荐使用
+    /// </summary>
     public class ReaderWriterLockSlimTestDemo
     {
         public static void Run()
@@ -15,6 +19,7 @@ namespace DotNet6.CodeLibrary.ReaderWriterLockTest
             int itemsWritten = 0;
 
             // Execute a writer.
+            //写入数据
             tasks.Add(Task.Run(() => {
                 String[] vegetables = { "broccoli", "cauliflower",
                                                           "carrot", "sorrel", "baby turnip",

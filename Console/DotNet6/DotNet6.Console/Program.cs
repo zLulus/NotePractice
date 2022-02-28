@@ -7,7 +7,7 @@ using DotNet6.CodeLibrary.RedisTest;
 
 //await ConcurrentTestDemo.Run();
 
-ReaderWriterLockTestDemo.Run();
-//ReaderWriterLockSlimTestDemo.Run();
+//ReaderWriterLockTestDemo.Run();
+ReaderWriterLockSlimTestDemo.Run();
 
 Console.ReadLine();
