@@ -11,9 +11,11 @@ using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 
 //ReaderWriterLockTestDemo.Run();
 //ReaderWriterLockSlimTestDemo.Run();
+//LockTestDemo.Run();
+MonitorTestDemo.Run();
 
 //FlagsTestDemo.Run();
 
-ReflectionPerformanceTestDemo.Run();
+//ReflectionPerformanceTestDemo.Run();
 
 Console.ReadLine();

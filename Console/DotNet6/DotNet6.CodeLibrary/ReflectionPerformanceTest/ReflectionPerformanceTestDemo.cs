@@ -16,7 +16,8 @@ namespace DotNet6.CodeLibrary.ReflectionPerformanceTest
         {
             //https://www.c-sharpcorner.com/article/boosting-up-the-reflection-performance-in-c-sharp/
             //https://stackoverflow.com/questions/1027980/improving-performance-reflection-what-alternatives-should-i-consider
-            //https://github.com/mgravell/fast-member
+            //third platform
+            //FastMember:https://github.com/mgravell/fast-member
 
             int count = 10000000;
             Test1(count);
@@ -42,7 +43,7 @@ namespace DotNet6.CodeLibrary.ReflectionPerformanceTest
             //Test2(count);
             //Test3(count);
             //Test4(count);
-
+            //Test5(count);
         }
 
         private static void Test5(int count)

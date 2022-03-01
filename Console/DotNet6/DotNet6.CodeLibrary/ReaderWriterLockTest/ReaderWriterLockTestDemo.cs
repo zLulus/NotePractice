@@ -20,6 +20,7 @@ namespace DotNet6.CodeLibrary.ReaderWriterLockTest
         static bool running = true;
 
         // Statistics.
+        //统计
         static int readerTimeouts = 0;
         static int writerTimeouts = 0;
         static int reads = 0;
