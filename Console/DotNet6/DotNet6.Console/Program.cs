@@ -4,6 +4,7 @@ using DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest;
 using DotNet6.CodeLibrary.FlagsTest;
 using DotNet6.CodeLibrary.ReaderWriterLockTest;
 using DotNet6.CodeLibrary.RedisTest;
+using DotNet6.CodeLibrary.ReferenceTest;
 using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 
 //await RedisTestDemo.Run();
@@ -19,6 +20,8 @@ using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 
 //ReflectionPerformanceTestDemo.Run();
 
-BuilderPatternTestDemo.Run();
+//BuilderPatternTestDemo.Run();
+
+ReferenceTestDemo.Run();
 
 Console.ReadLine();
