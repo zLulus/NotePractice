@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using DotNet6.CodeLibrary.ConcurrentTest;
+using DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest;
 using DotNet6.CodeLibrary.FlagsTest;
 using DotNet6.CodeLibrary.ReaderWriterLockTest;
 using DotNet6.CodeLibrary.RedisTest;
@@ -12,10 +13,12 @@ using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 //ReaderWriterLockTestDemo.Run();
 //ReaderWriterLockSlimTestDemo.Run();
 //LockTestDemo.Run();
-MonitorTestDemo.Run();
+//MonitorTestDemo.Run();
 
 //FlagsTestDemo.Run();
 
 //ReflectionPerformanceTestDemo.Run();
+
+BuilderPatternTestDemo.Run();
 
 Console.ReadLine();
