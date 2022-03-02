@@ -22,6 +22,8 @@ using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 
 //BuilderPatternTestDemo.Run();
 
-ReferenceTestDemo.Run();
+//ReferenceTestDemo.Run();
+
+OptimisticLockTestDemo.Run();
 
 Console.ReadLine();
