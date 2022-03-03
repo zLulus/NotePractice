@@ -3,6 +3,7 @@ using DotNet6.CodeLibrary.ConcurrentTest;
 using DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest;
 using DotNet6.CodeLibrary.EnumToDictionaryTest;
 using DotNet6.CodeLibrary.FlagsTest;
+using DotNet6.CodeLibrary.HigherOrderFunctionTest;
 using DotNet6.CodeLibrary.ReaderWriterLockTest;
 using DotNet6.CodeLibrary.RedisTest;
 using DotNet6.CodeLibrary.ReferenceTest;
@@ -38,7 +39,10 @@ using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 //ReferenceTestDemo.Run();
 
 //枚举转字典
-EnumToDictionaryTestDemo.Run();
+//EnumToDictionaryTestDemo.Run();
+
+//高阶函数
+HigherOrderFunctionTestDemo.Run();
 
 
 Console.ReadLine();
