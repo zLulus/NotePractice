@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using DotNet6.CodeLibrary.CallerTest;
 using DotNet6.CodeLibrary.ConcurrentTest;
 using DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest;
 using DotNet6.CodeLibrary.EnumToDictionaryTest;
@@ -42,7 +43,10 @@ using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 //EnumToDictionaryTestDemo.Run();
 
 //高阶函数
-HigherOrderFunctionTestDemo.Run();
+//HigherOrderFunctionTestDemo.Run();
+
+//获取调用者信息
+CallerTestDemo.Run();
 
 
 Console.ReadLine();
