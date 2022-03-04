@@ -18,7 +18,7 @@ namespace DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest
             Car buickCar = buickCarBuilder
                 .UseCarDoor()
                 .UseCarEngine()
-                .UseCarWheel("雪地专用车轮") //车不可能没有轮子，如果没有调用这个方法，能不能装一个默认的？
+                .UseCarWheel("雪地专用车轮")
                 .BuildCar();
 
             Console.WriteLine();

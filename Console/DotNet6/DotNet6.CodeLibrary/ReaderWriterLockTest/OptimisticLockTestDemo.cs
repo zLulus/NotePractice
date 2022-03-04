@@ -32,6 +32,7 @@ namespace DotNet6.CodeLibrary.ReaderWriterLockTest
                         Thread.Sleep(100);
 
                         var oldVersion = resource.version;
+                        //核心是根据Id+版本号进行更新，更新数为0，则表示更新失败
                         if (connection.ExecuteNonQuery($"update myresource set Resource={++resource.resource},Version={++resource.version} where Id={resource.Id} and Version={oldVersion}") == 1)
                         {
                             Console.WriteLine($"修改数据成功：当前数据为{resource.resource}，当前版本号为{resource.version}");

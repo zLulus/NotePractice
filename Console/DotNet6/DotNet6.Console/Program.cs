@@ -5,10 +5,12 @@ using DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest;
 using DotNet6.CodeLibrary.EnumToDictionaryTest;
 using DotNet6.CodeLibrary.FlagsTest;
 using DotNet6.CodeLibrary.HigherOrderFunctionTest;
+using DotNet6.CodeLibrary.LazyLoadTest;
 using DotNet6.CodeLibrary.ReaderWriterLockTest;
 using DotNet6.CodeLibrary.RedisTest;
 using DotNet6.CodeLibrary.ReferenceTest;
 using DotNet6.CodeLibrary.ReflectionPerformanceTest;
+using DotNet6.CodeLibrary.TaskTest;
 
 //redis
 //await RedisTestDemo.Run();
@@ -46,7 +48,14 @@ using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 //HigherOrderFunctionTestDemo.Run();
 
 //获取调用者信息
-CallerTestDemo.Run();
+//CallerTestDemo.Run();
+
+//Task await
+//TaskAwaiterTestDemo.Run();
+//TaskWaiteTestDemo.Run();
+
+//懒加载
+//LazyLoadTestDemo.Run();
 
 
 Console.ReadLine();

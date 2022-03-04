@@ -29,8 +29,6 @@ namespace DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest
         /// <returns></returns>
         ICarBuilder UseCarEngine(string? part = null);
 
-        // 当然还有部件，等，这里就省略了
-
         /// <summary>
         /// 添加其它部件
         /// </summary>
