@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using UsedCarsPricePrediction_Train;
 
 namespace UsedCarsPricePrediction.Client
 {
@@ -20,9 +8,26 @@ namespace UsedCarsPricePrediction.Client
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainWindowViewModel vm { get; set; }
         public MainWindow()
         {
             InitializeComponent();
+
+            vm = new MainWindowViewModel()
+            {
+                Name = @"Maruti Wagon R LXI CNG",
+                Location = @"Mumbai",
+                Year = 2010F,
+                KilometersDriven = 72000F,
+                FuelType = @"CNG",
+                Transmission = @"Manual",
+                OwnerType = @"First",
+                Engine = @"998 CC",
+                Power = @"58.16 bhp",
+                Seats = 5F,
+            };
+
+            DataContext = vm;
         }
 
         private void Prediction_Click(object sender, RoutedEventArgs e)
@@ -30,20 +35,21 @@ namespace UsedCarsPricePrediction.Client
             //Load sample data
             var sampleData = new UsedCarsPricePredictionMLModel.ModelInput()
             {
-                Name = @"Maruti Wagon R LXI CNG",
-                Location = @"Mumbai",
-                Year = 2010F,
-                Kilometers_Driven = 72000F,
-                Fuel_Type = @"CNG",
-                Transmission = @"Manual",
-                Owner_Type = @"First",
-                Engine = @"998 CC",
-                Power = @"58.16 bhp",
+                Name = vm.Name,
+                Location = vm.Location,
+                Year = vm.Year,
+                Kilometers_Driven = vm.KilometersDriven,
+                Fuel_Type = vm.FuelType,
+                Transmission = vm.Transmission,
+                Owner_Type = vm.OwnerType,
+                Engine = vm.Engine,
+                Power = vm.Power,
                 Seats = 5F,
             };
 
             //Load model and predict output
             var result = UsedCarsPricePredictionMLModel.Predict(sampleData);
+            vm.Price = result.Score;
         }
     }
 }

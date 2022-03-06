@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UsedCarsPricePrediction.Train\UsedCarsPricePrediction.Train.csproj" />
+  </ItemGroup>
+
 </Project>
