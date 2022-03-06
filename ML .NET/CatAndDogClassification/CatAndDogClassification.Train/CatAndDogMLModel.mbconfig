@@ -1,0 +1,27 @@
+﻿{
+  "TrainingTime": 2147482,
+  "Scenario": "ImageClassification",
+  "DataSource": {
+    "Type": "Folder",
+    "Version": 1,
+    "FolderPath": "D:\\D_Disk\\MicroDesktop\\NotePractice\\ML .NET\\CatAndDogClassification\\TrainData"
+  },
+  "Environment": {
+    "Type": "LocalCPU",
+    "Version": 1
+  },
+  "RunHistory": {
+    "Version": 0,
+    "Type": "Result",
+    "Trials": [
+      {
+        "Version": 0,
+        "Type": "Trial",
+        "Score": 0.0,
+        "RuntimeInSeconds": 0.0
+      }
+    ]
+  },
+  "Type": "TrainingConfig",
+  "Version": 1
+}

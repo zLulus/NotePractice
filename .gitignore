@@ -254,3 +254,4 @@ ModelManifest.xml
 /Java/.idea
 /Java/out
 /Java/*.iml
+/ML .NET/CatAndDogClassification/TrainData

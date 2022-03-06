@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="1.6.0" />
+    <PackageReference Include="Microsoft.ML.LightGbm" Version="1.6.0" />
+  </ItemGroup>
+  <ItemGroup Label="UsedCarsPricePredictionMLModel">
+    <None Include="UsedCarsPricePredictionMLModel.consumption.cs">
+      <DependentUpon>UsedCarsPricePredictionMLModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="UsedCarsPricePredictionMLModel.training.cs">
+      <DependentUpon>UsedCarsPricePredictionMLModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="UsedCarsPricePredictionMLModel.zip">
+      <DependentUpon>UsedCarsPricePredictionMLModel.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
