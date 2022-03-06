@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using DotNet6.CodeLibrary.AggregateTest;
 using DotNet6.CodeLibrary.CallerTest;
 using DotNet6.CodeLibrary.ConcurrentTest;
 using DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest;
@@ -10,6 +11,7 @@ using DotNet6.CodeLibrary.ReaderWriterLockTest;
 using DotNet6.CodeLibrary.RedisTest;
 using DotNet6.CodeLibrary.ReferenceTest;
 using DotNet6.CodeLibrary.ReflectionPerformanceTest;
+using DotNet6.CodeLibrary.SwitchTest;
 using DotNet6.CodeLibrary.TaskTest;
 
 //redis
@@ -57,5 +59,8 @@ using DotNet6.CodeLibrary.TaskTest;
 //懒加载
 //LazyLoadTestDemo.Run();
 
+//AggregateTestDemo.Run();
+
+SwitchTestDemo.Run();
 
 Console.ReadLine();
