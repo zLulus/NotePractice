@@ -35,6 +35,11 @@ namespace UsedCarsPricePrediction.Client
             DataContext = vm;
         }
 
+        /// <summary>
+        /// 预测
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Prediction_Click(object sender, RoutedEventArgs e)
         {
             //Load sample data
@@ -57,6 +62,11 @@ namespace UsedCarsPricePrediction.Client
             vm.Price = result.Score;
         }
 
+        /// <summary>
+        /// 训练与评估
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Retrain_Click(object sender, RoutedEventArgs e)
         {
             Task.Run(() =>
@@ -89,12 +99,19 @@ namespace UsedCarsPricePrediction.Client
                 ITransformer loadedModel = mlContext.Model.Load(modelPath, out _);
 
                 var testDataView = mlContext.Data.LoadFromTextFile<ModelInput>(testCsvPath, hasHeader: true);
+                //https://docs.microsoft.com/zh-cn/dotnet/api/microsoft.ml.regressioncatalog.evaluate?view=ml-dotnet&WT.mc_id=DT-MVP-5003010
+                //https://docs.microsoft.com/zh-cn/dotnet/api/microsoft.ml.data.regressionmetrics?view=ml-dotnet&WT.mc_id=DT-MVP-5003010
                 var testMetrics = mlContext.Regression.Evaluate(loadedModel.Transform(testDataView), labelColumnName: "Price");
 
+                //获取模型的绝对损失
                 vm.MeanAbsoluteError = testMetrics.MeanAbsoluteError;
+                //获取模型的平方损失
                 vm.MeanSquaredError = testMetrics.MeanSquaredError;
+                //获取均方根损失（或 RMS），它是 L2 损失 MeanSquaredError 的平方根
                 vm.RootMeanSquaredError = testMetrics.RootMeanSquaredError;
+                //获取用户定义的丢失函数的结果
                 vm.LossFunction = testMetrics.LossFunction;
+                //获取模型的 R 平方值，也称为决定系数。 R-Squared 接近 1 表示模型拟合度更好。
                 vm.RSquared = testMetrics.RSquared;
                 Dispatcher.Invoke(() =>
                 {
