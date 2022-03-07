@@ -1,6 +1,7 @@
 ﻿using Microsoft.ML;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using UsedCarsPricePrediction_Train;
 using static UsedCarsPricePrediction_Train.UsedCarsPricePredictionMLModel;
@@ -58,33 +59,48 @@ namespace UsedCarsPricePrediction.Client
 
         private void Retrain_Click(object sender, RoutedEventArgs e)
         {
-            //注意，这里使用txt或者tsv格式的文件
-            string m_trainCsvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TrainData", "train-data.txt");
-            string m_testCsvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TrainData", "test-data2.txt");
-            //这里保存目录与预测功能读取的模型文件路径不同，预测功能读取的模型文件为可视化生成的模型文件
-            string m_modelDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Model");
-            string m_modelPath = Path.Combine(m_modelDirectory, "UsedCarsPricePredictionMLModel.zip");
+            Task.Run(() =>
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show($"训练模型和评估为耗时操作，请耐心等待");
+                });
 
-            MLContext mlContext = new MLContext(seed: 0);
-            IDataView trainingDataView = mlContext.Data.LoadFromTextFile<ModelInput>(m_trainCsvPath, hasHeader: true);
-            var model = UsedCarsPricePredictionMLModel.RetrainPipeline(mlContext, trainingDataView);
-            if (!Directory.Exists(m_modelDirectory))
-                Directory.CreateDirectory(m_modelDirectory);
+                //注意，这里使用txt或者tsv格式的文件
+                string trainCsvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TrainData", "train-data.txt");
+                string testCsvPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "TrainData", "test-data2.txt");
+                //这里保存目录与预测功能读取的模型文件路径不同，预测功能读取的模型文件为可视化生成的模型文件
+                string modelDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Model");
+                string modelPath = Path.Combine(modelDirectory, "UsedCarsPricePredictionMLModel.zip");
 
-            mlContext.Model.Save(model, trainingDataView.Schema, m_modelPath);
-            MessageBox.Show($"模型保存成功:{m_modelPath}，开始评估");
+                MLContext mlContext = new MLContext(seed: 0);
+                IDataView trainingDataView = mlContext.Data.LoadFromTextFile<ModelInput>(trainCsvPath, hasHeader: true);
+                var model = UsedCarsPricePredictionMLModel.RetrainPipeline(mlContext, trainingDataView);
+                if (!Directory.Exists(modelDirectory))
+                    Directory.CreateDirectory(modelDirectory);
 
-            ITransformer loadedModel = mlContext.Model.Load(m_modelPath, out _);
+                mlContext.Model.Save(model, trainingDataView.Schema, modelPath);
+                Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show($"模型保存成功:{modelPath}，开始评估");
+                });
+                
 
-            var testDataView = mlContext.Data.LoadFromTextFile<ModelInput>(m_testCsvPath, hasHeader: true);
-            var testMetrics = mlContext.Regression.Evaluate(loadedModel.Transform(testDataView), labelColumnName:"Price");
+                ITransformer loadedModel = mlContext.Model.Load(modelPath, out _);
 
-            vm.MeanAbsoluteError = testMetrics.MeanAbsoluteError;
-            vm.MeanSquaredError = testMetrics.MeanSquaredError;
-            vm.RootMeanSquaredError = testMetrics.RootMeanSquaredError;
-            vm.LossFunction = testMetrics.LossFunction;
-            vm.RSquared = testMetrics.RSquared;
-            MessageBox.Show($"评估完成");
+                var testDataView = mlContext.Data.LoadFromTextFile<ModelInput>(testCsvPath, hasHeader: true);
+                var testMetrics = mlContext.Regression.Evaluate(loadedModel.Transform(testDataView), labelColumnName: "Price");
+
+                vm.MeanAbsoluteError = testMetrics.MeanAbsoluteError;
+                vm.MeanSquaredError = testMetrics.MeanSquaredError;
+                vm.RootMeanSquaredError = testMetrics.RootMeanSquaredError;
+                vm.LossFunction = testMetrics.LossFunction;
+                vm.RSquared = testMetrics.RSquared;
+                Dispatcher.Invoke(() =>
+                {
+                    MessageBox.Show($"评估完成");
+                });
+            });
         }
     }
 }
