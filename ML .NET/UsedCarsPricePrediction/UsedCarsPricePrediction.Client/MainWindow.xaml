@@ -39,6 +39,17 @@
             <TabItem Header="重新训练">
                 <StackPanel Orientation="Vertical">
                     <Button Content="开始重新训练" Click="Retrain_Click"></Button>
+                    <TextBlock Text="评估结果"></TextBlock>
+                    <TextBlock Text="MeanAbsoluteError"></TextBlock>
+                    <TextBlock Text="{Binding MeanAbsoluteError}"></TextBlock>
+                    <TextBlock Text="MeanSquaredError"></TextBlock>
+                    <TextBlock Text="{Binding MeanSquaredError}"></TextBlock>
+                    <TextBlock Text="RootMeanSquaredError"></TextBlock>
+                    <TextBlock Text="{Binding RootMeanSquaredError}"></TextBlock>
+                    <TextBlock Text="LossFunction"></TextBlock>
+                    <TextBlock Text="{Binding LossFunction}"></TextBlock>
+                    <TextBlock Text="RSquared"></TextBlock>
+                    <TextBlock Text="{Binding RSquared}"></TextBlock>
                 </StackPanel>
             </TabItem>
         </TabControl>
