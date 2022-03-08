@@ -7,6 +7,23 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <TabControl Margin="5" TabStripPlacement="Top">
+            <TabItem Header="猫狗分类">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="选择图像"></TextBlock>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox HorizontalAlignment="Stretch" Text="{Binding SrcImagePath,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        <Button Grid.Column="1" Content="选择" Click="SelectSrcImagePath_Click"></Button>
+                    </Grid>
+                    <Button Content="分类" Click="CatAndDogClassification_Click"></Button>
+                    <TextBlock Text="分类结果"></TextBlock>
+                    <TextBlock Text="{Binding ClassificationResult,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
