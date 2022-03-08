@@ -217,5 +217,80 @@ namespace UsedCarsPricePrediction.Client
 
             }
         }
+
+        private double meanAbsoluteError;
+        public double MeanAbsoluteError
+        {
+            set
+            {
+                meanAbsoluteError = value;
+                OnPropertyChanged(nameof(MeanAbsoluteError));
+            }
+            get
+            {
+                return meanAbsoluteError;
+
+            }
+        }
+
+        private double meanSquaredError;
+        public double MeanSquaredError
+        {
+            set
+            {
+                meanSquaredError = value;
+                OnPropertyChanged(nameof(MeanSquaredError));
+            }
+            get
+            {
+                return meanSquaredError;
+
+            }
+        }
+
+        private double rootMeanSquaredError;
+        public double RootMeanSquaredError
+        {
+            set
+            {
+                rootMeanSquaredError = value;
+                OnPropertyChanged(nameof(RootMeanSquaredError));
+            }
+            get
+            {
+                return rootMeanSquaredError;
+
+            }
+        }
+
+        private double lossFunction;
+        public double LossFunction
+        {
+            set
+            {
+                lossFunction = value;
+                OnPropertyChanged(nameof(LossFunction));
+            }
+            get
+            {
+                return lossFunction;
+
+            }
+        }
+
+        private double rSquared;
+        public double RSquared
+        {
+            set
+            {
+                rSquared = value;
+                OnPropertyChanged(nameof(RSquared));
+            }
+            get
+            {
+                return rSquared;
+
+            }
+        }
     }
 }

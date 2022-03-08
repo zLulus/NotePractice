@@ -17,8 +17,8 @@ namespace DotNet6.CodeLibrary.SwitchTest
             };
 
             Console.WriteLine($"Switch匹配：{GetTag_Exception_Patterns(5)}");
+            Console.WriteLine($"Switch匹配_使用枚举：{GetTag_Expression_Patterns(TagEnum.First)}");
 
-            Console.WriteLine($"Switch匹配_表示式模式：{GetTag_Expression_Patterns(TagEnum.First)}");
             Console.WriteLine($"Switch匹配_属性模式：{GetTag_Property_Patterns(tagObject)}");
             Console.WriteLine($"Switch匹配_位置模式：{GetTag_Positional_Patterns(tagObject)}");
 
@@ -94,11 +94,6 @@ namespace DotNet6.CodeLibrary.SwitchTest
         {
             (this.Tag1, this.Tag2) = (tag1, tag2);
         }
-
-        //public void Deconstruct(out int tag1, out int tag2)
-        //{
-        //    (tag1, tag2) = ((int)this.Tag1, (int)this.Tag2);
-        //}
 
         public void Deconstruct(out TagEnum tag1, out TagEnum tag2)
         {

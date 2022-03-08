@@ -15,39 +15,51 @@ namespace UsedCarsPricePrediction_Train
         #region model input class
         public class ModelInput
         {
-            [ColumnName(@"column1")]
+            [LoadColumn(0)]
+            [ColumnName(@"Column1")]
             public float Column1 { get; set; }
 
+            [LoadColumn(1)]
             [ColumnName(@"Name")]
             public string Name { get; set; }
 
+            [LoadColumn(2)]
             [ColumnName(@"Location")]
             public string Location { get; set; }
 
+            [LoadColumn(3)]
             [ColumnName(@"Year")]
             public float Year { get; set; }
 
+            [LoadColumn(4)]
             [ColumnName(@"Kilometers_Driven")]
             public float Kilometers_Driven { get; set; }
 
+            [LoadColumn(5)]
             [ColumnName(@"Fuel_Type")]
             public string Fuel_Type { get; set; }
 
+            [LoadColumn(6)]
             [ColumnName(@"Transmission")]
             public string Transmission { get; set; }
 
+            [LoadColumn(7)]
             [ColumnName(@"Owner_Type")]
             public string Owner_Type { get; set; }
 
+            [LoadColumn(8)]
             [ColumnName(@"Engine")]
             public string Engine { get; set; }
 
+            [LoadColumn(9)]
             [ColumnName(@"Power")]
             public string Power { get; set; }
 
+            [LoadColumn(10)]
             [ColumnName(@"Seats")]
             public float Seats { get; set; }
 
+            [LoadColumn(11)]
             [ColumnName(@"Price")]
             public float Price { get; set; }
 

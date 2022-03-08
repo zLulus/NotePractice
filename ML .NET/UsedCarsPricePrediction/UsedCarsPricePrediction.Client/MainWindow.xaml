@@ -6,30 +6,53 @@
         xmlns:local="clr-namespace:UsedCarsPricePrediction.Client"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <StackPanel Orientation="Vertical">
-        <TextBlock Text="预测二手车价格"></TextBlock>
-        <TextBlock Text="汽车名称"></TextBlock>
-        <TextBox Text="{Binding Name}"></TextBox>
-        <TextBlock Text="所在地"></TextBlock>
-        <TextBox Text="{Binding Location}"></TextBox>
-        <TextBlock Text="年份"></TextBlock>
-        <TextBox Text="{Binding Year}"></TextBox>
-        <TextBlock Text="行驶车程(km)"></TextBlock>
-        <TextBox Text="{Binding KilometersDriven}"></TextBox>
-        <TextBlock Text="汽油种类"></TextBlock>
-        <TextBox Text="{Binding FuelType}"></TextBox>
-        <TextBlock Text="手动挡/自动挡"></TextBlock>
-        <TextBox Text="{Binding Transmission}"></TextBox>
-        <TextBlock Text="转手次数"></TextBlock>
-        <TextBox Text="{Binding OwnerType}"></TextBox>
-        <TextBlock Text="引擎"></TextBlock>
-        <TextBox Text="{Binding Engine}"></TextBox>
-        <TextBlock Text="马力(bhp)"></TextBlock>
-        <TextBox Text="{Binding Power}"></TextBox>
-        <TextBlock Text="座位"></TextBlock>
-        <TextBox Text="{Binding Seats}"></TextBox>
-        <Button Content="预测" Click="Prediction_Click"></Button>
-        <TextBlock Text="预测结果"></TextBlock>
-        <TextBlock Text="{Binding Price}"></TextBlock>
-    </StackPanel>
+    <Grid>
+        <TabControl Margin="5" TabStripPlacement="Top" >
+            <TabItem Header="预测">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="预测二手车价格"></TextBlock>
+                    <TextBlock Text="汽车名称"></TextBlock>
+                    <TextBox Text="{Binding Name}"></TextBox>
+                    <TextBlock Text="所在地"></TextBlock>
+                    <TextBox Text="{Binding Location}"></TextBox>
+                    <TextBlock Text="年份"></TextBlock>
+                    <TextBox Text="{Binding Year}"></TextBox>
+                    <TextBlock Text="行驶车程(km)"></TextBlock>
+                    <TextBox Text="{Binding KilometersDriven}"></TextBox>
+                    <TextBlock Text="汽油种类"></TextBlock>
+                    <TextBox Text="{Binding FuelType}"></TextBox>
+                    <TextBlock Text="手动挡/自动挡"></TextBlock>
+                    <TextBox Text="{Binding Transmission}"></TextBox>
+                    <TextBlock Text="转手次数"></TextBlock>
+                    <TextBox Text="{Binding OwnerType}"></TextBox>
+                    <TextBlock Text="引擎"></TextBlock>
+                    <TextBox Text="{Binding Engine}"></TextBox>
+                    <TextBlock Text="马力(bhp)"></TextBlock>
+                    <TextBox Text="{Binding Power}"></TextBox>
+                    <TextBlock Text="座位"></TextBlock>
+                    <TextBox Text="{Binding Seats}"></TextBox>
+                    <Button Content="预测" Click="Prediction_Click"></Button>
+                    <TextBlock Text="预测结果"></TextBlock>
+                    <TextBlock Text="{Binding Price}"></TextBlock>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="重新训练">
+                <StackPanel Orientation="Vertical">
+                    <Button Content="开始重新训练" Click="Retrain_Click"></Button>
+                    <TextBlock Text="评估结果"></TextBlock>
+                    <TextBlock Text="MeanAbsoluteError"></TextBlock>
+                    <TextBlock Text="{Binding MeanAbsoluteError}"></TextBlock>
+                    <TextBlock Text="MeanSquaredError"></TextBlock>
+                    <TextBlock Text="{Binding MeanSquaredError}"></TextBlock>
+                    <TextBlock Text="RootMeanSquaredError"></TextBlock>
+                    <TextBlock Text="{Binding RootMeanSquaredError}"></TextBlock>
+                    <TextBlock Text="LossFunction"></TextBlock>
+                    <TextBlock Text="{Binding LossFunction}"></TextBlock>
+                    <TextBlock Text="RSquared"></TextBlock>
+                    <TextBlock Text="{Binding RSquared}"></TextBlock>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+   
 </Window>
