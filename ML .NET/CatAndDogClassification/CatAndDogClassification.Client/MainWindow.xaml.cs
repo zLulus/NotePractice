@@ -39,7 +39,7 @@ namespace CatAndDogClassification.Client
         private void SelectSrcImagePath_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog file = new OpenFileDialog();
-            file.Filter = "jpg文件(*.jpg)|*.jpg";
+            file.Filter = "jpg/png/jpeg/gif文件|*.jpg;*.png;*.jpeg;*.gif";
             var isOk = file.ShowDialog();
             if (isOk.HasValue && isOk.Value)
             {
