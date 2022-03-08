@@ -1,9 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="1.6.0" />
+    <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="1.6.0" />
+    <PackageReference Include="Microsoft.ML.Vision" Version="1.6.0" />
+    <PackageReference Include="SciSharp.TensorFlow.Redist" Version="2.3.1" />
+  </ItemGroup>
+  <ItemGroup Label="CatAndDogMLModel">
+    <None Include="CatAndDogMLModel.consumption.cs">
+      <DependentUpon>CatAndDogMLModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="CatAndDogMLModel.training.cs">
+      <DependentUpon>CatAndDogMLModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="CatAndDogMLModel.zip">
+      <DependentUpon>CatAndDogMLModel.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

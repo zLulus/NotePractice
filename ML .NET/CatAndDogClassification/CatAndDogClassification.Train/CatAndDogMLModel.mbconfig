@@ -17,10 +17,13 @@
       {
         "Version": 0,
         "Type": "Trial",
-        "Score": 0.0,
-        "RuntimeInSeconds": 0.0
+        "TrainerName": "ImageClassification",
+        "Score": 0.9903,
+        "RuntimeInSeconds": 136461.0
       }
-    ]
+    ],
+    "Pipeline": "[{\"EstimatorType\":\"MapValueToKey\",\"Inputs\":[\"Label\"],\"Outputs\":[\"Label\"]},{\"OutputColumnName\":\"ImageSource_featurized\",\"ImageFolder\":\"\",\"InputColumnName\":\"ImageSource\",\"EstimatorType\":\"LoadRawImageBytes\",\"Inputs\":[\"ImageSource\"],\"Outputs\":[\"ImageSource_featurized\"]},{\"EstimatorType\":\"CopyColumns\",\"Inputs\":[\"ImageSource_featurized\"],\"Outputs\":[\"Features\"]},{\"LabelColumnName\":\"Label\",\"EstimatorType\":\"ImageClassificationMulti\",\"Inputs\":[\"Features\"],\"Outputs\":[\"Score\"]},{\"EstimatorType\":\"MapKeyToValue\",\"Inputs\":[\"PredictedLabel\"],\"Outputs\":[\"PredictedLabel\"]}]",
+    "MetricName": "MicroAccuracy"
   },
   "Type": "TrainingConfig",
   "Version": 1
