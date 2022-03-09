@@ -2,6 +2,7 @@
 using DotNet6.CodeLibrary.AggregateTest;
 using DotNet6.CodeLibrary.CallerTest;
 using DotNet6.CodeLibrary.ConcurrentTest;
+using DotNet6.CodeLibrary.ConnectLinuxTest;
 using DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest;
 using DotNet6.CodeLibrary.EnumToDictionaryTest;
 using DotNet6.CodeLibrary.FlagsTest;
@@ -61,6 +62,8 @@ using DotNet6.CodeLibrary.TaskTest;
 
 //AggregateTestDemo.Run();
 
-SwitchTestDemo.Run();
+//SwitchTestDemo.Run();
+
+await ConnectLinuxTestDemo.Run();
 
 Console.ReadLine();

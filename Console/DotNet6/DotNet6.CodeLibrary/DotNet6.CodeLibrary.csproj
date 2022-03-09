@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NPOI" Version="2.5.5" />
+    <PackageReference Include="SSH.NET" Version="2020.0.1" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.88" />
   </ItemGroup>
 
