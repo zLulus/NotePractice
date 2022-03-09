@@ -60,10 +60,10 @@ using DotNet6.CodeLibrary.TaskTest;
 //懒加载
 //LazyLoadTestDemo.Run();
 
-//AggregateTestDemo.Run();
+AggregateTestDemo.Run();
 
 //SwitchTestDemo.Run();
 
-await ConnectLinuxTestDemo.Run();
+//await ConnectLinuxTestDemo.Run();
 
 Console.ReadLine();

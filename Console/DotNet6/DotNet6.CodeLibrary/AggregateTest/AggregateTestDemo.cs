@@ -17,6 +17,8 @@ namespace DotNet6.CodeLibrary.AggregateTest
             Expression<Func<int, int, int>> aggregateFunc = (a, b) => a * b;
             Expression<Func<int, int>> resultSelector = a => a + 10000;
 
+            //https://docs.microsoft.com/zh-cn/dotnet/api/system.linq.enumerable.aggregate?view=net-6.0&WT.mc_id=DT-MVP-5003010
+            //起始种子10*数组1*2*3*4+结果映射函数10000
             int result = System.Linq.Enumerable.Aggregate(
                   source: sourceInts,
                   seed: seed,
