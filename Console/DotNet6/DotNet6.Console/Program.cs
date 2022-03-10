@@ -5,6 +5,7 @@ using DotNet6.CodeLibrary.ConcurrentTest;
 using DotNet6.CodeLibrary.ConnectLinuxTest;
 using DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest;
 using DotNet6.CodeLibrary.EnumToDictionaryTest;
+using DotNet6.CodeLibrary.ExpressionTest;
 using DotNet6.CodeLibrary.FlagsTest;
 using DotNet6.CodeLibrary.HigherOrderFunctionTest;
 using DotNet6.CodeLibrary.LazyLoadTest;
@@ -60,10 +61,12 @@ using DotNet6.CodeLibrary.TaskTest;
 //懒加载
 //LazyLoadTestDemo.Run();
 
-AggregateTestDemo.Run();
+//AggregateTestDemo.Run();
 
 //SwitchTestDemo.Run();
 
 //await ConnectLinuxTestDemo.Run();
+
+ExpressionTestDemo.Run();
 
 Console.ReadLine();
