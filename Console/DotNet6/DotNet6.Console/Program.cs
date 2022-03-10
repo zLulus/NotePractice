@@ -15,6 +15,7 @@ using DotNet6.CodeLibrary.ReferenceTest;
 using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 using DotNet6.CodeLibrary.SwitchTest;
 using DotNet6.CodeLibrary.TaskTest;
+using DotNet6.CodeLibrary.WatchFileTest;
 
 //redis
 //await RedisTestDemo.Run();
@@ -67,6 +68,10 @@ using DotNet6.CodeLibrary.TaskTest;
 
 //await ConnectLinuxTestDemo.Run();
 
-ExpressionTestDemo.Run();
+//ExpressionTestDemo.Run();
+
+//文件监控
+//WatchByFileProviderDemo.Run();
+new FileSystemWatcherDemo().Run();
 
 Console.ReadLine();
