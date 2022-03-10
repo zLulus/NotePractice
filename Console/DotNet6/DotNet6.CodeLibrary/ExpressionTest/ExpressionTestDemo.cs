@@ -1,5 +1,5 @@
-﻿using System.Linq.Expressions;
-using System.Text;
+﻿using System.Collections.Concurrent;
+using System.Linq.Expressions;
 
 namespace DotNet6.CodeLibrary.ExpressionTest
 {
@@ -63,7 +63,7 @@ namespace DotNet6.CodeLibrary.ExpressionTest
             Expression<Func<int, int, double, double>> expression = (num1, num2, num3) => (num1 + 5) * num2 / num3;
             Console.WriteLine(expression.ToString());
             Console.WriteLine(expression.Compile());
-            Console.WriteLine(expression.Compile()(1,2,3));
+            Console.WriteLine(expression.Compile()(1, 2, 3));
 
             if (expression.NodeType == ExpressionType.Lambda)
             {
@@ -89,7 +89,7 @@ namespace DotNet6.CodeLibrary.ExpressionTest
             Console.WriteLine();
 
             //基本信息
-            Expression<Func<int, int>> sumExpression = num => num + 5;
+            Expression<Func<int, int, int>> sumExpression = (num1, num2) => num1 + (5 + num2);
             Console.WriteLine($"根节点的节点类型：{sumExpression.NodeType}");
             Console.WriteLine($"根节点的类型：{sumExpression.Type.Name}");
             Console.WriteLine($"根节点的名字：{sumExpression.Name}");
@@ -122,10 +122,27 @@ namespace DotNet6.CodeLibrary.ExpressionTest
             Console.WriteLine();
 
             //右节点
-            var rightNode = sumBody.Right as ConstantExpression;
+            var rightNode = sumBody.Right as BinaryExpression;
             Console.WriteLine($"主体右节点：{rightNode.ToString()}");
             Console.WriteLine($"主体右节点的节点类型：{rightNode.NodeType}");
             Console.WriteLine($"主体右节点的类型：{rightNode.Type.Name}");
+            Console.WriteLine();
+
+            //继续拆分右节点
+            //(5 + num2)
+            //右节点的左节点
+            var rightLeftNode = rightNode.Left as ConstantExpression;
+            Console.WriteLine($"右节点的左节点：{rightLeftNode.ToString()}");
+            Console.WriteLine($"右节点的左节点的节点类型：{rightLeftNode.NodeType}");
+            Console.WriteLine($"右节点的左节点的类型：{rightLeftNode.Type.Name}");
+            Console.WriteLine();
+
+            //右节点的右节点
+            var rightRightNode = rightNode.Right as ParameterExpression;
+            Console.WriteLine($"右节点的右节点：{rightRightNode.ToString()}");
+            Console.WriteLine($"右节点的右节点的节点类型：{rightRightNode.NodeType}");
+            Console.WriteLine($"右节点的右节点的类型：{rightRightNode.Type.Name}");
+            Console.WriteLine($"右节点的右节点的名字：{rightRightNode.Name}");
         }
     }
 }
