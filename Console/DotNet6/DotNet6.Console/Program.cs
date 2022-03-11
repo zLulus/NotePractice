@@ -18,7 +18,7 @@ using DotNet6.CodeLibrary.TaskTest;
 using DotNet6.CodeLibrary.WatchFileTest;
 
 //redis
-//await RedisTestDemo.Run();
+await RedisTestDemo.Run();
 
 //线程安全
 //await ConcurrentTestDemo.Run();
@@ -72,6 +72,6 @@ using DotNet6.CodeLibrary.WatchFileTest;
 
 //文件监控
 //WatchByFileProviderDemo.Run();
-new FileSystemWatcherDemo().Run();
+//new FileSystemWatcherDemo().Run();
 
 Console.ReadLine();

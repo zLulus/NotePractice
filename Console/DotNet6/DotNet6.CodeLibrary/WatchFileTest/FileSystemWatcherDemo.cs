@@ -2,6 +2,7 @@
 {
     /// <summary>
     /// https://blog.csdn.net/weixin_34280237/article/details/94634414
+    /// https://docs.microsoft.com/zh-cn/dotnet/api/system.io.filesystemwatcher?view=net-6.0&WT.mc_id=DT-MVP-5003010
     /// </summary>
     public class FileSystemWatcherDemo
     {
