@@ -13,39 +13,44 @@ namespace DotNet6.CodeLibrary.RedisTest
             var database = redis.GetDatabase();
 
             //字符串（strings）
-            //await StringTest(database);
+            await StringTest(database);
 
             //散列（hashes）
-            //await HashSetTest(database);
+            await HashSetTest(database);
 
             //列表(List)
-            //await ListTest(database);
+            await ListTest(database);
 
             //集合(Set)
-            //await SetTest(database);
+            await SetTest(database);
 
             //有序集合(sorted set)
+            await SortSetTest(database);
+        }
+
+        private static async Task SortSetTest(IDatabase database)
+        {
             var sortSetKey = "SortSetKey1";
             if (await database.KeyExistsAsync(sortSetKey))
                 await database.KeyDeleteAsync(sortSetKey);
 
-            await database.SortedSetAddAsync(sortSetKey, 111,111);
+            await database.SortedSetAddAsync(sortSetKey, 111, 111);
             for (double i = 0; i < 10;)
             {
-                await database.SortedSetAddAsync(sortSetKey, i.ToString(),i);
+                await database.SortedSetAddAsync(sortSetKey, i.ToString(), i);
                 i = i + (double)0.5;
             }
 
-           var sortSetValues= await database.SortAsync(sortSetKey);
+            var sortSetValues = await database.SortAsync(sortSetKey);
             Console.WriteLine($"{JsonConvert.SerializeObject(sortSetValues)}");
 
 
-            if (await database.SortedSetAddAsync(sortSetKey, "999",999))
+            if (await database.SortedSetAddAsync(sortSetKey, "999", 999))
                 Console.WriteLine($"{sortSetKey}插入数据999(分数999)：成功");
             else
                 Console.WriteLine($"{sortSetKey}插入数据999(分数999)：失败");
             //失败
-            if (await database.SortedSetAddAsync(sortSetKey, "999",999))
+            if (await database.SortedSetAddAsync(sortSetKey, "999", 999))
                 Console.WriteLine($"{sortSetKey}插入数据999(分数999)：成功");
             else
                 Console.WriteLine($"{sortSetKey}插入数据999(分数999)：失败");
@@ -60,24 +65,52 @@ namespace DotNet6.CodeLibrary.RedisTest
             else
                 Console.WriteLine($"{sortSetKey}插入数据999(分数888)：失败");
 
-            var length=await database.SortedSetLengthAsync(sortSetKey);
+            var length = await database.SortedSetLengthAsync(sortSetKey);
 
-            var rankValues=await database.SortedSetRangeByRankAsync(sortSetKey, 0,10,Order.Descending);
+            //根据排名条件读取value
+            var rankValues = await database.SortedSetRangeByRankAsync(sortSetKey, start: 0, stop: 10, order: Order.Descending);
             Console.WriteLine($"{JsonConvert.SerializeObject(rankValues)}");
 
-            var rankWithScoresValues = await database.SortedSetRangeByRankWithScoresAsync(sortSetKey, 0, 10, Order.Descending);
+            //条件同上，读取value+scroe
+            var rankWithScoresValues = await database.SortedSetRangeByRankWithScoresAsync(sortSetKey, start: 0, stop: 10, order: Order.Descending);
             Console.WriteLine($"{JsonConvert.SerializeObject(rankWithScoresValues)}");
+
+            //降序读取分数在0-10之间的数据value
+            var scoreValues = await database.SortedSetRangeByScoreAsync(sortSetKey, start: 0, stop: 10, order: Order.Descending);
+            Console.WriteLine($"{JsonConvert.SerializeObject(scoreValues)}");
+
+            //条件同上，读取value+scroe
+            var scoreWithScoresValues = database.SortedSetRangeByScoreWithScoresAsync(sortSetKey, start: 0, stop: 10, order: Order.Descending);
+            Console.WriteLine($"{JsonConvert.SerializeObject(scoreWithScoresValues)}");
+
+            //根据value筛选
+            var rangeByValues = await database.SortedSetRangeByValueAsync(sortSetKey, 0, 998);
+            Console.WriteLine($"{JsonConvert.SerializeObject(rangeByValues)}");
+
+            //返回排名，默认从低到高，从0开始
+            var rank1 = await database.SortedSetRankAsync(sortSetKey, "888");
+            //不存在，返回null
+            var rank2 = await database.SortedSetRankAsync(sortSetKey, "325435435");
+
+
+            if (await database.SortedSetRemoveAsync(sortSetKey, "888"))
+            {
+                Console.WriteLine($"删除888:成功");
+            }
+            else
+            {
+                Console.WriteLine($"删除888:失败");
+            }
 
             //var val = await database.SortedSetPopAsync(sortSetKey, Order.Ascending);
 
             //递增2
             var testMember = "testMember";
-            for (int i=0;i<10;i++)
+            for (int i = 0; i < 10; i++)
                 await database.SortedSetIncrementAsync(sortSetKey, testMember, 2);
 
             for (int i = 0; i < 10; i++)
                 await database.SortedSetDecrementAsync(sortSetKey, testMember, 3.6);
-
         }
 
         private static async Task SetTest(IDatabase database)
