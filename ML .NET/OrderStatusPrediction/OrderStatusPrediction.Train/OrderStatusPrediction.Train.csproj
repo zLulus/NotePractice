@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="1.6.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="TrainData\orders_data.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TrainData\orders_data.xlsx">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup Label="OrderStatusPredictionMLModel">
+    <None Include="OrderStatusPredictionMLModel.consumption.cs">
+      <DependentUpon>OrderStatusPredictionMLModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="OrderStatusPredictionMLModel.training.cs">
+      <DependentUpon>OrderStatusPredictionMLModel.mbconfig</DependentUpon>
+    </None>
+    <None Include="OrderStatusPredictionMLModel.zip">
+      <DependentUpon>OrderStatusPredictionMLModel.mbconfig</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
