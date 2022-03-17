@@ -15,15 +15,19 @@ namespace MovieRecommendation_Train
         #region model input class
         public class ModelInput
         {
+            [LoadColumn(0)]
             [ColumnName(@"userId")]
             public float UserId { get; set; }
 
+            [LoadColumn(1)]
             [ColumnName(@"movieId")]
             public float MovieId { get; set; }
 
+            [LoadColumn(2)]
             [ColumnName(@"rating")]
             public float Rating { get; set; }
 
+            [LoadColumn(3)]
             [ColumnName(@"timestamp")]
             public float Timestamp { get; set; }
 

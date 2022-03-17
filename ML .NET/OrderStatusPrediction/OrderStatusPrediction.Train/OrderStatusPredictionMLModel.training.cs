@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.ML.Data;
+using Microsoft.ML.Trainers.FastTree;
 using Microsoft.ML.Trainers;
 using Microsoft.ML;
 
@@ -28,7 +29,8 @@ namespace OrderStatusPrediction_Train
         public static IEstimator<ITransformer> BuildPipeline(MLContext mlContext)
         {
             // Data process configuration with pipeline data transformations
-            var pipeline = mlContext.Transforms.ReplaceMissingValues(@"quantity", @"quantity")      
+            var pipeline = mlContext.Transforms.Categorical.OneHotEncoding(@"cod", @"cod")      
+                                    .Append(mlContext.Transforms.ReplaceMissingValues(new []{new InputOutputColumnPair(@"quantity", @"quantity"),new InputOutputColumnPair(@"item_total", @"item_total"),new InputOutputColumnPair(@"shipping_fee", @"shipping_fee")}))      
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"order_no", @"order_no"))      
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"order_date", @"order_date"))      
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"buyer", @"buyer"))      
@@ -36,13 +38,10 @@ namespace OrderStatusPrediction_Train
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"ship_state", @"ship_state"))      
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"sku", @"sku"))      
                                     .Append(mlContext.Transforms.Text.FeaturizeText(@"description", @"description"))      
-                                    .Append(mlContext.Transforms.Text.FeaturizeText(@"item_total", @"item_total"))      
-                                    .Append(mlContext.Transforms.Text.FeaturizeText(@"shipping_fee", @"shipping_fee"))      
-                                    .Append(mlContext.Transforms.Text.FeaturizeText(@"cod", @"cod"))      
-                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"quantity",@"order_no",@"order_date",@"buyer",@"ship_city",@"ship_state",@"sku",@"description",@"item_total",@"shipping_fee",@"cod"}))      
-                                    .Append(mlContext.Transforms.Conversion.MapValueToKey(@"order_status", @"order_status"))      
-                                    .Append(mlContext.Transforms.NormalizeMinMax(@"Features", @"Features"))      
-                                    .Append(mlContext.MulticlassClassification.Trainers.LbfgsMaximumEntropy(l1Regularization:2.96438663080104F,l2Regularization:5.11307133813311F,labelColumnName:@"order_status",featureColumnName:@"Features"))      
+                                    .Append(mlContext.Transforms.Concatenate(@"Features", new []{@"cod",@"quantity",@"item_total",@"shipping_fee",@"order_no",@"order_date",@"buyer",@"ship_city",@"ship_state",@"sku",@"description"}))      
+                                    .Append(mlContext.Transforms.Conversion.MapValueToKey(@"order_status", @"order_status"))
+                                    //引用Microsoft.ML.FastTree
+                                    .Append(mlContext.MulticlassClassification.Trainers.OneVersusAll(binaryEstimator:mlContext.BinaryClassification.Trainers.FastForest(new FastForestBinaryTrainer.Options(){NumberOfTrees=6,FeatureFraction=1F,LabelColumnName=@"order_status",FeatureColumnName=@"Features"}), labelColumnName: @"order_status"))      
                                     .Append(mlContext.Transforms.Conversion.MapKeyToValue(@"PredictedLabel", @"PredictedLabel"));
 
             return pipeline;

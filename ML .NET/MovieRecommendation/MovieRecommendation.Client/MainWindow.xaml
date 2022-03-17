@@ -7,6 +7,37 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <TabControl Margin="5" TabStripPlacement="Top" >
+            <TabItem Header="预测">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="预测用户对电影的评分"></TextBlock>
+                    <TextBlock Text="用户id"></TextBlock>
+                    <TextBox Text="{Binding UserId}"></TextBox>
+                    <TextBlock Text="电影id"></TextBlock>
+                    <TextBox Text="{Binding MovieId}"></TextBox>
+                    <TextBlock Text="时间戳"></TextBlock>
+                    <TextBox Text="{Binding Timestamp}"></TextBox>
+                    <Button Content="预测" Click="Prediction_Click"></Button>
+                    <TextBlock Text="预测结果"></TextBlock>
+                    <TextBlock Text="{Binding PredictionResult}"></TextBlock>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="重新训练">
+                <StackPanel Orientation="Vertical">
+                    <Button Content="开始重新训练" Click="Retrain_Click"></Button>
+                    <TextBlock Text="评估结果"></TextBlock>
+                    <TextBlock Text="MeanAbsoluteError"></TextBlock>
+                    <TextBlock Text="{Binding MeanAbsoluteError}"></TextBlock>
+                    <TextBlock Text="MeanSquaredError"></TextBlock>
+                    <TextBlock Text="{Binding MeanSquaredError}"></TextBlock>
+                    <TextBlock Text="RootMeanSquaredError"></TextBlock>
+                    <TextBlock Text="{Binding RootMeanSquaredError}"></TextBlock>
+                    <TextBlock Text="LossFunction"></TextBlock>
+                    <TextBlock Text="{Binding LossFunction}"></TextBlock>
+                    <TextBlock Text="RSquared"></TextBlock>
+                    <TextBlock Text="{Binding RSquared}"></TextBlock>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

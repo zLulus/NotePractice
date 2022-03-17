@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OrderStatusPrediction.Train\OrderStatusPrediction.Train.csproj" />
+  </ItemGroup>
+
 </Project>

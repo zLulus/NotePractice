@@ -30,7 +30,7 @@ namespace MovieRecommendation_Train
             // Data process configuration with pipeline data transformations
             var pipeline = mlContext.Transforms.Conversion.MapValueToKey(@"userId", @"userId")      
                                     .Append(mlContext.Transforms.Conversion.MapValueToKey(@"movieId", @"movieId"))      
-                                    .Append(mlContext.Recommendation().Trainers.MatrixFactorization(approximationRank:128,numberOfIterations:10,learningRate:0.1F,labelColumnName:@"rating",matrixColumnIndexColumnName:@"userId",matrixRowIndexColumnName:@"movieId"));
+                                    .Append(mlContext.Recommendation().Trainers.MatrixFactorization(approximationRank:64,numberOfIterations:20,learningRate:0.1F,labelColumnName:@"rating",matrixColumnIndexColumnName:@"userId",matrixRowIndexColumnName:@"movieId"));
 
             return pipeline;
         }

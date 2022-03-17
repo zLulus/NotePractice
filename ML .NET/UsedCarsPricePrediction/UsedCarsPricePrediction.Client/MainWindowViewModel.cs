@@ -218,6 +218,7 @@ namespace UsedCarsPricePrediction.Client
             }
         }
 
+        #region 评估结果
         private double meanAbsoluteError;
         public double MeanAbsoluteError
         {
@@ -292,5 +293,6 @@ namespace UsedCarsPricePrediction.Client
 
             }
         }
+        #endregion
     }
 }

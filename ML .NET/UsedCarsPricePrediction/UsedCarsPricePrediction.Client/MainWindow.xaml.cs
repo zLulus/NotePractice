@@ -54,7 +54,7 @@ namespace UsedCarsPricePrediction.Client
                 Owner_Type = vm.OwnerType,
                 Engine = vm.Engine,
                 Power = vm.Power,
-                Seats = 5F,
+                Seats = vm.Seats,
             };
 
             //Load model and predict output

@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrderStatusPrediction.Client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="500">
     <Grid>
-
+        <TabControl Margin="5" TabStripPlacement="Top" >
+            <TabItem Header="预测是否被退货">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="亚马逊订单号"></TextBlock>
+                    <TextBox Text="{Binding Order_no}"></TextBox>
+                    <TextBlock Text="订单下单时间"></TextBlock>
+                    <TextBox Text="{Binding Order_date}"></TextBox>
+                    <TextBlock Text="买家姓名"></TextBlock>
+                    <TextBox Text="{Binding Buyer}"></TextBox>
+                    <TextBlock Text="收货城市"></TextBlock>
+                    <TextBox Text="{Binding Ship_city}"></TextBox>
+                    <TextBlock Text="收货联邦/州"></TextBlock>
+                    <TextBox Text="{Binding Ship_state}"></TextBox>
+                    <TextBlock Text="产品SKU"></TextBlock>
+                    <TextBox Text="{Binding Sku}"></TextBox>
+                    <TextBlock Text="产品描述"></TextBlock>
+                    <TextBox Text="{Binding Description}"></TextBox>
+                    <TextBlock Text="购买数量"></TextBlock>
+                    <TextBox Text="{Binding Quantity}"></TextBox>
+                    <TextBlock Text="订单总金额"></TextBlock>
+                    <TextBox Text="{Binding Item_total}"></TextBox>
+                    <TextBlock Text="卖家承担的邮费"></TextBlock>
+                    <TextBox Text="{Binding Shipping_fee}"></TextBox>
+                    <TextBlock Text="是否货到付款"></TextBlock>
+                    <TextBox Text="{Binding Cod}"></TextBox>
+                    <Button Content="预测" Click="Prediction_Click"></Button>
+                    <TextBlock Text="预测结果"></TextBlock>
+                    <TextBlock Text="{Binding PredictionResult}"></TextBlock>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
     </Grid>
+
 </Window>

@@ -40,10 +40,10 @@ namespace OrderStatusPrediction_Train
             public float Quantity { get; set; }
 
             [ColumnName(@"item_total")]
-            public string Item_total { get; set; }
+            public float Item_total { get; set; }
 
             [ColumnName(@"shipping_fee")]
-            public string Shipping_fee { get; set; }
+            public float Shipping_fee { get; set; }
 
             [ColumnName(@"cod")]
             public string Cod { get; set; }
