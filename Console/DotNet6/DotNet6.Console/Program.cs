@@ -16,9 +16,13 @@ using DotNet6.CodeLibrary.ReflectionPerformanceTest;
 using DotNet6.CodeLibrary.SwitchTest;
 using DotNet6.CodeLibrary.TaskTest;
 using DotNet6.CodeLibrary.WatchFileTest;
+using DotNet6.CodeLibrary.XMLToJsonTest;
+using Newtonsoft.Json;
+using System.Text.RegularExpressions;
+using System.Xml;
 
 //redis
-await RedisTestDemo.Run();
+//await RedisTestDemo.Run();
 
 //线程安全
 //await ConcurrentTestDemo.Run();
@@ -73,5 +77,7 @@ await RedisTestDemo.Run();
 //文件监控
 //WatchByFileProviderDemo.Run();
 //new FileSystemWatcherDemo().Run();
+
+XMLToJsonTestDemo.Run();
 
 Console.ReadLine();
