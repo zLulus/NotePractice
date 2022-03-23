@@ -19,6 +19,7 @@ namespace ProductPrice.Train
         static int _docsize = 36;
         public static void Train()
         {
+            //引用Microsoft.ML
             MLContext mlContext = new MLContext();
             //加载数据
             IDataView dataView = mlContext.Data.LoadFromTextFile<ProductSalesData>(path: _dataPath, hasHeader: true, separatorChar: ',');
@@ -82,7 +83,11 @@ namespace ProductPrice.Train
         {
             Console.WriteLine("更改点检测");
             //https://docs.microsoft.com/zh-cn/dotnet/api/microsoft.ml.transforms.timeseries.iidchangepointestimator?view=ml-dotnet&WT.mc_id=DT-MVP-5003010
-            var iidChangePointEstimator = mlContext.Transforms.DetectIidChangePoint(outputColumnName: nameof(ProductSalesPrediction.Prediction), inputColumnName: nameof(ProductSalesData.numSales), confidence: 95, changeHistoryLength: _docsize / 4);
+            var iidChangePointEstimator = mlContext.Transforms.DetectIidChangePoint(
+                outputColumnName: nameof(ProductSalesPrediction.Prediction), 
+                inputColumnName: nameof(ProductSalesData.numSales), 
+                confidence: 95, 
+                changeHistoryLength: _docsize / 4);
             var iidChangePointTransform = iidChangePointEstimator.Fit(CreateEmptyDataView(mlContext));
             IDataView transformedData = iidChangePointTransform.Transform(dataView);
             var predictions = mlContext.Data.CreateEnumerable<ProductSalesPrediction>(transformedData, reuseRowObject: false);
