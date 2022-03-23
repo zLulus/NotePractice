@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommodityPrice.Client", "CommodityPrice.Client\CommodityPrice.Client.csproj", "{5C224F89-37A2-4040-8576-457C915C828B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommodityPrice.Train", "CommodityPrice.Train\CommodityPrice.Train.csproj", "{8B93C5C5-1893-4C9C-9861-35FF2862D87A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C224F89-37A2-4040-8576-457C915C828B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C224F89-37A2-4040-8576-457C915C828B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C224F89-37A2-4040-8576-457C915C828B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C224F89-37A2-4040-8576-457C915C828B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B93C5C5-1893-4C9C-9861-35FF2862D87A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B93C5C5-1893-4C9C-9861-35FF2862D87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B93C5C5-1893-4C9C-9861-35FF2862D87A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B93C5C5-1893-4C9C-9861-35FF2862D87A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01AFC1AF-4789-4227-BF08-7B9D0A6B3957}
+	EndGlobalSection
+EndGlobal
