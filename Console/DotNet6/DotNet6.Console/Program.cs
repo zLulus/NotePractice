@@ -9,10 +9,12 @@ using DotNet6.CodeLibrary.ExpressionTest;
 using DotNet6.CodeLibrary.FlagsTest;
 using DotNet6.CodeLibrary.HigherOrderFunctionTest;
 using DotNet6.CodeLibrary.LazyLoadTest;
+using DotNet6.CodeLibrary.MemoryTest;
 using DotNet6.CodeLibrary.ReaderWriterLockTest;
 using DotNet6.CodeLibrary.RedisTest;
 using DotNet6.CodeLibrary.ReferenceTest;
 using DotNet6.CodeLibrary.ReflectionPerformanceTest;
+using DotNet6.CodeLibrary.StackFrameTest;
 using DotNet6.CodeLibrary.SwitchTest;
 using DotNet6.CodeLibrary.TaskTest;
 using DotNet6.CodeLibrary.WatchFileTest;
@@ -78,6 +80,10 @@ using System.Xml;
 //WatchByFileProviderDemo.Run();
 //new FileSystemWatcherDemo().Run();
 
-XMLToJsonTestDemo.Run();
+//XMLToJsonTestDemo.Run();
+
+//StackFrameTestDemo.Run();
+
+MemoryTestDemo.Run();
 
 Console.ReadLine();
