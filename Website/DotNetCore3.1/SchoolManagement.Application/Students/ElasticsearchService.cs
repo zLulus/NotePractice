@@ -44,8 +44,6 @@ namespace SchoolManagement.Application.Students
             {
                 return searchDescriptor.Index(indexAliasName).Query(queryContainerDescriptor =>
                 {
-                    IList<Func<QueryContainerDescriptor<StudentForElasticsearch>, QueryContainer>> querys = new List<Func<QueryContainerDescriptor<StudentForElasticsearch>, QueryContainer>>();
-
                     return queryContainerDescriptor.Bool(boolQueryDescriptor =>
                     {
                         if (!string.IsNullOrEmpty(name))
@@ -60,9 +58,9 @@ namespace SchoolManagement.Application.Students
                                                                 Analyzer(SearchAnalyzer).Query(name);
                                 });
                             });
+                            boolQueryDescriptor.Must(x => x.Bool(b => b.Should(queryContainers)));
                         }
-
-                        boolQueryDescriptor = boolQueryDescriptor.Filter(querys);
+                       
                         return boolQueryDescriptor;
                     });
                 })
