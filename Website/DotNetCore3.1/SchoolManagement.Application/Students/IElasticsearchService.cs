@@ -6,7 +6,9 @@ namespace SchoolManagement.Application.Students
 {
     public interface IElasticsearchService
     {
-        Task<IReadOnlyCollection<Student>> GetInfoOnRequestCompleted(string name);
+        Task<IReadOnlyCollection<StudentForElasticsearch>> GetInfoOnRequestCompleted(string indexAliasName, string name);
         Task CreateIndex(string indexName, string indexAliasName);
+        Task AddOrUpdateData(string indexAliasName, IList<StudentForElasticsearch> datas);
+        Task DeleteData(string indexAliasName, IList<int> deleteIds);
     }
 }

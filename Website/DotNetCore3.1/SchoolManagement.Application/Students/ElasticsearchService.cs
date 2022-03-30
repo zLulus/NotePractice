@@ -3,6 +3,7 @@ using Nest;
 using SchoolManagement.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,6 @@ namespace SchoolManagement.Application.Students
     public class ElasticsearchService : IElasticsearchService
     {
         string address = "";
-        string IndexAnalyzer = "standard";
         string SearchAnalyzer = "standard";
         ElasticClient elasticClient;
 
@@ -38,25 +38,25 @@ namespace SchoolManagement.Application.Students
                 }));
         }
 
-        public async Task<IReadOnlyCollection<Student>> GetInfoOnRequestCompleted(string name)
+        public async Task<IReadOnlyCollection<StudentForElasticsearch>> GetInfoOnRequestCompleted(string indexAliasName,string name)
         {
-            ISearchResponse<Student> searchResponse = await elasticClient.SearchAsync<Student>(searchDescriptor =>
+            ISearchResponse<StudentForElasticsearch> searchResponse = await elasticClient.SearchAsync<StudentForElasticsearch>(searchDescriptor =>
             {
-                return searchDescriptor.Index(nameof(Student)).Query(queryContainerDescriptor =>
+                return searchDescriptor.Index(indexAliasName).Query(queryContainerDescriptor =>
                 {
-                    IList<Func<QueryContainerDescriptor<Student>, QueryContainer>> querys = new List<Func<QueryContainerDescriptor<Student>, QueryContainer>>();
+                    IList<Func<QueryContainerDescriptor<StudentForElasticsearch>, QueryContainer>> querys = new List<Func<QueryContainerDescriptor<StudentForElasticsearch>, QueryContainer>>();
 
                     return queryContainerDescriptor.Bool(boolQueryDescriptor =>
                     {
                         if (!string.IsNullOrEmpty(name))
                         {
-                            IList<Func<QueryContainerDescriptor<Student>, QueryContainer>> queryContainers = new List<Func<QueryContainerDescriptor<Student>, QueryContainer>>();
+                            IList<Func<QueryContainerDescriptor<StudentForElasticsearch>, QueryContainer>> queryContainers = new List<Func<QueryContainerDescriptor<StudentForElasticsearch>, QueryContainer>>();
 
                             queryContainers.Add(queryContainerDescriptor =>
                             {
                                 return queryContainerDescriptor.MultiMatch(matchQueryDescriptor =>
                                 {
-                                    return matchQueryDescriptor.Fields(new string[] { ToJavaScriptPropertyName(nameof(Student.Name))}).
+                                    return matchQueryDescriptor.Fields(new string[] { ToJavaScriptPropertyName(nameof(StudentForElasticsearch.Name))}).
                                                                 Analyzer(SearchAnalyzer).Query(name);
                                 });
                             });
@@ -91,7 +91,7 @@ namespace SchoolManagement.Application.Students
                         {
                             return typeMappingDescriptor.Properties(propertiesSelector =>
                             {
-                                foreach (PropertyInfo propertyInfo in typeof(Student).GetProperties())
+                                foreach (PropertyInfo propertyInfo in typeof(StudentForElasticsearch).GetProperties())
                                 {
                                     if (!propertyInfo.CanWrite)
                                         continue;
@@ -143,6 +143,48 @@ namespace SchoolManagement.Application.Students
                     await elasticClient.Indices.DeleteAsync(indexName);
                     throw new Exception($"Elasticsearch创建索引失败。{Environment.NewLine}{putAliasResponse.ServerError.Error.Reason}");
                 }
+            }
+        }
+
+        public async Task AddOrUpdateData(string indexAliasName, IList<StudentForElasticsearch> datas)
+        {
+            BulkResponse bulkResponse = await elasticClient.BulkAsync(bulkDescriptor =>
+            {
+                foreach (StudentForElasticsearch document in datas)
+                {
+                    bulkDescriptor = bulkDescriptor.Index<StudentForElasticsearch>(bulkIndexDescriptor =>
+                    {
+                        return bulkIndexDescriptor.Index(indexAliasName).Id(document.Id).Document(document);
+                    });
+                }
+
+                return bulkDescriptor;
+            });
+
+            if (!bulkResponse.IsValid || bulkResponse.Errors || bulkResponse.ServerError != null)
+            {
+                throw new Exception($"文档索引失败{bulkResponse.ServerError?.Error?.Reason}，{Environment.NewLine}数据ID：{string.Join(",", datas.Select(data => data.Id))}");
+            }
+        }
+
+        public async Task DeleteData(string indexAliasName, IList<int> deleteIds)
+        {
+            BulkResponse bulkResponse = await elasticClient.BulkAsync(bulkDescriptor =>
+            {
+                foreach (int id in deleteIds)
+                {
+                    bulkDescriptor = bulkDescriptor.Delete<StudentForElasticsearch>(bulkIndexDescriptor =>
+                    {
+                        return bulkIndexDescriptor.Index(indexAliasName).Id(id);
+                    });
+                }
+
+                return bulkDescriptor;
+            });
+
+            if (!bulkResponse.IsValid || bulkResponse.ServerError != null || bulkResponse.Errors)
+            {
+                throw new Exception($"文档删除失败{bulkResponse.ServerError?.Error?.Reason}，{Environment.NewLine}数据ID：{string.Join(",", deleteIds)}");
             }
         }
 
