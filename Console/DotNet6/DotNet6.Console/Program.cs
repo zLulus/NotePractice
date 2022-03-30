@@ -92,6 +92,6 @@ using System.Xml;
 
 //ConcurrentDictionary
 ConcurrentDictionaryNormalDemo.Run();
-//ConcurrentDictionaryLazyDemo.Run();
+ConcurrentDictionaryLazyDemo.Run();
 
 Console.ReadLine();

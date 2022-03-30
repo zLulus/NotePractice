@@ -51,6 +51,7 @@ namespace SchoolManagement.Mvc
 
             //×¢²á·þÎñ
             services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IElasticsearchService, ElasticsearchService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
