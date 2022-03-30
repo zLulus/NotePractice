@@ -52,11 +52,8 @@ namespace SchoolManagement.Application.Students
 
                             queryContainers.Add(queryContainerDescriptor =>
                             {
-                                return queryContainerDescriptor.MultiMatch(matchQueryDescriptor =>
-                                {
-                                    return matchQueryDescriptor.Fields(new string[] { ToJavaScriptPropertyName(nameof(StudentForElasticsearch.Name))}).
-                                                                Analyzer(SearchAnalyzer).Query(name);
-                                });
+                                return queryContainerDescriptor.Wildcard(c => c
+                                        .Field(ToJavaScriptPropertyName(nameof(StudentForElasticsearch.Name))).Value($"{name}*"));
                             });
                             boolQueryDescriptor.Must(x => x.Bool(b => b.Should(queryContainers)));
                         }
