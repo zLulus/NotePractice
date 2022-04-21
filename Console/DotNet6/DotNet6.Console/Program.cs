@@ -91,7 +91,10 @@ using System.Xml;
 //ThreadIDTestDemo.Run();
 
 //ConcurrentDictionary
-ConcurrentDictionaryNormalDemo.Run();
-ConcurrentDictionaryLazyDemo.Run();
+//ConcurrentDictionaryNormalDemo.Run();
+//ConcurrentDictionaryLazyDemo.Run();
+
+//自定义表达式
+CustomExpressionTestDemo.Run();
 
 Console.ReadLine();
