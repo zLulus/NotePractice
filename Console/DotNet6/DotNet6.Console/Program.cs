@@ -5,6 +5,7 @@ using DotNet6.CodeLibrary.ConcurrentDictionaryTest;
 using DotNet6.CodeLibrary.ConcurrentTest;
 using DotNet6.CodeLibrary.ConnectLinuxTest;
 using DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest;
+using DotNet6.CodeLibrary.EmitTest;
 using DotNet6.CodeLibrary.EnumToDictionaryTest;
 using DotNet6.CodeLibrary.ExpressionTest;
 using DotNet6.CodeLibrary.FlagsTest;
@@ -46,6 +47,7 @@ using System.Xml;
 
 //反射性能优化
 //ReflectionPerformanceTestDemo.Run();
+//EmitTestDemo.Run();
 
 //设计模式
 //建造者模式
@@ -66,7 +68,7 @@ using System.Xml;
 //Task await
 //TaskAwaiterTestDemo.Run();
 //TaskWaiteTestDemo.Run();
-TaskAndValueTaskTestDemo.Run();
+//TaskAndValueTaskTestDemo.Run();
 
 //懒加载
 //LazyLoadTestDemo.Run();
