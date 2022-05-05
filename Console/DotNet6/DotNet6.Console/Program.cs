@@ -66,6 +66,7 @@ using System.Xml;
 //Task await
 //TaskAwaiterTestDemo.Run();
 //TaskWaiteTestDemo.Run();
+TaskAndValueTaskTestDemo.Run();
 
 //懒加载
 //LazyLoadTestDemo.Run();
@@ -95,6 +96,6 @@ using System.Xml;
 //ConcurrentDictionaryLazyDemo.Run();
 
 //自定义表达式
-CustomExpressionTestDemo.Run();
+//CustomExpressionTestDemo.Run();
 
 Console.ReadLine();
