@@ -10,12 +10,14 @@ using DotNet6.CodeLibrary.EnumToDictionaryTest;
 using DotNet6.CodeLibrary.ExpressionTest;
 using DotNet6.CodeLibrary.FlagsTest;
 using DotNet6.CodeLibrary.HigherOrderFunctionTest;
+using DotNet6.CodeLibrary.InterlockedTest;
 using DotNet6.CodeLibrary.LazyLoadTest;
 using DotNet6.CodeLibrary.MemoryTest;
 using DotNet6.CodeLibrary.ReaderWriterLockTest;
 using DotNet6.CodeLibrary.RedisTest;
 using DotNet6.CodeLibrary.ReferenceTest;
 using DotNet6.CodeLibrary.ReflectionPerformanceTest;
+using DotNet6.CodeLibrary.SpanTest;
 using DotNet6.CodeLibrary.StackFrameTest;
 using DotNet6.CodeLibrary.SwitchTest;
 using DotNet6.CodeLibrary.TaskTest;
@@ -39,6 +41,8 @@ using System.Xml;
 //lock & Monitor
 //LockTestDemo.Run();
 //MonitorTestDemo.Run();
+//Interlocked
+//InterlockedTestDemo.Run();
 //乐观锁
 //OptimisticLockTestDemo.Run();
 
@@ -99,5 +103,8 @@ using System.Xml;
 
 //自定义表达式
 //CustomExpressionTestDemo.Run();
+
+//Span
+SpanTestDemo.Run();
 
 Console.ReadLine();
