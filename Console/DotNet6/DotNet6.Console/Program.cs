@@ -13,6 +13,7 @@ using DotNet6.CodeLibrary.HigherOrderFunctionTest;
 using DotNet6.CodeLibrary.InterlockedTest;
 using DotNet6.CodeLibrary.LazyLoadTest;
 using DotNet6.CodeLibrary.MemoryTest;
+using DotNet6.CodeLibrary.OverrideTest;
 using DotNet6.CodeLibrary.ReaderWriterLockTest;
 using DotNet6.CodeLibrary.RedisTest;
 using DotNet6.CodeLibrary.ReferenceTest;
@@ -105,6 +106,9 @@ using System.Xml;
 //CustomExpressionTestDemo.Run();
 
 //Span
-SpanTestDemo.Run();
+//SpanTestDemo.Run();
+
+//重写
+OverrideTestDemo.Run();
 
 Console.ReadLine();
