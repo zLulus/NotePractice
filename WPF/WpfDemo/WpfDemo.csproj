@@ -155,6 +155,9 @@
     </Compile>
     <Compile Include="Dial\DialDemoViewModel.cs" />
     <Compile Include="Dial\VPN.cs" />
+    <Compile Include="DiaplayRowNumberInListView\DiaplayRowNumberInListViewDemo.xaml.cs">
+      <DependentUpon>DiaplayRowNumberInListViewDemo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ListBoxShowImages\ListBoxShowImagesDemo.xaml.cs">
       <DependentUpon>ListBoxShowImagesDemo.xaml</DependentUpon>
     </Compile>
@@ -692,6 +695,10 @@
     <Page Include="Dial\DialDemo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DiaplayRowNumberInListView\DiaplayRowNumberInListViewDemo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="DynamicallyGeneratedDataGrid\Bases\Pager.xaml">
       <SubType>Designer</SubType>

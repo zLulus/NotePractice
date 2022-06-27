@@ -369,10 +369,23 @@
             ]
           },
           {
-            "Title": "ListView with header CheckBox(ListView列头包含全选CheckBox)",
-            "DllName": "WpfDemo.exe",
-            "ClassName": "WpfDemo.ListViewWithCheckBox.ListViewWithCheckBoxDemo",
-            "Children": []
+            "Title": "ListView",
+            "DllName": "",
+            "ClassName": "",
+            "Children": [
+              {
+                "Title": "ListView with header CheckBox(ListView列头包含全选CheckBox)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.ListViewWithCheckBox.ListViewWithCheckBoxDemo",
+                "Children": []
+              },
+              {
+                "Title": "ListView display row number(ListView显示行数)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.DiaplayRowNumberInListView.DiaplayRowNumberInListViewDemo",
+                "Children": []
+              }
+            ]
           },
           {
             "Title": "TextBox Input Decimal(TextBox输入小数)",

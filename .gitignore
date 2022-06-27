@@ -255,3 +255,5 @@ ModelManifest.xml
 /Java/out
 /Java/*.iml
 /ML .NET/CatAndDogClassification/TrainData
+/Unity/Unity2DDemo/Library
+/Unity/Unity2DDemo/Logs
