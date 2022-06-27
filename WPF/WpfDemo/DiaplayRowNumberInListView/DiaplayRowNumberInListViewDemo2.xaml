@@ -1,19 +1,26 @@
-﻿<UserControl x:Class="WpfDemo.DiaplayRowNumberInListView.DiaplayRowNumberInListViewDemo"
+﻿<UserControl x:Class="WpfDemo.DiaplayRowNumberInListView.DiaplayRowNumberInListViewDemo2"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfDemo.DiaplayRowNumberInListView"
-             mc:Ignorable="d"
+              xmlns:converters="clr-namespace:WpfDemo.DiaplayRowNumberInListView.Converters"
+             mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <converters:IndexConverter x:Key="IndexConverter"></converters:IndexConverter>
+    </UserControl.Resources>
     <StackPanel Orientation="Vertical">
-        <TextBlock Text="Demo1" FontSize="20"></TextBlock>
-        <ListView Name="listviewNames" AlternationCount="1000" ItemsSource="{Binding }">
+        <TextBlock Text="Demo2" FontSize="20"></TextBlock>
+        <ListView Name="listviewNames" ItemsSource="{Binding }">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Header="#" Width="100"
-										DisplayMemberBinding="{Binding (ItemsControl.AlternationIndex), RelativeSource={RelativeSource AncestorType=ListViewItem}}" />
+                        <GridViewColumn
+									Header="Number"
+									DisplayMemberBinding="{Binding RelativeSource={RelativeSource FindAncestor, 
+                                         AncestorType={x:Type ListViewItem}}, 
+                                         Converter={StaticResource IndexConverter},UpdateSourceTrigger=PropertyChanged}" />
                         <GridViewColumn  Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
                         <GridViewColumn Header="操作" Width="120">
                             <GridViewColumn.CellTemplate>

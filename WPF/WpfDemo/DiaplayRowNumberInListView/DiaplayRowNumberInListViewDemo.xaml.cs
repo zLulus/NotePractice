@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
+using WpfDemo.DiaplayRowNumberInListView.Models;
 
 namespace WpfDemo.DiaplayRowNumberInListView
 {
@@ -32,7 +33,7 @@ namespace WpfDemo.DiaplayRowNumberInListView
             ObservableCollection<DataModel> behaviors = listviewNames.DataContext as ObservableCollection<DataModel>;
             if (behaviors == null)
                 return;
-            int index = index = behaviors.IndexOf(data);
+            int index = behaviors.IndexOf(data);
             var newIndex = index > 0 ? index - 1 : index;
             behaviors.Move(index, newIndex);
         }
@@ -48,14 +49,9 @@ namespace WpfDemo.DiaplayRowNumberInListView
             ObservableCollection<DataModel> behaviors = listviewNames.DataContext as ObservableCollection<DataModel>;
             if (behaviors == null)
                 return;
-            int index = = behaviors.IndexOf(data);
+            int index = behaviors.IndexOf(data);
             var newIndex = index < behaviors.Count - 1 ? index + 1 : index;
             behaviors.Move(index, newIndex);
-        }
-
-        private class DataModel
-        {
-            public string Name { get; set; }
         }
     }
 

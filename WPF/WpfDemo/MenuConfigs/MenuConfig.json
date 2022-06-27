@@ -380,9 +380,15 @@
                 "Children": []
               },
               {
-                "Title": "ListView display row number(ListView显示行数)",
+                "Title": "ListView display row number demo1(ListView显示行数demo1)",
                 "DllName": "WpfDemo.exe",
                 "ClassName": "WpfDemo.DiaplayRowNumberInListView.DiaplayRowNumberInListViewDemo",
+                "Children": []
+              },
+              {
+                "Title": "ListView display row number demo2(ListView显示行数demo2)",
+                "DllName": "WpfDemo.exe",
+                "ClassName": "WpfDemo.DiaplayRowNumberInListView.DiaplayRowNumberInListViewDemo2",
                 "Children": []
               }
             ]
