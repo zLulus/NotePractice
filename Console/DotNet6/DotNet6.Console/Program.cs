@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using DotNet6.CodeLibrary.AggregateTest;
+using DotNet6.CodeLibrary.CalculateAngle;
 using DotNet6.CodeLibrary.CallerTest;
 using DotNet6.CodeLibrary.ConcurrentDictionaryTest;
 using DotNet6.CodeLibrary.ConcurrentTest;
@@ -109,6 +110,9 @@ using System.Xml;
 //SpanTestDemo.Run();
 
 //重写
-OverrideTestDemo.Run();
+//OverrideTestDemo.Run();
+
+//计算角度
+CalculateAngleDemo.Run();
 
 Console.ReadLine();
