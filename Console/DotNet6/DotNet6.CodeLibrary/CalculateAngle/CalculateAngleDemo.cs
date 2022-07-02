@@ -37,7 +37,7 @@ namespace DotNet6.CodeLibrary.CalculateAngle
             var p1p3 = CalculateDistance(p1, p3);
 
             var cosA1 = (Math.Pow(p1p2, 2) + Math.Pow(p2p3, 2) - Math.Pow(p1p3, 2)) / (2 * p1p2 * p2p3);
-            //弧度  转成π，再计算角度
+            //弧度rad  ->计算角度 180/Math.PI=rad
             var A1 = Math.Acos(cosA1);
             var A1_2 = Math.Acosh(cosA1);
             var cosA2 = (Math.Pow(p1p2, 2) + Math.Pow(p1p3, 2) - Math.Pow(p2p3, 2)) / (2 * p1p2 * p1p3);
@@ -45,10 +45,9 @@ namespace DotNet6.CodeLibrary.CalculateAngle
             var cosA3 = (Math.Pow(p2p3, 2) + Math.Pow(p1p3, 2) - Math.Pow(p1p2, 2)) / (2 * p2p3 * p1p3);
             var A3 = Math.Acos(cosA3);
 
-            var a1 = (A1 / (A1 + A2 + A3)) * 180;
-            //target
-            var a2 = (A2 / (A1 + A2 + A3)) * 180;
-            var a3 = (A3 / (A1 + A2 + A3)) * 180;
+            var a1 = (180 / Math.PI) * A1;//(A1 / (A1 + A2 + A3)) * 180;
+            var a2 = (180 / Math.PI) * A2;//(A2 / (A1 + A2 + A3)) * 180;
+            var a3 = (180 / Math.PI) * A3;//(A3 / (A1 + A2 + A3)) * 180;
             return A1;
         }
 
