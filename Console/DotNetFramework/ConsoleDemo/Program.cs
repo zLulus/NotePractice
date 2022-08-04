@@ -1,5 +1,6 @@
 ﻿using CodeLibrary;
 using CodeLibrary.BitmapConvert;
+using CodeLibrary.BitmapWithMultiTheads;
 using CodeLibrary.CancleRequest;
 using CodeLibrary.ComputerPerformanceMonitor;
 using CodeLibrary.ConnectOracle;
@@ -133,7 +134,9 @@ namespace ConsoleDemo
 
             //BitmapConvertDemo.Run();
 
-            DateTimeTestDemo.Run();
+            //DateTimeTestDemo.Run();
+
+            BitmapWithMultiTheadsTestDemo.Run();
 
             Console.ReadLine();
         }

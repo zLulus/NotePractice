@@ -118,6 +118,7 @@
     <Compile Include="BitmapConvert\BitmapSourceHelper.cs" />
     <Compile Include="BitmapConvert\LockBitmap.cs" />
     <Compile Include="BitmapConvert\OldLockBitmap.cs" />
+    <Compile Include="BitmapWithMultiTheads\BitmapWithMultiTheadsTestDemo.cs" />
     <Compile Include="CancleRequest\CancleRequestDemo.cs" />
     <Compile Include="ComputerPerformanceMonitor\ComputerPerformanceMonitorTool.cs" />
     <Compile Include="ConnectOracle\ConnectOracleDemo.cs" />
@@ -171,7 +172,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="BitmapWithMultiTheads\OIP-C.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
