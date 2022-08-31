@@ -18,8 +18,8 @@
     <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="Castle.Windsor" Version="4.1.1" />
     <PackageReference Include="GeoJSON.Net" Version="1.1.70" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.4" />
-    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.6" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.2.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Qiniu.Shared" Version="7.2.15" />
