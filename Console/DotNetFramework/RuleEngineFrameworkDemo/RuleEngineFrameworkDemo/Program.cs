@@ -1,4 +1,5 @@
-﻿using RulesEngine.Models;
+﻿using RulesEngine.Actions;
+using RulesEngine.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,10 +15,10 @@ namespace RuleEngineFrameworkDemo
             {
                 try
                 {
-                    await RulesEngineFromJson();
+                    //await RulesEngineFromJson();
                     //await RulesEngineFromWorkflow();
                     //await RulesEngineWithReturn();
-                    //await RulesEngineWithCustomActionAndReturn();
+                    await RulesEngineWithCustomActionAndReturn();
                 }
                 catch (Exception ex)
                 {
@@ -31,7 +32,40 @@ namespace RuleEngineFrameworkDemo
 
         private static async Task RulesEngineWithCustomActionAndReturn()
         {
-            //todo 
+            string ruleJson = File.ReadAllText($"{System.Environment.CurrentDirectory}\\rule3.json");
+            string[] workflowRules = new string[1] { ruleJson }; //Get list of workflow rules declared in the json
+
+            //Register MyCustomAction in ReSettings and pass it to RulesEngine
+            var reSettings = new ReSettings
+            {
+                CustomActions = new Dictionary<string, Func<ActionBase>>
+                {
+                    {"MyCustomAction", () => new MyCustomAction(new MyCustomActionInput(){ Discount=(decimal)0.7}) }
+                }
+            };
+
+            var re = new RulesEngine.RulesEngine(workflowRules, null, reSettings);
+
+            //test 1
+            var input1 = new
+            {
+                couy = "india",
+                loyalityFactor = 2,
+                totalPurchasesToDate = 5000,
+                TotalBilled = 120
+            };
+            var input2 = new
+            {
+                totalOrders = 10,
+                noOfVisitsPerMonth = 3
+            };
+
+            var rp1 = new RuleParameter("input1", input1);
+            var rp2 = new RuleParameter("input2", input2);
+
+            //run GiveDiscount20Percent (flase) -> OnFailure -> run GiveDiscount10Percent
+            var result = await re.ExecuteActionWorkflowAsync("inputWorkflow", "GiveDiscount10Percent", new RuleParameter[] { rp1, rp2 });
+            Console.WriteLine(result.Output);
         }
 
         private static async Task RulesEngineWithReturn()
