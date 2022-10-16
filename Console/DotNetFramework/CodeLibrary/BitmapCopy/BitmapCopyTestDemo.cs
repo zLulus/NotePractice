@@ -8,7 +8,7 @@ namespace CodeLibrary.BitmapCopy
     {
         public static void Run()
         {
-            Image image = Bitmap.FromFile(@"C:\Users\Luna\Desktop\宋雨琦\New folder\20220606191141_986b0.jpg");
+            Image image = Bitmap.FromFile(@"file path");
             MemoryStream stream = new MemoryStream();
             // Save image to stream.
             image.Save(stream, ImageFormat.Png);
