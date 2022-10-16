@@ -1,34 +1,7 @@
-﻿using CodeLibrary;
-using CodeLibrary.BitmapConvert;
-using CodeLibrary.BitmapWithMultiTheads;
-using CodeLibrary.CancleRequest;
-using CodeLibrary.ComputerPerformanceMonitor;
-using CodeLibrary.ConnectOracle;
-using CodeLibrary.CSharpUsingPython;
-using CodeLibrary.DateTimeTest;
-using CodeLibrary.DeleteFileInUse;
-using CodeLibrary.ExcuteJs;
-using CodeLibrary.ExcuteJsByPhantomjs;
-using CodeLibrary.HexAndBytes;
-using CodeLibrary.IPAddresses;
-using CodeLibrary.ReadMdbFiles;
-using CodeLibrary.SendEmail;
-using CodeLibrary.SimulateMouseAndKeyboardEvent;
-using CodeLibrary.SpoofIpAddress;
-using CodeLibrary.UsePostgresql;
-using CodeLibrary.UsePostgresql.Enums;
-using CodeLibrary.UsePostgresql.Models;
-using CodeLibrary.UseRabbitMQ;
+﻿using CodeLibrary.BitmapCopy;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace ConsoleDemo
 {
@@ -136,7 +109,10 @@ namespace ConsoleDemo
 
             //DateTimeTestDemo.Run();
 
-            BitmapWithMultiTheadsTestDemo.Run();
+            //BitmapWithMultiTheadsTestDemo.Run();
+            BitmapCopyTestDemo.Run();
+
+            //ObservableCollectionTestDemo.Run();
 
             Console.ReadLine();
         }
@@ -189,14 +165,14 @@ namespace ConsoleDemo
             Console.WriteLine(i.ToString());
             Console.WriteLine();
 
-            Student s = new Student() {Name = "YYY"};
+            Student s = new Student() { Name = "YYY" };
             Console.WriteLine(s);
             Console.WriteLine(s.ToString());
             Console.WriteLine();
 
             Console.WriteLine(Days.Friday);
             Console.WriteLine(Days.Friday.ToString());
-            Console.WriteLine((int) Days.Friday);
+            Console.WriteLine((int)Days.Friday);
 
             Console.Read();
         }
@@ -204,7 +180,7 @@ namespace ConsoleDemo
 
     public enum Days
     {
-        Sunday, Monday, Tuesday, Wednesday, Thursday, Friday=2, Saturday
+        Sunday, Monday, Tuesday, Wednesday, Thursday, Friday = 2, Saturday
     }
 
     public class Student

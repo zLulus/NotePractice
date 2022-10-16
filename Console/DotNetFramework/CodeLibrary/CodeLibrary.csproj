@@ -118,6 +118,7 @@
     <Compile Include="BitmapConvert\BitmapSourceHelper.cs" />
     <Compile Include="BitmapConvert\LockBitmap.cs" />
     <Compile Include="BitmapConvert\OldLockBitmap.cs" />
+    <Compile Include="BitmapCopy\BitmapCopyTestDemo.cs" />
     <Compile Include="BitmapWithMultiTheads\BitmapWithMultiTheadsTestDemo.cs" />
     <Compile Include="CancleRequest\CancleRequestDemo.cs" />
     <Compile Include="ComputerPerformanceMonitor\ComputerPerformanceMonitorTool.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="HexAndBytes\HexAndBytesDemo.cs" />
     <Compile Include="IPAddresses\IPAddressTool.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ObservableCollectionTest\ObservableCollectionTestDemo.cs" />
     <Compile Include="ReadMdbFiles\ReadMdbFileDemo.cs" />
     <Compile Include="RegexDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
