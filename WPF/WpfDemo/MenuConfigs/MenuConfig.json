@@ -955,6 +955,13 @@
             "ClassName": "WpfDemo.LockMouse.LockMouseDemo",
             "Children": [
             ]
+          },
+          {
+            "Title": "Search References",
+            "DllName": "WpfDemo.exe",
+            "ClassName": "WpfDemo.SearchReferences.SearchReferencesTool",
+            "Children": [
+            ]
           }
         ]
       }

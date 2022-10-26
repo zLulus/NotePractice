@@ -424,6 +424,10 @@
     <Compile Include="ScrollViewers\MoveScrollViewerByCode.xaml.cs">
       <DependentUpon>MoveScrollViewerByCode.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchReferences\Models\CodeReferenceInfo.cs" />
+    <Compile Include="SearchReferences\SearchReferencesTool.xaml.cs">
+      <DependentUpon>SearchReferencesTool.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SelectFolder\SelectFolderDemo.xaml.cs">
       <DependentUpon>SelectFolderDemo.xaml</DependentUpon>
     </Compile>
@@ -1016,6 +1020,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ScrollViewers\MoveScrollViewerByCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchReferences\SearchReferencesTool.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
