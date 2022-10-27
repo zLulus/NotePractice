@@ -428,6 +428,7 @@
     <Compile Include="SearchReferences\SearchReferencesTool.xaml.cs">
       <DependentUpon>SearchReferencesTool.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchReferences\Tools\NLogHelper.cs" />
     <Compile Include="SelectFolder\SelectFolderDemo.xaml.cs">
       <DependentUpon>SelectFolderDemo.xaml</DependentUpon>
     </Compile>
