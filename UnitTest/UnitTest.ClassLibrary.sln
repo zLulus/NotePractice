@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnit.Coverlet.Collector", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnit.Coverlet.MSBuild", "XUnit.Coverlet.MSBuild\XUnit.Coverlet.MSBuild.csproj", "{ADBCE723-F5CC-48BF-B263-9D859B0CA7E0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D33D3BD7-B432-4AE5-9D94-F767C5868F9D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
