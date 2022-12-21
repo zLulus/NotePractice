@@ -9,8 +9,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3A2259C6-F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnit.Coverlet.Collector", "XUnit.Coverlet.Collector\XUnit.Coverlet.Collector.csproj", "{D74FB737-D110-4CB6-AEF4-C16ECFE1A34E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnit.Coverlet.MSBuild", "XUnit.Coverlet.MSBuild\XUnit.Coverlet.MSBuild.csproj", "{ADBCE723-F5CC-48BF-B263-9D859B0CA7E0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D33D3BD7-B432-4AE5-9D94-F767C5868F9D}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
@@ -30,17 +28,12 @@ Global
 		{D74FB737-D110-4CB6-AEF4-C16ECFE1A34E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D74FB737-D110-4CB6-AEF4-C16ECFE1A34E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D74FB737-D110-4CB6-AEF4-C16ECFE1A34E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ADBCE723-F5CC-48BF-B263-9D859B0CA7E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ADBCE723-F5CC-48BF-B263-9D859B0CA7E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ADBCE723-F5CC-48BF-B263-9D859B0CA7E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ADBCE723-F5CC-48BF-B263-9D859B0CA7E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D74FB737-D110-4CB6-AEF4-C16ECFE1A34E} = {3A2259C6-F63A-4AAA-8220-726A69C1161F}
-		{ADBCE723-F5CC-48BF-B263-9D859B0CA7E0} = {3A2259C6-F63A-4AAA-8220-726A69C1161F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B594B49F-614B-4A0A-9EEF-97BB159C0090}
