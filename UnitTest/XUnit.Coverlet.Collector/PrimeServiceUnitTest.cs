@@ -2,11 +2,11 @@ using UnitTest.ClassLibrary;
 
 namespace XUnit.Coverlet.Collector
 {
-    public class PrimeServiceTests
+    public class PrimeServiceUnitTest
     {
         readonly PrimeService _primeService;
 
-        public PrimeServiceTests() => _primeService = new PrimeService();
+        public PrimeServiceUnitTest() => _primeService = new PrimeService();
 
         [
             Theory,

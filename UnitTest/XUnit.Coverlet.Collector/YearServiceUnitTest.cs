@@ -2,11 +2,11 @@
 
 namespace XUnit.Coverlet.Collector
 {
-    public class YearServiceTest
+    public class YearServiceUnitTest
     {
         readonly YearService _yearService;
 
-        public YearServiceTest() => _yearService = new YearService();
+        public YearServiceUnitTest() => _yearService = new YearService();
 
         [
             Theory,
