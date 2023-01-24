@@ -1,34 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using DotNet6.CodeLibrary.AggregateTest;
-using DotNet6.CodeLibrary.CalculateAngle;
-using DotNet6.CodeLibrary.CallerTest;
-using DotNet6.CodeLibrary.ConcurrentDictionaryTest;
-using DotNet6.CodeLibrary.ConcurrentTest;
-using DotNet6.CodeLibrary.ConnectLinuxTest;
-using DotNet6.CodeLibrary.DesignPatterns.BuilderPatternTest;
-using DotNet6.CodeLibrary.EmitTest;
-using DotNet6.CodeLibrary.EnumToDictionaryTest;
-using DotNet6.CodeLibrary.ExpressionTest;
-using DotNet6.CodeLibrary.FlagsTest;
-using DotNet6.CodeLibrary.HigherOrderFunctionTest;
-using DotNet6.CodeLibrary.InterlockedTest;
-using DotNet6.CodeLibrary.LazyLoadTest;
-using DotNet6.CodeLibrary.MemoryTest;
-using DotNet6.CodeLibrary.OverrideTest;
-using DotNet6.CodeLibrary.ReaderWriterLockTest;
-using DotNet6.CodeLibrary.RedisTest;
-using DotNet6.CodeLibrary.ReferenceTest;
-using DotNet6.CodeLibrary.ReflectionPerformanceTest;
-using DotNet6.CodeLibrary.SpanTest;
-using DotNet6.CodeLibrary.StackFrameTest;
-using DotNet6.CodeLibrary.SwitchTest;
-using DotNet6.CodeLibrary.TaskTest;
-using DotNet6.CodeLibrary.ThreadIDTest;
-using DotNet6.CodeLibrary.WatchFileTest;
-using DotNet6.CodeLibrary.XMLToJsonTest;
-using Newtonsoft.Json;
-using System.Text.RegularExpressions;
-using System.Xml;
+using DotNet6.CodeLibrary.ReplaceMethodTest;
 
 //redis
 //await RedisTestDemo.Run();
@@ -113,6 +84,8 @@ using System.Xml;
 //OverrideTestDemo.Run();
 
 //计算角度
-CalculateAngleDemo.Run();
+//CalculateAngleDemo.Run();
+
+ReplaceMethodTestDemo.Run();
 
 Console.ReadLine();
