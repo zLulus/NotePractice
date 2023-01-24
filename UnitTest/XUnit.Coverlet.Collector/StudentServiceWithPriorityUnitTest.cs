@@ -42,7 +42,7 @@ namespace XUnit.Coverlet.Collector
                 Id = Guid.NewGuid(),
                 Name = "test name"
             };
-            Should.Throw<Exception>(() => _studentService.Update(data));
+            Should.Throw<DataNotExistException>(() => _studentService.Update(data));
         }
 
         [Fact, TestPriority(4)]
@@ -56,7 +56,7 @@ namespace XUnit.Coverlet.Collector
         [Fact, TestPriority(5)]
         public void Get_A_Student_Failed()
         {
-            Should.Throw<Exception>(() => _studentService.Get(Guid.NewGuid()));
+            Should.Throw<DataNotExistException>(() => _studentService.Get(Guid.NewGuid()));
         }
 
         [Fact, TestPriority(6)]
@@ -68,7 +68,7 @@ namespace XUnit.Coverlet.Collector
         [Fact, TestPriority(7)]
         public void Delete_A_Student_Failed()
         {
-            Should.Throw<Exception>(() => _studentService.Delete(Guid.NewGuid()));
+            Should.Throw<DataNotExistException>(() => _studentService.Delete(Guid.NewGuid()));
         }
     }
 }

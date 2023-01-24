@@ -36,7 +36,7 @@ namespace UnitTest.ClassLibrary
             var data = _memoryStudents.FirstOrDefault(x => x.Id == id);
             if (data == null)
             {
-                throw new Exception($"No data with id {id} exists");
+                throw new DataNotExistException($"No data with id {id} exists");
             }
             return data;
         }
