@@ -119,6 +119,7 @@
     <Compile Include="BitmapConvert\LockBitmap.cs" />
     <Compile Include="BitmapConvert\OldLockBitmap.cs" />
     <Compile Include="BitmapCopy\BitmapCopyTestDemo.cs" />
+    <Compile Include="BitmapReadErrorTest\BitmapReadErrorTestDemo.cs" />
     <Compile Include="BitmapWithMultiTheads\BitmapWithMultiTheadsTestDemo.cs" />
     <Compile Include="CancleRequest\CancleRequestDemo.cs" />
     <Compile Include="ComputerPerformanceMonitor\ComputerPerformanceMonitorTool.cs" />

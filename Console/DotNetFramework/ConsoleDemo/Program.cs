@@ -1,7 +1,30 @@
-﻿using CodeLibrary.BitmapCopy;
+﻿using CodeLibrary;
+using CodeLibrary.BitmapConvert;
+using CodeLibrary.BitmapCopy;
+using CodeLibrary.BitmapReadErrorTest;
+using CodeLibrary.BitmapWithMultiTheads;
+using CodeLibrary.CancleRequest;
+using CodeLibrary.ComputerPerformanceMonitor;
+using CodeLibrary.ConnectOracle;
+using CodeLibrary.CSharpUsingPython;
+using CodeLibrary.DateTimeTest;
+using CodeLibrary.DeleteFileInUse;
+using CodeLibrary.ExcuteJs;
+using CodeLibrary.ExcuteJsByPhantomjs;
+using CodeLibrary.HexAndBytes;
+using CodeLibrary.IPAddresses;
+using CodeLibrary.ObservableCollectionTest;
+using CodeLibrary.ReadMdbFiles;
+using CodeLibrary.SendEmail;
+using CodeLibrary.SimulateMouseAndKeyboardEvent;
+using CodeLibrary.SpoofIpAddress;
+using CodeLibrary.UsePostgresql;
+using CodeLibrary.UseRabbitMQ;
 using System;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace ConsoleDemo
 {
@@ -9,110 +32,112 @@ namespace ConsoleDemo
     {
         static void Main(string[] args)
         {
-            //EnumTest();
+            BitmapReadErrorTestDemo.Run();
+
+            EnumTest();
 
             //在正则表达式中给取得的值命名
-            //RegexDemo.Demo();
+            RegexDemo.Demo();
 
             //关闭之前进行一些操作
-            //handler = new ConsoleEventDelegate(ConsoleEventCallback);
-            //SetConsoleCtrlHandler(handler, true);
-            //Console.ReadLine();
+            handler = new ConsoleEventDelegate(ConsoleEventCallback);
+            SetConsoleCtrlHandler(handler, true);
+            Console.ReadLine();
 
             //C# 元组、匿名对象、ref&out
-            //ReturnsMultipleValuesTest test = new ReturnsMultipleValuesTest();
-            //test.Test();
+            ReturnsMultipleValuesTest test = new ReturnsMultipleValuesTest();
+            test.Test();
 
             //C#调用js Jint库
-            //ExcuteJsDemo.ExcuteJs();
+            ExcuteJsDemo.ExcuteJs();
 
             //C#调用js phantomjs
-            //ExcuteJsByPhantomjsDemo.ExcuteJs();
+            ExcuteJsByPhantomjsDemo.ExcuteJs();
 
             //i++,++i
-            //TestCycle();
+            TestCycle();
 
             //Aggregate
-            //TestAggregate();
+            TestAggregate();
 
             //C#调用Python
             //保证已安装任意版本的python，并将其添加到环境变量(或者拷贝python.exe至bin目录根目录)
-            //CSharpUsingPythonDemo.ExcutePython();
+            CSharpUsingPythonDemo.ExcutePython();
 
             //Postgresql测试
-            //Task.Run(async () =>
-            //{
-            //    await UsePostgresqlDemo.PostgresqlTest();
-            //});
+            Task.Run(async () =>
+            {
+                await UsePostgresqlDemo.PostgresqlTest();
+            });
 
             //send email
-            //SendEmailDemo.Run();
+            SendEmailDemo.Run();
 
             //Spoof Ip Address
-            //string url = "";
-            //for (int i = 0; i < 100; i++)
-            //{
-            //    SpoofIpAddressDemo.get(url);
-            //    Thread.Sleep(500);
-            //    Console.WriteLine(i);
-            //}
+            string SpoofIpAddressUrl = "";
+            for (int i = 0; i < 100; i++)
+            {
+                SpoofIpAddressDemo.get(SpoofIpAddressUrl);
+                Thread.Sleep(500);
+                Console.WriteLine(i);
+            }
 
             //Spoof Ip Address 3
             //免费代理IP:
             //需要翻墙：https://free-proxy-list.net/
             //http://ip.zdaye.com/dayProxy/ip/220993.html
-            //string ip = "";
-            //int port = 80;
-            //string url = "";
-            ////验证代理IP地址是否可用
-            //SpoofIpAddressDemo3.ChecKedForIP((result) => { Console.WriteLine($"ChecKedForIP:{result}"); }, ip, port);
-            ////在请求时设置代理
-            //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyWhileRequest(ip, port,url);
-            ////全局设置代理
-            //SpoofIpAddressDemo3.SpoofIpAddressBySetProxyForSystem(ip, port,url);
+            string ip = "";
+            int port = 80;
+            string url = "";
+            //验证代理IP地址是否可用
+            SpoofIpAddressDemo3.ChecKedForIP((result) => { Console.WriteLine($"ChecKedForIP:{result}"); }, ip, port);
+            //在请求时设置代理
+            SpoofIpAddressDemo3.SpoofIpAddressBySetProxyWhileRequest(ip, port, url);
+            //全局设置代理
+            SpoofIpAddressDemo3.SpoofIpAddressBySetProxyForSystem(ip, port, url);
 
             //模拟键盘、鼠标操作
-            //SimulateMouseAndKeyboardEventDemo.Run();
+            SimulateMouseAndKeyboardEventDemo.Run();
 
             //网络延迟，取消请求
-            //CancleRequestDemo.CancleRequestByTimeout("http://localhost:1107");
-            //CancleRequestDemo.CancleRequestByTask("http://localhost:1107");
+            CancleRequestDemo.CancleRequestByTimeout("http://localhost:1107");
+            CancleRequestDemo.CancleRequestByTask("http://localhost:1107");
 
-            ////RabbitMQ Receiver
-            //var host = "localhost";
-            //var port = 5673;
-            //var userName = "guest";
-            //var password = "guest";
-            ////Receive.Run(host, port, userName, password);
-            ////Worker.Run(host, port, userName, password);
-            //ReceiveLogs.Run(host, port, userName, password);
+            //RabbitMQ Receiver
+            var receiveHost = "localhost";
+            var receivePort = 5673;
+            var receiveuUserName = "guest";
+            var receivePassword = "guest";
+            //Receive.Run(host, port, userName, password);
+            //Worker.Run(host, port, userName, password);
+            ReceiveLogs.Run(receiveHost, receivePort, receiveuUserName, receivePassword);
 
             //获得IPAddress列表
-            //IPAddressTool.GetIPAddressList();
+            IPAddressTool.GetIPAddressList();
 
             //读取mdb文件
-            //ReadMdbFileDemo.Run();
+            ReadMdbFileDemo.Run();
 
             //连接oracle数据库
-            //ConnectOracleDemo.Run();
+            ConnectOracleDemo.Run();
 
             //byte[] and number
-            //HexAndBytesDemo.Run();
+            HexAndBytesDemo.Run();
 
             //电脑性能监控
-            //ComputerPerformanceMonitorTool.Run();
+            ComputerPerformanceMonitorTool.Run();
 
             //删除正在被使用的文件
-            //DeleteFileInUseDemo.Run();
+            DeleteFileInUseDemo.Run();
 
-            //BitmapConvertDemo.Run();
+            BitmapConvertDemo.Run();
 
-            //DateTimeTestDemo.Run();
+            DateTimeTestDemo.Run();
 
-            //BitmapWithMultiTheadsTestDemo.Run();
+            BitmapWithMultiTheadsTestDemo.Run();
             BitmapCopyTestDemo.Run();
 
-            //ObservableCollectionTestDemo.Run();
+            ObservableCollectionTestDemo.Run();
 
             Console.ReadLine();
         }

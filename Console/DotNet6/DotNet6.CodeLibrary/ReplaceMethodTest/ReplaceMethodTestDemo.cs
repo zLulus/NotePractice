@@ -7,10 +7,14 @@ namespace DotNet6.CodeLibrary.ReplaceMethodTest
     {
         public static void Run()
         {
+            //return 1
             var t1 = TestClass.Test1();
+            //return 2
             var t2 = TestClass.Test2();
             var state = ReplaceMethod(typeof(TestClass).GetMethod("Test1"), typeof(TestClass).GetMethod("Test2"));
+            //return 2 method is replaced!
             var t1Replace = TestClass.Test1();
+            //return 2
             var t2Replace = TestClass.Test2();
         }
 
