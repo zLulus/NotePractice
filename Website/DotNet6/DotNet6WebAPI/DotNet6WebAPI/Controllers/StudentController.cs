@@ -7,7 +7,7 @@ namespace DotNet6WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class StudentController : Controller
+    public class StudentController : ControllerBase
     {
         private readonly Student _student;
         private readonly IMapper _mapper;
@@ -25,6 +25,11 @@ namespace DotNet6WebAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<StudentDto> Get(string id)
         {
             var entity = await _student.Get(id);

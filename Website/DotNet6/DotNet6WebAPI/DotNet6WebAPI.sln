@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet6WebAPI", "DotNet6WebAPI\DotNet6WebAPI.csproj", "{05DC2C71-8CEF-46A8-851A-AEB9CD7CE484}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet6WebAPI", "DotNet6WebAPI\DotNet6WebAPI.csproj", "{05DC2C71-8CEF-46A8-851A-AEB9CD7CE484}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet6WebAPI.Dapper", "DotNet6WebAPI.Dapper\DotNet6WebAPI.Dapper.csproj", "{20906DFC-D721-44B8-B316-B6E8AB2677F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet6WebAPI.Dapper", "DotNet6WebAPI.Dapper\DotNet6WebAPI.Dapper.csproj", "{20906DFC-D721-44B8-B316-B6E8AB2677F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet6WebAPI.Domain", "DotNet6WebAPI.Domain\DotNet6WebAPI.Domain.csproj", "{A0550F42-A9A6-4C6F-B4BA-5DA6DC3D95A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet6WebAPI.Domain", "DotNet6WebAPI.Domain\DotNet6WebAPI.Domain.csproj", "{A0550F42-A9A6-4C6F-B4BA-5DA6DC3D95A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet6WebAPI.Common", "DotNet6WebAPI.Common\DotNet6WebAPI.Common.csproj", "{FCEBABB4-2E2D-4DC9-B82F-503386F97B02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{A0550F42-A9A6-4C6F-B4BA-5DA6DC3D95A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0550F42-A9A6-4C6F-B4BA-5DA6DC3D95A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0550F42-A9A6-4C6F-B4BA-5DA6DC3D95A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCEBABB4-2E2D-4DC9-B82F-503386F97B02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCEBABB4-2E2D-4DC9-B82F-503386F97B02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCEBABB4-2E2D-4DC9-B82F-503386F97B02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCEBABB4-2E2D-4DC9-B82F-503386F97B02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

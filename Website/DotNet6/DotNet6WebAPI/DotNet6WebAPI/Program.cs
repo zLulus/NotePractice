@@ -1,8 +1,10 @@
+using DotNet6WebAPI.Common;
 using DotNet6WebAPI.Dapper;
 using DotNet6WebAPI.Dapper.Mapping;
 using DotNet6WebAPI.Dapper.Repositories;
 using DotNet6WebAPI.Domain.Students;
 using DotNet6WebAPI.Domain.Students.Entities;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -36,6 +38,28 @@ builder.Services.AddSwaggerGen(c =>
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
+});
+//add ProblemDetails
+//为异常消息统一规范格式
+//统一处理异常，为不同的异常设置不同的信息
+builder.Services.AddProblemDetails(opts =>
+{
+    opts.IncludeExceptionDetails = (ctx, ex) =>
+    {
+        return false;
+    };
+    opts.Map<CustomException>((ex) =>
+    {
+        var pd = StatusCodeProblemDetails.Create(StatusCodes.Status403Forbidden);
+        pd.Detail = ex.Message;
+        return pd;
+    });
+    opts.Map<Exception>((ex) =>
+    {
+        var pd = StatusCodeProblemDetails.Create(StatusCodes.Status500InternalServerError);
+        pd.Detail = ex.Message;
+        return pd;
+    });
 });
 
 var app = builder.Build();

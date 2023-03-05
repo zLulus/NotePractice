@@ -10,10 +10,12 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DotNet6WebAPI.Common\DotNet6WebAPI.Common.csproj" />
     <ProjectReference Include="..\DotNet6WebAPI.Dapper\DotNet6WebAPI.Dapper.csproj" />
   </ItemGroup>
 
