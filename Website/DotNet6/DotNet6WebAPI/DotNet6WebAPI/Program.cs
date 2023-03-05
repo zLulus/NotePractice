@@ -58,6 +58,8 @@ builder.Services.AddProblemDetails(opts =>
     {
         var pd = StatusCodeProblemDetails.Create(StatusCodes.Status500InternalServerError);
         pd.Detail = ex.Message;
+        pd.Extensions.Add("key1", "value1");
+        pd.Extensions.Add("key2", 2);
         return pd;
     });
 });
