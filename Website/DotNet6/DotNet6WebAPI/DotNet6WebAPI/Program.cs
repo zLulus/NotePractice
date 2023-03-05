@@ -3,6 +3,8 @@ using DotNet6WebAPI.Dapper.Mapping;
 using DotNet6WebAPI.Dapper.Repositories;
 using DotNet6WebAPI.Domain.Students;
 using DotNet6WebAPI.Domain.Students.Entities;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +22,21 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Dotnet 6 demo Api",
+        Version = "v1",
+        Description = "description."
+    });
+
+    // Set the comments path for the Swagger JSON and UI.
+    // …Ë÷√◊¢ Õ
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
+});
 
 var app = builder.Build();
 

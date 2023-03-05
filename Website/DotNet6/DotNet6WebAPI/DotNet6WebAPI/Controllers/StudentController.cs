@@ -19,6 +19,11 @@ namespace DotNet6WebAPI.Controllers
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Search student information by id(根据id查询学生信息)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<StudentDto> Get(string id)
         {
