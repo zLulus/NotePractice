@@ -1,6 +1,5 @@
 ﻿using Dapper;
-using DotNet6WebAPI.Domain.Students;
-using DotNet6WebAPI.Domain.Students.Entities;
+using DotNet6WebAPI.Domain.Entities;
 
 namespace DotNet6WebAPI.Dapper.Repositories
 {

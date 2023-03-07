@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DotNet6WebAPI.Domain.Students.Entities
+namespace DotNet6WebAPI.Domain.Entities
 {
     /// <summary>
     /// student(学生)

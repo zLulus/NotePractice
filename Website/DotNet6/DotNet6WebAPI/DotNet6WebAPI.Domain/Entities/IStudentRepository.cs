@@ -1,6 +1,4 @@
-﻿using DotNet6WebAPI.Domain.Students.Entities;
-
-namespace DotNet6WebAPI.Domain.Students
+﻿namespace DotNet6WebAPI.Domain.Entities
 {
     /// <summary>
     /// interface for students(学生的仓储接口)

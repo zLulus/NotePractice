@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DotNet6WebAPI.Dtos.Students
+namespace DotNet6WebAPI.Dtos
 {
     public class StudentDto
     {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DotNet6WebAPI.Domain.Students.Entities;
-using DotNet6WebAPI.Dtos.Students;
+using DotNet6WebAPI.Domain.Entities;
+using DotNet6WebAPI.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DotNet6WebAPI.Controllers

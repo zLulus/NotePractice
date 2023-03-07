@@ -2,11 +2,11 @@ using DotNet6WebAPI.Common;
 using DotNet6WebAPI.Dapper;
 using DotNet6WebAPI.Dapper.Mapping;
 using DotNet6WebAPI.Dapper.Repositories;
-using DotNet6WebAPI.Domain.Students;
-using DotNet6WebAPI.Domain.Students.Entities;
+using DotNet6WebAPI.Domain.Entities;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +18,8 @@ builder.Services.AddScoped<Student>();
 //dapper mapping
 SetDapperMapper.Set();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
