@@ -3,6 +3,7 @@ using DotNet6WebAPI.Dapper;
 using DotNet6WebAPI.Dapper.Mapping;
 using DotNet6WebAPI.Dapper.Repositories;
 using DotNet6WebAPI.Domain.Entities;
+using DotNet6WebAPI.Filters;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -39,6 +40,11 @@ builder.Services.AddSwaggerGen(c =>
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
+
+    var xmlFile2 = $"DotNet6WebAPI.Domain.xml";
+    var xmlPath2 = Path.Combine(AppContext.BaseDirectory, xmlFile2);
+    c.IncludeXmlComments(xmlPath2);
+    c.SchemaFilter<EnumTypesSchemaFilter>(xmlPath2);
 });
 //add ProblemDetails
 //为异常消息统一规范格式
