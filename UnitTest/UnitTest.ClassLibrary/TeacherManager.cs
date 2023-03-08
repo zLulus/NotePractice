@@ -13,6 +13,8 @@ namespace UnitTest.ClassLibrary
 
         public Teacher Insert(Teacher teacher)
         {
+            if (teacher == null)
+                return null;
             teacher.Id = Guid.NewGuid();
             _memoryTeachers.Add(teacher);
             return teacher;

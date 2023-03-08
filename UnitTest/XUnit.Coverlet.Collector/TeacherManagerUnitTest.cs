@@ -1,4 +1,5 @@
-﻿using UnitTest.ClassLibrary;
+﻿using Shouldly;
+using UnitTest.ClassLibrary;
 using UnitTest.ClassLibrary.Entities;
 
 namespace XUnit.Coverlet.Collector
@@ -20,6 +21,12 @@ namespace XUnit.Coverlet.Collector
                 Age = 30
             };
             _teacherManager.Insert(teacher);
+        }
+
+        [Fact]
+        public void Insert_A_Null_Teacher()
+        {
+            _teacherManager.Insert(null).ShouldBeNull();
         }
     }
 }
