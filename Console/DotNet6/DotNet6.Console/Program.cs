@@ -117,6 +117,7 @@ OverrideTestDemo.Run();
 //计算角度
 CalculateAngleDemo.Run();
 
+//动态替换方法
 ReplaceMethodTestDemo.Run();
 
 Console.ReadLine();

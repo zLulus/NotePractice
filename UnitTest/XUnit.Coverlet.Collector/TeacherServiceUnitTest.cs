@@ -50,6 +50,12 @@ namespace XUnit.Coverlet.Collector
         }
 
         [Fact]
+        public void Insert_A_Teacher_Failed_Without_Data()
+        {
+            Should.Throw<DataNotExistException>(() => _teacherService.Insert(null));
+        }
+
+        [Fact]
         public void Insert_A_Teacher_Failed_Invalid_Age()
         {
             var teacher = new Teacher()
@@ -59,6 +65,5 @@ namespace XUnit.Coverlet.Collector
             };
             Should.Throw<AgeIsInvalidException>(() => _teacherService.Insert(teacher));
         }
-
     }
 }

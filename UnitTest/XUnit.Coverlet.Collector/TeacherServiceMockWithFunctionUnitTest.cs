@@ -20,7 +20,9 @@ namespace XUnit.Coverlet.Collector
                      var teacher = parameters[0] as Teacher;
                      if (teacher == null)
                          return null;
-                     if (string.IsNullOrEmpty(teacher.Name))
+                     if (teacher.Name == "test teacher")
+                         return null;
+                     if (teacher.Age > 100)
                          return null;
                      return teacher;
                  });
@@ -28,7 +30,7 @@ namespace XUnit.Coverlet.Collector
         }
 
         [Fact]
-        public void Insert_A_Teacher()
+        public void Insert_A_Teacher_Judge_Name_Return_Null()
         {
             var teacher = new Teacher()
             {
@@ -37,26 +39,33 @@ namespace XUnit.Coverlet.Collector
             };
 
             var returnTeacher = _teacherService.Insert(teacher);
-            returnTeacher.ShouldNotBeNull();
+            returnTeacher.ShouldBeNull();
         }
 
         [Fact]
-        public void Insert_A_Teacher_WithoutName()
+        public void Insert_A_Teacher_Judge_Age_Return_Null()
         {
             var teacher = new Teacher()
             {
-                Name = "",
-                Age = 30
+                Name = "test teacher 2",
+                Age = 130
             };
             var returnTeacher = _teacherService.Insert(teacher);
             returnTeacher.ShouldBeNull();
         }
 
         [Fact]
-        public void Insert_A_Teacher_WithoutData()
+        public void Insert_A_Teacher()
         {
-            var returnTeacher = _teacherService.Insert(null);
-            returnTeacher.ShouldBeNull();
+            var teacher = new Teacher()
+            {
+                Name = "test teacher 3",
+                Age = 30
+            };
+
+            var returnTeacher = _teacherService.Insert(teacher);
+            returnTeacher.ShouldNotBeNull();
         }
+
     }
 }

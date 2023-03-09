@@ -11,7 +11,7 @@ namespace UnitTest.ClassLibrary
             _memoryTeachers = new List<Teacher>();
         }
 
-        public Teacher Insert(Teacher teacher)
+        public virtual Teacher Insert(Teacher teacher)
         {
             if (teacher == null)
                 return null;

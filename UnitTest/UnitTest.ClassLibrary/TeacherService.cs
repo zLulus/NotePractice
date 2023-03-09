@@ -12,6 +12,10 @@ namespace UnitTest.ClassLibrary
 
         public Teacher Insert(Teacher teacher)
         {
+            if (teacher == null)
+            {
+                throw new DataNotExistException($"Data cannot be empty.");
+            }
             if (string.IsNullOrEmpty(teacher.Name) || string.IsNullOrWhiteSpace(teacher.Name))
             {
                 throw new NameIsEmptyOrWhiteSpaceException($"Name cannot be empty.");
