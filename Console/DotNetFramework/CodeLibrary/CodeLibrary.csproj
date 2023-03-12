@@ -145,6 +145,8 @@
     <Compile Include="SpoofIpAddress\SpoofIpAddressDemo.cs" />
     <Compile Include="SpoofIpAddress\SpoofIpAddressDemo2.cs" />
     <Compile Include="SpoofIpAddress\SpoofIpAddressDemo3.cs" />
+    <Compile Include="SqlCommandTest\AddParameterArrayToSqlCommandDemo.cs" />
+    <Compile Include="SqlCommandTest\SqlCommandExtensions.cs" />
     <Compile Include="UsePostgresql\Enums\SexEnum.cs" />
     <Compile Include="UsePostgresql\Models\Cat.cs" />
     <Compile Include="UsePostgresql\UsePostgresqlDemo.cs" />

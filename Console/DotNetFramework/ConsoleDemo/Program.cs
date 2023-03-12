@@ -18,6 +18,7 @@ using CodeLibrary.ReadMdbFiles;
 using CodeLibrary.SendEmail;
 using CodeLibrary.SimulateMouseAndKeyboardEvent;
 using CodeLibrary.SpoofIpAddress;
+using CodeLibrary.SqlCommandTest;
 using CodeLibrary.UsePostgresql;
 using CodeLibrary.UseRabbitMQ;
 using System;
@@ -32,6 +33,8 @@ namespace ConsoleDemo
     {
         static void Main(string[] args)
         {
+            AddParameterArrayToSqlCommandDemo.Run();
+
             BitmapReadErrorTestDemo.Run();
 
             EnumTest();
