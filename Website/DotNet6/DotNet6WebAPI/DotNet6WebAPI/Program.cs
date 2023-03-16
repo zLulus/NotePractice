@@ -20,7 +20,15 @@ builder.Services.AddScoped<Student>();
 SetDapperMapper.Set();
 
 builder.Services.AddControllers()
-    .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
+    .AddNewtonsoftJson(options =>
+    {
+        //Global setting
+        //options.SerializerSettings.Converters.Add(new DotNet6WebAPI.DecimalConverter());
+    })
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
