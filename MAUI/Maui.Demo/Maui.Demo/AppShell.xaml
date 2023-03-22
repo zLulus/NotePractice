@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Maui.Demo.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Maui.Demo"
+    xmlns:pages="clr-namespace:Maui.Demo.Pages.Layouts"
+    xmlns:bindings="clr-namespace:Maui.Demo.Pages.Bindings"
+    xmlns:formats="clr-namespace:Maui.Demo.Pages.Formats"
+    xmlns:triggers="clr-namespace:Maui.Demo.Pages.Triggers"
+    Shell.FlyoutBehavior="Disabled">
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Grid"
+            ContentTemplate="{DataTemplate pages:GridPage}"
+            Route="GridPage" />
+        <ShellContent
+            Title="AbsoluteLayout"
+            ContentTemplate="{DataTemplate pages:AbsoluteLayoutPage}"
+            Route="AbsoluteLayoutPage" />
+        <!--<ShellContent
+            Title="BindableLayout"
+            ContentTemplate="{DataTemplate pages:BindableLayoutPage}"
+            Route="BindableLayoutPage" />-->
+        <!--<ShellContent
+            Title="FlexLayout"
+            ContentTemplate="{DataTemplate pages:FlexLayoutPage}"
+            Route="FlexLayoutPage" />-->
+        <ShellContent
+            Title="StackLayout"
+            ContentTemplate="{DataTemplate pages:StackLayoutPage}"
+            Route="StackLayoutPage" />
+        <ShellContent
+            Title="Binding Rotation And Scale"
+            ContentTemplate="{DataTemplate bindings:BindingRotationAndScalePage}"
+            Route="BindingRotationAndScalePage" />
+        <ShellContent
+            Title="Binding Data"
+            ContentTemplate="{DataTemplate bindings:BindingDataPage}"
+            Route="BindingDataPage" />
+        <ShellContent
+            Title="String Format"
+            ContentTemplate="{DataTemplate formats:StringFormatPage}"
+            Route="StringFormatPage" />
+        <ShellContent
+            Title="String Format With View Model"
+            ContentTemplate="{DataTemplate formats:StringFormatWithViewModelPage}"
+            Route="StringFormatWithViewModelPage" />
+        <ShellContent
+            Title="Property Trigger"
+            ContentTemplate="{DataTemplate triggers:PropertyTriggerPage}"
+            Route="PropertyTriggerPage" />
+        <ShellContent
+            Title="Property Trigger with style"
+            ContentTemplate="{DataTemplate triggers:PropertyTriggerPageWithStylePage}"
+            Route="PropertyTriggerPageWithStylePage" />
+    </FlyoutItem>
+       
+
+</Shell>

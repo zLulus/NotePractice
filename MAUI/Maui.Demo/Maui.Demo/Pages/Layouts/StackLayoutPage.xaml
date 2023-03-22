@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Demo.Pages.Layouts.StackLayoutPage"
+             Title="StackLayoutPage">
+    <ScrollView>
+        <StackLayout Orientation="Vertical">
+            <VerticalStackLayout>
+                <Label Text="StackLayout Demo" Style="{StaticResource TitleLabel}"></Label>
+                <Label Text="First Label"></Label>
+                <Entry Placeholder="Enter something"></Entry>
+                <HorizontalStackLayout>
+                    <Label Text="Second Label"></Label>
+                    <Entry Placeholder="Enter something"></Entry>
+                    <Label Text="Third Label"></Label>
+                    <Entry Placeholder="Enter something"></Entry>
+                </HorizontalStackLayout>
+                <Label Text="4th Label"></Label>
+                <Entry Placeholder="Enter something"></Entry>
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

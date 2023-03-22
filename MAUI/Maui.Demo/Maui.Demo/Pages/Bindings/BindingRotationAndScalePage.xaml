@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Demo.Pages.Bindings.BindingRotationAndScalePage"
+             Title="BindingRotationAndScalePage">
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="Binding Rotation by code Demo" Style="{StaticResource TitleLabel}"></Label>
+            <Label x:Name="label1"
+               Text="TEXT"
+               FontSize="48"
+               HorizontalOptions="Center"
+               VerticalOptions="Center" />
+            <Slider x:Name="slider1"
+                Maximum="360"
+                VerticalOptions="Center" />
+
+            <Label Text="Binding Rotation by xaml Demo" Style="{StaticResource TitleLabel}"></Label>
+            <Label Text="TEXT"
+               FontSize="80"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               BindingContext="{x:Reference Name=slider2}"
+               Rotation="{Binding Path=Value}" />
+            <Slider x:Name="slider2"
+                Maximum="360"
+                VerticalOptions="Center" />
+
+            <Label Text="Binding Scale by code Demo" Style="{StaticResource TitleLabel}"></Label>
+            <Label x:Name="label3"
+               Text="TEXT"
+               FontSize="40"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand" />
+            <Slider x:Name="slider3"
+                Minimum="-2"
+                Maximum="2"
+                VerticalOptions="CenterAndExpand" />
+
+            <Label Text="Binding Scale by xaml Demo" Style="{StaticResource TitleLabel}"></Label>
+            <Label Text="TEXT"
+               FontSize="40"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               Scale="{Binding Source={x:Reference slider4},
+                               Path=Value}" />
+            <Slider x:Name="slider4"
+                Minimum="-2"
+                Maximum="2"
+                VerticalOptions="Center" />
+
+            <Label Text="Binding Rotations by xaml Demo (inheritance)" Style="{StaticResource TitleLabel}"></Label>
+            <StackLayout VerticalOptions="Fill"
+                     BindingContext="{x:Reference slider5}">
+                <Label Text="TEXT"
+                   FontSize="80"
+                   HorizontalOptions="Center"
+                   VerticalOptions="End"
+                   Rotation="{Binding Value}" />
+                <BoxView Color="#800000FF"
+                     WidthRequest="180"
+                     HeightRequest="40"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Start"
+                     Rotation="{Binding Value}" />
+            </StackLayout>
+            <Slider x:Name="slider5"
+                Maximum="360" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

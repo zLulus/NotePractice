@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Demo.Pages.Layouts.AbsoluteLayoutPage"
+             Title="AbsoluteLayoutPage">
+    <ScrollView>
+        <AbsoluteLayout Margin="40">
+            <Label Text="AbsoluteLayout Demo" Style="{StaticResource TitleLabel}"></Label>
+            <BoxView Color="Red"
+             AbsoluteLayout.LayoutFlags="PositionProportional"
+             AbsoluteLayout.LayoutBounds="0.5, 0, 100, 100"
+             Rotation="30" />
+            <BoxView Color="Green"
+             AbsoluteLayout.LayoutFlags="PositionProportional"
+             AbsoluteLayout.LayoutBounds="0.5, 0, 100, 100"
+             Rotation="60" />
+            <BoxView Color="Blue"
+             AbsoluteLayout.LayoutFlags="PositionProportional"
+             AbsoluteLayout.LayoutBounds="0.5, 0, 100, 100" />
+        </AbsoluteLayout>
+    </ScrollView>
+</ContentPage>
