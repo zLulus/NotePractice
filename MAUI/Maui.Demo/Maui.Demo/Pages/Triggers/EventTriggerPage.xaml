@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Demo.Pages.Triggers.EventTriggerPage"
+             xmlns:triggeractions="clr-namespace:Maui.Demo.Pages.Triggers.TriggerActions"
+             Title="EventTriggerPage">
+    <VerticalStackLayout>
+        <Label Text="Only numbers can be entered, otherwise it will be displayed in red"></Label>
+        <Entry Placeholder="Enter name">
+            <Entry.Triggers>
+                <EventTrigger Event="TextChanged">
+                    <triggeractions:NumericValidationTriggerAction />
+                </EventTrigger>
+            </Entry.Triggers>
+        </Entry>
+    </VerticalStackLayout>
+</ContentPage>

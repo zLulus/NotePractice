@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Demo.Pages.Triggers.EnterActionsAndExitActionsPage"
+             xmlns:triggeractions="clr-namespace:Maui.Demo.Pages.Triggers.TriggerActions"
+             Title="EnterActionsAndExitActionsPage">
+    <VerticalStackLayout>
+        <Entry Placeholder="Enter job title">
+            <Entry.Triggers>
+                <Trigger TargetType="Entry"
+                 Property="Entry.IsFocused"
+                 Value="True">
+                    <Trigger.EnterActions>
+                        <triggeractions:FadeTriggerAction StartsFrom="0" />
+                    </Trigger.EnterActions>
+
+                    <Trigger.ExitActions>
+                        <triggeractions:FadeTriggerAction StartsFrom="1" />
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Entry.Triggers>
+        </Entry>
+    </VerticalStackLayout>
+</ContentPage>
