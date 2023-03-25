@@ -46,6 +46,10 @@
                 ContentTemplate="{DataTemplate bindings:PropertyBindingPage}"
                 Route="PropertyBindingPage" />
             <ShellContent
+                Title="Data Conversion"
+                ContentTemplate="{DataTemplate bindings:DataConversionPage}"
+                Route="DataConversionPage" />
+            <ShellContent
                 Title="Binding Data"
                 ContentTemplate="{DataTemplate bindings:BindingDataPage}"
                 Route="BindingDataPage" />
