@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Demo.Pages.Bindings.MultiBindingPage"
+             xmlns:converters="clr-namespace:Maui.Demo.Pages.Bindings.Converters"
+             Title="MultiBindingPage">
+    <ContentPage.Resources>
+        <converters:SumConverter x:Key="SumConverter" />
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <Slider x:Name="slider1" Minimum="0" Maximum="100" Value="0" />
+        <Slider x:Name="slider2" Minimum="0" Maximum="100" Value="0" />
+
+        <Label Text="Result: "/>
+        <Label Text="{Binding Value, Source={x:Reference slider1}}"/>
+        <Label Text=" + "/>
+        <Label Text="{Binding Value, Source={x:Reference slider2}}"/>
+        <Label Text=" = "/>
+        <Label>
+            <Label.Text>
+                <MultiBinding Converter="{StaticResource SumConverter}">
+                    <Binding Source="{x:Reference slider1}" Path="Value" />
+                    <Binding Source="{x:Reference slider2}" Path="Value" />
+                </MultiBinding>
+            </Label.Text>
+        </Label>
+    </StackLayout>
+</ContentPage>

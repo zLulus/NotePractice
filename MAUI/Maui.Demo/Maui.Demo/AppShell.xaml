@@ -50,6 +50,10 @@
                 ContentTemplate="{DataTemplate bindings:DataConversionPage}"
                 Route="DataConversionPage" />
             <ShellContent
+                Title="Multi Binding"
+                ContentTemplate="{DataTemplate bindings:MultiBindingPage}"
+                Route="MultiBindingPage" />
+            <ShellContent
                 Title="Binding Data"
                 ContentTemplate="{DataTemplate bindings:BindingDataPage}"
                 Route="BindingDataPage" />
