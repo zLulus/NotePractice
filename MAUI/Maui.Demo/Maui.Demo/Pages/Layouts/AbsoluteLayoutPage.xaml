@@ -4,19 +4,24 @@
              x:Class="Maui.Demo.Pages.Layouts.AbsoluteLayoutPage"
              Title="AbsoluteLayoutPage">
     <ScrollView>
-        <AbsoluteLayout Margin="40">
-            <Label Text="AbsoluteLayout Demo" Style="{StaticResource TitleLabel}"></Label>
-            <BoxView Color="Red"
-             AbsoluteLayout.LayoutFlags="PositionProportional"
-             AbsoluteLayout.LayoutBounds="0.5, 0, 100, 100"
-             Rotation="30" />
-            <BoxView Color="Green"
-             AbsoluteLayout.LayoutFlags="PositionProportional"
-             AbsoluteLayout.LayoutBounds="0.5, 0, 100, 100"
-             Rotation="60" />
-            <BoxView Color="Blue"
-             AbsoluteLayout.LayoutFlags="PositionProportional"
-             AbsoluteLayout.LayoutBounds="0.5, 0, 100, 100" />
-        </AbsoluteLayout>
+        <Grid RowDefinitions="Auto,*">
+            <AbsoluteLayout Grid.Row="0" BackgroundColor="White">
+                <Label Text="This is a demo." AbsoluteLayout.LayoutBounds="0.5, 0.5, 100, 50" 
+                    AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            </AbsoluteLayout>
+            <AbsoluteLayout Grid.Row="1" Margin="40">
+                <BoxView Color="Red"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     AbsoluteLayout.LayoutBounds="0.5, 0.5, 100, 100"
+                     Rotation="30" />
+                <BoxView Color="Green"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     AbsoluteLayout.LayoutBounds="0.5, 0.5, 100, 100"
+                     Rotation="60" />
+                <BoxView Color="Blue"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     AbsoluteLayout.LayoutBounds="0.5, 0.5, 100, 100" />
+            </AbsoluteLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

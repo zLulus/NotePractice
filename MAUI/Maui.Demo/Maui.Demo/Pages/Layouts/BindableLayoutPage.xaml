@@ -4,17 +4,24 @@
              x:Class="Maui.Demo.Pages.Layouts.BindableLayoutPage"
              Title="BindableLayoutPage">
     <ScrollView>
-        <StackLayout BindableLayout.ItemsSource="{Binding User.TopFollowers}"
-             Orientation="Horizontal">
+        <VerticalStackLayout>
             <Label Text="BindableLayout Demo" Style="{StaticResource TitleLabel}"></Label>
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Image Source="{Binding}"
-                   Aspect="AspectFill"
-                   WidthRequest="44"
-                   HeightRequest="44" />
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </StackLayout>
+            <StackLayout x:Name="userList" BindableLayout.ItemsSource="{Binding }"
+                 Orientation="Vertical">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeThickness="1">
+                            <HorizontalStackLayout Margin="5">
+                                <Image Source="{Binding ImagePath}"
+                                   Aspect="AspectFill"
+                                   WidthRequest="44"
+                                   HeightRequest="44" />    
+                                <Label Text="{Binding Name}"></Label>
+                            </HorizontalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -23,14 +23,14 @@
                 Title="AbsoluteLayout"
                 ContentTemplate="{DataTemplate layouts:AbsoluteLayoutPage}"
                 Route="AbsoluteLayoutPage" />
-            <!--<ShellContent
+            <ShellContent
                 Title="BindableLayout"
                 ContentTemplate="{DataTemplate layouts:BindableLayoutPage}"
-                Route="BindableLayoutPage" />-->
-            <!--<ShellContent
+                Route="BindableLayoutPage" />
+            <ShellContent
                 Title="FlexLayout"
                 ContentTemplate="{DataTemplate layouts:FlexLayoutPage}"
-                Route="FlexLayoutPage" />-->
+                Route="FlexLayoutPage" />
             <ShellContent
                 Title="StackLayout"
                 ContentTemplate="{DataTemplate layouts:StackLayoutPage}"
