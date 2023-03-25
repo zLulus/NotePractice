@@ -3,23 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maui.Demo.Pages.Layouts.GridPage"
              Title="GridPage">
-    <ScrollView>
+    <ScrollView Margin="10">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="50" />
-                <RowDefinition Height="50" />
+                <RowDefinition Height="100" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label Text="Grid Demo" Style="{StaticResource TitleLabel}"></Label>
-            <Label Text="Column 0, Row 1" Grid.Column="0" Grid.Row="1" 
-           WidthRequest="200" />
-            <Label Text="Column 1, Row 1" Grid.Column="1" Grid.Row="1" />
-            <Label Text="Column 0, Row 2" Grid.Column="0" Grid.Row="2"/>
-            <Label Text="Column 1, Row 2" Grid.Column="1" Grid.Row="2" />
+            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource TitleLabel}" HorizontalOptions="Center" Text="Grid Demo (Row 0, Column 0)"></Label>
+            <Label Grid.Row="1" Grid.Column="0" BackgroundColor="#FA8072" Text="Row 1, Column 0" />
+            <Label Grid.Row="1" Grid.Column="1" BackgroundColor="#E9967A" Text="Row 1, Column 1" />
+            <Label Grid.Row="2" Grid.Column="0" BackgroundColor="#FF6347" Text="Row 2, Column 0" />
+            <Grid Grid.Row="2" Grid.Column="1" ColumnSpacing="10" RowSpacing="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" BackgroundColor="#FF4500" Text="Row 2, Column 1 (Row 0, Column 0)"></Label>
+                <Label Grid.Row="0" Grid.Column="1" BackgroundColor="#FFD700" Text="Row 2, Column 1 (Row 0, Column 1)"></Label>
+                <Label Grid.Row="1" Grid.Column="0" BackgroundColor="#FF8C00" Text="Row 2, Column 1 (Row 1, Column 0)"></Label>
+                <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="25,25" ColumnDefinitions="Auto,Auto">
+                    <Label Grid.Row="0" Grid.Column="0" BackgroundColor="#FFFACD" Text="(Row 0, Column 0)"></Label>
+                    <Label Grid.Row="0" Grid.Column="1" BackgroundColor="#FFE4B5" Text="(Row 0, Column 1)"></Label>
+                    <Label Grid.Row="1" Grid.Column="0" BackgroundColor="#EEE8AA" Text="(Row 1, Column 0)"></Label>
+                    <Label Grid.Row="1" Grid.Column="1" BackgroundColor="#F0E68C" Text="(Row 1, Column 1)"></Label>
+                </Grid>
+            </Grid>
         </Grid>
     </ScrollView>
 </ContentPage>

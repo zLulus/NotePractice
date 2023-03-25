@@ -77,6 +77,26 @@
                 Title="EnterActions And ExitActions"
                 ContentTemplate="{DataTemplate triggers:EnterActionsAndExitActionsPage}"
                 Route="EnterActionsAndExitActionsPage" />
+            <!--<ShellContent
+                Title="State Trigger"
+                ContentTemplate="{DataTemplate triggers:StateTriggerPage}"
+                Route="StateTriggerPage" />-->
+            <ShellContent
+                Title="Compare State Trigger"
+                ContentTemplate="{DataTemplate triggers:CompareStateTriggerPage}"
+                Route="CompareStateTriggerPage" />
+            <!--<ShellContent
+                Title="Adaptive Trigger"
+                ContentTemplate="{DataTemplate triggers:AdaptiveTriggerPage}"
+                Route="AdaptiveTriggerPage" />-->
+            <ShellContent
+                Title="Device State Trigger"
+                ContentTemplate="{DataTemplate triggers:DeviceStateTriggerPage}"
+                Route="DeviceStateTriggerPage" />
+            <ShellContent
+                Title="Orientation State Trigger"
+                ContentTemplate="{DataTemplate triggers:OrientationStateTriggerPage}"
+                Route="OrientationStateTriggerPage" />
         </Tab>
     </FlyoutItem>
 </Shell>

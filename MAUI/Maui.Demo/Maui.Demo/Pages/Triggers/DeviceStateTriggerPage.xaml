@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Demo.Pages.Triggers.DeviceStateTriggerPage"
+             Title="DeviceStateTriggerPage">
+    <ContentPage.Style>
+        <Style TargetType="ContentPage">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup>
+                        <VisualState x:Name="iOS">
+                            <VisualState.StateTriggers>
+                                <DeviceStateTrigger Device="iOS" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                Value="Silver" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Android">
+                            <VisualState.StateTriggers>
+                                <DeviceStateTrigger Device="Android" />
+                            </VisualState.StateTriggers>
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                Value="#2196F3" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Style>
+    <VerticalStackLayout>
+        <Label 
+            Text="In this example, the explicit Style targets ContentPage objects. ContentPage objects that consume the style set their background color to silver on iOS, and to pale blue on Android."
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maui.Demo.Pages.Layouts.StackLayoutPage"
              Title="StackLayoutPage">
-    <ScrollView>
-        <StackLayout Orientation="Vertical">
+    <ScrollView Margin="10">
+        <!--Orientation=Vertical-->
+        <StackLayout>
             <VerticalStackLayout>
                 <Label Text="StackLayout Demo" Style="{StaticResource TitleLabel}"></Label>
                 <Label Text="First Label"></Label>
@@ -14,10 +15,18 @@
                     <Entry Placeholder="Enter something"></Entry>
                     <Label Text="Third Label"></Label>
                     <Entry Placeholder="Enter something"></Entry>
+                    <VerticalStackLayout>
+                        <Label Text="4th Label" Background="Pink"></Label>
+                        <Label Text="5th Label" Background="#FFA07A"></Label>
+                    </VerticalStackLayout>
                 </HorizontalStackLayout>
-                <Label Text="4th Label"></Label>
+                <Label Text="6th Label"></Label>
                 <Entry Placeholder="Enter something"></Entry>
             </VerticalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="7th Label"></Label>
+                <Label Text="8th Label" Margin="10,0,0,0"></Label>
+            </HorizontalStackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>
