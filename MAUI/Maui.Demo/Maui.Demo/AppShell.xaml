@@ -42,9 +42,9 @@
                 ContentTemplate="{DataTemplate bindings:CommandBindingPage}"
                 Route="CommandBindingPage" />
             <ShellContent
-                Title="Binding Rotation And Scale"
-                ContentTemplate="{DataTemplate bindings:BindingRotationAndScalePage}"
-                Route="BindingRotationAndScalePage" />
+                Title="Property Binding"
+                ContentTemplate="{DataTemplate bindings:PropertyBindingPage}"
+                Route="PropertyBindingPage" />
             <ShellContent
                 Title="Binding Data"
                 ContentTemplate="{DataTemplate bindings:BindingDataPage}"

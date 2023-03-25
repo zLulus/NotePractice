@@ -61,10 +61,10 @@
 	  <MauiXaml Update="Pages\Bindings\BindingDataPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Bindings\BindingRotationAndScalePage.xaml">
+	  <MauiXaml Update="Pages\Bindings\CommandBindingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Bindings\CommandBindingPage.xaml">
+	  <MauiXaml Update="Pages\Bindings\PropertyBindingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\Formats\StringFormatPage.xaml">
