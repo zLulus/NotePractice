@@ -16,6 +16,10 @@
                 ContentTemplate="{DataTemplate layouts:GridPage}"
                 Route="GridPage" />
             <ShellContent
+                Title="Grid By Code"
+                ContentTemplate="{DataTemplate layouts:GridByCodePage}"
+                Route="GridByCodePage" />
+            <ShellContent
                 Title="AbsoluteLayout"
                 ContentTemplate="{DataTemplate layouts:AbsoluteLayoutPage}"
                 Route="AbsoluteLayoutPage" />
