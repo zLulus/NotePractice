@@ -38,6 +38,10 @@
         </Tab>
         <Tab Title="Binding">
             <ShellContent
+                Title="Command Binding"
+                ContentTemplate="{DataTemplate bindings:CommandBindingPage}"
+                Route="CommandBindingPage" />
+            <ShellContent
                 Title="Binding Rotation And Scale"
                 ContentTemplate="{DataTemplate bindings:BindingRotationAndScalePage}"
                 Route="BindingRotationAndScalePage" />

@@ -64,6 +64,9 @@
 	  <MauiXaml Update="Pages\Bindings\BindingRotationAndScalePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Pages\Bindings\CommandBindingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\Formats\StringFormatPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

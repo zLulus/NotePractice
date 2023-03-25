@@ -2,12 +2,7 @@
 {
     public class HslColorViewModel : BaseNotifyPropertyChanged
     {
-        Color color;
-        string name;
         float hue;
-        float saturation;
-        float luminosity;
-
         public float Hue
         {
             get
@@ -23,6 +18,7 @@
             }
         }
 
+        float saturation;
         public float Saturation
         {
             get
@@ -38,6 +34,7 @@
             }
         }
 
+        float luminosity;
         public float Luminosity
         {
             get
@@ -53,6 +50,7 @@
             }
         }
 
+        Color color;
         public Color Color
         {
             get
@@ -67,16 +65,17 @@
                     hue = color.GetHue();
                     saturation = color.GetSaturation();
                     luminosity = color.GetLuminosity();
-                    Notification("Hue");
-                    Notification("Saturation");
-                    Notification("Luminosity");
-                    Notification("Color");
+                    Notification(nameof(Hue));
+                    Notification(nameof(Saturation));
+                    Notification(nameof(Luminosity));
+                    Notification(nameof(Color));
 
                     Name = color.ToString();//NamedColor.GetNearestColorName(color);
                 }
             }
         }
 
+        string name;
         public string Name
         {
             get

@@ -11,7 +11,7 @@ namespace Maui.Demo.Pages.Layouts.ViewModels
             {
                 return name;
             }
-            private set
+            set
             {
                 name = value;
                 Notification(nameof(Name));
@@ -25,7 +25,7 @@ namespace Maui.Demo.Pages.Layouts.ViewModels
             {
                 return imagePath;
             }
-            private set
+            set
             {
                 imagePath = value;
                 Notification(nameof(ImagePath));
