@@ -2,48 +2,55 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maui.Demo.Pages.Formats.StringFormatPage"
-             xmlns:sys="clr-namespace:System"
              Title="StringFormatPage">
     <ContentPage.Resources>
-        <Style TargetType="Label">
-            <Setter Property="HorizontalTextAlignment" Value="Center" />
-        </Style>
-        <Style TargetType="BoxView">
-            <Setter Property="Color" Value="Blue" />
-            <Setter Property="HeightRequest" Value="2" />
-            <Setter Property="Margin" Value="0, 5" />
-        </Style>
+        <ResourceDictionary>
+            <!-- 字符串格式化器，用于格式化价格和库存信息 -->
+            <x:String x:Key="PriceFormat">${0:F2}</x:String>
+            <x:String x:Key="StockFormat">Total stock : {0}, {1} in stock</x:String>
+        </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <VerticalStackLayout>
-        <Slider x:Name="slider" />
-        <Label Text="{Binding Source={x:Reference slider},
-                      Path=Value,
-                      StringFormat='The slider value is {0:F2}'}" />
-
-        <BoxView />
-        <TimePicker x:Name="timePicker" />
-        <Label Text="{Binding Source={x:Reference timePicker},
-                              Path=Time,
-                              StringFormat='The TimeSpan is {0:c}'}" />
-        <BoxView />
-        <Entry x:Name="entry" />
-        <Label Text="{Binding Source={x:Reference entry},
-                              Path=Text,
-                              StringFormat='The Entry text is &quot;{0}&quot;'}" />
-        <BoxView />
-        <!--<StackLayout BindingContext="{x:Static sys:DateTime.Now}">
-            <Label Text="{Binding}" />
-            <Label Text="{Binding Path=Ticks,
-                                  StringFormat='{0:N0} ticks since 1/1/1'}" />
-            <Label Text="{Binding StringFormat='The {{0:MMMM}} specifier produces {0:MMMM}'}" />
-            <Label Text="{Binding StringFormat='The long date is {0:D}'}" />
-        </StackLayout>-->
-        <BoxView />
-        <!--<StackLayout BindingContext="{x:Static sys:Math.PI}">
-            <Label Text="{Binding}" />
-            <Label Text="{Binding StringFormat='PI to 4 decimal points = {0:F4}'}" />
-            <Label Text="{Binding StringFormat='PI in scientific notation = {0:E7}'}" />
-        </StackLayout>-->
+    <VerticalStackLayout Margin="15">
+        <Label Text="Date and Time"></Label>
+        <Label Text="{Binding DisplayDateTime, StringFormat='{0:yyyy/MM/dd}'}" />
+        <Label Text="{Binding DisplayDateTime, StringFormat='{0:hh:mm:ss tt}'}" />
+        <Label Text="Number"></Label>
+        <Label Text="{Binding Number, StringFormat='{0:N2}'}" />
+        <Label Text="Price"></Label>
+        <Label Text="{Binding Price, StringFormat='{0:C}'}" />
+        <Label Text="Hex"></Label>
+        <Label Text="{Binding Number, StringFormat='{0:X}'}" />
+        <Label Text="Custom format"></Label>
+        <Label Text="{Binding Score, StringFormat='Score: {0:0.000}'}" />
+        <Label Text="Products list"></Label>
+        <StackLayout>
+            <!-- 商品列表 -->
+            <CollectionView ItemsSource="{Binding Products}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <!-- 商品名称 -->
+                            <Label Text="{Binding Name}" Grid.Column="0"/>
+                            <!-- 商品价格 -->
+                            <Label Text="{Binding Price, StringFormat={StaticResource PriceFormat}}" Grid.Column="1" Margin="5,0,0,0"/>
+                            <!-- 商品库存量 -->
+                            <Label Grid.Column="2" Margin="5,0,0,0">
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{StaticResource StockFormat}">
+                                        <Binding Path="Stock" />
+                                        <Binding Path="InStock" />
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
     </VerticalStackLayout>
 </ContentPage>
