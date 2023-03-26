@@ -7,7 +7,7 @@
         <ResourceDictionary>
             <!-- 字符串格式化器，用于格式化价格和库存信息 -->
             <x:String x:Key="PriceFormat">${0:F2}</x:String>
-            <x:String x:Key="StockFormat">Total stock : {0}, {1} in stock</x:String>
+            <x:String x:Key="StockFormat">Total stock : {0:N0}, {1:N0} in stock</x:String>
         </ResourceDictionary>
     </ContentPage.Resources>
     <VerticalStackLayout Margin="15">
