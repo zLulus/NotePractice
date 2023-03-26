@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Demo.Pages.Bindings.BindingModePage"
+             xmlns:converters="clr-namespace:Maui.Demo.Pages.Bindings.Converters"
+             Title="BindingModePage">
+    <ContentPage.Resources>
+        <converters:DoubleConverter x:Key="DoubleConverter" />
+    </ContentPage.Resources>
+    
+    <StackLayout VerticalOptions="Fill" HorizontalOptions="FillAndExpand" Padding="20">
+        <Label Text="Enter a number:" FontSize="Large" />
+        <Entry x:Name="numberEntry" Keyboard="Numeric" TextChanged="OnTextChanged" />
+        <Label Text="You entered:(TwoWay)" FontSize="Large" />
+        <Label Text="{Binding EnteredNumber, Mode=TwoWay, StringFormat='Your number: {0:F2}'}" FontSize="Large" />
+        <Label Text="Double your number:" FontSize="Large" />
+        <Label Text="{Binding EnteredNumber, Mode=TwoWay, Converter={StaticResource DoubleConverter}, StringFormat='Double: {0:F2}'}" FontSize="Large" />
+        <Label Text="number(OneWay):" FontSize="Large" />
+        <Label Text="{Binding EnteredNumber, Mode=OneWay, StringFormat='Your number: {0:F2}'}" FontSize="Large" />
+        <Label Text="number(OneWayToSource):" FontSize="Large" />
+        <Entry Keyboard="Numeric"  Text="{Binding EnteredNumber,Mode=OneWayToSource}"></Entry>
+        <Label Text="number(OneTime):" FontSize="Large" />
+        <Label Text="{Binding EnteredNumber, Mode=OneTime, StringFormat='Your number: {0:F2}'}" FontSize="Large" />
+        <Button Text="Reset" Clicked="OnResetClicked" />
+    </StackLayout>
+</ContentPage>

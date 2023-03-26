@@ -58,6 +58,10 @@
                 ContentTemplate="{DataTemplate bindings:MultiBindingPage}"
                 Route="MultiBindingPage" />
             <ShellContent
+                Title="Binding Mode"
+                ContentTemplate="{DataTemplate bindings:BindingModePage}"
+                Route="BindingModePage" />
+            <ShellContent
                 Title="Binding Data"
                 ContentTemplate="{DataTemplate bindings:BindingDataPage}"
                 Route="BindingDataPage" />
