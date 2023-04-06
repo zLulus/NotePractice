@@ -9,6 +9,13 @@
     xmlns:formats="clr-namespace:Maui.Demo.Pages.Formats"
     xmlns:triggers="clr-namespace:Maui.Demo.Pages.Triggers"
     Shell.FlyoutBehavior="Disabled">
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Label Text="{Binding Title}"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
     <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
         <Tab Title="Layout">
             <ShellContent
