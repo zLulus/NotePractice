@@ -105,6 +105,10 @@
                 ContentTemplate="{DataTemplate triggers:MultiTriggersPage}"
                 Route="MultiTriggersPage" />
             <ShellContent
+                Title="Multiple Trigger with Entry"
+                ContentTemplate="{DataTemplate triggers:MultiTriggersWithEntryPage}"
+                Route="MultiTriggersWithEntryPage" />
+            <ShellContent
                 Title="EnterActions And ExitActions"
                 ContentTemplate="{DataTemplate triggers:EnterActionsAndExitActionsPage}"
                 Route="EnterActionsAndExitActionsPage" />

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui.Demo.Pages.Triggers.MultiTriggersWithEntryPage"
+             Title="MultiTriggersWithEntryPage">
+    <VerticalStackLayout>
+        <Label Text="Enter 'Hello', the input box will turn pink"></Label>
+        <Entry x:Name="entry">
+            <Entry.Triggers>
+                <MultiTrigger TargetType="Entry">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition Binding="{Binding Source={x:Reference entry},Path=Text.Length}" Value="5" />
+                        <PropertyCondition Property="Text" Value="Hello" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BackgroundColor" Value="Pink" />
+                </MultiTrigger>
+            </Entry.Triggers>
+        </Entry>
+    </VerticalStackLayout>
+</ContentPage>
