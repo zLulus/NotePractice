@@ -3,21 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maui.Demo.Pages.Triggers.DataTriggerPage"
              Title="DataTriggerPage">
-    <VerticalStackLayout>
-        <Entry x:Name="entry"
-           Text=""
-           Placeholder="Enter text" />
-        <Button Text="Save">
-            <Button.Triggers>
-                <DataTrigger TargetType="Button"
-                     Binding="{Binding Source={x:Reference entry},
-                                       Path=Text.Length}"
-                     Value="0">
-                    <Setter Property="IsEnabled"
-                    Value="False" />
-                    <!-- Multiple Setter elements are allowed -->
-                </DataTrigger>
-            </Button.Triggers>
-        </Button>
-    </VerticalStackLayout>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Style.Triggers>
+                    <DataTrigger TargetType="Label" Binding="{Binding Source={x:Reference MySwitch}, Path=IsToggled}" Value="True">
+                        <Setter Property="TextColor" Value="Red"/>
+                    </DataTrigger>
+                    <DataTrigger TargetType="Label" Binding="{Binding Text, Source={x:Reference MyEntry}}" Value="">
+                        <Setter Property="TextColor" Value="Gray"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <Switch x:Name="MySwitch"/>
+        <Entry x:Name="MyEntry" Placeholder="Type something here"/>
+        <Label Text="This is a label"/>
+    </StackLayout>
 </ContentPage>
