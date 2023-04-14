@@ -4,19 +4,23 @@
              x:Class="Maui.Demo.Pages.Triggers.PropertyTriggerPageWithStylePage"
              Title="PropertyTriggerPageWithStylePage">
     <ContentPage.Resources>
-        <Style TargetType="Entry">
-            <Style.Triggers>
-                <Trigger TargetType="Entry"
-                     Property="IsFocused"
-                     Value="True">
-                    <Setter Property="BackgroundColor"
-                        Value="Yellow" />
-                    <!-- Multiple Setter elements are allowed -->
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary>
+            <Style TargetType="Entry" x:Name="MyEntryStyle">
+                <Setter Property="IsEnabled" Value="{Binding IsToggled, Source={x:Reference MySwitch}}"/>
+                <Setter Property="Placeholder" Value="Enter some text"/>
+                <Style.Triggers>
+                    <Trigger TargetType="Entry" Property="IsEnabled" Value="False">
+                        <Setter Property="Placeholder" Value="Text entry is disabled"/>
+                    </Trigger>
+                    <Trigger TargetType="Entry" Property="IsEnabled" Value="True">
+                        <Setter Property="Placeholder" Value="Enter some text"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
     </ContentPage.Resources>
-    <VerticalStackLayout>
-        <Entry Placeholder="Enter name"></Entry>
-    </VerticalStackLayout>
+    <StackLayout>
+        <Switch x:Name="MySwitch" IsToggled="True"/>
+        <Entry x:Name="MyEntry" Style="{StaticResource MyEntryStyle}"/>
+    </StackLayout>
 </ContentPage>

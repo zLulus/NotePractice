@@ -3,17 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Maui.Demo.Pages.Triggers.PropertyTriggerPage"
              Title="PropertyTriggerPage">
-    <VerticalStackLayout>
-        <Entry Placeholder="Enter name">
+    <StackLayout Margin="20">
+        <Switch x:Name="MySwitch"/>
+        <Entry x:Name="MyEntry" IsEnabled="{Binding IsToggled, Source={x:Reference MySwitch}}">
             <Entry.Triggers>
-                <Trigger TargetType="Entry"
-                 Property="IsFocused"
-                 Value="True">
-                    <Setter Property="BackgroundColor"
-                    Value="Yellow" />
-                    <!-- Multiple Setter elements are allowed -->
+                <Trigger TargetType="Entry" Property="IsEnabled" Value="True">
+                    <Setter Property="Placeholder" Value="Enter some text"/>
+                </Trigger>
+                <Trigger TargetType="Entry" Property="IsEnabled" Value="False">
+                    <Setter Property="Placeholder" Value="Text entry is disabled"/>
                 </Trigger>
             </Entry.Triggers>
         </Entry>
-    </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>
