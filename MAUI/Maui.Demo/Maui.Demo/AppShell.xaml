@@ -112,10 +112,10 @@
                 Title="EnterActions And ExitActions"
                 ContentTemplate="{DataTemplate triggers:EnterActionsAndExitActionsPage}"
                 Route="EnterActionsAndExitActionsPage" />
-            <!--<ShellContent
+            <ShellContent
                 Title="State Trigger"
                 ContentTemplate="{DataTemplate triggers:StateTriggerPage}"
-                Route="StateTriggerPage" />-->
+                Route="StateTriggerPage" />
             <ShellContent
                 Title="Compare State Trigger"
                 ContentTemplate="{DataTemplate triggers:CompareStateTriggerPage}"

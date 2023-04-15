@@ -7,7 +7,7 @@ public partial class StateTriggerPage : ContentPage
         InitializeComponent();
     }
 
-    private void OnUncheckedStateIsActiveChanged(object sender, EventArgs e)
+    private async void OnUncheckedStateIsActiveChanged(object sender, EventArgs e)
     {
         StateTriggerBase stateTrigger = sender as StateTriggerBase;
         Console.WriteLine($"Unchecked state active: {stateTrigger.IsActive}");
