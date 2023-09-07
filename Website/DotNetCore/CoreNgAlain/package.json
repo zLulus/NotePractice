@@ -109,7 +109,7 @@
     "prettier": "^1.12.1",
     "prettier-stylelint": "^0.4.2",
     "protractor": "~5.3.0",
-    "stylelint": "^9.2.0",
+    "stylelint": "^15.10.1",
     "stylelint-config-standard": "^18.2.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
