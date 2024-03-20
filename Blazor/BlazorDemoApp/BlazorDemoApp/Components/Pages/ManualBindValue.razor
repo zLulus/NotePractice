@@ -1,0 +1,24 @@
+﻿@page "/manual-bind-value"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h3>手动实现双向绑定的示例</h3>
+
+<!-- 使用 @onchange 实现双向绑定 -->
+<input type="text" value="@TextValue" @onchange="OnTextValueChanged" />
+<p>当前文本值：@TextValue</p>
+
+<button class="btn btn-primary" @onclick="ChangeTextValueManually">改变文本值</button>
+
+@code {
+    private string TextValue { get; set; } = "初始值";
+
+    private void OnTextValueChanged(ChangeEventArgs e)
+    {
+        TextValue = e.Value?.ToString();
+    }
+
+    private void ChangeTextValueManually()
+    {
+        TextValue = "通过按钮手动改变的值";
+    }
+}

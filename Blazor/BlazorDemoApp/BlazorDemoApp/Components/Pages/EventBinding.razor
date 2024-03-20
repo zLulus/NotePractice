@@ -1,0 +1,20 @@
+﻿@page "/eventbinding"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h3>Blazor 事件绑定示例</h3>
+
+<p>点击按钮来触发事件：</p>
+
+<button class="btn btn-primary" @onclick="ButtonClicked">点击我</button>
+
+<p>@Message</p>
+
+@code {
+    private string Message { get; set; } = "等待点击...";
+    private int count = 0;
+
+    private void ButtonClicked()
+    {
+        Message = $"按钮被点击了{++count}次！";
+    }
+}

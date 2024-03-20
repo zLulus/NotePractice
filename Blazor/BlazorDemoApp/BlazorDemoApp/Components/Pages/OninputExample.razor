@@ -1,0 +1,18 @@
+﻿@page "/oninputexample"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h3>使用 oninput 的示例</h3>
+
+<p>请输入一些文本：</p>
+<input type="text" @oninput="OnInput" value="@TextValue" />
+
+<p>你输入的文本是：@TextValue</p>
+
+@code {
+    private string TextValue { get; set; } = string.Empty;
+
+    private void OnInput(ChangeEventArgs e)
+    {
+        TextValue = e.Value?.ToString() ?? string.Empty;
+    }
+}

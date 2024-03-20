@@ -1,0 +1,17 @@
+﻿@page "/databind"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h3>Blazor 属性数据绑定示例</h3>
+
+<input type="text" @bind="person.Name" placeholder="请输入姓名" />
+
+<p>你输入的姓名是：@person.Name</p>
+
+@code {
+    private Person person = new Person();
+
+    public class Person
+    {
+        public string Name { get; set; }
+    }
+}
