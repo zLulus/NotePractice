@@ -1,0 +1,31 @@
+﻿@page "/popup-example"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h1>Blazor 弹出框示例</h1>
+
+<button class="btn btn-primary" @onclick="ShowPopup">弹出框</button>
+
+<Popup Title="弹出框标题" Message="这是一个弹出框示例" OnConfirm="ConfirmPopup" OnCancel="CancelPopup" @ref="popupRef" />
+
+@code {
+    Popup popupRef;
+
+    void ShowPopup()
+    {
+        popupRef.Show();
+    }
+
+    async Task ConfirmPopup()
+    {
+        // 处理确认逻辑
+        await Task.Delay(1000);
+        popupRef.Hide();
+    }
+
+    async Task CancelPopup()
+    {
+        // 处理取消逻辑
+        await Task.Delay(1000);
+        popupRef.Hide();
+    }
+}

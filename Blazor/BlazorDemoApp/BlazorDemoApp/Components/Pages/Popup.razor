@@ -1,0 +1,54 @@
+﻿@inherits ComponentBase
+
+<style>
+    .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .popup-content {
+        /* 可以添加一些样式来定义弹出框内容的外观 */
+    }
+</style>
+
+<div class="popup" style="display: @(IsOpen ? "block" : "none")">
+    <div class="popup-content">
+        <h3>@Title</h3>
+        <p>@Message</p>
+        <button class="btn btn-primary" @onclick="OnConfirm">确认</button>
+        <button class="btn btn-danger" @onclick="OnCancel">取消</button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string Message { get; set; }
+
+    [Parameter]
+    public EventCallback OnConfirm { get; set; }
+
+    [Parameter]
+    public EventCallback OnCancel { get; set; }
+
+    private bool IsOpen { get; set; }
+
+    public void Show()
+    {
+        IsOpen = true;
+    }
+
+    public void Hide()
+    {
+        IsOpen = false;
+    }
+}

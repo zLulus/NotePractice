@@ -1,0 +1,34 @@
+﻿@inherits ComponentBase
+
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" @onclick="ToggleDropdown">
+        @ButtonText
+    </button>
+    <div class="dropdown-menu" style="display: @(IsOpen ? "block" : "none")">
+        @foreach (var item in DropdownItems)
+        {
+            <button class="dropdown-item" @onclick="() => SelectItem(item)">@item</button>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string ButtonText { get; set; }
+
+    [Parameter]
+    public List<string> DropdownItems { get; set; }
+
+    private bool IsOpen { get; set; }
+
+    private void ToggleDropdown()
+    {
+        IsOpen = !IsOpen;
+    }
+
+    private void SelectItem(string item)
+    {
+        ButtonText = item;
+        IsOpen = false;
+    }
+}

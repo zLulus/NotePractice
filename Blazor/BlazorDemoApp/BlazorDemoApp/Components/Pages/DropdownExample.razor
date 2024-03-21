@@ -1,0 +1,13 @@
+﻿@page "/dropdown-example"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h1>Blazor 下拉菜单示例</h1>
+
+<Dropdown ButtonText="选择一个选项" DropdownItems="@dropdownItems" />
+
+<p>你选择的选项是：@selectedItem</p>
+
+@code {
+    List<string> dropdownItems = new List<string> { "选项1", "选项2", "选项3" };
+    string selectedItem = string.Empty;
+}

@@ -1,0 +1,33 @@
+﻿@page "/modal-example"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+@using Microsoft.AspNetCore.Components
+
+<h1>Blazor 模态框示例</h1>
+
+<button class="btn btn-primary" @onclick="ShowModal">打开模态框</button>
+
+<Modal Title="模态框标题" Message="这是一个模态框示例" OnConfirm="ConfirmModal" OnCancel="CancelModal" @ref="modalRef" />
+
+@code {
+    Modal modalRef;
+
+    void ShowModal()
+    {
+        modalRef.Show();
+    }
+
+    async Task ConfirmModal()
+    {
+        // 处理确认逻辑
+        await Task.Delay(500);
+        modalRef.Hide();
+    }
+
+    async Task CancelModal()
+    {
+        // 处理取消逻辑
+        await Task.Delay(500);
+        modalRef.Hide();
+    }
+}
