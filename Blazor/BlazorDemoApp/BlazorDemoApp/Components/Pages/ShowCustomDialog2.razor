@@ -1,0 +1,31 @@
+﻿@page "/show-custom-dialog2"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h1>Blazor 自定义弹窗示例</h1>
+
+<button class="btn btn-primary" @onclick="ShowDialog">显示弹窗</button>
+
+<CustomDialog2 @ref="customDialogRef" ShowDialog="@showDialog" DialogTitle="标题" DialogContent="这是弹窗的内容" />
+
+@code {
+    private bool showDialog = false;
+    private CustomDialog2 customDialogRef;
+
+    private void ShowDialog()
+    {
+        showDialog = true;
+        // 如果需要的话，可以在这里做一些准备工作
+    }
+
+    // 如果弹窗有回调，可以在这里处理
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         customDialogRef.OnDialogClosed += async (e) =>
+    //         {
+    //             // 处理弹窗关闭后的逻辑
+    //         };
+    //     }
+    // }
+}

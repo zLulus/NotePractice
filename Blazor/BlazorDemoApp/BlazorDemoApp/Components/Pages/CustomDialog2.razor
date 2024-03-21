@@ -1,0 +1,37 @@
+﻿<head>
+    <link href="css/CustomDialog2.css" rel="stylesheet" />
+</head>
+
+<!-- CustomDialog.razor -->
+@if (ShowDialog)
+{
+    <div class="custom-dialog-overlay" @onclick="HideDialog">
+        <div class="custom-dialog">
+            <h3>@DialogTitle</h3>
+            <p>@DialogContent</p>
+            <button class="btn btn-primary" @onclick="HideDialog">确定</button>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public bool ShowDialog { get; set; }
+
+    [Parameter]
+    public string DialogTitle { get; set; }
+
+    [Parameter]
+    public string DialogContent { get; set; }
+
+    private void HideDialog()
+    {
+        ShowDialog = false;
+        // 触发一个事件，通知父组件弹窗已关闭
+        // OnDialogClosed?.InvokeAsync(null); // 如果需要的话
+    }
+
+    // // 如果需要回调，可以定义如下事件
+    // [Parameter]
+    // public EventCallback OnDialogClosed { get; set; }
+}
