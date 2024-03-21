@@ -1,0 +1,90 @@
+﻿@page "/lifecycle-example"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h3>Lifecycle Example</h3>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<p>@message</p>
+
+@code {
+    private string message{ get; set; }
+
+    private int currentCount = 0;
+
+    // 构造函数在组件实例被创建时调用
+    public LifecycleExample()
+    {
+        message+="LifecycleExample 构造函数被调用\n";
+    }
+
+    // OnInitializedAsync 在组件初始化后异步调用
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+        message += "LifecycleExample OnInitializedAsync 被调用\n";
+        // 在这里可以执行异步初始化操作
+    }
+
+    // OnInitialized 在组件初始化后同步调用
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        message += "LifecycleExample OnInitialized 被调用\n";
+        // 在这里可以执行同步初始化操作
+    }
+
+    // OnParametersSet 在组件的参数被设置后调用
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        message += "LifecycleExample OnParametersSet 被调用\n";
+        // 在这里可以处理参数变化
+    }
+
+    // OnAfterRenderAsync 在组件的渲染树构建后被异步调用
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await base.OnAfterRenderAsync(firstRender);
+        if (firstRender)
+        {
+            message += "LifecycleExample OnAfterRenderAsync（首次渲染）被调用\n";
+            // 在这里可以执行只在首次渲染后需要的操作
+        }
+        else
+        {
+            message += "LifecycleExample OnAfterRenderAsync 被调用\n";
+            // 在这里可以执行每次渲染后需要的操作
+        }
+    }
+
+    // OnAfterRender 在组件的渲染树构建后被同步调用
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        if (firstRender)
+        {
+            message += "LifecycleExample OnAfterRender（首次渲染）被调用\n";
+            // 在这里可以执行只在首次渲染后需要的操作
+        }
+        else
+        {
+            message += "LifecycleExample OnAfterRender 被调用\n";
+            // 在这里可以执行每次渲染后需要的操作
+        }
+    }
+
+    // IDisposable 接口的 Dispose 方法在组件即将被销毁时调用
+    public void Dispose()
+    {
+        message += "LifecycleExample Dispose 被调用\n";
+        // 在这里释放组件占用的资源
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}
