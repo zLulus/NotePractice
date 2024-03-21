@@ -1,0 +1,56 @@
+﻿@page "/nav-example"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<nav class="flex-column">
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="use-custom-component">
+            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>custom component
+        </NavLink>
+    </div>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="databind">
+            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>data bind
+        </NavLink>
+    </div>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="manual-bind-value">
+            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>manual bind value
+        </NavLink>
+    </div>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="eventbinding">
+            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>event binding
+        </NavLink>
+    </div>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="oninputexample">
+            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>oninput example
+        </NavLink>
+    </div>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="validation-form">
+            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>validation form
+        </NavLink>
+    </div>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="custom-dialog">
+            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>custom dialog
+        </NavLink>
+    </div>
+
+    <div class="nav-item px-3">
+        <NavLink class="nav-link" href="show-custom-dialog2">
+            <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>custom dialog 2
+        </NavLink>
+    </div>
+</nav>
+
+@code {
+
+}
