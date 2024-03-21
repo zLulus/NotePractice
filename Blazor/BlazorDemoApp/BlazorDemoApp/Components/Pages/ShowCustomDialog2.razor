@@ -5,7 +5,7 @@
 
 <button class="btn btn-primary" @onclick="ShowDialog">显示弹窗</button>
 
-<CustomDialog2 @ref="customDialogRef" ShowDialog="@showDialog" DialogTitle="标题" DialogContent="这是弹窗的内容" />
+<CustomDialog2 @ref="customDialogRef" ShowDialog="@showDialog" DialogTitle="标题" DialogContent="这是弹窗的内容" OnDialogClosed="HandleDialogClosed" />
 
 @code {
     private bool showDialog = false;
@@ -14,18 +14,12 @@
     private void ShowDialog()
     {
         showDialog = true;
-        // 如果需要的话，可以在这里做一些准备工作
     }
 
-    // 如果弹窗有回调，可以在这里处理
-    // protected override async Task OnAfterRenderAsync(bool firstRender)
-    // {
-    //     if (firstRender)
-    //     {
-    //         customDialogRef.OnDialogClosed += async (e) =>
-    //         {
-    //             // 处理弹窗关闭后的逻辑
-    //         };
-    //     }
-    // }
+    private async Task HandleDialogClosed()
+    {
+        // 在这里处理弹窗关闭后的逻辑，比如重新显示弹窗或执行其他操作
+        // 如果需要再次显示弹窗，可以调用 ShowDialog 方法
+        // showDialog = true; // 如果需要的话，取消注释这一行来重新显示弹窗
+    }
 }

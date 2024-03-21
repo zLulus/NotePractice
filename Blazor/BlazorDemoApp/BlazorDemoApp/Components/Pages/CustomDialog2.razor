@@ -2,7 +2,6 @@
     <link href="css/CustomDialog2.css" rel="stylesheet" />
 </head>
 
-<!-- CustomDialog.razor -->
 @if (ShowDialog)
 {
     <div class="custom-dialog-overlay" @onclick="HideDialog">
@@ -31,7 +30,12 @@
         // OnDialogClosed?.InvokeAsync(null); // 如果需要的话
     }
 
-    // // 如果需要回调，可以定义如下事件
-    // [Parameter]
-    // public EventCallback OnDialogClosed { get; set; }
+    [Parameter]
+    public EventCallback OnDialogClosed { get; set; }
+
+    private async Task HideDialogAsync()
+    {
+        ShowDialog = false;
+        await OnDialogClosed.InvokeAsync(null); // 触发事件回调
+    }
 }

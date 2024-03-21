@@ -1,0 +1,45 @@
+﻿@page "/student-table"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+@using BlazorDemoApp.Services
+@using BlazorDemoApp.Models
+
+<h1>学生信息表格</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>邮箱</th>
+            <th>年龄</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (students == null)
+        {
+            <tr><td><em>加载中...</em></td></tr>
+        }
+        else
+        {
+            @foreach (var student in students)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.Name</td>
+                    <td>@student.Email</td>
+                    <td>@student.Age</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Student> students;
+
+    protected override async Task OnInitializedAsync()
+    {
+        students = await new StudentService().GetStudentsAsync();
+    }
+}
