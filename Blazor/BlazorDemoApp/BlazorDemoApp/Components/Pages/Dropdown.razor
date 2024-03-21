@@ -19,6 +19,9 @@
     [Parameter]
     public List<string> DropdownItems { get; set; }
 
+    [Parameter]
+    public EventCallback<string> OnItemSelected { get; set; }
+
     private bool IsOpen { get; set; }
 
     private void ToggleDropdown()
@@ -26,9 +29,10 @@
         IsOpen = !IsOpen;
     }
 
-    private void SelectItem(string item)
+    private async Task SelectItem(string item)
     {
         ButtonText = item;
         IsOpen = false;
+        await OnItemSelected.InvokeAsync(item);
     }
 }
