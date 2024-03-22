@@ -1,0 +1,31 @@
+﻿@page "/fetchdata"
+
+@inject HttpClient Http
+
+<h1>Fetch Data Example</h1>
+
+@if (Message == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <p>Message: @Message</p>
+}
+
+@code {
+    private string Message{ get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await Http.GetAsync("https://cn.bing.com/");
+        if (response.IsSuccessStatusCode)
+        {
+            Message = await response.Content.ReadAsStringAsync();
+        }
+        else
+        {
+            Message = "获取数据失败";
+        }
+    }
+}
