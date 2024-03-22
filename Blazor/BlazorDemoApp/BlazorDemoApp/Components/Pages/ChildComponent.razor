@@ -1,4 +1,5 @@
 ﻿<p>Message: @Message</p>
+<p>Parameters: @Parameters</p>
 <p>Console Message: @ConsoleMessage</p>
 
 @code {
@@ -7,8 +8,23 @@
 
     public string ConsoleMessage { get; set; }
 
+    public string Parameters { get; set; }
+
     public override async Task SetParametersAsync(ParameterView parameters)
     {
+        //从ParameterView 中取出新的参数值
+        foreach (var parameter in parameters)
+        {
+            switch (parameter.Name)
+            {
+                case nameof(Message):
+                    Parameters += (string)parameter.Value + "\n";
+                    break;
+                // 其他参数的处理
+                default:
+                    break;
+            }
+        }
         await base.SetParametersAsync(parameters);
         ConsoleMessage += "ChildComponent SetParametersAsync 被调用，Message: " + Message + "\n";
         // 在这里可以执行异步参数设置逻辑

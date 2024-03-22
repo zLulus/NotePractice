@@ -1,4 +1,5 @@
 using BlazorDemoApp.Components;
+using BlazorDemoApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,8 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-//builder.Services.AddRazorPages();
-//builder.Services.AddServerSideBlazor();
+builder.Services.AddSingleton<IDataService, DataService>();
 
 var app = builder.Build();
 
@@ -16,6 +16,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
 }
+
 
 app.UseStaticFiles();
 app.UseAntiforgery();
