@@ -1,0 +1,25 @@
+﻿@page "/jsinterop"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+@inject IJSRuntime JSRuntime
+
+<script src="js/myScript.js"></script>
+
+<button @onclick="ShowAlert">Show Alert</button>
+
+<button @onclick="ShowPrompt">Show Prompt</button>
+<p>Message: @Message</p>
+
+@code {
+    private string Message{ get; set; }
+
+    private async Task ShowAlert()
+    {
+        await JSRuntime.InvokeVoidAsync("alert", "Hello from Blazor!");
+    }
+
+    private async Task ShowPrompt()
+    {
+        var result = await JSRuntime.InvokeAsync<string>("myFunctions.showPrompt", "Hello from Blazor with custom JS!");
+        Message=result;
+    }
+}
