@@ -1,0 +1,23 @@
+﻿<p>Message: @Message</p>
+<p>Console Message: @ConsoleMessage</p>
+
+@code {
+    [Parameter]
+    public string Message { get; set; }
+
+    public string ConsoleMessage { get; set; }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await base.SetParametersAsync(parameters);
+        ConsoleMessage += "ChildComponent SetParametersAsync 被调用，Message: " + Message + "\n";
+        // 在这里可以执行异步参数设置逻辑
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        ConsoleMessage += "ChildComponent OnParametersSet 被调用，Message: " + Message + "\n";
+        // 在这里可以执行同步参数设置逻辑
+    }
+}

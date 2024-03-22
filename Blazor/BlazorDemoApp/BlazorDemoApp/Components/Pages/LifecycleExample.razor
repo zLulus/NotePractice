@@ -17,14 +17,14 @@
     // 构造函数在组件实例被创建时调用
     public LifecycleExample()
     {
-        message+="LifecycleExample 构造函数被调用\n";
+        message += "LifecycleExample 构造函数被调用" + "\n";
     }
 
     // OnInitializedAsync 在组件初始化后异步调用
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        message += "LifecycleExample OnInitializedAsync 被调用\n";
+        message += "LifecycleExample OnInitializedAsync 被调用" + "\n";
         // 在这里可以执行异步初始化操作
     }
 
@@ -32,7 +32,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        message += "LifecycleExample OnInitialized 被调用\n";
+        message += "LifecycleExample OnInitialized 被调用" + "\n";
         // 在这里可以执行同步初始化操作
     }
 
@@ -40,7 +40,7 @@
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        message += "LifecycleExample OnParametersSet 被调用\n";
+        message += "LifecycleExample OnParametersSet 被调用" + "\n";
         // 在这里可以处理参数变化
     }
 
@@ -50,12 +50,12 @@
         await base.OnAfterRenderAsync(firstRender);
         if (firstRender)
         {
-            message += "LifecycleExample OnAfterRenderAsync（首次渲染）被调用\n";
+            message += "LifecycleExample OnAfterRenderAsync（首次渲染）被调用" + "\n";
             // 在这里可以执行只在首次渲染后需要的操作
         }
         else
         {
-            message += "LifecycleExample OnAfterRenderAsync 被调用\n";
+            message += "LifecycleExample OnAfterRenderAsync 被调用" + "\n";
             // 在这里可以执行每次渲染后需要的操作
         }
     }
@@ -66,12 +66,12 @@
         base.OnAfterRender(firstRender);
         if (firstRender)
         {
-            message += "LifecycleExample OnAfterRender（首次渲染）被调用\n";
+            message += "LifecycleExample OnAfterRender（首次渲染）被调用" + "\n";
             // 在这里可以执行只在首次渲染后需要的操作
         }
         else
         {
-            message += "LifecycleExample OnAfterRender 被调用\n";
+            message += "LifecycleExample OnAfterRender 被调用" + "\n";
             // 在这里可以执行每次渲染后需要的操作
         }
     }
@@ -79,7 +79,7 @@
     // IDisposable 接口的 Dispose 方法在组件即将被销毁时调用
     public void Dispose()
     {
-        message += "LifecycleExample Dispose 被调用\n";
+        message += "LifecycleExample Dispose 被调用" + "\n";
         // 在这里释放组件占用的资源
     }
 

@@ -1,0 +1,17 @@
+﻿@page "/lifecycle-example2"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h1>Parent Component</h1>
+
+<button @onclick="ChangeMessage">Change Message</button>
+
+<ChildComponent Message="@currentMessage" />
+
+@code {
+    private string currentMessage = "Hello from Parent";
+
+    private void ChangeMessage()
+    {
+        currentMessage = "Updated message from Parent";
+    }
+}
