@@ -1,0 +1,64 @@
+﻿@page "/component-menu"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h3>Component Menu</h3>
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="use-custom-component">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>custom component
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="validation-form">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>validation form
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="custom-dialog">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>custom dialog
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="show-custom-dialog2">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>custom dialog 2
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="modal-example">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>modal example
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="popup-example">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>popup example
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="dropdown-example">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>dropdown example
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="student-table">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>student table
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="QuickGrid-Example">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>QuickGrid Example
+            </NavLink>
+        </div>
+
+    </nav>
+</div>
+

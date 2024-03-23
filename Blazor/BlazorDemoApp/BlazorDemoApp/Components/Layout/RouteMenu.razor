@@ -1,0 +1,33 @@
+﻿@page "/route-menu"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h3>Route Menu</h3>
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="route-parameter-1/testtext">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>route parameter 1
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="route-parameter-2/testtext2">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>route parameter 2
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="route-parameter-with-limit/123/false">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>route parameter with limit
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="route-parameter-catch-all/this/is/a%2Ftest%2A">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>route parameter catch all
+            </NavLink>
+        </div>
+    </nav>
+</div>
+

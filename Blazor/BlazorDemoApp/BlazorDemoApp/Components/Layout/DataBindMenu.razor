@@ -1,0 +1,33 @@
+﻿@page "/databind-menu"
+@rendermode @(new InteractiveServerRenderMode(prerender: true))
+
+<h3>Data Bind Menu</h3>
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="databind">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>data bind
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="manual-bind-value">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>manual bind value
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="eventbinding">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>event binding
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="oninputexample">
+                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span>oninput example
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
