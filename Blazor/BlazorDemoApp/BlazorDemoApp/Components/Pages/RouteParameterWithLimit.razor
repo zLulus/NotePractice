@@ -1,0 +1,17 @@
+﻿@page "/route-parameter-with-limit/{id:int}/{option:bool?}"
+
+<p>
+    Id: @Id
+</p>
+
+<p>
+    Option: @Option
+</p>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    [Parameter]
+    public bool Option { get; set; }
+}
