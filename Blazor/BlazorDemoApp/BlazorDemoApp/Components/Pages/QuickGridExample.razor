@@ -1,26 +1,34 @@
 ﻿@page "/QuickGrid-Example"
+@using BlazorDemoApp.Models
+@using BlazorDemoApp.Services
 @using Microsoft.AspNetCore.Components.QuickGrid
+@inject ITeacherService teacherService
 
 <PageTitle>QuickGrid Example</PageTitle>
 
 <h1>QuickGrid Example</h1>
 
-<QuickGrid Items="@people">
-    <PropertyColumn Property="@(p => p.PersonId)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.Name)" Sortable="true" />
-    <PropertyColumn Property="@(p => p.PromotionDate)" Format="yyyy-MM-dd" Sortable="true" />
-</QuickGrid>
+@if (teachers != null)
+{
+    <QuickGrid Items="@teachers">
+        <PropertyColumn Property="@(p => p.Id)" Sortable="true" IsDefaultSortColumn="true" Title="ID" />
+        <PropertyColumn Property="@(p => p.Name)" Sortable="true" Title="Name" />
+        <PropertyColumn Property="@(p => p.EntryDate)" Format="yyyy-MM-dd" Sortable="true" Title="Entry Date" />
+    </QuickGrid>
+}
+else
+{
+    <p>Loading...</p>
+}
+
 
 @code {
-    private record Person(int PersonId, string Name, DateOnly PromotionDate);
+    private IQueryable<Teacher> teachers=null;
 
-    private IQueryable<Person> people = new[]
+    protected override async Task OnInitializedAsync()
     {
-        new Person(10895, "Jean Martin", new DateOnly(1985, 3, 16)),
-        new Person(10944, "António Langa", new DateOnly(1991, 12, 1)),
-        new Person(11203, "Julie Smith", new DateOnly(1958, 10, 10)),
-        new Person(11205, "Nur Sari", new DateOnly(1922, 4, 27)),
-        new Person(11898, "Jose Hernandez", new DateOnly(2011, 5, 3)),
-        new Person(12130, "Kenji Sato", new DateOnly(2004, 1, 9)),
-    }.AsQueryable();
+        var data = await teacherService.GetTeachersAsync();
+        teachers = data.AsQueryable();
+        await base.OnInitializedAsync();
+    }
 }

@@ -8,6 +8,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddSingleton<IDataService, DataService>();
+builder.Services.AddSingleton<ITeacherService, TeacherService>();
 builder.Services.AddHttpClient();
 
 var app = builder.Build();
