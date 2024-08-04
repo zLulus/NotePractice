@@ -20,5 +20,9 @@ function Translation(key){
 	{
 		return "Close Menu";
 	}
-	return "get key from Translation method.";
+	if(key=="DatabaseButtonKey")
+	{
+		return "Database Test Button";
+	}
+	return "Can not get value from Translation method.";
 }
