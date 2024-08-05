@@ -45,6 +45,7 @@
     {"id":{"name":"MainRoomInitializeObject","path":"objects/MainRoomInitializeObject/MainRoomInitializeObject.yy",},},
     {"id":{"name":"MenuDialog","path":"objects/MenuDialog/MenuDialog.yy",},},
     {"id":{"name":"ProcessBar","path":"objects/ProcessBar/ProcessBar.yy",},},
+    {"id":{"name":"SetTextByInstanceButton","path":"objects/SetTextByInstanceButton/SetTextByInstanceButton.yy",},},
     {"id":{"name":"SetWindowSizeButton","path":"objects/SetWindowSizeButton/SetWindowSizeButton.yy",},},
     {"id":{"name":"ShowMenuDialogButton","path":"objects/ShowMenuDialogButton/ShowMenuDialogButton.yy",},},
     {"id":{"name":"Text","path":"objects/Text/Text.yy",},},
