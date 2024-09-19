@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://il123c6laji4"]
+
+[ext_resource type="Texture2D" uid="uid://do0t1ajaajywi" path="res://icon.svg" id="1_1ho5k"]
+[ext_resource type="Script" path="res://Scripts/TestSprite2d.cs" id="2_cev5g"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(538, 263)
+texture = ExtResource("1_1ho5k")
+script = ExtResource("2_cev5g")
+
+[node name="Timer" type="Timer" parent="Sprite2D"]
+autostart = true

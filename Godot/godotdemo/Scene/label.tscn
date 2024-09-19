@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://be1l5d7mnmlid"]
+
+[node name="Label" type="Label"]
+offset_left = 268.0
+offset_top = 186.0
+offset_right = 308.0
+offset_bottom = 209.0
+text = "你好"

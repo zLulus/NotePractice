@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://be04220dfow1p"]
+
+[ext_resource type="PackedScene" uid="uid://il123c6laji4" path="res://Scene/logo.tscn" id="1_hgmbs"]
+[ext_resource type="Script" path="res://Scripts/Test.cs" id="2_ys4hg"]
+
+[node name="Test2" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 470.0
+offset_top = 371.0
+offset_right = 589.0
+offset_bottom = 402.0
+text = "Toggle motion"
+
+[node name="Test" parent="." instance=ExtResource("1_hgmbs")]
+position = Vector2(-11, 10)
+script = ExtResource("2_ys4hg")
+
+[connection signal="pressed" from="Button" to="Test" method="_on_button_pressed"]

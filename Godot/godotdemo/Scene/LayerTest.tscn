@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://df5dkc6rbc3au"]
+
+[node name="LayerTest" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Layer 1 Button"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer2"]
+offset_left = 19.0
+offset_top = 15.0
+offset_right = 141.0
+offset_bottom = 46.0
+text = "Layer 2 Button"

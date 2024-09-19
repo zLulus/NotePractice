@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://btct1dqqhqhw8"]
+
+[node name="Container" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 528.0
+offset_bottom = 296.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+offset_right = 528.0
+offset_bottom = 296.0
+
+[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer"]
+layout_mode = 2
+text = "test123"

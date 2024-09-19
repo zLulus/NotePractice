@@ -1,0 +1,112 @@
+[gd_scene load_steps=4 format=3 uid="uid://nmn1cqintj1t"]
+
+[ext_resource type="PackedScene" uid="uid://be1l5d7mnmlid" path="res://Scene/label.tscn" id="1_jf4tx"]
+[ext_resource type="Script" path="res://Scripts/label.gd" id="1_qrvkb"]
+[ext_resource type="Script" path="res://Scripts/node_2d/node_2d_script.gd" id="1_tt0q4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_tt0q4")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+offset_left = 384.0
+offset_top = 24.0
+offset_right = 619.0
+offset_bottom = 55.0
+text = "Single input"
+
+[node name="CodeEdit" type="CodeEdit" parent="."]
+offset_left = 384.0
+offset_top = 72.0
+offset_right = 752.0
+offset_bottom = 196.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 4.0
+offset_top = 212.0
+offset_right = 368.0
+offset_bottom = 374.0
+text = "Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label Label "
+
+[node name="Button" type="Button" parent="."]
+offset_left = 656.0
+offset_top = 24.0
+offset_right = 743.0
+offset_bottom = 55.0
+text = "Button"
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 5.0
+offset_top = 288.0
+offset_right = 361.0
+offset_bottom = 315.0
+value = 50.0
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 12.0
+offset_top = 329.0
+offset_right = 365.0
+offset_bottom = 376.0
+item_count = 3
+item_0/text = "1"
+item_1/text = "2"
+item_2/text = "3"
+
+[node name="ItemList2" type="ItemList" parent="."]
+offset_left = 11.0
+offset_top = 395.0
+offset_right = 364.0
+offset_bottom = 442.0
+select_mode = 1
+item_count = 3
+item_0/text = "1"
+item_1/text = "2"
+item_2/text = "3"
+
+[node name="ItemList3" type="ItemList" parent="."]
+offset_left = 12.0
+offset_top = 449.0
+offset_right = 360.0
+offset_bottom = 553.0
+item_count = 5
+max_columns = 2
+same_column_width = true
+item_0/text = "1"
+item_1/text = "2"
+item_2/text = "3"
+item_3/text = "4"
+item_4/text = "5"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+dialog_text = "Test"
+
+[node name="Label2" parent="." instance=ExtResource("1_jf4tx")]
+offset_left = 385.0
+offset_top = 250.0
+offset_right = 425.0
+offset_bottom = 273.0
+
+[node name="Label3" parent="." instance=ExtResource("1_jf4tx")]
+offset_left = 386.0
+offset_top = 215.0
+offset_right = 426.0
+offset_bottom = 238.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2(182.813, 73.2321)
+
+[node name="Label" type="Label" parent="Node2D2"]
+unique_name_in_owner = true
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "Test Label"
+script = ExtResource("1_qrvkb")
