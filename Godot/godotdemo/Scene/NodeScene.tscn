@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc5w5ctp8lohc"]
+
+[ext_resource type="Script" path="res://Scripts/NodeScene/NodeSceneScript.gd" id="1_b2v8c"]
+
+[node name="NodeScene" type="Node2D"]
+script = ExtResource("1_b2v8c")
+
+[node name="NameLabel" type="Label" parent="."]
+offset_right = 320.0
+offset_bottom = 56.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AgeLabel" type="Label" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 72.0
+offset_right = 312.0
+offset_bottom = 95.0
+
+[node name="GenderLabel" type="Label" parent="CanvasLayer"]
+offset_left = 16.0
+offset_top = 144.0
+offset_right = 224.0
+offset_bottom = 176.0

@@ -15,9 +15,18 @@ run/main_scene="res://Scene/node_2d.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [dotnet]
 
 project/assembly_name="GodotDemo"
+
+[global_group]
+
+GlobalTestGroup1=""
 
 [rendering]
 

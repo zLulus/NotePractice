@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8hudx67h5opl"]
+
+[ext_resource type="Script" path="res://Scripts/toolTestLabelScript.gd" id="1_lv6fs"]
+[ext_resource type="Texture2D" uid="uid://do0t1ajaajywi" path="res://icon.svg" id="2_ibdh4"]
+[ext_resource type="Script" path="res://Scripts/LogoSprite2DScript.gd" id="3_lx0t4"]
+
+[node name="ToolScene" type="Node2D"]
+
+[node name="toolTestLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 23.0
+text = "test from script"
+script = ExtResource("1_lv6fs")
+
+[node name="LogoSprite2D" type="Sprite2D" parent="."]
+position = Vector2(144, 120)
+rotation = 1825.4
+texture = ExtResource("2_ibdh4")
+script = ExtResource("3_lx0t4")

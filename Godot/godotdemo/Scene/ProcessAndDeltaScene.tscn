@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://qbt1btorqah2"]
+
+[ext_resource type="Script" path="res://Scripts/ProcessAndDeltaScene/DeltaLabelScript.gd" id="1_7d6ku"]
+[ext_resource type="Script" path="res://Scripts/ProcessAndDeltaScene/PhysicsProcessLabelScript.gd" id="2_djhgw"]
+
+[node name="ProcessAndDeltaScene" type="Node2D"]
+
+[node name="DeltaLabel" type="Label" parent="."]
+offset_right = 264.0
+offset_bottom = 23.0
+script = ExtResource("1_7d6ku")
+
+[node name="PhysicsProcessLabel" type="Label" parent="."]
+offset_top = 48.0
+offset_right = 248.0
+offset_bottom = 71.0
+script = ExtResource("2_djhgw")

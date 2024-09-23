@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj3bdq2k03321"]
+
+[ext_resource type="Script" path="res://Scripts/GlobalGroupScene/LabelScript.gd" id="1_pq1c2"]
+
+[node name="GlobalGroupScene2" type="Node2D"]
+
+[node name="Label" type="Label" parent="." groups=["GlobalTestGroup1"]]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "test"
+script = ExtResource("1_pq1c2")

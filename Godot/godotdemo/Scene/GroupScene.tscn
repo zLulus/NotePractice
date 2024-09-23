@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddffur6pwicj8"]
+
+[ext_resource type="Script" path="res://Scripts/GroupScene/GroupButtonScript.gd" id="1_01vh3"]
+[ext_resource type="Script" path="res://Scripts/GroupScene/LabelScript.gd" id="1_v6b7g"]
+
+[node name="GroupScene" type="Node2D"]
+
+[node name="Label" type="Label" parent="." groups=["TestGroup1"]]
+offset_right = 88.0
+offset_bottom = 23.0
+script = ExtResource("1_v6b7g")
+
+[node name="Label2" type="Label" parent="." groups=["TestGroup1"]]
+offset_top = 32.0
+offset_right = 40.0
+offset_bottom = 55.0
+script = ExtResource("1_v6b7g")
+
+[node name="GroupButton" type="Button" parent="."]
+offset_top = 64.0
+offset_right = 72.0
+offset_bottom = 80.0
+text = "Call TestGroup1 method"
+script = ExtResource("1_01vh3")
+
+[connection signal="pressed" from="GroupButton" to="GroupButton" method="_on_pressed"]
