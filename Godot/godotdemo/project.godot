@@ -15,6 +15,10 @@ run/main_scene="res://Scene/node_2d.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Player="*res://Scripts/GlobalSignalScene/Player.gd"
+
 [display]
 
 window/size/viewport_width=1920

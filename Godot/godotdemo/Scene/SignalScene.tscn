@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://lm3e42dj83sh"]
+
+[ext_resource type="Script" path="res://Scripts/SignalScene/SignalSceneScript.gd" id="1_bg44b"]
+[ext_resource type="Script" path="res://Scripts/SignalScene/LabelScript.gd" id="1_my8ie"]
+[ext_resource type="Script" path="res://Scripts/SignalScene/ButtonScript.gd" id="2_o60kc"]
+[ext_resource type="Script" path="res://Scripts/SignalScene/Label2Script.gd" id="3_bt7gv"]
+
+[node name="SignalScene" type="Node2D"]
+script = ExtResource("1_bg44b")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 408.0
+offset_bottom = 112.0
+text = "123"
+script = ExtResource("1_my8ie")
+
+[node name="Label2" type="Label" parent="."]
+offset_top = 120.0
+offset_right = 392.0
+offset_bottom = 200.0
+text = "321"
+script = ExtResource("3_bt7gv")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 240.0
+offset_right = 103.0
+offset_bottom = 271.0
+text = "signal test"
+script = ExtResource("2_o60kc")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
