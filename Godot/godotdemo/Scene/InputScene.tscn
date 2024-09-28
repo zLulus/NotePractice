@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxpeiq0daffcm"]
+
+[ext_resource type="Script" path="res://Scripts/InputScene/InputSceneScript.gd" id="1_ol5hv"]
+
+[node name="InputScene" type="Node2D"]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_ol5hv")

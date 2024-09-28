@@ -319,3 +319,7 @@ Temporary Items
 # GameMaker temporary files
 *.resource_order
 *.old
+
+# godot
+.godot/
+/android/

@@ -6,3 +6,6 @@
 *.yy text eol=lf
 *.yyp text eol=lf
 *.json text eol=lf
+
+# Normalize EOL for all files that Git considers text files.
+* text=auto eol=lf
