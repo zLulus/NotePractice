@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bist5jh0h6k1w"]
+
+[ext_resource type="Script" path="res://Scripts/CustomSceneSwitcherScenes/GoToScene2ButtonScript.gd" id="1_hgiw5"]
+
+[node name="CustomSceneSwitcherScene2" type="Node2D"]
+
+[node name="GoToScene1Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Go to Scene 1"
+script = ExtResource("1_hgiw5")
+
+[connection signal="pressed" from="GoToScene1Button" to="GoToScene1Button" method="_on_pressed"]

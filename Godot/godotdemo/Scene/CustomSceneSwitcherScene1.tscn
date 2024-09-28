@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dosfmrmq0y10e"]
+
+[ext_resource type="Script" path="res://Scripts/CustomSceneSwitcherScenes/GoToScene1ButtonScript.gd" id="1_rrf6v"]
+[ext_resource type="Script" path="res://Scripts/CustomSceneSwitcherScenes/AddNumberButtonScript.gd" id="2_w0wo7"]
+
+[node name="CustomSceneSwitcherScene1" type="Node2D"]
+
+[node name="GoToScene2Button" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 80.0
+offset_right = 145.0
+offset_bottom = 111.0
+text = "Go to Scene 2"
+script = ExtResource("1_rrf6v")
+
+[node name="AddNumberButton" type="Button" parent="."]
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 136.0
+offset_bottom = 63.0
+text = "add number"
+script = ExtResource("2_w0wo7")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 32.0
+offset_top = 8.0
+offset_right = 72.0
+offset_bottom = 31.0
+
+[connection signal="pressed" from="GoToScene2Button" to="GoToScene2Button" method="_on_pressed"]
+[connection signal="pressed" from="AddNumberButton" to="GoToScene2Button" method="_on_add_number_button_pressed"]

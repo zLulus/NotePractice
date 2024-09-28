@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://cndrau0ruc0is"]
+
+[ext_resource type="Script" path="res://Scripts/WindowScene/WindowSceneScript.gd" id="1_6k4cb"]
+
+[node name="WindowScene" type="Node2D"]
+script = ExtResource("1_6k4cb")
+
+[node name="Window" type="Window" parent="."]
+title = "Pop up"
+initial_position = 2
+size = Vector2i(500, 500)
+visible = false
+
+[node name="Label" type="Label" parent="Window"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Close?"
+
+[node name="Button" type="Button" parent="Window"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Yes"
+
+[node name="ShowWindowButton" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Show window"
+
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
+[connection signal="pressed" from="ShowWindowButton" to="." method="_on_show_window_button_pressed"]

@@ -1,8 +1,9 @@
-extends RefCounted
+extends Control
 
-var Money:int:
+var max_hp:int=100
+var hp:int=100:
 	set(value):
-		Money=value
-		emit_signal("UpdateMoney",value)
+		hp=value
+		emit_signal("hp_change",hp,max_hp)
 
-signal UpdateMoney(money:int)
+signal hp_change(hp:int,max_hp:int)

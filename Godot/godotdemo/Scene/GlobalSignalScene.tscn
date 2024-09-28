@@ -4,16 +4,18 @@
 
 [node name="GlobalSignalScene" type="Node2D"]
 
-[node name="Label" type="Label" parent="."]
-offset_right = 288.0
-offset_bottom = 48.0
-
 [node name="Button" type="Button" parent="."]
-offset_left = 8.0
-offset_top = 64.0
-offset_right = 129.0
-offset_bottom = 95.0
-text = "update money"
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 169.0
+offset_bottom = 103.0
+text = "update hp"
 script = ExtResource("1_nx0jd")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 384.0
+offset_bottom = 51.0
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
