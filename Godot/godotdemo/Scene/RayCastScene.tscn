@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://fs2gh85gemny"]
+
+[ext_resource type="Texture2D" uid="uid://do0t1ajaajywi" path="res://icon.svg" id="1_xf4da"]
+[ext_resource type="Script" path="res://Scripts/RayCastScene/RayCast2DScript.gd" id="2_s7bxi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gaca3"]
+size = Vector2(128, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jt7np"]
+
+[node name="RayCastScene" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(264, 224)
+texture = ExtResource("1_xf4da")
+
+[node name="RayCastTestArea2D" type="Area2D" parent="Icon"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Icon/RayCastTestArea2D"]
+shape = SubResource("RectangleShape2D_gaca3")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(264, 64)
+target_position = Vector2(0, 144)
+collide_with_areas = true
+script = ExtResource("2_s7bxi")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_jt7np")

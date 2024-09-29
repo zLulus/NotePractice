@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyvgs3kedcpwx"]
+
+[ext_resource type="Script" path="res://Scripts/RemoveNodeScene/RemoveNode2DScript.gd" id="1_o0a06"]
+
+[node name="RemoveNodeScene" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("1_o0a06")
+
+[node name="Node2D2" type="Node2D" parent="."]

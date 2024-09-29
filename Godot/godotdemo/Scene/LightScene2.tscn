@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://tcf2h01mj0lq"]
+
+[ext_resource type="Texture2D" uid="uid://do0t1ajaajywi" path="res://icon.svg" id="1_8y7d0"]
+[ext_resource type="Texture2D" uid="uid://cujcmkvgm04ow" path="res://Resources/circle.png" id="2_45x3m"]
+
+[node name="LightScene2" type="Node2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(720, 328)
+texture = ExtResource("1_8y7d0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(568, 264)
+texture = ExtResource("1_8y7d0")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(608, 344)
+scale = Vector2(0.34, 0.27)
+texture = ExtResource("2_45x3m")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+light_mask = 2
+position = Vector2(512, 416)
+texture = ExtResource("1_8y7d0")

@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://cw5j8edciut0y"]
+
+[ext_resource type="Texture2D" uid="uid://do0t1ajaajywi" path="res://icon.svg" id="1_g42jk"]
+[ext_resource type="Script" path="res://Scripts/SpriteTestScene2/AnimationScript.gd" id="2_womsn"]
+
+[node name="SpriteTestScene2" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(600, 280)
+texture = ExtResource("1_g42jk")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(4, 5, 100, 100)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(864, 248)
+texture = ExtResource("1_g42jk")
+hframes = 2
+vframes = 2
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(968, 248)
+texture = ExtResource("1_g42jk")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Sprite2D4" type="Sprite2D" parent="." groups=["test1"]]
+position = Vector2(864, 352)
+texture = ExtResource("1_g42jk")
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="Sprite2D5" type="Sprite2D" parent="." groups=["test1"]]
+position = Vector2(968, 352)
+texture = ExtResource("1_g42jk")
+hframes = 2
+vframes = 2
+frame = 3
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+position = Vector2(664, 440)
+texture = ExtResource("1_g42jk")
+hframes = 2
+vframes = 2
+frame = 2
+script = ExtResource("2_womsn")

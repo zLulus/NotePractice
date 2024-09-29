@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc5w5ctp8lohc"]
+[gd_scene load_steps=3 format=3 uid="uid://dc5w5ctp8lohc"]
 
 [ext_resource type="Script" path="res://Scripts/NodeScene/NodeSceneScript.gd" id="1_b2v8c"]
+[ext_resource type="Texture2D" uid="uid://do0t1ajaajywi" path="res://icon.svg" id="2_7i5tf"]
 
 [node name="NodeScene" type="Node2D"]
 script = ExtResource("1_b2v8c")
@@ -22,3 +23,100 @@ offset_left = 16.0
 offset_top = 144.0
 offset_right = 224.0
 offset_bottom = 176.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.301961, 1, 1, 1)
+z_index = 1
+texture_filter = 6
+position = Vector2(616, 248)
+rotation = -0.40835
+scale = Vector2(-1.41194, 1.2758)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 6
+position = Vector2(696, 288)
+rotation = -0.40835
+scale = Vector2(-1.41194, 1.2758)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(1, 0.368627, 1, 1)
+texture_filter = 6
+position = Vector2(784, 352)
+rotation = -0.40835
+scale = Vector2(-1.41194, 1.2758)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 6
+position = Vector2(864, 424)
+rotation = -0.40835
+scale = Vector2(-1.41194, 1.2758)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+modulate = Color(0.847059, 0.67451, 0.329412, 1)
+texture_filter = 6
+position = Vector2(648, 568)
+rotation = 2.73324
+scale = Vector2(1.41194, -1.2758)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Sprite2D5"]
+texture_filter = 6
+position = Vector2(-40.7512, 53.6751)
+scale = Vector2(1, 1)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Sprite2D5"]
+texture_filter = 6
+position = Vector2(-71.8025, 116.37)
+scale = Vector2(1, 1)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+self_modulate = Color(1, 0.396078, 1, 1)
+texture_filter = 6
+position = Vector2(1088, 256)
+rotation = -0.40835
+scale = Vector2(-1.41194, 1.2758)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Sprite2D6"]
+texture_filter = 6
+position = Vector2(-39.2015, 73.4301)
+scale = Vector2(1, 1)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+clip_children = 1
+texture_filter = 6
+position = Vector2(1088, 552)
+scale = Vector2(1, 1)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Sprite2D7"]
+texture_filter = 6
+position = Vector2(72, 56)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D8" type="Sprite2D" parent="."]
+clip_children = 2
+texture_filter = 6
+position = Vector2(1496, 576)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Sprite2D8"]
+texture_filter = 6
+position = Vector2(-56, 80)
+texture = ExtResource("2_7i5tf")
+
+[node name="Sprite2D9" type="Sprite2D" parent="."]
+texture_filter = 6
+position = Vector2(1496, 848)
+rotation = -0.0436332
+scale = Vector2(3, 2)
+skew = 0.509636
+texture = ExtResource("2_7i5tf")
