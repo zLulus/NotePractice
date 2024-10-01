@@ -30,7 +30,6 @@ texture = ExtResource("3_8vaqq")
 [node name="TestArea2D" type="Area2D" parent="Sprite2D2"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D2/TestArea2D"]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_6fjbr")
 
 [connection signal="area_entered" from="Sprite2D/Area2D" to="Sprite2D/Area2D" method="_on_area_entered"]

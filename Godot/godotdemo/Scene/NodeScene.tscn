@@ -67,13 +67,11 @@ texture = ExtResource("2_7i5tf")
 [node name="Sprite2D6" type="Sprite2D" parent="Sprite2D5"]
 texture_filter = 6
 position = Vector2(-40.7512, 53.6751)
-scale = Vector2(1, 1)
 texture = ExtResource("2_7i5tf")
 
 [node name="Sprite2D7" type="Sprite2D" parent="Sprite2D5"]
 texture_filter = 6
 position = Vector2(-71.8025, 116.37)
-scale = Vector2(1, 1)
 texture = ExtResource("2_7i5tf")
 
 [node name="Sprite2D6" type="Sprite2D" parent="."]
@@ -87,14 +85,12 @@ texture = ExtResource("2_7i5tf")
 [node name="Sprite2D7" type="Sprite2D" parent="Sprite2D6"]
 texture_filter = 6
 position = Vector2(-39.2015, 73.4301)
-scale = Vector2(1, 1)
 texture = ExtResource("2_7i5tf")
 
 [node name="Sprite2D7" type="Sprite2D" parent="."]
 clip_children = 1
 texture_filter = 6
 position = Vector2(1088, 552)
-scale = Vector2(1, 1)
 texture = ExtResource("2_7i5tf")
 
 [node name="Sprite2D8" type="Sprite2D" parent="Sprite2D7"]
