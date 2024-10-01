@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b85br5kcga2k6"]
+[gd_scene load_steps=3 format=3 uid="uid://b85br5kcga2k6"]
 
 [ext_resource type="Texture2D" uid="uid://do0t1ajaajywi" path="res://icon.svg" id="1_ppmtf"]
+[ext_resource type="Script" path="res://Scripts/ContainerScene/ItemListScript.gd" id="2_i3q8m"]
 
 [node name="ContainerScene" type="Node2D"]
 
@@ -89,6 +90,7 @@ offset_left = 984.0
 offset_top = 216.0
 offset_right = 1384.0
 offset_bottom = 616.0
+scroll_vertical = 102
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 layout_mode = 2
@@ -153,3 +155,29 @@ texture = ExtResource("1_ppmtf")
 [node name="TextureRect15" type="TextureRect" parent="ScrollContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("1_ppmtf")
+
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 1456.0
+offset_top = 56.0
+offset_right = 1872.0
+offset_bottom = 672.0
+item_count = 7
+max_columns = 3
+icon_mode = 0
+item_0/text = "111"
+item_0/icon = ExtResource("1_ppmtf")
+item_1/text = "222"
+item_1/icon = ExtResource("1_ppmtf")
+item_2/text = "333"
+item_2/icon = ExtResource("1_ppmtf")
+item_3/text = "444"
+item_3/icon = ExtResource("1_ppmtf")
+item_4/text = "555"
+item_4/icon = ExtResource("1_ppmtf")
+item_5/text = "666"
+item_5/icon = ExtResource("1_ppmtf")
+item_6/text = "777"
+item_6/icon = ExtResource("1_ppmtf")
+script = ExtResource("2_i3q8m")
+
+[connection signal="item_clicked" from="ItemList" to="ItemList" method="_on_item_clicked"]
