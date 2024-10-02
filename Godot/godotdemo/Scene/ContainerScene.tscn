@@ -90,7 +90,7 @@ offset_left = 984.0
 offset_top = 216.0
 offset_right = 1384.0
 offset_bottom = 616.0
-scroll_vertical = 102
+scroll_vertical = 100
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 layout_mode = 2

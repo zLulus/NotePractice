@@ -61,6 +61,11 @@ Down={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://Languages/Translation.en.translation", "res://Languages/Translation.zh.translation")
+locale/test="en"
+
 [rendering]
 
 renderer/rendering_method="mobile"

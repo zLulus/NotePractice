@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b41nglb6ngydo"]
+[gd_scene load_steps=10 format=3 uid="uid://b41nglb6ngydo"]
 
 [ext_resource type="Texture2D" uid="uid://bt8safuv6fw0o" path="res://Resources/00455tql.png" id="1_2s3an"]
 [ext_resource type="Texture2D" uid="uid://do0t1ajaajywi" path="res://icon.svg" id="1_igce7"]
 [ext_resource type="Texture2D" uid="uid://8f8upw43mnjj" path="res://Resources/enemyFloating_1.png" id="2_rgksf"]
 [ext_resource type="LabelSettings" uid="uid://bv1u5ofn4jwb" path="res://new_label_settings.tres" id="4_ai2n2"]
 [ext_resource type="Script" path="res://Scripts/ControlScene/TextEditScript.gd" id="5_880mr"]
+[ext_resource type="Script" path="res://Scripts/ControlScene/Label4Script.gd" id="6_4bi2e"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_64aye"]
 device = -1
@@ -211,6 +212,7 @@ placeholder_text = "input something"
 script = ExtResource("5_880mr")
 
 [node name="TextEdit2" type="TextEdit" parent="."]
+layout_mode = 0
 offset_left = 440.0
 offset_top = 16.0
 offset_right = 672.0
@@ -218,5 +220,14 @@ offset_bottom = 64.0
 text = "long long long long long long long long long long long long "
 placeholder_text = "input something"
 wrap_mode = 1
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 368.0
+offset_right = 256.0
+offset_bottom = 408.0
+text = "Title"
+script = ExtResource("6_4bi2e")
 
 [connection signal="text_changed" from="TextEdit" to="TextEdit" method="_on_text_changed"]
