@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b41nglb6ngydo"]
+[gd_scene load_steps=12 format=3 uid="uid://b41nglb6ngydo"]
 
 [ext_resource type="Texture2D" uid="uid://bt8safuv6fw0o" path="res://Resources/00455tql.png" id="1_2s3an"]
 [ext_resource type="Texture2D" uid="uid://do0t1ajaajywi" path="res://icon.svg" id="1_igce7"]
@@ -17,6 +17,11 @@ unicode = 68
 events = [SubResource("InputEventKey_64aye")]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_c6v4r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c2svi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jiynr"]
+bg_color = Color(0.6, 1, 0.988235, 1)
 
 [node name="ControlScene" type="Control"]
 layout_mode = 3
@@ -186,6 +191,8 @@ offset_left = 384.0
 offset_top = 232.0
 offset_right = 536.0
 offset_bottom = 259.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_c2svi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jiynr")
 value = 37.0
 fill_mode = 1
 show_percentage = false

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://lm3e42dj83sh"]
+[gd_scene load_steps=6 format=3 uid="uid://lm3e42dj83sh"]
 
 [ext_resource type="Script" path="res://Scripts/SignalScene/SignalSceneScript.gd" id="1_bg44b"]
 [ext_resource type="Script" path="res://Scripts/SignalScene/LabelScript.gd" id="1_my8ie"]
 [ext_resource type="Script" path="res://Scripts/SignalScene/ButtonScript.gd" id="2_o60kc"]
 [ext_resource type="Script" path="res://Scripts/SignalScene/Label2Script.gd" id="3_bt7gv"]
+[ext_resource type="Script" path="res://Scripts/SignalScene/Label3Script.gd" id="5_ja3p2"]
 
 [node name="SignalScene" type="Node2D"]
 script = ExtResource("1_bg44b")
@@ -28,5 +29,19 @@ offset_right = 103.0
 offset_bottom = 271.0
 text = "signal test"
 script = ExtResource("2_o60kc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 152.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 104.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "321123"
+script = ExtResource("5_ja3p2")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
