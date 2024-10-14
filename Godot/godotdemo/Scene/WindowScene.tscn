@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cndrau0ruc0is"]
+[gd_scene load_steps=3 format=3 uid="uid://cndrau0ruc0is"]
 
 [ext_resource type="Script" path="res://Scripts/WindowScene/WindowSceneScript.gd" id="1_6k4cb"]
+[ext_resource type="PackedScene" uid="uid://8fplibhpfb5c" path="res://Scene/Container2.tscn" id="2_0y0sr"]
 
 [node name="WindowScene" type="Node2D"]
 script = ExtResource("1_6k4cb")
@@ -9,17 +10,28 @@ script = ExtResource("1_6k4cb")
 title = "Pop up"
 initial_position = 2
 size = Vector2i(500, 500)
-visible = false
 
 [node name="Label" type="Label" parent="Window"]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Close?"
 
 [node name="Button" type="Button" parent="Window"]
+visible = false
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Yes"
+
+[node name="ColorRect" type="ColorRect" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.647059, 0.992157, 0.690196)
+
+[node name="Container2" parent="Window" instance=ExtResource("2_0y0sr")]
 
 [node name="ShowWindowButton" type="Button" parent="."]
 offset_right = 8.0
