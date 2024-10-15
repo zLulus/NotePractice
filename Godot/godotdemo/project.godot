@@ -32,6 +32,7 @@ project/assembly_name="GodotDemo"
 [global_group]
 
 GlobalTestGroup1=""
+RemoveItemFromListGroup=""
 
 [input]
 

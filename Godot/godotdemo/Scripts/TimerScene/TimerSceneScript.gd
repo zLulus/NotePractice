@@ -11,15 +11,18 @@ func _ready() -> void:
 
 func _update_time():
 	# 更新时间
-	current_time += 1000
+	current_time += 1
 	update_time_label(current_time)
 
 func update_time_label(time_in_ms):
 	# 格式化时间为时:分:秒
-	var hours = floor(time_in_ms / 3600000)
-	var minutes = floor((time_in_ms % 3600000) / 60000)
-	var seconds = floor((time_in_ms % 60000) / 1000)
+	var hours = floor(time_in_ms / 3600)
+	var minutes = floor((time_in_ms % 3600) / 60)
+	var seconds = floor(time_in_ms % 60)
 
 	# 格式化输出
-	var time_str = str(hours)+":"+str(minutes)+":"+str(seconds)
+	var h="%02d" % hours
+	var m="%02d" % minutes
+	var s="%02d" % seconds
+	var time_str = h+":"+m+":"+s
 	time_label.text = time_str
