@@ -10,10 +10,12 @@ func _ready() -> void:
 
 func _on_add_item_button_pressed() -> void:
 	var instance=item.instantiate()
-	instance.Id=startId
-	startId+=1
 	instance.custom_minimum_size=Vector2(280, 128)
 	# 这里可以设置texture、label、button
+	var label1=instance.get_node("HBoxContainer/VBoxContainer/Label") as Label
+	label1.text="test label "+str(startId)
+	instance.Id=startId
+	startId+=1
 	list.add_child(instance)
 
 func RemoveItemFromList(id:int):
