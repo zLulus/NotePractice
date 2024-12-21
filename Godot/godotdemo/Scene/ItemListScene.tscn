@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bqa34s808mgg"]
+
+[node name="ItemListScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+item_count = 4
+max_columns = 2
+item_0/text = "test1"
+item_1/text = "test2"
+item_2/text = "item3"
+item_3/text = "item4"

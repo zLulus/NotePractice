@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b41nglb6ngydo"]
+[gd_scene load_steps=13 format=3 uid="uid://b41nglb6ngydo"]
 
 [ext_resource type="Texture2D" uid="uid://bt8safuv6fw0o" path="res://Resources/00455tql.png" id="1_2s3an"]
 [ext_resource type="Texture2D" uid="uid://do0t1ajaajywi" path="res://icon.svg" id="1_igce7"]
@@ -6,6 +6,7 @@
 [ext_resource type="LabelSettings" uid="uid://bv1u5ofn4jwb" path="res://new_label_settings.tres" id="4_ai2n2"]
 [ext_resource type="Script" path="res://Scripts/ControlScene/TextEditScript.gd" id="5_880mr"]
 [ext_resource type="Script" path="res://Scripts/ControlScene/Label4Script.gd" id="6_4bi2e"]
+[ext_resource type="Script" path="res://Controls/CustomMenuButton.gd" id="7_f8j5s"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_64aye"]
 device = -1
@@ -236,5 +237,59 @@ offset_right = 256.0
 offset_bottom = 408.0
 text = "Title"
 script = ExtResource("6_4bi2e")
+
+[node name="MenuButton" type="MenuButton" parent="."]
+layout_mode = 0
+offset_left = 1400.0
+offset_top = 472.0
+offset_right = 1568.0
+offset_bottom = 528.0
+text = "test"
+icon = ExtResource("1_igce7")
+flat = false
+item_count = 2
+popup/item_0/text = "1"
+popup/item_1/text = "2"
+popup/item_1/id = 1
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 0
+offset_left = 1600.0
+offset_top = 480.0
+offset_right = 1768.0
+offset_bottom = 512.0
+item_count = 2
+popup/item_0/text = "1"
+popup/item_1/text = "2"
+popup/item_1/id = 1
+
+[node name="CustomMenuButton" type="MenuButton" parent="."]
+layout_mode = 0
+offset_left = 1328.0
+offset_top = 672.0
+offset_right = 1480.0
+offset_bottom = 712.0
+text = "test"
+icon = ExtResource("1_igce7")
+item_count = 2
+popup/item_0/text = "1"
+popup/item_1/text = "2"
+popup/item_1/id = 1
+script = ExtResource("7_f8j5s")
+
+[node name="MenuButton2" type="MenuButton" parent="."]
+layout_mode = 0
+offset_left = 1192.0
+offset_top = 512.0
+offset_right = 1362.0
+offset_bottom = 584.0
+text = "test"
+icon = ExtResource("1_igce7")
+flat = false
+expand_icon = true
+item_count = 2
+popup/item_0/text = "1"
+popup/item_1/text = "2"
+popup/item_1/id = 1
 
 [connection signal="text_changed" from="TextEdit" to="TextEdit" method="_on_text_changed"]
